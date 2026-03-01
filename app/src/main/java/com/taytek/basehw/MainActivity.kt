@@ -33,11 +33,15 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             BaseHWTheme {
-                val minVersion by remember { mutableStateOf(remoteConfig.getMinVersionName()) }
-                val latestVersion by remember { mutableStateOf(remoteConfig.getLatestVersionName()) }
-                val updateUrl by remember { mutableStateOf(remoteConfig.getUpdateUrl()) }
+                val configUpdate by remoteConfig.configUpdated.collectAsState()
                 
-                var showOptionalUpdate by remember { mutableStateOf(isVersionOlder(currentVersionName, latestVersion)) }
+                val minVersion = remember(configUpdate) { remoteConfig.getMinVersionName() }
+                val latestVersion = remember(configUpdate) { remoteConfig.getLatestVersionName() }
+                val updateUrl = remember(configUpdate) { remoteConfig.getUpdateUrl() }
+                
+                var showOptionalUpdate by remember(configUpdate) { 
+                    mutableStateOf(isVersionOlder(currentVersionName, latestVersion)) 
+                }
 
                 Surface(modifier = Modifier.fillMaxSize()) {
                     if (isVersionOlder(currentVersionName, minVersion)) {

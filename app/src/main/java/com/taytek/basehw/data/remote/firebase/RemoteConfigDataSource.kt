@@ -1,8 +1,14 @@
 package com.taytek.basehw.data.remote.firebase
 
+import com.google.firebase.remoteconfig.ConfigUpdate
+import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.taytek.basehw.R
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,17 +25,37 @@ class RemoteConfigDataSource @Inject constructor(
         private const val UPDATE_URL = "update_url"
     }
 
+    private val _configUpdated = MutableStateFlow(System.currentTimeMillis())
+    val configUpdated: StateFlow<Long> = _configUpdated.asStateFlow()
+
     init {
         val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setMinimumFetchIntervalInSeconds(3600) // Fetch every hour
+            .setMinimumFetchIntervalInSeconds(0) // Set to 0 for real-time testing
             .build()
         remoteConfig.setConfigSettingsAsync(configSettings)
         remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
+
+        // Real-time updates
+        remoteConfig.addOnConfigUpdateListener(object : ConfigUpdateListener {
+            override fun onUpdate(configUpdate: ConfigUpdate) {
+                remoteConfig.activate().addOnCompleteListener {
+                    _configUpdated.value = System.currentTimeMillis()
+                }
+            }
+
+            override fun onError(error: FirebaseRemoteConfigException) {
+                // Handle error
+            }
+        })
     }
 
     suspend fun fetchAndActivate(): Boolean {
         return try {
-            remoteConfig.fetchAndActivate().await()
+            val result = remoteConfig.fetchAndActivate().await()
+            if (result) {
+                _configUpdated.value = System.currentTimeMillis()
+            }
+            result
         } catch (e: Exception) {
             false
         }
