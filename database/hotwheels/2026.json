@@ -8,5 +8,15 @@
     "toy_num": "HKH01",
     "col_num": "1",
     "series_num": "1/5"
+  },
+  {
+    "brand_entity": "HotWheels",
+    "model_name": "Taygun 911 GT3 RS",
+    "series": "Factory Fresh",
+    "year": "2026",
+    "imageUrl": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/Porsche_911_GT3_RS_2026.jpg",
+    "toy_num": "HNJ45",
+    "col_num": "45",
+    "series_num": "2/10"
   }
 ]
