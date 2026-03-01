@@ -45,7 +45,7 @@ class RemoteYearSyncWorker @AssistedInject constructor(
         const val WORK_NAME = "hw_remote_year_sync"
 
         // ── CONFIGURE THIS ───────────────────────────────────────────────────
-        const val REMOTE_BASE_URL = "https://raw.githubusercontent.com/ttimocin/basehw-database/main"
+        const val REMOTE_BASE_URL = "https://raw.githubusercontent.com/ttimocin/basehw-database/main/database"
         // ─────────────────────────────────────────────────────────────────────
     }
 
