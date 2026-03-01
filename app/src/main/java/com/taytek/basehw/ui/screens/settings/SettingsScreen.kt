@@ -5,9 +5,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Cloud
-import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -49,46 +46,6 @@ fun SettingsScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // ── Firebase Account ──
-            SectionHeader("Firebase Hesap")
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-            ) {
-                Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Icon(Icons.Default.Person, null, tint = MaterialTheme.colorScheme.primary)
-                        Column {
-                            Text(
-                                text = if (uiState.isSignedIn) "Giriş yapıldı" else "Giriş yapılmadı",
-                                style = MaterialTheme.typography.titleSmall
-                            )
-                            uiState.userId?.let {
-                                Text(
-                                    text = "UID: ${it.take(12)}…",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        }
-                    }
-                    if (!uiState.isSignedIn) {
-                        Button(
-                            onClick = viewModel::signInAnonymously,
-                            modifier = Modifier.fillMaxWidth()
-                        ) { Text("Anonim Giriş Yap") }
-                    } else {
-                        OutlinedButton(
-                            onClick = viewModel::signOut,
-                            modifier = Modifier.fillMaxWidth()
-                        ) { Text("Çıkış Yap") }
-                    }
-                }
-            }
-
             // ── Sync ──
             SectionHeader("Senkronizasyon")
             Card(
@@ -99,45 +56,23 @@ fun SettingsScreen(
                     modifier = Modifier.padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    // Collection → Firestore
+                    // GitHub Remote Sync
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        Icon(Icons.Default.Cloud, null, tint = MaterialTheme.colorScheme.primary)
+                        Icon(Icons.Default.Sync, null, tint = MaterialTheme.colorScheme.primary)
                         Column(Modifier.weight(1f)) {
-                            Text("Koleksiyonu Yedekle", style = MaterialTheme.typography.titleSmall)
-                            Text("Firestore'a yükle (europe-west3)", style = MaterialTheme.typography.labelSmall,
+                            Text("Yeni Modelleri Çek", style = MaterialTheme.typography.titleSmall)
+                            Text("GitHub üzerinden güncel JSON veritabanını indir.", style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
                         if (uiState.isSyncing) {
                             CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
                         } else {
-                            IconButton(
-                                onClick = viewModel::syncCollectionToFirestore,
-                                enabled = uiState.isSignedIn
-                            ) {
+                            IconButton(onClick = { viewModel.enqueueRemoteSync(workManager) }) {
                                 Icon(Icons.Default.Sync, "Senkronize Et")
                             }
-                        }
-                    }
-
-                    // Fandom Sync
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        Icon(Icons.Default.Download, null, tint = MaterialTheme.colorScheme.secondary)
-                        Column(Modifier.weight(1f)) {
-                            Text("Model Verisi İndir", style = MaterialTheme.typography.titleSmall)
-                            Text(
-                                text = "Fandom Wiki'den çek (${uiState.masterDataCount} kayıt mevcut)",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                        IconButton(onClick = { viewModel.enqueueFandomSync(workManager) }) {
-                            Icon(Icons.Default.Download, "Model Veri İndir")
                         }
                     }
 

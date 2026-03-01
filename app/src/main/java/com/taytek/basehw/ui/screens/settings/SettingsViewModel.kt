@@ -3,31 +3,26 @@ package com.taytek.basehw.ui.screens.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.*
-import com.taytek.basehw.data.remote.firebase.FirebaseAuthDataSource
-import com.taytek.basehw.data.worker.FandomSyncWorker
-import com.taytek.basehw.domain.model.Brand
-import com.taytek.basehw.domain.repository.MasterDataRepository
-import com.taytek.basehw.domain.repository.UserCarRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import androidx.lifecycle.asFlow
+import com.taytek.basehw.data.worker.RemoteYearSyncWorker
+import com.taytek.basehw.domain.repository.MasterDataRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.filterNotNull
 
 data class SettingsUiState(
-    val isSignedIn: Boolean = false,
-    val userId: String? = null,
-    val isSyncing: Boolean = false,
     val syncStatus: String = "",
+    val isSyncing: Boolean = false,
     val masterDataCount: Int = 0
 )
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val authDataSource: FirebaseAuthDataSource,
-    private val userCarRepository: UserCarRepository,
     private val masterDataRepository: MasterDataRepository
 ) : ViewModel() {
 
@@ -35,12 +30,6 @@ class SettingsViewModel @Inject constructor(
     val uiState: StateFlow<SettingsUiState> = _uiState.asStateFlow()
 
     init {
-        _uiState.update {
-            it.copy(
-                isSignedIn = authDataSource.isSignedIn,
-                userId = authDataSource.currentUser?.uid
-            )
-        }
         loadStats()
     }
 
@@ -51,50 +40,49 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun signInAnonymously() {
-        viewModelScope.launch {
-            val user = authDataSource.signInAnonymously()
-            _uiState.update { it.copy(isSignedIn = user != null, userId = user?.uid) }
-        }
-    }
+    fun enqueueRemoteSync(workManager: WorkManager) {
+        val request = OneTimeWorkRequestBuilder<RemoteYearSyncWorker>()
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
+            )
+            .addTag("github_remote_sync")
+            .build()
 
-    fun signOut() {
-        authDataSource.signOut()
-        _uiState.update { it.copy(isSignedIn = false, userId = null) }
-    }
+        workManager.enqueueUniqueWork(
+            "github_remote_sync",
+            ExistingWorkPolicy.REPLACE,
+            request
+        )
 
-    fun syncCollectionToFirestore() {
+        _uiState.update { it.copy(syncStatus = "GitHub'dan yeni araçlar indiriliyor...", isSyncing = true) }
+
         viewModelScope.launch {
-            _uiState.update { it.copy(isSyncing = true, syncStatus = "Koleksiyon yükleniyor…") }
-            try {
-                userCarRepository.syncToFirestore()
-                _uiState.update { it.copy(isSyncing = false, syncStatus = "Koleksiyon başarıyla senkronize edildi ✓") }
-            } catch (e: Exception) {
-                _uiState.update { it.copy(isSyncing = false, syncStatus = "Hata: ${e.message}") }
+            workManager.getWorkInfoByIdLiveData(request.id).asFlow().filterNotNull().collect { workInfo ->
+                when (workInfo.state) {
+                    WorkInfo.State.SUCCEEDED -> {
+                        _uiState.update { it.copy(
+                            syncStatus = "Başarılı! Yeni araçlar kaydedildi. ✅",
+                            isSyncing = false
+                        )}
+                        loadStats() // Refresh the car count on the UI
+                    }
+                    WorkInfo.State.FAILED -> {
+                        _uiState.update { it.copy(
+                            syncStatus = "Güncelleme başarısız oldu. Lütfen interneti kontrol edin. ❌",
+                            isSyncing = false
+                        )}
+                    }
+                    WorkInfo.State.CANCELLED -> {
+                        _uiState.update { it.copy(
+                            syncStatus = "İptal edildi. 🛑",
+                            isSyncing = false
+                        )}
+                    }
+                    else -> {}
+                }
             }
         }
-    }
-
-    fun enqueueFandomSync(workManager: WorkManager) {
-        Brand.entries.forEach { brand ->
-            val request = OneTimeWorkRequestBuilder<FandomSyncWorker>()
-                .setInputData(
-                    workDataOf(FandomSyncWorker.KEY_BRAND to brand.name)
-                )
-                .setConstraints(
-                    Constraints.Builder()
-                        .setRequiredNetworkType(NetworkType.CONNECTED)
-                        .build()
-                )
-                .addTag("fandom_sync_${brand.name}")
-                .build()
-
-            workManager.enqueueUniqueWork(
-                "fandom_sync_${brand.name}",
-                ExistingWorkPolicy.REPLACE,
-                request
-            )
-        }
-        _uiState.update { it.copy(syncStatus = "Model verisi indirme başladı… (arka planda devam eder)") }
     }
 }
