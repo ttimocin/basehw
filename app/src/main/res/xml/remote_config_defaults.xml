@@ -9,16 +9,12 @@
         <value>7</value>
     </entry>
     <entry>
-        <key>min_version_code</key>
-        <value>1</value>
-    </entry>
-    <entry>
-        <key>latest_version_code</key>
-        <value>1</value>
+        <key>min_version_name</key>
+        <value>1.0.0</value>
     </entry>
     <entry>
         <key>latest_version_name</key>
-        <value>1.0.1</value>
+        <value>1.0.0</value>
     </entry>
     <entry>
         <key>update_url</key>

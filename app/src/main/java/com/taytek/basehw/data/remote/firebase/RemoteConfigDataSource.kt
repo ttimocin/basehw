@@ -14,8 +14,7 @@ class RemoteConfigDataSource @Inject constructor(
     companion object {
         private const val SYNC_BASE_URL = "sync_base_url"
         private const val SYNC_INTERVAL_DAYS = "sync_interval_days"
-        private const val MIN_VERSION_CODE = "min_version_code"
-        private const val LATEST_VERSION_CODE = "latest_version_code"
+        private const val MIN_VERSION_NAME = "min_version_name"
         private const val LATEST_VERSION_NAME = "latest_version_name"
         private const val UPDATE_URL = "update_url"
     }
@@ -44,12 +43,8 @@ class RemoteConfigDataSource @Inject constructor(
         return remoteConfig.getLong(SYNC_INTERVAL_DAYS)
     }
 
-    fun getMinVersionCode(): Int {
-        return remoteConfig.getLong(MIN_VERSION_CODE).toInt()
-    }
-
-    fun getLatestVersionCode(): Int {
-        return remoteConfig.getLong(LATEST_VERSION_CODE).toInt()
+    fun getMinVersionName(): String {
+        return remoteConfig.getString(MIN_VERSION_NAME)
     }
 
     fun getLatestVersionName(): String {
