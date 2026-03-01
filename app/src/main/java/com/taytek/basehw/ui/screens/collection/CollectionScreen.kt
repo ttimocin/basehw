@@ -53,11 +53,11 @@ fun CollectionScreen(
                     }
                 },
                 actions = {
-                    TextButton(onClick = { /* reorder logic */ }) {
-                        Text(
-                            text = "Reorder",
-                            style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.onBackground
+                    IconButton(onClick = onSettingsClick) {
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "Settings",
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 },
