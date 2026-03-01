@@ -1,27 +1,26 @@
 package com.taytek.basehw.ui.screens.collection
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
-import com.taytek.basehw.ui.components.CarCard
+import com.taytek.basehw.domain.model.UserCar
+import com.taytek.basehw.ui.components.*
+import com.taytek.basehw.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,102 +31,96 @@ fun CollectionScreen(
     viewModel: CollectionViewModel = hiltViewModel()
 ) {
     val cars = viewModel.carsPaged.collectAsLazyPagingItems()
+    var selectedFilter by remember { mutableStateOf("Kutulu") }
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = "My Collections",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* back action if any */ }) {
-                        Icon(
-                            imageVector = Icons.Default.ChevronLeft,
-                            contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onBackground
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = onSettingsClick) {
-                        Icon(
-                            imageVector = Icons.Default.Settings,
-                            contentDescription = "Settings",
-                            tint = MaterialTheme.colorScheme.onBackground
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
-            )
-        }
-    ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(AppBackground)
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(bottom = 100.dp)
         ) {
+            // 1. Header
+            item {
+                HomeHeader(
+                    totalModels = cars.itemCount,
+                    onProfileClick = onSettingsClick
+                )
+            }
+
+            // 2. Featured Card (Using first item as featured for demo, or dummy if empty)
+            item {
+                if (cars.itemCount > 0) {
+                    val firstCar = cars[0]
+                    if (firstCar != null) {
+                        FeaturedCarCard(
+                            car = firstCar,
+                            onClick = { onCarClick(firstCar.id) }
+                        )
+                    }
+                } else {
+                    // Dummy Featured Card for Preview
+                    FeaturedCarCard(
+                        car = UserCar(id = 0, masterDataId = 0L, isOpened = false), // Fixed dummy
+                        onClick = onAddCarClick
+                    )
+                }
+            }
+
+            // 3. Filter Row
+            item {
+                FilterChipsRow(
+                    selectedFilter = selectedFilter,
+                    onFilterSelected = { selectedFilter = it }
+                )
+            }
+
+            // 4. Collection List
             when {
                 cars.loadState.refresh is LoadState.Loading -> {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                    item {
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator(color = AppPrimary)
+                        }
+                    }
                 }
 
-                cars.loadState.refresh is LoadState.Error -> {
-                    Text(
-                        text = "Koleksiyon yüklenemedi.",
-                        modifier = Modifier.align(Alignment.Center),
-                        color = MaterialTheme.colorScheme.error
-                    )
-                }
-
-                cars.itemCount == 0 -> {
-                    EmptyCollectionPlaceholder(
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                cars.itemCount == 0 && cars.loadState.refresh is LoadState.NotLoading -> {
+                    item {
+                        EmptyCollectionPlaceholder(
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
                 }
 
                 else -> {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(
-                            start = 16.dp,
-                            end = 16.dp,
-                            top = 12.dp,
-                            bottom = 100.dp
-                        ),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        items(
-                            count = cars.itemCount,
-                            key = cars.itemKey { it.id }
-                        ) { index ->
-                            val car = cars[index]
-                            if (car != null) {
-                                CarCard(
-                                    car = car,
-                                    onClick = { onCarClick(car.id) }
-                                )
-                            }
+                    items(
+                        count = cars.itemCount,
+                        key = cars.itemKey { it.id }
+                    ) { index ->
+                        val car = cars[index]
+                        if (car != null) {
+                            CollectionListItem(
+                                car = car,
+                                onClick = { onCarClick(car.id) }
+                            )
                         }
+                    }
+                }
+            }
 
-                        // Append loading indicator
-                        if (cars.loadState.append is LoadState.Loading) {
-                            item {
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth()
-                                        .padding(16.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                                }
-                            }
-                        }
+            // Append loading
+            if (cars.loadState.append is LoadState.Loading) {
+                item {
+                    Box(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp), color = AppPrimary)
                     }
                 }
             }
@@ -140,23 +133,25 @@ private fun EmptyCollectionPlaceholder(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.Center
     ) {
         Icon(
             imageVector = Icons.Default.DirectionsCar,
             contentDescription = null,
-            modifier = Modifier.size(80.dp),
-            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+            modifier = Modifier.size(100.dp),
+            tint = AppPrimary.copy(alpha = 0.2f)
         )
+        Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "Koleksiyonunuz Boş",
             style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onBackground
+            fontWeight = FontWeight.Bold,
+            color = AppTextPrimary
         )
         Text(
-            text = "Alt menüden Ekle butonuna tıklayarak\nilk arabanızı koleksiyonunuza katın.",
+            text = "Henüz model eklememişsiniz.\nOrtadaki + butonuna basarak başlayın!",
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = AppTextSecondary,
             textAlign = TextAlign.Center
         )
     }

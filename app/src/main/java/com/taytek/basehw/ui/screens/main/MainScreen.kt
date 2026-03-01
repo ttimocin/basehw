@@ -16,9 +16,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.taytek.basehw.ui.components.CustomBottomNavigation
 import com.taytek.basehw.ui.screens.collection.CollectionScreen
-import com.taytek.basehw.ui.screens.statistics.StatisticsScreen
-import com.taytek.basehw.ui.screens.wishlist.WishlistScreen
+import com.taytek.basehw.ui.theme.AppBackground
+import com.taytek.basehw.ui.theme.AppTextSecondary
 
 @Composable
 fun MainScreen(
@@ -32,15 +33,10 @@ fun MainScreen(
 
     Scaffold(
         bottomBar = {
-            CustomBottomBar(
+            CustomBottomNavigation(
                 selectedTab = selectedTab,
-                onTabSelected = { index ->
-                    if (index == 2) {
-                        onAddCarClick() // "Add" triggers action
-                    } else {
-                        selectedTab = index
-                    }
-                }
+                onTabSelected = { selectedTab = it },
+                onAddClick = onAddCarClick
             )
         }
     ) { paddingValues ->
@@ -48,7 +44,7 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(bottom = paddingValues.calculateBottomPadding())
-                .background(MaterialTheme.colorScheme.background)
+                .background(AppBackground)
         ) {
             when (selectedTab) {
                 0 -> { // Home
@@ -58,18 +54,14 @@ fun MainScreen(
                         onSettingsClick = onSettingsClick
                     )
                 }
-                1 -> { // Search
-                    WishlistScreen(
-                        onAddCarClick = onAddCarClick,
-                        onCarClick = onCarClick,
-                        onSettingsClick = onSettingsClick
-                    )
+                1 -> { // Search -> Placeholder
+                    SearchPlaceholder()
+                }
+                2 -> { // Collections -> Placeholder
+                    CollectionsPlaceholder()
                 }
                 3 -> { // Profile 
                     com.taytek.basehw.ui.screens.profile.ProfileScreen()
-                }
-                4 -> { // Premium -> Placeholder
-                    PremiumPlaceholder()
                 }
             }
         }
@@ -77,72 +69,16 @@ fun MainScreen(
 }
 
 @Composable
-private fun CustomBottomBar(
-    selectedTab: Int,
-    onTabSelected: (Int) -> Unit
-) {
-    Surface(
-        color = MaterialTheme.colorScheme.surface,
-        shadowElevation = 8.dp
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(vertical = 12.dp, horizontal = 8.dp),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            val tabs = listOf(
-                "Home" to Icons.Outlined.Home,
-                "Search" to Icons.Outlined.Search,
-                "Add" to Icons.Outlined.AddCircleOutline,
-                "Profile" to Icons.Outlined.Person,
-                "Premium" to Icons.Outlined.StarOutline
-            )
+fun SearchPlaceholder() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text("Search Coming Soon", color = AppTextSecondary)
+    }
+}
 
-            tabs.forEachIndexed { index, (title, icon) ->
-                val isSelected = selectedTab == index && index != 2 // Add is never "selected" visually
-                
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) { onTabSelected(index) }
-                ) {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = title,
-                        tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = title,
-                        style = MaterialTheme.typography.labelSmall.copy(
-                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    )
-                    
-                    Spacer(modifier = Modifier.height(2.dp))
-                    if (isSelected) {
-                        Box(
-                            modifier = Modifier
-                                .width(16.dp)
-                                .height(2.dp)
-                                .clip(RoundedCornerShape(1.dp))
-                                .background(MaterialTheme.colorScheme.primary)
-                        )
-                    } else {
-                        Spacer(modifier = Modifier.height(2.dp))
-                    }
-                }
-            }
-        }
+@Composable
+fun CollectionsPlaceholder() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text("Collections Coming Soon", color = AppTextSecondary)
     }
 }
 

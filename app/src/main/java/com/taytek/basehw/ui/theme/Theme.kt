@@ -10,40 +10,35 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val NatureColorScheme = lightColorScheme(
-    primary = ForestGreen,
-    onPrimary = OnGreenText,
-    primaryContainer = ForestGreenLight,
-    onPrimaryContainer = OnGreenText,
-    secondary = DarkOlive,
-    onSecondary = OnGreenText,
-    secondaryContainer = CreamSurfaceVariant,
-    onSecondaryContainer = DarkOlive,
-    background = CreamBackground,
-    onBackground = OnCreamText,
-    surface = CreamSurface,
-    onSurface = OnCreamText,
-    surfaceVariant = CreamSurfaceVariant,
-    onSurfaceVariant = DarkOliveVariant,
-    outline = DarkOliveVariant,
-    surfaceTint = ForestGreen,
-    error = ErrorRed,
-    onError = OnGreenText
+private val ModernColorScheme = lightColorScheme(
+    primary = AppPrimary,
+    onPrimary = AppOnPrimary,
+    primaryContainer = AppAccentLight,
+    onPrimaryContainer = AppPrimary,
+    secondary = AppPrimary,
+    onSecondary = AppOnPrimary,
+    background = AppBackground,
+    onBackground = AppTextPrimary,
+    surface = AppSurface,
+    onSurface = AppTextPrimary,
+    surfaceVariant = AppBackground,
+    onSurfaceVariant = AppTextSecondary,
+    outline = AppShadow,
+    surfaceTint = AppPrimary
 )
 
 @Composable
 fun BaseHWTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(), // Ignoring dark theme to force nature style
+    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    // We enforce the NatureColorScheme universally for now to match the strict visual style
-    val colorScheme = NatureColorScheme
+    val colorScheme = ModernColorScheme
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = CreamBackground.toArgb()
+            window.statusBarColor = AppBackground.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
         }
     }

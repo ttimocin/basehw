@@ -2,29 +2,15 @@ package com.taytek.basehw.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// === Nature-Inspired Theme ===
-
-// Backgrounds
-val CreamBackground = Color(0xFFFDFDF6)
-val CreamSurface = Color(0xFFFFFFFF)
-
-// Primary Greens
-val ForestGreen = Color(0xFF4D6C20)
-val ForestGreenDark = Color(0xFF3A5218)
-val ForestGreenLight = Color(0xFF8BA65E)
-
-// Olives
-val DarkOlive = Color(0xFF4B6A1F)
-val DarkOliveVariant = Color(0xFF708C4A)
-val CreamSurfaceVariant = Color(0xFFF2F2E9)
-
-// Text Colors
-val OnGreenText = Color(0xFFFFFFFF)
-val OnCreamText = Color(0xFF4B6A1F)
-
-// Errors
-val ErrorRed = Color(0xFFBA1A1A)
-val ErrorRedDark = Color(0xFF93000A)
+// === Modern Light Theme (iOS-like) ===
+val AppBackground = Color(0xFFF8FAFC)
+val AppSurface = Color(0xFFFFFFFF)
+val AppPrimary = Color(0xFF42A5F5)
+val AppOnPrimary = Color(0xFFFFFFFF)
+val AppTextPrimary = Color(0xFF1A1C1E)
+val AppTextSecondary = Color(0xFF74777F)
+val AppAccentLight = Color(0xFFE3F2FD)
+val AppShadow = Color(0x1A000000)
 
 // Brand indicator colors
 val HotWheelsRed = Color(0xFFE53935)
