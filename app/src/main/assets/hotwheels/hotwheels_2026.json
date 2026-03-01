@@ -1,0 +1,2342 @@
+[
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ02",
+        "man_num": "",
+        "model_name": "Mazda MX-5 Miata",
+        "series": "HW Dream Garage",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/CyberpunkMazda.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH80",
+        "man_num": "",
+        "model_name": "'16 Lamborghini Centenario Roadster",
+        "series": "Exoticars",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fd/LamborghiniCentenario.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM49",
+        "man_num": "",
+        "model_name": "'16 Lamborghini Centenario Roadster(2nd Color)",
+        "series": "ExoticarsKroger Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK74",
+        "man_num": "",
+        "model_name": "'16 Lamborghini Centenario Roadster(3rd Color)",
+        "series": "Exoticars",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a6/CentenarioRoadster.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ62",
+        "man_num": "",
+        "model_name": "Gordon Murray Automotive T.33",
+        "series": "Exoticars",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/2025GMAT.33.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJL44",
+        "man_num": "",
+        "model_name": "Gordon Murray Automotive T.33(2nd Color)",
+        "series": "Exoticars",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/T33Coupe.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH83",
+        "man_num": "",
+        "model_name": "Batmobile",
+        "series": "Batman",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/GunmetalBatmobile.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH30",
+        "man_num": "",
+        "model_name": "Pass 'n Go",
+        "series": "Drop TopsNew for 2026!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/19/Pass%27nGo.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH84",
+        "man_num": "",
+        "model_name": "RD-06",
+        "series": "X-Raycers",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/XRD-06.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK66",
+        "man_num": "",
+        "model_name": "RD-06(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a3/X2RD-06.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH85",
+        "man_num": "",
+        "model_name": "Solar Reflex",
+        "series": "HW EV",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/86/SolarReflexEV.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK67",
+        "man_num": "",
+        "model_name": "Solar Reflex(2nd Color)",
+        "series": "HW EV",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/ReflexEV.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH86",
+        "man_num": "",
+        "model_name": "Ford Mustang Mach-E 1400",
+        "series": "HW EV",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/32/MustangMach-E1400.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM61",
+        "man_num": "",
+        "model_name": "Ford Mustang Mach-E 1400(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "1/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/JJM61_RED_o1z.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK78",
+        "man_num": "",
+        "model_name": "Ford Mustang Mach-E 1400(3rd Color)",
+        "series": "HW EV",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM00",
+        "man_num": "",
+        "model_name": "'87 Buick Regal GNX",
+        "series": "NightspeedTreasure Hunt",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7e/BuickRegal.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH87",
+        "man_num": "",
+        "model_name": "2020 Ford Mustang Shelby GT500",
+        "series": "Nightspeed",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/00/2020FordShelbyGT500.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM50",
+        "man_num": "",
+        "model_name": "2020 Ford Mustang Shelby GT500(2nd Color)",
+        "series": "NightspeedKroger Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK68",
+        "man_num": "",
+        "model_name": "2020 Ford Mustang Shelby GT500(3rd Color)",
+        "series": "Nightspeed",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/da/%2720ShelbyGT500.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH88",
+        "man_num": "",
+        "model_name": "2018 Honda Civic Type R",
+        "series": "Nightspeed",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6a/2018FK8.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK87",
+        "man_num": "",
+        "model_name": "2018 Honda Civic Type R(2nd Color)",
+        "series": "Nightspeed",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/15/HondaFK8.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH89",
+        "man_num": "",
+        "model_name": "Carbonator",
+        "series": "Experimotors",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d6/HNY26Carbonator.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH90",
+        "man_num": "",
+        "model_name": "Drift-Ender",
+        "series": "Truckin' Along",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3d/DriftDefender.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM15",
+        "man_num": "",
+        "model_name": "Drift-Ender",
+        "series": "Truckin' AlongSuper Treasure Hunt",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e2/STH_Drift-Ender.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH91",
+        "man_num": "",
+        "model_name": "'20 Jeep Gladiator",
+        "series": "Truckin' Along",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1b/2020Gladiator.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM62",
+        "man_num": "",
+        "model_name": "'20 Jeep Gladiator(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "2/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7e/JJM62_RED_o1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH33",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera T",
+        "series": "Factory FreshNew for 2026!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/Porsche911CarreraT.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM31",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera T(2nd Color - Zamac)",
+        "series": "Factory FreshNew for 2026!Walmart Exclusive",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/03/JJM31_ZAMAK_o4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK80",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera T(3rd Color)",
+        "series": "Factory FreshNew for 2026!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH92",
+        "man_num": "",
+        "model_name": "Maserati Shamal",
+        "series": "Factory Fresh",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fa/1992MaseratiShamal.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM57",
+        "man_num": "",
+        "model_name": "Maserati Shamal(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "3/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bd/JJM57_RED_o4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH32",
+        "man_num": "",
+        "model_name": "Bounce'n Bass",
+        "series": "Layin' LowNew for 2026!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/34/Bounce%27nBass.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK69",
+        "man_num": "",
+        "model_name": "Bounce'n Bass(2nd Color)",
+        "series": "Layin' LowNew for 2026!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0b/Bouncin%27Bass.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH93",
+        "man_num": "",
+        "model_name": "Deora II",
+        "series": "HW Fan Driven",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0e/Surfin%27Deora.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK70",
+        "man_num": "",
+        "model_name": "Deora II(2nd Color)",
+        "series": "HW Fan Driven",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7d/PinkDeora.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH94",
+        "man_num": "",
+        "model_name": "Rodger Dodger",
+        "series": "HW Fan Driven",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e9/FanDrivenDodger.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM51",
+        "man_num": "",
+        "model_name": "Rodger Dodger(2nd Color)",
+        "series": "HW Fan DrivenKroger Exclusive",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK71",
+        "man_num": "",
+        "model_name": "Rodger Dodger(3rd Color)",
+        "series": "HW Fan Driven",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH95",
+        "man_num": "",
+        "model_name": "McLaren Formula 1 Team",
+        "series": "Formula 1",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dc/McLarenMastercardMCL39.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH96",
+        "man_num": "",
+        "model_name": "Barbie Dream Camper",
+        "series": "Mattel",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ef/Dreamcamper.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK72",
+        "man_num": "",
+        "model_name": "Barbie Dream Camper(2nd Color)",
+        "series": "Mattel",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/DreamCamper.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH31",
+        "man_num": "",
+        "model_name": "Instant Boost",
+        "series": "HW Starting GridNew for 2026!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b3/InstantBoost.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK73",
+        "man_num": "",
+        "model_name": "Instant Boost(2nd Color)",
+        "series": "HW Starting GridNew for 2026!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f6/BrewceAmericano.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH97",
+        "man_num": "",
+        "model_name": "'69 Dodge Charger Daytona",
+        "series": "HW Starting Grid",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8c/1969DodgeDaytona.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM52",
+        "man_num": "",
+        "model_name": "'69 Dodge Charger Daytona(2nd Color)",
+        "series": "HW Starting GridKroger Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH82",
+        "man_num": "",
+        "model_name": "Track Ripper",
+        "series": "HW Starting Grid",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/TrackRipper.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM33",
+        "man_num": "",
+        "model_name": "Track Ripper(2nd Color - Zamac)",
+        "series": "HW Starting GridWalmart Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/JJM33_o4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH81",
+        "man_num": "",
+        "model_name": "McMurtry Spéirling",
+        "series": "Exoticars",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f7/McMurtrySp%C3%A9irlingPure.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH34",
+        "man_num": "",
+        "model_name": "Pagani Zonda Cinque",
+        "series": "ExoticarsNew for 2026!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/%27ToonedZonda.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK75",
+        "man_num": "",
+        "model_name": "Pagani Zonda Cinque(2nd Color)",
+        "series": "ExoticarsNew for 2026!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ00",
+        "man_num": "",
+        "model_name": "Optimus Prime",
+        "series": "Screen Time",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/80/Optimus.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH98",
+        "man_num": "",
+        "model_name": "HW K.I.T.T. Concept",
+        "series": "Screen Time",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/HWKITTConcept.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM01",
+        "man_num": "",
+        "model_name": "'92 Dodge Viper RT/10",
+        "series": "Drop TopsTreasure Hunt",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/1992Viper.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ01",
+        "man_num": "",
+        "model_name": "X-Steam",
+        "series": "X-Raycers",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/X-SteamRacer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "X-Steam(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH36",
+        "man_num": "",
+        "model_name": "La Liebre",
+        "series": "HW Dream GarageNew for 2026!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/21/LaLiebre.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "La Liebre(2nd Color)",
+        "series": "HW Dream GarageNew for 2026!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ03",
+        "man_num": "",
+        "model_name": "5 Alarm",
+        "series": "HW Heavyweights",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7f/HW5Alarm.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ04",
+        "man_num": "",
+        "model_name": "Haulerback",
+        "series": "HW Heavyweights",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/52/CyberpunkTowtruck.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ05",
+        "man_num": "",
+        "model_name": "Porsche Taycan Turbo S",
+        "series": "HW EV",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/2026PorscheTaycan.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ06",
+        "man_num": "",
+        "model_name": "Wattzup",
+        "series": "HW EV",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/55/TazerRacer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ07",
+        "man_num": "",
+        "model_name": "'70 Dodge Hemi Challenger",
+        "series": "Nightspeed",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5a/1970DodgeChallengerHemi.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM38",
+        "man_num": "",
+        "model_name": "'70 Dodge Hemi Challenger(2nd Color - Zamac)",
+        "series": "NightspeedWalmart Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/JJM38_4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK79",
+        "man_num": "",
+        "model_name": "'70 Dodge Hemi Challenger(3rd Color)",
+        "series": "Nightspeed",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ08",
+        "man_num": "",
+        "model_name": "Cupra e-Racer",
+        "series": "Nightspeed",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d9/NightspeedCupra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ09",
+        "man_num": "",
+        "model_name": "24/Seven",
+        "series": "Nightspeed",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/de/24-Seven.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ10",
+        "man_num": "",
+        "model_name": "Roller Toaster",
+        "series": "Experimotors",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/39/RollerToaster.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ11",
+        "man_num": "",
+        "model_name": "Braille Racer - Twin Mill",
+        "series": "HW All Drivers WelcomeWorld Braille Day",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/42/BrailleRacer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ12",
+        "man_num": "",
+        "model_name": "Ferrari SF90 Stradale",
+        "series": "Ferrari",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c5/2024FerrariSF90.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK89",
+        "man_num": "",
+        "model_name": "Ferrari SF90 Stradale(2nd Color)",
+        "series": "Ferrari",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ13",
+        "man_num": "",
+        "model_name": "'83 Chevy Silverado",
+        "series": "Truckin' Along",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d7/BlackWidowSilverado.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ14",
+        "man_num": "",
+        "model_name": "Ford Mustang GTD",
+        "series": "Factory Fresh",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/50/2026FordMustangGTD.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM16",
+        "man_num": "",
+        "model_name": "Ford Mustang GTD",
+        "series": "Factory FreshSuper Treasure Hunt",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/MustangGTDTH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ15",
+        "man_num": "",
+        "model_name": "'59 Chevy Impala",
+        "series": "Layin' Low",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/1959Impala.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM35",
+        "man_num": "",
+        "model_name": "'59 Chevy Impala(2nd Color - Zamac)",
+        "series": "Layin' LowWalmart Exclusive",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/JJM35_ZAMAK_o1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK81",
+        "man_num": "",
+        "model_name": "'59 Chevy Impala(3rd Color)",
+        "series": "Layin' Low",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ16",
+        "man_num": "",
+        "model_name": "'47 Chevy Fleetline",
+        "series": "Layin' Low",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/86/1947Fleetline.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM64",
+        "man_num": "",
+        "model_name": "'47 Chevy Fleetline(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "4/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ17",
+        "man_num": "",
+        "model_name": "Purple Passion",
+        "series": "HW Fan Driven",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/96/PinkPassion.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH35",
+        "man_num": "",
+        "model_name": "High-Tail Chaser",
+        "series": "HW ModsNew for 2026!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e0/High-TailChaser.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK92",
+        "man_num": "",
+        "model_name": "High-Tail Chaser(2nd Color)",
+        "series": "HW ModsNew for 2026!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ19",
+        "man_num": "",
+        "model_name": "Monster High Ghoul Mobile",
+        "series": "Mattel",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/88/MonsterHighCar.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ18",
+        "man_num": "",
+        "model_name": "Quick Chat",
+        "series": "Mattel",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1f/PhoneCall.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK82",
+        "man_num": "",
+        "model_name": "Quick Chat(2nd Color)",
+        "series": "Mattel",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ20",
+        "man_num": "",
+        "model_name": "Bugatti Bolide",
+        "series": "HW Starting Grid",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/92/RacingBolide.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ21",
+        "man_num": "",
+        "model_name": "The Dark Knight Batmobile",
+        "series": "Batman",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fe/TheTumbler.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ22",
+        "man_num": "",
+        "model_name": "Porsche 911 Turbo Cabriolet",
+        "series": "Drop Tops",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b9/964Turbo.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM67",
+        "man_num": "",
+        "model_name": "Porsche 911 Turbo Cabriolet(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "5/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ23",
+        "man_num": "",
+        "model_name": "'69 Chevelle",
+        "series": "X-Raycers",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/1969Chevelle.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ24",
+        "man_num": "",
+        "model_name": "Donut Drifter",
+        "series": "Sweet Rides",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/77/DonutCar.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ25",
+        "man_num": "",
+        "model_name": "Dessert Drifter",
+        "series": "Sweet Rides",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9b/JelloCar.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK54",
+        "man_num": "",
+        "model_name": "Dessert Drifter(2nd Color)",
+        "series": "Sweet Rides",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ26",
+        "man_num": "",
+        "model_name": "'67 Camaro",
+        "series": "HW Dream Garage",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c0/DreamCamaro.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM46",
+        "man_num": "",
+        "model_name": "'67 Camaro(2nd Color)",
+        "series": "HW Dream GarageDollar Tree/Family Dollar Exclusive",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ27",
+        "man_num": "",
+        "model_name": "Raijin Express",
+        "series": "HW Heavyweights",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/33/NekoRaijin.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM02",
+        "man_num": "",
+        "model_name": "Electro Silhouette",
+        "series": "HW EVTreasure Hunt",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7f/ElectroSilhouetteTH.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ28",
+        "man_num": "",
+        "model_name": "Lucid Air",
+        "series": "HW EV",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6b/2022LucidAir.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH37",
+        "man_num": "",
+        "model_name": "Toyota Prius Custom",
+        "series": "HW J-ImportsNew for 2026!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c0/ToyotaPriusCustom.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM48",
+        "man_num": "",
+        "model_name": "Toyota Prius Custom(2nd Color)",
+        "series": "HW J-ImportsNew for 2026!Dollar Tree/Family Dollar Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ29",
+        "man_num": "",
+        "model_name": "Mazda RX-7",
+        "series": "HW J-Imports",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ea/1978MazdaRX-7.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ30",
+        "man_num": "",
+        "model_name": "Ferrari 365 GTB4 Competizione",
+        "series": "Ferrari",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f1/365Comp.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Ferrari 365 GTB4 Competizione(2nd Color)",
+        "series": "Ferrari",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ31",
+        "man_num": "",
+        "model_name": "Ferrari F40 Competizione",
+        "series": "Ferrari",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a2/FerrariF40Comp.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM17",
+        "man_num": "",
+        "model_name": "Ferrari F40 Competizione",
+        "series": "FerrariSuper Treasure Hunt",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b7/NardoF40Comp.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ32",
+        "man_num": "",
+        "model_name": "Mercedes-Benz Unimog 1300L",
+        "series": "Truckin' Along",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/64/Unimog1300.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH40",
+        "man_num": "",
+        "model_name": "Drift Box",
+        "series": "HW EuroNew for 2026!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3f/DriftBox.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ33",
+        "man_num": "",
+        "model_name": "'17 Audi RS 6 Avant",
+        "series": "HW Euro",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1a/2017Avant.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK90",
+        "man_num": "",
+        "model_name": "'17 Audi RS 6 Avant(2nd Color)",
+        "series": "HW Euro",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ34",
+        "man_num": "",
+        "model_name": "Lotus Cortina",
+        "series": "HW Euro",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/1963Cortina.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM47",
+        "man_num": "",
+        "model_name": "Lotus Cortina(2nd Color)",
+        "series": "HW EuroDollar Tree/Family Dollar Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ35",
+        "man_num": "",
+        "model_name": "Visa Cash App Racing Bulls Formula One Team",
+        "series": "Formula 1",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/VCARB02.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ36",
+        "man_num": "",
+        "model_name": "Volvo 240 Drift Wagon",
+        "series": "HW Mods",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/VolvoDriftWagon.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ37",
+        "man_num": "",
+        "model_name": "Decidedly Go",
+        "series": "Mattel",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/8Ballin%27.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH39",
+        "man_num": "",
+        "model_name": "Austin Mini Cooper S",
+        "series": "Then and NowNew for 2026!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/AustinMini.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Austin Mini Cooper S(2nd Color)",
+        "series": "Then and NowNew for 2026!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ38",
+        "man_num": "",
+        "model_name": "Datsun 240Z",
+        "series": "Then and Now",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/17/1972240Z.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ39",
+        "man_num": "",
+        "model_name": "McLaren W1",
+        "series": "Exoticars",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/2025W1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM60",
+        "man_num": "",
+        "model_name": "McLaren W1(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "6/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH43",
+        "man_num": "",
+        "model_name": "X-cceleron",
+        "series": "ExoticarsNew for 2026!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/17/X-cceleron.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ40",
+        "man_num": "",
+        "model_name": "'76 Chevy Chevette",
+        "series": "Drag Racers",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8b/DragChevette.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "'76 Chevy Chevette(2nd Color)",
+        "series": "Drag Racers",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ41",
+        "man_num": "",
+        "model_name": "Supercharged",
+        "series": "Drag Racers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/63/NHRASupercharged.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Supercharged(2nd Color)",
+        "series": "Drag Racers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ43",
+        "man_num": "",
+        "model_name": "Hako Type D",
+        "series": "Compact Kings",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b7/CompactSupotsuka.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ44",
+        "man_num": "",
+        "model_name": "Hoto Roto",
+        "series": "Compact Kings",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/57/BlackRoto.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ65",
+        "man_num": "",
+        "model_name": "Kei Swap",
+        "series": "Compact Kings",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/71/GabeSwap.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM03",
+        "man_num": "",
+        "model_name": "Hot Wheengs",
+        "series": "X-RaycersTreasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/59/HotSauce.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ45",
+        "man_num": "",
+        "model_name": "Birthday Burner",
+        "series": "Sweet Rides",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/CakeBake.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ46",
+        "man_num": "",
+        "model_name": "Rapid Pulse",
+        "series": "HW Heavyweights",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e7/TrackPulse.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ47",
+        "man_num": "",
+        "model_name": "Polestar TRX",
+        "series": "HW EV",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/RacingTRX.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ48",
+        "man_num": "",
+        "model_name": "Voltage Spike",
+        "series": "HW EV",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b7/Spiker.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH46",
+        "man_num": "",
+        "model_name": "VW ID. Buzz Bomb",
+        "series": "HW EuroNew for 2026!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/VolkswagenID.BuzzBomb.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "VW ID. Buzz Bomb(2nd Color)",
+        "series": "HW EuroNew for 2026!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ49",
+        "man_num": "",
+        "model_name": "Cruise Bruiser",
+        "series": "Wagons",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/49/TanBruiser.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ50",
+        "man_num": "",
+        "model_name": "Nissan Skyline 2000 GT-R",
+        "series": "HW J-Imports",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c6/1973NissanKenmeri.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ51",
+        "man_num": "",
+        "model_name": "1985 Honda CR-X",
+        "series": "HW J-Imports",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fc/1985HondaCR-XMugen.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM40",
+        "man_num": "",
+        "model_name": "1985 Honda CR-X(2nd Color - Zamac)",
+        "series": "HW J-ImportsWalmart Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ52",
+        "man_num": "",
+        "model_name": "'16 Cadillac ATS-V R",
+        "series": "Nightspeed",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/CadillacGT3.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ53",
+        "man_num": "",
+        "model_name": "LB-WORKS Lamborghini Huracán Coupé",
+        "series": "Nightspeed",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/LBHurac%C3%A1n.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ54",
+        "man_num": "",
+        "model_name": "Feline Lucky",
+        "series": "Experimotors",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/91/I%27mFelineLucky.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ55",
+        "man_num": "",
+        "model_name": "Coupé Clip",
+        "series": "Experimotors",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7d/Coup%C3%A9Clip.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH41",
+        "man_num": "",
+        "model_name": "Ferrari 12Cilindri",
+        "series": "FerrariNew for 2026!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/Ferrari12Cilindri.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ56",
+        "man_num": "",
+        "model_name": "'64 Impala",
+        "series": "Layin' Low",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/1964ChevroletImpala.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM18",
+        "man_num": "",
+        "model_name": "'64 Impala",
+        "series": "Layin' LowSuper Treasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9f/ImpalaSTH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ57",
+        "man_num": "",
+        "model_name": "El Segundo Coupe",
+        "series": "HW Fan Driven",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ec/RacingCoupe.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ58",
+        "man_num": "",
+        "model_name": "Corvette Grand Sport",
+        "series": "Then and Now",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/C2GrandSport.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ59",
+        "man_num": "",
+        "model_name": "'96 Porsche Carrera",
+        "series": "Then and Now",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/01/1996Porsche996.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ60",
+        "man_num": "",
+        "model_name": "Renault Espace F1",
+        "series": "HW Starting Grid",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4d/RacingEspace.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ61",
+        "man_num": "",
+        "model_name": "Twin Dorado",
+        "series": "HW Starting Grid",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/RacingDorado.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH99",
+        "man_num": "",
+        "model_name": "'17 Pagani Huayra Roadster",
+        "series": "Exoticars",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ac/2017Huayra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK30",
+        "man_num": "",
+        "model_name": "Pass'n Gasser",
+        "series": "Drag Racers",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7e/Passin%27Gas.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH47",
+        "man_num": "",
+        "model_name": "Eggshelleracer",
+        "series": "Drag RacersNew for 2026!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0e/Eggshelleracer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ63",
+        "man_num": "",
+        "model_name": "'68 Dodge Dart",
+        "series": "Drag Racers",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/89/1968Dart.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ66",
+        "man_num": "",
+        "model_name": "'85 Honda City Turbo II",
+        "series": "Compact Kings",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/HondaCityTurbo.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ82",
+        "man_num": "",
+        "model_name": "Mazda RX-3",
+        "series": "Compact Kings",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/43/MazdaRX-3Custom.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ67",
+        "man_num": "",
+        "model_name": "1966 Bat Boat",
+        "series": "Batman",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7b/1966Batboat.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ68",
+        "man_num": "",
+        "model_name": "The Simpsons Family Car",
+        "series": "Screen Time",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/SimpsonsCar.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ69",
+        "man_num": "",
+        "model_name": "Time Shifter",
+        "series": "Wagons",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0a/Shiftin%27Time.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ70",
+        "man_num": "",
+        "model_name": "'70 Chevelle SS Wagon",
+        "series": "Wagons",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c4/ATNChevelle.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ71",
+        "man_num": "",
+        "model_name": "Long Bloc",
+        "series": "Wagons",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d0/MoonBloc.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ72",
+        "man_num": "",
+        "model_name": "'89 Mazda Savanna RX-7 FC3S",
+        "series": "HW J-Imports",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7b/1989MazdaRX-7.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ73",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06",
+        "series": "Nightspeed",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/14/2015CorvetteZ06.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH45",
+        "man_num": "",
+        "model_name": "Custom '66 Toronado",
+        "series": "Factory FreshNew for 2026!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/91/OldsToronado.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JMB11",
+        "man_num": "",
+        "model_name": "Custom 2020 Honda e",
+        "series": "HW EVNew for 2026!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/HondaeCustom.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ74",
+        "man_num": "",
+        "model_name": "'87 Ford Sierra Cosworth",
+        "series": "HW Euro",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c4/1987Sierra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM19",
+        "man_num": "",
+        "model_name": "'87 Ford Sierra Cosworth",
+        "series": "HW EuroSuper Treasure Hunt",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ75",
+        "man_num": "",
+        "model_name": "Erikenstein Rod",
+        "series": "Rod Squad",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/61/GreenRod.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ76",
+        "man_num": "",
+        "model_name": "Pedal Driver",
+        "series": "Rod Squad",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/PedalDriver.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ77",
+        "man_num": "",
+        "model_name": "'33 Ford Lo Boy",
+        "series": "Rod Squad",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ78",
+        "man_num": "",
+        "model_name": "Scuderia Ferrari HP",
+        "series": "Formula 1",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/ScuderiaFerrariSF-25.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ79",
+        "man_num": "",
+        "model_name": "2023 Nissan Z",
+        "series": "Then and Now",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9d/2023NissanZSport.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM04",
+        "man_num": "",
+        "model_name": "Cone Shaker",
+        "series": "HW Starting GridTreasure Hunt",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d7/HotConez.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH44",
+        "man_num": "",
+        "model_name": "Maserati Tipo 61",
+        "series": "HW Starting GridNew for 2026!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/76/MaseratiBirdcage.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM05",
+        "man_num": "",
+        "model_name": "2016 Ford GT Race",
+        "series": "ExoticarsTreasure Hunt",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6a/2016FordGTLMGTE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH55",
+        "man_num": "",
+        "model_name": "2024 Aston Martin Vantage GT3",
+        "series": "ExoticarsNew for 2026!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1f/AstonMartinVantageAMRGT3Evo.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ64",
+        "man_num": "",
+        "model_name": "'64 Dodge 330",
+        "series": "Drag RacersNew in Mainline",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e0/1964Dodge330.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ80",
+        "man_num": "",
+        "model_name": "Custom '72 Chevy LUV",
+        "series": "Drag Racers",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b7/1972LUV.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ83",
+        "man_num": "",
+        "model_name": "Standard Kart",
+        "series": "Screen Time",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ84",
+        "man_num": "",
+        "model_name": "2019 Audi R8 Spyder",
+        "series": "Drop Tops",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fa/2019AudiR8.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH48",
+        "man_num": "",
+        "model_name": "Fiat Beast of Turin",
+        "series": "Drop TopsNew for 2026!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ85",
+        "man_num": "",
+        "model_name": "Bullet Proof",
+        "series": "X-Raycers",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9d/BulletProof.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ86",
+        "man_num": "",
+        "model_name": "8 Crate",
+        "series": "Wagons",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/47/8CrateRanchWagon.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ87",
+        "man_num": "",
+        "model_name": "'20 Dodge Charger Hellcat",
+        "series": "Nightspeed",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e4/2020Hellcat.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ88",
+        "man_num": "",
+        "model_name": "Flippin Fast",
+        "series": "HW All Drivers WelcomeWorld Autism Awareness Day",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6e/ADWFast.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ89",
+        "man_num": "",
+        "model_name": "'98 Honda Prelude",
+        "series": "Factory Fresh",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJL15",
+        "man_num": "",
+        "model_name": "'98 Honda Prelude(2nd Color)",
+        "series": "Factory Fresh",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ90",
+        "man_num": "",
+        "model_name": "La Troca",
+        "series": "Layin' Low",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/45/1950ChevyTruck.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ91",
+        "man_num": "",
+        "model_name": "Morgan Super 3",
+        "series": "HW Euro",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/81/Morgan3Wheeler.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ92",
+        "man_num": "",
+        "model_name": "Bone Shaker",
+        "series": "HW Fan Driven",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/23/FanShaker.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ93",
+        "man_num": "",
+        "model_name": "Mid Mill",
+        "series": "Rod Squad",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/70/MoodyMill.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ94",
+        "man_num": "",
+        "model_name": "Screamliner",
+        "series": "Rod Squad",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/76/Rodliner.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ95",
+        "man_num": "",
+        "model_name": "Mazda RX-3",
+        "series": "Tooned",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/83/%27ToonedRX-3GT.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH50",
+        "man_num": "",
+        "model_name": "Deora Too'nd",
+        "series": "ToonedNew for 2026!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b1/%27ToonedDeoraII.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ96",
+        "man_num": "",
+        "model_name": "Classic TV Series Batmobile",
+        "series": "Batman",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ97",
+        "man_num": "",
+        "model_name": "El Segundo Rallye",
+        "series": "HW Dirt",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ98",
+        "man_num": "",
+        "model_name": "Mazda Autozam",
+        "series": "HW Dirt",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM06",
+        "man_num": "",
+        "model_name": "2 Jet Z",
+        "series": "HW Dream GarageTreasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH54",
+        "man_num": "",
+        "model_name": "Tooned Purple Passion",
+        "series": "HW Dream GarageNew for 2026!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ99",
+        "man_num": "",
+        "model_name": "Honda Odyssey",
+        "series": "HW J-Imports",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM63",
+        "man_num": "",
+        "model_name": "Honda Odyssey(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "?/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH56",
+        "man_num": "",
+        "model_name": "Dino 206 GT",
+        "series": "FerrariNew for 2026!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH52",
+        "man_num": "",
+        "model_name": "Ford F-150 Lightning Supertruck",
+        "series": "Truckin' AlongNew for 2026!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK00",
+        "man_num": "",
+        "model_name": "BMW 635 CSi",
+        "series": "HW Euro",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK01",
+        "man_num": "",
+        "model_name": "'41 Willys",
+        "series": "Rod Squad",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH53",
+        "man_num": "",
+        "model_name": "Vairstrike",
+        "series": "HW ModsNew for 2026!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a8/Vairstrike.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK03",
+        "man_num": "",
+        "model_name": "Custom Otto",
+        "series": "Mattel",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM21",
+        "man_num": "",
+        "model_name": "Custom Otto",
+        "series": "MattelSuper Treasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3a/STH_OTTO_o5.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK04",
+        "man_num": "",
+        "model_name": "'20 Toyota GR Supra",
+        "series": "Then and Now",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJJ81",
+        "man_num": "",
+        "model_name": "Honda Civic Custom",
+        "series": "Drag Racers",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/88/HondaCivicDragster.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM20",
+        "man_num": "",
+        "model_name": "Honda Civic Custom",
+        "series": "Drag RacersSuper Treasure Hunt",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK05",
+        "man_num": "",
+        "model_name": "Lotus Sport Elise",
+        "series": "Compact Kings",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM22",
+        "man_num": "",
+        "model_name": "Lotus Sport Elise",
+        "series": "Compact KingsSuper Treasure Hunt",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK10",
+        "man_num": "",
+        "model_name": "Classic '55 Nomad",
+        "series": "Wagons",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK19",
+        "man_num": "",
+        "model_name": "Subaru Impreza WRX",
+        "series": "HW J-Imports",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM23",
+        "man_num": "",
+        "model_name": "Subaru Impreza WRX",
+        "series": "HW J-ImportsSuper Treasure Hunt",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH63",
+        "man_num": "",
+        "model_name": "Mercedes-Benz CLA HW",
+        "series": "HW EuroNew for 2026!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH59",
+        "man_num": "",
+        "model_name": "PT Fast",
+        "series": "HW ModsNew for 2026!",
+        "series_num": "?/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH49",
+        "man_num": "",
+        "model_name": "Cadillac Celestiq",
+        "series": "TBDNew for 2026!",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH65",
+        "man_num": "",
+        "model_name": "Lil' Mad",
+        "series": "TBDNew for 2026!",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJH58",
+        "man_num": "",
+        "model_name": "'88 Mitsubishi Starion",
+        "series": "TBDNew for 2026!",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Kick Sauber F1 Team",
+        "series": "Formula 1",
+        "series_num": "?/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Tooned Volkswagen Golf Mk1",
+        "series": "Tooned",
+        "series_num": "?/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera RS 2.7",
+        "series": "TBD",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM24",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera RS 2.7",
+        "series": "TBDSuper Treasure Hunt",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "'82 Toyota Supra",
+        "series": "TBD",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "'94 Toyota Supra",
+        "series": "TBD",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJM25",
+        "man_num": "",
+        "model_name": "'94 Toyota Supra",
+        "series": "TBDSuper Treasure Hunt",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "'65 Mercury Comet Cyclone",
+        "series": "TBA",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "JJK15",
+        "man_num": "",
+        "model_name": "1983 Porsche 928S",
+        "series": "TBA",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "'90 Acura NSX",
+        "series": "TBA",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Corvette Stingray",
+        "series": "TBA",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Mailed It!",
+        "series": "TBA",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera Clip",
+        "series": "TBA",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2026,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Porsche 911 GT2",
+        "series": "TBA",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    }
+]

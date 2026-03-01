@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BaseHW</string>
+    <string name="default_web_client_id" translatable="false">YOUR_WEB_CLIENT_ID_HERE</string>
+</resources>

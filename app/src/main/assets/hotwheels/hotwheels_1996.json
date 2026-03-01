@@ -1,0 +1,1412 @@
+[
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14860",
+        "man_num": "",
+        "model_name": "Monte Carlo Stocker",
+        "series": "Model Series",
+        "series_num": "01/01",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1c/Monte_Carlo_Stocker_RT7dpBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14841",
+        "man_num": "",
+        "model_name": "1996 Mustang GT",
+        "series": "First Editions",
+        "series_num": "01/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8e/1996HotWheels001.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14907",
+        "man_num": "",
+        "model_name": "Chevy 1500",
+        "series": "First Editions",
+        "series_num": "02/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/ba/1996HotWheels002.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14908",
+        "man_num": "",
+        "model_name": "1970 Dodge Charger Daytona",
+        "series": "First Editions",
+        "series_num": "03/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/61/1970_Daytona_RedLW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14913",
+        "man_num": "",
+        "model_name": "Street Cleaver",
+        "series": "First Editions",
+        "series_num": "04/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9d/Stcleavr.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14910",
+        "man_num": "",
+        "model_name": "Rail Rodder",
+        "series": "First Editions",
+        "series_num": "05/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/24/FE_Rail_Rodder.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14912",
+        "man_num": "",
+        "model_name": "Volkswagen Drag Bus",
+        "series": "First Editions",
+        "series_num": "06/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f1/Volkswagon.drag.bus.14912.a-l.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14911",
+        "man_num": "",
+        "model_name": "Road Rocket",
+        "series": "First Editions",
+        "series_num": "07/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/Road_Rocket_GrnBluLW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14909",
+        "man_num": "",
+        "model_name": "Turbo Flame (Sizzlers)",
+        "series": "First Editions",
+        "series_num": "08/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7d/Turbo_Flame_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14914",
+        "man_num": "",
+        "model_name": "Radio Flyer Wagon",
+        "series": "First Editions",
+        "series_num": "09/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/36/Radio_Flyer_RedBW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14915",
+        "man_num": "",
+        "model_name": "Dogfighter",
+        "series": "First Editions",
+        "series_num": "10/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/42/Dofighter_RedSB.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14916",
+        "man_num": "",
+        "model_name": "Twang Thang",
+        "series": "First Editions",
+        "series_num": "11/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4a/Twang_Thang_SlvRed.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "14917",
+        "man_num": "",
+        "model_name": "Ferrari F50 Spider",
+        "series": "First Editions",
+        "series_num": "12/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/39/Ferrari_F50_Spider_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15218",
+        "man_num": "",
+        "model_name": "Dodge Ram 1500 (1995)",
+        "series": "Race Truck Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/Dodge_Ram_RTrkS.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15219",
+        "man_num": "",
+        "model_name": "Kenworth T-600A",
+        "series": "Race Truck Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/Kenworth_T-600_A_Slv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15220",
+        "man_num": "",
+        "model_name": "'56 Flashsider",
+        "series": "Race Truck Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/32/56_Flashsider_RcTrk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15221",
+        "man_num": "",
+        "model_name": "Nissan Truck",
+        "series": "Race Truck Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6d/Nissan_Hardbody_BluRT.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15223",
+        "man_num": "",
+        "model_name": "'57 T-Bird",
+        "series": "Flamethrower Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7c/%2757_T-Bird_-_96_Flamethrower.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15224",
+        "man_num": "",
+        "model_name": "Hydroplane",
+        "series": "Flamethrower Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/03/Hydroplane_Yel.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15225",
+        "man_num": "",
+        "model_name": "Range Rover",
+        "series": "Flamethrower Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0c/Range_Rover_FTh.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15226",
+        "man_num": "",
+        "model_name": "Oshkosh Snow Plow",
+        "series": "Flamethrower Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/be/Oshkosh_Snowplow_BlkCT.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15228",
+        "man_num": "",
+        "model_name": "Radar Ranger",
+        "series": "Space Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b8/Radar_Ranger_-_6012df.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15229",
+        "man_num": "",
+        "model_name": "GM Lean Machine",
+        "series": "Space Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/55/GM_Lean_Machine_BluWht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15230",
+        "man_num": "",
+        "model_name": "Alien",
+        "series": "Space Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/80/Alien_SpcSer.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15231",
+        "man_num": "",
+        "model_name": "Treadator",
+        "series": "Space Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Treadator_LtBlu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15233",
+        "man_num": "",
+        "model_name": "Ramp Truck",
+        "series": "Race Team Series II",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cb/Ramp_Truck_-_96_Race_Team_Series_II.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15234",
+        "man_num": "",
+        "model_name": "Baja Bug",
+        "series": "Race Team Series II",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/Baja_Bug_-_96_Race_Team_II.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15235",
+        "man_num": "",
+        "model_name": "'57 Chevy",
+        "series": "Race Team Series II",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/%2757_Chevy_-_96_Race_Team_II.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15236",
+        "man_num": "",
+        "model_name": "Bywayman",
+        "series": "Race Team Series II",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a7/Bywayman_RTct.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15238",
+        "man_num": "",
+        "model_name": "Hummer",
+        "series": "Mod Bod Series",
+        "series_num": "1/4​",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f8/Hummer_Pnk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15239",
+        "man_num": "",
+        "model_name": "School Bus",
+        "series": "Mod Bod Series",
+        "series_num": "2/4​",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f7/School_Bus_Prp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15240",
+        "man_num": "",
+        "model_name": "VW Bug",
+        "series": "Mod Bod Series",
+        "series_num": "3/4​",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/VW_Bug_ModBod.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15242",
+        "man_num": "",
+        "model_name": "'67 Camaro",
+        "series": "Mod Bod Series",
+        "series_num": "4/4​",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/ModBod.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15243",
+        "man_num": "",
+        "model_name": "Big Chill",
+        "series": "Dark Rider Series II",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a3/Big_Chill_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15244",
+        "man_num": "",
+        "model_name": "Street Beast",
+        "series": "Dark Rider Series II",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/85/Street_Beast_MtBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15245",
+        "man_num": "",
+        "model_name": "Thunderstreak",
+        "series": "Dark Rider Series II",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/88/Thunderstreak_Crm.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15246",
+        "man_num": "",
+        "model_name": "Power Pistons",
+        "series": "Dark Rider Series II",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/20/Power_Pistons_Crm.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15248",
+        "man_num": "",
+        "model_name": "Porsche 930",
+        "series": "Sports Car Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/67/Porsche_930_Silv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15249",
+        "man_num": "",
+        "model_name": "Custom Corvette Convertible",
+        "series": "Sports Car Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/ba/Custom_Corvette_Prpl.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15250",
+        "man_num": "",
+        "model_name": "Shelby Cobra 427 S/C",
+        "series": "Sports Car Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/30/Classic_Cobra_SprtCr.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15251",
+        "man_num": "",
+        "model_name": "'59 Caddy",
+        "series": "Sports Car Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/59_Caddy_BlkSC.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15253",
+        "man_num": "",
+        "model_name": "Rescue Ranger",
+        "series": "Splatter Paint Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/50/Rescue_Ranger_Org5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15254",
+        "man_num": "",
+        "model_name": "Probe Funny Car",
+        "series": "Splatter Paint Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/Probe_Funny_Car_SpltrPnt.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15255",
+        "man_num": "",
+        "model_name": "'55 Chevy",
+        "series": "Splatter Paint Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/55_Chevy_YelSS.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15256",
+        "man_num": "",
+        "model_name": "'80s Camaro",
+        "series": "Splatter Paint Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/80s_Camaro_wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15258",
+        "man_num": "",
+        "model_name": "Speed Machine",
+        "series": "Street Eaters Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/49/Speed_Machine_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15259",
+        "man_num": "",
+        "model_name": "Silhouette II",
+        "series": "Street Eaters Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fb/Silouette_II_PrplStrtEat.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15260",
+        "man_num": "",
+        "model_name": "Propper Chopper",
+        "series": "Street Eaters Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e2/Propper_Chopper_BluStrBst.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15261",
+        "man_num": "",
+        "model_name": "Roll Patrol Jeep CJ",
+        "series": "Street Eaters Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2b/Roll_Patrol_Jeep_CJ_StrtBst.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15263",
+        "man_num": "",
+        "model_name": "Pizza Vette",
+        "series": "Fast Food Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/27/Corvette_Stingray_Pza5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15264",
+        "man_num": "",
+        "model_name": "Pasta Pipes",
+        "series": "Fast Food Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ca/Power_Pipes_Pasta.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15265",
+        "man_num": "",
+        "model_name": "Sweet Stocker",
+        "series": "Fast Food Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/62/Sweet-Stocker.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15266",
+        "man_num": "",
+        "model_name": "Crunch Chief",
+        "series": "Fast Food Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/Crunch_Chief.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15268",
+        "man_num": "",
+        "model_name": "CAT Dump Truck",
+        "series": "Silver Series II",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/67/CAT_Dump_Truck_Chrm.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15269",
+        "man_num": "",
+        "model_name": "'40's Woodie",
+        "series": "Silver Series II",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/39/Chrome_%2740%27s_Woodie_-_6403df.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15270",
+        "man_num": "",
+        "model_name": "'57 Chevy",
+        "series": "Silver Series II",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1f/1957_Chevy_Silver.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15271",
+        "man_num": "",
+        "model_name": "Oscar Mayer Wienermobile",
+        "series": "Silver Series II",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/Oscar_Mayer_Wienermobile_Crm.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15273",
+        "man_num": "",
+        "model_name": "Ambulance",
+        "series": "Fire Squad Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/Ambulance_Grn7sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15274",
+        "man_num": "",
+        "model_name": "Rescue Ranger",
+        "series": "Fire Squad Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/Rescue_Ranger_YelFR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15275",
+        "man_num": "",
+        "model_name": "Flame Stopper",
+        "series": "Fire Squad Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d0/Flame_Stopper_YelFrRs.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15276",
+        "man_num": "",
+        "model_name": "Fire Eater",
+        "series": "Fire Squad Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/Fire_Eater_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15074",
+        "man_num": "",
+        "model_name": "'40's Woodie",
+        "series": "1996 Treasure Hunts",
+        "series_num": "01/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/98/40swoody_96TH.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15083",
+        "man_num": "",
+        "model_name": "Auburn 852",
+        "series": "1996 Treasure Hunts",
+        "series_num": "02/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/70/Auburn852%24TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15076",
+        "man_num": "",
+        "model_name": "Ferrari 250",
+        "series": "1996 Treasure Hunts",
+        "series_num": "03/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/85/430_Treasure_Hunt_Series_Ferrari_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15077",
+        "man_num": "",
+        "model_name": "Jaguar XJ220",
+        "series": "1996 Treasure Hunts",
+        "series_num": "04/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/41/431_Treasure_Hunt_Series_Jaguar_XJ220.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15078",
+        "man_num": "",
+        "model_name": "'59 Caddy",
+        "series": "1996 Treasure Hunts",
+        "series_num": "05/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/59/432_Treasure_Hunt_Series_%2759_Caddy.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15079",
+        "man_num": "",
+        "model_name": "Dodge Viper RT/10",
+        "series": "1996 Treasure Hunts",
+        "series_num": "06/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/Viper_RT10_-_96TH_White.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15080",
+        "man_num": "",
+        "model_name": "'57 Chevy",
+        "series": "1996 Treasure Hunts",
+        "series_num": "07/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c4/%2757Chevy%24TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15081",
+        "man_num": "",
+        "model_name": "Ferrari 355",
+        "series": "1996 Treasure Hunts",
+        "series_num": "08/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/af/1996THFerrari355.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15082",
+        "man_num": "",
+        "model_name": "'58 Corvette",
+        "series": "1996 Treasure Hunts",
+        "series_num": "09/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/af/436_Treasure_Hunt_Series_%2758_Corvette.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15075",
+        "man_num": "",
+        "model_name": "Lamborghini Countach",
+        "series": "1996 Treasure Hunts",
+        "series_num": "10/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/10_Trea%24ure_Hunt_1996_-_Lamborghini_Countach.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15084",
+        "man_num": "",
+        "model_name": "Dodge Ram 1500",
+        "series": "1996 Treasure Hunts",
+        "series_num": "11/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9b/Hotwheels_016.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15085",
+        "man_num": "",
+        "model_name": "'37 Bugatti",
+        "series": "1996 Treasure Hunts",
+        "series_num": "12/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3e/37BUGATTI.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "4699",
+        "man_num": "",
+        "model_name": "Shadow Jet",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/Shadow_Jet_Grn5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "5267",
+        "man_num": "",
+        "model_name": "Silhouette II",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ae/Silouette_II_Prpl5HO.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "11253",
+        "man_num": "",
+        "model_name": "'93 Camaro",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5f/93_Camaro_mtBluSBL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "13506",
+        "man_num": "",
+        "model_name": "Sol-Aire CX-4",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/Sol-Aire_CX-4_1074557112_XDROOP.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "5667",
+        "man_num": "",
+        "model_name": "BMW 850i",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/BMW_850_MtBlu3sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12924",
+        "man_num": "",
+        "model_name": "Chevy Stocker",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/48/Chevy_Stocker_Blk17sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12935",
+        "man_num": "",
+        "model_name": "Ferrari F40",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b2/Ferrari_F40_Wht7sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12933",
+        "man_num": "",
+        "model_name": "Ferrari 348",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/ba/Ferrari_348_Blk7sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "13232",
+        "man_num": "",
+        "model_name": "Aeroflash",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ee/Aeroflash_Wht7sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12865",
+        "man_num": "",
+        "model_name": "Jaguar XJ220",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7a/Jaguar_220_grn5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12927",
+        "man_num": "",
+        "model_name": "'32 Ford Delivery",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/28/32_Ford_Delivery_DkBlu3sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "13874",
+        "man_num": "",
+        "model_name": "'63 Split Window Corvette",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9d/Th_63corvette023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "13872",
+        "man_num": "",
+        "model_name": "'67 Camaro",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5a/448camaro.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12922",
+        "man_num": "",
+        "model_name": "Camaro Z-28",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9b/Camaro_Z28_BrtOrg5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12925",
+        "man_num": "",
+        "model_name": "Corvette Stingray (1976)",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/63/Corvette_Stingray_Wht5SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12931",
+        "man_num": "",
+        "model_name": "3-Window '34",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a7/3_Window_34_Pnk3SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "12936",
+        "man_num": "",
+        "model_name": "Ferrari 250",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/68/Ferrari_250_Grn7SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "13868",
+        "man_num": "",
+        "model_name": "Avus Quattro",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/98/Avus_Quatro_red5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "13867",
+        "man_num": "",
+        "model_name": "Zender Fact 4",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/Zender_Fact_4_Wht5spTmp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "13871",
+        "man_num": "",
+        "model_name": "'65 Mustang Convertible",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/Gold5SP455.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15965",
+        "man_num": "",
+        "model_name": "Pontiac Banshee",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/78/Pontiac_Banshee_Purp5SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15969",
+        "man_num": "",
+        "model_name": "Speed Shark",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/Speed_Shark_Prp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15971",
+        "man_num": "",
+        "model_name": "Zombot",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4b/Zombot_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15968",
+        "man_num": "",
+        "model_name": "Enforcer",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6c/Super_Cannon_Prpl.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15961",
+        "man_num": "",
+        "model_name": "'80s Firebird",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/92/80s_Firebird_Blu5SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15962",
+        "man_num": "",
+        "model_name": "Fiero 2M4",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/43/Fiero_Yel5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15972",
+        "man_num": "",
+        "model_name": "Blazer 4x4",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/74/Blazer_4x4_464.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15977",
+        "man_num": "",
+        "model_name": "Peugeot 405",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1d/Peugeot_405_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15964",
+        "man_num": "",
+        "model_name": "GT Racer",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/GT_Racer_Flored2.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15978",
+        "man_num": "",
+        "model_name": "Hot Bird",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/Hot_Bird_-_96_5sp_no-bird.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15979",
+        "man_num": "",
+        "model_name": "Turbo Streak",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1b/Turbo_Streak_MtBlu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16039",
+        "man_num": "",
+        "model_name": "Velocitor",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/T_Velocitor_BluTmpo.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16040",
+        "man_num": "",
+        "model_name": "Buick Stocker",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/Buick_Stocker_YelTamp5SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15963",
+        "man_num": "",
+        "model_name": "BMW M1",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a8/BMW_M1_Gry.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15963",
+        "man_num": "",
+        "model_name": "BMW M1",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b9/BMW_M1_Aqua.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16041",
+        "man_num": "",
+        "model_name": "VW Golf",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8d/VW_Golf_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16042",
+        "man_num": "",
+        "model_name": "CAT Forklift",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/31/CAT_Forklift_Ye5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16046",
+        "man_num": "",
+        "model_name": "Double Demon",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/Double_Demon_Grn5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16047",
+        "man_num": "",
+        "model_name": "Dragon Wagon",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/Fangster_DW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16048",
+        "man_num": "",
+        "model_name": "Computer Warrior",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/Phantomachine_CW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16050",
+        "man_num": "",
+        "model_name": "Tall Ryder",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/Rocky_Mountain_Rescue_Tall_Ryder_-_6412df.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16053",
+        "man_num": "",
+        "model_name": "CAT Earth Mover",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/Earthmover_orct.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16064",
+        "man_num": "",
+        "model_name": "Thunder Roller",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f8/Thunder_Roller_Burgundy.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16055",
+        "man_num": "",
+        "model_name": "Grizzlor",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7e/Cargoyle_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16056",
+        "man_num": "",
+        "model_name": "Evil Weevil",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/Eevil_Weevil_Org.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16057",
+        "man_num": "",
+        "model_name": "Command Tank",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/486_Command_Tank.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16296",
+        "man_num": "",
+        "model_name": "Troop Convoy",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f1/Troop_Convoy_greyOrg.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16297",
+        "man_num": "",
+        "model_name": "Sting Rod",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1b/Stingrod_greyorange.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16309",
+        "man_num": "",
+        "model_name": "Big Bertha",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/489_Big_Bertha.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16298",
+        "man_num": "",
+        "model_name": "Rocket Shot",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/Rocket_Tank_GryNorg.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16298",
+        "man_num": "",
+        "model_name": "Rocket Shot",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ca/Rocketank_purple.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16299",
+        "man_num": "",
+        "model_name": "Swingfire",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/White_Swingfire_-_B6420df.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16300",
+        "man_num": "",
+        "model_name": "Porsche Targa",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/493_Porsche_911_Targa.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16301",
+        "man_num": "",
+        "model_name": "Mercedes-Benz SL",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d6/Mercedes500SL.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16303",
+        "man_num": "",
+        "model_name": "Ferrari 308 GTS",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bb/SA400113.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16304",
+        "man_num": "",
+        "model_name": "Ferrari Testarossa",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/36/CorgiTestarossa.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16305",
+        "man_num": "",
+        "model_name": "BMW 850i",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b8/498_BMW_850i.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16306",
+        "man_num": "",
+        "model_name": "Corvette Coupe",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1e/80corvette.green.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15770",
+        "man_num": "",
+        "model_name": "Chevy Nomad",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3f/753px-Nomad_cropd.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15781",
+        "man_num": "",
+        "model_name": "'80's Corvette",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f1/80sVette_RedSBR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15775",
+        "man_num": "",
+        "model_name": "Camaro Z28",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c5/Camaro_Z-28_Wht3SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15776",
+        "man_num": "",
+        "model_name": "'93 Camaro",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a2/505_%2793_Camaro_SB.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16363",
+        "man_num": "",
+        "model_name": "Nissan 300ZX",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e4/Nissan_300ZX_Prpl.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "16364",
+        "man_num": "",
+        "model_name": "Peugeot 205 Rallye",
+        "series": "1996 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/Peugeot_205_Rallye_PrpBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "10495",
+        "man_num": "",
+        "model_name": "Deora",
+        "series": "Bonus Cars",
+        "series_num": "01/04",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1f/Deora_-_96_Bonus_Car.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15083",
+        "man_num": "",
+        "model_name": "Custom Mustang",
+        "series": "Bonus Cars",
+        "series_num": "02/04",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/69/MustangMailAway96.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15076",
+        "man_num": "",
+        "model_name": "Twin Mill",
+        "series": "Bonus Cars",
+        "series_num": "03/04",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/64/Twin_Mill_YelBons_L.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1996,
+        "toy_num": "15077",
+        "man_num": "",
+        "model_name": "Classic Nomad",
+        "series": "Bonus Cars",
+        "series_num": "04/04",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/Nomad_Bonus.jpg"
+    }
+]

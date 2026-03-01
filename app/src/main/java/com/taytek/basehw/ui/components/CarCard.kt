@@ -1,0 +1,135 @@
+package com.taytek.basehw.ui.components
+
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Inventory2
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.UserCar
+import com.taytek.basehw.ui.theme.*
+
+@Composable
+fun CarCard(
+    car: UserCar,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var isPressed by remember { mutableStateOf(false) }
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.97f else 1f,
+        animationSpec = tween(100),
+        label = "card_scale"
+    )
+
+    val brandColor = when (car.masterData?.brand) {
+        Brand.HOT_WHEELS -> HotWheelsRed
+        Brand.MATCHBOX -> MatchboxBlue
+        Brand.MINI_GT -> MiniGTSilver
+        null -> MaterialTheme.colorScheme.primary
+    }
+
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .scale(scale)
+            .clickable {
+                isPressed = true
+                onClick()
+            },
+        shape = RoundedCornerShape(26.dp), // Heavy rounded corners
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary // ForestGreen
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp), // Generous padding
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Square thumbnail with 20dp corners
+            Box(
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant), // Light cream placeholder
+                contentAlignment = Alignment.Center
+            ) {
+                val imageUrl = car.masterData?.imageUrl
+                if (!imageUrl.isNullOrBlank()) {
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = car.masterData?.modelName,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Default.Inventory2,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            // White Text Stack
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = car.masterData?.modelName ?: "Unknown Model",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onPrimary, // White text
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(modifier = Modifier.height(2.dp))
+                
+                // Subtitle
+                val subtitle = car.masterData?.series?.takeIf { it.isNotBlank() } ?: car.masterData?.brand?.displayName ?: "Mainline"
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                
+                Spacer(modifier = Modifier.height(4.dp))
+                
+                // Count / Details label
+                val boxStatus = if (car.isOpened) "Açık" else "Kutulu"
+                val brandStr = car.masterData?.brand?.shortCode ?: ""
+                val brandPrefix = if (brandStr.isNotEmpty()) "$brandStr • " else ""
+                val countLabel = "$brandPrefix${car.masterData?.year ?: "Belirsiz"} • $boxStatus"
+                
+                Text(
+                    text = countLabel,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f)
+                )
+            }
+        }
+    }
+}

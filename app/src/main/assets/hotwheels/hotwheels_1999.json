@@ -1,0 +1,2122 @@
+[
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "19642",
+        "man_num": "",
+        "model_name": "1936 Cord",
+        "series": "1999 First Editions",
+        "series_num": "01/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e2/1936_Cord_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21056",
+        "man_num": "",
+        "model_name": "'99 Mustang",
+        "series": "1999 First Editions",
+        "series_num": "02/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b9/99_Mustang_Prp5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "18534",
+        "man_num": "",
+        "model_name": "'38 Phantom Corsair",
+        "series": "1999 First Editions",
+        "series_num": "03/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/38_Phantom_Corsair_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21062",
+        "man_num": "",
+        "model_name": "1970 Chevelle SS",
+        "series": "1999 First Editions",
+        "series_num": "04/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/70_Chevelle_SS_Bu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21058",
+        "man_num": "",
+        "model_name": "Olds Aurora GTS-1",
+        "series": "1999 First Editions",
+        "series_num": "05/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ae/Olds_Aurora_GTS-1_-_99FE_whiteblue.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21057",
+        "man_num": "",
+        "model_name": "Monte Carlo Concept Car",
+        "series": "1999 First Editions",
+        "series_num": "06/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b6/Monte_Carlo_Concept_-_99FE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "18851",
+        "man_num": "",
+        "model_name": "Pontiac Rageous",
+        "series": "1999 First Editions",
+        "series_num": "07/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/Pontiac_Rageous_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21061",
+        "man_num": "",
+        "model_name": "Semi-Fast",
+        "series": "1999 First Editions",
+        "series_num": "08/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/50/Semi-Fast_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "18854",
+        "man_num": "",
+        "model_name": "Tee'd Off",
+        "series": "1999 First Editions",
+        "series_num": "09/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/75/Teed_Off_-_99_FE_Red_Int.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21059",
+        "man_num": "",
+        "model_name": "Porsche 911 GT3 Cup",
+        "series": "1999 First Editions",
+        "series_num": "10/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b9/Porsche_911_GT3_Cup_SilvYel1.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21066",
+        "man_num": "",
+        "model_name": "Fiat 500C",
+        "series": "1999 First Editions",
+        "series_num": "11/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5a/Fiat_500_Prp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21064",
+        "man_num": "",
+        "model_name": "Track T",
+        "series": "1999 First Editions",
+        "series_num": "12/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/65/TrackT_Blk5SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21060",
+        "man_num": "",
+        "model_name": "Popcycle",
+        "series": "1999 First Editions",
+        "series_num": "13/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/Popcycle_Prp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21063",
+        "man_num": "",
+        "model_name": "Phaeton",
+        "series": "1999 First Editions",
+        "series_num": "14/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/Phaeton_Teal.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21065",
+        "man_num": "",
+        "model_name": "Screamin' Hauler",
+        "series": "1999 First Editions",
+        "series_num": "15/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/Screamin_Hauler_Prp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21068",
+        "man_num": "",
+        "model_name": "Ford GT-40",
+        "series": "1999 First Editions",
+        "series_num": "16/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/Ford_GT-40_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21069",
+        "man_num": "",
+        "model_name": "Jeepster",
+        "series": "1999 First Editions",
+        "series_num": "17/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/45/Jeepster_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21070",
+        "man_num": "",
+        "model_name": "Turbolence",
+        "series": "1999 First Editions",
+        "series_num": "18/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bf/Turbolence_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21071",
+        "man_num": "",
+        "model_name": "Pikes Peak Tacoma",
+        "series": "1999 First Editions",
+        "series_num": "19/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/39/Pikes_Peak_Tacoma_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21072",
+        "man_num": "",
+        "model_name": "Shadow Mk IIa",
+        "series": "1999 First Editions",
+        "series_num": "20/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e6/Shadow_Mk_IIa_-_99FE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23902",
+        "man_num": "",
+        "model_name": "Ferrari 360 Modena",
+        "series": "1999 First Editions",
+        "series_num": "21/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3d/1999-1113a.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21074",
+        "man_num": "",
+        "model_name": "'56 Ford Truck",
+        "series": "1999 First Editions",
+        "series_num": "22/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/%2756_Ford_Truck_FE_-_4739ff.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21075",
+        "man_num": "",
+        "model_name": "Chrysler Pronto",
+        "series": "1999 First Editions",
+        "series_num": "23/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/87/Chrysler_Pronto_Org.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "18853",
+        "man_num": "",
+        "model_name": "Baby Boomer",
+        "series": "1999 First Editions",
+        "series_num": "24/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5e/Baby_Bommer_BluFlm.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "18852",
+        "man_num": "",
+        "model_name": "Porsche 911 GT1-98",
+        "series": "1999 First Editions",
+        "series_num": "25/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e4/Porsche_911_GT1-98_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21073",
+        "man_num": "",
+        "model_name": "Mercedes CLK-LM",
+        "series": "1999 First Editions",
+        "series_num": "26/26",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/Mercedes_CLK-LM_Gry.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21088",
+        "man_num": "",
+        "model_name": "Mercedes 540K",
+        "series": "1999 Treasure Hunts",
+        "series_num": "01/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e4/Mercedes_540K_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21089",
+        "man_num": "",
+        "model_name": "T-Bird Stocker",
+        "series": "1999 Treasure Hunts",
+        "series_num": "02/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1c/T-Bird_Stocker_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21090",
+        "man_num": "",
+        "model_name": "'97 Corvette",
+        "series": "1999 Treasure Hunts",
+        "series_num": "03/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/97_Corvette_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21091",
+        "man_num": "",
+        "model_name": "Rigor Motor",
+        "series": "1999 Treasure Hunts",
+        "series_num": "04/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8e/Rigor_Motor_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21092",
+        "man_num": "",
+        "model_name": "Ferrari F512M",
+        "series": "1999 Treasure Hunts",
+        "series_num": "05/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e9/Ferrari_F512M_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21093",
+        "man_num": "",
+        "model_name": "'59 Impala",
+        "series": "1999 Treasure Hunts",
+        "series_num": "06/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/59_Impala_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21094",
+        "man_num": "",
+        "model_name": "Hot Wheels 500",
+        "series": "1999 Treasure Hunts",
+        "series_num": "07/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/Hot_Wheels_500_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21095",
+        "man_num": "",
+        "model_name": "Jaguar D-Type",
+        "series": "1999 Treasure Hunts",
+        "series_num": "08/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/39/Jaguar_D-Type_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21096",
+        "man_num": "",
+        "model_name": "'32 Ford Delivery",
+        "series": "1999 Treasure Hunts",
+        "series_num": "09/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/91/32_Delivery_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21097",
+        "man_num": "",
+        "model_name": "Hot Seat",
+        "series": "1999 Treasure Hunts",
+        "series_num": "10/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/Hot_Seat_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21098",
+        "man_num": "",
+        "model_name": "Mustang Mach 1",
+        "series": "1999 Treasure Hunts",
+        "series_num": "11/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/Mustang_Mach_I_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21099",
+        "man_num": "",
+        "model_name": "Express Lane",
+        "series": "1999 Treasure Hunts",
+        "series_num": "12/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1d/Express_Lane_-_99TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21100",
+        "man_num": "",
+        "model_name": "Treadator",
+        "series": "1999 Buggin' Out Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/Treadator_RedYel.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21101",
+        "man_num": "",
+        "model_name": "Shadow Jet II",
+        "series": "1999 Buggin' Out Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/47/Shadow_Jet_II_Gry.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21102",
+        "man_num": "",
+        "model_name": "Radar Ranger",
+        "series": "1999 Buggin' Out Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/17/Radar_Ranger_PrpR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21103",
+        "man_num": "",
+        "model_name": "Baja Bug",
+        "series": "1999 Buggin' Out Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/Baja_Bug_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21104",
+        "man_num": "",
+        "model_name": "Mercedes C-Class",
+        "series": "1999 X-Ray Cruisers Series",
+        "series_num": "1A/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/Mercedes_C-Class_BlkTmp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24483",
+        "man_num": "",
+        "model_name": "'63 Corvette",
+        "series": "1999 X-Ray Cruisers Series",
+        "series_num": "1B/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/de/Th_63corvette033.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21105",
+        "man_num": "",
+        "model_name": "Lamborghini Diablo",
+        "series": "1999 X-Ray Cruisers Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/Lamborghini_Diablo_mtgrn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21106",
+        "man_num": "",
+        "model_name": "'67 Camaro",
+        "series": "1999 X-Ray Cruisers Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/33/67_camaro_x_ray.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21107",
+        "man_num": "",
+        "model_name": "Jaguar XJ220",
+        "series": "1999 X-Ray Cruisers Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d8/Jaguar_XJ220_-_X-Ray_Cruiser.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21108",
+        "man_num": "",
+        "model_name": "Mini Truck",
+        "series": "Street Art Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/Minitruck_BlkOrg.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21109",
+        "man_num": "",
+        "model_name": "Propper Chopper",
+        "series": "Street Art Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a9/Propper_Chopper_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21110",
+        "man_num": "",
+        "model_name": "Ambulance",
+        "series": "Street Art Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/38/Ambulance_Prp5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21111",
+        "man_num": "",
+        "model_name": "School Bus",
+        "series": "Street Art Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/63/School_Bus_YelSA.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21301",
+        "man_num": "",
+        "model_name": "3-Window '34",
+        "series": "1999 Pinstripe Power Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/3-Window_34_Prp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21302",
+        "man_num": "",
+        "model_name": "Tail Dragger",
+        "series": "1999 Pinstripe Power Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9d/Tail_Dragger_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21303",
+        "man_num": "",
+        "model_name": "'65 Impala",
+        "series": "1999 Pinstripe Power Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/%2765_Chevy_Impala_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21304",
+        "man_num": "",
+        "model_name": "Auburn 852",
+        "series": "1999 Pinstripe Power Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/91/Auburn_852_WhtBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21305",
+        "man_num": "",
+        "model_name": "GM Lean Machine",
+        "series": "1999 Game Over Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e9/GM_Lean_Machine_PrplBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21306",
+        "man_num": "",
+        "model_name": "Shadow Jet",
+        "series": "1999 Game Over Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5b/Shadow_Jet_Yel5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21307",
+        "man_num": "",
+        "model_name": "Speed Blaster",
+        "series": "1999 Game Over Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6c/Speed_Blaster_grnsbg.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21308",
+        "man_num": "",
+        "model_name": "Twin Mill II",
+        "series": "1999 Game Over Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/Twin_Mill_II_Pnk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21309",
+        "man_num": "",
+        "model_name": "'40's Woodie",
+        "series": "Surf 'N Fun Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a6/Surf%27N_Fun_%2740%27s_Woodie_-_6399df.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21310",
+        "man_num": "",
+        "model_name": "VW Bug",
+        "series": "Surf 'N Fun Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d5/VW_Bug_AGENTAIR_4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21311",
+        "man_num": "",
+        "model_name": "'55 Chevy",
+        "series": "Surf 'N Fun Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1b/55_Chevy_DkRed.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21312",
+        "man_num": "",
+        "model_name": "Chevy Nomad",
+        "series": "Surf 'N Fun Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/38/Classic_-Nomad_WhtSF.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21313",
+        "man_num": "",
+        "model_name": "Dodge Sidewinder",
+        "series": "X-Treme Speed Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/Dodge_Sidwinder_Wht5SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21314",
+        "man_num": "",
+        "model_name": "Callaway C7",
+        "series": "X-Treme Speed Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/74/Callaway_C7_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21315",
+        "man_num": "",
+        "model_name": "Porsche Carrera",
+        "series": "X-Treme Speed Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/Porsche_Carrera_SilvTmp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21316",
+        "man_num": "",
+        "model_name": "Mazda MX-5 Miata",
+        "series": "X-Treme Speed Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5e/Mazda_Miata_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21317",
+        "man_num": "",
+        "model_name": "'70 RoadrunnerOh Henry!",
+        "series": "1999 Sugar Rush Series II",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/70_Roadrunner_Yelw.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21318",
+        "man_num": "",
+        "model_name": "Jaguar XK8100 Grand",
+        "series": "1999 Sugar Rush Series II",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2d/Jaguar_XK8_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21319",
+        "man_num": "",
+        "model_name": "Pikes Peak CelicaSweeTARTS",
+        "series": "1999 Sugar Rush Series II",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1f/1999-971.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21320",
+        "man_num": "",
+        "model_name": "Dodge Concept CarBaby Ruth",
+        "series": "1999 Sugar Rush Series II",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9f/Dodge_Concept_Car_BabRth.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21321",
+        "man_num": "",
+        "model_name": "Probe Funny Car",
+        "series": "Mega Graphics Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5c/Probe_Funny_Car_LmGrnf.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21322",
+        "man_num": "",
+        "model_name": "Mustang Cobra",
+        "series": "Mega Graphics Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9c/Mustang_Cobra_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21323",
+        "man_num": "",
+        "model_name": "Turbo Flame",
+        "series": "Mega Graphics Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/18/Turbo_Flame_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21324",
+        "man_num": "",
+        "model_name": "Firebird Funny Car",
+        "series": "Mega Graphics Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/52/FireBird_Funny_1997_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21325",
+        "man_num": "",
+        "model_name": "At-A-Tude",
+        "series": "Terrorific Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d6/At-A-Tude_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21326",
+        "man_num": "",
+        "model_name": "Cat-A-Pult",
+        "series": "Terrorific Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f3/Cat-A-Pult_Org.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21327",
+        "man_num": "",
+        "model_name": "Sweet 16 II",
+        "series": "Terrorific Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/Sweet_16_II_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21328",
+        "man_num": "",
+        "model_name": "Splittin' Image II",
+        "series": "Terrorific Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0b/Splittin_Image_II_AGENTAIR_2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21329",
+        "man_num": "",
+        "model_name": "Super ModifiedKerPlunk",
+        "series": "1999 Classic Games Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3b/Super_Modified_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21330",
+        "man_num": "",
+        "model_name": "Silhouette IIToss Across",
+        "series": "1999 Classic Games Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b6/Silouette_II_ClscGms.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21331",
+        "man_num": "",
+        "model_name": "Sol-Aire CX4Skip-Bo",
+        "series": "1999 Classic Games Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fd/Sol-Aire_WhCG.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21332",
+        "man_num": "",
+        "model_name": "Escort RallyUno",
+        "series": "1999 Classic Games Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/87/Escort_Rally_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21333",
+        "man_num": "",
+        "model_name": "Saltflat Racer",
+        "series": "Car-Toon Friends Series",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/74/Saltflat_Racer_Prp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21334",
+        "man_num": "",
+        "model_name": "XT-3",
+        "series": "Car-Toon Friends Series",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/af/XT-3_Org.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21335",
+        "man_num": "",
+        "model_name": "Double Vision",
+        "series": "Car-Toon Friends Series",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/12/Double_Vision_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21336",
+        "man_num": "",
+        "model_name": "Lakester",
+        "series": "Car-Toon Friends Series",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/60/Lakester_WhtLft.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23801",
+        "man_num": "",
+        "model_name": "Rodzilla",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2f/Rodzilla_CrmLW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23802",
+        "man_num": "",
+        "model_name": "Ferrari F512M",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/07/Ferrari_Testarrosa_Red5sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23803",
+        "man_num": "",
+        "model_name": "Ferrari 348",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/Ferrari_348_Yel7sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23804",
+        "man_num": "",
+        "model_name": "Way 2 Fast",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b1/Way_2_Fast_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23805",
+        "man_num": "",
+        "model_name": "Porsche 911",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/29/P-911_Yel.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23806",
+        "man_num": "",
+        "model_name": "'32 Ford Delivery",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fc/32_Ford_Delivery_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23807",
+        "man_num": "",
+        "model_name": "Jaguar D-Type",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7c/Jaguar_D-Type_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23808",
+        "man_num": "",
+        "model_name": "Firebird Funny Car",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6e/FireBird_Funny_1997_DkRed.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23809",
+        "man_num": "",
+        "model_name": "Hot Seat",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/Th_HotSeat015.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23810",
+        "man_num": "",
+        "model_name": "'59 Impala",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a3/%2759_Chevy_Impala_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23811",
+        "man_num": "",
+        "model_name": "Slideout",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d5/SlideOut_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23813",
+        "man_num": "",
+        "model_name": "Ferrari F40",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/14/Ferrari_F40_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23814",
+        "man_num": "",
+        "model_name": "Dairy Delivery",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5e/Dairy_Delivery_Cow.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23815",
+        "man_num": "",
+        "model_name": "Mercedes-Benz Unimog",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/Mercedes_Benz_Unimog_RedBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23816",
+        "man_num": "",
+        "model_name": "Dodge Viper RT/10",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/75/Dodge_Viper_Blu5SP.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23817",
+        "man_num": "",
+        "model_name": "Tow Jam",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/73/23817-towjam-xdroop.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23818",
+        "man_num": "",
+        "model_name": "Chaparral 2",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/Chaparral_2_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23823",
+        "man_num": "",
+        "model_name": "Peterbilt Dump Truck",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8f/Peterbilt_Dumptruck_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23824",
+        "man_num": "",
+        "model_name": "Ford Stake Bed Truck",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/42/Fordstake.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23825",
+        "man_num": "",
+        "model_name": "Oshkosh Cement Truck",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/50/Oshkosh_Cement_Mixer_MtRed.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23819",
+        "man_num": "",
+        "model_name": "Flame Stopper",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a2/Flame_Stopper_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23820",
+        "man_num": "",
+        "model_name": "Mercedes 500 SL",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/Mercedes-Benz_SL_Silv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23821",
+        "man_num": "",
+        "model_name": "'67 Camaro",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d6/Stunt_5sp.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23822",
+        "man_num": "",
+        "model_name": "Mercedes C-Class",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/68/Mercedes_C-Class_Yel.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22368",
+        "man_num": "",
+        "model_name": "'32 Ford Coupe",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/89/32_Ford_WhtL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22376",
+        "man_num": "",
+        "model_name": "'63 T-Bird",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d3/63_T-Bird_GldBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22379",
+        "man_num": "",
+        "model_name": "Shelby Cobra 427 S/C",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c6/Classic_Cobra_Whtflmsl.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23382",
+        "man_num": "",
+        "model_name": "Mercedes SLK",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/98/Mercedes_SLK_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22384",
+        "man_num": "",
+        "model_name": "Dodge Caravan",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e6/Dodge_Caravan_Org.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22385",
+        "man_num": "",
+        "model_name": "Customized C3500",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/76/Customized_C3500_Pnk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22387",
+        "man_num": "",
+        "model_name": "'56 Flashsider",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ea/56_Flashsider_Yel3spL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22389",
+        "man_num": "",
+        "model_name": "'40 Ford Truck",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b1/40_Ford_RedL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22390",
+        "man_num": "",
+        "model_name": "Porsche 959",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/Porsche_959_Slv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22392",
+        "man_num": "",
+        "model_name": "Aeroflash",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/84/Aeroflash_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22393",
+        "man_num": "",
+        "model_name": "Ford GT-90",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/Ford_GT-90_Yelt.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22399",
+        "man_num": "",
+        "model_name": "'70 Plymouth Barracuda",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/%2770_Cuda_-_99_Ocean_Blaster_5-Pack.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22401",
+        "man_num": "",
+        "model_name": "Roll Patrol",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/Trailbuster_Yel.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22405",
+        "man_num": "",
+        "model_name": "Dodge Viper RT/10",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/Dodge_Viper_Silv.WrlRcr5P.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22407",
+        "man_num": "",
+        "model_name": "Panoz GTR-1",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/Panoz_GTR-1_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22408",
+        "man_num": "",
+        "model_name": "Super Comp Dragster",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fe/Super_Comp_Dragster_Slv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22410",
+        "man_num": "",
+        "model_name": "Twang Thang",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/Twang_Thang_Grn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22411",
+        "man_num": "",
+        "model_name": "Rail Rodder",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/02/Rail_Rodder_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22412",
+        "man_num": "",
+        "model_name": "Whatta Drag",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/45/Whatta_Drag_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22415",
+        "man_num": "",
+        "model_name": "Dodge Ram 1500",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7c/HW_Dodge_Ram_Truck_%282%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22416",
+        "man_num": "",
+        "model_name": "Police Cruiser (1996)",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/Police_Cruiser_WhtBlu3sp.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22418",
+        "man_num": "",
+        "model_name": "Oldsmobile Aurora",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3a/Oldsmobile_Aurora_BlkPol5Ho.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22419",
+        "man_num": "",
+        "model_name": "Rescue Ranger",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/Rescue_Ranger_WhtPD.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22423",
+        "man_num": "",
+        "model_name": "Treadator",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1c/Treadator_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24065",
+        "man_num": "",
+        "model_name": "'65 Mustang",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/Black_%2765_Mustang_Convertible_-_5992cf.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24066",
+        "man_num": "",
+        "model_name": "Rigor Motor",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5f/Rigor_Motor_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24067",
+        "man_num": "",
+        "model_name": "Hydroplane",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/91/Hydroplane_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24068",
+        "man_num": "",
+        "model_name": "Porsche 959",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/Porsche_959_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24069",
+        "man_num": "",
+        "model_name": "School Bus",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7d/School_Bus_BlkGrfcs.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24070",
+        "man_num": "",
+        "model_name": "Corvette Stingray",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/23/82_Corvette_Stingray_tan.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24071",
+        "man_num": "",
+        "model_name": "Thunderstreak",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ca/Thunderstreak_RedBlu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24072",
+        "man_num": "",
+        "model_name": "'96 Mustang",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/92/1996_Mustang_DkRed.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24073",
+        "man_num": "",
+        "model_name": "Dodge Ram 1500",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6b/Dodge_Ram_1500_GrnRDodge_Ram_1500_GrnL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24074",
+        "man_num": "",
+        "model_name": "Ramp Truck",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/97/RampTJaded.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24075",
+        "man_num": "",
+        "model_name": "Rescue Ranger",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/97/Rescue_Ranger_WhtFD.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24076",
+        "man_num": "",
+        "model_name": "Rail Rodder",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/Rail_Rodder_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24077",
+        "man_num": "",
+        "model_name": "'70 Plymouth Barracuda",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/%2770_Cuda_-_99_OV.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24078",
+        "man_num": "",
+        "model_name": "Lakester",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9c/Lakester_SlvLft.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24079",
+        "man_num": "",
+        "model_name": "IROC Firebird",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/79/IROC_Firebird_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24080",
+        "man_num": "",
+        "model_name": "Mustang Cobra",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/Mustang_Cobra_Gld.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24081",
+        "man_num": "",
+        "model_name": "Express Lane",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f3/ExpressLaneRF.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24082",
+        "man_num": "",
+        "model_name": "Dodge Concept Car",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/58/Dodge_Concept_Car_Slv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24083",
+        "man_num": "",
+        "model_name": "'40 Ford",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d7/40_Ford_YelL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24084",
+        "man_num": "",
+        "model_name": "'32 Ford",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/32_Ford_RedL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24085",
+        "man_num": "",
+        "model_name": "Panoz GTR-1",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/18/Panoz_GTR-1_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24087",
+        "man_num": "",
+        "model_name": "Ford GT-90",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0b/Ford_GT-90_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24088",
+        "man_num": "",
+        "model_name": "Blimp",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/1074_Blimp.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24089",
+        "man_num": "",
+        "model_name": "Scorchin' Scooter",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/aa/1075_Scorchin%27_Scooter.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24090",
+        "man_num": "",
+        "model_name": "'59 Cadillac",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7a/59_Caddy_BluWht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24091",
+        "man_num": "",
+        "model_name": "'57 Chevy",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e3/57_Chevy_RedLW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24092",
+        "man_num": "",
+        "model_name": "Camaro Z-28",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cf/Camaro_Z28_MtBlu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24093",
+        "man_num": "",
+        "model_name": "'63 Corvette",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/63_Corvette_1999.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24094",
+        "man_num": "",
+        "model_name": "Humvee",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/01/Hummer_GrnSlv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24095",
+        "man_num": "",
+        "model_name": "Power Plower",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/41/Bywayman_MtGrn.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24096",
+        "man_num": "",
+        "model_name": "Jaguar XJ220",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/18/Jaguar_XJ220_-_Gold.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24097",
+        "man_num": "",
+        "model_name": "Blown Camaro",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/80s_Camaro_AquaLW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24098",
+        "man_num": "",
+        "model_name": "Mazda MX-5 Miata",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1a/Mazda_Miata_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24099",
+        "man_num": "",
+        "model_name": "Porsche 928",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/38/P928_Gold.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24100",
+        "man_num": "",
+        "model_name": "Toyota MR-2 Rally",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/Toyota_Rally_Prpl.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24101",
+        "man_num": "",
+        "model_name": "Rig Wrecker",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/Rig_Wrecker_Yel.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24102",
+        "man_num": "",
+        "model_name": "Speed Machine",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f7/Speed_Machine_BlkGld.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24103",
+        "man_num": "",
+        "model_name": "Lamborghini Countach (1997)",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/73/Lamborghini_Countach_Silv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24104",
+        "man_num": "",
+        "model_name": "'97 Corvette",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a6/97_Corvette_Blk1.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24105",
+        "man_num": "",
+        "model_name": "X-Ploder",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/85/Power_Rocket_R.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24106",
+        "man_num": "",
+        "model_name": "'58 Corvette",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1d/1092_%2758_Corvette.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24107",
+        "man_num": "",
+        "model_name": "BMW 850i",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/ff/BMW_850_Gld.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24108",
+        "man_num": "",
+        "model_name": "Ferrari F355 Berlinetta",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a1/1094_Ferrari_F355_Berlinetta.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24109",
+        "man_num": "",
+        "model_name": "Mercedes SLK",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/28/Mercedes_SLK_Slv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24110",
+        "man_num": "",
+        "model_name": "Avus Quattro",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/86/Avus_Quattro_-1096.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24111",
+        "man_num": "",
+        "model_name": "'31 Doozie",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cd/31_Doozie_DkMtRedLW.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24112",
+        "man_num": "",
+        "model_name": "'37 Bugatti",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3d/37bugatti.1098.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24113",
+        "man_num": "",
+        "model_name": "Road Rocket",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1b/Road_Rocket_RedBlk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24114",
+        "man_num": "",
+        "model_name": "Power Pipes",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/16/Power_Pipes_Wht.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24115",
+        "man_num": "",
+        "model_name": "Radar Ranger",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/ff/Radar_Ranger_TrqR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24116",
+        "man_num": "",
+        "model_name": "Mini Truck",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d7/Minitruck_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24117",
+        "man_num": "",
+        "model_name": "'80's Corvette",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3f/80sVette_GldL.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24118",
+        "man_num": "",
+        "model_name": "Twang Thang",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b1/Twang_Thang_Org.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24119",
+        "man_num": "",
+        "model_name": "Mustang Mach 1",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9d/Picture_033.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24120",
+        "man_num": "",
+        "model_name": "Go Kart",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/Go_Kart_Org.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "24121",
+        "man_num": "",
+        "model_name": "Chrysler Thunderbolt",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Chrysler_Thunderbolt_Blu.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23903",
+        "man_num": "",
+        "model_name": "Ferrari F355 Challenge",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/50/F355_Challenge_-_99OV5SP.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23930",
+        "man_num": "",
+        "model_name": "Ferrari 456M",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/71/Ferrari_456M_red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "23931",
+        "man_num": "",
+        "model_name": "Ferrari F355 Spider",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8e/Ferrari_F355_Spider_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22932",
+        "man_num": "",
+        "model_name": "Ferrari F50",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/Ferrari_F50_Red.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "22391",
+        "man_num": "",
+        "model_name": "Chevy 1500",
+        "series": "1999 Hot Wheels",
+        "series_num": "",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/HW_Chevy_1500.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21339",
+        "man_num": "",
+        "model_name": "Range Rover",
+        "series": "1999 Final Run",
+        "series_num": "01/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3d/Range_Rover_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21340",
+        "man_num": "",
+        "model_name": "Mercedes 380 SEL",
+        "series": "1999 Final Run",
+        "series_num": "02/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/15/Mercedes_380_PrplFR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21341",
+        "man_num": "",
+        "model_name": "Kenworth T-600A",
+        "series": "1999 Final Run",
+        "series_num": "03/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/40/Big_Rig_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21342",
+        "man_num": "",
+        "model_name": "Street Beast",
+        "series": "1999 Final Run",
+        "series_num": "04/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/Street_Beast_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21343",
+        "man_num": "",
+        "model_name": "Street Roader",
+        "series": "1999 Final Run",
+        "series_num": "05/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a8/Street_Roader_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21344",
+        "man_num": "",
+        "model_name": "Stutz Blackhawk",
+        "series": "1999 Final Run",
+        "series_num": "06/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5c/Stutz_Blackhawk_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21345",
+        "man_num": "",
+        "model_name": "Pontiac Salsa",
+        "series": "1999 Final Run",
+        "series_num": "07/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5a/Pontiac_Salsa_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21346",
+        "man_num": "",
+        "model_name": "'93 Camaro",
+        "series": "1999 Final Run",
+        "series_num": "08/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b6/93_Camaro_GreyFR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21349",
+        "man_num": "",
+        "model_name": "Mercedes 540K",
+        "series": "1999 Final Run",
+        "series_num": "09/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/53/Mercedes_540k_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21348",
+        "man_num": "",
+        "model_name": "Custom Corvette",
+        "series": "1999 Final Run",
+        "series_num": "10/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0b/Custom_Corvette_FinalRun.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21347",
+        "man_num": "",
+        "model_name": "Tank Truck",
+        "series": "1999 Final Run",
+        "series_num": "11/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a3/Tank_Truck_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "21350",
+        "man_num": "",
+        "model_name": "Alien",
+        "series": "1999 Final Run",
+        "series_num": "12/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e0/Alien_FR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "'56 Flashsider",
+        "series": "1999 Bonus Cars",
+        "series_num": "1/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/de/56_Flashsider_bnsR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Shock Factor",
+        "series": "1999 Bonus Cars",
+        "series_num": "2/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/01/Shock_Factor_Blk.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Buick Wildcat",
+        "series": "1999 Bonus Cars",
+        "series_num": "3/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a2/Buick_Wildcat_Bonus.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 1999,
+        "toy_num": "",
+        "man_num": "",
+        "model_name": "Power Pipes",
+        "series": "1999 Bonus Cars",
+        "series_num": "4/4",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/42/Power_Pipes_BlkBC.JPG"
+    }
+]

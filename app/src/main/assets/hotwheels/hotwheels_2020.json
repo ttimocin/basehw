@@ -1,0 +1,4552 @@
+[
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB45",
+        "man_num": "",
+        "model_name": "2 Jet Z",
+        "series": "HW Dream GarageNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/2JetZ.2020_New_Model._Front_Pers.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD99",
+        "man_num": "",
+        "model_name": "2 Jet Z(2nd Color)",
+        "series": "HW Dream GarageNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/81/6B61C5E4-05E6-473E-97B0-D997F0615F0F.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD03",
+        "man_num": "",
+        "model_name": "Nissan Skyline GT-R (BNR32)",
+        "series": "HW Turbo",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/2020-BNR32.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG23",
+        "man_num": "",
+        "model_name": "Nissan Skyline GT-R (BNR32)",
+        "series": "HW TurboSuper Treasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5f/Skyline_R32_STH_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB91",
+        "man_num": "",
+        "model_name": "Land Rover Series III Pickup",
+        "series": "Baja Blazers",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/80/Series_3_Pickup_Green_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG43",
+        "man_num": "",
+        "model_name": "Land Rover Series III Pickup(2nd Color - Zamac)",
+        "series": "Baja BlazersWalmart Exclusive",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/2020LandroverDefenderPickupZamac.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG13",
+        "man_num": "",
+        "model_name": "Land Rover Series III Pickup(3rd Color)",
+        "series": "Baja Blazers",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9e/2020_Hot_Wheels_Land_Rover_Pickup_3rd_colour.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB95",
+        "man_num": "",
+        "model_name": "Tooligan",
+        "series": "Experimotors",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/28/004_-_Tooligan.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF65",
+        "man_num": "",
+        "model_name": "Tooligan(2nd Color)",
+        "series": "Experimotors",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/17/GHF65_Tooligan.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG70",
+        "man_num": "",
+        "model_name": "Tooligan(3rd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "6/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/91/2020_Red_Edition_Tooligan.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB97",
+        "man_num": "",
+        "model_name": "Gotta Go",
+        "series": "Experimotors",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/64/005_-_Gotta_Go.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG72",
+        "man_num": "",
+        "model_name": "Gotta Go(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "3/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a6/2020_Hot_Wheels_Red_Edition_GOTTA_GO.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD70",
+        "man_num": "",
+        "model_name": "Bubble Matic",
+        "series": "ExperimotorsTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/2020_Hot_Wheels_Bubble_Matic_left.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB83",
+        "man_num": "",
+        "model_name": "Road Bandit",
+        "series": "HW MetroNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/2020NM01_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD91",
+        "man_num": "",
+        "model_name": "Road Bandit(2nd Color)",
+        "series": "HW MetroNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ae/Road_bandit.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC45",
+        "man_num": "",
+        "model_name": "Diaper Dragger",
+        "series": "HW Metro",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/008_-_Diaper_Dragger.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD93",
+        "man_num": "",
+        "model_name": "Diaper Dragger(2nd Color)",
+        "series": "HW Metro",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/GHD93_Diaper_Dragger.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB93",
+        "man_num": "",
+        "model_name": "Batmobile",
+        "series": "Batman",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/55/009_-_Batmobile.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GLN68",
+        "man_num": "",
+        "model_name": "Batmobile(2nd Color)",
+        "series": "Batman",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/17/2020_Gold_Batmobile_mc.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF68",
+        "man_num": "",
+        "model_name": "Batmobile(3rd Color)",
+        "series": "Batman",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6d/BATMOBILE_GHF68.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC11",
+        "man_num": "",
+        "model_name": "Honda Monkey Z50",
+        "series": "Honda",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/80/Honda_Monkey_Red_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF51",
+        "man_num": "",
+        "model_name": "Honda Monkey Z50(2nd Color)",
+        "series": "Honda",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bc/Honda_Monkey_Z50.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC51",
+        "man_num": "",
+        "model_name": "'85 Honda City Turbo II",
+        "series": "HW Race Day",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cb/Honda_City_Turbo-2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG37",
+        "man_num": "",
+        "model_name": "'85 Honda City Turbo II(2nd Color - Zamac)",
+        "series": "HW Race DayWalmart Exclusive",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/30/2020ZamacHondaCity.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF22",
+        "man_num": "",
+        "model_name": "'85 Honda City Turbo II(3rd Color)",
+        "series": "HW Race Day",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/GHF22-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC67",
+        "man_num": "",
+        "model_name": "Night Shifter",
+        "series": "HW Race Day",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/012-_Night_Shifter.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC80",
+        "man_num": "",
+        "model_name": "Octane",
+        "series": "HW Screen Time",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/013_-_Octane.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF97",
+        "man_num": "",
+        "model_name": "Octane(2nd Color)",
+        "series": "HW Screen Time",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/69/Octane_2nd_color.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC81",
+        "man_num": "",
+        "model_name": "Snoopy",
+        "series": "HW Screen Time",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/10/014_-_Snoopy.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD43",
+        "man_num": "",
+        "model_name": "'69 Chevelle",
+        "series": "Tooned",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/015_-_%2769_Chevelle.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF25",
+        "man_num": "",
+        "model_name": "'69 Chevelle(2nd Color)",
+        "series": "Tooned",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/015_-_%2769_Chevelle_%282nd_Color%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD55",
+        "man_num": "",
+        "model_name": "HW Formula Solar",
+        "series": "X-Raycers",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/016_-_HW_Formula_Solar.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF72",
+        "man_num": "",
+        "model_name": "HW Formula Solar(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d5/0572B057-D920-4F7F-B03D-CCD7A8EDE555.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC06",
+        "man_num": "",
+        "model_name": "Carbonator",
+        "series": "Fast Foodie",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4b/017_-_Carbonator.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF26",
+        "man_num": "",
+        "model_name": "Carbonator(2nd Color)",
+        "series": "Fast Foodie",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/61/65C4F3AD-FC15-42B5-A2EF-F6187F7F65BC.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC07",
+        "man_num": "",
+        "model_name": "Chill Mill",
+        "series": "Fast Foodie",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/78/018_-_Chill_Mill.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF69",
+        "man_num": "",
+        "model_name": "Chill Mill(2nd Color)",
+        "series": "Fast Foodie",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/2DCBFBA7-BED1-49D1-B8FA-7C46C107D4D0.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC22",
+        "man_num": "",
+        "model_name": "2005 Ford Mustang",
+        "series": "HW Dream Garage",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/21/019_-_2005_Ford_Mustang.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF29",
+        "man_num": "",
+        "model_name": "2005 Ford Mustang(2nd Color)",
+        "series": "HW Dream Garage",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/12/2005_Ford_Mustang_-_2020_Green.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC23",
+        "man_num": "",
+        "model_name": "'18 COPO Camaro SS",
+        "series": "HW Dream Garage",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/27/020_-_%2718_Copo_Camaro_SS.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF73",
+        "man_num": "",
+        "model_name": "'18 COPO Camaro SS(2nd Color)",
+        "series": "HW Dream Garage",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/18_COPO_Camaro_SS_-_2020_Black.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG54",
+        "man_num": "",
+        "model_name": "'18 COPO Camaro SS(3rd Color)",
+        "series": "HW Dream GarageDollar General Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/18copocamaross.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD51",
+        "man_num": "",
+        "model_name": "Aero Pod",
+        "series": "X-Raycers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/35/021_-_Aero_Pod.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF92",
+        "man_num": "",
+        "model_name": "Aero Pod(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/021_-Aero_Pod_%282nd_Color%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC70",
+        "man_num": "",
+        "model_name": "Wheelie Chair",
+        "series": "HW Ride-Ons",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d9/022_-_Wheelie_Chair.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF44",
+        "man_num": "",
+        "model_name": "Wheelie Chair(2nd Color)",
+        "series": "HW Ride-Ons",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/Wheelie_Chair.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB42",
+        "man_num": "",
+        "model_name": "'98 Subaru Impreza 22B STi-Version",
+        "series": "HW TurboNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a7/2020-22B.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF06",
+        "man_num": "",
+        "model_name": "'98 Subaru Impreza 22B STi-Version(2nd Color)",
+        "series": "HW TurboNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/Hot_Wheels_2020_Subaru_Impreza_red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG40",
+        "man_num": "",
+        "model_name": "'98 Subaru Impreza 22B STi-Version(3rd Color - Zamac)",
+        "series": "HW TurboNew for 2020!Walmart Exclusive",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5a/8DBCCEAF-60EA-400E-98DC-E40EDEB60272.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB76",
+        "man_num": "",
+        "model_name": "Pixel Shaker",
+        "series": "HW Ride-OnsNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/2020NM03_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF10",
+        "man_num": "",
+        "model_name": "Pixel Shaker(2nd Color)",
+        "series": "HW Ride-OnsNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/PSX_20200523_103554.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD34",
+        "man_num": "",
+        "model_name": "Indy 500 Oval",
+        "series": "Speed Blur",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/025_-_Indy_500_Oval.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG69",
+        "man_num": "",
+        "model_name": "Indy 500 Oval(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "1/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/12/2020_Hot_Wheels_Red_Edition_Indy_500.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF83",
+        "man_num": "",
+        "model_name": "Indy 500 Oval(3rd Color)",
+        "series": "Speed Blur",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/203C393F-8B7A-4951-BFB3-7019337918EE.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB82",
+        "man_num": "",
+        "model_name": "HW Warp Speeder",
+        "series": "Track StarsNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/74/2020NM04.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF11",
+        "man_num": "",
+        "model_name": "HW Warp Speeder(2nd Color)",
+        "series": "Track StarsNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fc/Warp_speeder_ghf11.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB88",
+        "man_num": "",
+        "model_name": "Dune It Up",
+        "series": "Baja Blazers",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/33/DuneItUp-2020-purple.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF87",
+        "man_num": "",
+        "model_name": "Dune It Up(2nd Color)",
+        "series": "Baja Blazers",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/46/Dune_it_up_2020_black.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB89",
+        "man_num": "",
+        "model_name": "HW450F",
+        "series": "Baja Blazers",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3b/2020_Hot_Wheels_HW_450F_left.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF88",
+        "man_num": "",
+        "model_name": "HW450F(2nd Color)",
+        "series": "Baja Blazers",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/GHF88_01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB90",
+        "man_num": "",
+        "model_name": "Hyper Rocker",
+        "series": "Baja Blazers",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d2/HyperRocker-2020-red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF64",
+        "man_num": "",
+        "model_name": "Hyper Rocker(2nd Color)",
+        "series": "Baja Blazers",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/83/Hyper_rocker_ghb90.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB98",
+        "man_num": "",
+        "model_name": "Heavy Hitcher",
+        "series": "Experimotors",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e2/HeavyHitcher-2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF66",
+        "man_num": "",
+        "model_name": "Heavy Hitcher(2nd Color)",
+        "series": "Experimotors",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6d/Heavy_hitcher_ghf66.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC43",
+        "man_num": "",
+        "model_name": "HW Armored Truck",
+        "series": "HW Metro",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/72/HWArmoredTruck-2020-chrome.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF61",
+        "man_num": "",
+        "model_name": "HW Armored Truck(2nd Color)",
+        "series": "HW Metro",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/2020_Armored_Truck_Red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC47",
+        "man_num": "",
+        "model_name": "The Haulinator",
+        "series": "HW Metro",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/2020_Hot_Wheels_The_Haulinator_left.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD74",
+        "man_num": "",
+        "model_name": "Mercedes-Benz Unimog 1300",
+        "series": "HW MetroTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/18/MercedesBenzUnimog-2020-TH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC50",
+        "man_num": "",
+        "model_name": "'76 Greenwood Corvette",
+        "series": "HW Race Day",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bb/GHC50-1.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG11",
+        "man_num": "",
+        "model_name": "'76 Greenwood Corvette(2nd Color)",
+        "series": "HW Race Day",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/12/GHG11-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG61",
+        "man_num": "",
+        "model_name": "'76 Greenwood Corvette(3rd Color)",
+        "series": "HW Race DayKroger Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/76_Greenwood_Corvette_White_Kroger_Exclusive.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC55",
+        "man_num": "",
+        "model_name": "Ford GT-40",
+        "series": "HW Race Day",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5a/2020-GT40.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG20",
+        "man_num": "",
+        "model_name": "Ford GT-40",
+        "series": "HW Race DaySuper Treasure Hunt",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4d/FordGT40STH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC79",
+        "man_num": "",
+        "model_name": "Sword Warthog",
+        "series": "HW Screen Time",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/SwordWarthog-2020-red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB80",
+        "man_num": "",
+        "model_name": "RV There Yet",
+        "series": "ToonedNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/43/RV_There_Yet._2020._Top_Persp.2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF85",
+        "man_num": "",
+        "model_name": "RV There Yet(2nd Color)",
+        "series": "ToonedNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/Ty03.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD44",
+        "man_num": "",
+        "model_name": "Cool-One",
+        "series": "Tooned",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/CoolOne-2020-white.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF90",
+        "man_num": "",
+        "model_name": "Cool-One(2nd Color)",
+        "series": "Tooned",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9e/Cool-One_ghf90.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC08",
+        "man_num": "",
+        "model_name": "Roller Toaster",
+        "series": "Fast Foodie",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4d/RollerToaster-2020-blue.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF59",
+        "man_num": "",
+        "model_name": "Roller Toaster(2nd Color)",
+        "series": "Fast Foodie",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/2020HWRollerToaster-39Purple.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC28",
+        "man_num": "",
+        "model_name": "Custom '71 El Camino",
+        "series": "HW Dream Garage",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/04/2020_Hot_Wheels_Custom_%2771_El_Camino_left.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF70",
+        "man_num": "",
+        "model_name": "Custom '71 El Camino(2nd Color)",
+        "series": "HW Dream Garage",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fe/5B57E4CE-9C2B-4D87-9F15-7127DB5D8A61.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG46",
+        "man_num": "",
+        "model_name": "Custom '71 El Camino(3rd Color - Zamac)",
+        "series": "HW Dream GarageWalmart Exclusive",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/2020HWElCamino-40Zamac.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD54",
+        "man_num": "",
+        "model_name": "Hi-Tech Missile",
+        "series": "X-Raycers",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/GHD54_01.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF30",
+        "man_num": "",
+        "model_name": "Hi-Tech Missile(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c9/2020_Hi-Tech_Missle_Orange.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD56",
+        "man_num": "",
+        "model_name": "Pedal de Metal",
+        "series": "X-Raycers",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/36/2020PedalDeMetalPurple_%281%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF46",
+        "man_num": "",
+        "model_name": "Pedal de Metal(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f6/PEDAL_DE_METAL_GHF46.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD02",
+        "man_num": "",
+        "model_name": "'95 Mazda RX-7",
+        "series": "HW Turbo",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8e/2020_Hot_Wheels_%2795_Mazda_RX-7_left.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF76",
+        "man_num": "",
+        "model_name": "'95 Mazda RX-7(2nd Color)",
+        "series": "HW Turbo",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/57/RX7_2020_Blue.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD20",
+        "man_num": "",
+        "model_name": "Porsche Panamera Turbo S E-Hybrid Sport Turismo",
+        "series": "Porsche",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d1/2020-Panamera.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF19",
+        "man_num": "",
+        "model_name": "Porsche Panamera Turbo S E-Hybrid Sport Turismo(2nd Color)",
+        "series": "Porsche",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/59/GHF19-loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD21",
+        "man_num": "",
+        "model_name": "Porsche 917 LH",
+        "series": "Porsche",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ae/2020-917LH.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG39",
+        "man_num": "",
+        "model_name": "Porsche 917 LH(2nd Color - Zamac)",
+        "series": "PorscheWalmart Exclusive",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a1/Porsche_917_LH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB99",
+        "man_num": "",
+        "model_name": "Slide Kick",
+        "series": "Experimotors",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/00/SlideKick-2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF21",
+        "man_num": "",
+        "model_name": "Slide Kick(2nd Color)",
+        "series": "Experimotors",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/11/SLIDE_KICK_GHF21.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB54",
+        "man_num": "",
+        "model_name": "'89 Porsche 944 Turbo",
+        "series": "PorscheNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bd/2020NM07_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF07",
+        "man_num": "",
+        "model_name": "'89 Porsche 944 Turbo(2nd Color)",
+        "series": "PorscheNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/67E39D57-ED08-4838-B141-83F18011132C.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD58",
+        "man_num": "",
+        "model_name": "Power Rocket",
+        "series": "X-Raycers",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/2020_Hot_Wheels_Power_Rocket_left.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF31",
+        "man_num": "",
+        "model_name": "Power Rocket(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/47/Power_Rocket_ghf31.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD49",
+        "man_num": "",
+        "model_name": "Gruppo x24",
+        "series": "Track Stars",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/Gruppox24-2020-white.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF80",
+        "man_num": "",
+        "model_name": "Gruppo x24(2nd Color)",
+        "series": "Track Stars",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/2020-45_Gruppo_Yellow.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC54",
+        "man_num": "",
+        "model_name": "Dodge Viper SRT10 ACR",
+        "series": "HW Race Day",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7a/2020-SRT10ACR.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG75",
+        "man_num": "",
+        "model_name": "Dodge Viper SRT10 ACR(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "2/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a6/2020_Hot_Wheels_Red_Edition_DODGE_VIPER_SRT10_ACR.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB85",
+        "man_num": "",
+        "model_name": "Chrysler Pacifica",
+        "series": "Baja Blazers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/HW_CHRYSLER_PACIFICA1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD84",
+        "man_num": "",
+        "model_name": "Chrysler Pacifica(2nd Color)",
+        "series": "Baja Blazers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/2020-51-ChryslerPacifica-grey.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB86",
+        "man_num": "",
+        "model_name": "'70 Ford Escort RS1600",
+        "series": "Baja Blazers",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/43/%2770_Ford_Escort_RS1600.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB61",
+        "man_num": "",
+        "model_name": "Rockin' Santa Sled",
+        "series": "ExperimotorsNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/2020NM10_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD88",
+        "man_num": "",
+        "model_name": "Rockin' Santa Sled(2nd Color)",
+        "series": "ExperimotorsNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/52/GHD88_-_053_-_Rockin%27_Santa_Sled_%282nd_Color%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC00",
+        "man_num": "",
+        "model_name": "The Embosser",
+        "series": "Experimotors",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/aa/1DCF98E1-4DF9-4A9B-BA49-2AC65142C0C7.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB66",
+        "man_num": "",
+        "model_name": "Total Disposal",
+        "series": "HW MetroNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/2020NM09_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD90",
+        "man_num": "",
+        "model_name": "Total Disposal(2nd Color)",
+        "series": "HW MetroNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/Total_Disposal_%282nd_Color%29_%282020%29.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB43",
+        "man_num": "",
+        "model_name": "Batplane",
+        "series": "BatmanNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/2020NM11_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD94",
+        "man_num": "",
+        "model_name": "Batplane(2nd Color)",
+        "series": "BatmanNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/%282%29_Batplane_2020_%282nd_color%29_Batman_1-5_56-250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB52",
+        "man_num": "",
+        "model_name": "Volvo 850 Estate",
+        "series": "HW Race DayNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1a/2020_Hot_Wheels_Volvo_850_Estate.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD96",
+        "man_num": "",
+        "model_name": "Volvo 850 Estate(2nd Color)",
+        "series": "HW Race DayNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e2/Volvo_850_Wagon._2nd_Color_%282020%29_2.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD48",
+        "man_num": "",
+        "model_name": "'64 Chevy Impala",
+        "series": "Tooned",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fa/%2764_Chevy_Impala_Tooned._2019.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG33",
+        "man_num": "",
+        "model_name": "'64 Chevy Impala(2nd Color - Zamac)",
+        "series": "ToonedWalmart Exclusive",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/78/2020ZamacToonedImpala.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF89",
+        "man_num": "",
+        "model_name": "'64 Chevy Impala(3rd Color)",
+        "series": "Tooned",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ea/IMG_20200125_174028.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC77",
+        "man_num": "",
+        "model_name": "'65 Ford Mustang Convertible",
+        "series": "HW Screen Time",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e6/2020ML65mustconv.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD45",
+        "man_num": "",
+        "model_name": "Head Starter",
+        "series": "Tooned",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/40/GHD45_01.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD46",
+        "man_num": "",
+        "model_name": "Skull Shaker",
+        "series": "Tooned",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/Pink_Skull_Shaker_%28Late_2019%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG10",
+        "man_num": "",
+        "model_name": "Skull Shaker(2nd Color)",
+        "series": "Tooned",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/HW_SKULL_SHAKER_Tooned_BLUE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC25",
+        "man_num": "",
+        "model_name": "Twin Mill Gen-E",
+        "series": "HW Dream Garage",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/HW_TWIN_MILL_GEN-E_GREEN.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF28",
+        "man_num": "",
+        "model_name": "Twin Mill Gen-E(2nd Color)",
+        "series": "HW Dream Garage",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/09/BD23DA5F-F29E-4EB8-BF04-6FD95C5CFCE8.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD35",
+        "man_num": "",
+        "model_name": "Roborace Robocar",
+        "series": "Speed Blur",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/00/HW_ROBORACER_2020_1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF78",
+        "man_num": "",
+        "model_name": "Roborace Robocar(2nd Color)",
+        "series": "Speed Blur",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fa/DFAF8A43-BBED-4DD4-B1B1-6EB43E58E87C.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD57",
+        "man_num": "",
+        "model_name": "Poison Arrow",
+        "series": "X-Raycers",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/34/GHD57_01.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC04",
+        "man_num": "",
+        "model_name": "BMW K 1300 R",
+        "series": "Factory Fresh",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a8/BMW-K1300R-2020-card.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF94",
+        "man_num": "",
+        "model_name": "BMW K 1300 R(2nd Color)",
+        "series": "Factory Fresh",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f3/19989A1C-0775-4C7A-BC39-9D3BE6029324.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC14",
+        "man_num": "",
+        "model_name": "Cruise Bruiser",
+        "series": "HW Art Cars",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bd/IMG_20201218_002627.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF53",
+        "man_num": "",
+        "model_name": "Cruise Bruiser(2nd Color)",
+        "series": "HW Art Cars",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2f/2020HWCruiseBruiserBlack-66.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC20",
+        "man_num": "",
+        "model_name": "Rodger Dodger",
+        "series": "HW Art Cars",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1e/GHC20-3.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG60",
+        "man_num": "",
+        "model_name": "Rodger Dodger(2nd Color)",
+        "series": "HW Art CarsKroger Exclusive",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/SteamPunkRodgerDodgerGold.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD92",
+        "man_num": "",
+        "model_name": "Rodger Dodger(3rd Color)",
+        "series": "HW Art Cars",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/SteamPunkRodgerDodgerGrey.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC21",
+        "man_num": "",
+        "model_name": "Super Van",
+        "series": "HW Art Cars",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/25/GHC21_01.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC82",
+        "man_num": "",
+        "model_name": "2008 Lancer Evolution",
+        "series": "HW Speed Graphics",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2b/Lancer_Evolution.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC87",
+        "man_num": "",
+        "model_name": "'68 Dodge Dart",
+        "series": "HW Speed Graphics",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/2020-Dart.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF34",
+        "man_num": "",
+        "model_name": "'68 Dodge Dart(2nd Color)",
+        "series": "HW Speed Graphics",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cd/GHF34-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB84",
+        "man_num": "",
+        "model_name": "'67 Jeepster Commando",
+        "series": "Baja Blazers",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/%2767Jeepster.Metblue.3rdRecolor.FrontPersp.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG14",
+        "man_num": "",
+        "model_name": "'67 Jeepster Commando",
+        "series": "Baja BlazersSuper Treasure Hunt",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ca/JeepsterSTHThumbNail.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD19",
+        "man_num": "",
+        "model_name": "'96 Porsche Carrera",
+        "series": "Porsche",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/42/Hot_wheels_black_96_porsche_carrera_front.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF18",
+        "man_num": "",
+        "model_name": "'96 Porsche Carrera(2nd Color)",
+        "series": "Porsche",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/GHF18-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG59",
+        "man_num": "",
+        "model_name": "'96 Porsche Carrera(3rd Color)",
+        "series": "PorscheKroger Exclusive",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/GHG59_-96_Porsche_Carrera-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD28",
+        "man_num": "",
+        "model_name": "'68 Chevy Nova",
+        "series": "Rod Squad",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/24/GHD28_01.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG35",
+        "man_num": "",
+        "model_name": "'68 Chevy Nova(2nd Color - Zamac)",
+        "series": "Rod SquadWalmart Exclusive",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7f/48_1968_Nova.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF41",
+        "man_num": "",
+        "model_name": "'68 Chevy Nova(3rd Color)",
+        "series": "Rod Squad",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1a/GHF41-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD29",
+        "man_num": "",
+        "model_name": "8 Crate",
+        "series": "Rod Squad",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/8-Crate.2019RodSquad.FrontPersp.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF74",
+        "man_num": "",
+        "model_name": "8 Crate(2nd Color)",
+        "series": "Rod Squad",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/53/GHF74_-_074_-_8Crate_%282nd_Color%29_.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD77",
+        "man_num": "",
+        "model_name": "Grass Chomper",
+        "series": "HW Ride-OnsTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7d/GHD77_01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC85",
+        "man_num": "",
+        "model_name": "'19 Ford Ranger Raptor",
+        "series": "HW Speed Graphics",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/Ranger_Raptor_White_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF33",
+        "man_num": "",
+        "model_name": "'19 Ford Ranger Raptor(2nd Color)",
+        "series": "HW Speed Graphics",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dc/Red_Raptor_2020_2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB62",
+        "man_num": "",
+        "model_name": "Speed Driver",
+        "series": "ExperimotorsNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7f/2020NM14_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD89",
+        "man_num": "",
+        "model_name": "Speed Driver(2nd Color)",
+        "series": "ExperimotorsNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fb/HW_SPEED_DRIVER_Experimotors_YELLOW.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC56",
+        "man_num": "",
+        "model_name": "Street Stealth",
+        "series": "HW Race Day",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/69/078_-_Street_Stealth.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC44",
+        "man_num": "",
+        "model_name": "Deora III",
+        "series": "HW Metro",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/079_-_Deora_III_-_2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG52",
+        "man_num": "",
+        "model_name": "Deora III(2nd Color)",
+        "series": "HW MetroDollar General Exclusive",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dc/Deora3DG2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC49",
+        "man_num": "",
+        "model_name": "Alpine A110 Cup",
+        "series": "HW Race Day",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d5/Alpine_A110_cup_3of10_80of250_%281%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF23",
+        "man_num": "",
+        "model_name": "Alpine A110 Cup(2nd Color)",
+        "series": "HW Race Day",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/GHF23-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC09",
+        "man_num": "",
+        "model_name": "2018 Honda Civic Type R",
+        "series": "Honda",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/18_Civic_Type_R_Black_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF50",
+        "man_num": "",
+        "model_name": "2018 Honda Civic Type R(2nd Color)",
+        "series": "Honda",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/GHF50-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG38",
+        "man_num": "",
+        "model_name": "2018 Honda Civic Type R(3rd Color - Zamac)",
+        "series": "HondaWalmart Exclusive",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/TypeRZamac.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB77",
+        "man_num": "",
+        "model_name": "Manga Tuner",
+        "series": "ToonedNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/081_-_Manga_Tuner.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF84",
+        "man_num": "",
+        "model_name": "Manga Tuner(2nd Color)",
+        "series": "ToonedNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/GHF84_-_082_-_Manga_Tuner_%282nd_Color%29_.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD47",
+        "man_num": "",
+        "model_name": "Surf 'N Turf",
+        "series": "Tooned",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/083_-_Surf_%27N_Turf.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF24",
+        "man_num": "",
+        "model_name": "Surf 'N Turf(2nd Color)",
+        "series": "Tooned",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/83/HW_SURF%27N_TURF_Tooned_GREEN.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD71",
+        "man_num": "",
+        "model_name": "Buns of Steel",
+        "series": "Fast FoodieTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/81/084_-_Buns_of_Steel_%28TH%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC29",
+        "man_num": "",
+        "model_name": "Rip Rod",
+        "series": "HW Dream Garage",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d0/HW_RIP_ROD_2019_RED.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF91",
+        "man_num": "",
+        "model_name": "Rip Rod(2nd Color)",
+        "series": "HW Dream Garage",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7e/Rip_Rod_%282020_HW_Dream_Garage_series%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD52",
+        "man_num": "",
+        "model_name": "Beat All",
+        "series": "X-Raycers",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/00/086_-_Beat_All.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GLN64",
+        "man_num": "",
+        "model_name": "Beat All(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bb/348A04F8-AE62-425F-9C3E-5207556B1E7D.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD53",
+        "man_num": "",
+        "model_name": "Cloak and Dagger",
+        "series": "X-Raycers",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/da/087_-_Cloak_and_Dagger.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF71",
+        "man_num": "",
+        "model_name": "Cloak and Dagger(2nd Color)",
+        "series": "X-Raycers",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/87_2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC01",
+        "man_num": "",
+        "model_name": "Aston Martin Vulcan",
+        "series": "Factory Fresh",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d8/Aston_Martin_Vulcan.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG74",
+        "man_num": "",
+        "model_name": "Aston Martin Vulcan(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "5/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/73/RedVulcan.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC02",
+        "man_num": "",
+        "model_name": "'16 Bugatti Chiron",
+        "series": "Factory Fresh",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/1e760c9c1b33814bcd1852c1c4928bfc_839e2dd122c80b504cdd6c1f184f4ffd.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG31",
+        "man_num": "",
+        "model_name": "'16 Bugatti Chiron(2nd Color - Zamac)",
+        "series": "Factory FreshWalmart Exclusive",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e2/Captura_de_Tela_2019-11-03_%C3%A0s_10.59.14.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC13",
+        "man_num": "",
+        "model_name": "'92 Ford Mustang",
+        "series": "HW Art Cars",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b1/F4346014bb555aa90f20791e0aed1cc2_419382dce8877c1d7f5910f15cab44a5.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG44",
+        "man_num": "",
+        "model_name": "'92 Ford Mustang(2nd Color - Zamac)",
+        "series": "HW Art CarsWalmart Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/65/%2792_Mustang._2020_Art_Cars._Zamac1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF95",
+        "man_num": "",
+        "model_name": "'92 Ford Mustang(3rd Color)",
+        "series": "HW Art Cars",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/43/GHF95-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD40",
+        "man_num": "",
+        "model_name": "Ratical Racer",
+        "series": "Street BeastsYear of the Rat",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8f/RaticalRacer20.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG00",
+        "man_num": "",
+        "model_name": "Ratical Racer(2nd Color)",
+        "series": "Street BeastsYear of the Rat",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b2/HW_RATICAL_RACER_Street_beasts_GOLD.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC84",
+        "man_num": "",
+        "model_name": "2018 Ford Mustang GT",
+        "series": "HW Speed Graphics",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/03/18_Mustang_Red_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF98",
+        "man_num": "",
+        "model_name": "2018 Ford Mustang GT(2nd Color)",
+        "series": "HW Speed Graphics",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/76/GHF98-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC91",
+        "man_num": "",
+        "model_name": "Mazda REPU",
+        "series": "HW Speed Graphics",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d2/2020MazdaRepumc.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD22",
+        "man_num": "",
+        "model_name": "Porsche 918 Spyder",
+        "series": "Porsche",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/2020_Hot_Wheels_Porsche_918_regular_loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG26",
+        "man_num": "",
+        "model_name": "Porsche 918 Spyder",
+        "series": "PorscheSuper Treasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/02/2020_Hot_Wheels_Porsche_918_Spyder_STH_loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD23",
+        "man_num": "",
+        "model_name": "'49 Volkswagen Beetle Pickup",
+        "series": "Rod Squad",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/B4331c7646d1547ada2c1fe4b7478e77_2bf020fec2093a07bff51d726f9e899c.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG53",
+        "man_num": "",
+        "model_name": "'49 Volkswagen Beetle Pickup(2nd Color)",
+        "series": "Rod SquadDollar General Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8e/MoonVWGreyFront.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD31",
+        "man_num": "",
+        "model_name": "Moto Wing",
+        "series": "Rod Squad",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/2020-MotoWing.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG02",
+        "man_num": "",
+        "model_name": "Moto Wing(2nd Color)",
+        "series": "Rod Squad",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a6/IMG_20201127_194751.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD33",
+        "man_num": "",
+        "model_name": "Custom '01 Acura Integra GSR",
+        "series": "Speed Blur",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/Custom_%2701_Acura_Integra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF43",
+        "man_num": "",
+        "model_name": "Custom '01 Acura Integra GSR(2nd Color)",
+        "series": "Speed Blur",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/15/GHF43-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC69",
+        "man_num": "",
+        "model_name": "Tanknator",
+        "series": "HW Ride-Ons",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c4/2020-Tanknator.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB79",
+        "man_num": "",
+        "model_name": "Forward Force",
+        "series": "Track StarsNew for 2020!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/2020NM13_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF12",
+        "man_num": "",
+        "model_name": "Forward Force(2nd Color)",
+        "series": "Track StarsNew for 2020!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/Forward_Force_Green_Recolor.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD50",
+        "man_num": "",
+        "model_name": "Nerve Hammer",
+        "series": "Track Stars",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2b/2020Trackstarsnervehammergreen.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF81",
+        "man_num": "",
+        "model_name": "Nerve Hammer(2nd Color)",
+        "series": "Track Stars",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cd/C752F444-B4E4-49B3-B2C6-1C5F639BF394.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC52",
+        "man_num": "",
+        "model_name": "Circle Tracker",
+        "series": "HW Race Day",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/81/101_-_Circle_Tracker.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG12",
+        "man_num": "",
+        "model_name": "Circle Tracker(2nd Color)",
+        "series": "HW Race Day",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/01/2020_Circle_Tracker_Card_2nd_color.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB58",
+        "man_num": "",
+        "model_name": "Geoterra",
+        "series": "Baja BlazersNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a8/102_-_Geoterra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD85",
+        "man_num": "",
+        "model_name": "Geoterra(2nd Color)",
+        "series": "Baja BlazersNew for 2020!",
+        "series_num": "3/10",
+        "image_url": ""
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB96",
+        "man_num": "",
+        "model_name": "El Viento",
+        "series": "Experimotors",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/65/103_-_El_Viento.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF36",
+        "man_num": "",
+        "model_name": "El Viento(2nd Color)",
+        "series": "Experimotors",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0e/HW_EL_VIENTO_Experimotors_RED.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC46",
+        "man_num": "",
+        "model_name": "Runway Res-Q",
+        "series": "HW Metro",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/104_-_Runway_Res-Q.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF67",
+        "man_num": "",
+        "model_name": "Runway Res-Q(2nd Color)",
+        "series": "HW Metro",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/68/%282%29_Runway_Res-Q_2020_%282nd_color%29_HW_Metro_7-10_104-250_.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC48",
+        "man_num": "",
+        "model_name": "Time Attaxi",
+        "series": "HW Metro",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9c/105_-_Time_Attaxi.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD69",
+        "man_num": "",
+        "model_name": "Batman: Arkham Asylum Batmobile",
+        "series": "BatmanTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/HW_DCC_ARKHAM_ASYLUM_BATMOBILE_Treasure_Hunt_DARKBLUE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB49",
+        "man_num": "",
+        "model_name": "Formula E Gen 2 Car",
+        "series": "HW Race DayNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/de/107_-_Formula_E_Gen_2_Car.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD95",
+        "man_num": "",
+        "model_name": "Formula E Gen 2 Car(2nd Color)",
+        "series": "HW Race DayNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1e/Purple_2020_Formula_E_Gen_2_Car.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB63",
+        "man_num": "",
+        "model_name": "Donut Drifter",
+        "series": "Fast FoodieNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/63/DonutDrifter.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD98",
+        "man_num": "",
+        "model_name": "Donut Drifter(2nd Color)",
+        "series": "Fast FoodieNew for 2020!",
+        "series_num": "1/5",
+        "image_url": ""
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC24",
+        "man_num": "",
+        "model_name": "Mod Rod",
+        "series": "HW Dream Garage",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b6/109_-_Mod_Rod.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF27",
+        "man_num": "",
+        "model_name": "Mod Rod(2nd Color)",
+        "series": "HW Dream Garage",
+        "series_num": "5/10",
+        "image_url": ""
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC26",
+        "man_num": "",
+        "model_name": "Baja Truck",
+        "series": "Speed Blur",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/110_-_Baja_Truck.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF09",
+        "man_num": "",
+        "model_name": "Baja Truck(2nd Color)",
+        "series": "Speed Blur",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fb/6n4xoyjzoz8makooqnikyji8i.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB40",
+        "man_num": "",
+        "model_name": "Nissan Silvia (S13)",
+        "series": "HW Speed GraphicsNew for 2020!",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3a/SilviaS13.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF03",
+        "man_num": "",
+        "model_name": "Nissan Silvia (S13)(2nd Color)",
+        "series": "HW Speed GraphicsNew for 2020!",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/IMG_4528.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC05",
+        "man_num": "",
+        "model_name": "Tesla Model 3",
+        "series": "Factory Fresh",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3f/112_-_Tesla_Model_3.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF32",
+        "man_num": "",
+        "model_name": "Tesla Model 3(2nd Color)",
+        "series": "Factory Fresh",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/GHF32_Tesla_Model_3.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC16",
+        "man_num": "",
+        "model_name": "Fish'd & Chip'd",
+        "series": "HW Art Cars",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/02/113_-_Fish%27d_%26_Chip%27d.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC18",
+        "man_num": "",
+        "model_name": "La Fasta",
+        "series": "HW Art Cars",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/114_-_La_Fasta.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GLN65",
+        "man_num": "",
+        "model_name": "La Fasta(2nd Color)",
+        "series": "HW Art Cars",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/16/15885217678961720076896.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC19",
+        "man_num": "",
+        "model_name": "Quick Bite",
+        "series": "HW Art Cars",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/07/115_-_Quick_Bite.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF96",
+        "man_num": "",
+        "model_name": "Quick Bite(2nd Color)",
+        "series": "HW Art Cars",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2f/HW_QUICK_BITE_Art_cars_WHITE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC86",
+        "man_num": "",
+        "model_name": "'65 Mustang 2+2 Fastback",
+        "series": "HW Speed Graphics",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3c/116_-_%2765_Mustang_2%2B2_Fastback.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG51",
+        "man_num": "",
+        "model_name": "'65 Mustang 2+2 Fastback(2nd Color)",
+        "series": "HW Speed GraphicsDollar General Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/2020HW65FordMustangWhite-116.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD37",
+        "man_num": "",
+        "model_name": "i-Believe",
+        "series": "Street Beasts",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bc/117_-_i-Believe.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF37",
+        "man_num": "",
+        "model_name": "i-Believe(2nd Color)",
+        "series": "Street Beasts",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/HW_I-BELIEVE_Street_beasts_BLUE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD00",
+        "man_num": "",
+        "model_name": "Audi RS 5 Coupé",
+        "series": "HW Turbo",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/69/118_-_Audi_RS_5_Coup%C3%A9.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF39",
+        "man_num": "",
+        "model_name": "Audi RS 5 Coupé(2nd Color)",
+        "series": "HW Turbo",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cd/1588522785388-498337642.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD01",
+        "man_num": "",
+        "model_name": "Range Rover Velar",
+        "series": "HW Turbo",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c4/2020HWturboRangeRoverBlack.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF40",
+        "man_num": "",
+        "model_name": "Range Rover Velar(2nd Color)",
+        "series": "HW Turbo",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/GHF40-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD27",
+        "man_num": "",
+        "model_name": "'49 Ford F1",
+        "series": "Rod Squad",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d9/%2749_Ford_F1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF77",
+        "man_num": "",
+        "model_name": "'49 Ford F1(2nd Color)",
+        "series": "Rod Squad",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ec/49_Ford_F1-2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD30",
+        "man_num": "",
+        "model_name": "Custom Cadillac Fleetwood",
+        "series": "Rod Squad",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/121_-_Custom_Cadillac_Fleetwood.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF42",
+        "man_num": "",
+        "model_name": "Custom Cadillac Fleetwood(2nd Color)",
+        "series": "Rod Squad",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0c/2020_Fleetwood_Card_2nd_color.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC68",
+        "man_num": "",
+        "model_name": "Aisle Driver",
+        "series": "HW Ride-Ons",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/24/122_-_Aisle_Driver.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF79",
+        "man_num": "",
+        "model_name": "Aisle Driver(2nd Color)",
+        "series": "HW Ride-Ons",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/86/Aisle_driver_2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC10",
+        "man_num": "",
+        "model_name": "'88 Honda CR-X",
+        "series": "Honda",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/60/%2788_Honda_CR-X.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG16",
+        "man_num": "",
+        "model_name": "'88 Honda CR-X",
+        "series": "HondaSuper Treasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bb/2020_Hot_Wheels_%2788_Honda_CR-X_STH_right.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB51",
+        "man_num": "",
+        "model_name": "Clip Rod",
+        "series": "ExperimotorsNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/71/124_-_Clip_Rod.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD87",
+        "man_num": "",
+        "model_name": "Clip Rod(2nd Color)",
+        "series": "ExperimotorsNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/57/ClipRod._Closeup._2020_Recolor.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB65",
+        "man_num": "",
+        "model_name": "Loco Motorin'",
+        "series": "HW MetroNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/125_-_Loco_Motorin%27.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB57",
+        "man_num": "",
+        "model_name": "'70 Volkswagen Baja Bug",
+        "series": "ToonedNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ab/126_-_%2770_Volkswagen_Baja_Bug.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD97",
+        "man_num": "",
+        "model_name": "'70 Volkswagen Baja Bug(2nd Color)",
+        "series": "ToonedNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/2020_Hot_Wheels_%2770_VW_Baja_2nd_colour.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD42",
+        "man_num": "",
+        "model_name": "Tur-Bone Charged",
+        "series": "Street Beasts",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d7/127_-_Tur-Bone_Charged.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF38",
+        "man_num": "",
+        "model_name": "Tur-Bone Charged(2nd Color)",
+        "series": "Street Beasts",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cf/IMG_20200805_224852.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC88",
+        "man_num": "",
+        "model_name": "'87 Dodge D100",
+        "series": "HW Speed Graphics",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/85/4161.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG32",
+        "man_num": "",
+        "model_name": "'87 Dodge D100(2nd Color - Zamac)",
+        "series": "HW Speed GraphicsWalmart Exclusive",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/2020_87_Dodge_D100_Walmart_Zamac.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB30",
+        "man_num": "",
+        "model_name": "Mattel Dream Mobile",
+        "series": "HW Dream GarageNew for 2020!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/129_-_Mattel_Dream_Mobile.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD32",
+        "man_num": "",
+        "model_name": "Mazda RX-7",
+        "series": "Speed Blur",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/09/GHD32-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG28",
+        "man_num": "",
+        "model_name": "Mazda RX-7",
+        "series": "Speed BlurSuper Treasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/15/2020_Hot_Wheels_Mazda_RX_STH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD82",
+        "man_num": "",
+        "model_name": "Circle Trucker",
+        "series": "Track StarsTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/23/Hot_Wheels_2020_Circle_Trucker_GHD82.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB60",
+        "man_num": "",
+        "model_name": "Duck N' Roll",
+        "series": "Street BeastsNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3e/Duckn%27Roll.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF05",
+        "man_num": "",
+        "model_name": "Duck N' Roll(2nd Color)",
+        "series": "Street BeastsNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c3/Ducknroll2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB46",
+        "man_num": "",
+        "model_name": "Ion Motors Thresher",
+        "series": "HW Screen TimeNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/Tony%27s_Car3.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD81",
+        "man_num": "",
+        "model_name": "Dodge Charger Daytona",
+        "series": "ToonedTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/Dodge_Charger_Daytona_ghd81.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC27",
+        "man_num": "",
+        "model_name": "Bone Shaker",
+        "series": "HW Dream Garage",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b6/2020_HW_Dream_Garage.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG71",
+        "man_num": "",
+        "model_name": "Bone Shaker(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "4/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/80/2020_Red_Edition_Bone_Shaker.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB78",
+        "man_num": "",
+        "model_name": "Lindster Prototype",
+        "series": "X-RaycersNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2b/136_-_Lindster_Prototype.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF00",
+        "man_num": "",
+        "model_name": "Lindster Prototype(2nd Color)",
+        "series": "X-RaycersNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/Lp03.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC83",
+        "man_num": "",
+        "model_name": "'17 Nissan GT-R (R35)",
+        "series": "HW Speed Graphics",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d0/137_-_%2717_Nissan_GT-R_%28R35%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG22",
+        "man_num": "",
+        "model_name": "'17 Nissan GT-R (R35)",
+        "series": "HW Speed GraphicsSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/Gtrsth.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD39",
+        "man_num": "",
+        "model_name": "Motosaurus",
+        "series": "Street Beasts",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/84/138_-_Motosaurus.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB87",
+        "man_num": "",
+        "model_name": "'42 Willys MB Jeep",
+        "series": "Baja Blazers",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/18/139_-_%2742_Willys_MB_Jeep.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF63",
+        "man_num": "",
+        "model_name": "'42 Willys MB Jeep(2nd Color)",
+        "series": "Baja Blazers",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e7/%2742_Willys_MB._2020_Baja_Blazerz.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD25",
+        "man_num": "",
+        "model_name": "'52 Hudson Hornet",
+        "series": "Rod Squad",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/61/140_-_%2752_Hudson_Hornet.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF20",
+        "man_num": "",
+        "model_name": "'52 Hudson Hornet(2nd Color)",
+        "series": "Rod Squad",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/2020ML11_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG34",
+        "man_num": "",
+        "model_name": "'52 Hudson Hornet(3rd Color - Zamac)",
+        "series": "Rod SquadWalmart Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d8/GHG34_%2752_Hudson_Hornet_Loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD61",
+        "man_num": "",
+        "model_name": "'64 Chevy Nova Wagon",
+        "series": "HW Flames",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/89/141_-_%2764_Chevy_Nova_Wagon.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG29",
+        "man_num": "",
+        "model_name": "'64 Chevy Nova Wagon(2nd Color - Zamac)",
+        "series": "HW FlamesWalmart Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/25/GHG29_%2764_Chevy_Nova_Wagon_Loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD66",
+        "man_num": "",
+        "model_name": "Custom Ford Maverick",
+        "series": "HW Flames",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3c/142_-_Custom_Ford_Maverick.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG62",
+        "man_num": "",
+        "model_name": "Custom Ford Maverick(2nd Color)",
+        "series": "HW FlamesKroger Exclusive",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/33/GHG62_-_Custom_Ford_Maverick-2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF52",
+        "man_num": "",
+        "model_name": "Custom Ford Maverick(3rd Color)",
+        "series": "HW Flames",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/69/GHF52-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD73",
+        "man_num": "",
+        "model_name": "2013 Hot Wheels Chevy Camaro Special Edition",
+        "series": "HW Dream GarageTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6a/GHD73-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB34",
+        "man_num": "",
+        "model_name": "'19 Corvette ZR1 Convertible",
+        "series": "Factory FreshNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/15/GHB34-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF01",
+        "man_num": "",
+        "model_name": "'19 Corvette ZR1 Convertible(2nd Color)",
+        "series": "Factory FreshNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/58/19_Corvette_ZR1_Blue_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC03",
+        "man_num": "",
+        "model_name": "'84 Audi Sport quattro",
+        "series": "Factory Fresh",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/GHC03-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG15",
+        "man_num": "",
+        "model_name": "'84 Audi Sport quattro",
+        "series": "Factory FreshSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d6/Audi_Sport_Quattro_STH.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC90",
+        "man_num": "",
+        "model_name": "Datsun Bluebird Wagon (510)",
+        "series": "HW Speed Graphics",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6c/GHC90-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF35",
+        "man_num": "",
+        "model_name": "Datsun Bluebird Wagon (510)(2nd Color)",
+        "series": "HW Speed Graphics",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/2020ML12_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG57",
+        "man_num": "",
+        "model_name": "Datsun Bluebird Wagon (510)(3rd Color)",
+        "series": "HW Speed GraphicsKroger Exclusive",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/19/GHG57_-_Datsun_Bluebird_Wagon_510_%281%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB47",
+        "man_num": "",
+        "model_name": "Party Wagon",
+        "series": "HW Screen TimeNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/TMNT_Party_Wagon_%282020%292.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC34",
+        "man_num": "",
+        "model_name": "Jaguar XJ220",
+        "series": "HW Exotics",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/GHC34-loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC36",
+        "man_num": "",
+        "model_name": "McLaren P1",
+        "series": "HW Exotics",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ab/GHC36-loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG73",
+        "man_num": "",
+        "model_name": "McLaren P1(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "9/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a1/McLaren_P1_Red_Edition_2020.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF48",
+        "man_num": "",
+        "model_name": "McLaren P1(3rd Color)",
+        "series": "HW Exotics",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0c/McLaren_P1_Grey_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB35",
+        "man_num": "",
+        "model_name": "'91 GMC Syclone",
+        "series": "HW Hot TrucksNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2b/%2791_GMC_Syclone.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF13",
+        "man_num": "",
+        "model_name": "'91 GMC Syclone(2nd Color)",
+        "series": "HW Hot TrucksNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/2020_HW_Hot_Trucks_-_03.10_-_%2791_GMC_Syclone_09.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC37",
+        "man_num": "",
+        "model_name": "'19 Chevy Silverado Trail Boss LT",
+        "series": "HW Hot Trucks",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/GHC37-carded.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF49",
+        "man_num": "",
+        "model_name": "'19 Chevy Silverado Trail Boss LT(2nd Color)",
+        "series": "HW Hot Trucks",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/Silverardo_Trailboss_Black_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC39",
+        "man_num": "",
+        "model_name": "'70 Dodge Power Wagon",
+        "series": "HW Hot TrucksNew in Mainline",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/Dpw01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG30",
+        "man_num": "",
+        "model_name": "'70 Dodge Power Wagon(2nd Color - Zamac)",
+        "series": "HW Hot TrucksWalmart ExclusiveNew in Mainline",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4c/Silver_lining_dodge_pickup.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC12",
+        "man_num": "",
+        "model_name": "Honda S2000",
+        "series": "Honda",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a9/GHC12-loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF82",
+        "man_num": "",
+        "model_name": "Honda S2000(2nd Color)",
+        "series": "Honda",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/S2000_%28lime%2C_2020_Multpack%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC96",
+        "man_num": "",
+        "model_name": "Skate Grom",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/56/27528269-8AA1-4542-BB63-F44E478D6557.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC95",
+        "man_num": "",
+        "model_name": "Hi Beam",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/91/77B77C39-FF51-4B66-8692-E814B285C1A3.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF54",
+        "man_num": "",
+        "model_name": "Hi Beam(2nd Color)",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/10/86D4BE26-9D00-4795-A8E0-C4700ECE0C7C.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC97",
+        "man_num": "",
+        "model_name": "Sky Dome",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c5/1BD9EA5A-7409-4B3D-8788-D96900B1C659.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB41",
+        "man_num": "",
+        "model_name": "'20 Jeep Gladiator",
+        "series": "Baja BlazersNew for 2020!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6d/%2720_Jeep_Gladiator-2020-GHB41_%281%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD86",
+        "man_num": "",
+        "model_name": "'20 Jeep Gladiator(2nd Color)",
+        "series": "Baja BlazersNew for 2020!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d2/20_Jeep_Gladiator_Tan_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD83",
+        "man_num": "",
+        "model_name": "Power Pistons",
+        "series": "X-RaycersTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bf/GHD83_-_158_-_Power_Pistons.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC15",
+        "man_num": "",
+        "model_name": "Bone Shaker",
+        "series": "HW Art Cars",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/GHC15_-_159_-_Bone_Shaker.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD36",
+        "man_num": "",
+        "model_name": "Croc Rod",
+        "series": "Street Beasts",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f6/36B38FF0-6E41-47E9-97F6-89187B1F2A39.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF99",
+        "man_num": "",
+        "model_name": "Croc Rod(2nd Color)",
+        "series": "Street Beasts",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1e/HW_CROC_ROD_Street_beasts_TURQUOISE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC17",
+        "man_num": "",
+        "model_name": "Humvee",
+        "series": "HW Art Cars",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/55/GHC17_-_161_-_Humvee.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC30",
+        "man_num": "",
+        "model_name": "Porsche 911 GT3 RS",
+        "series": "HW Exotics",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4c/GHC30_-_162_-_Porsche_911_GT3_RS.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC32",
+        "man_num": "",
+        "model_name": "'90 Acura NSX",
+        "series": "HW Exotics",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a3/75850ECC-4A9A-44ED-9303-0E9F2C753505.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG58",
+        "man_num": "",
+        "model_name": "'90 Acura NSX(2nd Color)",
+        "series": "HW ExoticsKroger Exclusive",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/GHG58_-_90_Acura_NSX-2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC35",
+        "man_num": "",
+        "model_name": "Lamborghini Sesto Elemento",
+        "series": "HW Exotics",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/79/9914EE81-4FB0-438A-9C22-F9D97535DAB7.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG17",
+        "man_num": "",
+        "model_name": "Lamborghini Sesto Elemento",
+        "series": "HW ExoticsSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/85/Lamborgini2020st.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB73",
+        "man_num": "",
+        "model_name": "Erikenstein Rod",
+        "series": "HW Hot TrucksNew for 2020!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/27/DSC09699.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF14",
+        "man_num": "",
+        "model_name": "Erikenstein Rod(2nd Color)",
+        "series": "HW Hot TrucksNew for 2020!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a1/HW_ERIKENSTEIN_ROD_Hot_trucks_MATRED.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB55",
+        "man_num": "",
+        "model_name": "'98 Honda Prelude",
+        "series": "HondaNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a1/GHB55-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF15",
+        "man_num": "",
+        "model_name": "'98 Honda Prelude(2nd Color)",
+        "series": "HondaNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/70/Prelude-Blue2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC99",
+        "man_num": "",
+        "model_name": "Velocita",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/21/Hot-Wheels-Velocita-Olympic-Games-Tokyo-2020-9-10-A.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF56",
+        "man_num": "",
+        "model_name": "Velocita(2nd Color)",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4a/HW_VELOCITA_Olympic_games_tokyo_2020_WHITE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD67",
+        "man_num": "",
+        "model_name": "'57 Plymouth Fury",
+        "series": "HW Flames",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/be/GHD67_-_168_-_57Plymouth_Fury.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG05",
+        "man_num": "",
+        "model_name": "'57 Plymouth Fury(2nd Color)",
+        "series": "HW Flames",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a7/57_Fury_Blue_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD60",
+        "man_num": "",
+        "model_name": "'68 Shelby GT500",
+        "series": "HW Flames",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7e/GHD60-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG64",
+        "man_num": "",
+        "model_name": "'68 Shelby GT500(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "7/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/68_Shelby_GT500_Red_Edition_2020.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF58",
+        "man_num": "",
+        "model_name": "'68 Shelby GT500(3rd Color)",
+        "series": "HW Flames",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b8/68-Shelby-GT500-2020-magenta.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC73",
+        "man_num": "",
+        "model_name": "'16 Lamborghini Centenario Roadster",
+        "series": "HW Roadsters",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/GHC73_-_170_-_16_Lamborghini_Centenario_Roadster.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GLN67",
+        "man_num": "",
+        "model_name": "'16 Lamborghini Centenario Roadster(2nd Color)",
+        "series": "HW Roadsters",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/10/Centenario_R_Red_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD14",
+        "man_num": "",
+        "model_name": "Jaguar XE SV Project 8",
+        "series": "Nightburnerz",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d0/GHD14_-_171_-_Jaguar_XE_SV_Project_8.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF47",
+        "man_num": "",
+        "model_name": "Jaguar XE SV Project 8(2nd Color)",
+        "series": "Nightburnerz",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/GHF47_-_Jaguar_XE_SV_Project_8-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD16",
+        "man_num": "",
+        "model_name": "BMW Z4 M Motorsport",
+        "series": "Nightburnerz",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4b/GHD16-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD11",
+        "man_num": "",
+        "model_name": "Custom Otto",
+        "series": "Muscle ManiaNew in Mainline",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/02/2020ML07_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG65",
+        "man_num": "",
+        "model_name": "Custom Otto(2nd Color)",
+        "series": "Red EditionTarget ExclusiveNew in Mainline",
+        "series_num": "8/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a9/Midnight_Otto_Red_Edition_2020.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF62",
+        "man_num": "",
+        "model_name": "Custom Otto(3rd Color)",
+        "series": "Muscle ManiaNew in Mainline",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4c/IMG_0534.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD05",
+        "man_num": "",
+        "model_name": "'64 Nova Wagon Gasser",
+        "series": "Muscle Mania",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b2/GHD05_-174_-_64_Nova_Wagon_Gasser.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG63",
+        "man_num": "",
+        "model_name": "'64 Nova Wagon Gasser(2nd Color)",
+        "series": "Muscle ManiaWalgreens Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/2020HW64NovaWagonGasserBlue-174.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF17",
+        "man_num": "",
+        "model_name": "'64 Nova Wagon Gasser(3rd Color)",
+        "series": "Muscle Mania",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/08/2020ML14_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB28",
+        "man_num": "",
+        "model_name": "2019 Audi R8 Spyder",
+        "series": "Factory FreshNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/2020NM35_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF93",
+        "man_num": "",
+        "model_name": "2019 Audi R8 Spyder(2nd Color)",
+        "series": "Factory FreshNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d1/GHF93-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD72",
+        "man_num": "",
+        "model_name": "Custom '56 Ford Truck",
+        "series": "HW Art CarsTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/6515E681-BCD2-4F7F-9BDD-C201A9DDDAF3.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB59",
+        "man_num": "",
+        "model_name": "Veloci-Racer",
+        "series": "Street BeastsNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/27/2020NM33_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF04",
+        "man_num": "",
+        "model_name": "Veloci-Racer(2nd Color)",
+        "series": "Street BeastsNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2f/VelociRacerOlive.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD38",
+        "man_num": "",
+        "model_name": "Knight Draggin'",
+        "series": "Street Beasts",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f3/92810F3D-A696-4909-B02C-5A8D0F144947.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG04",
+        "man_num": "",
+        "model_name": "Knight Draggin'(2nd Color)",
+        "series": "Street Beasts",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/HW_KNIGHT_DRAGGIN_2020_PURPLE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB48",
+        "man_num": "",
+        "model_name": "Big-Air Bel-Air",
+        "series": "Rod SquadNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/BIGAR.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF08",
+        "man_num": "",
+        "model_name": "Big-Air Bel-Air(2nd Color)",
+        "series": "Rod SquadNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/BigAirWhite.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GTD39",
+        "man_num": "",
+        "model_name": "Big-Air Bel-Air(3rd Color)",
+        "series": "Rod SquadNew for 2020!GameStop Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/GTD39_Big-Air_Bel-Air_Loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD26",
+        "man_num": "",
+        "model_name": "'57 Chevy",
+        "series": "Rod Squad",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/Gs8dfh3odqe1zf443t6f2twk.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG27",
+        "man_num": "",
+        "model_name": "'57 Chevy",
+        "series": "Rod SquadSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7c/Chevybelair2020st.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC31",
+        "man_num": "",
+        "model_name": "Electro Silhouette",
+        "series": "HW Exotics",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/55/2F66E9B6-F8C4-4642-B354-3F43BEAE1131.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF45",
+        "man_num": "",
+        "model_name": "Electro Silhouette(2nd Color)",
+        "series": "HW Exotics",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/07/2020_181_250_red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC41",
+        "man_num": "",
+        "model_name": "Datsun 620",
+        "series": "HW Hot Trucks",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/89/530FDAFF-E455-404C-B36D-564FB04FDC17.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC92",
+        "man_num": "",
+        "model_name": "'10 Toyota Tundra",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/36/IMG_20201127_194640.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG03",
+        "man_num": "",
+        "model_name": "'10 Toyota Tundra(2nd Color)",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/GHG03_-_%2710_Toyota_Tundra-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC98",
+        "man_num": "",
+        "model_name": "Toyota 2000 GT",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/Toyota2000GTTokyo2020_1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF55",
+        "man_num": "",
+        "model_name": "Toyota 2000 GT(2nd Color)",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/00/GHF55-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC60",
+        "man_num": "",
+        "model_name": "2-Tuff",
+        "series": "HW Rescue",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5c/2020_2-Tuff_Card.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC63",
+        "man_num": "",
+        "model_name": "Mad Propz",
+        "series": "HW Rescue",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/91F1F36D-E250-49F1-82D0-315238949622.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF57",
+        "man_num": "",
+        "model_name": "Mad Propz(2nd Color)",
+        "series": "HW Rescue",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/MAD_PROPZ_GHF57_1_C.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC64",
+        "man_num": "",
+        "model_name": "Nissan 300ZX Twin Turbo",
+        "series": "HW Rescue",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/GHC64-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD64",
+        "man_num": "",
+        "model_name": "'71 Dodge Charger",
+        "series": "HW Flames",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d1/GHD64-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD62",
+        "man_num": "",
+        "model_name": "'69 Dodge Charger 500",
+        "series": "HW Flames",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/24/GHD62-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG09",
+        "man_num": "",
+        "model_name": "'69 Dodge Charger 500(2nd Color)",
+        "series": "HW Flames",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/GHG09-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC74",
+        "man_num": "",
+        "model_name": "'69 Camaro",
+        "series": "HW Roadsters",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/GHC74-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG06",
+        "man_num": "",
+        "model_name": "'69 Camaro(2nd Color)",
+        "series": "HW Roadsters",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/aa/GHG06-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC75",
+        "man_num": "",
+        "model_name": "Shelby Cobra 427 S/C",
+        "series": "HW Roadsters",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/56/3D910A8A-01B9-4AF3-8503-39C7C072A308.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG36",
+        "man_num": "",
+        "model_name": "Shelby Cobra 427 S/C(2nd Color - Zamac)",
+        "series": "HW RoadstersWalmart Exclusive",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/98/2020-191_ZAMAK_GHG36_o4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB64",
+        "man_num": "",
+        "model_name": "Grand Cross",
+        "series": "HW Race TeamNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/2020NM34_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF16",
+        "man_num": "",
+        "model_name": "Grand Cross(2nd Color)",
+        "series": "HW Race TeamNew for 2020!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/21/Grandcrossgrey.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC58",
+        "man_num": "",
+        "model_name": "Rodger Dodger 2.0",
+        "series": "Muscle Mania",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/27/4FFC95AA-817B-4E87-AE3F-E64A732E7844.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG08",
+        "man_num": "",
+        "model_name": "Rodger Dodger 2.0(2nd Color)",
+        "series": "Muscle Mania",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/HW_RODGER_DODGER_2.0_Muscle_mania_RED.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD13",
+        "man_num": "",
+        "model_name": "'19 Mercedes-Benz A-Class",
+        "series": "Nightburnerz",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2e/Thumb01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF60",
+        "man_num": "",
+        "model_name": "'19 Mercedes-Benz A-Class(2nd Color)",
+        "series": "Nightburnerz",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/A_Class_Grey_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB92",
+        "man_num": "",
+        "model_name": "Batcopter",
+        "series": "Batman",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3d/AB306F2E-D2B5-483D-83AA-92BFBAAA2A46.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF75",
+        "man_num": "",
+        "model_name": "Batcopter(2nd Color)",
+        "series": "Batman",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/63/Imagem_2021-03-26_133317.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD09",
+        "man_num": "",
+        "model_name": "'86 Monte Carlo SS",
+        "series": "Muscle Mania",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/GHD09-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG07",
+        "man_num": "",
+        "model_name": "'86 Monte Carlo SS(2nd Color)",
+        "series": "Muscle Mania",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d7/86_Monte_Carlo_White_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB94",
+        "man_num": "",
+        "model_name": "TV Series Batmobile",
+        "series": "Batman",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3b/Imagem_2021-03-26_133523.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG55",
+        "man_num": "",
+        "model_name": "TV Series Batmobile(2nd Color)",
+        "series": "BatmanKroger Exclusive",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6c/2020HWTVSeriesBatmobileRed-197.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB37",
+        "man_num": "",
+        "model_name": "2019 Kia Stinger GT",
+        "series": "Factory FreshNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fa/2019_Kia_Stinger_GT_2020_Factory_Fresh.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF02",
+        "man_num": "",
+        "model_name": "2019 Kia Stinger GT(2nd Color)",
+        "series": "Factory FreshNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/GHF02-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB38",
+        "man_num": "",
+        "model_name": "Land Rover Defender 90",
+        "series": "Factory FreshNew for 2020!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d1/Land_Rover_Defender_90_2020_Factory_Fresh.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC89",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06",
+        "series": "Factory Fresh",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f7/GHC89-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GLN66",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06(2nd Color)",
+        "series": "Factory Fresh",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/C7_Z06_Orange_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD24",
+        "man_num": "",
+        "model_name": "'52 Chevy",
+        "series": "Rod Squad",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/75/2020_Rod_Squad_-_03.10_-_%2752_Chevy_Truck_02.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG01",
+        "man_num": "",
+        "model_name": "'52 Chevy(2nd Color)",
+        "series": "Rod Squad",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d9/IMG_20201127_174651.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC40",
+        "man_num": "",
+        "model_name": "'69 Chevy Pickup",
+        "series": "HW Hot Trucks",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/49/2020ML08_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG19",
+        "man_num": "",
+        "model_name": "'69 Chevy Pickup",
+        "series": "HW Hot TrucksSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/74/69_Chevy_PickUp_Super_Treasure_Hunt.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC93",
+        "man_num": "",
+        "model_name": "Fast FeLion",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/20/2020HWFastFelion-203Green.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC94",
+        "man_num": "",
+        "model_name": "Mountain Mauler",
+        "series": "Olympic Games Tokyo 2020",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/2020HWMountainMauler-204Green.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD79",
+        "man_num": "",
+        "model_name": "Dune Daddy",
+        "series": "Olympic Games Tokyo 2020Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/07/Dune_Daddy_Olympic_Games_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB75",
+        "man_num": "",
+        "model_name": "Alpha Pursuit",
+        "series": "HW RescueNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4a/Alpha_Pursuit._Side.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC61",
+        "man_num": "",
+        "model_name": "'92 BMW M3",
+        "series": "HW Rescue",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ab/GHC61-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG45",
+        "man_num": "",
+        "model_name": "'92 BMW M3(2nd Color - Zamac)",
+        "series": "HW RescueWalmart Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/53/GHG45_%2792_BMW_M3_Loose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC71",
+        "man_num": "",
+        "model_name": "'91 Mazda MX-5 Miata",
+        "series": "HW Roadsters",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/GHC71-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG68",
+        "man_num": "",
+        "model_name": "'91 Mazda MX-5 Miata(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "12/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/77/91_Miata_MX5._Red_Edition_%28Front%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC57",
+        "man_num": "",
+        "model_name": "2010 Chevy Impala",
+        "series": "HW Race Team",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1b/2010_Chevy_Impala._HW_Race_Team_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHF86",
+        "man_num": "",
+        "model_name": "2010 Chevy Impala(2nd Color)",
+        "series": "HW Race Team",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/27/2010_Chevy_Impala_-_fora_da_caixa.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD06",
+        "man_num": "",
+        "model_name": "'69 Ford Mustang Boss 302",
+        "series": "Muscle Mania",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/GHD06-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG41",
+        "man_num": "",
+        "model_name": "'69 Ford Mustang Boss 302(2nd Color - Zamac)",
+        "series": "Muscle ManiaWalmart Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/78/Zamac_mustang_boss.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD41",
+        "man_num": "",
+        "model_name": "Turbo Rooster",
+        "series": "Street Beasts",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d9/HW_TURBO_ROOSTER_Street_beasts_BLACK.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD80",
+        "man_num": "",
+        "model_name": "Tricera-Truck",
+        "series": "Street BeastsTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/51/2020HWTriceraTruck-212Blue.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB36",
+        "man_num": "",
+        "model_name": "'17 Lamborghini Urus",
+        "series": "HW ExoticsNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ec/GHB36-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB44",
+        "man_num": "",
+        "model_name": "Astana Hotto",
+        "series": "HW Screen TimeNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/63/FB_IMG_1599049324717.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC42",
+        "man_num": "",
+        "model_name": "Sandblaster",
+        "series": "HW Hot Trucks",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/2020_Sandblaster-Borla.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG67",
+        "man_num": "",
+        "model_name": "Sandblaster(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "11/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ef/Red_Edition_2020_Sand_Blaster.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB72",
+        "man_num": "",
+        "model_name": "Surf's Up",
+        "series": "Olympic Games Tokyo 2020New for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/40/2020NM42-B_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC62",
+        "man_num": "",
+        "model_name": "Dodge Charger Drift",
+        "series": "HW Rescue",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/GHC62-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC65",
+        "man_num": "",
+        "model_name": "Hot Wheels Ford Transit Connect",
+        "series": "HW Rescue",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/Ford_Transit_Connect_GHC65_HW_Rescue_1.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD68",
+        "man_num": "",
+        "model_name": "'49 Merc",
+        "series": "HW Flames",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b2/Hot-Wheels-49-Merc-HW-Flames-2020-1-10-A.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD65",
+        "man_num": "",
+        "model_name": "'73 Ford Falcon XB",
+        "series": "HW Flames",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ee/Ford_Falcon_HW_Flames_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD63",
+        "man_num": "",
+        "model_name": "'65 Ford Galaxie",
+        "series": "HW FlamesNew in Mainline",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/41/Hot-Wheels-65-Ford-Galaxie-HW-Flames-2020-10-10-A.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG18",
+        "man_num": "",
+        "model_name": "'65 Ford Galaxie",
+        "series": "HW FlamesSuper Treasure HuntNew in Mainline",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/46/GHG18_-_65_Ford_Galaxie-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC59",
+        "man_num": "",
+        "model_name": "Custom '18 Ford Mustang GT",
+        "series": "HW Race Team",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e9/2020_Custom_%2718_Mustang_GT.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG66",
+        "man_num": "",
+        "model_name": "Custom '18 Ford Mustang GT(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "10/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/Custom_18_Mustang._Red_Edition%282%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB56",
+        "man_num": "",
+        "model_name": "'89 Mazda Savanna RX-7 FC3S",
+        "series": "NightburnerzNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/GHB56-01.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD08",
+        "man_num": "",
+        "model_name": "'84 Pontiac Firebird",
+        "series": "Muscle Mania",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/GHD08-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB31",
+        "man_num": "",
+        "model_name": "2020 Ram 1500 Rebel",
+        "series": "HW Hot TrucksNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/2020NM45_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD78",
+        "man_num": "",
+        "model_name": "The Beatles Yellow Submarine",
+        "series": "HW Screen TimeTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b3/The_Beatles_Yellow_Submarine_2020_TH_-_GHD78.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB53",
+        "man_num": "",
+        "model_name": "McLaren Speedtail",
+        "series": "HW ExoticsNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b2/2020NM46_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB39",
+        "man_num": "",
+        "model_name": "2020 Koenigsegg Jesko",
+        "series": "HW ExoticsNew for 2020!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/aa/2020NM44_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC33",
+        "man_num": "",
+        "model_name": "Aston Martin One-77",
+        "series": "HW Exotics",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/GHC33-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC66",
+        "man_num": "",
+        "model_name": "Sky Boat",
+        "series": "HW Rescue",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/HW_SKY_BOAT_Rescue_ORANGE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD59",
+        "man_num": "",
+        "model_name": "'67 Camaro",
+        "series": "HW Flames",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/67_Camaro_2020_HW_Flames.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG56",
+        "man_num": "",
+        "model_name": "'67 Camaro(2nd Color)",
+        "series": "HW FlamesKroger Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6d/2020HW67ChevyCamaroBlack-231.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB74",
+        "man_num": "",
+        "model_name": "'96 Chevrolet Impala SS",
+        "series": "NightburnerzNew for 2020!",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/2020NM43_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD18",
+        "man_num": "",
+        "model_name": "McLaren Senna",
+        "series": "Nightburnerz",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/83/McLaren_Senna_White_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG42",
+        "man_num": "",
+        "model_name": "McLaren Senna(2nd Color - Zamac)",
+        "series": "NightburnerzWalmart Exclusive",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/Mclaren_Senna_zamac.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD04",
+        "man_num": "",
+        "model_name": "'18 Dodge Challenger SRT Demon",
+        "series": "Muscle Mania",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dc/18_Dodge_Demon_Yellow_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG24",
+        "man_num": "",
+        "model_name": "'18 Dodge Challenger SRT Demon",
+        "series": "Muscle ManiaSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8d/Dodgechallenger2020st.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC76",
+        "man_num": "",
+        "model_name": "The Flintstones Flintmobile",
+        "series": "HW Screen Time",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/98/The_Flintstones_Flintmobile_-_2020_HW_Screen_Time.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC78",
+        "man_num": "",
+        "model_name": "'70 Chevelle SS",
+        "series": "HW Screen Time",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/%2770_Chevelle_SS_red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB33",
+        "man_num": "",
+        "model_name": "'99 Ford F-150 SVT Lightning",
+        "series": "HW Hot TrucksNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d8/2020ML13_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC38",
+        "man_num": "",
+        "model_name": "Haul-O-Gram",
+        "series": "HW Hot Trucks",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1f/IMG_20201010_163010.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC53",
+        "man_num": "",
+        "model_name": "Custom '11 Camaro",
+        "series": "HW Rescue",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e7/GHC53_Short_Card.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD76",
+        "man_num": "",
+        "model_name": "Chevy Silverado",
+        "series": "HW RescueTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/04/HW_CHEVY_SILVERADO_Rescue_Treasure_Hunt_GREEN.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHC72",
+        "man_num": "",
+        "model_name": "'17 Pagani Huayra Roadster",
+        "series": "HW Roadsters",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8e/Huayra_Roadster_Green_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG21",
+        "man_num": "",
+        "model_name": "'17 Pagani Huayra Roadster",
+        "series": "HW RoadstersSuper Treasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/08/PaganiSuperOpenFun.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB50",
+        "man_num": "",
+        "model_name": "Porsche 914 Safari",
+        "series": "NightburnerzNew for 2020!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bd/P_914_Safari_Yellow_2020.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GTD36",
+        "man_num": "",
+        "model_name": "Porsche 914 Safari(2nd Color)",
+        "series": "NightburnerzNew for 2020!GameStop Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/17/914LuftBlue.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD17",
+        "man_num": "",
+        "model_name": "Mazda RX-3",
+        "series": "NightburnerzNew in Mainline",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ab/2020_Mazda_RX-3.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD12",
+        "man_num": "",
+        "model_name": "Muscle Bound",
+        "series": "Muscle Mania",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/61/HW_MUSCLE_BOUND_Speed_blur_BLACK.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD75",
+        "man_num": "",
+        "model_name": "Dodge Viper RT/10",
+        "series": "HW Race TeamTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/2020_Hot_Wheels_Dodge_Viper.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB29",
+        "man_num": "",
+        "model_name": "2018 Bentley Continental GT3",
+        "series": "NightburnerzNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6d/2020NM48_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GTD37",
+        "man_num": "",
+        "model_name": "2018 Bentley Continental GT3(2nd Color)",
+        "series": "NightburnerzNew for 2020!GameStop Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/%2718BentleyGT3Blue.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD15",
+        "man_num": "",
+        "model_name": "'64 Chevy Chevelle SS",
+        "series": "Nightburnerz",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fc/2020_Hot_Wheels_%2764_Chevy_Chevelle_SS.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHG25",
+        "man_num": "",
+        "model_name": "'64 Chevy Chevelle SS",
+        "series": "NightburnerzSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/69/2020_Hot_Wheels_%2764_Chevy_Chevelle_SS_Super_Treasure_Hunt.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHB32",
+        "man_num": "",
+        "model_name": "2020 Ford Mustang Shelby GT500",
+        "series": "Muscle ManiaNew for 2020!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/20_Shelby_GT500_Blue_20.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GTD38",
+        "man_num": "",
+        "model_name": "2020 Ford Mustang Shelby GT500(2nd Color)",
+        "series": "Muscle ManiaNew for 2020!GameStop Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8c/%2720GT500Red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD07",
+        "man_num": "",
+        "model_name": "'70 Dodge Charger R/T",
+        "series": "Muscle Mania",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/50/GHD07-01.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GHD10",
+        "man_num": "",
+        "model_name": "'10 Pro Stock Camaro",
+        "series": "HW Race Team",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/34/GHD10_Short_Card.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP04",
+        "man_num": "",
+        "model_name": "Night Shifter",
+        "series": "Hot Wheels id",
+        "series_num": "1/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/2020NightShifterIDfront.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP05",
+        "man_num": "",
+        "model_name": "'70 Ford Escort RS1600",
+        "series": "Hot Wheels id",
+        "series_num": "2/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/24/GHB86_-_70_Ford_Escort_RS1600-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP02",
+        "man_num": "",
+        "model_name": "Time Attaxi",
+        "series": "Hot Wheels id",
+        "series_num": "3/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6e/2020TimeAttaxiID1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP00",
+        "man_num": "",
+        "model_name": "Motosaurus",
+        "series": "Hot Wheels id",
+        "series_num": "4/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/Motosaurusidchaseleft.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP06",
+        "man_num": "",
+        "model_name": "Bone Shaker",
+        "series": "Hot Wheels id",
+        "series_num": "5/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/Bone_Shaker_Chase_id_2020.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP03",
+        "man_num": "",
+        "model_name": "TV Series Batmobile",
+        "series": "Hot Wheels id",
+        "series_num": "6/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/Chase_id_TV_Series_Batmobile_2020.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP01",
+        "man_num": "",
+        "model_name": "Aston Martin One-77",
+        "series": "Hot Wheels id",
+        "series_num": "7/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/52/0D90A5D9-27E8-4C62-93C1-2123342C90A1.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2020,
+        "toy_num": "GJP07",
+        "man_num": "",
+        "model_name": "'70 Dodge Charger R/T",
+        "series": "Hot Wheels id",
+        "series_num": "8/8",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c3/2020IDChaseDodgeCharger.jpg"
+    }
+]

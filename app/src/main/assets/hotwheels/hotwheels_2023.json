@@ -1,0 +1,4452 @@
+[
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG27",
+        "man_num": "",
+        "model_name": "Volvo P1800 Gasser",
+        "series": "HW Dream GarageNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/68/Ain%27tNoSaint.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ94",
+        "man_num": "",
+        "model_name": "Volvo P1800 Gasser(2nd Color)",
+        "series": "HW Dream GarageNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/HKJ94.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG79",
+        "man_num": "",
+        "model_name": "'87 Ford Sierra Cosworth",
+        "series": "HW: The '80s",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/45/HW-2023-002-1-HKG79-87_Ford_Sierra_Cosworth.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL51",
+        "man_num": "",
+        "model_name": "'87 Ford Sierra Cosworth(2nd Color)",
+        "series": "HW: The '80sKroger  Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/Kroger_Cosworth.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ59",
+        "man_num": "",
+        "model_name": "'87 Ford Sierra Cosworth(3rd Color)",
+        "series": "HW: The '80s",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ef/HKJ59-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG97",
+        "man_num": "",
+        "model_name": "Classic TV Series Batmobile",
+        "series": "Batman",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/62/HW-2023-003-1-HKG97-Classic_TV_Series_Batmobile.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL16",
+        "man_num": "",
+        "model_name": "Classic TV Series Batmobile",
+        "series": "BatmanSuper Treasure Hunt",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/STH_2023A_BATMOBILE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ72",
+        "man_num": "",
+        "model_name": "Classic TV Series Batmobile(2nd Color)",
+        "series": "Batman",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8d/HKJ72.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG25",
+        "man_num": "",
+        "model_name": "Ford Escort RS2000",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f9/X-PackEscort.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL43",
+        "man_num": "",
+        "model_name": "Ford Escort RS2000(2nd Color)",
+        "series": "Red EditionNew for 2023!Target Exclusive",
+        "series_num": "1/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d2/Hot_wheels_Ford_Escort_RS2000_RED_EDITION_er.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ77",
+        "man_num": "",
+        "model_name": "Ford Escort RS2000(3rd Color)",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/2023NM-02B_%28Large%29.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH03",
+        "man_num": "",
+        "model_name": "Dimachinni Veloce",
+        "series": "Retro Racers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5f/HKH03-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ78",
+        "man_num": "",
+        "model_name": "Dimachinni Veloce(2nd Color)",
+        "series": "Retro Racers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/HKJ78-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH07",
+        "man_num": "",
+        "model_name": "HW K.I.T.T. Concept",
+        "series": "HW Screen Time",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/KARRConcept.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH15",
+        "man_num": "",
+        "model_name": "Bricking Trails",
+        "series": "Brick Rides",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fe/Bricking_Trails_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ85",
+        "man_num": "",
+        "model_name": "Bricking Trails(2nd Color)",
+        "series": "Brick Rides",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4c/HKJ85.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG24",
+        "man_num": "",
+        "model_name": "Dessert Drifter",
+        "series": "Sweet RidesNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/DessertDrifter.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ90",
+        "man_num": "",
+        "model_name": "Dessert Drifter(2nd Color)",
+        "series": "Sweet RidesNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/28/HKJ90.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH18",
+        "man_num": "",
+        "model_name": "Sweet Driver",
+        "series": "Sweet Rides",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6b/Sweet_Driver_Sweet_Rides_2023.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ91",
+        "man_num": "",
+        "model_name": "Sweet Driver(2nd Color)",
+        "series": "Sweet Rides",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7f/2023-009_HKJ91_Sweet_Driver_Brown_open-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK98",
+        "man_num": "",
+        "model_name": "Raijin Express",
+        "series": "HW HaulersTreasure Hunt",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bc/RaijinHauler.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH24",
+        "man_num": "",
+        "model_name": "Fast-Bed Hauler",
+        "series": "HW Haulers",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/25/HW-2023-011-1-HKH24-Fast-Bed_Hauler.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ97",
+        "man_num": "",
+        "model_name": "Fast-Bed Hauler(2nd Color)",
+        "series": "HW Haulers",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/31/HKJ97-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH36",
+        "man_num": "",
+        "model_name": "Roadster Bite",
+        "series": "HW Roadsters",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/HW-2023-012-1-HKH36-Roadster_Bite.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK07",
+        "man_num": "",
+        "model_name": "Roadster Bite(2nd Color)",
+        "series": "HW Roadsters",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d9/ROADROSTER_BITE_%282DO_COLOR%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH37",
+        "man_num": "",
+        "model_name": "'17 Pagani Huayra Roadster",
+        "series": "HW Roadsters",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/25/HW_%2717_Pagani_Huayra_Roadster_%282023_-_HKH37%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL23",
+        "man_num": "",
+        "model_name": "'17 Pagani Huayra Roadster(2nd Color - Zamac)",
+        "series": "HW RoadstersWalmart Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/07/Mainline_2023_%2717_Pagani_Huayra_Roadster_Zamac_Malaysia_HKL23.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK08",
+        "man_num": "",
+        "model_name": "'17 Pagani Huayra Roadster(3rd Color)",
+        "series": "HW Roadsters",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/74/HKK08.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH38",
+        "man_num": "",
+        "model_name": "Corvette Grand Sport Roadster",
+        "series": "HW Roadsters",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/15/HW-2023-014-1-HKH38-Corvette_Grand_Sport_Roadster.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL44",
+        "man_num": "",
+        "model_name": "Corvette Grand Sport Roadster(2nd Color)",
+        "series": "HW RoadstersKroger Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7a/Corvette_kroger.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK09",
+        "man_num": "",
+        "model_name": "Corvette Grand Sport Roadster(3rd Color)",
+        "series": "HW Roadsters",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/20230529_100127.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH45",
+        "man_num": "",
+        "model_name": "Track Manga",
+        "series": "HW Art Cars",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ae/HW-2023-015-1-HKH45-Track_Manga.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK14",
+        "man_num": "",
+        "model_name": "Track Manga(2nd Color)",
+        "series": "HW Art Cars",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/78/HKK14.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK15",
+        "man_num": "",
+        "model_name": "Track Manga(3rd Color)",
+        "series": "HW Art Cars",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/Track_Manga_%28Dark_Red%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH46",
+        "man_num": "",
+        "model_name": "70s Van",
+        "series": "HW Art Cars",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ab/HW-2023-016-1-HKH46-70s_Van.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL24",
+        "man_num": "",
+        "model_name": "70s Van(2nd Color - Zamac)",
+        "series": "HW Art CarsWalmart Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/2023-016_HKL24_ZAMAK_70sVan_o1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK16",
+        "man_num": "",
+        "model_name": "70s Van(3rd Color)",
+        "series": "HW Art Cars",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/HKK16.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH85",
+        "man_num": "",
+        "model_name": "LB Super Silhouette Nissan Silvia (S15)",
+        "series": "HW Modified",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b6/SilviaLibertyWalkBlack2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL52",
+        "man_num": "",
+        "model_name": "LB Super Silhouette Nissan Silvia (S15)(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "2/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/22/RedEdLBSilvia.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK47",
+        "man_num": "",
+        "model_name": "LB Super Silhouette Nissan Silvia (S15)(3rd Color)",
+        "series": "HW Modified",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/75/LB_Super_Silhouette_Nissan_Silvia_%28S15%29_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH83",
+        "man_num": "",
+        "model_name": "1970 Pontiac Firebird",
+        "series": "HW Modified",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/HW-2023-018-1-HKH83-1970_Pontiac_Firebird.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK48",
+        "man_num": "",
+        "model_name": "1970 Pontiac Firebird(2nd Color)",
+        "series": "HW ModifiedKroger Exclusive",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/11/1970_Pontiac_Firebird_Orange.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK49",
+        "man_num": "",
+        "model_name": "1970 Pontiac Firebird(3rd Color)",
+        "series": "HW Modified",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c5/HKK49.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH88",
+        "man_num": "",
+        "model_name": "Airuption",
+        "series": "Sky Show",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1d/HW-2023-019-1-HKH88-Airuption.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK51",
+        "man_num": "",
+        "model_name": "Airuption(2nd Color)",
+        "series": "Sky Show",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8c/HKK51.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG23",
+        "man_num": "",
+        "model_name": "Nissan Patrol Custom",
+        "series": "HW J-ImportsNew for 2023!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/81/NissanPatrolCustom.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL46",
+        "man_num": "",
+        "model_name": "Nissan Patrol Custom(2nd Color)",
+        "series": "HW J-ImportsNew for 2023!Kroger  Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f9/Nissanpatrolcustomkrogerexclusive.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK61",
+        "man_num": "",
+        "model_name": "Nissan Patrol Custom(3rd Color)",
+        "series": "HW J-ImportsNew for 2023!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/NissanPatrol.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ10",
+        "man_num": "",
+        "model_name": "Subaru WRX STI",
+        "series": "HW J-Imports",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/71/HW-2023-021-1-HKJ10-Subaru_WRX_STI.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK62",
+        "man_num": "",
+        "model_name": "Subaru WRX STI(2nd Color)",
+        "series": "HW J-Imports",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bb/HKK62_-_LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK63",
+        "man_num": "",
+        "model_name": "Subaru WRX STI(3rd Color)",
+        "series": "HW J-Imports",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f7/HKK63-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG26",
+        "man_num": "",
+        "model_name": "Draggin' Wagon",
+        "series": "ExperimotorsNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/Draggin%27Wagon.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK71",
+        "man_num": "",
+        "model_name": "Draggin' Wagon(2nd Color)",
+        "series": "ExperimotorsNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/HKK71.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ26",
+        "man_num": "",
+        "model_name": "Coupe Clip",
+        "series": "Experimotors",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6c/HKJ26-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK72",
+        "man_num": "",
+        "model_name": "Coupe Clip(2nd Color)",
+        "series": "Experimotors",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/38/HKK72-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ32",
+        "man_num": "",
+        "model_name": "Surfin' School Bus",
+        "series": "Surf's Up",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/68/HW-2023-024-1-HKJ32-Surfin%27_School_Bus.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK79",
+        "man_num": "",
+        "model_name": "Surfin' School Bus(2nd Color)",
+        "series": "Surf's Up",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ae/HKK79.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG80",
+        "man_num": "",
+        "model_name": "'84 Mustang SVO",
+        "series": "HW: The '80s",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c2/HKG80-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ60",
+        "man_num": "",
+        "model_name": "'84 Mustang SVO(2nd Color)",
+        "series": "HW: The '80s",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/56/HKJ60-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG82",
+        "man_num": "",
+        "model_name": "'80 El Camino",
+        "series": "HW: The '80s",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/HW-2023-026-1-HKG82-80_El_Camino.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL35",
+        "man_num": "",
+        "model_name": "'80 El Camino(2nd Color)",
+        "series": "HW: The '80sDollar General Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/52/RCGEC802023-02a.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ61",
+        "man_num": "",
+        "model_name": "'80 El Camino(3rd Color)",
+        "series": "HW: The '80s",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/76/HKJ61-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH02",
+        "man_num": "",
+        "model_name": "Mercedes-Benz 300 SL",
+        "series": "Retro Racers",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/HKH02-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL09",
+        "man_num": "",
+        "model_name": "Mercedes-Benz 300 SL",
+        "series": "Retro RacersSuper Treasure Hunt",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bd/Mercedes-benzs300sl.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH01",
+        "man_num": "",
+        "model_name": "Mazda 787B",
+        "series": "Retro RacersNew in Mainline",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/20/Mazda787.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL36",
+        "man_num": "",
+        "model_name": "Mazda 787B(2nd Color)",
+        "series": "Retro RacersNew in MainlineDollar General Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/88/DollarGeneral787BBlack.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ79",
+        "man_num": "",
+        "model_name": "Mazda 787B(3rd Color)",
+        "series": "Retro RacersNew in Mainline",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/09/787BRacer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "GRX17",
+        "man_num": "",
+        "model_name": "Standard Kart",
+        "series": "HW Screen Time",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c0/HW-2023-029-1-HKxxx-Standard_Kart.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH16",
+        "man_num": "",
+        "model_name": "Custom Small Block",
+        "series": "Brick Rides",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/HW-2023-030-1-Custom_Small_Block.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ86",
+        "man_num": "",
+        "model_name": "Custom Small Block(2nd Color)",
+        "series": "Brick Rides",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/72/2023_%28-30%29_Custom_Small_Block_%28Blue%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH19",
+        "man_num": "",
+        "model_name": "Quick Bite",
+        "series": "Sweet Rides",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/18/HW-2023-031-1-HKH19-Quick_Bite.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ92",
+        "man_num": "",
+        "model_name": "Quick Bite(2nd Color)",
+        "series": "Sweet Rides",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e7/2023-031_HKJ92_Quick_Bite_Green_open-0.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ49",
+        "man_num": "",
+        "model_name": "Rodger Dodger",
+        "series": "HW Dream Garage",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bd/HW-2023-032-1-HKxxx-Rodger_Dodger.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH25",
+        "man_num": "",
+        "model_name": "Baja Hauler",
+        "series": "HW Haulers",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/86/HW-2023-033-1-HKH25-Baja_Hauler.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ98",
+        "man_num": "",
+        "model_name": "Baja Hauler(2nd Color)",
+        "series": "HW Haulers",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/52/HKJ98.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH41",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06 Convertible",
+        "series": "HW Roadsters",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/HW-2023-034-1-HKH41-Corvette_C7_Z06_Convertible.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL37",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06 Convertible(2nd Color)",
+        "series": "HW RoadstersDollar General Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2c/DollarGeneralCorvetteZ06Green.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK10",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06 Convertible(3rd Color)",
+        "series": "HW Roadsters",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7a/HKK10.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH47",
+        "man_num": "",
+        "model_name": "Baja Bone Shaker",
+        "series": "HW Art Cars",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/HW_Baja_Bone_Shaker_%282023_-_HKH47%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH48",
+        "man_num": "",
+        "model_name": "Custom '11 Camaro",
+        "series": "HW Art Cars",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ee/HW-2023-036-1-HKxxx-Custom_%2711_Camaro.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK17",
+        "man_num": "",
+        "model_name": "Custom '11 Camaro(2nd Color)",
+        "series": "HW Art Cars",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e0/HKK17-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG28",
+        "man_num": "",
+        "model_name": "Tesla Model Y",
+        "series": "HW Green SpeedNew for 2023!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ac/TeslaModelY.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL53",
+        "man_num": "",
+        "model_name": "Tesla Model Y(2nd Color)",
+        "series": "Red EditionNew for 2023!Target Exclusive",
+        "series_num": "3/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b1/Telsa_Model_Y.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK20",
+        "man_num": "",
+        "model_name": "Tesla Model Y(3rd Color)",
+        "series": "HW Green SpeedNew for 2023!",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cf/HKK20-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH55",
+        "man_num": "",
+        "model_name": "Porsche Panamera Turbo S E-Hybrid Sport Turismo",
+        "series": "HW Green Speed",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/ff/HKH55.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL38",
+        "man_num": "",
+        "model_name": "Porsche Panamera Turbo S E-Hybrid Sport Turismo(2nd Color)",
+        "series": "HW Green SpeedDollar General Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/1A8119_Porsche_Panamera_Turbo_S_E_Hybrid.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH77",
+        "man_num": "",
+        "model_name": "Turbine Sublime",
+        "series": "HW 55 Race Team",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/03/2023TurbineSublimejwj.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK38",
+        "man_num": "",
+        "model_name": "Turbine Sublime(2nd Color)",
+        "series": "HW 55 Race Team",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5b/Turbine_Sublime_HKK38.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG29",
+        "man_num": "",
+        "model_name": "Rally Speciale",
+        "series": "HW Track ChampsNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/RallySpeciale.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK37",
+        "man_num": "",
+        "model_name": "Rally Speciale(2nd Color)",
+        "series": "HW Track ChampsNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/HW_-_Rally_Speciale_%282023_-_HKK37%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH66",
+        "man_num": "",
+        "model_name": "Hot Wired",
+        "series": "HW Track Champs",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a2/HW-2023-041-1-Hot_Wired.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK27",
+        "man_num": "",
+        "model_name": "Hot Wired(2nd Color)",
+        "series": "HW Track Champs",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a1/041_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH79",
+        "man_num": "",
+        "model_name": "Skate Grom",
+        "series": "HW Sports",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9d/HW-2023-042-1-Skate_Grom.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK42",
+        "man_num": "",
+        "model_name": "Skate Grom(2nd Color)",
+        "series": "HW Sports",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/59/042_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH80",
+        "man_num": "",
+        "model_name": "Tee'd Off 2",
+        "series": "HW Sports",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/HW-2023-043-1-HKxxx-Tee%27d_Off_2.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK43",
+        "man_num": "",
+        "model_name": "Tee'd Off 2(2nd Color)",
+        "series": "HW Sports",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/043_250_2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK44",
+        "man_num": "",
+        "model_name": "Tee'd Off 2(3rd Color)",
+        "series": "HW Sports",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/2023_%28-43%29_Tee%27d_Off_2_%28Gold%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH84",
+        "man_num": "",
+        "model_name": "2018 Bentley Continental GT3",
+        "series": "HW Modified",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/42/HW_2018_Bentley_Continental_GT3_%282023_-_HKH84%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL45",
+        "man_num": "",
+        "model_name": "2018 Bentley Continental GT3(2nd Color)",
+        "series": "HW Modified",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/HKL45.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH89",
+        "man_num": "",
+        "model_name": "Poison Arrow",
+        "series": "Sky Show",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/72/HW-2023-045-1-Poison_Arrow.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK52",
+        "man_num": "",
+        "model_name": "Poison Arrow(2nd Color)",
+        "series": "Sky Show",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/55/2023_%28-45%29_Poison_Arrow_%28Blue%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ11",
+        "man_num": "",
+        "model_name": "2023 Nissan Z",
+        "series": "HW J-Imports",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/05/%2723NissanZ.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK64",
+        "man_num": "",
+        "model_name": "2023 Nissan Z(2nd Color)",
+        "series": "HW J-Imports",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/2023NissanZ.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL39",
+        "man_num": "",
+        "model_name": "2023 Nissan Z(3rd Color)",
+        "series": "HW J-Imports\"From the Vault\" Exclusive",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ea/2023_Nissan_Z_3rd_Color.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ12",
+        "man_num": "",
+        "model_name": "Nissan Maxima Drift Car",
+        "series": "HW J-Imports",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/HKJ12_-_LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK65",
+        "man_num": "",
+        "model_name": "Nissan Maxima Drift Car(2nd Color)",
+        "series": "HW J-Imports",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3f/HKK65-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ27",
+        "man_num": "",
+        "model_name": "Gotta Go",
+        "series": "Experimotors",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/34/HW-2023-048-1-Gotta_Go.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK73",
+        "man_num": "",
+        "model_name": "Gotta Go(2nd Color)",
+        "series": "Experimotors",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c6/20230529_100331.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ33",
+        "man_num": "",
+        "model_name": "Kool Kombi",
+        "series": "Surf's Up",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/HW_Volkswagen_Kool_Kombi_%282023_-_HKJ33%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL26",
+        "man_num": "",
+        "model_name": "Kool Kombi(2nd Color - Zamac)",
+        "series": "Surf's UpWalmart Exclusive",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/2023_Hot_Wheels_Kool_Kombi_Zamac.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK80",
+        "man_num": "",
+        "model_name": "Kool Kombi(3rd Color)",
+        "series": "Surf's Up",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f7/GrayKombi.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL06",
+        "man_num": "",
+        "model_name": "Surf Crate",
+        "series": "Surf's UpTreasure Hunt",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/01/HW-2023-050-1-Surf_Crate.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG81",
+        "man_num": "",
+        "model_name": "'89 Mazda Savanna RX-7 FC3S",
+        "series": "HW: The '80s",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/HW-2023-051-1-HKG81-89_Mazda_Savanna_RX-7_FC3S.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ62",
+        "man_num": "",
+        "model_name": "'89 Mazda Savanna RX-7 FC3S(2nd Color)",
+        "series": "HW: The '80s",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/65/HKJ62-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG86",
+        "man_num": "",
+        "model_name": "1988 Jeep Wagoneer",
+        "series": "HW: The '80sNew in Mainline",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b2/%2788JeepWagoneer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ63",
+        "man_num": "",
+        "model_name": "1988 Jeep Wagoneer(2nd Color)",
+        "series": "HW: The '80sNew in Mainline",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f9/HKJ63.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL47",
+        "man_num": "",
+        "model_name": "1988 Jeep Wagoneer(3rd Color)",
+        "series": "HW: The '80sNew in MainlineKroger  Exclusive",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/ba/2023-052_HKL47_%2788_Jeep_Wagoneer_Teal_Kroger_open-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG91",
+        "man_num": "",
+        "model_name": "Hot Wheels High",
+        "series": "HW Metro",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c7/HW-2023-053-1-Hot_Wheels_High.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ67",
+        "man_num": "",
+        "model_name": "Hot Wheels High(2nd Color)",
+        "series": "HW Metro",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4a/HKJ67.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ68",
+        "man_num": "",
+        "model_name": "Hot Wheels High(3rd Color)",
+        "series": "HW Metro",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/HKJ68.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG92",
+        "man_num": "",
+        "model_name": "Dodge Charger Drift",
+        "series": "HW Metro",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a9/HW-2023-054-1-HKG92-Dodge_Charger_Drift.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL58",
+        "man_num": "",
+        "model_name": "Dodge Charger Drift(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "7/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/40120121533.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ69",
+        "man_num": "",
+        "model_name": "Dodge Charger Drift(3rd Color)",
+        "series": "HW Metro",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6a/HKJ69.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG38",
+        "man_num": "",
+        "model_name": "Batman Forever Batmobile",
+        "series": "BatmanNew for 2023!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2d/ValKilmerBatmobile.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ73",
+        "man_num": "",
+        "model_name": "Batman Forever Batmobile(2nd Color)",
+        "series": "BatmanNew for 2023!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dc/2023batman.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH05",
+        "man_num": "",
+        "model_name": "Matt and Debbie Hay's 1988 Pro Street Thunderbird",
+        "series": "Retro Racers",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cd/HKH05-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL25",
+        "man_num": "",
+        "model_name": "Matt and Debbie Hay's 1988 Pro Street Thunderbird(2nd Color - Zamac)",
+        "series": "Retro RacersWalmart Exclusive",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/2023-056_HKL25_Matt_Debbie_Hay%27s_Zamac_1988_Pro_Street_Thunderbird_o-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ80",
+        "man_num": "",
+        "model_name": "Matt and Debbie Hay's 1988 Pro Street Thunderbird(3rd Color)",
+        "series": "Retro Racers",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e4/056_-_Matt_and_Debbie_Hay%27s_1988_Pro_St._T-bird_%28Black%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH11",
+        "man_num": "",
+        "model_name": "Barbie Extra",
+        "series": "HW Screen Time",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/11/HW-2023-057-1-Barbie_Extra.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG31",
+        "man_num": "",
+        "model_name": "Brickin' Delivery",
+        "series": "Brick RidesNew for 2023!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/ff/Brickin%27Delivery.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ87",
+        "man_num": "",
+        "model_name": "Brickin' Delivery(2nd Color)",
+        "series": "Brick RidesNew for 2023!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e7/058_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH20",
+        "man_num": "",
+        "model_name": "Roller Toaster",
+        "series": "Sweet Rides",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/HW_Roller_Toaster_%282023_-_HKH20%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ93",
+        "man_num": "",
+        "model_name": "Roller Toaster(2nd Color)",
+        "series": "Sweet Rides",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/58/20230529_100024.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH21",
+        "man_num": "",
+        "model_name": "Bone Shaker",
+        "series": "HW Dream Garage",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/72/HW-2023-060-1-HKxxx-Bone_Shaker.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ95",
+        "man_num": "",
+        "model_name": "Bone Shaker(2nd Color)",
+        "series": "HW Dream Garage",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7a/HKJ95-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH26",
+        "man_num": "",
+        "model_name": "Mercedes-Benz Unimog 1300",
+        "series": "HW Haulers",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/39/HW-2023-061-1-Mercedes-Benz_Unimog_1300.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ99",
+        "man_num": "",
+        "model_name": "Mercedes-Benz Unimog 1300L(2nd Color)",
+        "series": "HW Haulers",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f7/2023-061_Mercedes_Benz_Unimog_1300L_Blue_open-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH39",
+        "man_num": "",
+        "model_name": "Max Steel",
+        "series": "HW Roadsters",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9c/MaxSteelWhite2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH49",
+        "man_num": "",
+        "model_name": "'68 COPO Camaro",
+        "series": "HW Art Cars",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3b/HW-2023-063-1-HKxxx-68_COPO_Camaro.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL12",
+        "man_num": "",
+        "model_name": "'68 COPO Camaro",
+        "series": "HW Art CarsSuper Treasure Hunt",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8f/%2768COPOCamaro.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH50",
+        "man_num": "",
+        "model_name": "Hot Wheels Ford Transit Connect",
+        "series": "HW Art Cars",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1f/HW-2023-064-1-HKxxx-Hot_Wheels_Ford_Transit_Connect.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK18",
+        "man_num": "",
+        "model_name": "Hot Wheels Ford Transit Connect(2nd Color)",
+        "series": "HW Art Cars",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dc/HKK18.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH52",
+        "man_num": "",
+        "model_name": "'76 Greenwood Corvette",
+        "series": "HW Art Cars",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/07/HW-2023-065-1-HKxxx-76_Greenwood_Corvette.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH67",
+        "man_num": "",
+        "model_name": "Dodge Van",
+        "series": "HW 55 Race Team",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6c/DodgeRamVan.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK28",
+        "man_num": "",
+        "model_name": "Dodge Van(2nd Color)",
+        "series": "HW 55 Race Team",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/066_-_Dodge_Van_%28White%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG32",
+        "man_num": "",
+        "model_name": "Ducati DesertX",
+        "series": "HW MotoNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f5/DucatiDesertX.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK31",
+        "man_num": "",
+        "model_name": "Ducati DesertX(2nd Color)",
+        "series": "HW MotoNew for 2023!",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/35/HKK31.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL01",
+        "man_num": "",
+        "model_name": "BMW R nineT Racer",
+        "series": "HW MotoTreasure Hunt",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/55/BMWRnineTRacer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ13",
+        "man_num": "",
+        "model_name": "Nissan Skyline GT-R (R32)",
+        "series": "HW J-Imports",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/GodzillaR32.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG36",
+        "man_num": "",
+        "model_name": "Rimac Nevera",
+        "series": "HW Green SpeedNew for 2023!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/RimacNevera.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK21",
+        "man_num": "",
+        "model_name": "Rimac Nevera(2nd Color)",
+        "series": "HW Green SpeedNew for 2023!",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bc/RivieraNevera.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ34",
+        "man_num": "",
+        "model_name": "Deora III",
+        "series": "Surf's Up",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/HW-2023-071-1-Deora_III.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK81",
+        "man_num": "",
+        "model_name": "Deora III(2nd Color)",
+        "series": "Surf's Up",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4d/20230529_100340.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ36",
+        "man_num": "",
+        "model_name": "Pagani Zonda R",
+        "series": "HW Turbo",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/36/BiancoZonda.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK83",
+        "man_num": "",
+        "model_name": "Pagani Zonda R(2nd Color)",
+        "series": "HW Turbo",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/72/BluZonda.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH22",
+        "man_num": "",
+        "model_name": "Twinduction",
+        "series": "Muscle Mania",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9b/Twinductionnew.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK88",
+        "man_num": "",
+        "model_name": "Twinduction(2nd Color)",
+        "series": "Muscle Mania",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/63/HW_-_Twinduction_%282023_-_HKK88%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG83",
+        "man_num": "",
+        "model_name": "'84 Corvette",
+        "series": "HW: The '80sNew in Mainline",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/HW-2023-074-1-HKG83-84_Corvette.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG85",
+        "man_num": "",
+        "model_name": "'82 Cadillac Seville",
+        "series": "HW: The '80s",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2e/HW-2023-075-1-HKG85-82_Cadillac_Seville.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL57",
+        "man_num": "",
+        "model_name": "'82 Cadillac Seville(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "8/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e4/20231119191401.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ64",
+        "man_num": "",
+        "model_name": "'82 Cadillac Seville(3rd Color)",
+        "series": "HW: The '80s",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3b/HKJ64-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG89",
+        "man_num": "",
+        "model_name": "Time Attaxi",
+        "series": "HW MetroYear of the Rabbit",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ef/HW-2023-076-1-HKxxx-Time_Attaxi.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG35",
+        "man_num": "",
+        "model_name": "Audi '90 quattro",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/49/AudiquattroGTO.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ81",
+        "man_num": "",
+        "model_name": "Audi '90 quattro(2nd Color)",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bf/HKJ81.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH10",
+        "man_num": "",
+        "model_name": "Snoopy",
+        "series": "HW Screen Time",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/HW_-_Snoopy_%282023_-_HKH10%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH09",
+        "man_num": "",
+        "model_name": "The Armadillo",
+        "series": "HW Screen Time",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/HW-2023-079-1-HKxxx-The_Armadillo.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH31",
+        "man_num": "",
+        "model_name": "Lolux",
+        "series": "HW Drag Strip",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3c/HKH31-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK01",
+        "man_num": "",
+        "model_name": "Lolux(2nd Color)",
+        "series": "HW Drag Strip",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f8/HKK01-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH29",
+        "man_num": "",
+        "model_name": "Ford Mustang Mach-E 1400",
+        "series": "HW Drag Strip",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fe/HW-2023-081-1-HKxxx-Ford_Mustang_Mach-E_1400.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK02",
+        "man_num": "",
+        "model_name": "Ford Mustang Mach-E 1400(2nd Color)",
+        "series": "HW Drag Strip",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4d/081_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH40",
+        "man_num": "",
+        "model_name": "McLaren Elva",
+        "series": "HW Roadsters",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8a/2023McLarenElva.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL54",
+        "man_num": "",
+        "model_name": "McLaren Elva(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "4/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/02/0122175212.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH51",
+        "man_num": "",
+        "model_name": "'08 Ford Focus",
+        "series": "HW Art Cars",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/HKH51-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH56",
+        "man_num": "",
+        "model_name": "Lotus Evija",
+        "series": "HW Green Speed",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/2023LotusEvija.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL13",
+        "man_num": "",
+        "model_name": "Lotus Evija",
+        "series": "HW Green SpeedSuper Treasure Hunt",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2e/HW_-_Lotus_Evija_%282023_STH_-_HKL13%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG33",
+        "man_num": "",
+        "model_name": "HW Braille Racer - Twin Mill",
+        "series": "ExperimotorsNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f8/BrailleTwinMill.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK74",
+        "man_num": "",
+        "model_name": "HW Braille Racer - Twin Mill(2nd Color)",
+        "series": "ExperimotorsNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/99/ZAMACBrailleTwinMill.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH68",
+        "man_num": "",
+        "model_name": "Erikenstein Rod",
+        "series": "HW 55 Race Team",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d6/Erikenstein2023RaceTeamBlue.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK29",
+        "man_num": "",
+        "model_name": "Erikenstein Rod(2nd Color)",
+        "series": "HW 55 Race Team",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/HKK29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH74",
+        "man_num": "",
+        "model_name": "Honda Super Cub",
+        "series": "HW Moto",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/HW-2023-087-1-Honda_Super_Cub.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK32",
+        "man_num": "",
+        "model_name": "Honda Super Cub(2nd Color)",
+        "series": "HW Moto",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/96/HKK32-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH75",
+        "man_num": "",
+        "model_name": "Chrysler Pacifica",
+        "series": "Mud Studs",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8d/HW-2023-088-1-Chrysler_Pacifica.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK35",
+        "man_num": "",
+        "model_name": "Chrysler Pacifica(2nd Color)",
+        "series": "Mud Studs",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/HKK35-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG34",
+        "man_num": "",
+        "model_name": "Group C Fantasy",
+        "series": "HW Track ChampsNew for 2023!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/94/GroupCFantasy.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK39",
+        "man_num": "",
+        "model_name": "Group C Fantasy(2nd Color)",
+        "series": "HW Track ChampsNew for 2023!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9f/20230529_100243.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH81",
+        "man_num": "",
+        "model_name": "Head Gasket",
+        "series": "HW Sports",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/HKH81-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK45",
+        "man_num": "",
+        "model_name": "Head Gasket(2nd Color)",
+        "series": "HW Sports",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2c/Head_Gasket_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH86",
+        "man_num": "",
+        "model_name": "Nissan Leaf NISMO RC_02",
+        "series": "HW Modified",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8c/HW-2023-091-1-HKH86-Nissan_Leaf_NISMO_RC_02.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK50",
+        "man_num": "",
+        "model_name": "Nissan Leaf NISMO RC_02(2nd Color)",
+        "series": "HW Modified",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/de/HKK50-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK95",
+        "man_num": "",
+        "model_name": "Mad Propz",
+        "series": "Sky ShowTreasure Hunt",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/50/HW-2023-092-1-HKxxx-Mad_Propz.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH98",
+        "man_num": "",
+        "model_name": "Toon'd '83 Chevy Silverado",
+        "series": "HW Hot Trucks",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/93/HW-2023-093-1-HKxxx-Toon%27d_%2783_Chevy_Silverado.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK57",
+        "man_num": "",
+        "model_name": "Toon'd '83 Chevy Silverado(2nd Color)",
+        "series": "HW Hot Trucks",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/25/Toondsilveradoloose.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ02",
+        "man_num": "",
+        "model_name": "'67 Jeepster Commando",
+        "series": "HW Hot Trucks",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/64/HW-2023-094-1-HKxxx-67_Jeepster_Commando.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL55",
+        "man_num": "",
+        "model_name": "'67 Jeepster Commando(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "5/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8e/67_Jeepster_Commando_White.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ15",
+        "man_num": "",
+        "model_name": "1986 Toyota Van",
+        "series": "HW J-Imports",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/29/HW-2023-095-1-HKJ15-1986_Toyota_Van.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL56",
+        "man_num": "",
+        "model_name": "1986 Toyota Van(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "6/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6b/2023_1986_Toyota_Van_Red_Edition_carded.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK66",
+        "man_num": "",
+        "model_name": "1986 Toyota Van(3rd Color)",
+        "series": "HW J-Imports",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/80/HKK66.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ16",
+        "man_num": "",
+        "model_name": "'90 Honda Civic EF",
+        "series": "HW J-Imports",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/79/HW-2023-096-1-HKJ16-90_Honda_Civic_EF.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL28",
+        "man_num": "",
+        "model_name": "'90 Honda Civic EF(2nd Color - Zamac)",
+        "series": "HW J-ImportsWalmart Exclusive",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b8/1990_Honda_Civic_EF_HW_J_Imports_HKL28.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ29",
+        "man_num": "",
+        "model_name": "Lucid Air",
+        "series": "Factory Fresh",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/28/HKJ29-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK76",
+        "man_num": "",
+        "model_name": "Lucid Air(2nd Color)",
+        "series": "Factory Fresh",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c0/097_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ37",
+        "man_num": "",
+        "model_name": "Aston Martin Vantage GTE",
+        "series": "HW Turbo",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/35/AMRGulf.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK84",
+        "man_num": "",
+        "model_name": "Aston Martin Vantage GTE(2nd Color)",
+        "series": "HW Turbo",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/77/HKK84.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ53",
+        "man_num": "",
+        "model_name": "Custom Ford Maverick",
+        "series": "Muscle Mania",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b2/HW-2023-099-1-HKJ53-Custom_Ford_Maverick.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL42",
+        "man_num": "",
+        "model_name": "Custom Ford Maverick(2nd Color)",
+        "series": "Muscle Mania\"From the Vault\" Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/76/2023_Custom_Ford_Maverick_%22From_the_Vault%22_2nd_Color.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ51",
+        "man_num": "",
+        "model_name": "Count Muscula",
+        "series": "Muscle Mania",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/88/HW-2023-100-1-Count_Muscula.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK89",
+        "man_num": "",
+        "model_name": "Count Muscula(2nd Color)",
+        "series": "Muscle Mania",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a1/HKK89-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG84",
+        "man_num": "",
+        "model_name": "DMC DeLorean",
+        "series": "HW: The '80s",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4b/HW-2023-101-1-HKG84-DMC_DeLorean.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ65",
+        "man_num": "",
+        "model_name": "DMC DeLorean(2nd Color)",
+        "series": "HW: The '80s",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/HKJ65-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL62",
+        "man_num": "",
+        "model_name": "DMC DeLorean(3rd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "10/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d4/RedEdDeLorean.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG93",
+        "man_num": "",
+        "model_name": "Drone Duty",
+        "series": "HW Metro",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1d/HW-2023-102-1-HKxxx-Drone_Duty.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ70",
+        "man_num": "",
+        "model_name": "Drone Duty(2nd Color)",
+        "series": "HW Metro",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/102_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG99",
+        "man_num": "",
+        "model_name": "Batmobile",
+        "series": "Batman",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cb/HW_-_Batmobile_%282023_-_HKG99%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ74",
+        "man_num": "",
+        "model_name": "Batmobile(2nd Color)",
+        "series": "Batman",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7b/S-l1600w.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG37",
+        "man_num": "",
+        "model_name": "Brick and Motor",
+        "series": "Brick RidesNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7c/BrickandMotor.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ88",
+        "man_num": "",
+        "model_name": "Brick and Motor(2nd Color)",
+        "series": "Brick RidesNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5b/104_250_2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG39",
+        "man_num": "",
+        "model_name": "El Segundo Coupe",
+        "series": "HW Dream GarageNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/ba/ElSegundoCoupe.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ96",
+        "man_num": "",
+        "model_name": "El Segundo Coupe(2nd Color)",
+        "series": "HW Dream GarageNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5e/HKJ96-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH28",
+        "man_num": "",
+        "model_name": "'18 COPO Camaro SS",
+        "series": "HW Drag Strip",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/HW-2023-106-1-HKxxx-18_COPO_Camaro_SS.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH32",
+        "man_num": "",
+        "model_name": "'86 Ford Thunderbird Pro Stock",
+        "series": "HW Drag StripNew in Mainline",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/%2786FordT-Bird.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK03",
+        "man_num": "",
+        "model_name": "'86 Ford Thunderbird Pro Stock(2nd Color)",
+        "series": "HW Drag StripNew in Mainline",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b0/%2786_Ford_Thunderbird_Pro_Stock.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH57",
+        "man_num": "",
+        "model_name": "Automobili Pininfarina Battista",
+        "series": "HW Green Speed",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/2023PininfarinaBattista.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK22",
+        "man_num": "",
+        "model_name": "Automobili Pininfarina Battista(2nd Color)",
+        "series": "HW Green Speed",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/37/HW_-_Automobili_Pininfarina_Battista_%282023_-_HKK22%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL31",
+        "man_num": "",
+        "model_name": "Automobili Pininfarina Battista(3rd Color)",
+        "series": "HW Green SpeedWalmart Exclusive",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e6/2023-108_HKL31_Zamak_Automobili_Pininfarina_Battista_o-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH58",
+        "man_num": "",
+        "model_name": "Audi RS e-tron GT",
+        "series": "HW Green Speed",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fc/2023AudiRSe-tronGT.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL59",
+        "man_num": "",
+        "model_name": "Audi RS e-tron GT(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "9/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b8/Mainline_2023_Red_Edition_Audi_RS_E-Tron_GT_Black_Malaysia_HKL59.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH61",
+        "man_num": "",
+        "model_name": "'55 Chevy Bel Air Gasser",
+        "series": "HW Gassers",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fd/Tri-FiveTerror.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK26",
+        "man_num": "",
+        "model_name": "'55 Chevy Bel Air Gasser(2nd Color)",
+        "series": "HW Gassers",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/da/110_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL00",
+        "man_num": "",
+        "model_name": "Mod Rod",
+        "series": "HW 55 Race TeamTreasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/53/20230529_100141.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH78",
+        "man_num": "",
+        "model_name": "Mach It Go",
+        "series": "HW Track Champs",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/HW-2023-112-1-HKxxx-Mach_It_Go.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK40",
+        "man_num": "",
+        "model_name": "Mach It Go(2nd Color)",
+        "series": "HW Track Champs",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/112_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH82",
+        "man_num": "",
+        "model_name": "Ice Shredder",
+        "series": "HW Sports",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/59/IceShredder.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK46",
+        "man_num": "",
+        "model_name": "Ice Shredder(2nd Color)",
+        "series": "HW Sports",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/24/HKK46.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH87",
+        "man_num": "",
+        "model_name": "'15 Mazda MX-5 Miata",
+        "series": "HW Modified",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/80/HW-2023-114-1-HKH87-15_Mazda_MX-5_Miata.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL27",
+        "man_num": "",
+        "model_name": "'15 Mazda MX-5 Miata(2nd Color - Zamac)",
+        "series": "HW ModifiedWalmart Exclusive",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9f/2015_Mazda_MX5_Miata_HW_Modified_HKL27.JPG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH91",
+        "man_num": "",
+        "model_name": "Water Bomber",
+        "series": "Sky Show",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ee/HW-2023-115-1-HKxxx-Water_Bomber.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK53",
+        "man_num": "",
+        "model_name": "HW Water Bomber(2nd Color)",
+        "series": "Sky Show",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/45/HKK53.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ00",
+        "man_num": "",
+        "model_name": "GMC Hummer EV",
+        "series": "HW Hot Trucks",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/HW-2023-116-1-HKxxx-GMC_Hummer_EV.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL61",
+        "man_num": "",
+        "model_name": "GMC Hummer EV(2nd Color)",
+        "series": "Red EditionTarget Exclusive",
+        "series_num": "11/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f0/Fixed_GMC_Hummer_EV_RedEdition.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK58",
+        "man_num": "",
+        "model_name": "GMC Hummer EV(3rd Color)",
+        "series": "HW Hot Trucks",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/HKK58-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG40",
+        "man_num": "",
+        "model_name": "'73 Honda Civic Custom",
+        "series": "HW J-ImportsNew for 2023!",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8d/%2773HondaCivicCustom.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK67",
+        "man_num": "",
+        "model_name": "'73 Honda Civic Custom(2nd Color)",
+        "series": "HW J-ImportsNew for 2023!",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/16/HondaCVCCCustom.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ14",
+        "man_num": "",
+        "model_name": "1968 Mazda Cosmo Sport",
+        "series": "HW J-ImportsNew in Mainline",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/1968MazdaCosmoSport.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL20",
+        "man_num": "",
+        "model_name": "1968 Mazda Cosmo Sport",
+        "series": "HW J-ImportsNew in MainlineSuper Treasure Hunt",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/1968_Mazda_Cosmo_Sport.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ28",
+        "man_num": "",
+        "model_name": "Clip Rod",
+        "series": "Experimotors",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/HW_-_Clip_Rod_%282023_-_HKJ28%29_Card_Front.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK75",
+        "man_num": "",
+        "model_name": "Clip Rod(2nd Color)",
+        "series": "Experimotors",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG30",
+        "man_num": "",
+        "model_name": "BMW 507",
+        "series": "Factory FreshNew for 2023!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/BMW507.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK77",
+        "man_num": "",
+        "model_name": "BMW 507(2nd Color)",
+        "series": "Factory FreshNew for 2023!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/71/HKK77-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ30",
+        "man_num": "",
+        "model_name": "Lotus Emira",
+        "series": "Factory Fresh",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/2023LotusEmira.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK78",
+        "man_num": "",
+        "model_name": "Lotus Emira(2nd Color)",
+        "series": "Factory Fresh",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3c/HKK78-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ35",
+        "man_num": "",
+        "model_name": "Surf 'N Turf",
+        "series": "Surf's Up",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3a/HW-2023-122-1-HKxxx-Surf_%27N_Turf.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK82",
+        "man_num": "",
+        "model_name": "Surf 'N Turf(2nd Color)",
+        "series": "Surf's Up",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/122_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ55",
+        "man_num": "",
+        "model_name": "'70 Dodge Hemi Challenger",
+        "series": "Muscle Mania",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/HW-2023-123-1-HKJ55-70_Dodge_Hemi_Challenger.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL63",
+        "man_num": "",
+        "model_name": "'70 Dodge Hemi Challenger(2nd Color)",
+        "series": "Muscle ManiaWalgreens Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8c/WalgreensChallenger.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH04",
+        "man_num": "",
+        "model_name": "'32 Ford",
+        "series": "Retro Racers",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9e/HW-2023-124-1-HKxxx-32_Ford.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG42",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera RS 2.7",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/88/Porsche911CarreraRS.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ82",
+        "man_num": "",
+        "model_name": "Porsche 911 Carrera RS 2.7(2nd Color)",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/98/PorscheCarreraRS.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH06",
+        "man_num": "",
+        "model_name": "'71 Porsche 911",
+        "series": "Retro Racers",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/%2771Porsche911.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH12",
+        "man_num": "",
+        "model_name": "The Beatles Yellow Submarine",
+        "series": "HW Screen Time",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/01/The_Beatles_Yellow_Submarine_2023_mainline.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH17",
+        "man_num": "",
+        "model_name": "Bricking Speed",
+        "series": "Brick Rides",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/92/Bricking_speed_2023.png"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ89",
+        "man_num": "",
+        "model_name": "Bricking Speed(2nd Color)",
+        "series": "Brick Rides",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6e/2023-128_HKJ89_Bricking_Speed_Red_open-4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK97",
+        "man_num": "",
+        "model_name": "Donut Drifter",
+        "series": "Sweet RidesTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3e/HKK97.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH27",
+        "man_num": "",
+        "model_name": "Hiway Hauler 2",
+        "series": "HW Haulers",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/00/HKH27.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK00",
+        "man_num": "",
+        "model_name": "Hiway Hauler 2(2nd Color)",
+        "series": "HW Haulers",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/be/HKK00.jpg.jpeg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH43",
+        "man_num": "",
+        "model_name": "Dodge Viper RT/10",
+        "series": "HW Roadsters",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/73/HKH43-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK11",
+        "man_num": "",
+        "model_name": "Dodge Viper RT/10(2nd Color)",
+        "series": "HW Roadsters",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/ff/131_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG60",
+        "man_num": "",
+        "model_name": "'72 Stingray Convertible",
+        "series": "HW RoadstersNew for 2023!",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2a/%2772StingrayConvertible.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK12",
+        "man_num": "",
+        "model_name": "'72 Stingray Convertible(2nd Color)",
+        "series": "HW RoadstersNew for 2023!",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ae/HKK12-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG41",
+        "man_num": "",
+        "model_name": "Rollin' Solo",
+        "series": "HW Track ChampsNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ef/Rollin%27Solo.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK41",
+        "man_num": "",
+        "model_name": "Rollin' Solo(2nd Color)",
+        "series": "HW Track ChampsNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/Rollin%27_Solo_2023_2nd_Color.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ38",
+        "man_num": "",
+        "model_name": "Renault Sport R.S. 01",
+        "series": "HW Turbo",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d5/Renault_Sport_R.S._01_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL21",
+        "man_num": "",
+        "model_name": "Renault Sport R.S. 01",
+        "series": "HW TurboSuper Treasure Hunt",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ab/Renault_sport_rs.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ52",
+        "man_num": "",
+        "model_name": "2017 Camaro ZL1",
+        "series": "Muscle Mania",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5f/HKJ52.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL50",
+        "man_num": "",
+        "model_name": "2017 Camaro ZL1(2nd Color)",
+        "series": "Muscle ManiaKroger  Exclusive",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cd/ZL1-Kroger2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG90",
+        "man_num": "",
+        "model_name": "Solar Reflex",
+        "series": "HW Metro",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/HKG90.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG98",
+        "man_num": "",
+        "model_name": "Batmobile",
+        "series": "Batman",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d6/HKG98.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ75",
+        "man_num": "",
+        "model_name": "Batmobile(2nd Color)",
+        "series": "Batman",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/BatmobileBraveBold2023Gold.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG76",
+        "man_num": "",
+        "model_name": "X-34 Landspeeder",
+        "series": "HW Screen Time",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/66/138_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH23",
+        "man_num": "",
+        "model_name": "'68 Corvette - Gas Monkey Garage",
+        "series": "HW Dream Garage",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/87/HKH23.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL10",
+        "man_num": "",
+        "model_name": "'68 Corvette - Gas Monkey Garage",
+        "series": "HW Dream GarageSuper Treasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/HW_-_Gas_Monkey_%2768_Corvette_%282023_-_HKL10%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH30",
+        "man_num": "",
+        "model_name": "Mustang NHRA Funny Car",
+        "series": "HW Drag Strip",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/HKH30-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK04",
+        "man_num": "",
+        "model_name": "Mustang NHRA Funny Car(2nd Color)",
+        "series": "HW Drag Strip",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/12/HKK04.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG49",
+        "man_num": "",
+        "model_name": "Honda CB750 Café",
+        "series": "HW MotoNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/af/HondaCB750.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK34",
+        "man_num": "",
+        "model_name": "Honda CB750 Café(2nd Color)",
+        "series": "HW MotoNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2c/HKK34-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH53",
+        "man_num": "",
+        "model_name": "'72 Ford Ranchero",
+        "series": "HW Art Cars",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3b/72FordRanchero2023ArtCars.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG44",
+        "man_num": "",
+        "model_name": "Baja Bison T5",
+        "series": "HW Green SpeedNew for 2023!",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7d/BajaBisonT5.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK23",
+        "man_num": "",
+        "model_name": "Baja Bison T5(2nd Color)",
+        "series": "HW Green SpeedNew for 2023!",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/ab/HKK23.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH59",
+        "man_num": "",
+        "model_name": "Fiat 500e",
+        "series": "HW Green SpeedNew in Mainline",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fd/Fiat500e.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK24",
+        "man_num": "",
+        "model_name": "Fiat 500e(2nd Color)",
+        "series": "HW Green SpeedNew in Mainline",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/HKK24-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH63",
+        "man_num": "",
+        "model_name": "'64 Nova Wagon Gasser",
+        "series": "HW Gassers",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/da/HW_-_%2764_Nova_Wagon_Gasser_%282023_-_HKH63%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL29",
+        "man_num": "",
+        "model_name": "'64 Nova Wagon Gasser(2nd Color - Zamac)",
+        "series": "HW GassersWalmart Exclusive",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/27/2023-145_HKL29_%2764_Nova_Wagon_Gasser_Zamac_open-2.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL03",
+        "man_num": "",
+        "model_name": "Rise 'N Climb",
+        "series": "HW SportsTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e8/HKL03.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH99",
+        "man_num": "",
+        "model_name": "Mazda REPU",
+        "series": "HW Hot Trucks",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/17/MazdaREPU.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ17",
+        "man_num": "",
+        "model_name": "'88 Honda CR-X",
+        "series": "HW J-Imports",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/41/148-2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK68",
+        "man_num": "",
+        "model_name": "'88 Honda CR-X(2nd Color)",
+        "series": "HW J-Imports",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/52/1988HondaCR-X.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ31",
+        "man_num": "",
+        "model_name": "Porsche Taycan Turbo S",
+        "series": "Factory Fresh",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/149_-_Porsche_Taycan_Turbo_S.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL30",
+        "man_num": "",
+        "model_name": "Porsche Taycan Turbo S(2nd Color - Zamac)",
+        "series": "Factory FreshWalmart Exclusive",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/09/2023-149_HKL30_Porsche_Taycan_Turbo_Zamak_ref-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG45",
+        "man_num": "",
+        "model_name": "'89 Mercedes-Benz 560 SEC AMG",
+        "series": "HW TurboNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3c/Mercedes-Benz560SECAMG.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK85",
+        "man_num": "",
+        "model_name": "'89 Mercedes-Benz 560 SEC AMG(2nd Color)",
+        "series": "HW TurboNew for 2023!",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/aa/Silver560.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ54",
+        "man_num": "",
+        "model_name": "'18 Dodge Challenger SRT Demon",
+        "series": "Muscle Mania",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/59/HKJ54.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK90",
+        "man_num": "",
+        "model_name": "'18 Dodge Challenger SRT Demon(2nd Color)",
+        "series": "Muscle Mania",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fd/HKK90.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG88",
+        "man_num": "",
+        "model_name": "'84 Audi Sport quattro",
+        "series": "HW: The '80s",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c0/HKG88-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ66",
+        "man_num": "",
+        "model_name": "'84 Audi Sport quattro(2nd Color)",
+        "series": "HW: The '80s",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/HKJ66-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG57",
+        "man_num": "",
+        "model_name": "'70 Dodge Charger",
+        "series": "ToonedNew for 2023!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/46/%27ToonedDodgeCharger.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH90",
+        "man_num": "",
+        "model_name": "Corvette Grand Sport Roadster",
+        "series": "HW Screen Time",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4d/Corvette_Grand_Sport_Roadster_%284th_color%29_-_2023_HW_Screen_Time.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH42",
+        "man_num": "",
+        "model_name": "Glory Chaser",
+        "series": "HW Roadsters",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/15/155_-_Glory_Chaser_%28Gulf%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL11",
+        "man_num": "",
+        "model_name": "Glory Chaser",
+        "series": "HW RoadstersSuper Treasure Hunt",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/33/Glory_chaser.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH44",
+        "man_num": "",
+        "model_name": "BMW i8 Roadster",
+        "series": "HW RoadstersNew in Mainline",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f5/HKH44-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK13",
+        "man_num": "",
+        "model_name": "BMW i8 Roadster(2nd Color)",
+        "series": "HW RoadstersNew in Mainline",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/03/HKK13-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH54",
+        "man_num": "",
+        "model_name": "Cloak and Dagger",
+        "series": "HW Art Cars",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/HKH54.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK19",
+        "man_num": "",
+        "model_name": "Cloak and Dagger(2nd Color)",
+        "series": "HW Art Cars",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9c/CLOAK_AND_DAGGER_%28WHITE%29.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH60",
+        "man_num": "",
+        "model_name": "Jaguar I-Pace eTrophy",
+        "series": "HW Green SpeedNew in Mainline",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/09/JaguarI-Pace.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK25",
+        "man_num": "",
+        "model_name": "Jaguar I-Pace eTrophy(2nd Color)",
+        "series": "HW Green SpeedNew in Mainline",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/HKK25.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL33",
+        "man_num": "",
+        "model_name": "Jaguar I-Pace eTrophy(3rd Color - ZAMAC)",
+        "series": "HW Green SpeedNew in MainlineWalmart Exclusive",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG50",
+        "man_num": "",
+        "model_name": "HW-4-TRAC",
+        "series": "HW 55 Race TeamNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/16/HW-4-Trac.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK30",
+        "man_num": "",
+        "model_name": "HW-4-TRAC(2nd Color)",
+        "series": "HW 55 Race TeamNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/HW-4-Trac_HKK30.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG43",
+        "man_num": "",
+        "model_name": "Honda Super Cub Custom",
+        "series": "HW MotoNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/HondaSuperCubCustom.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK33",
+        "man_num": "",
+        "model_name": "Honda Super Cub Custom(2nd Color)",
+        "series": "HW MotoNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/HondaSuperCubCustom-HKK33.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HTF60",
+        "man_num": "",
+        "model_name": "Honda Super Cub Custom(3rd Color)",
+        "series": "HW MotoNew for 2023!Dollar General Exclusive",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e4/Mainline_2023_Honda_Super_Cub_Custom_White_Malaysia_HTF60.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH76",
+        "man_num": "",
+        "model_name": "'70 Dodge Power Wagon",
+        "series": "Mud Studs",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/da/HKH76-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH92",
+        "man_num": "",
+        "model_name": "Cloud Cutter",
+        "series": "Sky Show",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/HKH92.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK54",
+        "man_num": "",
+        "model_name": "Cloud Cutter(2nd Color)",
+        "series": "Sky Show",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cc/CloudCutter-HKK54.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH93",
+        "man_num": "",
+        "model_name": "Lamborghini Sián FKP 37",
+        "series": "HW Exotics",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0a/HKH93-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL05",
+        "man_num": "",
+        "model_name": "Ducati 1199 Panigale",
+        "series": "Factory FreshTreasure Hunt",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4f/164_-_Ducati_1199_Panigale_%28TH%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ39",
+        "man_num": "",
+        "model_name": "Fast FeLion",
+        "series": "HW Turbo",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/ca/FastFelion2023HWTurboMaroon.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK86",
+        "man_num": "",
+        "model_name": "Fast FeLion(2nd Color)",
+        "series": "HW Turbo",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8d/Mainline_2023_Fast_Felion_Gray_Malaysia_HKK86.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ56",
+        "man_num": "",
+        "model_name": "'71 Plymouth GTX",
+        "series": "Muscle Mania",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c8/HKJ56-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK91",
+        "man_num": "",
+        "model_name": "'71 Plymouth GTX(2nd Color)",
+        "series": "Muscle Mania",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1d/HKK91-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG87",
+        "man_num": "",
+        "model_name": "'82 Toyota Supra",
+        "series": "HW: The '80sNew in Mainline",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/87/%2782ToyotaSupra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL08",
+        "man_num": "",
+        "model_name": "'82 Toyota Supra",
+        "series": "HW: The '80sNew in MainlineSuper Treasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/68/%2782_toyota_supra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG94",
+        "man_num": "",
+        "model_name": "Mad Splash",
+        "series": "HW Metro",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bb/HW_-_Mad_Splash_%282023_-_HKG94%29.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ71",
+        "man_num": "",
+        "model_name": "Mad Splash(2nd Color)",
+        "series": "HW Metro",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/53/Mad_Splash_HW_Metro_2023_Red.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH00",
+        "man_num": "",
+        "model_name": "Batman: The Animated Series",
+        "series": "Batman",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bc/20230529_100058.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ76",
+        "man_num": "",
+        "model_name": "Batman: The Animated Series(2nd Color)",
+        "series": "Batman",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/54/HKJ76.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH14",
+        "man_num": "",
+        "model_name": "Tooned Twin Mill",
+        "series": "Tooned",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/09/170_-_Tooned_Twin_Mill.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ84",
+        "man_num": "",
+        "model_name": "Tooned Twin Mill(2nd Color)",
+        "series": "Tooned",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/49/Tooned_Twin_Mill_HKJ84.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG53",
+        "man_num": "",
+        "model_name": "Rockin' Railer",
+        "series": "HW Drag StripNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/13/Rockin%27Railer.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK05",
+        "man_num": "",
+        "model_name": "Rockin' Railer(2nd Color)",
+        "series": "HW Drag StripNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f6/Mainline_2023_First_Edition_Rockin%27_Railer_Gray_Malaysia_HKK05.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH33",
+        "man_num": "",
+        "model_name": "Honda Civic Custom",
+        "series": "HW Drag Strip",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3e/HondaDragCivic.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL48",
+        "man_num": "",
+        "model_name": "Honda Civic Custom(2nd Color)",
+        "series": "HW Drag StripKroger  Exclusive",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/df/KrogerCivic.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG51",
+        "man_num": "",
+        "model_name": "Volkswagen ID. Buzz",
+        "series": "HW Green SpeedNew for 2023!",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6a/VolkswagenIDBuzz.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH64",
+        "man_num": "",
+        "model_name": "'62 Corvette Gasser",
+        "series": "HW Gassers",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a2/HKH64-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL40",
+        "man_num": "",
+        "model_name": "'62 Corvette Gasser(2nd Color)",
+        "series": "HW Gassers\"From the Vault\" Exclusive",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/dd/TimePhoto_20231113_163854.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG47",
+        "man_num": "",
+        "model_name": "Mitsubishi Pajero Evolution",
+        "series": "Mud StudsNew for 2023!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/38/MitsubishiPajeroEvo.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK36",
+        "man_num": "",
+        "model_name": "Mitsubishi Pajero Evolution(2nd Color)",
+        "series": "Mud StudsNew for 2023!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/HKK36-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL02",
+        "man_num": "",
+        "model_name": "'95 Jeep Cherokee",
+        "series": "Mud StudsTreasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/HKL02-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH97",
+        "man_num": "",
+        "model_name": "Porsche 911 GT3",
+        "series": "HW Exotics",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0e/177_-_Porsche_911_GT3.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL49",
+        "man_num": "",
+        "model_name": "Porsche 911 GT3(2nd Color)",
+        "series": "HW ExoticsKroger  Exclusive",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a5/2023-177_HKL49_Porsche_911_GT3_%2722_White_Kroger_open-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG54",
+        "man_num": "",
+        "model_name": "Celero GT",
+        "series": "HW ExoticsNew for 2023!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a9/CeleroGT.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK55",
+        "man_num": "",
+        "model_name": "Celero GT(2nd Color)",
+        "series": "HW ExoticsNew for 2023!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7c/HKK55-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ18",
+        "man_num": "",
+        "model_name": "Lightnin' Bug",
+        "series": "HW Rescue",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/36/Lightnin%27_Bug_HKJ18.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK69",
+        "man_num": "",
+        "model_name": "Lightnin' Bug(2nd Color)",
+        "series": "HW Rescue",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9e/Lightnin%27_Bug_HKK69.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ57",
+        "man_num": "",
+        "model_name": "'84 Pontiac Firebird",
+        "series": "Muscle Mania",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/30/%2784TransAm.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK92",
+        "man_num": "",
+        "model_name": "'84 Pontiac Firebird(2nd Color)",
+        "series": "Muscle Mania",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/68/HKK92-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG73",
+        "man_num": "",
+        "model_name": "'87 Dodge D100",
+        "series": "Baja Blazers",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c0/HKG73-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG74",
+        "man_num": "",
+        "model_name": "Dune Crusher",
+        "series": "Baja Blazers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c6/182_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ58",
+        "man_num": "",
+        "model_name": "Dune Crusher(2nd Color)",
+        "series": "Baja Blazers",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG52",
+        "man_num": "",
+        "model_name": "1956 Corvette",
+        "series": "HW Screen TimeNew for 2023!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/1956Corvette.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK87",
+        "man_num": "",
+        "model_name": "1956 Corvette(2nd Color)",
+        "series": "HW Screen TimeNew for 2023!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fc/EVette.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH13",
+        "man_num": "",
+        "model_name": "2024 GMC Hummer EV",
+        "series": "HW Screen TimeNew in Mainline",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6b/2024GMCHummerEV.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG48",
+        "man_num": "",
+        "model_name": "Alfa Romeo GTV6 3.0",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/98/AlfaRomeoGTV6.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ83",
+        "man_num": "",
+        "model_name": "Alfa Romeo GTV6 3.0(2nd Color)",
+        "series": "Retro RacersNew for 2023!",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/HKJ83.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH34",
+        "man_num": "",
+        "model_name": "HW Poppa Wheelie",
+        "series": "HW Drag Strip",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5e/Poppa_Wheelie_Drag_Strip_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK06",
+        "man_num": "",
+        "model_name": "HW Poppa Wheelie(2nd Color)",
+        "series": "HW Drag Strip",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/72/PoppaWheelieGrey2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH69",
+        "man_num": "",
+        "model_name": "'17 Audi RS 6 Avant",
+        "series": "HW Wagons",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/90/187_-_%2717_Audi_RS_6_Avant.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL41",
+        "man_num": "",
+        "model_name": "'17 Audi RS 6 Avant(2nd Color)",
+        "series": "HW Wagons\"From the Vault\" Exclusive",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/30/2023_%2717_Audi_RS_6_Avant.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH95",
+        "man_num": "",
+        "model_name": "Koenigsegg Gemera",
+        "series": "HW Exotics",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7c/HKH95.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK56",
+        "man_num": "",
+        "model_name": "Koenigsegg Gemera(2nd Color)",
+        "series": "HW Exotics",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6f/HKK56-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HTF57",
+        "man_num": "",
+        "model_name": "Koenigsegg Gemera(3rd Color)",
+        "series": "HW ExoticsDollar General Exclusive",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bc/Mainline_2023_Koenigsegg_Gemera_Black_Malaysia_HTF57.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ01",
+        "man_num": "",
+        "model_name": "Power Panel",
+        "series": "HW Hot Trucks",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/HKJ01-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK59",
+        "man_num": "",
+        "model_name": "Power Panel(2nd Color)",
+        "series": "HW Hot Trucks",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e3/Power_Panel_Purple_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG56",
+        "man_num": "",
+        "model_name": "Limited Grip",
+        "series": "HW Hot TrucksNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cb/LimitedGrip.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK60",
+        "man_num": "",
+        "model_name": "Limited Grip(2nd Color)",
+        "series": "HW Hot TrucksNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/29/HKK60-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ06",
+        "man_num": "",
+        "model_name": "'83 Chevy Silverado",
+        "series": "HW Slammed",
+        "series_num": "1/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8d/HKJ06-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ20",
+        "man_num": "",
+        "model_name": "Rescue Duty",
+        "series": "HW Rescue",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e1/Rescue_Duty_HW_Rescue_2023.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK70",
+        "man_num": "",
+        "model_name": "Rescue Duty(2nd Color)",
+        "series": "HW Rescue",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/79/HKK70_-_2nd_Color_-_Red.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ40",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06",
+        "series": "Then and Now",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/60/Corvette_C7_Z06_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL32",
+        "man_num": "",
+        "model_name": "Corvette C7 Z06(2nd Color - Zamac)",
+        "series": "Then and NowWalmart Exclusive",
+        "series_num": "1/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL07",
+        "man_num": "",
+        "model_name": "Toyota Land Cruiser",
+        "series": "Then and NowTreasure Hunt",
+        "series_num": "2/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3c/194_250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ50",
+        "man_num": "",
+        "model_name": "'69 Shelby GT-500",
+        "series": "Muscle Mania",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a0/HKJ50-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL22",
+        "man_num": "",
+        "model_name": "'69 Shelby GT-500",
+        "series": "Muscle ManiaSuper Treasure Hunt",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/7b/Mainline_2023_%2769_Shelby_GT-500_Purple_Super_Hunt_Malaysia_HKL22.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG61",
+        "man_num": "",
+        "model_name": "'73 Jeep J10",
+        "series": "Baja BlazersNew for 2023!",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6d/%2773JeepJ10.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH35",
+        "man_num": "",
+        "model_name": "'76 Chevy Chevette",
+        "series": "HW Drag StripNew in Mainline",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/3a/HKH35.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL60",
+        "man_num": "",
+        "model_name": "'76 Chevy Chevette(2nd Color)",
+        "series": "Red EditionTarget ExclusiveNew in Mainline",
+        "series_num": "12/12",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e7/240111095656.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK99",
+        "man_num": "",
+        "model_name": "Madfast",
+        "series": "HW Drag StripTreasure Hunt",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5b/MadfastDragster.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH62",
+        "man_num": "",
+        "model_name": "'65 Mercury Comet Cyclone",
+        "series": "HW GassersNew in Mainline",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/eb/HKH62-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL14",
+        "man_num": "",
+        "model_name": "'65 Mercury Comet Cyclone",
+        "series": "HW GassersNew in MainlineSuper Treasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/56/2023_07_07_21_24_IMG_8258.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH71",
+        "man_num": "",
+        "model_name": "Jack Hammer",
+        "series": "HW WagonsNew in Mainline",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/92/HKH71.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG55",
+        "man_num": "",
+        "model_name": "Volvo XC40 Recharge",
+        "series": "Mud StudsNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4b/VolvoXC40Recharge.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG63",
+        "man_num": "",
+        "model_name": "Trouble Decker",
+        "series": "HW MetroNew for 2023!",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/db/TroubleDecker.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ19",
+        "man_num": "",
+        "model_name": "'10 Camaro SS",
+        "series": "HW Rescue",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c5/HKJ19.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ41",
+        "man_num": "",
+        "model_name": "Toyota Land Cruiser 80",
+        "series": "Then and Now",
+        "series_num": "3/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cf/HKJ41-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ43",
+        "man_num": "",
+        "model_name": "'07 Ford Mustang",
+        "series": "Then and Now",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b6/HKJ43.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG59",
+        "man_num": "",
+        "model_name": "Mod Speeder",
+        "series": "Muscle ManiaNew for 2023!",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f6/ModSpeeder.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG75",
+        "man_num": "",
+        "model_name": "'20 Toyota Tacoma",
+        "series": "Baja Blazers",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e5/RAYSTacoma.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG46",
+        "man_num": "",
+        "model_name": "Porsche 928S Safari",
+        "series": "Baja BlazersNew for 2023!",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/3/31/Porsche928Safari.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG58",
+        "man_num": "",
+        "model_name": "Mad Mike Drift Attack",
+        "series": "HW ExoticsNew for 2023!",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c9/MadMikeDriftAttack.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK94",
+        "man_num": "",
+        "model_name": "Time Shifter",
+        "series": "HW MetroTreasure Hunt",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/45/HKK94-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG62",
+        "man_num": "",
+        "model_name": "'94 Toyota Supra",
+        "series": "ToonedNew for 2023!",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/5a/%27ToonedToyotaSupra.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH65",
+        "man_num": "",
+        "model_name": "Pass'n Gasser",
+        "series": "HW Gassers",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/2023-212_HKH65_Pass%27n_Gasser_open-4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG64",
+        "man_num": "",
+        "model_name": "Bugatti Bolide",
+        "series": "HW ExoticsNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/26/BugattiBolide.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ03",
+        "man_num": "",
+        "model_name": "Mighty K",
+        "series": "HW Hot Trucks",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/24/RyulaK.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL18",
+        "man_num": "",
+        "model_name": "Mighty K",
+        "series": "HW Hot TrucksSuper Treasure Hunt",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/1a/2023_07_07_21_22_IMG_8250.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ21",
+        "man_num": "",
+        "model_name": "2018 Honda Civic Type R",
+        "series": "HW Rescue",
+        "series_num": "4/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/60/PoliceCivic.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ42",
+        "man_num": "",
+        "model_name": "'62 Corvette",
+        "series": "Then and Now",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/8b/62Corvette23.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ44",
+        "man_num": "",
+        "model_name": "Tesla Roadster",
+        "series": "Then and Now",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6a/2008TeslaRoadster.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG72",
+        "man_num": "",
+        "model_name": "'57 Jeep FC",
+        "series": "Baja BlazersNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/06/%2757JeepFC.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG96",
+        "man_num": "",
+        "model_name": "Brutonator",
+        "series": "HW Metro",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/7/70/Brutonator.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG95",
+        "man_num": "",
+        "model_name": "Haul-O-Gram",
+        "series": "HW Metro",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/1/19/HaulOGram.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK96",
+        "man_num": "",
+        "model_name": "Tooned Volkswagen Golf Mk1",
+        "series": "ToonedTreasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/96/2023-221_HKK96_Tooned_Golf_mk1_Blue_TH_open-00.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH70",
+        "man_num": "",
+        "model_name": "'64 Chevy Nova Wagon",
+        "series": "HW Wagons",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/fb/HKH70-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH96",
+        "man_num": "",
+        "model_name": "Porsche 935",
+        "series": "HW Exotics",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/6/6e/2023-223_HKH96_Porsche_935_Blue_open-4.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL17",
+        "man_num": "",
+        "model_name": "Porsche 935",
+        "series": "HW ExoticsSuper Treasure Hunt",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/9a/Porsche935-75.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH94",
+        "man_num": "",
+        "model_name": "Lamborghini Reventón",
+        "series": "HW Exotics",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e3/2023_HW_Exotics_Lamborghini_Reventon.PNG"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ04",
+        "man_num": "",
+        "model_name": "Ford Bronco R",
+        "series": "HW Hot TrucksNew in Mainline",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0f/BorlaBronco.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL34",
+        "man_num": "",
+        "model_name": "Ford Bronco R(2nd Color - Zamac)",
+        "series": "HW Hot TrucksNew in MainlineWalmart Exclusive",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b5/Ford_Bronco_R_ZAMAC_2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG66",
+        "man_num": "",
+        "model_name": "Ford F-150 Lightning Custom",
+        "series": "HW Hot TrucksNew for 2023!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/23/FordF-150Lightning.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ05",
+        "man_num": "",
+        "model_name": "Land Rover Defender 90",
+        "series": "HW Hot Trucks",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/LRDefender90B.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG68",
+        "man_num": "",
+        "model_name": "Custom '68 Camaro",
+        "series": "HW SlammedNew for 2023!",
+        "series_num": "2/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/0/0d/DieselpunkCamaro.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ22",
+        "man_num": "",
+        "model_name": "H2GO",
+        "series": "HW Rescue",
+        "series_num": "5/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/cf/HKJ22-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG67",
+        "man_num": "",
+        "model_name": "Surf Duty",
+        "series": "HW RescueNew for 2023!",
+        "series_num": "6/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/87/SurfDuty.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ45",
+        "man_num": "",
+        "model_name": "'20 Dodge Charger Hellcat",
+        "series": "Then and NowNew in Mainline",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/a/a7/HKJ45-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG77",
+        "man_num": "",
+        "model_name": "Sand Burner",
+        "series": "Baja Blazers",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/56/Sand_Burner_HKG77.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG78",
+        "man_num": "",
+        "model_name": "Jeep Scrambler",
+        "series": "Baja Blazers",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/21/HKG78-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG69",
+        "man_num": "",
+        "model_name": "Porsche 911 Turbo 3.6 (964)",
+        "series": "ToonedNew for 2023!",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f2/%27ToonedPorsche964.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH72",
+        "man_num": "",
+        "model_name": "Datsun Bluebird Wagon (510)",
+        "series": "HW Wagons",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d9/LoveWagon.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL15",
+        "man_num": "",
+        "model_name": "Datsun Bluebird Wagon (510)",
+        "series": "HW WagonsSuper Treasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/be/73d9e391cee5f2365232c195406643f.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG71",
+        "man_num": "",
+        "model_name": "'92 Dodge Viper RT/10",
+        "series": "HW ExoticsNew for 2023!",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/5/57/DodgeViperRT10.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ08",
+        "man_num": "",
+        "model_name": "Layin' Lowrider",
+        "series": "HW Slammed",
+        "series_num": "3/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/40/HKJ08-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL04",
+        "man_num": "",
+        "model_name": "2020 Ram 1500 Rebel",
+        "series": "HW RescueTreasure Hunt",
+        "series_num": "7/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/CoastPatrolRam.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ23",
+        "man_num": "",
+        "model_name": "Skyfire",
+        "series": "HW Rescue",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/82/Skyfire2023.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ46",
+        "man_num": "",
+        "model_name": "'69 Dodge Charger 500",
+        "series": "Then and Now",
+        "series_num": "8/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/d/d0/HKJ46-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKK93",
+        "man_num": "",
+        "model_name": "Volkswagen \"Baja Bug\"",
+        "series": "Baja BlazersTreasure Hunt",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/c/c3/2023-241_HKK93_TH_Volkswagen_Baja_Bug_Red_open-1.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG65",
+        "man_num": "",
+        "model_name": "Land Rover Series II",
+        "series": "Baja BlazersNew for 2023!",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/1966LandRoverSeriesII.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKH73",
+        "man_num": "",
+        "model_name": "Classic '55 Nomad",
+        "series": "HW Wagons",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/2/2e/HKH73.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ48",
+        "man_num": "",
+        "model_name": "'69 Ford Mustang Boss 302",
+        "series": "Then and Now",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/4b/2023_%2769_Ford_Mustang_Boss_302.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HTF59",
+        "man_num": "",
+        "model_name": "'69 Ford Mustang Boss 302(2nd Color)",
+        "series": "Then and NowDollar General Exclusive",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/9/95/DollarGeneralMustangBossSilver.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ07",
+        "man_num": "",
+        "model_name": "Volvo 240 Drift Wagon",
+        "series": "HW Slammed",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/f/f4/HKJ07.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKL19",
+        "man_num": "",
+        "model_name": "Volvo 240 Drift Wagon",
+        "series": "HW SlammedSuper Treasure Hunt",
+        "series_num": "4/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/e9/20230920182859.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ09",
+        "man_num": "",
+        "model_name": "'64 Lincoln Continental",
+        "series": "HW Slammed",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/bb/HKJ09-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HTF58",
+        "man_num": "",
+        "model_name": "'64 Lincoln Continental(2nd Color)",
+        "series": "HW SlammedDollar General Exclusive",
+        "series_num": "5/5",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/DollarGeneralLincolnGreen.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ24",
+        "man_num": "",
+        "model_name": "Heavy Hitcher",
+        "series": "HW Rescue",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/ba/HKJ24-LOOSE.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ25",
+        "man_num": "",
+        "model_name": "Mad Manga",
+        "series": "HW Rescue",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/HKJ25.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKJ47",
+        "man_num": "",
+        "model_name": "Tesla Roadster",
+        "series": "Then and Now",
+        "series_num": "9/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/4/44/2023TeslaRDSTR.jpg"
+    },
+    {
+        "brand": "HotWheels",
+        "year": 2023,
+        "toy_num": "HKG70",
+        "man_num": "",
+        "model_name": "McLaren Solus GT",
+        "series": "HW ExoticsNew for 2023!",
+        "series_num": "10/10",
+        "image_url": "https://static.wikia.nocookie.net/hotwheels/images/8/88/McLarenSolusGT.jpg"
+    }
+]
