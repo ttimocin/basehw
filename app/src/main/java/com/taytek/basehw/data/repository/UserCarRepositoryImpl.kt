@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.taytek.basehw.data.local.dao.MasterDataDao
 import com.taytek.basehw.data.local.dao.UserCarDao
 import com.taytek.basehw.data.mapper.toDomain
 import com.taytek.basehw.data.mapper.toEntity
@@ -21,6 +22,7 @@ import javax.inject.Singleton
 @Singleton
 class UserCarRepositoryImpl @Inject constructor(
     private val dao: UserCarDao,
+    private val masterDataDao: MasterDataDao,
     private val firestoreDataSource: FirestoreDataSource
 ) : UserCarRepository {
 
@@ -58,31 +60,56 @@ class UserCarRepositoryImpl @Inject constructor(
     }
 
     override suspend fun syncToFirestore() {
-        val unsynced = dao.getUnsyncedCars()
-        unsynced.forEach { entity ->
-            val firestoreId = firestoreDataSource.uploadCar(entity)
-            if (!firestoreId.isNullOrBlank()) {
-                dao.updateFirestoreId(entity.id, firestoreId)
+        // Backup all local cars with their identity to ensure reinstallation safety
+        val allCars = dao.getAllCarsWithMasterList()
+        allCars.forEach { wrapper ->
+            val data = mapOf(
+                "masterDataId" to wrapper.car.masterDataId,
+                "brand" to wrapper.master.brand,
+                "modelName" to wrapper.master.modelName,
+                "year" to wrapper.master.year,
+                "isOpened" to wrapper.car.isOpened,
+                "purchaseDateMillis" to wrapper.car.purchaseDateMillis,
+                "personalNote" to wrapper.car.personalNote,
+                "storageLocation" to wrapper.car.storageLocation,
+                "isWishlist" to wrapper.car.isWishlist
+            )
+            val firestoreId = firestoreDataSource.uploadCarMap(data, wrapper.car.firestoreId)
+            if (!firestoreId.isNullOrBlank() && wrapper.car.firestoreId.isBlank()) {
+                dao.updateFirestoreId(wrapper.car.id, firestoreId)
             }
         }
     }
 
     override suspend fun syncFromFirestore() {
-        // Pull from Firestore and merge into local DB
-        val remoteCars = firestoreDataSource.fetchAllCars()
-        remoteCars.forEach { data ->
-            val entity = try {
-                com.taytek.basehw.data.local.entity.UserCarEntity(
-                    masterDataId = (data["masterDataId"] as? Long) ?: return@forEach,
+        val remoteDataList = firestoreDataSource.fetchAllCars()
+        remoteDataList.forEach { data ->
+            val brand = data["brand"] as? String ?: ""
+            val modelName = data["modelName"] as? String ?: ""
+            val year = (data["year"] as? Number)?.toInt()
+
+            // Resolve proper masterDataId for this specific installation
+            var targetMasterId = (data["masterDataId"] as? Number)?.toLong()
+            
+            // Validate if the ID still points to the same car (safety check)
+            // Or just lookup by identity to be 100% sure after re-seed
+            val resolvedId = masterDataDao.getIdByIdentity(brand, modelName, year)
+            if (resolvedId != null) {
+                targetMasterId = resolvedId
+            }
+
+            if (targetMasterId != null) {
+                val entity = com.taytek.basehw.data.local.entity.UserCarEntity(
+                    masterDataId = targetMasterId,
                     isOpened = data["isOpened"] as? Boolean ?: false,
-                    purchaseDateMillis = data["purchaseDateMillis"] as? Long,
+                    purchaseDateMillis = (data["purchaseDateMillis"] as? Number)?.toLong(),
                     personalNote = data["personalNote"] as? String ?: "",
                     storageLocation = data["storageLocation"] as? String ?: "",
                     isWishlist = data["isWishlist"] as? Boolean ?: false,
                     firestoreId = data["firestoreId"] as? String ?: ""
                 )
-            } catch (e: Exception) { null }
-            entity?.let { dao.insert(it) }
+                dao.insert(entity)
+            }
         }
     }
 

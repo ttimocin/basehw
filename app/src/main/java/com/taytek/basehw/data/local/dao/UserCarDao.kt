@@ -56,6 +56,14 @@ interface UserCarDao {
     @Query("UPDATE user_cars SET firestoreId = :firestoreId WHERE id = :id")
     suspend fun updateFirestoreId(id: Long, firestoreId: String)
 
+    @Transaction
+    @Query("SELECT * FROM user_cars")
+    suspend fun getAllCarsWithMasterList(): List<UserCarWithMaster>
+
+    @Transaction
+    @Query("SELECT * FROM user_cars WHERE firestoreId = ''")
+    suspend fun getUnsyncedWithMasterList(): List<UserCarWithMaster>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cars: List<UserCarEntity>)
 }

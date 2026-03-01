@@ -24,22 +24,13 @@ class FirestoreDataSource @Inject constructor(
         firestore.collection("users").document(it).collection("collection")
     }
 
-    suspend fun uploadCar(car: UserCarEntity): String? {
+    suspend fun uploadCarMap(data: Map<String, Any?>, existingFirestoreId: String = ""): String? {
         val ref = userCollectionRef() ?: return null
         return try {
-            val data = mapOf(
-                "masterDataId" to car.masterDataId,
-                "isOpened" to car.isOpened,
-                "purchaseDateMillis" to car.purchaseDateMillis,
-                "personalNote" to car.personalNote,
-                "storageLocation" to car.storageLocation,
-                "isWishlist" to car.isWishlist,
-                "localId" to car.id
-            )
-            val docRef = if (car.firestoreId.isBlank()) {
+            val docRef = if (existingFirestoreId.isBlank()) {
                 ref.add(data).await()
             } else {
-                ref.document(car.firestoreId).also { it.set(data).await() }
+                ref.document(existingFirestoreId).also { it.set(data).await() }
             }
             docRef.id
         } catch (e: Exception) {

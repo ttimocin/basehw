@@ -16,11 +16,11 @@ interface MasterDataDao {
     """)
     fun searchByBrand(brand: String, query: String): PagingSource<Int, MasterDataEntity>
 
-    @Query("SELECT * FROM master_data WHERE brand = :brand ORDER BY modelName ASC")
-    fun getAllByBrand(brand: String): PagingSource<Int, MasterDataEntity>
-
     @Query("SELECT * FROM master_data WHERE brand = :brand")
     suspend fun getAllByBrandList(brand: String): List<MasterDataEntity>
+
+    @Query("SELECT id FROM master_data WHERE brand = :brand AND modelName = :modelName AND year = :year LIMIT 1")
+    suspend fun getIdByIdentity(brand: String, modelName: String, year: Int?): Long?
 
     @Query("SELECT * FROM master_data ORDER BY brand ASC, modelName ASC")
     fun getAll(): PagingSource<Int, MasterDataEntity>
