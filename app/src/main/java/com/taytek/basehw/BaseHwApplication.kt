@@ -37,7 +37,7 @@ class BaseHwApplication : Application(), Configuration.Provider {
 
         WorkManager.getInstance(this).enqueueUniqueWork(
             AssetSeedWorker.WORK_NAME,
-            ExistingWorkPolicy.REPLACE,   // always re-seed if app restarts with new assets
+            ExistingWorkPolicy.KEEP,   // only run once to prevent database wipes
             request
         )
     }

@@ -19,6 +19,9 @@ interface MasterDataDao {
     @Query("SELECT * FROM master_data WHERE brand = :brand ORDER BY modelName ASC")
     fun getAllByBrand(brand: String): PagingSource<Int, MasterDataEntity>
 
+    @Query("SELECT * FROM master_data WHERE brand = :brand")
+    suspend fun getAllByBrandList(brand: String): List<MasterDataEntity>
+
     @Query("SELECT * FROM master_data ORDER BY brand ASC, modelName ASC")
     fun getAll(): PagingSource<Int, MasterDataEntity>
 
@@ -33,6 +36,9 @@ interface MasterDataDao {
 
     @Query("SELECT COUNT(*) FROM master_data")
     suspend fun getCount(): Int
+
+    @Query("SELECT * FROM master_data WHERE brand = :brand AND year = :year")
+    suspend fun getListByBrandAndYear(brand: String, year: Int): List<MasterDataEntity>
 
     @Query("SELECT COUNT(*) FROM master_data WHERE brand = :brand")
     suspend fun getCountByBrand(brand: String): Int

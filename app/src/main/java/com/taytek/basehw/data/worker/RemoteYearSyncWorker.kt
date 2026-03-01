@@ -89,12 +89,18 @@ class RemoteYearSyncWorker @AssistedInject constructor(
                         )
                     }
 
-                // Replace this year's data atomically for the specific brand
-                masterDataDao.deleteByBrandAndYear(brand.name, currentYear)
-                masterDataDao.insertAll(entities)
+                // Only insert new cars that aren't already locally seeded
+                val existingLocalCars = masterDataDao.getListByBrandAndYear(brand.name, currentYear)
+                val existingNames = existingLocalCars.map { it.modelName }.toSet()
+
+                val newEntitiesToInsert = entities.filter { !existingNames.contains(it.modelName) }
+
+                if (newEntitiesToInsert.isNotEmpty()) {
+                    masterDataDao.insertAll(newEntitiesToInsert)
+                }
                 anySuccess = true
 
-                Log.d(TAG, "✅ Remote sync done — $brand $currentYear: ${entities.size} models")
+                Log.d(TAG, "✅ Remote sync done — $brand $currentYear: F:${entities.size} - I:${newEntitiesToInsert.size}")
 
             } catch (e: Exception) {
                 Log.e(TAG, "❌ Remote sync failed for $brand: ${e.message}", e)

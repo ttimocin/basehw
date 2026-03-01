@@ -36,7 +36,7 @@ class AssetSeedWorker @AssistedInject constructor(
 
     companion object {
         const val TAG = "AssetSeedWorker"
-        const val WORK_NAME = "hw_asset_seed"
+        const val WORK_NAME = "hw_asset_seed_v2"
 
         /** Maps asset folder name → Brand enum + filename prefix */
         private val BRAND_CONFIGS = listOf(
@@ -100,11 +100,18 @@ class AssetSeedWorker @AssistedInject constructor(
                     }
                 }
 
-                // Atomic replace per brand
-                masterDataDao.deleteByBrand(brand.name)
-                masterDataDao.insertAll(entities)
-                totalInserted += entities.size
-                Log.d(TAG, "  ✅ ${brand.name}: ${entities.size} models inserted")
+                // Only insert new models to prevent wiping user's remote synced cars or breaking IDs
+                val existingLocalCars = masterDataDao.getAllByBrandList(brand.name)
+                val existingNames = existingLocalCars.map { it.modelName }.toSet()
+                
+                val newEntitiesToInsert = entities.filter { !existingNames.contains(it.modelName) }
+                
+                if (newEntitiesToInsert.isNotEmpty()) {
+                    masterDataDao.insertAll(newEntitiesToInsert)
+                }
+
+                totalInserted += newEntitiesToInsert.size
+                Log.d(TAG, "  ✅ ${brand.name}: Local JSON has ${entities.size}, Inserted ${newEntitiesToInsert.size} new models")
             }
 
             Log.d(TAG, "✅ Asset seed complete — $totalInserted models total")
