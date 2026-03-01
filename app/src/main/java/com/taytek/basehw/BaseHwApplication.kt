@@ -6,14 +6,20 @@ import androidx.work.*
 import com.taytek.basehw.data.worker.AssetSeedWorker
 import com.taytek.basehw.data.worker.RemoteYearSyncWorker
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltAndroidApp
 class BaseHwApplication : Application(), Configuration.Provider {
 
+    private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
+
+    @Inject
+    lateinit var remoteConfig: com.taytek.basehw.data.remote.firebase.RemoteConfigDataSource
 
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder()
@@ -22,6 +28,12 @@ class BaseHwApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        
+        // Fetch latest configuration at startup
+        applicationScope.launch {
+            remoteConfig.fetchAndActivate()
+        }
+        
         scheduleAssetSeed()
         scheduleRemoteYearSync()
     }

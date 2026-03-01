@@ -4,4 +4,24 @@
         <key>sync_base_url</key>
         <value>https://raw.githubusercontent.com/ttimocin/basehw-database/main/database</value>
     </entry>
+    <entry>
+        <key>sync_interval_days</key>
+        <value>7</value>
+    </entry>
+    <entry>
+        <key>min_version_code</key>
+        <value>1</value>
+    </entry>
+    <entry>
+        <key>latest_version_code</key>
+        <value>1</value>
+    </entry>
+    <entry>
+        <key>latest_version_name</key>
+        <value>1.0.1</value>
+    </entry>
+    <entry>
+        <key>update_url</key>
+        <value>https://play.google.com/store/apps/details?id=com.taytek.basehw</value>
+    </entry>
 </defaultsMap>
