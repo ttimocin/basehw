@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import com.taytek.basehw.BuildConfig
 
 /**
  * Fetches the brand-specific update JSON from a remote URL (e.g. GitHub raw).
@@ -44,7 +45,7 @@ class RemoteYearSyncWorker @AssistedInject constructor(
         const val WORK_NAME = "hw_remote_year_sync"
 
         // ── CONFIGURE THIS ───────────────────────────────────────────────────
-        const val REMOTE_BASE_URL = "https://raw.githubusercontent.com/ttimocin/basehw/main/database"
+        const val REMOTE_BASE_URL = "https://raw.githubusercontent.com/ttimocin/basehw-database/main"
         // ─────────────────────────────────────────────────────────────────────
     }
 
@@ -58,10 +59,16 @@ class RemoteYearSyncWorker @AssistedInject constructor(
             Log.d(TAG, "▶ Fetching $url")
 
             try {
-                val request = Request.Builder()
+                val requestBuilder = Request.Builder()
                     .url(url)
                     .header("Cache-Control", "no-cache")
-                    .build()
+
+                val token = BuildConfig.GITHUB_DATABASE_TOKEN
+                if (token.isNotEmpty()) {
+                    requestBuilder.header("Authorization", "token $token")
+                }
+
+                val request = requestBuilder.build()
 
                 val responseBody = okHttpClient.newCall(request).execute().use { response ->
                     if (!response.isSuccessful) {
