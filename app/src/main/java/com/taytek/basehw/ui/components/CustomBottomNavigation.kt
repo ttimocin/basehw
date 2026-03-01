@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.outlined.BarChart
 import androidx.compose.material.icons.outlined.Collections
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
@@ -58,7 +59,7 @@ fun CustomBottomNavigation(
                 )
                 NavigationItem(
                     icon = Icons.Outlined.Search,
-                    label = "Search",
+                    label = "Wanted",
                     isSelected = selectedTab == 1,
                     onClick = { onTabSelected(1) }
                 )
@@ -68,8 +69,8 @@ fun CustomBottomNavigation(
                 
                 // Right Side Icons
                 NavigationItem(
-                    icon = Icons.Outlined.Collections,
-                    label = "Collections",
+                    icon = Icons.Outlined.BarChart,
+                    label = "Stats",
                     isSelected = selectedTab == 2,
                     onClick = { onTabSelected(2) }
                 )

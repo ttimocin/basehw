@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.taytek.basehw.ui.components.CustomBottomNavigation
 import com.taytek.basehw.ui.screens.collection.CollectionScreen
+import com.taytek.basehw.ui.screens.statistics.StatisticsScreen
 import com.taytek.basehw.ui.theme.AppBackground
 import com.taytek.basehw.ui.theme.AppTextSecondary
 
@@ -54,11 +55,11 @@ fun MainScreen(
                         onSettingsClick = onSettingsClick
                     )
                 }
-                1 -> { // Search -> Placeholder
-                    SearchPlaceholder()
+                1 -> { // Wanted -> Placeholder
+                    WantedPlaceholder()
                 }
-                2 -> { // Collections -> Placeholder
-                    CollectionsPlaceholder()
+                2 -> { // Stats
+                    StatisticsScreen()
                 }
                 3 -> { // Profile 
                     com.taytek.basehw.ui.screens.profile.ProfileScreen()
@@ -69,16 +70,9 @@ fun MainScreen(
 }
 
 @Composable
-fun SearchPlaceholder() {
+fun WantedPlaceholder() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Search Coming Soon", color = AppTextSecondary)
-    }
-}
-
-@Composable
-fun CollectionsPlaceholder() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Collections Coming Soon", color = AppTextSecondary)
+        Text("Wanted List Coming Soon", color = AppTextSecondary)
     }
 }
 
