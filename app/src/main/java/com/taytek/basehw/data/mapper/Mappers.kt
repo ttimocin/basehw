@@ -51,15 +51,15 @@ fun UserCarEntity.toDomain(masterData: MasterData?): UserCar = UserCar(
 )
 
 fun UserCarWithMaster.toDomain(): UserCar = UserCar(
-    id = userCarEntity.id,
-    masterDataId = userCarEntity.masterDataId,
-    masterData = masterDataEntity?.toDomain(),
-    isOpened = userCarEntity.isOpened,
-    purchaseDate = userCarEntity.purchaseDateMillis?.let { Date(it) },
-    personalNote = userCarEntity.personalNote,
-    storageLocation = userCarEntity.storageLocation,
-    isWishlist = userCarEntity.isWishlist,
-    firestoreId = userCarEntity.firestoreId
+    id = car.id,
+    masterDataId = car.masterDataId,
+    masterData = master?.toDomain(),
+    isOpened = car.isOpened,
+    purchaseDate = car.purchaseDateMillis?.let { Date(it) },
+    personalNote = car.personalNote,
+    storageLocation = car.storageLocation,
+    isWishlist = car.isWishlist,
+    firestoreId = car.firestoreId
 )
 
 fun UserCar.toEntity(): UserCarEntity = UserCarEntity(

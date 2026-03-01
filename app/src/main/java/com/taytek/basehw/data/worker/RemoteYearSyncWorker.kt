@@ -18,6 +18,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import com.taytek.basehw.BuildConfig
+import com.taytek.basehw.data.remote.firebase.RemoteConfigDataSource
 
 /**
  * Fetches the brand-specific update JSON from a remote URL (e.g. GitHub raw).
@@ -37,24 +38,29 @@ class RemoteYearSyncWorker @AssistedInject constructor(
     @Assisted workerParams: WorkerParameters,
     private val masterDataDao: MasterDataDao,
     private val okHttpClient: OkHttpClient,
-    private val gson: Gson
+    private val gson: Gson,
+    private val remoteConfig: RemoteConfigDataSource
 ) : CoroutineWorker(context, workerParams) {
 
     companion object {
         const val TAG = "RemoteYearSync"
         const val WORK_NAME = "hw_remote_year_sync"
 
-        // ── CONFIGURE THIS ───────────────────────────────────────────────────
-        const val REMOTE_BASE_URL = "https://raw.githubusercontent.com/ttimocin/basehw-database/main/database"
+        // ── DEFAULT FALLBACK URL ──────────────────────────────────────────────
+        const val DEFAULT_REMOTE_BASE_URL = "https://raw.githubusercontent.com/ttimocin/basehw-database/main/database"
         // ─────────────────────────────────────────────────────────────────────
     }
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         var anySuccess = false
+        
+        // Refresh remote config before starting sync
+        remoteConfig.fetchAndActivate()
+        val dynamicBaseUrl = remoteConfig.getSyncBaseUrl().ifBlank { DEFAULT_REMOTE_BASE_URL }
 
         for (brand in Brand.values()) {
             val brandFolder = brand.name.lowercase().replace("_", "")
-            val url = "$REMOTE_BASE_URL/$brandFolder/update.json"
+            val url = "$dynamicBaseUrl/$brandFolder/update.json"
 
             Log.d(TAG, "▶ Fetching $url")
 

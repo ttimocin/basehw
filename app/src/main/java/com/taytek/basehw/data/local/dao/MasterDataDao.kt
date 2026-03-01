@@ -19,6 +19,9 @@ interface MasterDataDao {
     @Query("SELECT * FROM master_data WHERE brand = :brand")
     suspend fun getAllByBrandList(brand: String): List<MasterDataEntity>
 
+    @Query("SELECT * FROM master_data WHERE brand = :brand ORDER BY modelName ASC")
+    fun getAllByBrand(brand: String): PagingSource<Int, MasterDataEntity>
+
     @Query("SELECT id FROM master_data WHERE brand = :brand AND modelName = :modelName AND year = :year LIMIT 1")
     suspend fun getIdByIdentity(brand: String, modelName: String, year: Int?): Long?
 

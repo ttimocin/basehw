@@ -26,4 +26,10 @@ object FirebaseModule {
                 .build()
         }
     }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseRemoteConfig(): com.google.firebase.remoteconfig.FirebaseRemoteConfig {
+        return com.google.firebase.remoteconfig.FirebaseRemoteConfig.getInstance()
+    }
 }

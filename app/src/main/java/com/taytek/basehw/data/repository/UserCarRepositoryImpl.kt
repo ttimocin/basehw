@@ -63,11 +63,11 @@ class UserCarRepositoryImpl @Inject constructor(
         // Backup all local cars with their identity to ensure reinstallation safety
         val allCars = dao.getAllCarsWithMasterList()
         allCars.forEach { wrapper ->
-            val data = mapOf(
+            val data: Map<String, Any?> = mapOf(
                 "masterDataId" to wrapper.car.masterDataId,
-                "brand" to wrapper.master.brand,
-                "modelName" to wrapper.master.modelName,
-                "year" to wrapper.master.year,
+                "brand" to wrapper.master?.brand,
+                "modelName" to wrapper.master?.modelName,
+                "year" to wrapper.master?.year,
                 "isOpened" to wrapper.car.isOpened,
                 "purchaseDateMillis" to wrapper.car.purchaseDateMillis,
                 "personalNote" to wrapper.car.personalNote,

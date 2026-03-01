@@ -4,10 +4,10 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 data class UserCarWithMaster(
-    @Embedded val userCarEntity: UserCarEntity,
+    @Embedded val car: UserCarEntity,
     @Relation(
         parentColumn = "masterDataId",
         entityColumn = "id"
     )
-    val masterDataEntity: MasterDataEntity?
+    val master: MasterDataEntity?
 )
