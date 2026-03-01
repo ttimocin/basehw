@@ -17,17 +17,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.util.Calendar
 
 /**
- * Fetches the CURRENT YEAR's Hot Wheels JSON from a remote URL (e.g. GitHub raw).
+ * Fetches the brand-specific update JSON from a remote URL (e.g. GitHub raw).
  * Runs once immediately, then repeats weekly via PeriodicWorkRequest.
  *
  * New cars added to the remote JSON appear in the app within a week —
  * NO app update required.
  *
  * Remote URL format:
- *   https://raw.githubusercontent.com/{USER}/{REPO}/main/{YEAR}.json
+ *   https://raw.githubusercontent.com/{USER}/{REPO}/main/database/{brand}/update.json
  *
  * Configure REMOTE_BASE_URL below to point to your GitHub repo.
  */
@@ -50,12 +49,11 @@ class RemoteYearSyncWorker @AssistedInject constructor(
     }
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         var anySuccess = false
 
         for (brand in Brand.values()) {
             val brandFolder = brand.name.lowercase().replace("_", "")
-            val url = "$REMOTE_BASE_URL/$brandFolder/$currentYear.json"
+            val url = "$REMOTE_BASE_URL/$brandFolder/update.json"
 
             Log.d(TAG, "▶ Fetching $url")
 
@@ -83,14 +81,14 @@ class RemoteYearSyncWorker @AssistedInject constructor(
                             brand     = brand.name,
                             modelName = car.modelName,
                             series    = car.series,
-                            year      = currentYear,
+                            year      = car.year?.replace(Regex("[^0-9]"), "")?.toIntOrNull(),
                             imageUrl  = car.imageUrl,
                             scale     = "1:64"
                         )
                     }
 
-                // Only insert new cars that aren't already locally seeded
-                val existingLocalCars = masterDataDao.getListByBrandAndYear(brand.name, currentYear)
+                // We fetch all local items to only insert the NEW ones from update.json
+                val existingLocalCars = masterDataDao.getAllByBrandList(brand.name)
                 val existingNames = existingLocalCars.map { it.modelName }.toSet()
 
                 val newEntitiesToInsert = entities.filter { !existingNames.contains(it.modelName) }
@@ -100,7 +98,7 @@ class RemoteYearSyncWorker @AssistedInject constructor(
                 }
                 anySuccess = true
 
-                Log.d(TAG, "✅ Remote sync done — $brand $currentYear: F:${entities.size} - I:${newEntitiesToInsert.size}")
+                Log.d(TAG, "✅ Remote sync done — $brand update.json: F:${entities.size} - I:${newEntitiesToInsert.size}")
 
             } catch (e: Exception) {
                 Log.e(TAG, "❌ Remote sync failed for $brand: ${e.message}", e)
