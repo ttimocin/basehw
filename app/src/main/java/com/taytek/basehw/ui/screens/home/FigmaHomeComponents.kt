@@ -70,7 +70,13 @@ fun FigmaHomeHeader(
         Box(
             modifier = Modifier
                 .size(48.dp)
-                .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(12.dp))
+                .shadow(elevation = 2.dp, shape = RoundedCornerShape(12.dp))
+                .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(12.dp))
+                .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                    shape = RoundedCornerShape(12.dp)
+                )
                 .clickable { onProfileClick() },
             contentAlignment = Alignment.Center
         ) {
@@ -116,8 +122,9 @@ fun FigmaSearchBar(
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 8.dp)
             .height(56.dp)
-            .border(1.dp, AppPrimary, RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(16.dp)),
+            .shadow(elevation = 2.dp, shape = RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp))
+            .border(1.dp, AppPrimary, RoundedCornerShape(16.dp)),
         verticalAlignment = Alignment.CenterVertically
     ) {
         BasicTextField(
