@@ -37,8 +37,8 @@
 - **Backend:** Firebase (Auth/Firestore), Supabase (Postgres/Storage).
 
 ## 📜 Legal
-- 🔒 **[Privacy Policy](docs/privacy.html)**
-- 📝 **[Terms of Use](docs/terms.html)**
+- 🔒 **[Privacy Policy](https://ttimocin.github.io/basehw/privacy.html)**
+- 📝 **[Terms of Use](https://ttimocin.github.io/basehw/terms.html)**
 
 ---
 
