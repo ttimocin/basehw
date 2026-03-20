@@ -21,3 +21,6 @@ test_*.json
 test_*.js
 *.png
 repo_files.txt
+
+# Databases & Sensitive Assets
+app/src/main/assets/**/*.json
