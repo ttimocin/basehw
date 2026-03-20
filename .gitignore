@@ -16,3 +16,8 @@ local.properties
 google-services.json
 active_remote_config.json
 *.jks
+tmp_*.json
+test_*.json
+test_*.js
+*.png
+repo_files.txt
