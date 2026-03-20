@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
+        <key>sync_provider</key>
+        <value>github</value>
+    </entry>
+    <entry>
         <key>sync_base_url</key>
         <value>https://raw.githubusercontent.com/ttimocin/basehw-database/main/database</value>
     </entry>
     <entry>
+        <key>sync_edge_url</key>
+        <value></value>
+    </entry>
+    <entry>
+        <key>sync_edge_api_key</key>
+        <value></value>
+    </entry>
+    <entry>
         <key>sync_interval_days</key>
         <value>7</value>
+    </entry>
+    <entry>
+        <key>photo_backup_enabled</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>photo_backup_supabase_url</key>
+        <value></value>
+    </entry>
+    <entry>
+        <key>photo_backup_api_key</key>
+        <value></value>
+    </entry>
+    <entry>
+        <key>photo_backup_bucket</key>
+        <value>user-car-photos</value>
     </entry>
     <entry>
         <key>min_version_name</key>

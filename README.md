@@ -39,6 +39,11 @@ The application uses `RemoteYearSyncWorker.kt` to pull new models automatically.
 2. Add new JSON entries.
 3. Once pushed, the app will automatically fetch them in the background (weekly) or upon manual `Sync` from the settings.
 
+### Supabase Incremental Sync (Optional)
+For Postgres + Edge Function based incremental sync (`since` cursor model), see:
+
+- `docs/supabase-postgres-edge-setup.md`
+
 ## 🤝 Contribution
 Contributions, issues, and feature requests are welcome!
 

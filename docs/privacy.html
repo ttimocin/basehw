@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - BaseHW</title>
+    <style>
+        :root {
+            --primary: #2196F3;
+            --text-main: #333;
+            --text-sub: #666;
+            --bg: #f8f9fa;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: #eee;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        h1 { font-size: 2.2rem; color: #000; margin-bottom: 10px; }
+        h2 { font-size: 1.5rem; color: #000; margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .update-date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 30px; display: block; }
+        p { margin-bottom: 20px; white-space: pre-line; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            .container { margin: 20px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="showLang('en')">English</button>
+            <button class="lang-btn" onclick="showLang('tr')">Türkçe</button>
+            <button class="lang-btn" onclick="showLang('de')">Deutsch</button>
+        </div>
+
+        <!-- English -->
+        <div id="content-en" class="content-section active">
+            <h1>Privacy Policy</h1>
+            <span class="update-date">Last updated: March 2026</span>
+            <p>This privacy policy explains how the BaseHW application collects, uses, and protects your personal data.</p>
+            
+            <h2>1. Data We Collect</h2>
+            <p>The app may collect the following data:
+            • Car photos you optionally upload or select from the gallery (stored on Supabase Storage)
+            • When signing in with Google: your email address and profile picture (via Firebase Authentication)
+            • Model car information you add to your collection (brand, series, year, condition, notes)
+            • Your device's camera (used only when you want to take a photo)
+            • Your Wanted list</p>
+
+            <h2>2. How We Use Your Data</h2>
+            <p>Collected data is used only for:
+            • Cloud backup of your collection and synchronization across devices
+            • Personalizing app features
+            
+            Your data is never shared with, sold to, or used by third parties for advertising purposes.</p>
+
+            <h2>3. Google Firebase and Supabase Services</h2>
+            <p>The app uses Google Firebase and Supabase:
+            • Firebase Authentication: Secure sign-in with Google
+            • Firebase Firestore: Cloud storage of your collection and wanted list.
+            • Supabase Storage: Photos you upload are stored in our secure cloud storage.
+            
+            Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
+            Supabase Privacy Policy: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
+
+            <h2>4. Device Permissions</h2>
+            <p>The app requests Camera (CAMERA) permission to take photos and Gallery/Media access to select existing photos. Photos are stored in your device's internal storage. If you are signed in, this data is securely synchronized to our cloud systems (Firebase and Supabase) for backup purposes.</p>
+
+            <h2>5. Data Security</h2>
+            <p>Your data is protected by industry-standard security infrastructure. All data uploaded to the cloud is accessible only through your Google account authentication.</p>
+
+            <h2>6. Data Deletion</h2>
+            <p>You can delete your account and all associated data instantly using the "Delete Account" button on the "Profile" page within the app. Alternatively, you can send an email to <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a> for your deletion request.</p>
+
+            <h2>7. Contact</h2>
+            <p>For privacy-related questions: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+        </div>
+
+        <!-- Turkish -->
+        <div id="content-tr" class="content-section">
+            <h1>Gizlilik Politikası</h1>
+            <span class="update-date">Son güncelleme: Mart 2026</span>
+            <p>Bu gizlilik politikası, BaseHW uygulamasının kişisel verilerinizi nasıl topladığını, kullandığını ve koruduğunu açıklamaktadır.</p>
+
+            <h2>1. Toplanan Veriler</h2>
+            <p>Uygulama aşağıdaki verileri toplayabilir:
+            • İsteğe bağlı olarak yüklediğiniz veya galeriden seçtiğiniz araba fotoğrafları (Supabase Storage'a yüklenir)
+            • Google Hesabı ile girişte: e-posta adresiniz ve profil görseliniz (Firebase Authentication aracılığıyla)
+            • Koleksiyonunuza eklediğiniz model araç bilgileri (marka, seri, yıl, durum, notlar)
+            • Cihazınızın kamerası (yalnızca fotoğraf çekmek istediğinizde kullanılır)
+            • Arananlar listeniz</p>
+
+            <h2>2. Verilerin Kullanımı</h2>
+            <p>Toplanan veriler yalnızca şu amaçlarla kullanılır:
+            • Koleksiyonunuzun bulut yedeklenmesi ve farklı cihazlar arasında senkronizasyonu
+            • Uygulama özelliklerinin kişiselleştirilmesi
+            
+            Verileriniz hiçbir şekilde üçüncü taraflarla paylaşılmaz, satılmaz veya reklam amacıyla kullanılmaz.</p>
+
+            <h2>3. Google Firebase ve Supabase Hizmetleri</h2>
+            <p>Uygulama Google Firebase ve Supabase platformlarını kullanmaktadır:
+            • Firebase Authentication: Google ile güvenli oturum açma
+            • Firebase Firestore: Koleksiyon ve arananlar verilerinizin bulut depolaması.
+            • Supabase Storage: Yüklediğiniz fotoğraflar güvenli bulut depolama alanımızda saklanır.
+            
+            Firebase Gizlilik Politikası: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
+            Supabase Gizlilik Politikası: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
+
+            <h2>4. Cihaz İzinleri</h2>
+            <p>Uygulama, fotoğraflarınızı çekebilmek için Kamera (CAMERA) izni ve mevcut fotoğrafları seçebilmek için Galeri/Medya erişimi talep eder. Fotoğraflar cihazınızın dahili depolama alanında saklanır. Eğer oturum açmışsanız, bu veriler bulut yedekleme amacıyla güvenli bir şekilde bulut tabanlı sistemlerimize (Firebase ve Supabase) senkronize edilir.</p>
+
+            <h2>5. Veri Güvenliği</h2>
+            <p>Verileriniz endüstri standardı güvenlik altyapısıyla korunmaktadır. Buluta yüklenen tüm verilere yalnızca Google hesabınızla yetkilendirilmiş şekilde erişilebilmektedir.</p>
+
+            <h2>6. Veri Silme</h2>
+            <p>Hesabınızı ve tüm verilerinizi uygulama içindeki "Profil" sayfasından "Hesabımı Sil" butonunu kullanarak anında silebilirsiniz. Alternatif olarak, silme talebiniz için <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a> adresine e-posta gönderebilirsiniz.</p>
+
+            <h2>7. İletişim</h2>
+            <p>Gizlilikle ilgili sorularınız için: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+        </div>
+
+        <!-- German -->
+        <div id="content-de" class="content-section">
+            <h1>Datenschutzrichtlinie</h1>
+            <span class="update-date">Letzte Aktualisierung: März 2026</span>
+            <p>Diese Datenschutzrichtlinie erläutert, wie die BaseHW-App Ihre personenbezogenen Daten erfasst, verwendet und schützt.</p>
+
+            <h2>1. Erfasste Daten</h2>
+            <p>Die App kann folgende Daten erfassen:
+            • Fotos von Autos, die Sie optional hochladen oder aus der Galerie auswählen (auf Supabase Storage gespeichert)
+            • Bei der Google-Anmeldung: Ihre E-Mail-Adresse und Ihr Profilbild (über Firebase Authentication)
+            • Modellauto-Informationen, die Sie Ihrer Sammlung hinzufügen (Marke, Serie, Jahr, Zustand, Notizen)
+            • Kamerazugriff Ihres Geräts (wird nur verwendet, wenn Sie ein Foto aufnehmen möchten)
+            • Ihre Wunschliste</p>
+
+            <h2>2. Verwendung Ihrer Daten</h2>
+            <p>Die erfassten Daten werden nur verwendet für:
+            • Cloud-Backup Ihrer Sammlung und geräteübergreifende Synchronisierung
+            • Personalisierung der App-Funktionen
+            
+            Ihre Daten werden niemals an Dritte weitergegeben, verkauft oder für Werbezwecke verwendet.</p>
+
+            <h2>3. Google Firebase- und Supabase-Dienste</h2>
+            <p>Die App verwendet Google Firebase und Supabase:
+            • Firebase Authentication: sichere Anmeldung mit Google
+            • Firebase Firestore: Cloud-Speicherung Ihrer Sammlung und Wunschliste.
+            • Supabase Storage: Von Ihnen hochgeladene Fotos werden in unserem sicheren Cloud-Speicher gespeichert.
+            
+            Firebase-Datenschutzrichtlinie: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
+            Supabase-Datenschutzrichtlinie: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
+
+            <h2>4. Gerätezugriff</h2>
+            <p>Die App benötigt Kamerazugriff (CAMERA), um Fotos aufzunehmen, und Galerie-/Medienzugriff, um vorhandene Fotos auszuwählen. Fotos werden im internen Speicher Ihres Geräts gespeichert. Wenn Sie angemeldet sind, werden diese Daten zu Sicherungszwecken sicher mit unseren Cloud-Systemen (Firebase und Supabase) synchronisiert.</p>
+
+            <h2>5. Datensicherheit</h2>
+            <p>Ihre Daten sind durch branchenübliche Sicherheitsinfrastrukturen geschützt. Alle in die Cloud hochgeladenen Daten sind nur über Ihre Google-Konto-Authentifizierung zugänglich.</p>
+
+            <h2>6. Datenlöschung</h2>
+            <p>Sie können Ihr Konto und alle zugehörigen Daten sofort über die Schaltfläche "Konto löschen" auf der Seite "Profil" in der App löschen. Alternativ können Sie eine E-Mail an <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a> senden, um Ihren Löschantrag zu stellen.</p>
+
+            <h2>7. Kontakt</h2>
+            <p>Bei Fragen: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showLang(lang) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('content-' + lang).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

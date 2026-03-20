@@ -11,5 +11,10 @@ data class MasterData(
     val imageUrl: String = "",
     val scale: String = "1:64",
     val toyNum: String = "",      // e.g. "26004"
-    val colNum: String = ""       // e.g. "001"
+    val colNum: String = "",       // e.g. "001"
+    val isPremium: Boolean = false,
+    val dataSource: String = "",
+    val caseNum: String = "",
+    val feature: String? = null
 )
+

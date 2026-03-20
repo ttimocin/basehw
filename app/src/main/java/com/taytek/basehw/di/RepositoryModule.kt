@@ -4,6 +4,7 @@ import com.taytek.basehw.data.repository.MasterDataRepositoryImpl
 import com.taytek.basehw.data.repository.UserCarRepositoryImpl
 import com.taytek.basehw.domain.repository.MasterDataRepository
 import com.taytek.basehw.domain.repository.UserCarRepository
+import com.taytek.basehw.domain.repository.CustomCollectionRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -31,4 +32,16 @@ abstract class RepositoryModule {
     abstract fun bindAuthRepository(
         impl: com.taytek.basehw.data.remote.firebase.AuthRepositoryImpl
     ): com.taytek.basehw.domain.repository.AuthRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCustomCollectionRepository(
+        impl: com.taytek.basehw.data.repository.CustomCollectionRepositoryImpl
+    ): CustomCollectionRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCurrencyRepository(
+        impl: com.taytek.basehw.data.repository.CurrencyRepositoryImpl
+    ): com.taytek.basehw.domain.repository.CurrencyRepository
 }

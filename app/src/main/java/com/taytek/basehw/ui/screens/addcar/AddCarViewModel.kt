@@ -8,6 +8,7 @@ import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.MasterData
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.domain.usecase.AddCarToCollectionUseCase
+import com.taytek.basehw.domain.usecase.GetMasterDataByIdUseCase
 import com.taytek.basehw.domain.usecase.SearchMasterDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,23 +23,71 @@ data class AddCarUiState(
     val selectedBrand: Brand = Brand.HOT_WHEELS,
     val searchQuery: String = "",
     val selectedMasterData: MasterData? = null,
+    val isManualMode: Boolean = false,
+    val manualModelName: String = "",
+    val manualBrand: Brand = Brand.HOT_WHEELS,
+    val manualYear: String = "",
+    val manualSeries: String = "",
+    val manualSeriesNum: String = "",
+    val manualScale: String = "1:64",
+    val manualIsPremium: Boolean = false,
     val isOpened: Boolean = false,
-    val purchaseDate: Date? = null,
+    val purchaseDate: Date? = Date(),
     val personalNote: String = "",
     val storageLocation: String = "",
+    val userPhotoUrl: String? = null,
+    val purchasePrice: String = "",
+    val estimatedValue: String = "",
+    val selectedCurrency: com.taytek.basehw.domain.model.AppCurrency? = null,
     val isSaving: Boolean = false,
     val saveSuccess: Boolean = false,
+    val isPhotoOptionMenuVisible: Boolean = false,
+    val isUrlInputDialogVisible: Boolean = false,
+    val ocrHintMessage: String? = null,
     val error: String? = null
 )
 
 @HiltViewModel
 class AddCarViewModel @Inject constructor(
     private val searchMasterDataUseCase: SearchMasterDataUseCase,
-    private val addCarToCollectionUseCase: AddCarToCollectionUseCase
+    private val getMasterDataByIdUseCase: GetMasterDataByIdUseCase,
+    private val addCarToCollectionUseCase: AddCarToCollectionUseCase,
+    private val userCarRepository: com.taytek.basehw.domain.repository.UserCarRepository,
+    private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager,
+    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository
 ) : ViewModel() {
+
+    private val _rates = currencyRepository.getRates()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    private val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
+
+    val conversionRate: StateFlow<Double> = combine(_rates, currencyCode) { rates, code ->
+        val effectiveCode = if (code.isBlank()) "EUR" else code
+        if (effectiveCode == "EUR") 1.0
+        else rates?.rates?.get(effectiveCode) ?: 1.0
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 1.0)
+
+    val currencySymbol: StateFlow<String> = currencyCode
+        .map { com.taytek.basehw.domain.model.AppCurrency.fromCode(it).symbol }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "€")
 
     private val _uiState = MutableStateFlow(AddCarUiState())
     val uiState: StateFlow<AddCarUiState> = _uiState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            currencyRepository.refreshRates()
+        }
+        
+        // Initialize selected currency from global settings
+        viewModelScope.launch {
+            appSettingsManager.currencyFlow.take(1).collect { code ->
+                _uiState.update { it.copy(selectedCurrency = com.taytek.basehw.domain.model.AppCurrency.fromCode(code)) }
+            }
+        }
+    }
 
     // Trigger for search: brand + query pair
     private val _searchTrigger = MutableStateFlow(Pair(Brand.HOT_WHEELS, ""))
@@ -53,13 +102,73 @@ class AddCarViewModel @Inject constructor(
         .cachedIn(viewModelScope)
 
     fun onBrandSelected(brand: Brand) {
-        _uiState.update { it.copy(selectedBrand = brand, selectedMasterData = null, searchQuery = "") }
+        _uiState.update { it.copy(selectedBrand = brand, selectedMasterData = null, searchQuery = "", ocrHintMessage = null) }
         _searchTrigger.value = Pair(brand, "")
     }
 
+    fun onCurrencySelected(currency: com.taytek.basehw.domain.model.AppCurrency) {
+        _uiState.update { it.copy(selectedCurrency = currency) }
+    }
+
     fun onSearchQueryChanged(query: String) {
-        _uiState.update { it.copy(searchQuery = query, selectedMasterData = null) }
+        _uiState.update { it.copy(searchQuery = query, selectedMasterData = null, ocrHintMessage = null) }
         _searchTrigger.value = Pair(_uiState.value.selectedBrand, query)
+    }
+
+    fun applyDetectedModelQuery(query: String) {
+        val normalized = query.trim()
+        if (normalized.isBlank()) return
+        _uiState.update {
+            it.copy(
+                isManualMode = false,
+                selectedMasterData = null,
+                searchQuery = normalized,
+                ocrHintMessage = null
+            )
+        }
+        _searchTrigger.value = Pair(_uiState.value.selectedBrand, normalized)
+    }
+
+    fun applyDetectedCameraRecognition(query: String?, detectedBrand: Brand?) {
+        val normalized = query?.trim().orEmpty()
+        if (normalized.isBlank() && detectedBrand == null) {
+            _uiState.update {
+                it.copy(
+                    ocrHintMessage = "Kutusuz arac veya okunabilir model metni bulunamadi. Lutfen modeli listeden secin ya da manuel girin."
+                )
+            }
+            return
+        }
+
+        val brandToUse = detectedBrand ?: _uiState.value.selectedBrand
+        _uiState.update {
+            it.copy(
+                selectedBrand = brandToUse,
+                isManualMode = false,
+                selectedMasterData = null,
+                searchQuery = normalized,
+                ocrHintMessage = null
+            )
+        }
+        _searchTrigger.value = Pair(brandToUse, normalized)
+    }
+
+    fun clearOcrHintMessage() {
+        _uiState.update { it.copy(ocrHintMessage = null) }
+    }
+
+    fun loadMasterDataById(id: Long) {
+        viewModelScope.launch {
+            getMasterDataByIdUseCase(id)?.let { master ->
+                _uiState.update {
+                    it.copy(
+                        selectedMasterData = master,
+                        searchQuery = master.modelName,
+                        selectedBrand = master.brand
+                    )
+                }
+            }
+        }
     }
 
     fun onMasterDataSelected(masterData: MasterData) {
@@ -87,6 +196,58 @@ class AddCarViewModel @Inject constructor(
         _uiState.update { it.copy(storageLocation = location) }
     }
 
+    fun onUserPhotoUrlChanged(url: String?) {
+        _uiState.update { it.copy(userPhotoUrl = url, isPhotoOptionMenuVisible = false, isUrlInputDialogVisible = false) }
+    }
+
+    fun togglePhotoOptionMenu(show: Boolean) {
+        _uiState.update { it.copy(isPhotoOptionMenuVisible = show) }
+    }
+
+    fun toggleUrlInputDialog(show: Boolean) {
+        _uiState.update { it.copy(isUrlInputDialogVisible = show, isPhotoOptionMenuVisible = false) }
+    }
+
+    fun onPurchasePriceChanged(price: String) {
+        _uiState.update { it.copy(purchasePrice = price) }
+    }
+
+    fun onEstimatedValueChanged(value: String) {
+        _uiState.update { it.copy(estimatedValue = value) }
+    }
+
+    fun toggleManualMode() {
+        _uiState.update { it.copy(isManualMode = !it.isManualMode, selectedMasterData = null) }
+    }
+
+    fun onManualModelNameChanged(name: String) {
+        _uiState.update { it.copy(manualModelName = name) }
+    }
+
+    fun onManualBrandChanged(brand: Brand) {
+        _uiState.update { it.copy(manualBrand = brand) }
+    }
+
+    fun onManualYearChanged(year: String) {
+        _uiState.update { it.copy(manualYear = year) }
+    }
+
+    fun onManualSeriesChanged(series: String) {
+        _uiState.update { it.copy(manualSeries = series) }
+    }
+
+    fun onManualSeriesNumChanged(num: String) {
+        _uiState.update { it.copy(manualSeriesNum = num) }
+    }
+
+    fun onManualScaleChanged(scale: String) {
+        _uiState.update { it.copy(manualScale = scale) }
+    }
+
+    fun onManualIsPremiumChanged(isPremium: Boolean) {
+        _uiState.update { it.copy(manualIsPremium = isPremium) }
+    }
+
     fun addCarToCollection() {
         saveCarToDatabase(isWishlist = false)
     }
@@ -95,23 +256,98 @@ class AddCarViewModel @Inject constructor(
         saveCarToDatabase(isWishlist = true)
     }
 
-    private fun saveCarToDatabase(isWishlist: Boolean) {
-        val state = _uiState.value
-        val masterData = state.selectedMasterData ?: return
-
+    fun addSeriesToWishlist() {
+        val master = _uiState.value.selectedMasterData ?: return
+        if (master.series.isBlank()) return
         viewModelScope.launch {
             _uiState.update { it.copy(isSaving = true, error = null) }
             try {
-                addCarToCollectionUseCase(
+                userCarRepository.addSeriesToWishlist(master.brand, master.series, master.year)
+                _uiState.update { it.copy(isSaving = false, saveSuccess = true) }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(isSaving = false, error = e.message) }
+            }
+        }
+    }
+
+    private fun parsePrice(price: String): Double? {
+        if (price.isBlank()) return null
+        return try {
+            // Normalize: replace comma with dot
+            price.replace(",", ".").toDoubleOrNull()
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun saveCarToDatabase(isWishlist: Boolean) {
+        val state = _uiState.value
+        if (!state.isManualMode && state.selectedMasterData == null) return
+        if (state.isManualMode && state.manualModelName.isBlank()) {
+            _uiState.update { it.copy(error = "Model ismi boş bırakılamaz.") }
+            return
+        }
+        
+        viewModelScope.launch {
+            _uiState.update { it.copy(isSaving = true, error = null) }
+            try {
+                // Wait for rates if they are not yet loaded
+                val rates = if (_rates.value == null) {
+                    currencyRepository.getRates().filterNotNull().first()
+                } else {
+                    _rates.value!!
+                }
+
+                val selectedCode = state.selectedCurrency?.code ?: "EUR"
+                // Rate is InputCurrency / EUR. (e.g. TRY/EUR is ~35)
+                val rate = if (selectedCode == "EUR") 1.0 else rates.rates[selectedCode] ?: 1.0
+                
+                // EUR = Input / Rate
+                val storedPurchasePrice = parsePrice(state.purchasePrice)?.let { it / rate }
+                val storedEstimatedValue = parsePrice(state.estimatedValue)?.let { it / rate }
+
+                val carToAdd = if (state.isManualMode) {
                     UserCar(
-                        masterDataId = masterData.id,
+                        masterDataId = null,
+                        manualModelName = state.manualModelName,
+                        manualBrand = state.manualBrand,
+                        manualYear = state.manualYear.toIntOrNull(),
+                        manualSeries = state.manualSeries,
+                        manualSeriesNum = state.manualSeriesNum,
+                        manualScale = state.manualScale,
+                        manualIsPremium = state.manualIsPremium,
                         isOpened = state.isOpened,
                         purchaseDate = state.purchaseDate,
                         personalNote = state.personalNote,
                         storageLocation = state.storageLocation,
-                        isWishlist = isWishlist
+                        isWishlist = isWishlist,
+                        userPhotoUrl = state.userPhotoUrl,
+                        purchasePrice = storedPurchasePrice,
+                        estimatedValue = storedEstimatedValue
                     )
-                )
+                } else {
+                    val selectedMaster = state.selectedMasterData!!
+                    UserCar(
+                        masterDataId = selectedMaster.id,
+                        manualModelName = selectedMaster.modelName,
+                        manualBrand = selectedMaster.brand,
+                        manualYear = selectedMaster.year,
+                        manualSeries = selectedMaster.series.takeIf { it.isNotBlank() },
+                        manualSeriesNum = selectedMaster.seriesNum.takeIf { it.isNotBlank() },
+                        manualScale = selectedMaster.scale,
+                        manualIsPremium = selectedMaster.isPremium,
+                        isOpened = state.isOpened,
+                        purchaseDate = state.purchaseDate,
+                        personalNote = state.personalNote,
+                        storageLocation = state.storageLocation,
+                        isWishlist = isWishlist,
+                        userPhotoUrl = state.userPhotoUrl,
+                        purchasePrice = storedPurchasePrice,
+                        estimatedValue = storedEstimatedValue
+                    )
+                }
+
+                addCarToCollectionUseCase(carToAdd)
                 _uiState.update { it.copy(isSaving = false, saveSuccess = true) }
             } catch (e: Exception) {
                 _uiState.update { it.copy(isSaving = false, error = e.message) }

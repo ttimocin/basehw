@@ -1,5 +1,7 @@
 package com.taytek.basehw
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,13 +9,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.taytek.basehw.ui.navigation.NavGraph
 import com.taytek.basehw.ui.theme.BaseHWTheme
 import com.taytek.basehw.data.remote.firebase.RemoteConfigDataSource
 import com.taytek.basehw.ui.components.ForceUpdateScreen
 import com.taytek.basehw.ui.components.UpdateDialog
+import com.taytek.basehw.data.local.AppSettingsManager
 import androidx.compose.runtime.*
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import java.util.Locale
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,8 +29,37 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var remoteConfig: RemoteConfigDataSource
 
+    @Inject
+    lateinit var appSettingsManager: AppSettingsManager
+
+    private var isReady = false
+
+    override fun attachBaseContext(newBase: Context) {
+        val prefs = newBase.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        var lang = prefs.getString("pref_language", "") ?: ""
+        
+        if (lang.isEmpty()) {
+            val systemLang = Locale.getDefault().language
+            lang = if (systemLang == "tr" || systemLang == "de") systemLang else "en"
+        }
+        
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration(newBase.resources.configuration)
+        config.setLocale(locale)
+        val contextToUse = newBase.createConfigurationContext(config)
+        
+        super.attachBaseContext(contextToUse)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Install splash screen BEFORE super.onCreate
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+
+        // Keep splash visible until isReady = true
+        splashScreen.setKeepOnScreenCondition { !isReady }
+
         enableEdgeToEdge()
         
         val currentVersionName = try {
@@ -32,22 +67,48 @@ class MainActivity : ComponentActivity() {
         } catch (e: Exception) { "1.0.0" }
 
         setContent {
-            BaseHWTheme {
+            val themeState by appSettingsManager.themeFlow.collectAsState()
+            val languageState by appSettingsManager.languageFlow.collectAsState()
+            val context = LocalContext.current
+            
+            BaseHWTheme(themeState = themeState) {
+                var minVersion by remember { mutableStateOf(remoteConfig.getMinVersionName()) }
+                var latestVersion by remember { mutableStateOf(remoteConfig.getLatestVersionName()) }
+                var updateUrl by remember { mutableStateOf(remoteConfig.getUpdateUrl()) }
+                var showOptionalUpdate by remember { mutableStateOf(false) }
+
                 val configUpdate by remoteConfig.configUpdated.collectAsState()
-                
-                val minVersion = remember(configUpdate) { remoteConfig.getMinVersionName() }
-                val latestVersion = remember(configUpdate) { remoteConfig.getLatestVersionName() }
-                val updateUrl = remember(configUpdate) { remoteConfig.getUpdateUrl() }
-                
-                var showOptionalUpdate by remember(configUpdate) { 
-                    mutableStateOf(isVersionOlder(currentVersionName, latestVersion)) 
+                LaunchedEffect(configUpdate) {
+                    minVersion = remoteConfig.getMinVersionName()
+                    latestVersion = remoteConfig.getLatestVersionName()
+                    updateUrl = remoteConfig.getUpdateUrl()
+                    if (isVersionOlder(currentVersionName, latestVersion)) {
+                        showOptionalUpdate = true
+                    }
                 }
+
+                // Signal that the app is ready after initial composition stabilizes
+                LaunchedEffect(Unit) {
+                    val prefs = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+                    val isFirstLaunch = prefs.getBoolean("is_first_launch", true)
+                    
+                    if (isFirstLaunch) {
+                        // Wait long enough for Firebase config + DB creation to settle on first install
+                        kotlinx.coroutines.delay(2500)
+                        prefs.edit().putBoolean("is_first_launch", false).apply()
+                    } else {
+                        // Very brief delay for stability on subsequent launches
+                        kotlinx.coroutines.delay(800)
+                    }
+                    isReady = true
+                }
+
+                val navController = rememberNavController()
 
                 Surface(modifier = Modifier.fillMaxSize()) {
                     if (isVersionOlder(currentVersionName, minVersion)) {
                         ForceUpdateScreen(updateUrl = updateUrl)
                     } else {
-                        val navController = rememberNavController()
                         NavGraph(navController = navController)
                         
                         if (showOptionalUpdate) {
@@ -63,10 +124,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    /**
-     * Compares two semantic versions (e.g., "1.0.0" and "1.0.1").
-     * Returns true if [current] is older than [target].
-     */
     private fun isVersionOlder(current: String, target: String): Boolean {
         if (current == target) return false
         val currentParts = current.split(".").mapNotNull { it.toIntOrNull() }

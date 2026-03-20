@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Meta -->
+    <string name="app_name">BaseHW</string>
+    <string name="default_web_client_id" translatable="false">1086036124505-o0u4c56e2978spn7l3q5lsq29b8c0i5a.apps.googleusercontent.com</string>
+
+    <!-- General -->
+
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading...</string>
+    <string name="error_occurred">An error occurred</string>
+    <string name="back">Back</string>
+    <string name="edit">Edit</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Collection</string>
+    <string name="nav_anasayfa">Home</string>
+    <string name="hello_name_template">Hello, %s</string>
+    <string name="sth_label">STH</string>
+    <string name="premium_label_upper">PREMIUM</string>
+    <string name="hot_wheels_year_template">Hot Wheels %d</string>
+    <string name="content_desc_profile">Profile</string>
+    <string name="content_desc_clear">Clear</string>
+    <string name="content_desc_more">More</string>
+    <string name="premium_coming_soon">Premium Features Coming Soon</string>
+    <string name="nav_wanted">Wanted</string>
+    <string name="nav_add">Add</string>
+    <string name="nav_stats">Statistics</string>
+    <string name="nav_folders">Folders</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_search">Wanted</string>
+
+    <!-- Home Components -->
+    <string name="hello_collector">Hello</string>
+    <string name="welcome_back">Welcome back to your garage</string>
+    <string name="total_models">Total Models: %d</string>
+    <string name="total_models_label">TOTAL MODELS</string>
+    <string name="search_in_collection">Search by model name, code or series...</string>
+    <string name="search_models">Search models...</string>
+    <string name="clear">Clear</string>
+    <string name="filter">Filter</string>
+    <string name="unknown_model">Unknown Model</string>
+    <string name="latest_addition">Latest Addition</string>
+    <string name="favorite">Favorite</string>
+    <string name="hero_stat_this_month">This month</string>
+    <string name="hero_stat_monthly">Monthly</string>
+    <string name="hero_stat_total">Total</string>
+    <string name="manual_mode_btn">Manual</string>
+    <string name="scan">Scan</string>
+    <string name="wanted_short">WANTED</string>
+    <string name="treasure_short">TREASURE (STH/TH)</string>
+    <string name="recently_added">Recently Added</string>
+    <string name="view_all">View All</string>
+
+    <!-- Photo Options -->
+    <string name="add_photo_options">Photo Upload Options</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="pick_from_gallery">Pick from Gallery</string>
+    <string name="add_from_url">Add from URL</string>
+    <string name="enter_image_url">Enter Image URL</string>
+    <string name="url_placeholder">https://example.com/image.jpg</string>
+    <string name="camera_permission_denied">Camera permission denied. You need to grant this permission to take photos.</string>
+    <string name="invalid_url_error">Invalid URL. Please enter a valid image link.</string>
+    <string name="manual_model_name">Model Name</string>
+    <string name="manual_year">Year</string>
+    <string name="manual_series">Series</string>
+    <string name="manual_series_num">Series No</string>
+    <string name="manual_scale">Scale</string>
+    <string name="manual_is_premium">Premium Car</string>
+    <string name="manual_brand">Brand</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="advanced_filters">Advanced Filters</string>
+    <string name="brand">Brand</string>
+    <string name="all">All</string>
+    <string name="year">Year</string>
+    <string name="series">Series</string>
+    <string name="condition">Condition</string>
+    <string name="boxed">Boxed</string>
+    <string name="opened">Opened</string>
+    <string name="apply_filters">Apply Filters</string>
+    <string name="clear_all">Clear All</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="sync_section">Synchronization</string>
+    <string name="pull_new_models">Pull New Models</string>
+    <string name="pull_new_models_desc">Download the latest catalog database changes from cloud sync.</string>
+    <string name="sync">Sync Now</string>
+    <string name="sync_in_progress">Database updating. Please wait...</string>
+    <string name="sync_success">Success! Database updated. ✅</string>
+    <string name="sync_failed">Update failed. Please check your internet connection. ❌</string>
+    <string name="sync_cancelled">Cancelled. 🛑</string>
+    
+    <string name="app_info_section">About App</string>
+    <string name="version">Version</string>
+    
+    <string name="appearance_section">Appearance &amp; Language</string>
+    <string name="theme">Theme</string>
+    <string name="theme_auto">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="language">Language</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    
+    <string name="support_section">Support</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="contact_us_desc">Send us your feedback, suggestions, or complaints.</string>
+
+    <!-- Legal Section -->
+    <string name="legal_section">Legal</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_use">Terms of Use</string>
+    
+    <!-- Profile Screen -->
+    <string name="login_for_cloud">Login for Cloud Backup</string>
+    <string name="login_desc">Sign in with Google to keep your collection and wishlist safe at all times.</string>
+    <string name="login_google">Sign in with Google</string>
+    <string name="login_signup_btn">Login / Sign Up</string>
+    <string name="login_promo_text">Securely log in with Google to avoid losing your collection and wishlist</string>
+    <string name="collector_name">Collector</string>
+    <string name="firebase_cloud_ops">Firebase Cloud Operations</string>
+    <string name="backup_cloud">Backup All Data to Cloud</string>
+    <string name="restore_cloud">Restore from Cloud to Device</string>
+    <string name="logout">Log Out</string>
+    <string name="delete_account">Delete My Account</string>
+    <string name="delete_account_dialog_title">Delete Account and Data</string>
+    <string name="delete_account_dialog_text">Are you sure you want to delete your account? This will PERMANENTLY delete all your cars, photos, and folders on Firebase. This action cannot be undone.</string>
+    <string name="delete_account_confirm">Yes, Delete Everything</string>
+    <string name="delete_account_cancel">Cancel</string>
+    <string name="reauth_required_error">For security reasons, you need to refresh your session. Please log in again and retry the operation.</string>
+    <string name="delete_account_success">Account and all data have been successfully deleted.</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Password</string>
+    <string name="login_btn">Log In</string>
+    <string name="login_with_email_btn">Sign in with Email</string>
+    <string name="register_btn">Register</string>
+    <string name="have_account">Already have an account? Log in</string>
+    <string name="no_account">Don\'t have an account? Register</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="password_reset_sent">Password reset email sent. Please check your inbox.</string>
+
+    <!-- Wishlist Screen -->
+    <string name="empty_wishlist_title">Your List is Empty</string>
+    <string name="empty_wishlist_desc">You haven\'t added a wanted model yet.\nMark the models you want to add!</string>
+
+    <!-- Add Car Screen -->
+    <string name="add_new_car">Add New Car</string>
+    <string name="empty_collection_title">Your Collection is Empty!</string>
+    <string name="empty_collection_desc">You haven\'t added any cars yet.\nStart building your premium collection!</string>
+    <string name="empty_collection_btn">Add Your First Car</string>
+    <string name="empty_collection_or">or</string>
+    <string name="empty_collection_hint">Press the + button below</string>
+    <string name="brand_label">Brand</string>
+    <string name="search_model_hint">Search Model…</string>
+    <string name="selected">Selected</string>
+    <string name="no_results_for">No results found for "%s".</string>
+    <string name="matching_models">Matching Models</string>
+    <string name="box_condition">Box Condition</string>
+    <string name="opened_unboxed">Opened (Unboxed)</string>
+    <string name="boxed_moc">Boxed (MOC)</string>
+    <string name="storage_location">Storage Location</string>
+    <string name="storage_location_hint">e.g. Shelf A-3, In Display…</string>
+    <string name="personal_note">Personal Note</string>
+    <string name="personal_note_hint">Your notes about this car…</string>
+    <string name="add_btn">Add</string>
+    <string name="error_title">Error</string>
+    <string name="add_photo">Add Photo</string>
+    <string name="change_photo">Change</string>
+    <string name="remove_photo">Remove</string>
+
+    <!-- Statistics Screen -->
+    <string name="statistics_title">Statistics</string>
+    <string name="collection_summary">Collection Summary</string>
+    <string name="total_cars_stat">Total Cars</string>
+    <string name="no_stats_data">No data available for statistics yet.</string>
+    <string name="brand_distribution">Brand Distribution</string>
+
+    <!-- Detail Screen -->
+    <string name="detail_title">Detail</string>
+    <string name="car_not_found">Car not found.</string>
+    <string name="delete_car">Delete</string>
+    <string name="delete_car_dialog_title">Delete Car</string>
+    <string name="delete_car_dialog_text">This car will be permanently deleted from your collection. Are you sure?</string>
+
+    <string name="col_num">Collection No</string>
+    <string name="toy_num">Toy No</string>
+    <string name="scale_label">Scale</string>
+    <string name="year_label">Year</string>
+    <string name="series_label">Series</string>
+    <string name="series_num_label">Series No</string>
+    <string name="condition_label">Condition</string>
+    <string name="condition_opened">Opened</string>
+    <string name="condition_boxed">📦 Boxed</string>
+    <string name="storage_label">Storage</string>
+    <string name="purchase_date_label">Purchase Date</string>
+    <string name="note_label">Note</string>
+
+    <!-- New Stats & Profile -->
+    <string name="stats_purchase_price">Purchase Price</string>
+    <string name="stats_current_value">Current Value</string>
+    <string name="purchase_price_label">Purchase Price</string>
+    <string name="estimated_value_label">Current Value</string>
+    <string name="select_currency">Select Currency</string>
+    <string name="currency_selection_desc">Set the global currency for your collection. This choice cannot be changed later.</string>
+    <string name="select_brand_first">Please select a brand first</string>
+    <string name="collection_statistics_desc">Charts, values, badges</string>
+    <string name="collection_statistics_desc_detailed">Charts, values and badge statistics</string>
+
+    <!-- Badges -->
+    <string name="earned_badges_title">🏅 Earned Badges</string>
+    <string name="earned_badges_count">%1$d / %2$d badges earned</string>
+    <string name="locked_badges_title">Locked Badges</string>
+
+    <string name="badge_first_car_title">First Step</string>
+    <string name="badge_first_car_desc">You added the first car to your collection!</string>
+    <string name="badge_ten_cars_title">Solid Start</string>
+    <string name="badge_ten_cars_desc">You have a collection of 10 cars.</string>
+    <string name="badge_fifty_cars_title">Real Collector</string>
+    <string name="badge_fifty_cars_desc">A serious collection with 50 cars!</string>
+    <string name="badge_hundred_cars_title">Legend</string>
+    <string name="badge_hundred_cars_desc">100 cars! A legendary collection.</string>
+    <string name="badge_premium_hunter_title">Premium Hunter</string>
+    <string name="badge_premium_hunter_desc">You have 5 or more Hot Wheels Premium cars.</string>
+    <string name="badge_matchbox_fan_title">Matchbox Fan</string>
+    <string name="badge_matchbox_fan_desc">You have 10 or more Matchbox cars.</string>
+    <string name="badge_multi_brand_title">Multi-Brand</string>
+    <string name="badge_multi_brand_desc">You own cars from 3 or more different brands.</string>
+    <string name="badge_investor_title">Investor</string>
+    <string name="badge_investor_desc">Your collection\'s total value is over 500₺.</string>
+    <string name="badge_big_spender_title">Big Spender</string>
+    <string name="badge_big_spender_desc">Total purchase price is over 2000₺.</string>
+    <string name="badge_curator_title">Curator</string>
+    <string name="badge_curator_desc">You created at least 3 custom folders.</string>
+    <string name="badge_moc_collector_title">MOC Collector</string>
+    <string name="badge_moc_collector_desc">80%% of your cars are boxed.</string>
+
+    <!-- Collections / Folders -->
+    <string name="my_folders">My Folders</string>
+    <string name="folders_subtitle">Organize your collections</string>
+    <string name="create_folder">Create Folder</string>
+    <string name="no_folders_yet">You haven\'t created a folder yet.</string>
+    <string name="car_count">%1$d Cars</string>
+    <string name="delete_btn">Delete</string>
+    <string name="create_new_folder">Create New Folder</string>
+    <string name="folder_name">Folder Name</string>
+    <string name="description_optional">Description (Optional)</string>
+    <string name="create_btn">Create</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="folder_detail_title">Folder Detail</string>
+    <string name="back_btn">Back</string>
+    <string name="no_cars_in_folder">There are no cars in this folder yet.</string>
+    <string name="add_to_folder">Add to Folder</string>
+    <string name="manage_folders">Manage Folders</string>
+    <string name="manage_folders_count">Manage Folders (%1$d)</string>
+    <string name="no_folders_hint">You don\'t have any folders yet. You can create one from the Folders tab.</string>
+
+    <!-- Sorting -->
+    <string name="sort_order">Sort Order</string>
+    <string name="sort_newest">Newest First</string>
+    <string name="sort_oldest">Oldest First</string>
+    <string name="sort_brand_az">Brand (A-Z)</string>
+    <string name="sort_year_new">Year (New-Old)</string>
+    <string name="sort_year_old">Year (Old-New)</string>
+    <string name="sort_price_high">Price (High-Low)</string>
+    <string name="sort_price_low">Price (Low-High)</string>
+
+    <!-- AddCarScreen Figma UI strings -->
+    <string name="section_brand">BRAND</string>
+    <string name="section_model_details">MODEL DETAILS</string>
+    <string name="section_condition">CONDITION</string>
+    <string name="section_currency">CURRENCY</string>
+    <string name="section_price_details">PRICE DETAILS</string>
+    <string name="section_collection_info">COLLECTION INFO</string>
+    <string name="condition_mint">Mint</string>
+    <string name="condition_loose">Loose</string>
+    <string name="search_model_placeholder">Search Model</string>
+    <string name="price_purchase">Purchase Price</string>
+    <string name="price_market">Market Value</string>
+    <string name="price_placeholder">0.00</string>
+    <string name="notes_placeholder">Personal notes, modifications, or history...</string>
+    <string name="add_to_collection_btn">Add to Collection</string>
+    <string name="reset_btn">Reset</string>
+
+    <!-- WishlistScreen / Search screen -->
+    <string name="search_screen_title">Wanted</string>
+    <string name="search_screen_subtitle">New models &amp; brands</string>
+    <string name="search_placeholder">Search brand or model...</string>
+    <string name="collection_screen_subtitle">Search, filter and manage your cars</string>
+    <string name="trend_brands">Trending Brands</string>
+    <string name="wishlist_title">My Wishlist</string>
+    <string name="empty_wishlist_subtitle">Mark the models you are looking for!</string>
+    <string name="not_specified">Not specified</string>
+    <string name="tap_to_add_note">Tap to add note...</string>
+    <string name="edit_storage_title">Edit Storage Location</string>
+    <string name="edit_price_title">Edit Purchase Price</string>
+    <string name="edit_value_title">Edit Current Value</string>
+    <string name="edit_note_title">Edit Note</string>
+
+    <!-- Profile Screen Redesign Strings -->
+    <string name="premium_member">PREMIUM MEMBER</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="stat_cars">Cars</string>
+    <string name="stat_value">Current Value</string>
+    <string name="stat_boxed">Boxed</string>
+    <string name="data_management">DATA MANAGEMENT</string>
+    <string name="statistics_section">STATISTICS</string>
+    <string name="collection_statistics">Collection Statistics</string>
+    <string name="username_label">Username</string>
+    <string name="username_hint">Choose a unique username</string>
+    <string name="username_taken">This username is already taken.</string>
+    <string name="username_invalid">Username must be 3-20 characters (a-z, 0-9, _).</string>
+    <string name="consent_text">I consent to the backup and processing of my data.</string>
+    <string name="consent_text_with_links">I agree to the Privacy Policy and Terms of Use.</string>
+    <string name="accept_terms_error">Please agree to the Privacy Policy and Terms of Use to continue.</string>
+    <string name="password_criteria_error">Password must be at least 8 characters, include uppercase, lowercase and a digit.</string>
+    <string name="select_username_title">Choose Username</string>
+    <string name="select_username_desc">It looks like your first time here. Please choose a username:</string>
+    <string name="save_btn">Save</string>
+    <string name="skip_btn">Skip</string>
+    <string name="cloud_backup_title">Cloud Backup</string>
+    <string name="last_synced">Last synced: </string>
+    <string name="restore_data_title">Restore Data</string>
+    <string name="excel_export_title">Export to Excel file</string>
+    <string name="excel_export_desc">Save your collection to your device in Excel format</string>
+    <string name="export_success">Collection successfully exported to Excel file.</string>
+    <string name="settings_support_title">SETTINGS &amp; SUPPORT</string>
+    <string name="help_support">Help &amp; Support</string>
+    <plurals name="cars_selected">
+        <item quantity="one">%d car selected</item>
+        <item quantity="other">%d cars selected</item>
+    </plurals>
+    <string name="premium">Premium</string>
+    <string name="regular">Regular</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="email_empty_error">Please enter your email address first.</string>
+    <string name="support_title">Help &amp; Support</string>
+    <string name="support_subject_label">Subject</string>
+    <string name="support_message_label">Message</string>
+    <string name="support_username_label">Username</string>
+    <string name="support_submit_btn">Submit</string>
+    <string name="support_success_msg">Feedback sent successfully!</string>
+    <string name="support_error_msg">Error while sending.</string>
+    <string name="support_captcha_label">Captcha Challenge</string>
+    <string name="support_captcha_error">Incorrect captcha answer.</string>
+    <string name="support_subject_hint">e.g. Suggestion, Bug, Question</string>
+    <string name="support_message_hint">Your feedback...</string>
+    <string name="support_captcha_instruction">Solve the math problem:</string>
+    <string name="edit_username_title">Edit Username</string>
+    <string name="available">Available</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="currency_setting">Currency Selection</string>
+    <string name="tab_models">Models</string>
+    <string name="tab_series">Series</string>
+    <string name="empty_series_tracking">No series tracked yet.</string>
+    <string name="table_header_model">Model</string>
+    <string name="table_header_no">No</string>
+    <string name="table_header_status">Status</string>
+    <string name="status_in_collection">In Collection</string>
+    <string name="status_wanted">Wanted</string>
+    <string name="data_source_label">Source</string>
+    <string name="add_to_wanted_title">Add to Wanted</string>
+    <string name="add_series_to_wanted">Add Entire Series to Wanted</string>
+
+    <!-- STH Screen Localization -->
+    <string name="sth_title">Super Treasure Hunts</string>
+    <string name="chase_title">Chase Cars</string>
+    <string name="th_title">Treasure Hunts</string>
+    <string name="sth_desc">Explore the rarest Hot Wheels STH models</string>
+    <string name="chase_desc">Premium Chase models (0/5 Series Number)</string>
+    <string name="th_desc">Classic Treasure Hunt models</string>
+    <string name="search_sth">Search STH models</string>
+    <string name="search_chase">Search Chase models</string>
+    <string name="search_th">Search TH models</string>
+    <string name="no_sth_found">No STH cars found.</string>
+    <string name="no_chase_found">No Chase cars found.</string>
+    <string name="no_th_found">No TH cars found.</string>
+    <string name="case_label">CASE %s</string>
+</resources>
+

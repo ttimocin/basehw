@@ -1,4 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Meta -->
     <string name="app_name">BaseHW</string>
-    <string name="default_web_client_id" translatable="false">YOUR_WEB_CLIENT_ID_HERE</string>
+    <string name="default_web_client_id" translatable="false">1086036124505-o0u4c56e2978spn7l3q5lsq29b8c0i5a.apps.googleusercontent.com</string>
+
+    <!-- General -->
+
+    <string name="ok">Tamam</string>
+    <string name="save">Kaydet</string>
+    <string name="cancel">İptal</string>
+    <string name="loading">Yükleniyor...</string>
+    <string name="error_occurred">Bir hata oluştu</string>
+    <string name="back">Geri</string>
+    <string name="edit">Düzenle</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Koleksiyon</string>
+    <string name="nav_anasayfa">Anasayfa</string>
+    <string name="hello_name_template">Merhaba, %s</string>
+    <string name="sth_label">STH</string>
+    <string name="premium_label_upper">PREMIUM</string>
+    <string name="hot_wheels_year_template">Hot Wheels %d</string>
+    <string name="content_desc_profile">Profil</string>
+    <string name="content_desc_clear">Temizle</string>
+    <string name="content_desc_more">Daha Fazla</string>
+    <string name="premium_coming_soon">Premium Özellikler Yakında</string>
+    <string name="nav_wanted">Arananlar</string>
+    <string name="nav_add">Ekle</string>
+    <string name="nav_stats">İstatistikler</string>
+    <string name="nav_folders">Klasörler</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_search">Ara</string>
+
+    <!-- Home Components -->
+    <string name="hello_collector">Merhaba</string>
+    <string name="welcome_back">Garajınıza tekrar hoş geldiniz</string>
+    <string name="total_models">Toplam Model: %d</string>
+    <string name="total_models_label">TOPLAM MODEL</string>
+    <string name="search_in_collection">Model adı, kod veya seri ara...</string>
+    <string name="search_models">Modelleri ara...</string>
+    <string name="clear">Temizle</string>
+    <string name="filter">Filtre</string>
+    <string name="unknown_model">Bilinmeyen Model</string>
+    <string name="latest_addition">Son Eklenen</string>
+    <string name="favorite">Favori</string>
+    <string name="hero_stat_this_month">Bu ay</string>
+    <string name="hero_stat_monthly">Aylık</string>
+    <string name="hero_stat_total">Toplam</string>
+    <string name="manual_mode_btn">Manuel</string>
+    <string name="welcome_greeting">Koleksiyonuna Hoş Geldin!</string>
+    <string name="scan">Tara</string>
+    <string name="wanted_short">ARANAN</string>
+    <string name="treasure_short">HAZİNE (STH/TH)</string>
+    <string name="recently_added">Son Eklenenler</string>
+    <string name="see_all">Tümünü Gör</string>
+    <string name="view_all">Tümünü Gör</string>
+
+    <!-- Photo Options -->
+    <string name="add_photo_options">Fotoğraf Yükleme Seçenekleri</string>
+    <string name="take_photo">Fotoğraf Çek</string>
+    <string name="pick_from_gallery">Galeriden Seç</string>
+    <string name="add_from_url">URL Ekle</string>
+    <string name="enter_image_url">Görüntü URL\'sini Girin</string>
+    <string name="url_placeholder">https://example.com/image.jpg</string>
+    <string name="camera_permission_denied">Kamera izni reddedildi. Fotoğraf çekmek için bu izni vermeniz gerekiyor.</string>
+    <string name="invalid_url_error">Geçersiz URL. Lütfen geçerli bir resim linki girin.</string>
+    <string name="manual_model_name">Model İsmi</string>
+    <string name="manual_year">Yıl</string>
+    <string name="manual_series">Seri</string>
+    <string name="manual_series_num">Seri No</string>
+    <string name="manual_scale">Ölçek</string>
+    <string name="manual_is_premium">Premium Araç</string>
+    <string name="manual_brand">Marka</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="advanced_filters">Gelişmiş Filtreler</string>
+    <string name="brand">Marka</string>
+    <string name="all">Hepsi</string>
+    <string name="year">Yıl</string>
+    <string name="series">Seri</string>
+    <string name="condition">Durum</string>
+    <string name="boxed">Kutulu</string>
+    <string name="opened">Açık</string>
+    <string name="apply_filters">Filtreleri Uygula</string>
+    <string name="clear_all">Tümünü Temizle</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Ayarlar</string>
+    <string name="sync_section">Senkronizasyon</string>
+    <string name="pull_new_models">Yeni Modelleri Çek</string>
+    <string name="pull_new_models_desc">Buluttan guncel model veritabani degisikliklerini indir.</string>
+    <string name="sync">Senkronize Et</string>
+    <string name="sync_in_progress">Veritabanı güncelleniyor. Lütfen bekleyin...</string>
+    <string name="sync_success">Başarılı! Veritabanı güncellendi. ✅</string>
+    <string name="sync_failed">Güncelleme başarısız oldu. Lütfen interneti kontrol edin. ❌</string>
+    <string name="sync_cancelled">İptal edildi. 🛑</string>
+    
+    <string name="app_info_section">Uygulama Hakkında</string>
+    <string name="version">Sürüm</string>
+    
+    <string name="appearance_section">Görünüm ve Dil</string>
+    <string name="theme">Tema</string>
+    <string name="theme_auto">Sisteme Uy</string>
+    <string name="theme_light">Aydınlık</string>
+    <string name="theme_dark">Karanlık</string>
+    <string name="language">Dil</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    
+    <string name="support_section">Destek</string>
+    <string name="contact_us">Bize Bildirin</string>
+    <string name="contact_us_desc">Görüş, öneri veya şikayetlerinizi iletin.</string>
+
+    <!-- Legal Section -->
+    <string name="legal_section">Yasal</string>
+    <string name="privacy_policy">Gizlilik Politikası</string>
+    <string name="terms_of_use">Kullanım Koşulları</string>
+    
+    <!-- Profile Screen -->
+    <string name="login_for_cloud">Bulut Yedekleme İçin Giriş Yapın</string>
+    <string name="login_desc">Google ile giriş yaparak koleksiyonunuzu ve istek listenizi her zaman güvende tutun.</string>
+    <string name="login_google">Google ile Giriş</string>
+    <string name="login_signup_btn">Giriş Yap / Üye Ol</string>
+    <string name="login_promo_text">Koleksiyonunuz ve arananlar listenizi kaybetmemek için Google ile güvenli giriş yapın</string>
+    <string name="collector_name">Koleksiyoner</string>
+    <string name="firebase_cloud_ops">Firebase Bulut İşlemleri</string>
+    <string name="backup_cloud">Tüm Veriyi Buluta Yedekle</string>
+    <string name="restore_cloud">Buluttan Cihaza Geri Yükle</string>
+    <string name="logout">Çıkış Yap</string>
+    <string name="delete_account">Hesabımı Sil</string>
+    <string name="delete_account_dialog_title">Hesabı ve Verileri Sil</string>
+    <string name="delete_account_dialog_text">Hesabınızı silmek istediğinizden emin misiniz? Bu işlem sonucunda Firebase üzerindeki tüm arabalarınız, fotoğraflarınız ve klasörleriniz KALICI olarak silinecektir. Bu işlem geri alınamaz.</string>
+    <string name="delete_account_confirm">Evet, Her Şeyi Sil</string>
+    <string name="delete_account_cancel">Vazgeç</string>
+    <string name="reauth_required_error">Güvenlik nedeniyle oturumunuzu tazelemeniz gerekiyor. Lütfen tekrar giriş yapıp işlemi tekrar deneyin.</string>
+    <string name="delete_account_success">Hesap ve tüm veriler başarıyla silindi.</string>
+    <string name="email_label">E-posta</string>
+    <string name="password_label">Şifre</string>
+    <string name="currency_setting">Para Birimi Seçimi</string>
+    <string name="login_btn">Giriş Yap</string>
+    <string name="login_with_email_btn">E-posta ile Giriş Yap</string>
+    <string name="register_btn">Kayıt Ol</string>
+    <string name="have_account">Hesabınız var mı? Giriş yapın</string>
+    <string name="no_account">Hesabınız yok mu? Kayıt olun</string>
+    <string name="forgot_password">Şifremi Unuttum</string>
+    <string name="password_reset_sent">Şifre sıfırlama e-postası gönderildi. Lütfen gelen kutunuzu kontrol edin.</string>
+
+    <!-- Wishlist Screen -->
+    <string name="empty_wishlist_title">Listeniz Boş</string>
+    <string name="empty_wishlist_desc">Henüz aranan bir model eklememişsiniz.\nEklemek istediğiniz modelleri işaretleyin!</string>
+
+    <!-- Add Car Screen -->
+    <string name="add_new_car">Yeni Araba Ekle</string>
+    <string name="empty_collection_title">Koleksiyonunuz Boş!</string>
+    <string name="empty_collection_desc">Henüz hiç araba eklememissiniz.\nPremium koleksiyonunuzu oluşturmaya başlayın!</string>
+    <string name="empty_collection_btn">Birinci Arabayı Ekle</string>
+    <string name="empty_collection_or">ya da</string>
+    <string name="empty_collection_hint">Aşağıdaki + tuşuna basın</string>
+    <string name="brand_label">Marka</string>
+    <string name="search_model_hint">Model Ara…</string>
+    <string name="selected">Seçildi</string>
+    <string name="no_results_for">\"%s\" için sonuç bulunamadı.</string>
+    <string name="matching_models">Eşleşen Modeller</string>
+    <string name="box_condition">Kutu Durumu</string>
+    <string name="opened_unboxed">Açık (Kutusu Yok)</string>
+    <string name="boxed_moc">Kutulu (MOC)</string>
+    <string name="storage_location">Depo Konumu</string>
+    <string name="storage_location_hint">Örn: Raf A-3, Vitrinde…</string>
+    <string name="personal_note">Kişisel Not</string>
+    <string name="personal_note_hint">Bu araba hakkında notlarınız…</string>
+    <string name="add_btn">Ekle</string>
+    <string name="error_title">Hata</string>
+    <string name="add_photo">Fotoğraf Ekle</string>
+    <string name="change_photo">Değiştir</string>
+    <string name="remove_photo">Kaldır</string>
+
+    <!-- Statistics Screen -->
+    <string name="statistics_title">İstatistikler</string>
+    <string name="collection_summary">Koleksiyon Özeti</string>
+    <string name="total_cars_stat">Toplam Araç</string>
+    <string name="no_stats_data">Henüz istatistik için veri yok.</string>
+    <string name="brand_distribution">Marka Dağılımı</string>
+
+    <!-- Detail Screen -->
+    <string name="detail_title">Detay</string>
+    <string name="car_not_found">Araç bulunamadı.</string>
+    <string name="delete_car">Sil</string>
+    <string name="delete_car_dialog_title">Arabayı Sil</string>
+    <string name="delete_car_dialog_text">Bu araç koleksiyonunuzdan kalıcı olarak silinecek. Emin misiniz?</string>
+
+    <string name="col_num">Koleksiyon No</string>
+    <string name="toy_num">Ürün No</string>
+    <string name="scale_label">Ölçek</string>
+    <string name="year_label">Yıl</string>
+    <string name="series_label">Seri</string>
+    <string name="series_num_label">Seri No</string>
+    <string name="condition_label">Durum</string>
+    <string name="condition_opened">Açık</string>
+    <string name="condition_boxed">📦 Kutulu</string>
+    <string name="storage_label">Depo</string>
+    <string name="purchase_date_label">Alım Tarihi</string>
+    <string name="note_label">Not</string>
+
+    <!-- New Stats & Profile -->
+    <string name="stats_purchase_price">Alış Fiyatı</string>
+    <string name="stats_current_value">Güncel Değer</string>
+    <string name="purchase_price_label">Alış Fiyatı</string>
+    <string name="estimated_value_label">Güncel Değer</string>
+    <string name="select_currency">Para Birimi Seçin</string>
+    <string name="currency_selection_desc">Koleksiyonunuzun genel para birimini belirleyin. Bu seçim daha sonra değiştirilemez.</string>
+    <string name="select_brand_first">Lütfen önce bir marka seçin</string>
+    <string name="collection_statistics_desc">Grafikler, değerler, rozetler</string>
+    <string name="collection_statistics_desc_detailed">Grafikler, değerler ve rozet istatistikleri</string>
+
+    <!-- Badges -->
+    <string name="earned_badges_title">🏅 Kazanılan Rozetler</string>
+    <string name="earned_badges_count">%1$d / %2$d rozet kazanıldı</string>
+    <string name="locked_badges_title">Kilitli Rozetler</string>
+
+    <string name="badge_first_car_title">İlk Adım</string>
+    <string name="badge_first_car_desc">Koleksiyonuna ilk aracı ekledin!</string>
+    <string name="badge_ten_cars_title">Üst Düzey Başlangıç</string>
+    <string name="badge_ten_cars_desc">10 araç koleksiyonuna sahipsin.</string>
+    <string name="badge_fifty_cars_title">Gerçek Koleksiyoner</string>
+    <string name="badge_fifty_cars_desc">50 araçla ciddi bir koleksiyon!</string>
+    <string name="badge_hundred_cars_title">Efsane</string>
+    <string name="badge_hundred_cars_desc">100 araç! Efsane bir koleksiyon.</string>
+    <string name="badge_premium_hunter_title">Premium Avcısı</string>
+    <string name="badge_premium_hunter_desc">5 veya daha fazla Hot Wheels Premium aracın var.</string>
+    <string name="badge_matchbox_fan_title">Matchbox Fanı</string>
+    <string name="badge_matchbox_fan_desc">10 veya daha fazla Matchbox aracın var.</string>
+    <string name="badge_multi_brand_title">Çok Markacı</string>
+    <string name="badge_multi_brand_desc">3 veya daha fazla farklı markaya sahipsin.</string>
+    <string name="badge_investor_title">Yatırımcı</string>
+    <string name="badge_investor_desc">Koleksiyonun toplam değeri 500₺ üzerinde.</string>
+    <string name="badge_big_spender_title">Büyük Harcama</string>
+    <string name="badge_big_spender_desc">Toplam alış fiyatın 2000₺ üzerinde.</string>
+    <string name="badge_curator_title">Küratör</string>
+    <string name="badge_curator_desc">En az 3 özel klasör oluşturdun.</string>
+    <string name="badge_moc_collector_title">MOC Koleksiyoneri</string>
+    <string name="badge_moc_collector_desc">Tüm araçlarının %%80\'i kutulu.</string>
+
+    <!-- Collections / Folders -->
+    <string name="my_folders">Klasörlerim</string>
+    <string name="folders_subtitle">Koleksiyonlarınızı düzenleyin</string>
+    <string name="create_folder">Klasör Oluştur</string>
+    <string name="no_folders_yet">Henüz bir klasör oluşturmadınız.</string>
+    <string name="car_count">%1$d Araç</string>
+    <string name="delete_btn">Sil</string>
+    <string name="create_new_folder">Yeni Klasör Oluştur</string>
+    <string name="folder_name">Klasör Adı</string>
+    <string name="description_optional">Açıklama (Opsiyonel)</string>
+    <string name="create_btn">Oluştur</string>
+    <string name="cancel_btn">Vazgeç</string>
+    <string name="folder_detail_title">Klasör Detayı</string>
+    <string name="back_btn">Geri</string>
+    <string name="no_cars_in_folder">Bu klasörde henüz araç yok.</string>
+    <string name="add_to_folder">Klasöre Ekle</string>
+    <string name="manage_folders">Klasörleri Yönet</string>
+    <string name="manage_folders_count">Klasörleri Yönet (%1$d)</string>
+    <string name="no_folders_hint">Henüz bir klasörünüz yok. Klasörler sekmesinden oluşturabilirsiniz.</string>
+
+    <!-- Sorting -->
+    <string name="sort_order">Sıralama</string>
+    <string name="sort_newest">En Yeni</string>
+    <string name="sort_oldest">En Eski</string>
+    <string name="sort_brand_az">Marka (A-Z)</string>
+    <string name="sort_year_new">Yıl (Yeni-Eski)</string>
+    <string name="sort_year_old">Yıl (Eski-Yeni)</string>
+    <string name="sort_price_high">Fiyat (Yüksek-Düşük)</string>
+    <string name="sort_price_low">Fiyat (Düşük-Yüksek)</string>
+
+    <!-- AddCarScreen Figma UI strings -->
+    <string name="section_brand">MARKA</string>
+    <string name="section_model_details">MODEL DETAYLARI</string>
+    <string name="section_condition">DURUM</string>
+    <string name="section_currency">PARA BİRİMİ</string>
+    <string name="section_price_details">FİYAT DETAYLARI</string>
+    <string name="section_collection_info">KOLEKSİYON BİLGİSİ</string>
+    <string name="condition_mint">Mint</string>
+    <string name="condition_loose">Loose</string>
+    <string name="search_model_placeholder">Model ara</string>
+    <string name="price_purchase">Alış Fiyatı</string>
+    <string name="price_market">Piyasa Değeri</string>
+    <string name="price_placeholder">0,00</string>
+    <string name="notes_placeholder">Kişisel notlar, modifikasyonlar veya tarihçe...</string>
+    <string name="add_to_collection_btn">Koleksiyona Ekle</string>
+    <string name="reset_btn">Sıfırla</string>
+
+    <!-- WishlistScreen / Search screen -->
+    <string name="search_screen_title">Keşfet</string>
+    <string name="search_screen_subtitle">Yeni modeller &amp; markalar</string>
+    <string name="search_placeholder">Marka veya model ara...</string>
+    <string name="collection_screen_subtitle">Arabalarini ara, filtrele ve düzenle</string>
+    <string name="trend_brands">Trend Markalar</string>
+    <string name="wishlist_title">İstek Listem</string>
+    <string name="empty_wishlist_subtitle">Aranan modelleri işaretleyin!</string>
+    <string name="not_specified">Belirtilmedi</string>
+    <string name="tap_to_add_note">Not eklemek için dokunun...</string>
+    <string name="edit_storage_title">Depo Konumunu Düzenle</string>
+    <string name="edit_price_title">Alış Fiyatını Düzenle</string>
+    <string name="edit_value_title">Güncel Değeri Düzenle</string>
+    <string name="edit_note_title">Notu Düzenle</string>
+
+    <!-- Profile Screen Redesign Strings -->
+    <string name="premium_member">PREMIUM ÜYE</string>
+    <string name="edit_profile">Profili Düzenle</string>
+    <string name="stat_cars">Arabalar</string>
+    <string name="stat_value">Güncel Değer</string>
+    <string name="stat_boxed">Kutulu</string>
+    <string name="data_management">VERİ YÖNETİMİ</string>
+    <string name="statistics_section">İSTATİSTİKLER</string>
+    <string name="collection_statistics">Koleksiyon İstatistikleri</string>
+    <string name="username_label">Kullanıcı Adı</string>
+    <string name="username_hint">Benzersiz bir kullanıcı adı seçin</string>
+    <string name="username_taken">Bu kullanıcı adı zaten alınmış.</string>
+    <string name="username_invalid">Kullanıcı adı 3-20 karakter olmalı (a-z, 0-9, _).</string>
+    <string name="consent_text">Verilerimin yedeklenmesini ve işlenmesini onaylıyorum.</string>
+    <string name="consent_text_with_links">Gizlilik Politikası ve Kullanım Koşullarını onaylıyorum.</string>
+    <string name="accept_terms_error">Lütfen devam etmek için Gizlilik Politikası ve Kullanım Koşullarını onaylayın.</string>
+    <string name="password_criteria_error">Şifre en az 8 karakter olmalı; büyük harf, küçük harf ve rakam içermelidir.</string>
+    <string name="select_username_title">Kullanıcı Adı Seç</string>
+    <string name="select_username_desc">Görünüşe göre ilk kez giriş yapıyorsun. Lütfen bir kullanıcı adı belirle:</string>
+    <string name="save_btn">Kaydet</string>
+    <string name="skip_btn">Geri</string>
+    <string name="cloud_backup_title">Bulut Yedekleme</string>
+    <string name="last_synced">Son senkronizasyon: </string>
+    <string name="restore_data_title">Veriyi Geri Yükle</string>
+    <string name="excel_export_title">Excel dosyası olarak dışarı aktar</string>
+    <string name="excel_export_desc">Koleksiyonunu Excel formatında cihazına kaydet</string>
+    <string name="export_success">Koleksiyon başarıyla Excel dosyasına aktarıldı.</string>
+    <string name="settings_support_title">AYARLAR VE DESTEK</string>
+    <string name="help_support">Yardım ve Destek</string>
+    <plurals name="cars_selected">
+        <item quantity="one">%d araba seçildi</item>
+        <item quantity="other">%d araba seçildi</item>
+    </plurals>
+    <plurals name="series_selected">
+        <item quantity="one">%d seri seçildi</item>
+        <item quantity="other">%d seri seçildi</item>
+    </plurals>
+    <string name="premium">Premium</string>
+    <string name="regular">Regular</string>
+    <string name="remember_me">Beni Hatırla</string>
+    <string name="email_empty_error">Lütfen önce e-posta adresinizi girin.</string>
+    <string name="support_title">Yardım ve Destek</string>
+    <string name="support_subject_label">Konu</string>
+    <string name="support_message_label">Mesaj</string>
+    <string name="support_username_label">Kullanıcı Adı</string>
+    <string name="support_submit_btn">Gönder</string>
+    <string name="support_success_msg">Geri bildiriminiz başarıyla gönderildi!</string>
+    <string name="support_error_msg">Gönderim sırasında hata oluştu.</string>
+    <string name="support_captcha_label">Güvenlik Kontrolü</string>
+    <string name="support_captcha_error">Hatalı captcha cevabı.</string>
+    <string name="support_subject_hint">örn. Öneri, Hata, Soru</string>
+    <string name="support_message_hint">Geri bildiriminiz...</string>
+    <string name="support_captcha_instruction">Matematik işlemini çözün:</string>
+    <string name="edit_username_title">Kullanıcı Adını Düzenle</string>
+    <string name="available">Kullanılabilir</string>
+    <string name="unavailable">Kullanılamaz</string>
+    <string name="tab_models">Modeller</string>
+    <string name="tab_series">Seriler</string>
+    <string name="empty_series_tracking">Henüz seri eklenmemiş.</string>
+    <string name="table_header_model">Model</string>
+    <string name="table_header_no">No</string>
+    <string name="table_header_status">Durum</string>
+    <string name="status_in_collection">Koleksiyonda</string>
+    <string name="status_wanted">Aranıyor</string>
+    <string name="data_source_label">Kaynak</string>
+    <string name="add_to_wanted_title">Arananlara Ekle</string>
+    <string name="add_series_to_wanted">Tüm Seriyi Arananlara Ekle</string>
+        <string name="series_added_to_wanted">Seri Arananlara Eklendi</string>
+    <string name="color_label">Renk</string>
+
+    <!-- STH Screen Localization -->
+    <string name="sth_title">Super Treasure Hunts</string>
+    <string name="chase_title">Chase Cars</string>
+    <string name="th_title">Treasure Hunts</string>
+    <string name="sth_desc">En nadir Hot Wheels STH modellerini keşfedin</string>
+    <string name="chase_desc">Premium Chase modelleri (0/5 Seri Numaralı)</string>
+    <string name="th_desc">Klasik Treasure Hunt modelleri</string>
+    <string name="search_sth">STH modellerinde ara</string>
+    <string name="search_chase">Chase modellerinde ara</string>
+    <string name="search_th">TH modellerinde ara</string>
+    <string name="no_sth_found">STH araç bulunamadı.</string>
+    <string name="no_chase_found">Chase araç bulunamadı.</string>
+    <string name="no_th_found">TH araç bulunamadı.</string>
+    <string name="case_label">CASE %s</string>
 </resources>
+

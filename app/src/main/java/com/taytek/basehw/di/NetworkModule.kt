@@ -2,7 +2,7 @@ package com.taytek.basehw.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.taytek.basehw.data.remote.api.MediaWikiApiService
+import com.taytek.basehw.data.remote.api.CurrencyApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,7 +31,7 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BASIC
+            level = HttpLoggingInterceptor.Level.BODY
         }
         return OkHttpClient.Builder()
             .addInterceptor(logging)
@@ -50,9 +50,16 @@ object NetworkModule {
             .build()
     }
 
+
     @Provides
     @Singleton
-    fun provideMediaWikiApiService(retrofit: Retrofit): MediaWikiApiService {
-        return retrofit.create(MediaWikiApiService::class.java)
+    fun provideCurrencyApiService(okHttpClient: OkHttpClient, gson: Gson): CurrencyApiService {
+        return Retrofit.Builder()
+            .baseUrl("https://api.frankfurter.app/")
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(CurrencyApiService::class.java)
     }
+
 }

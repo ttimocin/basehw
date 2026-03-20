@@ -11,3 +11,8 @@ data class UserCarWithMaster(
     )
     val master: MasterDataEntity?
 )
+
+data class GroupedUserCarWithMaster(
+    @Embedded val data: UserCarWithMaster,
+    val quantity: Int = 1
+)

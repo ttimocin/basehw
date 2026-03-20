@@ -14,3 +14,5 @@
 .cxx
 local.properties
 google-services.json
+active_remote_config.json
+*.jks

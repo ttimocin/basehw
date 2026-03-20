@@ -20,11 +20,24 @@ import androidx.room.PrimaryKey
 data class UserCarEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val masterDataId: Long,
+    val masterDataId: Long?,
+    val manualModelName: String? = null,
+    val manualBrand: String? = null,
+    val manualSeries: String? = null,
+    val manualSeriesNum: String? = null,
+    val manualYear: Int? = null,
+    val manualScale: String? = null,
+    val manualIsPremium: Boolean? = null,
     val isOpened: Boolean = false,
     val purchaseDateMillis: Long? = null,
     val personalNote: String = "",
     val storageLocation: String = "",
     val firestoreId: String = "",
-    val isWishlist: Boolean = false
+    val isWishlist: Boolean = false,
+    val userPhotoUrl: String? = null,
+    val backupPhotoUrl: String? = null,
+    val purchasePrice: Double? = null,
+    val estimatedValue: Double? = null,
+    val isFavorite: Boolean = false,
+    val isSeriesOnly: Boolean = false
 )

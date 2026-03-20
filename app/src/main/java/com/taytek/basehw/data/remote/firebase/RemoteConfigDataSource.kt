@@ -18,8 +18,15 @@ class RemoteConfigDataSource @Inject constructor(
     private val remoteConfig: FirebaseRemoteConfig
 ) {
     companion object {
+        private const val SYNC_PROVIDER = "sync_provider"
         private const val SYNC_BASE_URL = "sync_base_url"
+        private const val SYNC_EDGE_URL = "sync_edge_url"
+        private const val SYNC_EDGE_API_KEY = "sync_edge_api_key"
         private const val SYNC_INTERVAL_DAYS = "sync_interval_days"
+        private const val PHOTO_BACKUP_ENABLED = "photo_backup_enabled"
+        private const val PHOTO_BACKUP_SUPABASE_URL = "photo_backup_supabase_url"
+        private const val PHOTO_BACKUP_API_KEY = "photo_backup_api_key"
+        private const val PHOTO_BACKUP_BUCKET = "photo_backup_bucket"
         private const val MIN_VERSION_NAME = "min_version_name"
         private const val LATEST_VERSION_NAME = "latest_version_name"
         private const val UPDATE_URL = "update_url"
@@ -65,8 +72,36 @@ class RemoteConfigDataSource @Inject constructor(
         return remoteConfig.getString(SYNC_BASE_URL)
     }
 
+    fun getSyncProvider(): String {
+        return remoteConfig.getString(SYNC_PROVIDER)
+    }
+
+    fun getSyncEdgeUrl(): String {
+        return remoteConfig.getString(SYNC_EDGE_URL)
+    }
+
+    fun getSyncEdgeApiKey(): String {
+        return remoteConfig.getString(SYNC_EDGE_API_KEY)
+    }
+
     fun getSyncIntervalDays(): Long {
         return remoteConfig.getLong(SYNC_INTERVAL_DAYS)
+    }
+
+    fun isPhotoBackupEnabled(): Boolean {
+        return remoteConfig.getBoolean(PHOTO_BACKUP_ENABLED)
+    }
+
+    fun getPhotoBackupSupabaseUrl(): String {
+        return remoteConfig.getString(PHOTO_BACKUP_SUPABASE_URL)
+    }
+
+    fun getPhotoBackupApiKey(): String {
+        return remoteConfig.getString(PHOTO_BACKUP_API_KEY)
+    }
+
+    fun getPhotoBackupBucket(): String {
+        return remoteConfig.getString(PHOTO_BACKUP_BUCKET)
     }
 
     fun getMinVersionName(): String {

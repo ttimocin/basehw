@@ -49,7 +49,7 @@ class BaseHwApplication : Application(), Configuration.Provider {
 
         WorkManager.getInstance(this).enqueueUniqueWork(
             AssetSeedWorker.WORK_NAME,
-            ExistingWorkPolicy.KEEP,   // only run once to prevent database wipes
+            ExistingWorkPolicy.REPLACE,
             request
         )
     }
@@ -65,7 +65,7 @@ class BaseHwApplication : Application(), Configuration.Provider {
             .build()
 
         val request = PeriodicWorkRequestBuilder<RemoteYearSyncWorker>(
-            repeatInterval = 7,
+            repeatInterval = 1,
             repeatIntervalTimeUnit = TimeUnit.DAYS
         )
             .setConstraints(constraints)

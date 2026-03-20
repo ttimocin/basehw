@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.taytek.basehw.data.local.AppDatabase
 import com.taytek.basehw.data.local.dao.MasterDataDao
 import com.taytek.basehw.data.local.dao.UserCarDao
+import com.taytek.basehw.data.local.dao.CustomCollectionDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +25,21 @@ object DatabaseModule {
             AppDatabase::class.java,
             AppDatabase.DATABASE_NAME
         )
+            .addMigrations(AppDatabase.MIGRATION_4_5)
+            .addMigrations(AppDatabase.MIGRATION_5_6)
+            .addMigrations(AppDatabase.MIGRATION_6_7)
+            .addMigrations(AppDatabase.MIGRATION_7_8)
+            .addMigrations(AppDatabase.MIGRATION_8_9)
+            .addMigrations(AppDatabase.MIGRATION_9_10)
+            .addMigrations(AppDatabase.MIGRATION_10_11)
+            .addMigrations(AppDatabase.MIGRATION_11_12)
+            .addMigrations(AppDatabase.MIGRATION_12_13)
+            .addMigrations(AppDatabase.MIGRATION_13_14)
+                .addMigrations(AppDatabase.MIGRATION_14_15)
+                .addMigrations(AppDatabase.MIGRATION_15_16)
+                .addMigrations(AppDatabase.MIGRATION_16_17)
+                .addMigrations(AppDatabase.MIGRATION_17_18)
+                .addMigrations(AppDatabase.MIGRATION_19_20)
             .fallbackToDestructiveMigration()
             .build()
     }
@@ -33,4 +49,7 @@ object DatabaseModule {
 
     @Provides
     fun provideUserCarDao(db: AppDatabase): UserCarDao = db.userCarDao()
+
+    @Provides
+    fun provideCustomCollectionDao(db: AppDatabase): CustomCollectionDao = db.customCollectionDao()
 }

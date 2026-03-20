@@ -8,7 +8,9 @@ import androidx.room.PrimaryKey
     tableName = "master_data",
     indices = [
         Index(value = ["brand", "modelName"]),
-        Index(value = ["brand"])
+        Index(value = ["brand"]),
+        Index(value = ["dataSource", "year", "modelName"]),
+        Index(value = ["feature"])
     ]
 )
 data class MasterDataEntity(
@@ -23,5 +25,11 @@ data class MasterDataEntity(
     val imageUrl: String = "",
     val scale: String = "1:64",
     val toyNum: String = "",
-    val colNum: String = ""
+    val colNum: String = "",
+    val isPremium: Boolean = false,
+    val dataSource: String = "",
+    val caseNum: String = "",
+    val feature: String? = null,
+    val category: String? = null
 )
+

@@ -4,108 +4,95 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.outlined.BarChart
-import androidx.compose.material.icons.outlined.Collections
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.taytek.basehw.R
 import com.taytek.basehw.ui.theme.AppPrimary
-import com.taytek.basehw.ui.theme.AppSurface
-import com.taytek.basehw.ui.theme.AppTextSecondary
 
 @Composable
 fun CustomBottomNavigation(
     selectedTab: Int,
     onTabSelected: (Int) -> Unit,
-    onAddClick: () -> Unit
+    onAddClick: () -> Unit  // Geriye dönük uyumluluk için tutuldu, artık kullanılmıyor
 ) {
-    Box(
+    // Figma tasarımı: beyaz bar + hafif üst border, 4 tab, FAB YOK
+    Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .windowInsetsPadding(WindowInsets.navigationBars)
+            .windowInsetsPadding(WindowInsets.navigationBars),
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        shadowElevation = 8.dp,
+        tonalElevation = 0.dp
     ) {
-        // Bottom Bar Background
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .align(Alignment.BottomCenter)
-                .shadow(16.dp),
-            color = AppSurface
-        ) {
+        // Hafif üst çizgi (Figma'daki separator)
+        Column {
+            HorizontalDivider(
+                thickness = 0.5.dp,
+                color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
+            )
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(64.dp),
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Left Side Icons
-                NavigationItem(
-                    icon = Icons.Outlined.Home,
-                    label = "Home",
+                // Tab 0: ANASAYFA (Figma Redesign)
+                NavTab(
+                    icon = if (selectedTab == 0) Icons.Filled.Home else Icons.Outlined.Home,
+                    label = stringResource(R.string.nav_anasayfa),
                     isSelected = selectedTab == 0,
                     onClick = { onTabSelected(0) }
                 )
-                NavigationItem(
+                // Tab 8: COLLECTION (Legacy/Full list)
+                NavTab(
+                    icon = if (selectedTab == 8) Icons.Filled.DirectionsCar else Icons.Outlined.DirectionsCar,
+                    label = stringResource(com.taytek.basehw.R.string.nav_home),
+                    isSelected = selectedTab == 8,
+                    onClick = { onTabSelected(8) }
+                )
+                // Tab 1: SEARCH
+                NavTab(
                     icon = Icons.Outlined.Search,
-                    label = "Wanted",
+                    label = stringResource(com.taytek.basehw.R.string.nav_search),
                     isSelected = selectedTab == 1,
                     onClick = { onTabSelected(1) }
                 )
-                
-                // Space for FAB
-                Spacer(modifier = Modifier.width(64.dp))
-                
-                // Right Side Icons
-                NavigationItem(
-                    icon = Icons.Outlined.BarChart,
-                    label = "Stats",
+                // Tab 7: STH
+                NavTab(
+                    icon = if (selectedTab == 7) Icons.Filled.Star else Icons.Outlined.Star,
+                    label = stringResource(R.string.sth_label),
+                    isSelected = selectedTab == 7,
+                    onClick = { onTabSelected(7) }
+                )
+                // Tab 2: PROFILE
+                NavTab(
+                    icon = if (selectedTab == 2) Icons.Filled.Person else Icons.Outlined.Person,
+                    label = stringResource(com.taytek.basehw.R.string.nav_profile),
                     isSelected = selectedTab == 2,
                     onClick = { onTabSelected(2) }
                 )
-                NavigationItem(
-                    icon = Icons.Outlined.Person,
-                    label = "Profile",
-                    isSelected = selectedTab == 3,
-                    onClick = { onTabSelected(3) }
-                )
             }
-        }
-        
-        // Overlapping Centered FAB
-        FloatingActionButton(
-            onClick = onAddClick,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .offset(y = (-4).dp) // Adjust to overlap correctly
-                .size(64.dp)
-                .shadow(12.dp, CircleShape),
-            containerColor = AppPrimary,
-            contentColor = Color.White,
-            shape = CircleShape
-        ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = "Add Model",
-                modifier = Modifier.size(32.dp)
-            )
         }
     }
 }
 
 @Composable
-private fun NavigationItem(
+private fun NavTab(
     icon: ImageVector,
     label: String,
     isSelected: Boolean,
@@ -118,20 +105,23 @@ private fun NavigationItem(
                 indication = null,
                 onClick = onClick
             )
-            .padding(8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Icon(
             imageVector = icon,
             contentDescription = label,
-            tint = if (isSelected) AppPrimary else AppTextSecondary,
-            modifier = Modifier.size(26.dp)
+            tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(24.dp)
         )
+        Spacer(Modifier.height(3.dp))
         Text(
             text = label,
-            style = MaterialTheme.typography.labelSmall,
-            color = if (isSelected) AppPrimary else AppTextSecondary
+            fontSize = 10.sp,
+            fontWeight = FontWeight.Bold,
+            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+            letterSpacing = 0.5.sp
         )
     }
 }

@@ -14,13 +14,6 @@ android {
     namespace = "com.taytek.basehw"
     compileSdk = 36
 
-    val localProperties = Properties()
-    val localPropertiesFile = rootProject.file("local.properties")
-    if (localPropertiesFile.exists()) {
-        localProperties.load(FileInputStream(localPropertiesFile))
-    }
-    val githubToken = localProperties.getProperty("GITHUB_DATABASE_TOKEN") ?: ""
-
     defaultConfig {
         applicationId = "com.taytek.basehw"
         minSdk = 24
@@ -30,12 +23,26 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         
-        buildConfigField("String", "GITHUB_DATABASE_TOKEN", "\"$githubToken\"")
+    }
+
+    signingConfigs {
+        create("release") {
+            val properties = Properties()
+            val localPropertiesFile = project.rootProject.file("local.properties")
+            if (localPropertiesFile.exists()) {
+                properties.load(FileInputStream(localPropertiesFile))
+                storeFile = file(properties.getProperty("KEYSTORE_PATH") ?: "")
+                storePassword = properties.getProperty("KEYSTORE_PASSWORD") ?: ""
+                keyAlias = properties.getProperty("KEY_ALIAS") ?: ""
+                keyPassword = properties.getProperty("KEY_PASSWORD") ?: ""
+            }
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -62,7 +69,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
-    implementation("androidx.compose.ui:ui-text-google-fonts:1.6.8")
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.appcompat:appcompat:1.7.0")
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -96,6 +104,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
     implementation(libs.firebase.config)
     implementation(libs.play.services.auth)
     implementation(libs.androidx.credentials)
@@ -119,6 +128,12 @@ dependencies {
 
     // Gson
     implementation(libs.gson)
+
+    // ML Kit OCR (camera-based model text detection)
+    implementation("com.google.mlkit:text-recognition:16.0.0")
+
+    // uCrop
+    implementation(libs.ucrop)
 
     // Testing
     testImplementation(libs.junit)

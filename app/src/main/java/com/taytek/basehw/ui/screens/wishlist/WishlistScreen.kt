@@ -1,126 +1,507 @@
 package com.taytek.basehw.ui.screens.wishlist
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ChevronLeft
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
-import com.taytek.basehw.ui.components.CarCard
+import androidx.compose.ui.res.pluralStringResource
+import coil.compose.AsyncImage
+import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.ui.components.*
+import com.taytek.basehw.ui.screens.collection.SelectionHeader
+import com.taytek.basehw.ui.theme.*
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun WishlistScreen(
     onAddCarClick: () -> Unit,
     onCarClick: (Long) -> Unit,
-    onSettingsClick: () -> Unit,
     viewModel: WishlistViewModel = hiltViewModel()
 ) {
     val cars = viewModel.wishlistPaged.collectAsLazyPagingItems()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val isSeriesView by viewModel.isSeriesView.collectAsState()
+    val seriesTracking by viewModel.seriesTracking.collectAsState()
+    val isSelectionMode by viewModel.isSelectionMode.collectAsState()
+    val selectedCarIds by viewModel.selectedCarIds.collectAsState()
+    val selectedSeriesKeys by viewModel.selectedSeriesKeys.collectAsState()
+    val selectionCount by viewModel.selectionCount.collectAsState()
+    val selectionText = if (selectedSeriesKeys.isNotEmpty()) {
+        pluralStringResource(
+            id = com.taytek.basehw.R.plurals.series_selected,
+            count = selectedSeriesKeys.size,
+            selectedSeriesKeys.size
+        )
+    } else {
+        pluralStringResource(
+            id = com.taytek.basehw.R.plurals.cars_selected,
+            count = selectedCarIds.size,
+            selectedCarIds.size
+        )
+    }
+    val isDarkTheme = MaterialTheme.colorScheme.background == DarkNavy
+
+    val filteredSeriesTracking = remember(seriesTracking, searchQuery) {
+        val q = searchQuery.trim()
+        if (q.isBlank()) {
+            seriesTracking
+        } else {
+            seriesTracking.filter { series ->
+                series.seriesName.contains(q, ignoreCase = true) ||
+                    series.brand.displayName.contains(q, ignoreCase = true) ||
+                    series.items.any { item -> item.masterData.modelName.contains(q, ignoreCase = true) }
+            }
+        }
+    }
+
+    val brands = listOf(
+        Brand.HOT_WHEELS to com.taytek.basehw.R.drawable.hotwheels,
+        Brand.MATCHBOX to com.taytek.basehw.R.drawable.matchbox,
+        Brand.MINI_GT to if (isDarkTheme) com.taytek.basehw.R.drawable.minigtdark else com.taytek.basehw.R.drawable.minigt,
+        Brand.MAJORETTE to com.taytek.basehw.R.drawable.majorette,
+        Brand.JADA to com.taytek.basehw.R.drawable.jada,
+        Brand.SIKU to com.taytek.basehw.R.drawable.siku
+    )
 
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
+            if (isSelectionMode) {
+                Surface(
+                    tonalElevation = 6.dp,
+                    shadowElevation = 6.dp,
+                    color = MaterialTheme.colorScheme.surface
+                ) {
+                    SelectionHeader(
+                        selectedCount = selectionCount,
+                        selectionText = selectionText,
+                        onClearSelection = { viewModel.clearSelection() },
+                        onDeleteSelected = { viewModel.deleteSelected() }
+                    )
+                }
+            }
+        },
+        containerColor = MaterialTheme.colorScheme.background
+    ) { scaffoldPadding ->
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(scaffoldPadding)
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(bottom = 100.dp)
+        ) {
+            // ── Header ──
+            item {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 16.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column {
+                            Text(
+                                text = stringResource(com.taytek.basehw.R.string.search_screen_title),
+                                style = MaterialTheme.typography.headlineMedium,
+                                fontWeight = FontWeight.ExtraBold,
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
+                            Text(
+                                text = stringResource(com.taytek.basehw.R.string.search_screen_subtitle),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(16.dp))
+
+                    // Arama Çubuğu
+                    OutlinedTextField(
+                        value = searchQuery,
+                        onValueChange = viewModel::updateSearchQuery,
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = {
+                            Text(
+                                stringResource(com.taytek.basehw.R.string.search_placeholder),
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(Icons.Default.Search, null, tint = AppPrimary)
+                        },
+                        trailingIcon = {
+                            if (searchQuery.isNotEmpty()) {
+                                IconButton(onClick = { viewModel.updateSearchQuery("") }) {
+                                    Icon(Icons.Default.Clear, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                                }
+                            }
+                        },
+                        shape = RoundedCornerShape(14.dp),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = MaterialTheme.colorScheme.surface,
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                            focusedBorderColor = AppPrimary,
+                            unfocusedBorderColor = AppPrimary
+                        ),
+                        singleLine = true
+                    )
+                    
+                    Spacer(Modifier.height(16.dp))
+
+                    // Trend Markalar (arama kutusunun altında)
                     Text(
-                        text = "Aranan Modeller",
-                        style = MaterialTheme.typography.titleLarge,
+                        text = stringResource(com.taytek.basehw.R.string.trend_brands),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground
                     )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { /* back action if any */ }) {
-                        Icon(
-                            imageVector = Icons.Default.ChevronLeft,
-                            contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onBackground
+                    Spacer(Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        brands.take(3).forEach { (brand, resId) ->
+                            BrandLogoCard(
+                                brand = brand,
+                                drawableRes = resId,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(horizontal = 4.dp)
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(4.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Spacer(Modifier.weight(0.5f))
+                        brands.drop(3).forEach { (brand, resId) ->
+                            BrandLogoCard(
+                                brand = brand,
+                                drawableRes = resId,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(horizontal = 4.dp)
+                            )
+                        }
+                        Spacer(Modifier.weight(0.5f))
+                    }
+                    Spacer(Modifier.height(12.dp))
+
+                    // View Toggle
+                    TabRow(
+                        selectedTabIndex = if (isSeriesView) 1 else 0,
+                        containerColor = Color.Transparent,
+                        contentColor = AppPrimary,
+                        indicator = { tabPositions ->
+                            TabRowDefaults.SecondaryIndicator(
+                                modifier = Modifier.tabIndicatorOffset(tabPositions[if (isSeriesView) 1 else 0]),
+                                color = AppPrimary
+                            )
+                        },
+                        divider = {}
+                    ) {
+                        Tab(
+                            selected = !isSeriesView,
+                            onClick = { if (isSeriesView) viewModel.toggleView() },
+                            text = { Text(stringResource(com.taytek.basehw.R.string.tab_models), fontWeight = if (!isSeriesView) FontWeight.Bold else FontWeight.Normal) }
+                        )
+                        Tab(
+                            selected = isSeriesView,
+                            onClick = { if (!isSeriesView) viewModel.toggleView() },
+                            text = { Text(stringResource(com.taytek.basehw.R.string.tab_series), fontWeight = if (isSeriesView) FontWeight.Bold else FontWeight.Normal) }
                         )
                     }
-                },
-                actions = {
-                    TextButton(onClick = { /* reorder logic */ }) {
+                }
+            }
+
+            if (!isSeriesView) {
+                // ── Aranan Modellerim ──
+                item {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Text(
-                            text = "Reorder",
-                            style = MaterialTheme.typography.labelLarge,
+                            text = stringResource(com.taytek.basehw.R.string.wishlist_title),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onBackground
                         )
+                        if (cars.itemCount > 0) {
+                            Text(
+                                text = stringResource(com.taytek.basehw.R.string.car_count, cars.itemCount),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = AppPrimary
+                            )
+                        }
                     }
-                },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background
-                )
-            )
-        }
-    ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-        ) {
-            when {
-                cars.loadState.refresh is LoadState.Loading -> {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                    Spacer(Modifier.height(8.dp))
                 }
 
-                cars.loadState.refresh is LoadState.Error -> {
-                    Text(
-                        text = "Arananlar listesi yüklenemedi.",
-                        modifier = Modifier.align(Alignment.Center),
-                        color = MaterialTheme.colorScheme.error
-                    )
-                }
-
-                cars.itemCount == 0 -> {
-                    EmptyWishlistPlaceholder(
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
-
-                else -> {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(
-                            start = 16.dp,
-                            end = 16.dp,
-                            top = 12.dp,
-                            bottom = 100.dp
-                        ),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        items(
-                            count = cars.itemCount,
-                            key = cars.itemKey { it.id }
-                        ) { index ->
+                when {
+                    cars.itemCount == 0 -> {
+                        item {
+                            EmptyDiscoveryPlaceholder(
+                                modifier = Modifier.fillMaxWidth().height(200.dp),
+                                onAddClick = onAddCarClick
+                            )
+                        }
+                    }
+                    else -> {
+                        items(count = cars.itemCount, key = cars.itemKey { it.id }) { index ->
                             val car = cars[index]
                             if (car != null) {
-                                CarCard(
+                                val isSelected = selectedCarIds.contains(car.id)
+                                CollectionListItem(
                                     car = car,
-                                    onClick = { onCarClick(car.id) }
+                                    onClick = {
+                                        if (isSelectionMode) viewModel.toggleCarSelection(car.id)
+                                        else onCarClick(car.id)
+                                    },
+                                    onLongClick = { viewModel.toggleCarSelection(car.id) },
+                                    isSelected = isSelected
                                 )
                             }
                         }
+                    }
+                }
 
-                        if (cars.loadState.append is LoadState.Loading) {
-                            item {
-                                Box(
-                                    Modifier
-                                        .fillMaxWidth()
-                                        .padding(16.dp),
-                                    contentAlignment = Alignment.Center
+                if (cars.loadState.append is LoadState.Loading) {
+                    item {
+                        Box(Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator(modifier = Modifier.size(24.dp), color = AppPrimary)
+                        }
+                    }
+                }
+            } else {
+                // ── Seri Bazlı Takip ──
+                if (filteredSeriesTracking.isEmpty()) {
+                    item {
+                        Box(
+                            modifier = Modifier.fillMaxWidth().height(300.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = if (searchQuery.isNotBlank()) {
+                                    stringResource(com.taytek.basehw.R.string.no_results_for, searchQuery)
+                                } else {
+                                    stringResource(com.taytek.basehw.R.string.empty_series_tracking)
+                                },
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                } else {
+                    items(filteredSeriesTracking) { series ->
+                        val key = series.brand.name to series.seriesName
+                        val isSelected = selectedSeriesKeys.contains(key)
+                        SeriesTrackingCard(
+                            series = series,
+                            isSelected = isSelected,
+                            onSelect = { viewModel.toggleSeriesSelection(series.brand, series.seriesName) }
+                        )
+                        Spacer(Modifier.height(16.dp))
+                    }
+                }
+            }
+        }
+    }
+    } // closes Scaffold
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun SeriesTrackingCard(
+    series: com.taytek.basehw.domain.model.SeriesTracking,
+    isSelected: Boolean = false,
+    onSelect: () -> Unit = {}
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp)
+            .combinedClickable(
+                onClick = {},
+                onLongClick = onSelect
+            )
+            .shadow(if (isSelected) 8.dp else 2.dp, RoundedCornerShape(16.dp), clip = false),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (isSelected)
+                MaterialTheme.colorScheme.primaryContainer
+            else
+                MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+        )
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = series.seriesName,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primary
+                    )
+                    Text(
+                        text = series.brand.displayName,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                if (isSelected) {
+                    Icon(
+                        imageVector = Icons.Default.CheckCircle,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
+            
+            Spacer(Modifier.height(12.dp))
+            
+            // "Table" Header
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(com.taytek.basehw.R.string.table_header_model),
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = stringResource(com.taytek.basehw.R.string.table_header_no),
+                    modifier = Modifier.width(40.dp),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = stringResource(com.taytek.basehw.R.string.table_header_status),
+                    modifier = Modifier.width(100.dp),
+                    textAlign = TextAlign.End,
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+            HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+            
+            series.items.forEach { item ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = item.masterData.modelName,
+                        modifier = Modifier.weight(1f),
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = item.masterData.seriesNum,
+                        modifier = Modifier.width(40.dp),
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    
+                    Box(
+                        modifier = Modifier.width(100.dp),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+                        when {
+                            item.isInCollection -> {
+                                Surface(
+                                    color = Color(0xFF4CAF50).copy(alpha = 0.1f),
+                                    shape = RoundedCornerShape(4.dp)
                                 ) {
-                                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                                    Text(
+                                        text = stringResource(com.taytek.basehw.R.string.status_in_collection),
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = Color(0xFF4CAF50),
+                                        fontWeight = FontWeight.Bold
+                                    )
                                 }
+                            }
+                            item.isInWishlist -> {
+                                Surface(
+                                    color = AppPrimary.copy(alpha = 0.1f),
+                                    shape = RoundedCornerShape(4.dp)
+                                ) {
+                                    Text(
+                                        text = stringResource(com.taytek.basehw.R.string.status_wanted),
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = AppPrimary,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                            else -> {
+                                Text(
+                                    text = "-",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.outline
+                                )
                             }
                         }
                     }
@@ -130,27 +511,54 @@ fun WishlistScreen(
     }
 }
 
+
 @Composable
-private fun EmptyWishlistPlaceholder(modifier: Modifier = Modifier) {
+private fun BrandLogoCard(
+    brand: Brand,
+    drawableRes: Int,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .height(65.dp)
+            .padding(horizontal = 4.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = androidx.compose.ui.res.painterResource(id = drawableRes),
+            contentDescription = brand.displayName,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier.fillMaxSize()
+        )
+    }
+}
+
+@Composable
+private fun EmptyDiscoveryPlaceholder(
+    modifier: Modifier = Modifier,
+    onAddClick: () -> Unit
+) {
     Column(
         modifier = modifier.padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.Center
     ) {
         Icon(
-            imageVector = Icons.Default.FavoriteBorder,
+            imageVector = Icons.Outlined.FavoriteBorder,
             contentDescription = null,
-            modifier = Modifier.size(80.dp),
-            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+            modifier = Modifier.size(72.dp),
+            tint = AppPrimary.copy(alpha = 0.3f)
         )
+        Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = "Arananlar Listeniz Boş",
-            style = MaterialTheme.typography.headlineSmall,
+            text = stringResource(com.taytek.basehw.R.string.empty_wishlist_title),
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
         )
         Text(
-            text = "Sahip olmak istediğiniz modelleri aratıp\nArananlara Ekle butonuna basın.",
-            style = MaterialTheme.typography.bodyMedium,
+            text = stringResource(com.taytek.basehw.R.string.empty_wishlist_subtitle),
+            style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
         )

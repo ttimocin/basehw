@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - BaseHW</title>
+    <style>
+        :root {
+            --primary: #2196F3;
+            --text-main: #333;
+            --text-sub: #666;
+            --bg: #f8f9fa;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: #eee;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        h1 { font-size: 2.2rem; color: #000; margin-bottom: 10px; }
+        h2 { font-size: 1.5rem; color: #000; margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .update-date { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 30px; display: block; }
+        p { margin-bottom: 20px; white-space: pre-line; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            .container { margin: 20px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="showLang('en')">English</button>
+            <button class="lang-btn" onclick="showLang('tr')">Türkçe</button>
+            <button class="lang-btn" onclick="showLang('de')">Deutsch</button>
+        </div>
+
+        <!-- English -->
+        <div id="content-en" class="content-section active">
+            <h1>Terms of Use</h1>
+            <span class="update-date">Last updated: March 2026</span>
+            <p>By using the BaseHW application, you agree to the following terms of use.</p>
+            
+            <h2>1. Purpose of the App</h2>
+            <p>BaseHW is a personal tracking app designed for diecast model car collectors to manage their collections.</p>
+
+            <h2>2. User Responsibility</h2>
+            <p>• You are responsible for keeping your account secure.
+            • You are responsible for the content you upload (photos, notes).
+            • You may only use the app for personal, non-commercial purposes.</p>
+
+            <h2>3. Image Attribution</h2>
+            <p>Car images are sourced from Hot Wheels Wiki, Matchbox Wiki, Mini GT Wiki, and Majorette Wiki (Fandom). These images belong to their respective wiki communities and are used for informational purposes only. We do not claim ownership of these images.</p>
+
+            <h2>4. Service Availability</h2>
+            <p>The app is provided "as is." We do not guarantee uninterrupted or error-free service. The developers cannot be held liable for any data loss or service interruptions.</p>
+
+            <h2>5. Changes</h2>
+            <p>These terms may be changed without prior notice. Continued use of the app constitutes acceptance of the updated terms.</p>
+
+            <h2>6. Contact</h2>
+            <p>For questions: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+        </div>
+
+        <!-- Turkish -->
+        <div id="content-tr" class="content-section">
+            <h1>Kullanım Koşulları</h1>
+            <span class="update-date">Son güncelleme: Mart 2026</span>
+            <p>BaseHW uygulamasını kullanarak aşağıdaki kullanım koşullarını kabul etmiş sayılırsınız.</p>
+
+            <h2>1. Uygulamanın Amacı</h2>
+            <p>BaseHW, diecast model araba koleksiyoncularına koleksiyonlarını yönetmeleri için tasarlanmış kişisel bir takip uygulamasıdır.</p>
+
+            <h2>2. Kullanıcı Sorumluluğu</h2>
+            <p>• Hesabınızı güvende tutmaktan siz sorumlusunuz.
+            • Uygulamaya yüklediğiniz içeriklerden (fotoğraflar, notlar) siz sorumlusunuz.
+            • Uygulamayı yalnızca kişisel, ticari olmayan amaçlarla kullanabilirsiniz.</p>
+
+            <h2>3. Görsel İçerik Atfı</h2>
+            <p>Araba görselleri Hot Wheels Wiki, Matchbox Wiki, Mini GT Wiki ve Majorette Wiki (Fandom) kaynaklarından alınmaktadır. Bu görseller ilgili wiki topluluklarına aittir ve yalnızca bilgilendirme amaçlı kullanılmaktadır. Görseller üzerinde mülkiyet iddiamız yoktur.</p>
+
+            <h2>4. Hizmetin Kullanılabilirliği</h2>
+            <p>Uygulama olduğu gibi sunulmaktadır. Hizmetin kesintisiz ya da hatasız çalışacağı garanti edilmez. Geliştiriciler, veri kayıplarından veya hizmet kesintilerinden sorumlu tutulamaz.</p>
+
+            <h2>5. Değişiklikler</h2>
+            <p>Bu koşullar önceden bildirmeksizin değiştirilebilir. Uygulamayı kullanmaya devam etmek, güncel koşulları kabul etmek anlamına gelir.</p>
+
+            <h2>6. İletişim</h2>
+            <p>Sorularınız için: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+        </div>
+
+        <!-- German -->
+        <div id="content-de" class="content-section">
+            <h1>Nutzungsbedingungen</h1>
+            <span class="update-date">Letzte Aktualisierung: März 2026</span>
+            <p>Durch die Nutzung der BaseHW-App erklären Sie sich mit den folgenden Nutzungsbedingungen einverstanden.</p>
+
+            <h2>1. Zweck der App</h2>
+            <p>BaseHW ist eine persönliche Tracking-App für Diecast-Modellfahrzeug-Sammler zur Verwaltung ihrer Sammlungen.</p>
+
+            <h2>2. Nutzerverantwortung</h2>
+            <p>• Sie sind für die Sicherheit Ihres Kontos verantwortlich.
+            • Sie sind für die von Ihnen hochgeladenen Inhalte (Fotos, Notizen) verantwortlich.
+            • Sie dürfen die App nur für private, nicht-kommerzielle Zwecke nutzen.</p>
+
+            <h2>3. Bild-Attribution</h2>
+            <p>Fahrzeugbilder stammen aus Hot Wheels Wiki, Matchbox Wiki, Mini GT Wiki und Majorette Wiki (Fandom). Diese Bilder gehören den jeweiligen Wiki-Gemeinschaften und werden nur zu Informationszwecken verwendet. Wir beanspruchen kein Eigentum an diesen Bildern.</p>
+
+            <h2>4. Dienstverfügbarkeit</h2>
+            <p>Die App wird "wie besehen" bereitgestellt. Wir garantieren keinen unterbrechungsfreien oder fehlerfreien Betrieb. Die Entwickler haften nicht für Datenverluste oder Dienstunterbrechungen.</p>
+
+            <h2>5. Änderungen</h2>
+            <p>Diese Bedingungen können ohne vorherige Ankündigung geändert werden. Die weitere Nutzung der App gilt als Zustimmung zu den aktualisierten Bedingungen.</p>
+
+            <h2>6. Kontakt</h2>
+            <p>Bei Fragen: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showLang(lang) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('content-' + lang).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
