@@ -310,22 +310,12 @@ fun AuthenticationDialog(
                         }
                     }
                     Spacer(Modifier.height(20.dp))
-                    Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f))) {
-                        Column(modifier = Modifier.padding(12.dp)) {
-                            Row(modifier = Modifier.fillMaxWidth().clickable { onToggleConsent() }, verticalAlignment = Alignment.Top) {
-                                Checkbox(checked = consentGranted, onCheckedChange = { onToggleConsent() }, modifier = Modifier.offset(y = (-4).dp))
-                                Text(text = stringResource(com.taytek.basehw.R.string.consent_text_with_links), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 8.dp))
-                            }
-                            Spacer(Modifier.height(4.dp))
-                            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    TextButton(onClick = onPrivacyPolicyClick, contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)) { Text(stringResource(com.taytek.basehw.R.string.privacy_policy), style = MaterialTheme.typography.labelSmall) }
-                                    Text("•", style = MaterialTheme.typography.labelSmall)
-                                    TextButton(onClick = onTermsOfUseClick, contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)) { Text(stringResource(com.taytek.basehw.R.string.terms_of_use), style = MaterialTheme.typography.labelSmall) }
-                                }
-                            }
-                        }
-                    }
+                    AuthConsentCheckbox(
+                        consentGranted = consentGranted,
+                        onToggleConsent = onToggleConsent,
+                        onPrivacyPolicyClick = onPrivacyPolicyClick,
+                        onTermsOfUseClick = onTermsOfUseClick
+                    )
                     ErrorMessages(uiState)
                 } else {
                     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -377,9 +367,19 @@ fun AuthenticationDialog(
                         Text(text = stringResource(com.taytek.basehw.R.string.remember_me), style = MaterialTheme.typography.bodyMedium)
                     }
 
+                    if (isRegisterMode) {
+                        Spacer(Modifier.height(16.dp))
+                        AuthConsentCheckbox(
+                            consentGranted = consentGranted,
+                            onToggleConsent = onToggleConsent,
+                            onPrivacyPolicyClick = onPrivacyPolicyClick,
+                            onTermsOfUseClick = onTermsOfUseClick
+                        )
+                    }
+
                     Spacer(Modifier.height(16.dp))
                     val isSubmitEnabled = if (isRegisterMode) {
-                        !uiState.isLoading && email.isNotBlank() && isPassValid && username.length >= 3 && uiState.isUsernameAvailable == true
+                        !uiState.isLoading && email.isNotBlank() && isPassValid && username.length >= 3 && uiState.isUsernameAvailable == true && consentGranted
                     } else {
                         !uiState.isLoading && email.isNotBlank() && password.length >= 6
                     }
@@ -446,6 +446,39 @@ fun UsernamePromptDialog(
             TextButton(onClick = onSkip, enabled = !uiState.isLoading) { Text(stringResource(com.taytek.basehw.R.string.skip_btn)) }
         }
     )
+}
+
+@Composable
+fun AuthConsentCheckbox(
+    consentGranted: Boolean,
+    onToggleConsent: () -> Unit,
+    onPrivacyPolicyClick: () -> Unit,
+    onTermsOfUseClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(), 
+        shape = RoundedCornerShape(16.dp), 
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f))
+    ) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Row(modifier = Modifier.fillMaxWidth().clickable { onToggleConsent() }, verticalAlignment = Alignment.Top) {
+                Checkbox(checked = consentGranted, onCheckedChange = { onToggleConsent() }, modifier = Modifier.offset(y = (-4).dp))
+                Text(text = stringResource(com.taytek.basehw.R.string.consent_text_with_links), style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 8.dp))
+            }
+            Spacer(Modifier.height(4.dp))
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    TextButton(onClick = onPrivacyPolicyClick, contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)) { 
+                        Text(stringResource(com.taytek.basehw.R.string.privacy_policy), style = MaterialTheme.typography.labelSmall) 
+                    }
+                    Text("•", style = MaterialTheme.typography.labelSmall)
+                    TextButton(onClick = onTermsOfUseClick, contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)) { 
+                        Text(stringResource(com.taytek.basehw.R.string.terms_of_use), style = MaterialTheme.typography.labelSmall) 
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable
