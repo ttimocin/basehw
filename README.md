@@ -1,51 +1,71 @@
-# BaseHW - Model Car Collection Tracker 🏎️
+<div align="center">
+  <img src="logo.png" width="128" alt="BaseHW Logo">
+  <h1>BaseHW - Model Car Collector's Vault 🏎️</h1>
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-teal.svg?style=flat-square)](LICENSE)
+  [![Android](https://img.shields.io/badge/Platform-Android_24%2B-blue?style=flat-square&logo=android)](https://developer.android.com/)
+  [![Kotlin](https://img.shields.io/badge/Language-Kotlin_2.0-purple?style=flat-square&logo=kotlin)](https://kotlinlang.org/)
+  [![Architecture](https://img.shields.io/badge/Architecture-MVVM_%2B_Clean-orange?style=flat-square)](https://developer.android.com/topic/architecture)
+</div>
 
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Android API](https://img.shields.io/badge/API-24%2B-blue.svg)
-![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-purple.svg)
+---
 
-BaseHW is a modern Android application built with **Jetpack Compose** and **Clean Architecture (MVVM)** designed for diecast car collectors. It natively tracks your collection and wishlist across major brands such as Hot Wheels, Matchbox, and MiniGT.
+### [TR] Türkçe Özet
+**BaseHW**, diecast model araba koleksiyoncuları için geliştirilmiş, **Jetpack Compose** ve **Clean Architecture** ile inşa edilmiş modern bir Android uygulamasıdır. Koleksiyonunuzu dijitalleştirir, Hot Wheels, Matchbox ve MiniGT gibi markaları takip etmenizi sağlar.
 
-## 🌟 Key Features
-- **Nature-Inspired High-Fidelity Design:** A stunning Krem/Olive Green UI prioritizing premium appearance with modern typography (Inter Font).
-- **Google Sign-In & Firebase Cloud Sync:** Securely log in using Android's native Credential Manager and instantly backup/restore your collection to/from Firestore.
-- **Remote JSON Auto-Sync Structure:** Update your app’s vehicle database remotely without requiring a Play Store update! It reads newly released cars directly from GitHub `database/` catalogs.
-- **Wishlist & Statistics:** Track how many cars you possess, manage your wishlist, and get meaningful statistical insights based on brand and box status.
+### [EN] English Overview
+**BaseHW** is a state-of-the-art Android application tailored for diecast car enthusiasts. Built with **Jetpack Compose** and **Clean Architecture (MVVM)**, it provides a premium experience to track, sync, and discover your model car collection natively.
 
-## 🛠️ Tech Stack & Architecture
-- **Programming Language:** Kotlin
-- **UI Toolkit:** Jetpack Compose (Material 3)
-- **Architecture:** MVVM + Clean Architecture (Domain / Data / Presentation Layers)
-- **Database (Local):** Room Database + Paging 3
-- **Network / Remote Data:** Firebase Auth, Firestore, OkHttp, Retrofit
-- **Dependency Injection:** Hilt
-- **Background Processes:** WorkManager, Coroutines, Flow
-- **Image Loading:** Coil
+### [DE] Deutsche Übersicht
+**BaseHW** ist eine moderne Android-App für Diecast-Sammler. Entwickelt mit **Jetpack Compose** und **Clean Architecture**, bietet sie eine erstklassige Lösung zur Verwaltung und Synchronisierung Ihrer Modellautosammlung (Hot Wheels, Matchbox, MiniGT).
 
-## 🚀 Getting Started
+---
 
-### Prerequisites
-1. Open the project in **Android Studio Meerkat** or newer.
-2. Obtain a `google-services.json` file from your Firebase Console.
-3. Place the `google-services.json` file inside the `app/` directory.
-   *(Note: This file is ignored by git for security purposes).*
+## 📸 Visual Showcase / Görsel Tanıtım
+<div align="center">
+  <img src="homepage_v3.png" width="280"> &nbsp; &nbsp;
+  <img src="search_ui_final.png" width="280">
+</div>
 
-### Configuration
-Update the `default_web_client_id` inside `res/values/strings.xml` with your own Firebase/Google Cloud Platform OAuth 2.0 Client ID for Google Login.
+---
 
-### Remote Catalog Synchronization
-The application uses `RemoteYearSyncWorker.kt` to pull new models automatically. To add new catalog models:
-1. Navigate to the `database/{brand}/{year}.json` files in this repository.
-2. Add new JSON entries.
-3. Once pushed, the app will automatically fetch them in the background (weekly) or upon manual `Sync` from the settings.
+## 🌟 Key Features / Öne Çıkan Özellikler
 
-### Supabase Incremental Sync (Optional)
-For Postgres + Edge Function based incremental sync (`since` cursor model), see:
+- **🎨 High-Fidelity UI/UX:** Nature-inspired Krem/Olive Green design system with modern typography and smooth animations.
+- **🔄 Cloud Sync & Auth:** Seamless Google Sign-In via Credential Manager. Instant cloud backup with Firebase Firestore and Supabase.
+- **📡 Remote Catalog Sync:** Update your vehicle database without a Play Store update! Uses GitHub-hosted JSON catalogs for real-time model updates.
+- **📊 Stats & Insights:** Deep-dive into your collection statistics (brand distribution, box condition, market value).
+- **📋 Management:** Native "Wanted" (Wishlist) system with high-res image support through Supabase Storage.
 
-- `docs/supabase-postgres-edge-setup.md`
+---
 
-## 🤝 Contribution
-Contributions, issues, and feature requests are welcome!
+## 🛠️ Tech Stack / Teknoloji Yığını
 
-## 📜 License
-Distributed under the MIT License. See `LICENSE` for more information.
+- **Core:** Kotlin 2.0, Jetpack Compose, Coroutines, Flow.
+- **Architecture:** MVVM, Clean Architecture, Repository Pattern.
+- **Dependency Injection:** Hilt (Dagger).
+- **Persistence:** Room Database (Offline-first), Paging 3.
+- **Backend:** Firebase (Auth & Firestore), Supabase (Postgres & Storage).
+- **Networking:** Retrofit, OkHttp, Coil (Image Loading).
+- **Work Management:** WorkManager for background catalog synchronization.
+
+---
+
+## 📜 Legal / Hukuki Bilgiler
+Please review the legal documents for information regarding data usage and terms of service:
+
+- 🔒 **[Privacy Policy / Gizlilik Politikası](docs/privacy.html)**
+- 📝 **[Terms of Use / Kullanım Koşulları](docs/terms.html)**
+
+---
+
+## 🚀 Installation & Setup
+1. Clone the repository.
+2. Add your `google-services.json` to the `app/` directory.
+3. Update `default_web_client_id` in `strings.xml`.
+4. Build in **Android Studio Meerkat** or newer.
+
+---
+<div align="center">
+  Developed with ❤️ by <b>ttimocin</b>
+</div>
