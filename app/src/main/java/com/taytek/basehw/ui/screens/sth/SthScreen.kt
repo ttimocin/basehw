@@ -2,6 +2,7 @@ package com.taytek.basehw.ui.screens.sth
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +35,7 @@ import coil.compose.AsyncImage
 import com.taytek.basehw.R
 import com.taytek.basehw.domain.model.MasterData
 import com.taytek.basehw.ui.theme.AppPrimary
+import com.taytek.basehw.ui.theme.DarkNavy
 
 private val SthGold = Color(0xFFE0B94C)
 private val SthGoldDeep = Color(0xFFB68A2E)
@@ -60,6 +63,8 @@ fun SthScreen(
     val searchQuery by viewModel.searchQuery.collectAsState()
     var hasShownContent by rememberSaveable { mutableStateOf(false) }
 
+    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    
     LaunchedEffect(cars.itemCount) {
         if (cars.itemCount > 0) hasShownContent = true
     }
@@ -79,7 +84,7 @@ fun SthScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .statusBarsPadding()
-                        .padding(horizontal = 24.dp, vertical = 16.dp)
+                        .padding(horizontal = 20.dp, vertical = 8.dp)
                 ) {
                     Text(
                         text = when (currentTab) {
@@ -91,24 +96,16 @@ fun SthScreen(
                         fontWeight = FontWeight.ExtraBold,
                         color = MaterialTheme.colorScheme.onBackground
                     )
-                    Text(
-                        text = when (currentTab) {
-                            SthViewModel.SthTab.STH -> stringResource(R.string.sth_desc)
-                            SthViewModel.SthTab.CHASE -> stringResource(R.string.chase_desc)
-                            SthViewModel.SthTab.TH -> stringResource(R.string.th_desc)
-                        },
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
 
-                    Spacer(Modifier.height(20.dp))
+                    Spacer(Modifier.height(8.dp))
 
                     // ── Tabs ──
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .shadow(if (MaterialTheme.colorScheme.background == DarkNavy) 0.dp else 4.dp, RoundedCornerShape(12.dp))
                             .clip(RoundedCornerShape(12.dp))
-                            .background(SthCardBlue)
+                            .background(if (MaterialTheme.colorScheme.background == DarkNavy) SthCardBlue else MaterialTheme.colorScheme.primaryContainer)
                             .padding(4.dp),
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
@@ -124,27 +121,36 @@ fun SthScreen(
                             isSelected = currentTab == SthViewModel.SthTab.CHASE,
                             onClick = { viewModel.updateTab(SthViewModel.SthTab.CHASE) },
                             modifier = Modifier.weight(1f),
-                            selectedColor = Color.White
+                            selectedColor = if (MaterialTheme.colorScheme.background == DarkNavy) Color.White else Color.Black
                         )
                         SthTabButton(
                             text = "TH",
                             isSelected = currentTab == SthViewModel.SthTab.TH,
                             onClick = { viewModel.updateTab(SthViewModel.SthTab.TH) },
                             modifier = Modifier.weight(1f),
-                            selectedColor = Color(0xFFE5E4E2)
+                            selectedColor = if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFFE5E4E2) else Color(0xFF666666) // Darker gray
                         )
                     }
 
                     Spacer(Modifier.height(16.dp))
 
-                    // Search Bar
+                    val searchBorderColor = when (currentTab) {
+                        SthViewModel.SthTab.STH -> SthGold
+                        SthViewModel.SthTab.CHASE -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.Black else Color.Black
+                        else -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.Gray else Color(0xFF666666) // Dark Gray for TH
+                    }
+                    val placeholderColor = when (currentTab) {
+                        SthViewModel.SthTab.STH -> SthGold.copy(alpha = 0.7f)
+                        SthViewModel.SthTab.TH -> if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFFE5E4E2).copy(alpha = 0.7f) else Color(0xFF666666).copy(alpha = 0.8f)
+                        else -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.White.copy(alpha = 0.6f) else Color.Black.copy(alpha = 0.6f)
+                    }
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .shadow(8.dp, RoundedCornerShape(14.dp))
-                            .border(2.dp, when (currentTab) { SthViewModel.SthTab.STH -> SthGold; SthViewModel.SthTab.CHASE -> Color.Black; else -> Color.Gray }, RoundedCornerShape(14.dp))
+                            .shadow(if (MaterialTheme.colorScheme.background == DarkNavy) 8.dp else 4.dp, RoundedCornerShape(14.dp))
+                            .border(if (MaterialTheme.colorScheme.background == DarkNavy) 2.dp else 1.dp, searchBorderColor, RoundedCornerShape(14.dp))
                             .clip(RoundedCornerShape(14.dp))
-                            .background(SthCardBlueAlt)
+                            .background(if (MaterialTheme.colorScheme.background == DarkNavy) SthCardBlueAlt else MaterialTheme.colorScheme.primaryContainer)
                     ) {
                         OutlinedTextField(
                             value = searchQuery,
@@ -157,7 +163,7 @@ fun SthScreen(
                                         SthViewModel.SthTab.CHASE -> stringResource(R.string.search_chase)
                                         SthViewModel.SthTab.TH -> stringResource(R.string.search_th)
                                     },
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    color = placeholderColor
                                 )
                             },
                             leadingIcon = {
@@ -166,8 +172,8 @@ fun SthScreen(
                                     null, 
                                     tint = when (currentTab) {
                                         SthViewModel.SthTab.STH -> SthGold
-                                        SthViewModel.SthTab.TH -> Color(0xFFE5E4E2)
-                                        else -> Color.White
+                                        SthViewModel.SthTab.TH -> if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFFE5E4E2) else Color(0xFF666666)
+                                        else -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.White else Color.Black
                                     }
                                 )
                             },
@@ -207,7 +213,7 @@ fun SthScreen(
                                     yearText = stringResource(R.string.all),
                                     isSelected = selectedYear == null,
                                     onClick = { viewModel.updateSelectedYear(null) },
-                                    isChase = currentTab != SthViewModel.SthTab.STH,
+                                    isChase = currentTab == SthViewModel.SthTab.CHASE,
                                     isTh = currentTab == SthViewModel.SthTab.TH
                                 )
                             }
@@ -217,7 +223,7 @@ fun SthScreen(
                                     yearText = year.toString(),
                                     isSelected = selectedYear == year,
                                     onClick = { viewModel.updateSelectedYear(year) },
-                                    isChase = currentTab != SthViewModel.SthTab.STH,
+                                    isChase = currentTab == SthViewModel.SthTab.CHASE,
                                     isTh = currentTab == SthViewModel.SthTab.TH
                                 )
                             }
@@ -298,7 +304,9 @@ private fun SthTabButton(
                 text = text,
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                color = if (isSelected) selectedColor else Color.White.copy(alpha = 0.6f)
+                color = if (isSelected) selectedColor else {
+                    if (MaterialTheme.colorScheme.background == DarkNavy) Color.White.copy(alpha = 0.6f) else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                }
             )
         }
     }
@@ -313,21 +321,23 @@ private fun SthCarItem(
 ) {
     val borderColor = when {
         isChase -> Color.Black
-        isTh -> Color(0xFF71797E)
+        isTh -> if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFF71797E) else Color(0xFF666666)
         else -> SthGold
     }
+    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryContainer
+    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFE2E8F0)
+    
+    val bgColor = Brush.linearGradient(listOf(baseColor, darkerColor))
+    
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp, vertical = 6.dp)
-            .shadow(8.dp, RoundedCornerShape(16.dp))
+            .shadow(if (isDark) 8.dp else 4.dp, RoundedCornerShape(16.dp))
             .border(2.dp, borderColor, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
-            .background(
-                Brush.horizontalGradient(
-                    listOf(SthCardBlue, SthCardBlueAlt)
-                )
-            )
+            .background(bgColor)
             .clickable(onClick = onClick)
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -471,23 +481,25 @@ private fun YearChip(
     isChase: Boolean = false,
     isTh: Boolean = false
 ) {
+    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    
     val borderColor = when {
         isChase -> Color.Black
-        isTh -> Color(0xFF71797E)
+        isTh -> Color.Gray
         else -> SthGold
     }
     val selectedBgColor = when {
-        isChase -> Color.White
+        isChase -> if (!isDark) Color.Black else Color.White
         isTh -> Color(0xFFE5E4E2)
         else -> SthGoldDeep
     }
-    val unselectedBgColor = SthCardBlue
+    val unselectedBgColor = if (isDark) SthCardBlue else MaterialTheme.colorScheme.surface
     val textColor = if (isSelected) {
-        if (isChase || isTh) Color.Black else Color.Black
+        if (isChase && !isDark) Color.White else Color.Black
     } else {
         when {
-            isChase -> Color.White
-            isTh -> Color(0xFFE5E4E2)
+            isChase -> if (isDark) Color.White else Color.Black
+            isTh -> if (isDark) Color(0xFFE5E4E2) else Color(0xFF666666)
             else -> SthGold
         }
     }

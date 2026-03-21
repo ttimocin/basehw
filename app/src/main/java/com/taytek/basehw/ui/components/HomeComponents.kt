@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.*
@@ -347,60 +348,87 @@ fun SearchBarWithFilter(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        OutlinedTextField(
-            value = query,
-            onValueChange = onQueryChange,
-            modifier = Modifier.weight(1f),
-            placeholder = { 
-                Text(
-                    text = stringResource(com.taytek.basehw.R.string.search_models), 
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                ) 
-            },
-            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = AppPrimary) },
-            trailingIcon = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    if (query.isNotEmpty()) {
-                        IconButton(onClick = { onQueryChange("") }) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .height(52.dp)
+                .shadow(3.dp, RoundedCornerShape(16.dp))
+                .clip(RoundedCornerShape(16.dp))
+                .background(
+                    if (MaterialTheme.colorScheme.background == DarkNavy)
+                        MaterialTheme.colorScheme.surface
+                    else
+                        MaterialTheme.colorScheme.primaryContainer
+                )
+        ) {
+            BasicTextField(
+                value = query,
+                onValueChange = onQueryChange,
+                modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                singleLine = true,
+                textStyle = MaterialTheme.typography.bodyMedium.copy(
+                    color = MaterialTheme.colorScheme.onSurface
+                ),
+                decorationBox = { innerTextField ->
+                    Row(
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Box(Modifier.weight(1f)) {
+                            if (query.isEmpty()) {
+                                Text(
+                                    text = stringResource(com.taytek.basehw.R.string.search_in_collection), 
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    fontSize = 14.sp,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                ) 
+                            }
+                            innerTextField()
+                        }
+                        
+                        if (query.isNotEmpty()) {
+                            IconButton(onClick = { onQueryChange("") }, modifier = Modifier.size(32.dp)) {
+                                Icon(
+                                    Icons.Default.Clear,
+                                    contentDescription = stringResource(com.taytek.basehw.R.string.clear),
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+                        }
+
+                        IconButton(onClick = onFilterClick, modifier = Modifier.size(32.dp)) {
                             Icon(
-                                Icons.Default.Clear,
-                                contentDescription = stringResource(com.taytek.basehw.R.string.clear),
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                imageVector = Icons.Default.FilterList,
+                                contentDescription = stringResource(com.taytek.basehw.R.string.filter),
+                                tint = AppPrimary,
+                                modifier = Modifier.size(18.dp)
                             )
                         }
                     }
-
-                    IconButton(onClick = onFilterClick) {
-                        Icon(
-                            imageVector = Icons.Default.FilterList,
-                            contentDescription = stringResource(com.taytek.basehw.R.string.filter),
-                            tint = AppPrimary
-                        )
-                    }
                 }
-            },
-            shape = RoundedCornerShape(16.dp),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.surface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                focusedBorderColor = AppPrimary,
-                unfocusedBorderColor = AppPrimary
-            ),
-            singleLine = true
-        )
+            )
+        }
 
         IconButton(
             onClick = onStatsClick,
             modifier = Modifier
-                .size(56.dp)
-                .background(AppPrimary, RoundedCornerShape(16.dp))
+                .size(40.dp)
+                .background(AppPrimary, RoundedCornerShape(12.dp))
         ) {
             Icon(
                 imageVector = Icons.Default.BarChart,
                 contentDescription = stringResource(com.taytek.basehw.R.string.statistics_title),
-                tint = MaterialTheme.colorScheme.surface
+                tint = MaterialTheme.colorScheme.surface,
+                modifier = Modifier.size(24.dp)
             )
         }
     }
@@ -548,15 +576,18 @@ fun CollectionListItem(
     val isSthCar = feature == "sth"
     val isChaseCar = feature == "chase"
     val isThCar = feature == "th"
-    
+    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryContainer
+    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFE2E8F0)
+
     val sthBorderColor = if (isSthCar) Color(0xFFB8860B) else if (isChaseCar) Color.Black else if (isThCar) Color(0xFF71797E) else Color.Transparent
-    val defaultBorderColor = if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.2f) else Color.Black.copy(alpha = 0.1f)
+    val defaultBorderColor = if (isDark) Color.White.copy(alpha = 0.2f) else Color.Black.copy(alpha = 0.15f)
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 5.dp)
-            .shadow(if (isSelected) 8.dp else 2.dp, RoundedCornerShape(16.dp), clip = false)
+            .shadow(if (isSelected) 8.dp else 4.dp, RoundedCornerShape(16.dp), clip = false)
             .combinedClickable(
                 onClick = onClick,
                 onLongClick = onLongClick
@@ -564,13 +595,20 @@ fun CollectionListItem(
         shape = RoundedCornerShape(16.dp),
         border = if (isSthCar || isChaseCar || isThCar) BorderStroke(2.dp, sthBorderColor) else BorderStroke(1.dp, defaultBorderColor),
         colors = CardDefaults.cardColors(
-            containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerHigh
+            containerColor = Color.Transparent
         )
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Min)
+                .background(
+                    brush = if (isSelected) {
+                        Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.primary.copy(alpha = 0.4f), MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)))
+                    } else {
+                        Brush.linearGradient(colors = listOf(baseColor, darkerColor))
+                    }
+                )
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

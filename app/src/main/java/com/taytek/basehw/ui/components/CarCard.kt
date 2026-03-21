@@ -33,15 +33,9 @@ fun CarCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val brandColor = when (car.masterData?.brand) {
-        Brand.HOT_WHEELS -> HotWheelsRed
-        Brand.MATCHBOX   -> MatchboxBlue
-        Brand.MINI_GT    -> MiniGTSilver
-        Brand.MAJORETTE  -> MajoretteYellow
-        Brand.JADA       -> JadaPurple
-        Brand.SIKU       -> SikuBlue
-        null -> MaterialTheme.colorScheme.primary
-    }
+    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryContainer
+    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFE2E8F0)
 
     Card(
         modifier = modifier
@@ -49,13 +43,21 @@ fun CarCard(
             .clickable {
                 onClick()
             },
-        shape = RoundedCornerShape(26.dp), // Heavy rounded corners
+        shape = RoundedCornerShape(26.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary // ForestGreen
+            containerColor = Color.Transparent
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
-        Box(modifier = Modifier.fillMaxWidth()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(baseColor, darkerColor)
+                    )
+                )
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

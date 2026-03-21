@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -48,6 +49,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import coil.compose.AsyncImage
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.taytek.basehw.ui.theme.AppPrimary
+import com.taytek.basehw.ui.theme.DarkNavy
 import kotlinx.coroutines.launch
 
 import androidx.compose.foundation.rememberScrollState
@@ -269,7 +272,12 @@ fun AuthenticationDialog(
         Card(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
             shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            colors = CardDefaults.cardColors(
+                containerColor = if (MaterialTheme.colorScheme.background == DarkNavy)
+                    MaterialTheme.colorScheme.surface
+                else
+                    MaterialTheme.colorScheme.primaryContainer
+            ),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
         ) {
             Column(
@@ -604,7 +612,16 @@ fun ProfileScreenContent(
             Spacer(Modifier.height(16.dp))
 
             SectionHeader(stringResource(com.taytek.basehw.R.string.statistics_section))
-            Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = if (MaterialTheme.colorScheme.background == DarkNavy)
+                        MaterialTheme.colorScheme.surface
+                    else
+                        MaterialTheme.colorScheme.primaryContainer
+                )
+            ) {
                 Column {
                     ProfileListItem(Icons.Default.BarChart, stringResource(com.taytek.basehw.R.string.collection_statistics)) { onStatisticsClick() }
                     HorizontalDivider(modifier = Modifier.padding(horizontal = 20.dp))
@@ -615,7 +632,16 @@ fun ProfileScreenContent(
             Spacer(Modifier.height(16.dp))
 
             SectionHeader(stringResource(com.taytek.basehw.R.string.data_management))
-            Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = if (MaterialTheme.colorScheme.background == DarkNavy)
+                        MaterialTheme.colorScheme.surface
+                    else
+                        MaterialTheme.colorScheme.primaryContainer
+                )
+            ) {
                 Column {
                     if (currentUser != null) {
                         CloudBackupItem(uiState, viewModel)
@@ -632,7 +658,16 @@ fun ProfileScreenContent(
             Spacer(Modifier.height(16.dp))
 
             SectionHeader(stringResource(com.taytek.basehw.R.string.settings_support_title))
-            Card(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)) {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = if (MaterialTheme.colorScheme.background == DarkNavy)
+                        MaterialTheme.colorScheme.surface
+                    else
+                        MaterialTheme.colorScheme.primaryContainer
+                )
+            ) {
                 Column {
                     ProfileListItem(Icons.Default.HelpOutline, stringResource(com.taytek.basehw.R.string.help_support), stringResource(com.taytek.basehw.R.string.contact_us_desc)) { onSupportClick() }
                     HorizontalDivider(modifier = Modifier.padding(horizontal = 20.dp))
@@ -667,7 +702,17 @@ fun ProfileScreenContent(
 
 @Composable
 fun StatCard(value: String, label: String, modifier: Modifier = Modifier) {
-    Card(modifier = modifier.height(90.dp), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)) {
+    Card(
+        modifier = modifier.height(90.dp),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (MaterialTheme.colorScheme.background == DarkNavy)
+                MaterialTheme.colorScheme.surface
+            else
+                MaterialTheme.colorScheme.primaryContainer
+        ),
+        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
+    ) {
         Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
             Text(text = value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
             Text(text = label, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -751,16 +796,39 @@ fun LanguageSelector(languageState: String, context: android.content.Context, vi
 
 @Composable
 fun CloudBackupItem(uiState: ProfileUiState, viewModel: ProfileViewModel) {
-    Box(modifier = Modifier.fillMaxWidth().background(Color(0xFF001FDB)).clickable(enabled = !uiState.isLoading) { viewModel.backupToCloud() }) {
-        Row(modifier = Modifier.padding(vertical = 16.dp, horizontal = 20.dp).fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Icon(Icons.Default.CloudUpload, null, tint = Color.White, modifier = Modifier.size(24.dp))
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                if (MaterialTheme.colorScheme.background == DarkNavy)
+                    MaterialTheme.colorScheme.surface
+                else
+                    AppPrimary.copy(alpha = 0.15f)
+            )
+            .clickable(enabled = !uiState.isLoading) { viewModel.backupToCloud() }
+    ) {
+        Row(
+            modifier = Modifier.padding(vertical = 16.dp, horizontal = 20.dp).fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                Icons.Default.CloudUpload,
+                null,
+                tint = if (MaterialTheme.colorScheme.background == DarkNavy) MaterialTheme.colorScheme.primary else AppPrimary,
+                modifier = Modifier.size(24.dp)
+            )
             Spacer(Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = stringResource(com.taytek.basehw.R.string.cloud_backup_title), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold, color = Color.White)
+                Text(
+                    text = stringResource(com.taytek.basehw.R.string.cloud_backup_title),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
                 val subtitle = if (uiState.isLoading && uiState.syncStatusMsg?.contains("Yedek") == true) uiState.syncStatusMsg else if (uiState.syncSuccess && uiState.syncStatusMsg?.contains("Yedek") == true) uiState.syncStatusMsg else if (uiState.error != null && uiState.error!!.contains("Yedek")) uiState.error else null
-                if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Yedek")) Color(0xFFFFB4AB) else Color.White.copy(alpha = 0.7f))
+                if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Yedek")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
             }
-            Icon(Icons.Default.ChevronRight, null, tint = Color.White)
+            Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outline)
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -49,12 +50,10 @@ fun HomeScreen(
                 .padding(paddingValues),
             contentPadding = PaddingValues(bottom = 100.dp)
         ) {
-            // 1. Header
+            // 1. Greeting
             item {
                 FigmaHomeHeader(
-                    userName = uiState.userName,
-                    profilePhotoUrl = uiState.profilePhotoUrl,
-                    onProfileClick = onProfileClick
+                    userName = uiState.userName
                 )
             }
 
@@ -113,7 +112,9 @@ fun HomeScreen(
                         totalCars = uiState.totalCars,
                         monthlyAdded = uiState.monthlyAdded,
                         wantedCount = uiState.wantedCount,
-                        sthCount = uiState.sthCount
+                        sthCount = uiState.sthCount,
+                        totalValue = uiState.totalValue,
+                        monthlyValueIncrease = uiState.monthlyValueIncrease
                     )
                 }
 
@@ -132,25 +133,26 @@ fun HomeScreen(
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onBackground
                         )
-                        Text(
-                            text = stringResource(R.string.view_all),
-                            style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.primary,
-                            fontWeight = FontWeight.SemiBold,
-                            modifier = Modifier.clickable { onViewAllClick() }
-                        )
+// View All text removed
                     }
                 }
 
-                // 5. Recently Added Cards (vertical)
-                items(recentlyAddedCars.itemCount) { index ->
-                    val car = recentlyAddedCars[index]
-                    if (car != null) {
-                        FigmaRecentlyAddedCardItem(
-                            car = car,
-                            onClick = { onCarClick(car.id) },
-                            modifier = Modifier.padding(horizontal = 20.dp, vertical = 6.dp)
-                        )
+                // 5. Recently Added Cards (horizontal scroll)
+                item {
+                    LazyRow(
+                        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 6.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        items(recentlyAddedCars.itemCount) { index ->
+                            val car = recentlyAddedCars[index]
+                            if (car != null) {
+                                FigmaRecentlyAddedVerticalCard(
+                                    car = car,
+                                    onClick = { onCarClick(car.id) }
+                                )
+                            }
+                        }
                     }
                 }
 

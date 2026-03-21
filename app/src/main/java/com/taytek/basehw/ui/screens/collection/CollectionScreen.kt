@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.border
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.CheckCircle
@@ -45,6 +48,8 @@ import androidx.paging.compose.itemKey
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.ui.components.*
 import com.taytek.basehw.ui.theme.*
+import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -107,18 +112,13 @@ fun CollectionScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 16.dp)
+                        .padding(horizontal = 20.dp, vertical = 8.dp)
                 ) {
                     Text(
                         text = stringResource(com.taytek.basehw.R.string.nav_home),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.ExtraBold,
                         color = MaterialTheme.colorScheme.onBackground
-                    )
-                    Text(
-                        text = stringResource(com.taytek.basehw.R.string.collection_screen_subtitle),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
 
                     Spacer(Modifier.height(16.dp))
@@ -127,10 +127,27 @@ fun CollectionScreen(
                         query = searchQuery ?: "",
                         onQueryChange = viewModel::updateSearchQuery,
                         onFilterClick = { showFilterSheet = true },
-                        onStatsClick = onStatisticsClick,
+                        onStatsClick = { onStatisticsClick() },
                         contentPadding = PaddingValues(0.dp)
                     )
                 }
+            }
+
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                // Brand Filter Row
+                val selectedBrand by viewModel.selectedBrand.collectAsState()
+                BrandFilterRow(
+                    selectedBrand = selectedBrand,
+                    onBrandSelected = { brand ->
+                        viewModel.updateFilters(
+                            brand = brand,
+                            year = viewModel.selectedYear.value,
+                            series = viewModel.selectedSeries.value,
+                            isOpened = viewModel.selectedIsOpened.value,
+                            sortOrder = viewModel.sortOrder.value
+                        )
+                    }
+                )
             }
 
             // 4. Cars
@@ -293,5 +310,88 @@ private fun EmptyCollectionPlaceholder(
             )
 
         }
+    }
+}
+
+@Composable
+fun BrandFilterRow(
+    selectedBrand: String?,
+    onBrandSelected: (String?) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyRow(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 12.dp),
+        contentPadding = PaddingValues(horizontal = 20.dp),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        item {
+            FilterChip(
+                selected = selectedBrand == null,
+                onClick = { onBrandSelected(null) },
+                label = { Text("Tümü") },
+                colors = FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = AppPrimary,
+                    selectedLabelColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                    labelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                ),
+                border = null,
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier.height(64.dp)
+            )
+        }
+        
+        items(Brand.entries) { brand ->
+            BrandLogoChip(
+                brand = brand,
+                selected = selectedBrand == brand.name,
+                onClick = { onBrandSelected(if (selectedBrand == brand.name) null else brand.name) }
+            )
+        }
+    }
+}
+
+@Composable
+fun BrandLogoChip(
+    brand: Brand,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val isSmaller = brand == Brand.SIKU || brand == Brand.JADA
+    
+    Box(
+        modifier = Modifier
+            .size(64.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .background(
+                if (selected) AppPrimary.copy(alpha = 0.2f) else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+            )
+            .border(
+                width = if (selected) 2.dp else 0.dp,
+                color = if (selected) AppPrimary else Color.Transparent,
+                shape = RoundedCornerShape(12.dp)
+            )
+            .clickable { onClick() }
+            .padding(if (isSmaller) 8.dp else 0.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        val drawableId = when (brand) {
+            Brand.HOT_WHEELS -> R.drawable.hotwheels
+            Brand.MATCHBOX -> R.drawable.matchbox
+            Brand.MINI_GT -> if (isDark) R.drawable.minigtdark else R.drawable.minigt
+            Brand.MAJORETTE -> R.drawable.majorette
+            Brand.JADA -> R.drawable.jada
+            Brand.SIKU -> R.drawable.siku
+        }
+        Image(
+            painter = painterResource(id = drawableId),
+            contentDescription = brand.displayName,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Fit
+        )
     }
 }

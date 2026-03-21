@@ -107,16 +107,16 @@ fun MasterDetailScreen(
                                 contentScale = ContentScale.Fit
                             )
                             
-                            // Fandom label
-                            val fandomLabel = when (master.brand) {
-                                Brand.HOT_WHEELS -> "Hot Wheels Wiki • Fandom"
-                                Brand.MATCHBOX   -> "Matchbox Wiki • Fandom"
+                            // Wiki label
+                            val wikiLabel = when (master.brand) {
+                                Brand.HOT_WHEELS -> "Hot Wheels Wiki"
+                                Brand.MATCHBOX   -> "Matchbox Wiki"
                                 Brand.MINI_GT    -> null
-                                Brand.MAJORETTE  -> "Majorette Wiki • Fandom"
-                                Brand.JADA       -> "Jada Wiki • Fandom"
+                                Brand.MAJORETTE  -> "Majorette Wiki"
+                                Brand.JADA       -> "Jada Wiki"
                                 Brand.SIKU       -> null
                             }
-                            if ((master.imageUrl.contains("wikia.nocookie.net") || master.imageUrl.contains("fandom.com")) && fandomLabel != null) {
+                            if ((master.imageUrl.contains("wikia.nocookie.net") || master.imageUrl.contains("fandom.com")) && wikiLabel != null) {
                                 Surface(
                                     modifier = Modifier
                                         .align(Alignment.BottomStart)
@@ -125,7 +125,7 @@ fun MasterDetailScreen(
                                     shape = RoundedCornerShape(6.dp)
                                 ) {
                                     Text(
-                                        text = fandomLabel,
+                                        text = wikiLabel,
                                         style = MaterialTheme.typography.labelSmall,
                                         color = Color.White.copy(alpha = 0.85f),
                                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp)

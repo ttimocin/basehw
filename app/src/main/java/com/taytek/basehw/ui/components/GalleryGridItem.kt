@@ -35,10 +35,13 @@ fun GalleryGridItem(
     val isSthCar = feature == "sth"
     val isChaseCar = feature == "chase"
     val isThCar = feature == "th"
+    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryContainer
+    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFE2E8F0)
     
     val sthBorderColor = if (isSthCar) Color(0xFFB8860B) else if (isChaseCar) Color.Black else if (isThCar) Color(0xFF71797E) else Color.Transparent
-    val defaultBorderColor = if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.2f) else Color.Black.copy(alpha = 0.1f)
-
+    val defaultBorderColor = if (isDark) Color.White.copy(alpha = 0.2f) else MaterialTheme.colorScheme.outline
+ 
     Box(
         modifier = modifier
             .aspectRatio(1f)
@@ -48,7 +51,12 @@ fun GalleryGridItem(
                 shape = RoundedCornerShape(14.dp)
             )
             .clip(RoundedCornerShape(14.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .shadow(elevation = 2.dp, shape = RoundedCornerShape(14.dp))
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(baseColor, darkerColor)
+                )
+            )
             .combinedClickable(
                 onClick = {
                     onClick()

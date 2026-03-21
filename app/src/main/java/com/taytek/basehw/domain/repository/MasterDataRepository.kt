@@ -9,7 +9,7 @@ interface MasterDataRepository {
     fun searchAll(query: String): Flow<PagingData<MasterData>>
     fun searchByBrand(brand: Brand, query: String): Flow<PagingData<MasterData>>
     fun getAll(brand: Brand?): Flow<PagingData<MasterData>>
-    suspend fun syncFromFandom(brand: Brand)
+    suspend fun syncFromSource(brand: Brand)
     suspend fun getBySeries(brand: Brand, series: String): List<MasterData>
     suspend fun getCount(): Int
     fun getSthCars(): Flow<PagingData<MasterData>>

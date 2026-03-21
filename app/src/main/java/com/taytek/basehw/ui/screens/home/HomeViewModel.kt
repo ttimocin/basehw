@@ -27,6 +27,8 @@ data class HomeUiState(
     val monthlyAdded: Int = 0,
     val wantedCount: Int = 0,
     val sthCount: Int = 0,
+    val totalValue: Double = 0.0,
+    val monthlyValueIncrease: Double = 0.0,
     val searchQuery: String = ""
 )
 
@@ -110,14 +112,25 @@ class HomeViewModel @Inject constructor(
                 userCarRepository.getTotalCarsCount(),
                 userCarRepository.getCarsAddedSinceCount(startOfMonth),
                 userCarRepository.getWantedNotInCollectionCount(),
-                userCarRepository.getSthCarsCount()
-            ) { total, monthly, wanted, sth ->
+                userCarRepository.getSthCarsCount(),
+                userCarRepository.getTotalEstimatedValue(),
+                userCarRepository.getValueAddedSince(startOfMonth)
+            ) { args ->
+                val total = args[0] as Int
+                val monthly = args[1] as Int
+                val wanted = args[2] as Int
+                val sth = args[3] as Int
+                val value = args[4] as Double
+                val valueIncrease = args[5] as Double
+
                 _uiState.update { 
                     it.copy(
                         totalCars = total,
                         monthlyAdded = monthly,
                         wantedCount = wanted,
-                        sthCount = sth
+                        sthCount = sth,
+                        totalValue = value,
+                        monthlyValueIncrease = valueIncrease
                     )
                 }
             }.collect()

@@ -132,15 +132,15 @@ fun CarDetailScreen(
                 ) {
                     // Hero image (Öncelik: Kullanıcının kendi fotoğrafı)
                     val displayImageUrl = car.userPhotoUrl ?: master?.imageUrl
-                    val isFandomImage = car.userPhotoUrl == null &&
+                    val isWikiImage = car.userPhotoUrl == null &&
                         (master?.imageUrl?.contains("wikia.nocookie.net") == true ||
                          master?.imageUrl?.contains("fandom.com") == true)
-                    val fandomLabel = when (master?.brand) {
-                        Brand.HOT_WHEELS -> "Hot Wheels Wiki • Fandom"
-                        Brand.MATCHBOX   -> "Matchbox Wiki • Fandom"
+                    val wikiLabel = when (master?.brand) {
+                        Brand.HOT_WHEELS -> "Hot Wheels Wiki"
+                        Brand.MATCHBOX   -> "Matchbox Wiki"
                         Brand.MINI_GT    -> null
-                        Brand.MAJORETTE  -> "Majorette Wiki • Fandom"
-                        Brand.JADA       -> "Jada Wiki • Fandom"
+                        Brand.MAJORETTE  -> "Majorette Wiki"
+                        Brand.JADA       -> "Jada Wiki"
                         Brand.SIKU       -> null
                         null             -> null
                     }
@@ -157,7 +157,7 @@ fun CarDetailScreen(
                                 modifier = Modifier.fillMaxSize(),
                                 contentScale = ContentScale.Fit
                             )
-                            if (isFandomImage && fandomLabel != null) {
+                            if (isWikiImage && wikiLabel != null) {
                                 Surface(
                                     modifier = Modifier
                                         .align(Alignment.BottomStart)
@@ -166,7 +166,7 @@ fun CarDetailScreen(
                                     shape = androidx.compose.foundation.shape.RoundedCornerShape(6.dp)
                                 ) {
                                     Text(
-                                        text = fandomLabel,
+                                        text = wikiLabel,
                                         style = MaterialTheme.typography.labelSmall,
                                         color = Color.White.copy(alpha = 0.85f),
                                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp)

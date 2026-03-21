@@ -57,8 +57,8 @@ class MasterDataRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun syncFromFandom(brand: Brand) {
-        // Actual sync is done via FandomSyncWorker (WorkManager)
+    override suspend fun syncFromSource(brand: Brand) {
+        // Actual sync is done via WikiSyncWorker (WorkManager)
         // This method is kept for direct use in tests or one-shot triggers
     }
 

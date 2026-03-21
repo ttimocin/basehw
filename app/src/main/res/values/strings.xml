@@ -36,7 +36,7 @@
     <string name="hello_collector">Merhaba</string>
     <string name="welcome_back">Garajınıza tekrar hoş geldiniz</string>
     <string name="total_models">Toplam Model: %d</string>
-    <string name="total_models_label">TOPLAM MODEL</string>
+    <string name="total_models_label">Toplam model</string>
     <string name="search_in_collection">Model adı, kod veya seri ara...</string>
     <string name="search_models">Modelleri ara...</string>
     <string name="clear">Temizle</string>
@@ -45,14 +45,16 @@
     <string name="latest_addition">Son Eklenen</string>
     <string name="favorite">Favori</string>
     <string name="hero_stat_this_month">Bu ay</string>
+    <string name="this_month_short">Bu ay</string>
     <string name="hero_stat_monthly">Aylık</string>
     <string name="hero_stat_total">Toplam</string>
     <string name="manual_mode_btn">Manuel</string>
     <string name="welcome_greeting">Koleksiyonuna Hoş Geldin!</string>
     <string name="scan">Tara</string>
-    <string name="wanted_short">ARANAN</string>
-    <string name="treasure_short">HAZİNE (STH/TH)</string>
+    <string name="wanted_short">Aranan</string>
+    <string name="treasure_short">Hazine</string>
     <string name="recently_added">Son Eklenenler</string>
+    <string name="current_value">Güncel değer</string>
     <string name="see_all">Tümünü Gör</string>
     <string name="view_all">Tümünü Gör</string>
 

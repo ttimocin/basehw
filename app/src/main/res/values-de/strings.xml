@@ -36,7 +36,7 @@
     <string name="hello_collector">Hallo</string>
     <string name="welcome_back">Willkommen zurück in Ihrer Garage</string>
     <string name="total_models">Gesamt Modelle: %d</string>
-    <string name="total_models_label">GESAMT MODELLE</string>
+    <string name="total_models_label">Gesamtmodelle</string>
     <string name="search_in_collection">Modellname, Code oder Serie suchen...</string>
     <string name="search_models">Modelle suchen...</string>
     <string name="clear">Löschen</string>
@@ -45,13 +45,15 @@
     <string name="latest_addition">Neueste Errungenschaft</string>
     <string name="favorite">Favorit</string>
     <string name="hero_stat_this_month">Diesen Monat</string>
+    <string name="this_month_short">Diesen Monat</string>
     <string name="hero_stat_monthly">Monatlich</string>
     <string name="hero_stat_total">Gesamt</string>
     <string name="manual_mode_btn">Manuell</string>
     <string name="scan">Scannen</string>
-    <string name="wanted_short">GESUCHT</string>
-    <string name="treasure_short">SCHATZ (STH/TH)</string>
+    <string name="wanted_short">Gesucht</string>
+    <string name="treasure_short">Schatz</string>
     <string name="recently_added">Kuerzlich hinzugefuegt</string>
+    <string name="current_value">Aktueller wert</string>
     <string name="view_all">Alle anzeigen</string>
 
     <!-- Photo Options -->

@@ -36,7 +36,7 @@
     <string name="hello_collector">Hello</string>
     <string name="welcome_back">Welcome back to your garage</string>
     <string name="total_models">Total Models: %d</string>
-    <string name="total_models_label">TOTAL MODELS</string>
+    <string name="total_models_label">Total models</string>
     <string name="search_in_collection">Search by model name, code or series...</string>
     <string name="search_models">Search models...</string>
     <string name="clear">Clear</string>
@@ -45,13 +45,15 @@
     <string name="latest_addition">Latest Addition</string>
     <string name="favorite">Favorite</string>
     <string name="hero_stat_this_month">This month</string>
+    <string name="this_month_short">This month</string>
     <string name="hero_stat_monthly">Monthly</string>
     <string name="hero_stat_total">Total</string>
     <string name="manual_mode_btn">Manual</string>
     <string name="scan">Scan</string>
-    <string name="wanted_short">WANTED</string>
-    <string name="treasure_short">TREASURE (STH/TH)</string>
+    <string name="wanted_short">Wanted</string>
+    <string name="treasure_short">Treasure</string>
     <string name="recently_added">Recently Added</string>
+    <string name="current_value">Current value</string>
     <string name="view_all">View All</string>
 
     <!-- Photo Options -->

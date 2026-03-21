@@ -24,3 +24,12 @@ repo_files.txt
 
 # Databases & Sensitive Assets
 app/src/main/assets/**/*.json
+/Script/
+
+# Logs & Temp
+*.log
+build_*.txt
+compile_errors.txt
+error_log.txt
+*.png
+repo_files.txt

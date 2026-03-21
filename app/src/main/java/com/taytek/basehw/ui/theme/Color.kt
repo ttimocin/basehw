@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 // === Legacy / still referenced externally ===
 val AppBackground = Color(0xFFF8F9FA)
 val AppSurface = Color(0xFFFFFFFF)
-val AppPrimary = Color(0xFFF57C00)          // Now orange like Figma accent
+val AppPrimary = Color(0xFFFB923C)          // Paler orange (Tailwind Orange 400 style)
 val AppOnPrimary = Color(0xFFFFFFFF)
 val AppTextPrimary = Color(0xFF1E293B)
 val AppTextSecondary = Color(0xFF64748B)
@@ -27,9 +27,9 @@ val DarkGreen       = Color(0xFF10B981)   // Positive / tertiary (same as FigmaP
 val LightBackground   = Color(0xFFF8F9FA)
 val LightSurface      = Color(0xFFFFFFFF)
 val LightNavBar       = Color(0xFFFFFFFF)
-val LightOrange       = Color(0xFFF57C00)   // Same orange brand color
+val LightOrange       = Color(0xFFFB923C)   // Softer orange brand color
 val LightOrangeOnP    = Color(0xFFFFFFFF)
-val LightOrangeContainer  = Color(0xFFFFE8CC)
+val LightOrangeContainer  = Color(0xFFFFF7ED)
 val LightOnOrangeContainer = Color(0xFF4A1800)
 val LightText         = Color(0xFF1E293B)   // Dark navy for readability on white
 val LightTextSecond   = Color(0xFF64748B)

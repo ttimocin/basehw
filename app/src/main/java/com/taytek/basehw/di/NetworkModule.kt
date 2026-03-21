@@ -19,7 +19,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     // Dummy base URL — actual URLs are passed dynamically via @Url in each call
-    private const val BASE_URL = "https://hotwheels.fandom.com/"
+    private const val WIKI_BASE_URL = "https://hotwheels.fandom.com/"
 
     @Provides
     @Singleton
@@ -44,7 +44,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(WIKI_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

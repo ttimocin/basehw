@@ -8,6 +8,6 @@ class SyncMasterDataUseCase @Inject constructor(
     private val repository: MasterDataRepository
 ) {
     suspend operator fun invoke(brand: Brand) {
-        repository.syncFromFandom(brand)
+        repository.syncFromSource(brand)
     }
 }

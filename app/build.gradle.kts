@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.appdistribution)
 }
 
 android {
@@ -59,6 +60,12 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    firebaseAppDistribution {
+        appId = "1:471261592182:android:02275663ccf4f4416f7d57"
+        artifactType = "APK"
+        releaseNotes = "New UI refinements and statistics badges."
     }
 }
 
