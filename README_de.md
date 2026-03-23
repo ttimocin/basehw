@@ -1,6 +1,6 @@
 <div align="center">
   <img src="logo.png" width="128" alt="BaseHW Logo">
-  <h1>BaseHW - Model Car Collector's Vault 🏎️</h1>
+  <h1>BaseHW - Premium Diecast Collector's Vault 🏎️</h1>
   
   <p>
     <b>Deutsch</b> • 
@@ -15,40 +15,44 @@
 
 ---
 
-**BaseHW** ist eine hochmoderne Android-Anwendung, die speziell für Diecast-Sammler entwickelt wurde. Erstellt mit **Jetpack Compose** und **Clean Architecture (MVVM)**, bietet sie ein erstklassiges Erlebnis zur Verwaltung, Synchronisierung und Entdeckung Ihrer Modellautosammlung.
+**BaseHW** ist der ultimative, hochmoderne Android-Begleiter für leidenschaftliche Diecast-Autosammler. Mit **Jetpack Compose** und konsequenter **Clean Architecture (MVVM)** von Grund auf neu gestaltet, bietet die App ein erstklassiges Premium-Erlebnis. Sammeln, synchronisieren und entdecken Sie Ihre gesamte Modellautosammlung ganz einfach. Von der sofortigen Cloud-Synchronisierung bis hin zur fortschrittlichen KI-gestützten Texterkennung revolutioniert BaseHW die Art und Weise, wie Sammler ihre Leidenschaft verwalten.
 
 ## 📸 Visuelle Präsentation
+*Eine komplett neugestaltete, von der Natur inspirierte Benutzeroberfläche.*
 <div align="center">
   <img src="homepage_v3.png" width="280"> &nbsp; &nbsp;
   <img src="search_ui_final.png" width="280">
 </div>
 
-## 🌟 Hauptmerkmale
-- **🎨 High-Fidelity UI/UX:** Von der Natur inspiriertes Designsystem in Creme/Olivgrün mit moderner Typografie und flüssigen Animationen.
-- **🔄 Cloud-Sync & Auth:** Nahtlose Google-Anmeldung über den Credential Manager. Sofortiges Cloud-Backup mit Firebase Firestore und Supabase.
-- **📡 Remote-Katalog-Synchronisierung:** Aktualisieren Sie Ihre Fahrzeugdatenbank ohne App-Update! Verwendet GitHub-gehostete JSON-Kataloge für Modell-Updates in Echtzeit.
-- **📊 Statistiken & Einblicke:** Tauchen Sie tief in Ihre Sammlungsstatistiken ein (Markenverteilung, Boxzustand, Marktwert).
-- **📋 Verwaltung:** Integriertes "Gesucht"-System (Wunschliste) mit Unterstützung für hochauflösende Bilder über Supabase Storage.
+## 🌟 Funktionen der nächsten Generation
 
-## 🛠️ Tech Stack
-- **Kern:** Kotlin 2.0, Jetpack Compose, Coroutines, Flow.
-- **Architektur:** MVVM, Clean Architecture.
-- **DI / DB:** Hilt, Room Database, Paging 3.
-- **Backend:** Firebase (Auth/Firestore), Supabase (Postgres/Storage).
+- **💡 ML Kit Smart OCR:** Fügen Sie im Handumdrehen neue Autos zu Ihrer Sammlung hinzu – direkt über Ihre Kamera! Unsere hochentwickelte, KI-gesteuerte Texterkennung liest Modellnamen vollautomatisch von der Originalverpackung ab.
+- **🎨 Hochwertiges Premium UI/UX:** Ein maßgeschneidertes, von der Natur inspiriertes Designsystem in Creme/Olivgrün. Moderne Typografie, ansprechende Glassmorphismus-Effekte und dynamische Mikro-Animationen sorgen für ein unverkennbares Erlebnis.
+- **🏎️ Ultra-Marken-Support:** Wir bieten mehr als nur die Basics! Verwalten Sie Ihre Sammlungen jetzt für High-End-Marken wie **Hot Wheels, Matchbox, Majorette, MiniGT, Inno64, Tarmac Works und Kaido House**.
+- **🔄 Sichere Cloud-Synchronisierung & Auth:** Nahtlose One-Tap-Google-Anmeldung via Credential Manager. Zuverlässiges Echtzeit-Cloud-Backup über alle Ihre Geräte hinweg, betrieben durch Firebase Firestore und **Supabase** (Postgres/Storage).
+- **📡 Over-The-Air (OTA) Katalog-Updates:** Erweitern Sie Ihre Fahrzeugdatenbank jederzeit und ohne neue App-Updates. Wir nutzen GitHub-basierte JSON-Kataloge, um brandneue Modelle in Echtzeit direkt in Ihre App zu laden.
+- **📊 Erweiterte Statistiken:** Tiefgehende Einblicke in Ihre Sammlung! Visualisieren Sie Ihre Markenverteilung, erfassen Sie den genauen Kartonzustand und überwachen Sie den Gesamtmarktwert Ihrer kostbaren Modelle.
+- **📋 Hochauflösende Wunschliste:** Ein natives "Wanted"-System, das direkt mit Supabase Storage verbunden ist. So wird sichergestellt, dass Sie Ihre Traumautos in bester Bildqualität auf Ihrer Liste verwalten können.
 
-## 📜 Rechtliches
+## 🛠️ Technologie-Stack & Architektur
+BaseHW präsentiert die modernsten Android-Entwicklungsstandards:
+- **Kerntechnologien:** Kotlin 2.0, Jetpack Compose, Coroutines, Flow.
+- **Architektur:** MVVM mit streng angewandten Clean-Architecture-Prinzipien.
+- **Lokale Datenbank & DI:** Hilt für reibungslosere Dependency Injection, Room Database für Offline-Caching und schnelles Paging 3 für unendliches Scrollen.
+- **Backend-Infrastruktur:** Eine leistungsstarke Kombination aus Firebase (Auth, Firestore) und Supabase (Postgres, Storage) bietet höchste Skalierbarkeit für Ihre Daten.
+- **KI & Bildverarbeitung:** Google ML Kit (Texterkennung) und uCrop zur Bildbearbeitung. Effizientes Laden und Cachen von Bildern mittels Coil.
+
+## 🚀 Installation & Einrichtung
+1. Klonen Sie das Repository auf Ihren lokalen Rechner: `git clone https://github.com/ttimocin/basehw.git`
+2. Fügen Sie Ihre `google-services.json` sicher in das Verzeichnis `app/` ein.
+3. Aktualisieren Sie `default_web_client_id` in der Datei `strings.xml`, um sie an Ihr entsprechendes Google Cloud-Projekt anzupassen.
+4. Öffnen und kompilieren Sie die App mit **Android Studio Meerkat** (oder neuer), um die Vorschaufunktionen von Compose vollumfänglich zu nutzen.
+
+## 📜 Rechtliches & Ressourcen
 - 🔒 **[Datenschutzrichtlinie](https://ttimocin.github.io/basehw/privacy.html)**
 - 📝 **[Nutzungsbedingungen](https://ttimocin.github.io/basehw/terms.html)**
 
 ---
-
-## 🚀 Installation & Einrichtung
-1. Klonen Sie das Repository.
-2. Fügen Sie Ihre `google-services.json` zum Verzeichnis `app/` hinzu.
-3. Aktualisieren Sie `default_web_client_id` in `strings.xml`.
-4. Erstellen Sie die App in **Android Studio Meerkat** oder neuer.
-
----
 <div align="center">
-  Developed with ❤️ by <b>ttimocin</b>
+  Mit ❤️ entwickelt für die Sammler-Community von <b>ttimocin</b>
 </div>
