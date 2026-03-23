@@ -20,8 +20,9 @@
 ## 📸 Görsel Tanıtım
 *Tamamen yenilenmiş, doğadan ilham alan ve özenle hazırlanmış kullanıcı arayüzü.*
 <div align="center">
-  <img src="homepage_v3.png" width="280"> &nbsp; &nbsp;
-  <img src="search_ui_final.png" width="280">
+  <img src="docs/screenshots/tr_home.jpeg" width="220"> &nbsp;
+  <img src="docs/screenshots/tr_coll.jpeg" width="220"> &nbsp;
+  <img src="docs/screenshots/tr_sth.jpeg" width="220">
 </div>
 
 ## 🌟 Yeni Nesil Özellikler

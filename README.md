@@ -20,8 +20,9 @@
 ## 📸 Visual Showcase
 *A fully redesigned, nature-inspired user interface crafted with precision.*
 <div align="center">
-  <img src="homepage_v3.png" width="280"> &nbsp; &nbsp;
-  <img src="search_ui_final.png" width="280">
+  <img src="docs/screenshots/en_home.jpeg" width="220"> &nbsp;
+  <img src="docs/screenshots/en_coll.jpeg" width="220"> &nbsp;
+  <img src="docs/screenshots/en_sth.jpeg" width="220">
 </div>
 
 ## 🌟 Next-Generation Features
