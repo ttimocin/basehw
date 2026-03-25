@@ -478,7 +478,7 @@ fun FilterBottomSheet(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     contentPadding = PaddingValues(end = 24.dp) // Extra padding for scroll
                 ) {
-                    items(listOf(null, "HOT_WHEELS", "MATCHBOX", "MINI_GT", "MAJORETTE", "JADA", "SIKU")) { b ->
+                    items(listOf(null, "HOT_WHEELS", "MATCHBOX", "MINI_GT", "MAJORETTE", "JADA", "SIKU", "KAIDO_HOUSE")) { b ->
                         FilterChip(
                             selected = brand == b,
                             onClick = { brand = b },
@@ -577,8 +577,8 @@ fun CollectionListItem(
     val isChaseCar = feature == "chase"
     val isThCar = feature == "th"
     val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryContainer
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFE2E8F0)
+    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
+    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
 
     val sthBorderColor = if (isSthCar) Color(0xFFB8860B) else if (isChaseCar) Color.Black else if (isThCar) Color(0xFF71797E) else Color.Transparent
     val defaultBorderColor = if (isDark) Color.White.copy(alpha = 0.2f) else Color.Black.copy(alpha = 0.15f)

@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.taytek.basehw.domain.model.SortOrder
 import com.taytek.basehw.domain.model.UserCar
+import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.repository.UserCarRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -50,6 +51,10 @@ class CollectionViewModel @Inject constructor(
 
     private val _selectedIds = MutableStateFlow<Set<Long>>(emptySet())
     val selectedIds: StateFlow<Set<Long>> = _selectedIds.asStateFlow()
+
+    val availableBrands: StateFlow<List<Brand>> = repository.getBrandCounts()
+        .map { stats -> stats.map { it.brand }.sortedBy { it.displayName } }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val carsPaged: Flow<PagingData<UserCar>> = combine(

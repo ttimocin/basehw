@@ -11,7 +11,13 @@ const BRAND_TABLES = [
   { table: "catalog_majorette", brand: "MAJORETTE", defaultDataSource: "majorette" },
   { table: "catalog_jada", brand: "JADA", defaultDataSource: "jada" },
   { table: "catalog_siku", brand: "SIKU", defaultDataSource: "siku" },
-  { table: "catalog_sth_th", brand: "HOT_WHEELS", defaultDataSource: "hotwheels_th_sth" }
+  { table: "catalog_sth_th", brand: "HOT_WHEELS", defaultDataSource: "hotwheels_th_sth" },
+  { table: "catalog_rlc", brand: "HOT_WHEELS", defaultDataSource: "hotwheels/Premium/rlc" },
+  { table: "catalog_kaido", brand: "KAIDO_HOUSE", defaultDataSource: "kaido" },
+  { table: "catalog_ff", brand: "HOT_WHEELS", defaultDataSource: "hotwheels/Premium/faf" },
+  { table: "catalog_pop", brand: "HOT_WHEELS", defaultDataSource: "hotwheels/Premium/popculture" },
+  { table: "catalog_cc", brand: "HOT_WHEELS", defaultDataSource: "hotwheels/Premium/carculture" },
+  { table: "catalog_boulevard", brand: "HOT_WHEELS", defaultDataSource: "hotwheels/Premium/Boulevard" }
 ] as const;
 
 type BrandRow = {

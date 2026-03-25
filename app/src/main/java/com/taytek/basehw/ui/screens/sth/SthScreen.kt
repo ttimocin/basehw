@@ -325,8 +325,8 @@ private fun SthCarItem(
         else -> SthGold
     }
     val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryContainer
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFE2E8F0)
+    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
+    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
     
     val bgColor = Brush.linearGradient(listOf(baseColor, darkerColor))
     

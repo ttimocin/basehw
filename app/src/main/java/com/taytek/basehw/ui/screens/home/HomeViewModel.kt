@@ -19,6 +19,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.Calendar
 import javax.inject.Inject
+import com.taytek.basehw.data.local.AppSettingsManager
+import com.taytek.basehw.domain.repository.CurrencyRepository
+import com.taytek.basehw.domain.model.AppCurrency
 
 data class HomeUiState(
     val userName: String = "Collector",
@@ -29,7 +32,8 @@ data class HomeUiState(
     val sthCount: Int = 0,
     val totalValue: Double = 0.0,
     val monthlyValueIncrease: Double = 0.0,
-    val searchQuery: String = ""
+    val searchQuery: String = "",
+    val currencySymbol: String = "€"
 )
 
 @HiltViewModel
@@ -37,11 +41,26 @@ class HomeViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val userCarRepository: UserCarRepository,
     private val searchMasterDataUseCase: SearchMasterDataUseCase,
-    private val searchAllMasterDataUseCase: SearchAllMasterDataUseCase
+    private val searchAllMasterDataUseCase: SearchAllMasterDataUseCase,
+    private val appSettingsManager: AppSettingsManager,
+    private val currencyRepository: CurrencyRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+
+    val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
+
+    val currencySymbol: StateFlow<String> = currencyCode
+        .map { AppCurrency.fromCode(it).symbol }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "€")
+
+    private val conversionRate: StateFlow<Double> = combine(currencyRepository.getRates(), currencyCode) { rates, code ->
+        val effectiveCode = if (code.isBlank()) "EUR" else code
+        if (effectiveCode == "EUR") 1.0
+        else rates?.rates?.get(effectiveCode) ?: 1.0
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 1.0)
 
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
@@ -71,6 +90,10 @@ class HomeViewModel @Inject constructor(
     init {
         observeUserData()
         observeStats()
+        
+        viewModelScope.launch {
+            currencyRepository.refreshRates()
+        }
     }
 
     private fun observeUserData() {
@@ -114,14 +137,18 @@ class HomeViewModel @Inject constructor(
                 userCarRepository.getWantedNotInCollectionCount(),
                 userCarRepository.getSthCarsCount(),
                 userCarRepository.getTotalEstimatedValue(),
-                userCarRepository.getValueAddedSince(startOfMonth)
+                userCarRepository.getValueAddedSince(startOfMonth),
+                conversionRate,
+                currencySymbol
             ) { args ->
                 val total = args[0] as Int
                 val monthly = args[1] as Int
                 val wanted = args[2] as Int
                 val sth = args[3] as Int
-                val value = args[4] as Double
-                val valueIncrease = args[5] as Double
+                val rawValue = args[4] as Double
+                val rawIncrease = args[5] as Double
+                val rate = args[6] as Double
+                val symbol = args[7] as String
 
                 _uiState.update { 
                     it.copy(
@@ -129,8 +156,9 @@ class HomeViewModel @Inject constructor(
                         monthlyAdded = monthly,
                         wantedCount = wanted,
                         sthCount = sth,
-                        totalValue = value,
-                        monthlyValueIncrease = valueIncrease
+                        totalValue = rawValue * rate,
+                        monthlyValueIncrease = rawIncrease * rate,
+                        currencySymbol = symbol
                     )
                 }
             }.collect()

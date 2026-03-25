@@ -24,6 +24,7 @@ import com.taytek.basehw.ui.theme.MiniGTSilver
 import com.taytek.basehw.ui.theme.MajoretteYellow
 import com.taytek.basehw.ui.theme.JadaPurple
 import com.taytek.basehw.ui.theme.SikuBlue
+import com.taytek.basehw.ui.theme.KaidoHouseColor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.graphics.Color
@@ -121,6 +122,7 @@ fun CarDetailScreen(
                     Brand.MAJORETTE  -> MajoretteYellow
                     Brand.JADA       -> JadaPurple
                     Brand.SIKU       -> SikuBlue
+                    Brand.KAIDO_HOUSE -> KaidoHouseColor
                     null -> MaterialTheme.colorScheme.primary
                 }
 
@@ -142,6 +144,7 @@ fun CarDetailScreen(
                         Brand.MAJORETTE  -> "Majorette Wiki"
                         Brand.JADA       -> "Jada Wiki"
                         Brand.SIKU       -> null
+                        Brand.KAIDO_HOUSE -> null
                         null             -> null
                     }
                     if (!displayImageUrl.isNullOrBlank()) {

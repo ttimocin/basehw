@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -25,9 +26,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -40,6 +44,7 @@ import com.taytek.basehw.ui.theme.MiniGTSilver
 import com.taytek.basehw.ui.theme.MajoretteYellow
 import com.taytek.basehw.ui.theme.JadaPurple
 import com.taytek.basehw.ui.theme.SikuBlue
+import com.taytek.basehw.ui.theme.KaidoHouseColor
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -228,12 +233,22 @@ fun BadgeCard(badge: BadgeType, locked: Boolean = false) {
     ) {
         Column(
             modifier = androidx.compose.ui.Modifier.padding(14.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = badge.emoji,
-                style = MaterialTheme.typography.headlineMedium
-            )
+            if (badge.iconRes != null) {
+                Image(
+                    painter = painterResource(badge.iconRes),
+                    contentDescription = null,
+                    modifier = Modifier.size(48.dp),
+                    colorFilter = if (locked) ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) }) else null
+                )
+            } else {
+                Text(
+                    text = badge.emoji,
+                    style = MaterialTheme.typography.headlineMedium
+                )
+            }
             Text(
                 text = stringResource(badge.titleRes),
                 style = MaterialTheme.typography.labelLarge,
@@ -365,6 +380,7 @@ fun BrandDistributionCard(brandStats: List<com.taytek.basehw.domain.model.BrandS
                         Brand.MAJORETTE  -> MajoretteYellow
                         Brand.JADA       -> JadaPurple
                         Brand.SIKU       -> SikuBlue
+                        Brand.KAIDO_HOUSE -> KaidoHouseColor
                     }
                     PieSliceData(stat.brand.displayName, stat.count, color)
                 }
@@ -379,6 +395,7 @@ fun BrandDistributionCard(brandStats: List<com.taytek.basehw.domain.model.BrandS
                         Brand.MAJORETTE  -> MajoretteYellow
                         Brand.JADA       -> JadaPurple
                         Brand.SIKU       -> SikuBlue
+                        Brand.KAIDO_HOUSE -> KaidoHouseColor
                     }
                     
                     ProgressBarWithLabel(

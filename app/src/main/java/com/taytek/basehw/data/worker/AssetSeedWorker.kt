@@ -29,7 +29,7 @@ class AssetSeedWorker @AssistedInject constructor(
 
     companion object {
         const val TAG = "AssetSeedWorker"
-        const val WORK_NAME = "hw_asset_seed_v48" // v48: simplified data_source (only use folder)
+        const val WORK_NAME = "hw_asset_seed_v1" // Reset for development
 
         private data class SeedConfig(
             val folder: String,
@@ -45,6 +45,7 @@ class AssetSeedWorker @AssistedInject constructor(
             SeedConfig("hotwheels/Premium/popculture", Brand.HOT_WHEELS, Regex("pop\\.json")),
             SeedConfig("hotwheels/Premium/faf", Brand.HOT_WHEELS, Regex("faf\\.json")),
             SeedConfig("hotwheels/Premium/Boulevard", Brand.HOT_WHEELS, Regex("boulevard\\.json"), isPremiumOverride = true),
+            SeedConfig("hotwheels/Premium/rlc", Brand.HOT_WHEELS, Regex("rlc\\.json"), isPremiumOverride = true),
             
             // 2. STH/TH specific updates (MUST be before mainlines to ensure tags are set)
             SeedConfig("hotwheels", Brand.HOT_WHEELS, Regex("hotwheels_th_sth\\.json")),
@@ -54,6 +55,7 @@ class AssetSeedWorker @AssistedInject constructor(
             SeedConfig("minigt", Brand.MINI_GT, Regex("minigt\\.json")),
             SeedConfig("majorette", Brand.MAJORETTE, Regex("majorette\\.json")),
             SeedConfig("siku", Brand.SIKU, Regex("siku\\.json")),
+            SeedConfig("kaido", Brand.KAIDO_HOUSE, Regex("kaido\\.json")),
             
             // 4. Massive Mainlines (Last priority due to size)
             SeedConfig("hotwheels", Brand.HOT_WHEELS, Regex("hotwheels\\.json")),
@@ -72,6 +74,8 @@ class AssetSeedWorker @AssistedInject constructor(
             var totalSthCount = 0
             var totalThCount = 0
 
+            val processedStrongKeysInThisRun = mutableSetOf<String>()
+
             SEED_CONFIGS.forEach { config ->
                 val files = assets.list(config.folder)
                     ?.filter { config.regex.matches(it) }
@@ -80,9 +84,9 @@ class AssetSeedWorker @AssistedInject constructor(
 
                 if (files.isEmpty()) return@forEach
 
-                // Optimization: Instead of fetching ALL full entity objects (377k+ for Hot Wheels),
-                // we only fetch the necessary identity keys to avoid OOM.
-                val existingIdentityKeys = masterDataDao.getIdentityKeysByBrand(config.brand.name).toMutableSet()
+                // Instead of fetching all entities (causes OOM), fetch only the small string keys!
+                val existingIdentityKeys = masterDataDao.getStrongIdentityKeysByBrand(config.brand.name).toMutableSet()
+
 
                 files.forEach { filename ->
                     val yearFromFilename = config.regex.find(filename)?.groupValues?.getOrNull(1)?.toIntOrNull()
@@ -96,42 +100,73 @@ class AssetSeedWorker @AssistedInject constructor(
                         reader.beginArray()
                         while (reader.hasNext()) {
                             val carDto: BrandCarDto = gson.fromJson(reader, BrandCarDto::class.java)
-                            if (carDto.modelName.isNotBlank() && carDto.modelName != "Model Name") {
-                                val parsedYear = carDto.year?.replace(Regex("[^0-9]"), "")?.toIntOrNull()
-                                    ?: carDto.years?.replace(Regex("[^0-9]"), "")?.toIntOrNull()
+                            
+                            val safeStr = { s: String? -> s ?: "" }
+                            
+                            val dtoModelName = safeStr(carDto.modelName)
+                            if (dtoModelName.isNotBlank() && dtoModelName != "Model Name") {
+                                val dtoYear = safeStr(carDto.year)
+                                val dtoYears = safeStr(carDto.years)
+                                
+                                val parsedYear = dtoYear.replace(Regex("[^0-9]"), "").toIntOrNull()
+                                    ?: dtoYears.replace(Regex("[^0-9]"), "").toIntOrNull()
                                     ?: carDto.listYear ?: yearFromFilename
                                 
                                 val isPremium = config.isPremiumOverride ?: config.folder.contains("Premium", ignoreCase = true)
                                 val currentDataSource = config.dataSourceOverride ?: config.folder
                                 
+                                val dtoBodyColor = safeStr(carDto.bodyColor)
+                                val dtoOriginalBrand = safeStr(carDto.originalBrand)
+                                
                                 val resolvedColor = when (config.brand) {
                                     Brand.MINI_GT -> ""
-                                    else -> carDto.bodyColor.ifBlank { carDto.originalBrand }
+                                    else -> dtoBodyColor.ifBlank { dtoOriginalBrand }
                                 }
-
-                                var feature = carDto.feature?.trim()?.lowercase()?.takeIf { it.isNotBlank() }
                                 
+                                val dtoFeature = safeStr(carDto.feature).trim().lowercase()
+                                var feature = dtoFeature.takeIf { it.isNotBlank() }
+
+                                val dtoSeriesNum = safeStr(carDto.seriesNum)
                                 // Automatic detection for Chase based on series_num
                                 if (feature.isNullOrBlank()) {
-                                    if (carDto.seriesNum.trim() == "0/5" || carDto.seriesNum.trim().startsWith("0/")) {
+                                    if (dtoSeriesNum.trim() == "0/5" || dtoSeriesNum.trim().startsWith("0/")) {
                                         feature = "chase"
                                     }
                                 }
 
+                                val dtoSeries = safeStr(carDto.series)
+                                val dtoSeriesType = safeStr(carDto.seriesType)
+                                val dtoSetName = safeStr(carDto.setName)
+                                val dtoDriveType = safeStr(carDto.driveType)
+                                val dtoPageSource = safeStr(carDto.pageSource)
+
+                                val seriesResolved = dtoSeries.ifBlank { dtoSeriesType }.ifBlank { dtoSetName }.ifBlank { dtoDriveType }.ifBlank { dtoPageSource }
+
+                                val dtoImageUrl = safeStr(carDto.imageUrl)
+                                val dtoScale = safeStr(carDto.scale)
+                                val dtoToyNum = safeStr(carDto.toyNum)
+                                val dtoColNum = safeStr(carDto.colNum)
+                                val dtoSerieNr = safeStr(carDto.serieNr)
+                                val dtoManNum = safeStr(carDto.manNum)
+                                val dtoCode = safeStr(carDto.code)
+                                val dtoCase = safeStr(carDto.case)
+
+                                val colNumResolved = dtoColNum.ifBlank { dtoSerieNr }.ifBlank { dtoManNum }.ifBlank { dtoCode }
+
                                 val entity = MasterDataEntity(
                                     brand = config.brand.name,
-                                    modelName = carDto.modelName,
-                                    series = carDto.series.ifBlank { carDto.seriesType }.ifBlank { carDto.setName }.ifBlank { carDto.driveType }.ifBlank { carDto.pageSource },
-                                    seriesNum = carDto.seriesNum,
+                                    modelName = dtoModelName,
+                                    series = seriesResolved,
+                                    seriesNum = dtoSeriesNum,
                                     year = parsedYear,
                                     color = resolvedColor,
-                                    imageUrl = carDto.imageUrl,
-                                    scale = carDto.scale.ifBlank { "1:64" },
-                                    toyNum = carDto.toyNum,
-                                    colNum = carDto.colNum.ifBlank { carDto.serieNr }.ifBlank { carDto.manNum }.ifBlank { carDto.code },
+                                    imageUrl = dtoImageUrl,
+                                    scale = dtoScale.ifBlank { "1:64" },
+                                    toyNum = dtoToyNum,
+                                    colNum = colNumResolved,
                                     isPremium = isPremium,
                                     dataSource = currentDataSource,
-                                    caseNum = carDto.case,
+                                    caseNum = dtoCase,
                                     feature = feature
                                 )
 
@@ -140,20 +175,23 @@ class AssetSeedWorker @AssistedInject constructor(
                                 if (feature == "th") totalThCount++
                                 totalProcessedCount++
 
-                                val existingEntity = if (existingIdentityKeys.isEmpty()) null else {
-                                    val toyNumKey = "${entity.toyNum}|${entity.dataSource}"
-                                    val nameYearKey = "${entity.modelName}|${entity.year}|${entity.dataSource}"
-                                    
-                                    val keyToFind = if (entity.toyNum.isNotBlank()) toyNumKey else nameYearKey
-                                    
-                                    if (existingIdentityKeys.contains(keyToFind)) {
-                                        if (entity.toyNum.isNotBlank()) {
-                                            masterDataDao.getByToyNumAndDataSource(entity.toyNum, entity.dataSource)
-                                        } else {
-                                            masterDataDao.getByIdentity(entity.brand, entity.modelName, entity.year, entity.dataSource)
-                                        }
-                                    } else null
+                                val yearStr = entity.year?.toString() ?: ""
+                                val strongKey = "${entity.modelName.trim().lowercase()}|${yearStr}|${entity.series.trim().lowercase()}|${entity.color.trim().lowercase()}|${entity.toyNum.trim().lowercase()}|${entity.dataSource.trim().lowercase()}"
+                                
+                                if (processedStrongKeysInThisRun.contains(strongKey)) {
+                                    continue // Ayni dosyada birden fazla olan tam kopyalari (json hatasi) direkt atla
                                 }
+                                processedStrongKeysInThisRun.add(strongKey)
+
+                                // OOM ve DB kilitlenmesini onlemek icin hizli varyasyon sorgusu:
+                                val existingEntity = if (existingIdentityKeys.contains(strongKey)) {
+                                    val candidates = masterDataDao.getVariationsLight(entity.dataSource, entity.year, entity.modelName, entity.brand)
+                                    candidates.find { 
+                                        it.series.trim().equals(entity.series.trim(), ignoreCase = true) &&
+                                        it.color.trim().equals(entity.color.trim(), ignoreCase = true) &&
+                                        it.toyNum.trim().equals(entity.toyNum.trim(), ignoreCase = true)
+                                    }
+                                } else null
 
                                 if (existingEntity != null) {
                                     val updatedEntity = existingEntity.copy(
@@ -180,12 +218,7 @@ class AssetSeedWorker @AssistedInject constructor(
                                     }
                                 } else {
                                     batch.add(entity)
-                                    val keyToAdd = if (entity.toyNum.isNotBlank()) {
-                                        "${entity.toyNum}|${entity.dataSource}"
-                                    } else {
-                                        "${entity.modelName}|${entity.year}|${entity.dataSource}"
-                                    }
-                                    existingIdentityKeys.add(keyToAdd)
+                                    existingIdentityKeys.add(strongKey)
                                 }
                                 
                                 if (carDto.case.isNotBlank() && entity.toyNum.isNotBlank()) {

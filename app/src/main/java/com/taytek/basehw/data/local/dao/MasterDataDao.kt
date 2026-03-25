@@ -171,4 +171,20 @@ interface MasterDataDao {
         WHERE brand = :brand
     """)
     suspend fun getIdentityKeysByBrand(brand: String): List<String>
+
+    @Query("""
+        SELECT 
+            LOWER(TRIM(modelName)) || '|' || 
+            IFNULL(year, '') || '|' || 
+            LOWER(TRIM(series)) || '|' || 
+            LOWER(TRIM(color)) || '|' || 
+            LOWER(TRIM(toyNum)) || '|' || 
+            LOWER(TRIM(dataSource))
+        FROM master_data 
+        WHERE brand = :brand
+    """)
+    suspend fun getStrongIdentityKeysByBrand(brand: String): List<String>
+
+    @Query("SELECT * FROM master_data WHERE dataSource = :dataSource AND year IS :year AND modelName = :modelName AND brand = :brand")
+    suspend fun getVariationsLight(dataSource: String, year: Int?, modelName: String, brand: String): List<MasterDataEntity>
 }

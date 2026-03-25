@@ -24,7 +24,9 @@ class AppSettingsManager @Inject constructor(
     val languageFlow: StateFlow<String> = _languageFlow.asStateFlow()
 
     // "USD", "EUR", "GBP", "TRY" or "" if not set
-    private val _currencyFlow = MutableStateFlow(prefs.getString(KEY_CURRENCY, "EUR") ?: "EUR")
+    private val _currencyFlow = MutableStateFlow(
+        prefs.getString(KEY_CURRENCY, null) ?: if (_languageFlow.value == "tr") "TRY" else "USD"
+    )
     val currencyFlow: StateFlow<String> = _currencyFlow.asStateFlow()
 
     fun setTheme(theme: Int) {

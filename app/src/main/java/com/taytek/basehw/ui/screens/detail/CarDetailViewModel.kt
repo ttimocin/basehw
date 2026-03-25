@@ -34,17 +34,13 @@ class CarDetailViewModel @Inject constructor(
     private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository
 ) : ViewModel() {
 
-    private val _rates = currencyRepository.getRates()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
-
-    val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
+    val currencyCode: Flow<String> = appSettingsManager.currencyFlow
 
     val currencySymbol: StateFlow<String> = currencyCode
         .map { com.taytek.basehw.domain.model.AppCurrency.fromCode(it).symbol }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "€")
 
-    val conversionRate: StateFlow<Double> = combine(_rates, currencyCode) { rates, code ->
+    val conversionRate: StateFlow<Double> = combine(currencyRepository.getRates(), currencyCode) { rates, code ->
         val effectiveCode = if (code.isBlank()) "EUR" else code
         if (effectiveCode == "EUR") 1.0
         else rates?.rates?.get(effectiveCode) ?: 1.0
@@ -56,6 +52,12 @@ class CarDetailViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(DetailUiState())
     val uiState: StateFlow<DetailUiState> = _uiState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            currencyRepository.refreshRates()
+        }
+    }
 
     fun loadCar(id: Long) {
         viewModelScope.launch {

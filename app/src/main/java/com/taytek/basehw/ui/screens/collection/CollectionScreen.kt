@@ -136,18 +136,23 @@ fun CollectionScreen(
             item(span = { GridItemSpan(maxLineSpan) }) {
                 // Brand Filter Row
                 val selectedBrand by viewModel.selectedBrand.collectAsState()
-                BrandFilterRow(
-                    selectedBrand = selectedBrand,
-                    onBrandSelected = { brand ->
-                        viewModel.updateFilters(
-                            brand = brand,
-                            year = viewModel.selectedYear.value,
-                            series = viewModel.selectedSeries.value,
-                            isOpened = viewModel.selectedIsOpened.value,
-                            sortOrder = viewModel.sortOrder.value
-                        )
-                    }
-                )
+                val availableBrands by viewModel.availableBrands.collectAsState()
+                
+                if (availableBrands.isNotEmpty() || selectedBrand != null) {
+                    BrandFilterRow(
+                        selectedBrand = selectedBrand,
+                        availableBrands = availableBrands,
+                        onBrandSelected = { brand ->
+                            viewModel.updateFilters(
+                                brand = brand,
+                                year = viewModel.selectedYear.value,
+                                series = viewModel.selectedSeries.value,
+                                isOpened = viewModel.selectedIsOpened.value,
+                                sortOrder = viewModel.sortOrder.value
+                            )
+                        }
+                    )
+                }
             }
 
             // 4. Cars
@@ -316,6 +321,7 @@ private fun EmptyCollectionPlaceholder(
 @Composable
 fun BrandFilterRow(
     selectedBrand: String?,
+    availableBrands: List<Brand>,
     onBrandSelected: (String?) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -328,23 +334,32 @@ fun BrandFilterRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         item {
-            FilterChip(
-                selected = selectedBrand == null,
-                onClick = { onBrandSelected(null) },
-                label = { Text("Tümü") },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = AppPrimary,
-                    selectedLabelColor = Color.White,
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-                    labelColor = MaterialTheme.colorScheme.onSurfaceVariant
-                ),
-                border = null,
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier.height(64.dp)
-            )
+            val isSelected = selectedBrand == null
+            Box(
+                modifier = Modifier
+                    .height(64.dp) // Match BrandLogoChip height for alignment
+                    .widthIn(min = 64.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(if (isSelected) AppPrimary else Color.Transparent)
+                    .border(
+                        width = if (isSelected) 0.dp else 1.dp,
+                        color = if (isSelected) Color.Transparent else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .clickable { onBrandSelected(null) }
+                    .padding(horizontal = 16.dp, vertical = 8.dp), // Controlled internal padding
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Tümü",
+                    color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
         
-        items(Brand.entries) { brand ->
+        items(availableBrands) { brand ->
             BrandLogoChip(
                 brand = brand,
                 selected = selectedBrand == brand.name,
@@ -368,7 +383,7 @@ fun BrandLogoChip(
             .size(64.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(
-                if (selected) AppPrimary.copy(alpha = 0.2f) else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                if (selected) AppPrimary.copy(alpha = 0.15f) else Color.Transparent
             )
             .border(
                 width = if (selected) 2.dp else 0.dp,
@@ -386,6 +401,7 @@ fun BrandLogoChip(
             Brand.MAJORETTE -> R.drawable.majorette
             Brand.JADA -> R.drawable.jada
             Brand.SIKU -> R.drawable.siku
+            Brand.KAIDO_HOUSE -> R.drawable.kaido
         }
         Image(
             painter = painterResource(id = drawableId),

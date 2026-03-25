@@ -54,6 +54,7 @@ import com.taytek.basehw.ui.theme.MiniGTSilver
 import com.taytek.basehw.ui.theme.MajoretteYellow
 import com.taytek.basehw.ui.theme.JadaPurple
 import com.taytek.basehw.ui.theme.SikuBlue
+import com.taytek.basehw.ui.theme.KaidoHouseColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -229,6 +230,7 @@ fun AddCarScreen(
                             Brand.MAJORETTE  -> MajoretteYellow
                             Brand.JADA       -> JadaPurple
                             Brand.SIKU       -> SikuBlue
+                            Brand.KAIDO_HOUSE -> KaidoHouseColor
                         }
                         val isSelected = uiState.selectedBrand == brand
                         Surface(
@@ -265,6 +267,7 @@ fun AddCarScreen(
                         Brand.MAJORETTE  -> MajoretteYellow
                         Brand.JADA       -> JadaPurple
                         Brand.SIKU       -> SikuBlue
+                        Brand.KAIDO_HOUSE -> KaidoHouseColor
                     }
                     
                     Surface(

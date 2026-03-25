@@ -56,20 +56,17 @@ class ProfileViewModel @Inject constructor(
 ) : ViewModel() {
 
     val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "USD")
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
 
     val currencySymbol: StateFlow<String> = currencyCode
         .map { com.taytek.basehw.domain.model.AppCurrency.fromCode(it).symbol }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "$")
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "€")
 
-    private val _rates = currencyRepository.getRates()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
-
-    private val conversionRate: Flow<Double> = combine(_rates, currencyCode) { rates: com.taytek.basehw.domain.model.CurrencyRates?, code: String ->
-        val effectiveCode = if (code.isBlank()) "USD" else code
-        if (effectiveCode == "USD") 1.0
+    private val conversionRate: StateFlow<Double> = combine(currencyRepository.getRates(), currencyCode) { rates: com.taytek.basehw.domain.model.CurrencyRates?, code: String ->
+        val effectiveCode = if (code.isBlank()) "EUR" else code
+        if (effectiveCode == "EUR") 1.0
         else rates?.rates?.get(effectiveCode) ?: 1.0
-    }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 1.0)
 
     val totalValue: StateFlow<Double> = combine(userCarRepository.getTotalEstimatedValue(), conversionRate) { value: Double, rate: Double ->
         value * rate
@@ -157,6 +154,9 @@ class ProfileViewModel @Inject constructor(
     val uiState: StateFlow<ProfileUiState> = _uiState.asStateFlow()
 
     init {
+        viewModelScope.launch {
+            currencyRepository.refreshRates()
+        }
         viewModelScope.launch {
             authRepository.currentUserFlow.collect { firebaseUser ->
                 if (firebaseUser != null) {

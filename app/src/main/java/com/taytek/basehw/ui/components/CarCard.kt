@@ -34,8 +34,8 @@ fun CarCard(
     modifier: Modifier = Modifier
 ) {
     val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.primaryContainer
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFE2E8F0)
+    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB) // Ultra Light Cream
+    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED) // Lightest Orange (Orange 50)
 
     Card(
         modifier = modifier
@@ -100,7 +100,7 @@ fun CarCard(
                     Text(
                         text = car.masterData?.modelName ?: "Unknown Model",
                         style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = if (isDark) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onPrimaryContainer,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -113,7 +113,7 @@ fun CarCard(
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f),
+                        color = if (isDark) MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f) else MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -128,7 +128,7 @@ fun CarCard(
                     Text(
                         text = countLabel,
                         style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f)
+                        color = if (isDark) MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f) else MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                     )
                 }
             }

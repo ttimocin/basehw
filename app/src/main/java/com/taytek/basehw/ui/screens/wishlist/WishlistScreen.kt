@@ -96,7 +96,8 @@ fun WishlistScreen(
         Brand.MINI_GT to if (isDarkTheme) com.taytek.basehw.R.drawable.minigtdark else com.taytek.basehw.R.drawable.minigt,
         Brand.MAJORETTE to com.taytek.basehw.R.drawable.majorette,
         Brand.JADA to com.taytek.basehw.R.drawable.jada,
-        Brand.SIKU to com.taytek.basehw.R.drawable.siku
+        Brand.SIKU to com.taytek.basehw.R.drawable.siku,
+        Brand.KAIDO_HOUSE to com.taytek.basehw.R.drawable.kaido
     )
 
     Scaffold(

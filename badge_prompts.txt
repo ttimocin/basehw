@@ -1,0 +1,55 @@
+BASEHW APP BADGE SYSTEM & AI PROMPTS
+====================================
+
+Bu dosya, uygulamadaki rozet (badge) sisteminin teknik detaylarını ve bu rozetleri 
+AI (Google Nano, Midjourney, DALL-E) ile çizdirmek için kullanabileceğin promptları içerir.
+
+GENEL STİL NOTU:
+Tüm çizimlerde tutarlılık için promptların sonuna şu ifadeyi ekleyebilirsin:
+"matching style, 3D flat vector style, isolated on clean background, app achievement icon, high quality"
+
+---
+
+1. FIRST_CAR (İlk Arabam)
+- Kazanma Şartı: Koleksiyona en az 1 araç eklemek. (totalCars >= 1)
+- Prompt: A high quality 3D app icon badge of a classic toy car, shiny metallic red finish, minimal and cute, popping out of a circular gold frame, colorful vector illustration style, isolated on white background.
+
+2. TEN_CARS (On Numara)
+- Kazanma Şartı: Koleksiyonun 10 araca ulaşması. (totalCars >= 10)
+- Prompt: A premium 3D badge icon showing the number "10" with a checkered racing flag wrapped around it, metallic bronze texture, vibrant lighting, clean vector art style, app icon.
+
+3. FIFTY_CARS (Elli Harikası)
+- Kazanma Şartı: Koleksiyonun 50 araca ulaşması. (totalCars >= 50)
+- Prompt: A shiny silver 3D badge icon, a glowing star in the center surrounded by a subtle tire track pattern, premium gaming achievement badge, highly detailed, transparent background.
+
+4. HUNDRED_CARS (Yüzbaşı)
+- Kazanma Şartı: Koleksiyonun 100 araca ulaşması. (totalCars >= 100)
+- Prompt: An epic solid gold 3D badge icon, "100" etched in bold racing typography in the center, flanked by flaming exhausts, premium game achievement design, dramatic lighting.
+
+5. PREMIUM_HUNTER (Premium Avcısı)
+- Kazanma Şartı: En az 5 adet "Premium" kategori araç sahibi olmak. (premiumCount >= 5)
+- Prompt: A sleek 3D VIP achievement badge, dark chrome background with glowing neon purple accents, a racing finish line flag motif in the center, premium collector theme, high-end ui icon.
+
+6. MATCHBOX_FAN (Matchbox Hayranı)
+- Kazanma Şartı: Koleksiyonda en az 10 adet Matchbox marka araç olması. (matchboxCount >= 10)
+- Prompt: A bold 3D app icon badge featuring a stylized blue and orange retro matchbox, energetic and vibrant colors, die-cast toy car theme, clean modern vector art, shiny edges.
+
+7. MULTI_BRAND (Çeşitlilik)
+- Kazanma Şartı: En az 3 farklı markadan araç sahibi olmak. (brandsRepresented >= 3)
+- Prompt: A vibrant 3D circular badge separated into three different bright neon color slices (red, blue, yellow), with a sleek steering wheel in the middle, symbolizing variety, glossy UI design.
+
+8. INVESTOR (Yatırımcı)
+- Kazanma Şartı: Toplam tahmini değerin 500 birimi geçmesi. (totalEstimated >= 500)
+- Prompt: A luxurious 3D achievement badge showing a rising stock market arrow transforming into a sleek sports car profile, emerald green and gold colors, wealth and collector theme, clean UI icon.
+
+9. BIG_SPENDER (Büyük Harcayan)
+- Kazanma Şartı: Toplam ödenen tutarın 2000 birimi geçmesi. (totalPurchase >= 2000)
+- Prompt: A rich diamond-studded 3D hexagon badge, glowing bright diamond in the center, silver and platinum metallic textures, ultimate premium spender achievement, 8k resolution, app UI.
+
+10. CURATOR (Küratör)
+- Kazanma Şartı: Uygulama içinde en az 3 adet özel klasör oluşturmak. (folderCount >= 3)
+- Prompt: A satisfying 3D badge icon depicting a sleek glowing museum display case or an organized premium collector's shelf, dark elegant wood and glass textures, UI achievement icon.
+
+11. MOC_COLLECTOR (Kutu Koleksiyoncusu)
+- Kazanma Şartı: En az 5 araç varken, koleksiyonun en az %80'inin kapalı kutu olması. (ratio >= 0.8)
+- Prompt: A pristine 3D badge icon showing a shiny sealed toy car blister pack, glowing mint green aura around it, representing untouched condition, highly detailed plastic wrap reflection, cute vector style.

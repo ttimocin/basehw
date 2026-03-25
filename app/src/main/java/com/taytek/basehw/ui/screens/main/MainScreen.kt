@@ -46,9 +46,11 @@ fun MainScreen(
     onConsumeTabNavigation: () -> Unit = {}
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(0) }
+    var previousTab by rememberSaveable { mutableStateOf(0) }
 
     LaunchedEffect(navigateToTab) {
         if (navigateToTab >= 0) {
+            previousTab = selectedTab
             selectedTab = if (navigateToTab == 4) 8 else navigateToTab
             onConsumeTabNavigation()
         }
@@ -58,7 +60,10 @@ fun MainScreen(
         bottomBar = {
             CustomBottomNavigation(
                 selectedTab = selectedTab,
-                onTabSelected = { selectedTab = it },
+                onTabSelected = { 
+                    previousTab = selectedTab
+                    selectedTab = it 
+                },
                 onAddClick = onAddCarClick
             )
         },
@@ -85,7 +90,10 @@ fun MainScreen(
                     CollectionScreen(
                         onAddCarClick = onAddCarClick,
                         onCarClick = onCarClick,
-                        onStatisticsClick = { selectedTab = 5 }
+                        onStatisticsClick = { 
+                            previousTab = selectedTab
+                            selectedTab = 5 
+                        }
                     )
                 }
                 1 -> { // SEARCH / Wishlist
@@ -96,20 +104,26 @@ fun MainScreen(
                 }
                 2 -> { // PROFILE
                     ProfileScreen(
-                        onStatisticsClick = { selectedTab = 5 },
-                        onSupportClick = { selectedTab = 6 }, // Yeni tab
+                        onStatisticsClick = { 
+                            previousTab = selectedTab
+                            selectedTab = 5 
+                        },
+                        onSupportClick = { 
+                            previousTab = selectedTab
+                            selectedTab = 6 
+                        }, // Yeni tab
                         onPrivacyPolicyClick = onPrivacyPolicyClick,
                         onTermsOfUseClick = onTermsOfUseClick
                     )
                 }
-                5 -> { // Statistics (Profile'dan erişim)
+                5 -> { // Statistics (Profile'dan veya Collection'dan erişim)
                     StatisticsScreen(
-                        onBack = { selectedTab = 2 } // Profile tabına geri dön
+                        onBack = { selectedTab = previousTab } // Geldiği yere geri dön
                     )
                 }
                 6 -> { // HELP & SUPPORT
                     com.taytek.basehw.ui.screens.support.SupportScreen(
-                        onBack = { selectedTab = 2 } // Profile tabına geri dön
+                        onBack = { selectedTab = previousTab } // Geldiği yere geri dön
                     )
                 }
                 7 -> { // STH

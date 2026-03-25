@@ -21,9 +21,6 @@ class StatisticsViewModel @Inject constructor(
     private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository
 ) : ViewModel() {
 
-    private val _rates = currencyRepository.getRates()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
-
     val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
 
@@ -31,14 +28,13 @@ class StatisticsViewModel @Inject constructor(
         .map { com.taytek.basehw.domain.model.AppCurrency.fromCode(it).symbol }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "€")
 
-    private val conversionRate: Flow<Double> = combine(_rates, currencyCode) { rates, code ->
+    private val conversionRate: StateFlow<Double> = combine(currencyRepository.getRates(), currencyCode) { rates, code ->
         val effectiveCode = if (code.isBlank()) "EUR" else code
         if (effectiveCode == "EUR") 1.0
         else rates?.rates?.get(effectiveCode) ?: 1.0
-    }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 1.0)
 
-    val lastUpdateTime: StateFlow<String?> = _rates.map { it?.date }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    val lastUpdateTime: Flow<String?> = currencyRepository.getRates().map { it?.date }
 
     val totalCars: StateFlow<Int> = userCarRepository.getTotalCarsCount()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
@@ -65,9 +61,7 @@ class StatisticsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            if (_rates.value == null) {
-                currencyRepository.refreshRates()
-            }
+            currencyRepository.refreshRates()
         }
     }
 

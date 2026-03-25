@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion - BaseHW Collector</title>
+    <style>
+        :root {
+            --primary: #3F51B5;
+            --danger: #E53935;
+            --text: #333;
+            --bg: #f5f7fb;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin: 20px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 28px;
+        }
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .lang-btn {
+            background: #eee;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        h2 {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            color: var(--danger);
+        }
+        .method-card {
+            background: #fff9f9;
+            border-left: 4px solid var(--danger);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .email-link {
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <h1>BaseHW Collector</h1>
+    </div>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="showLang('en')">English</button>
+        <button class="lang-btn" onclick="showLang('tr')">Türkçe</button>
+        <button class="lang-btn" onclick="showLang('de')">Deutsch</button>
+    </div>
+
+    <!-- English -->
+    <div id="en" class="content-section active">
+        <h2>Account & Data Deletion</h2>
+        <p>We value your privacy. You can delete your account and all associated data through the following methods:</p>
+        
+        <div class="method-card">
+            <strong>Method 1: In-App Deletion (Recommended)</strong>
+            <p>1. Open the BaseHW app.<br>
+            2. Go to the <strong>Profile</strong> screen.<br>
+            3. Scroll down to "Data Management".<br>
+            4. Tap <strong>Delete Account</strong> and confirm.</p>
+        </div>
+
+        <div class="method-card">
+            <strong>Method 2: Email Request</strong>
+            <p>If you cannot access the app, you can request account deletion by emailing us at:<br>
+            <a href="mailto:taytekofficial@gmail.com" class="email-link">taytekofficial@gmail.com</a></p>
+        </div>
+        
+        <p><small>Upon deletion, all your collection data, custom photos, and account information will be permanently removed from our servers within 30 days.</small></p>
+    </div>
+
+    <!-- Turkish -->
+    <div id="tr" class="content-section">
+        <h2>Hesap ve Veri Silme</h2>
+        <p>Gizliliğinize önem veriyoruz. Hesabınızı ve ilişkili tüm verileri aşağıdaki yöntemlerle silebilirsiniz:</p>
+        
+        <div class="method-card">
+            <strong>Yöntem 1: Uygulama İçi Silme (Önerilen)</strong>
+            <p>1. BaseHW uygulamasını açın.<br>
+            2. <strong>Profil</strong> ekranına gidin.<br>
+            3. "Veri Yönetimi" bölümüne kaydırın.<br>
+            4. <strong>Hesabı Sil</strong> seçeneğine tıklayın ve onaylayın.</p>
+        </div>
+
+        <div class="method-card">
+            <strong>Yöntem 2: E-posta ile Talep</strong>
+            <p>Uygulamaya erişemiyorsanız, hesap silme talebinizi şu adrese e-posta göndererek iletebilirsiniz:<br>
+            <a href="mailto:taytekofficial@gmail.com" class="email-link">taytekofficial@gmail.com</a></p>
+        </div>
+        
+        <p><small>Silme işlemi gerçekleştiğinde; tüm koleksiyon verileriniz, özel fotoğraflarınız ve hesap bilgileriniz 30 gün içinde sunucularımızdan kalıcı olarak kaldırılacaktır.</small></p>
+    </div>
+
+    <!-- German -->
+    <div id="de" class="content-section">
+        <h2>Konto- und Datenlöschung</h2>
+        <p>Wir schätzen Ihre Privatsphäre. Sie können Ihr Konto und alle zugehörigen Daten mit den folgenden Methoden löschen:</p>
+        
+        <div class="method-card">
+            <strong>Methode 1: In-App-Löschung (Empfohlen)</strong>
+            <p>1. Öffnen Sie die BaseHW-App.<br>
+            2. Gehen Sie zum <strong>Profil</strong>-Bildschirm.<br>
+            3. Scrollen Sie nach unten zu "Datenverwaltung".<br>
+            4. Tippen Sie auf <strong>Konto löschen</strong> und bestätigen Sie.</p>
+        </div>
+
+        <div class="method-card">
+            <strong>Methode 2: E-Mail-Anfrage</strong>
+            <p>Wenn Sie keinen Zugriff auf die App haben, können Sie die Löschung Ihres Kontos per E-Mail anfordern:<br>
+            <a href="mailto:taytekofficial@gmail.com" class="email-link">taytekofficial@gmail.com</a></p>
+        </div>
+        
+        <p><small>Nach der Löschung werden alle Ihre Sammlungsdaten, benutzerdefinierten Fotos und Kontoinformationen innerhalb von 30 Tagen endgültig von unseren Servern entfernt.</small></p>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Taytek BaseHW Collector
+    </div>
+</div>
+
+<script>
+    function showLang(langId) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(langId).classList.add('active');
+        
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

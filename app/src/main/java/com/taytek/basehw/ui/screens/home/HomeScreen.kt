@@ -114,7 +114,8 @@ fun HomeScreen(
                         wantedCount = uiState.wantedCount,
                         sthCount = uiState.sthCount,
                         totalValue = uiState.totalValue,
-                        monthlyValueIncrease = uiState.monthlyValueIncrease
+                        monthlyValueIncrease = uiState.monthlyValueIncrease,
+                        currencySymbol = uiState.currencySymbol
                     )
                 }
 

@@ -47,10 +47,11 @@ object CameraModelOcrHelper {
         return when {
             "hot wheels" in fullTextLower || "hotwheels" in fullTextLower -> Brand.HOT_WHEELS
             "matchbox" in fullTextLower -> Brand.MATCHBOX
-            "mini gt" in fullTextLower || "minigt" in fullTextLower -> Brand.MINI_GT
+            "minigt" in fullTextLower || "mini gt" in fullTextLower -> Brand.MINI_GT
             "majorette" in fullTextLower -> Brand.MAJORETTE
             "jada" in fullTextLower -> Brand.JADA
             "siku" in fullTextLower -> Brand.SIKU
+            "kaido" in fullTextLower -> Brand.KAIDO_HOUSE
             else -> null
         }
     }

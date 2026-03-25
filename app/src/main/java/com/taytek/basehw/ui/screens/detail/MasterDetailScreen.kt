@@ -31,6 +31,7 @@ import com.taytek.basehw.ui.theme.MiniGTSilver
 import com.taytek.basehw.ui.theme.MajoretteYellow
 import com.taytek.basehw.ui.theme.JadaPurple
 import com.taytek.basehw.ui.theme.SikuBlue
+import com.taytek.basehw.ui.theme.KaidoHouseColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,6 +85,7 @@ fun MasterDetailScreen(
                     Brand.MAJORETTE  -> MajoretteYellow
                     Brand.JADA       -> JadaPurple
                     Brand.SIKU       -> SikuBlue
+                    Brand.KAIDO_HOUSE -> KaidoHouseColor
                 }
 
                 Column(
@@ -115,6 +117,7 @@ fun MasterDetailScreen(
                                 Brand.MAJORETTE  -> "Majorette Wiki"
                                 Brand.JADA       -> "Jada Wiki"
                                 Brand.SIKU       -> null
+                                Brand.KAIDO_HOUSE -> null
                             }
                             if ((master.imageUrl.contains("wikia.nocookie.net") || master.imageUrl.contains("fandom.com")) && wikiLabel != null) {
                                 Surface(

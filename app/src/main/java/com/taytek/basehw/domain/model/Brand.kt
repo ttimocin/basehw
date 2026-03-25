@@ -6,6 +6,7 @@ enum class Brand(val displayName: String, val shortCode: String) {
     MINI_GT("MiniGT", "MiniGT"),
     MAJORETTE("Majorette", "MAJ"),
     JADA("Jada", "Jada"),
-    SIKU("Siku", "SIKU")
+    SIKU("Siku", "SIKU"),
+    KAIDO_HOUSE("Kaido House", "KH")
 }
 

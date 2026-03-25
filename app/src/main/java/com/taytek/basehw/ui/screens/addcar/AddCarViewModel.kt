@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.MasterData
+import com.taytek.basehw.domain.model.CurrencyRates
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.domain.usecase.AddCarToCollectionUseCase
 import com.taytek.basehw.domain.usecase.GetMasterDataByIdUseCase
@@ -57,13 +58,10 @@ class AddCarViewModel @Inject constructor(
     private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository
 ) : ViewModel() {
 
-    private val _rates = currencyRepository.getRates()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
-
     private val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
 
-    val conversionRate: StateFlow<Double> = combine(_rates, currencyCode) { rates, code ->
+    val conversionRate: StateFlow<Double> = combine(currencyRepository.getRates(), currencyCode) { rates, code ->
         val effectiveCode = if (code.isBlank()) "EUR" else code
         if (effectiveCode == "EUR") 1.0
         else rates?.rates?.get(effectiveCode) ?: 1.0
@@ -81,10 +79,11 @@ class AddCarViewModel @Inject constructor(
             currencyRepository.refreshRates()
         }
         
-        // Initialize selected currency from global settings
+        // Initialize selected currency from app language setting (TR -> TRY, else -> USD)
         viewModelScope.launch {
-            appSettingsManager.currencyFlow.take(1).collect { code ->
-                _uiState.update { it.copy(selectedCurrency = com.taytek.basehw.domain.model.AppCurrency.fromCode(code)) }
+            appSettingsManager.languageFlow.take(1).collect { code ->
+                val defaultCurrency = if (code == "tr") "TRY" else "USD"
+                _uiState.update { it.copy(selectedCurrency = com.taytek.basehw.domain.model.AppCurrency.fromCode(defaultCurrency)) }
             }
         }
     }
@@ -291,15 +290,13 @@ class AddCarViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isSaving = true, error = null) }
             try {
-                // Wait for rates if they are not yet loaded
-                val rates = if (_rates.value == null) {
-                    currencyRepository.getRates().filterNotNull().first()
-                } else {
-                    _rates.value!!
-                }
+                // Fetch live rates safely before computing saving multiplier, if not already cached
+                // Fetch live rates safely before computing saving multiplier. 
+                // Repository is initialized from persistent cache, so this is usually instant.
+                val rates = currencyRepository.getRates().filterNotNull().first()
 
+                // Use the rate of the selected currency in the dropdown, NOT the global setting.
                 val selectedCode = state.selectedCurrency?.code ?: "EUR"
-                // Rate is InputCurrency / EUR. (e.g. TRY/EUR is ~35)
                 val rate = if (selectedCode == "EUR") 1.0 else rates.rates[selectedCode] ?: 1.0
                 
                 // EUR = Input / Rate
