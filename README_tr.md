@@ -52,6 +52,7 @@ BaseHW, en güncel Android geliştirme standartlarının bir vitrinidir:
 ## 📜 Hukuki Bilgiler
 - 🔒 **[Gizlilik Politikası](https://ttimocin.github.io/basehw/privacy.html)**
 - 📝 **[Kullanım Koşulları](https://ttimocin.github.io/basehw/terms.html)**
+- 🗑️ **[Hesap Silme](https://ttimocin.github.io/basehw/delete-account.html)**
 
 ---
 <div align="center">

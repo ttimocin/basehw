@@ -52,6 +52,7 @@ BaseHW is a showcase of modern Android development standards:
 ## 📜 Legal & Resources
 - 🔒 **[Privacy Policy](https://ttimocin.github.io/basehw/privacy.html)**
 - 📝 **[Terms of Use](https://ttimocin.github.io/basehw/terms.html)**
+- 🗑️ **[Account Deletion](https://ttimocin.github.io/basehw/delete-account.html)**
 
 ---
 <div align="center">

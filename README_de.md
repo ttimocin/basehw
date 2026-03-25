@@ -52,6 +52,7 @@ BaseHW präsentiert die modernsten Android-Entwicklungsstandards:
 ## 📜 Rechtliches & Ressourcen
 - 🔒 **[Datenschutzrichtlinie](https://ttimocin.github.io/basehw/privacy.html)**
 - 📝 **[Nutzungsbedingungen](https://ttimocin.github.io/basehw/terms.html)**
+- 🗑️ **[Kontolöschung](https://ttimocin.github.io/basehw/delete-account.html)**
 
 ---
 <div align="center">
