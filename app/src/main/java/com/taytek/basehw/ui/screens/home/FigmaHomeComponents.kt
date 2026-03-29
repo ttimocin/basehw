@@ -9,15 +9,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.DirectionsCar
-import androidx.compose.material.icons.filled.FilterList
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.PhotoCamera
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -53,12 +46,15 @@ import com.taytek.basehw.ui.theme.DarkNavy
 @Composable
 fun FigmaHomeHeader(
     userName: String,
+    onProfileClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 8.dp) // Adjusted padding for new position
+            .padding(horizontal = 20.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = stringResource(R.string.hello_name_template, userName),
@@ -66,6 +62,23 @@ fun FigmaHomeHeader(
             fontWeight = FontWeight.ExtraBold,
             color = MaterialTheme.colorScheme.onBackground
         )
+        
+        IconButton(
+            onClick = onProfileClick,
+            modifier = Modifier
+                .size(44.dp)
+                .background(
+                    color = AppPrimary.copy(alpha = 0.1f),
+                    shape = CircleShape
+                )
+        ) {
+            Icon(
+                imageVector = Icons.Default.AccountCircle,
+                contentDescription = stringResource(R.string.nav_profile),
+                tint = AppPrimary,
+                modifier = Modifier.size(26.dp)
+            )
+        }
     }
 }
 
@@ -433,7 +446,7 @@ fun FigmaRecentlyAddedCardItem(
             Box(
                 modifier = Modifier
                     .size(100.dp)
-                    .clip(RoundedCornerShape(topStart = 16.dp, bottomStart = 16.dp))
+                    .clip(RoundedCornerShape(16.dp, 0.dp, 0.dp, 16.dp))
                     .background(MaterialTheme.colorScheme.background)
             ) {
                 if (!photoUrl.isNullOrBlank()) {
@@ -508,7 +521,7 @@ fun FigmaRecentlyAddedVerticalCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(90.dp) // Bir tık küçültüldü
-                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+                    .clip(RoundedCornerShape(16.dp, 16.dp, 0.dp, 0.dp))
                     .background(MaterialTheme.colorScheme.background)
             ) {
                 if (!photoUrl.isNullOrBlank()) {
@@ -586,7 +599,7 @@ fun getBrandLogo(brand: Brand?): Int? {
         Brand.MATCHBOX -> com.taytek.basehw.R.drawable.matchbox
         Brand.MINI_GT -> if (isDark) com.taytek.basehw.R.drawable.minigtdark else com.taytek.basehw.R.drawable.minigt
         Brand.MAJORETTE -> com.taytek.basehw.R.drawable.majorette
-        Brand.JADA -> com.taytek.basehw.R.drawable.jada
+        Brand.GREENLIGHT -> com.taytek.basehw.R.drawable.greenlight
         Brand.SIKU -> com.taytek.basehw.R.drawable.siku
         Brand.KAIDO_HOUSE -> com.taytek.basehw.R.drawable.kaido
         else -> null

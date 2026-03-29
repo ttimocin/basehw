@@ -30,7 +30,7 @@ class CarPhotoLocalStore @Inject constructor(
         File(context.filesDir, "car_photos").apply { mkdirs() }
     }
 
-    fun persistCompressed(localUriString: String, carIdHint: Long? = null): String? {
+    fun persistCompressed(localUriString: String, carIdHint: Long? = null, suffix: String? = null): String? {
         if (localUriString.startsWith("http://") || localUriString.startsWith("https://")) {
             return localUriString
         }
@@ -39,7 +39,8 @@ class CarPhotoLocalStore @Inject constructor(
 
         return runCatching {
             val bitmap = decodeSampledBitmap(sourceUri, maxDimension = MAX_DIMENSION) ?: return null
-            val fileName = "car_${carIdHint ?: System.currentTimeMillis()}.jpg"
+            val baseName = "car_${carIdHint ?: System.currentTimeMillis()}"
+            val fileName = if (suffix != null) "${baseName}_$suffix.jpg" else "$baseName.jpg"
             val outFile = File(photosDir, fileName)
             val jpegBytes = compressToTarget(bitmap)
             FileOutputStream(outFile).use { output -> output.write(jpegBytes) }

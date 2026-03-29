@@ -31,6 +31,29 @@
     <string name="nav_folders">Folders</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_search">Wanted</string>
+    <string name="nav_community">Community</string>
+
+    <!-- Community Social Feed -->
+    <string name="community_feed">Feed</string>
+    <string name="community_following">Following</string>
+    <string name="community_ranking">Ranking</string>
+    <string name="share_to_community">Share to Community</string>
+    <string name="share_caption_hint">Add a comment…</string>
+    <string name="share_button">Share</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="follow">Follow</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="followers">Followers</string>
+    <string name="following_label">Following</string>
+    <string name="posts_label">Posts</string>
+    <string name="login_required_feed">Sign in to see the feed</string>
+    <string name="no_posts_yet">No posts yet</string>
+    <string name="no_comments_yet">No comments yet</string>
+    <string name="photo_required_share">Photo backup required to share</string>
+    <string name="shared_successfully">Shared successfully!</string>
+    <string name="write_comment">Write a comment…</string>
+    <string name="send">Send</string>
 
     <!-- Home Components -->
     <string name="hello_collector">Hello</string>
@@ -145,6 +168,19 @@
     <string name="no_account">Don\'t have an account? Register</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="password_reset_sent">Password reset email sent. Please check your inbox.</string>
+    <string name="email_verified">Email Verified</string>
+    <string name="email_not_verified">Email Not Verified</string>
+    <string name="send_verification_btn">Send Verification Email</string>
+    <string name="verification_sent">Email Sent</string>
+    <string name="check_status_btn">Check Status</string>
+    <string name="verification_required_for_cloud">Email verification is required for cloud operations.</string>
+    <string name="verification_required_title">Email Verification Required</string>
+    <string name="verification_required_desc">Please verify your email address to use community features. A verification link has been sent to your email.</string>
+    <string name="refresh_status">Refresh Status</string>
+    <string name="share_verification_required_title">Verification Required</string>
+    <string name="share_verification_required_desc">You must verify your email before sharing. Please check your inbox.</string>
+    <string name="error_content_rejected">Your content was found to be against community rules: %1$s</string>
+    <string name="error_moderation_failed">An error occurred during content moderation. Please try again.</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Your List is Empty</string>
@@ -232,12 +268,12 @@
     <string name="badge_matchbox_fan_desc">You have 10 or more Matchbox cars.</string>
     <string name="badge_multi_brand_title">Multi-Brand</string>
     <string name="badge_multi_brand_desc">You own cars from 3 or more different brands.</string>
-    <string name="badge_investor_title">Investor</string>
-    <string name="badge_investor_desc">Your collection\'s total value is over 500₺.</string>
-    <string name="badge_big_spender_title">Big Spender</string>
-    <string name="badge_big_spender_desc">Total purchase price is over 2000₺.</string>
-    <string name="badge_curator_title">Curator</string>
-    <string name="badge_curator_desc">You created at least 3 custom folders.</string>
+    <string name="badge_silver_collector_title">Silver Collector</string>
+    <string name="badge_silver_collector_desc">Your collection value has passed the $100 mark!</string>
+    <string name="badge_golden_collector_title">Golden Collector</string>
+    <string name="badge_golden_collector_desc">A massive collection worth over $1000!</string>
+    <string name="badge_custom_maker_title">Custom Maker</string>
+    <string name="badge_custom_maker_desc">You added at least 10 custom cars to the collection.</string>
     <string name="badge_moc_collector_title">MOC Collector</string>
     <string name="badge_moc_collector_desc">80%% of your cars are boxed.</string>
 
@@ -327,11 +363,17 @@
     <string name="cloud_backup_title">Cloud Backup</string>
     <string name="last_synced">Last synced: </string>
     <string name="restore_data_title">Restore Data</string>
-    <string name="excel_export_title">Export to Excel file</string>
-    <string name="excel_export_desc">Save your collection to your device in Excel format</string>
-    <string name="export_success">Collection successfully exported to Excel file.</string>
+    <string name="excel_export_title">Export Collection</string>
+    <string name="excel_export_desc">Export your collection in different formats</string>
+    <string name="export_success">Collection exported successfully.</string>
     <string name="settings_support_title">SETTINGS &amp; SUPPORT</string>
     <string name="help_support">Help &amp; Support</string>
+    <string name="export_format_csv">Excel (.csv)</string>
+    <string name="export_format_json">Data (.json)</string>
+    <string name="export_format_pdf">Report (.pdf)</string>
+    <string name="export_options_title">Export Options</string>
+    <string name="export_share">Share</string>
+    <string name="export_download">Download to Device</string>
     <plurals name="cars_selected">
         <item quantity="one">%d car selected</item>
         <item quantity="other">%d cars selected</item>
@@ -382,5 +424,8 @@
     <string name="no_chase_found">No Chase cars found.</string>
     <string name="no_th_found">No TH cars found.</string>
     <string name="case_label">CASE %s</string>
+    <string name="custom_label">Custom (Modified)</string>
+    <string name="original_label">Original</string>
+    <string name="custom_distribution">Custom / Original Distribution</string>
 </resources>
 

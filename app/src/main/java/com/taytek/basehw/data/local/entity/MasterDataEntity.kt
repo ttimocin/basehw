@@ -10,7 +10,9 @@ import androidx.room.PrimaryKey
         Index(value = ["brand", "modelName"]),
         Index(value = ["brand"]),
         Index(value = ["dataSource", "year", "modelName"]),
-        Index(value = ["feature"])
+        Index(value = ["feature"]),
+        Index(value = ["brand", "toyNum"]),
+        Index(value = ["brand", "modelName", "year"])
     ]
 )
 data class MasterDataEntity(

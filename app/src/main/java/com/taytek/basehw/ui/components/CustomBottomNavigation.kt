@@ -79,10 +79,10 @@ fun CustomBottomNavigation(
                     isSelected = selectedTab == 7,
                     onClick = { onTabSelected(7) }
                 )
-                // Tab 2: PROFILE
+                // Tab 2: COMMUNITY
                 NavTab(
-                    icon = if (selectedTab == 2) Icons.Filled.Person else Icons.Outlined.Person,
-                    label = stringResource(com.taytek.basehw.R.string.nav_profile),
+                    icon = if (selectedTab == 2) Icons.Filled.Groups else Icons.Outlined.Groups,
+                    label = stringResource(R.string.nav_community),
                     isSelected = selectedTab == 2,
                     onClick = { onTabSelected(2) }
                 )

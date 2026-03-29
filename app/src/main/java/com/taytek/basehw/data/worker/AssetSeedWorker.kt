@@ -24,12 +24,13 @@ class AssetSeedWorker @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted workerParams: WorkerParameters,
     private val masterDataDao: MasterDataDao,
-    private val gson: Gson
+    private val gson: Gson,
+    private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager
 ) : CoroutineWorker(context, workerParams) {
 
     companion object {
         const val TAG = "AssetSeedWorker"
-        const val WORK_NAME = "hw_asset_seed_v1" // Reset for development
+        const val WORK_NAME = "hw_asset_seed_v5" // Updated to trigger 2026 cleanup
 
         private data class SeedConfig(
             val folder: String,
@@ -46,6 +47,7 @@ class AssetSeedWorker @AssistedInject constructor(
             SeedConfig("hotwheels/Premium/faf", Brand.HOT_WHEELS, Regex("faf\\.json")),
             SeedConfig("hotwheels/Premium/Boulevard", Brand.HOT_WHEELS, Regex("boulevard\\.json"), isPremiumOverride = true),
             SeedConfig("hotwheels/Premium/rlc", Brand.HOT_WHEELS, Regex("rlc\\.json"), isPremiumOverride = true),
+            SeedConfig("hotwheels/Premium/elite64", Brand.HOT_WHEELS, Regex("elite64\\.json"), isPremiumOverride = true),
             
             // 2. STH/TH specific updates (MUST be before mainlines to ensure tags are set)
             SeedConfig("hotwheels", Brand.HOT_WHEELS, Regex("hotwheels_th_sth\\.json")),
@@ -56,6 +58,7 @@ class AssetSeedWorker @AssistedInject constructor(
             SeedConfig("majorette", Brand.MAJORETTE, Regex("majorette\\.json")),
             SeedConfig("siku", Brand.SIKU, Regex("siku\\.json")),
             SeedConfig("kaido", Brand.KAIDO_HOUSE, Regex("kaido\\.json")),
+            SeedConfig("greenlight", Brand.GREENLIGHT, Regex("greenlight\\.json"), isPremiumOverride = true),
             
             // 4. Massive Mainlines (Last priority due to size)
             SeedConfig("hotwheels", Brand.HOT_WHEELS, Regex("hotwheels\\.json")),
@@ -76,174 +79,223 @@ class AssetSeedWorker @AssistedInject constructor(
 
             val processedStrongKeysInThisRun = mutableSetOf<String>()
 
-            SEED_CONFIGS.forEach { config ->
-                val files = assets.list(config.folder)
-                    ?.filter { config.regex.matches(it) }
-                    ?.sortedBy { config.regex.find(it)?.groupValues?.getOrNull(1)?.toIntOrNull() ?: 0 }
-                    ?: emptyList()
+            // --- ONE-TIME CLEANUP FOR V5 ---
+            if (!appSettingsManager.hasCompleted2026Cleanup()) {
+                Log.d(TAG, "🧹 Cleaning up 2026 Hot Wheels records to fix STH merge issues (ONE-TIME)...")
+                masterDataDao.deleteByBrandAndYear(Brand.HOT_WHEELS.name, 2026)
+                appSettingsManager.setCatalogSyncCursor("") // Force full re-sync from remote
+                appSettingsManager.setCompleted2026Cleanup(true)
+            }
+            // -------------------------------
 
-                if (files.isEmpty()) return@forEach
+            // Group configs by brand so we load each brand's existing data only once
+            val configsByBrand = SEED_CONFIGS.groupBy { it.brand }
 
-                // Instead of fetching all entities (causes OOM), fetch only the small string keys!
-                val existingIdentityKeys = masterDataDao.getStrongIdentityKeysByBrand(config.brand.name).toMutableSet()
+            for ((brand, configs) in configsByBrand) {
+                // PRE-LOAD: Load all existing records for this brand into memory ONCE
+                val existingRecords = masterDataDao.getAllByBrandForSeed(brand.name)
+                
+                // Build lookup maps for O(1) dedup
+                val byToyNum = mutableMapOf<String, MasterDataEntity>()
+                val byIdentity = mutableMapOf<String, MutableList<MasterDataEntity>>()
+                
+                for (entity in existingRecords) {
+                    if (entity.toyNum.isNotBlank()) {
+                        byToyNum[entity.toyNum] = entity
+                    }
+                    val key = "${entity.modelName}|${entity.year}"
+                    byIdentity.getOrPut(key) { mutableListOf() }.add(entity)
+                }
 
+                // Deferred case updates (toyNum -> caseNum)
+                val deferredCaseUpdates = mutableMapOf<String, Pair<String, String>>() // toyNum -> (dataSource, caseNum)
 
-                files.forEach { filename ->
-                    val yearFromFilename = config.regex.find(filename)?.groupValues?.getOrNull(1)?.toIntOrNull()
-                    val batch = mutableListOf<MasterDataEntity>()
-                    val updateBatch = mutableListOf<MasterDataEntity>()
-                    val batchSize = 500
+                for (config in configs) {
+                    val files = assets.list(config.folder)
+                        ?.filter { config.regex.matches(it) }
+                        ?.sortedBy { config.regex.find(it)?.groupValues?.getOrNull(1)?.toIntOrNull() ?: 0 }
+                        ?: emptyList()
 
-                    Log.d(TAG, "Processing asset file: ${config.folder}/$filename")
-                    assets.open("${config.folder}/$filename").use { inputStream ->
-                        val reader = com.google.gson.stream.JsonReader(inputStream.bufferedReader())
-                        reader.beginArray()
-                        while (reader.hasNext()) {
-                            val carDto: BrandCarDto = gson.fromJson(reader, BrandCarDto::class.java)
-                            
-                            val safeStr = { s: String? -> s ?: "" }
-                            
-                            val dtoModelName = safeStr(carDto.modelName)
-                            if (dtoModelName.isNotBlank() && dtoModelName != "Model Name") {
-                                val dtoYear = safeStr(carDto.year)
-                                val dtoYears = safeStr(carDto.years)
+                    if (files.isEmpty()) continue
+
+                    files.forEach { filename ->
+                        val yearFromFilename = config.regex.find(filename)?.groupValues?.getOrNull(1)?.toIntOrNull()
+                        val insertBatch = mutableListOf<MasterDataEntity>()
+                        val updateBatch = mutableListOf<MasterDataEntity>()
+                        val batchSize = 500
+
+                        Log.d(TAG, "Processing asset file: ${config.folder}/$filename")
+                        assets.open("${config.folder}/$filename").use { inputStream ->
+                            val reader = com.google.gson.stream.JsonReader(inputStream.bufferedReader())
+                            reader.beginArray()
+                            while (reader.hasNext()) {
+                                val carDto: BrandCarDto = gson.fromJson(reader, BrandCarDto::class.java)
                                 
-                                val parsedYear = dtoYear.replace(Regex("[^0-9]"), "").toIntOrNull()
-                                    ?: dtoYears.replace(Regex("[^0-9]"), "").toIntOrNull()
-                                    ?: carDto.listYear ?: yearFromFilename
+                                val safeStr = { s: String? -> s ?: "" }
                                 
-                                val isPremium = config.isPremiumOverride ?: config.folder.contains("Premium", ignoreCase = true)
-                                val currentDataSource = config.dataSourceOverride ?: config.folder
-                                
-                                val dtoBodyColor = safeStr(carDto.bodyColor)
-                                val dtoOriginalBrand = safeStr(carDto.originalBrand)
-                                
-                                val resolvedColor = when (config.brand) {
-                                    Brand.MINI_GT -> ""
-                                    else -> dtoBodyColor.ifBlank { dtoOriginalBrand }
-                                }
-                                
-                                val dtoFeature = safeStr(carDto.feature).trim().lowercase()
-                                var feature = dtoFeature.takeIf { it.isNotBlank() }
-
-                                val dtoSeriesNum = safeStr(carDto.seriesNum)
-                                // Automatic detection for Chase based on series_num
-                                if (feature.isNullOrBlank()) {
-                                    if (dtoSeriesNum.trim() == "0/5" || dtoSeriesNum.trim().startsWith("0/")) {
-                                        feature = "chase"
+                                val dtoModelName = safeStr(carDto.modelName)
+                                if (dtoModelName.isNotBlank() && dtoModelName != "Model Name") {
+                                    val dtoYear = safeStr(carDto.year)
+                                    val dtoYears = safeStr(carDto.years)
+                                    
+                                    val parsedYear = dtoYear.replace(Regex("[^0-9]"), "").toIntOrNull()
+                                        ?: dtoYears.replace(Regex("[^0-9]"), "").toIntOrNull()
+                                        ?: carDto.listYear ?: yearFromFilename
+                                    
+                                    val isPremium = config.isPremiumOverride ?: config.folder.contains("Premium", ignoreCase = true)
+                                    val currentDataSource = config.dataSourceOverride ?: config.folder
+                                    
+                                    val dtoBodyColor = safeStr(carDto.bodyColor)
+                                    val dtoOriginalBrand = safeStr(carDto.originalBrand)
+                                    
+                                    val resolvedColor = when (config.brand) {
+                                        Brand.MINI_GT -> ""
+                                        else -> dtoBodyColor.ifBlank { dtoOriginalBrand }
                                     }
-                                }
+                                    
+                                    val dtoFeature = safeStr(carDto.feature).trim().lowercase()
+                                    var feature = dtoFeature.takeIf { it.isNotBlank() }
 
-                                val dtoSeries = safeStr(carDto.series)
-                                val dtoSeriesType = safeStr(carDto.seriesType)
-                                val dtoSetName = safeStr(carDto.setName)
-                                val dtoDriveType = safeStr(carDto.driveType)
-                                val dtoPageSource = safeStr(carDto.pageSource)
-
-                                val seriesResolved = dtoSeries.ifBlank { dtoSeriesType }.ifBlank { dtoSetName }.ifBlank { dtoDriveType }.ifBlank { dtoPageSource }
-
-                                val dtoImageUrl = safeStr(carDto.imageUrl)
-                                val dtoScale = safeStr(carDto.scale)
-                                val dtoToyNum = safeStr(carDto.toyNum)
-                                val dtoColNum = safeStr(carDto.colNum)
-                                val dtoSerieNr = safeStr(carDto.serieNr)
-                                val dtoManNum = safeStr(carDto.manNum)
-                                val dtoCode = safeStr(carDto.code)
-                                val dtoCase = safeStr(carDto.case)
-
-                                val colNumResolved = dtoColNum.ifBlank { dtoSerieNr }.ifBlank { dtoManNum }.ifBlank { dtoCode }
-
-                                val entity = MasterDataEntity(
-                                    brand = config.brand.name,
-                                    modelName = dtoModelName,
-                                    series = seriesResolved,
-                                    seriesNum = dtoSeriesNum,
-                                    year = parsedYear,
-                                    color = resolvedColor,
-                                    imageUrl = dtoImageUrl,
-                                    scale = dtoScale.ifBlank { "1:64" },
-                                    toyNum = dtoToyNum,
-                                    colNum = colNumResolved,
-                                    isPremium = isPremium,
-                                    dataSource = currentDataSource,
-                                    caseNum = dtoCase,
-                                    feature = feature
-                                )
-
-                                if (feature == "chase") totalChaseCount++
-                                if (feature == "sth") totalSthCount++
-                                if (feature == "th") totalThCount++
-                                totalProcessedCount++
-
-                                val yearStr = entity.year?.toString() ?: ""
-                                val strongKey = "${entity.modelName.trim().lowercase()}|${yearStr}|${entity.series.trim().lowercase()}|${entity.color.trim().lowercase()}|${entity.toyNum.trim().lowercase()}|${entity.dataSource.trim().lowercase()}"
-                                
-                                if (processedStrongKeysInThisRun.contains(strongKey)) {
-                                    continue // Ayni dosyada birden fazla olan tam kopyalari (json hatasi) direkt atla
-                                }
-                                processedStrongKeysInThisRun.add(strongKey)
-
-                                // OOM ve DB kilitlenmesini onlemek icin hizli varyasyon sorgusu:
-                                val existingEntity = if (existingIdentityKeys.contains(strongKey)) {
-                                    val candidates = masterDataDao.getVariationsLight(entity.dataSource, entity.year, entity.modelName, entity.brand)
-                                    candidates.find { 
-                                        it.series.trim().equals(entity.series.trim(), ignoreCase = true) &&
-                                        it.color.trim().equals(entity.color.trim(), ignoreCase = true) &&
-                                        it.toyNum.trim().equals(entity.toyNum.trim(), ignoreCase = true)
-                                    }
-                                } else null
-
-                                if (existingEntity != null) {
-                                    val updatedEntity = existingEntity.copy(
-                                        brand = entity.brand,
-                                        modelName = entity.modelName,
-                                        series = entity.series,
-                                        seriesNum = entity.seriesNum,
-                                        year = entity.year,
-                                        color = entity.color,
-                                        imageUrl = entity.imageUrl,
-                                        scale = entity.scale,
-                                        toyNum = entity.toyNum.ifBlank { existingEntity.toyNum },
-                                        colNum = entity.colNum,
-                                        isPremium = entity.isPremium,
-                                        dataSource = entity.dataSource,
-                                        caseNum = entity.caseNum.ifBlank { existingEntity.caseNum },
-                                        feature = entity.feature.takeIf { !it.isNullOrBlank() } ?: existingEntity.feature
-                                    )
-                                    if (updatedEntity != existingEntity) {
-                                        updateBatch.add(updatedEntity)
-                                        if (updatedEntity.caseNum != existingEntity.caseNum && !updatedEntity.feature.isNullOrBlank()) {
-                                            Log.d(TAG, "Updated ${updatedEntity.feature} [${updatedEntity.modelName}] with Case: ${updatedEntity.caseNum}")
+                                    val dtoSeriesNum = safeStr(carDto.seriesNum)
+                                    // Automatic detection for Chase based on series_num
+                                    if (feature.isNullOrBlank()) {
+                                        if (dtoSeriesNum.trim() == "0/5" || dtoSeriesNum.trim().startsWith("0/")) {
+                                            feature = "chase"
                                         }
                                     }
-                                } else {
-                                    batch.add(entity)
-                                    existingIdentityKeys.add(strongKey)
-                                }
-                                
-                                if (carDto.case.isNotBlank() && entity.toyNum.isNotBlank()) {
-                                    masterDataDao.updateCaseNum(entity.toyNum, entity.dataSource, carDto.case)
-                                }
-                            }
 
-                            if (batch.size >= batchSize) {
-                                masterDataDao.insertAll(batch)
-                                totalInsertedCount += batch.size
-                                batch.clear()
+                                    val dtoSeries = safeStr(carDto.series)
+                                    val dtoSeriesType = safeStr(carDto.seriesType)
+                                    val dtoSetName = safeStr(carDto.setName)
+                                    val dtoDriveType = safeStr(carDto.driveType)
+                                    val dtoPageSource = safeStr(carDto.pageSource)
+
+                                    val seriesResolved = dtoSeries.ifBlank { dtoSeriesType }.ifBlank { dtoSetName }.ifBlank { dtoDriveType }.ifBlank { dtoPageSource }
+
+                                    val dtoImageUrl = safeStr(carDto.imageUrl)
+                                    val dtoScale = safeStr(carDto.scale)
+                                    val dtoToyNum = safeStr(carDto.toyNum)
+                                    val dtoColNum = safeStr(carDto.colNum)
+                                    val dtoSerieNr = safeStr(carDto.serieNr)
+                                    val dtoManNum = safeStr(carDto.manNum)
+                                    val dtoCode = safeStr(carDto.code)
+                                    val dtoCase = safeStr(carDto.case)
+
+                                    val colNumResolved = dtoColNum.ifBlank { dtoSerieNr }.ifBlank { dtoManNum }.ifBlank { dtoCode }
+
+                                    val entity = MasterDataEntity(
+                                        brand = config.brand.name,
+                                        modelName = dtoModelName,
+                                        series = seriesResolved,
+                                        seriesNum = dtoSeriesNum,
+                                        year = parsedYear,
+                                        color = resolvedColor,
+                                        imageUrl = dtoImageUrl,
+                                        scale = dtoScale.ifBlank { "1:64" },
+                                        toyNum = dtoToyNum,
+                                        colNum = colNumResolved,
+                                        isPremium = isPremium,
+                                        dataSource = currentDataSource,
+                                        caseNum = dtoCase,
+                                        feature = feature
+                                    )
+
+                                    if (feature == "chase") totalChaseCount++
+                                    if (feature == "sth") totalSthCount++
+                                    if (feature == "th") totalThCount++
+                                    totalProcessedCount++
+
+                                    val yearStr = entity.year?.toString() ?: ""
+                                    val strongKey = "${entity.modelName.trim().lowercase()}|${yearStr}|${entity.series.trim().lowercase()}|${entity.color.trim().lowercase()}|${entity.toyNum.trim().lowercase()}|${entity.dataSource.trim().lowercase()}"
+                                    
+                                    if (processedStrongKeysInThisRun.contains(strongKey)) {
+                                        // Skip — already processed in this run
+                                    } else {
+                                        processedStrongKeysInThisRun.add(strongKey)
+
+                                        // IN-MEMORY dedup instead of per-record DB queries
+                                        val existingEntity = if (entity.toyNum.isNotBlank()) {
+                                            byToyNum[entity.toyNum]
+                                        } else {
+                                            val identityKey = "${entity.modelName}|${entity.year}"
+                                            byIdentity[identityKey]?.firstOrNull { match ->
+                                                match.toyNum.isBlank() || entity.toyNum.isBlank() || match.toyNum == entity.toyNum
+                                            }
+                                        }
+
+                                        if (existingEntity != null) {
+                                            // Found a match! Update features (TH/STH) but don't insert a new one
+                                            val newFeature = entity.feature.takeIf { !it.isNullOrBlank() } ?: existingEntity.feature
+                                            val updatedEntity = existingEntity.copy(
+                                                brand = entity.brand,
+                                                modelName = entity.modelName,
+                                                series = entity.series.ifBlank { existingEntity.series },
+                                                seriesNum = entity.seriesNum.ifBlank { existingEntity.seriesNum },
+                                                year = entity.year ?: existingEntity.year,
+                                                color = entity.color.ifBlank { existingEntity.color },
+                                                imageUrl = entity.imageUrl.ifBlank { existingEntity.imageUrl },
+                                                scale = entity.scale.ifBlank { existingEntity.scale },
+                                                toyNum = entity.toyNum.ifBlank { existingEntity.toyNum },
+                                                colNum = entity.colNum.ifBlank { existingEntity.colNum },
+                                                isPremium = entity.isPremium || existingEntity.isPremium,
+                                                dataSource = existingEntity.dataSource, // Keep old data source
+                                                caseNum = entity.caseNum.ifBlank { existingEntity.caseNum },
+                                                feature = newFeature
+                                            )
+                                            if (updatedEntity != existingEntity) {
+                                                updateBatch.add(updatedEntity)
+                                                // Update in-memory maps too
+                                                if (updatedEntity.toyNum.isNotBlank()) {
+                                                    byToyNum[updatedEntity.toyNum] = updatedEntity
+                                                }
+                                            }
+                                        } else {
+                                            insertBatch.add(entity)
+                                            // Add to in-memory maps for future dedup within same run
+                                            if (entity.toyNum.isNotBlank()) {
+                                                byToyNum[entity.toyNum] = entity
+                                            }
+                                            val identityKey = "${entity.modelName}|${entity.year}"
+                                            byIdentity.getOrPut(identityKey) { mutableListOf() }.add(entity)
+                                        }
+                                        
+                                        // Defer case update
+                                        if (dtoCase.isNotBlank() && entity.toyNum.isNotBlank()) {
+                                            deferredCaseUpdates[entity.toyNum] = Pair(entity.dataSource, dtoCase)
+                                        }
+                                    }
+                                }
+
+                                // Flush insert batch
+                                if (insertBatch.size >= batchSize) {
+                                    masterDataDao.insertAll(insertBatch)
+                                    totalInsertedCount += insertBatch.size
+                                    insertBatch.clear()
+                                }
+                                // Flush update batch (batch of 200)
+                                if (updateBatch.size >= 200) {
+                                    masterDataDao.updateAll(updateBatch)
+                                    updateBatch.clear()
+                                }
                             }
-                            if (updateBatch.size >= 100) {
-                                updateBatch.forEach { masterDataDao.update(it) }
-                                updateBatch.clear()
+                            reader.endArray()
+                            // Flush remaining
+                            if (insertBatch.isNotEmpty()) {
+                                masterDataDao.insertAll(insertBatch)
+                                totalInsertedCount += insertBatch.size
+                            }
+                            if (updateBatch.isNotEmpty()) {
+                                masterDataDao.updateAll(updateBatch)
                             }
                         }
-                        reader.endArray()
-                        if (batch.isNotEmpty()) {
-                            masterDataDao.insertAll(batch)
-                            totalInsertedCount += batch.size
-                        }
-                        if (updateBatch.isNotEmpty()) {
-                            updateBatch.forEach { masterDataDao.update(it) }
-                        }
+                    }
+                }
+
+                // Apply deferred case updates in batch
+                if (deferredCaseUpdates.isNotEmpty()) {
+                    Log.d(TAG, "Applying ${deferredCaseUpdates.size} deferred case updates for ${brand.name}")
+                    deferredCaseUpdates.forEach { (toyNum, pair) ->
+                        masterDataDao.updateCaseNum(toyNum, pair.first, pair.second)
                     }
                 }
             }

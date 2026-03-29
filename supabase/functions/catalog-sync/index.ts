@@ -52,41 +52,48 @@ serve(async (req: Request) => {
 
     const perTableResults = await Promise.all(
       BRAND_TABLES.map(async (cfg) => {
-        let query = sb
-          .from(cfg.table)
-          .select("model_name,series,series_num,year,color,image_url,scale,toy_num,col_num,category,data_source,case_num,feature,updated_at")
-          .order("updated_at", { ascending: true })
-          .limit(limit);
+        try {
+          let query = sb
+            .from(cfg.table)
+            .select("model_name,series,series_num,year,color,image_url,scale,toy_num,col_num,category,data_source,case_num,feature,updated_at")
+            .order("updated_at", { ascending: true })
+            .limit(limit);
 
-        if (since) {
-          query = query.gt("updated_at", since);
+          if (since) {
+            query = query.gt("updated_at", since);
+          }
+
+          const { data, error } = await query;
+          if (error) {
+            console.error(`Error querying ${cfg.table}:`, error);
+            throw new Error(`${cfg.table}: ${error.message}`);
+          }
+
+          const rows = (data ?? []) as BrandRow[];
+          return rows.map((r) => ({
+            brand: cfg.brand,
+            modelName: r.model_name || "",
+            series: r.series || "",
+            seriesNum: r.series_num || "",
+            year: r.year,
+            color: r.color || "",
+            imageUrl: r.image_url || "",
+            scale: r.scale || "1:64",
+            toyNum: r.toy_num || "",
+            colNum: r.col_num || "",
+            category: r.category || "",
+            dataSource: r.data_source || cfg.defaultDataSource,
+            caseNum: r.case_num || "",
+            feature: r.feature || "",
+            updatedAt: r.updated_at || new Date().toISOString()
+          }));
+        } catch (err) {
+          console.error(`Fatal error in table ${cfg.table}:`, err);
+          throw err;
         }
-
-        const { data, error } = await query;
-        if (error) {
-          throw new Error(`${cfg.table}: ${error.message}`);
-        }
-
-        const rows = (data ?? []) as BrandRow[];
-        return rows.map((r) => ({
-          brand: cfg.brand,
-          modelName: r.model_name,
-          series: r.series,
-          seriesNum: r.series_num,
-          year: r.year,
-          color: r.color,
-          imageUrl: r.image_url,
-          scale: r.scale,
-          toyNum: r.toy_num,
-          colNum: r.col_num,
-          category: r.category,
-          dataSource: r.data_source || cfg.defaultDataSource,
-          caseNum: r.case_num,
-          feature: r.feature,
-          updatedAt: r.updated_at
-        }));
       })
     );
+
 
     const sorted = perTableResults
       .flat()

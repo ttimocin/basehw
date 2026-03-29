@@ -39,5 +39,9 @@ data class UserCarEntity(
     val purchasePrice: Double? = null,
     val estimatedValue: Double? = null,
     val isFavorite: Boolean = false,
-    val isSeriesOnly: Boolean = false
+    val isSeriesOnly: Boolean = false,
+    val isCustom: Boolean = false,
+    val quantity: Int = 1,
+    val additionalPhotos: List<String> = emptyList(),
+    val additionalPhotosBackup: List<String> = emptyList()
 )

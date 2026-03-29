@@ -14,6 +14,8 @@ interface AuthRepository {
     suspend fun checkUsernameAvailable(username: String): Result<Boolean>
     suspend fun updateUsername(username: String): Result<Unit>
     suspend fun sendPasswordResetEmail(email: String): Result<Unit>
+    suspend fun sendEmailVerification(): Result<Unit>
+    suspend fun reloadUser(): Result<FirebaseUser?>
     suspend fun signInAnonymously(): Result<com.taytek.basehw.domain.model.User>
     suspend fun signOut(): Result<Unit>
     suspend fun deleteAccount(): Result<Unit>

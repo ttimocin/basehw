@@ -56,10 +56,19 @@ class AppSettingsManager @Inject constructor(
         prefs.edit().remove(KEY_CATALOG_SYNC_CURSOR).apply()
     }
 
+    fun hasCompleted2026Cleanup(): Boolean {
+        return prefs.getBoolean(KEY_HAS_COMPLETED_2026_CLEANUP, false)
+    }
+
+    fun setCompleted2026Cleanup(completed: Boolean) {
+        prefs.edit().putBoolean(KEY_HAS_COMPLETED_2026_CLEANUP, completed).apply()
+    }
+
     companion object {
         private const val KEY_THEME = "pref_theme"
         private const val KEY_LANGUAGE = "pref_language"
         private const val KEY_CURRENCY = "pref_currency"
         private const val KEY_CATALOG_SYNC_CURSOR = "pref_catalog_sync_cursor"
+        private const val KEY_HAS_COMPLETED_2026_CLEANUP = "pref_has_completed_2026_cleanup"
     }
 }

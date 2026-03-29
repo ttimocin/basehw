@@ -28,6 +28,7 @@ fun HomeScreen(
     onAddClick: () -> Unit = {},
     onViewAllClick: () -> Unit = {},
     onMasterCarClick: (Long) -> Unit = {},
+    onCommunityClick: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -53,7 +54,8 @@ fun HomeScreen(
             // 1. Greeting
             item {
                 FigmaHomeHeader(
-                    userName = uiState.userName
+                    userName = uiState.userName,
+                    onProfileClick = onProfileClick
                 )
             }
 

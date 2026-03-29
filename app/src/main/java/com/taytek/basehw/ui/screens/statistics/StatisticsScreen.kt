@@ -1,5 +1,9 @@
 package com.taytek.basehw.ui.screens.statistics
 
+import com.taytek.basehw.domain.model.toColor
+import com.taytek.basehw.domain.model.toIcon
+import com.taytek.basehw.domain.model.Brand
+
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -37,14 +41,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.ui.res.stringResource
 import com.taytek.basehw.domain.model.BadgeType
-import com.taytek.basehw.domain.model.Brand
-import com.taytek.basehw.ui.theme.HotWheelsRed
-import com.taytek.basehw.ui.theme.MatchboxBlue
-import com.taytek.basehw.ui.theme.MiniGTSilver
-import com.taytek.basehw.ui.theme.MajoretteYellow
-import com.taytek.basehw.ui.theme.JadaPurple
-import com.taytek.basehw.ui.theme.SikuBlue
-import com.taytek.basehw.ui.theme.KaidoHouseColor
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,6 +55,7 @@ fun StatisticsScreen(
     val hwTierStats by viewModel.hwTierStats.collectAsState()
     val totalPurchasePrice by viewModel.totalPurchasePrice.collectAsState()
     val totalEstimatedValue by viewModel.totalEstimatedValue.collectAsState()
+    val customStats by viewModel.customStats.collectAsState()
     val earnedBadges by viewModel.earnedBadges.collectAsState()
     val currencySymbol by viewModel.currencySymbol.collectAsState()
 
@@ -154,6 +151,16 @@ fun StatisticsScreen(
             val hwTotal = hwTierStats.regularCount + hwTierStats.premiumCount
             if (hwTotal > 0) {
                 HwTierCard(regularCount = hwTierStats.regularCount, premiumCount = hwTierStats.premiumCount, showPieChart = showPieChart)
+            }
+
+            // Custom / Orijinal Dağılımı
+            if (totalCars > 0) {
+                CustomDistributionCard(
+                    originalCount = customStats.originalCount,
+                    customCount = customStats.customCount,
+                    total = totalCars,
+                    showPieChart = showPieChart
+                )
             }
 
             // Earned Badges
@@ -373,30 +380,14 @@ fun BrandDistributionCard(brandStats: List<com.taytek.basehw.domain.model.BrandS
             
             if (showPieChart) {
                 val slices = sorted.map { stat ->
-                    val color = when (stat.brand) {
-                        Brand.HOT_WHEELS -> HotWheelsRed
-                        Brand.MATCHBOX   -> MatchboxBlue
-                        Brand.MINI_GT    -> MiniGTSilver
-                        Brand.MAJORETTE  -> MajoretteYellow
-                        Brand.JADA       -> JadaPurple
-                        Brand.SIKU       -> SikuBlue
-                        Brand.KAIDO_HOUSE -> KaidoHouseColor
-                    }
+                    val color = stat.brand.toColor()
                     PieSliceData(stat.brand.displayName, stat.count, color)
                 }
                 ReusablePieChart(slices = slices)
             } else {
                 sorted.forEachIndexed { index, stat ->
                     val percent = if (total > 0) (stat.count.toFloat() / total) else 0f
-                    val color = when (stat.brand) {
-                        Brand.HOT_WHEELS -> HotWheelsRed
-                        Brand.MATCHBOX   -> MatchboxBlue
-                        Brand.MINI_GT    -> MiniGTSilver
-                        Brand.MAJORETTE  -> MajoretteYellow
-                        Brand.JADA       -> JadaPurple
-                        Brand.SIKU       -> SikuBlue
-                        Brand.KAIDO_HOUSE -> KaidoHouseColor
-                    }
+                    val color = stat.brand.toColor()
                     
                     ProgressBarWithLabel(
                         label = stat.brand.displayName,
@@ -464,7 +455,7 @@ fun HwTierCard(regularCount: Int, premiumCount: Int, showPieChart: Boolean) {
                 Icon(
                     imageVector = Icons.Default.DirectionsCar,
                     contentDescription = null,
-                    tint = HotWheelsRed
+                    tint = Brand.HOT_WHEELS.toColor()
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
@@ -477,7 +468,7 @@ fun HwTierCard(regularCount: Int, premiumCount: Int, showPieChart: Boolean) {
 
             if (showPieChart) {
                 val slices = listOf(
-                    PieSliceData("Regular", regularCount, HotWheelsRed.copy(alpha = 0.7f)),
+                    PieSliceData("Regular", regularCount, Brand.HOT_WHEELS.toColor().copy(alpha = 0.7f)),
                     PieSliceData("🏁 Premium", premiumCount, MaterialTheme.colorScheme.tertiary)
                 ).filter { it.count > 0 }
                 ReusablePieChart(slices = slices)
@@ -489,7 +480,7 @@ fun HwTierCard(regularCount: Int, premiumCount: Int, showPieChart: Boolean) {
                     label = "Regular",
                     count = regularCount,
                     percent = regularPercent,
-                    color = HotWheelsRed.copy(alpha = 0.7f)
+                    color = Brand.HOT_WHEELS.toColor().copy(alpha = 0.7f)
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 ProgressBarWithLabel(
@@ -497,6 +488,57 @@ fun HwTierCard(regularCount: Int, premiumCount: Int, showPieChart: Boolean) {
                     count = premiumCount,
                     percent = premiumPercent,
                     color = MaterialTheme.colorScheme.tertiary
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun CustomDistributionCard(originalCount: Int, customCount: Int, total: Int, showPieChart: Boolean) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(modifier = Modifier.padding(20.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    imageVector = Icons.Default.DirectionsCar,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = stringResource(com.taytek.basehw.R.string.custom_distribution),
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            if (showPieChart) {
+                val slices = listOf(
+                    PieSliceData(stringResource(com.taytek.basehw.R.string.original_label), originalCount, MaterialTheme.colorScheme.primary),
+                    PieSliceData(stringResource(com.taytek.basehw.R.string.custom_label), customCount, Color(0xFF4CAF50))
+                ).filter { it.count > 0 }
+                ReusablePieChart(slices = slices)
+            } else {
+                val originalPercent = if (total > 0) originalCount.toFloat() / total else 0f
+                val customPercent = if (total > 0) customCount.toFloat() / total else 0f
+
+                ProgressBarWithLabel(
+                    label = stringResource(com.taytek.basehw.R.string.original_label),
+                    count = originalCount,
+                    percent = originalPercent,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                ProgressBarWithLabel(
+                    label = stringResource(com.taytek.basehw.R.string.custom_label),
+                    count = customCount,
+                    percent = customPercent,
+                    color = Color(0xFF4CAF50)
                 )
             }
         }

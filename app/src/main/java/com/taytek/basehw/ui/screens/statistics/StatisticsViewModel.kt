@@ -56,12 +56,23 @@ class StatisticsViewModel @Inject constructor(
     val boxStatusStats: StateFlow<List<BoxStatusStats>> = userCarRepository.getBoxStatusCounts()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
+    val customStats: StateFlow<com.taytek.basehw.domain.model.CustomStats> = userCarRepository.getCustomStats()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), com.taytek.basehw.domain.model.CustomStats(0, 0))
+
     val earnedBadges: StateFlow<List<BadgeType>> = getEarnedBadgesUseCase()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     init {
         viewModelScope.launch {
             currencyRepository.refreshRates()
+        }
+        
+        // Auto-advance hero stat every 10 seconds
+        viewModelScope.launch {
+            while (true) {
+                kotlinx.coroutines.delay(10000)
+                advanceHeroStatIndex()
+            }
         }
     }
 
@@ -82,12 +93,12 @@ class StatisticsViewModel @Inject constructor(
         value * rate
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0.0)
 
-    private var _internalStatIndex = -1
+    private var _internalStatIndex = 0
     private val _heroStatIndexFlow = MutableStateFlow(0)
     val heroStatIndex: StateFlow<Int> = _heroStatIndexFlow.asStateFlow()
 
     fun advanceHeroStatIndex() {
         _internalStatIndex++
-        _heroStatIndexFlow.value = _internalStatIndex % 3
+        _heroStatIndexFlow.value = _internalStatIndex % 4
     }
 }

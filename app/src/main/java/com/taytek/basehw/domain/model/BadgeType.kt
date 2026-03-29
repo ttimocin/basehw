@@ -51,7 +51,8 @@ enum class BadgeType(
         titleRes = com.taytek.basehw.R.string.badge_matchbox_fan_title,
         descRes = com.taytek.basehw.R.string.badge_matchbox_fan_desc,
         emoji = "🟦",
-        color = 0xFF1565C0
+        color = 0xFF1565C0,
+        iconRes = com.taytek.basehw.R.drawable.matchbox_fan
     ),
     MULTI_BRAND(
         titleRes = com.taytek.basehw.R.string.badge_multi_brand_title,
@@ -61,29 +62,26 @@ enum class BadgeType(
         iconRes = com.taytek.basehw.R.drawable.multi_brand
     ),
 
-    // Financial
-    INVESTOR(
-        titleRes = com.taytek.basehw.R.string.badge_investor_title,
-        descRes = com.taytek.basehw.R.string.badge_investor_desc,
-        emoji = "💰",
-        color = 0xFF558B2F,
-        iconRes = com.taytek.basehw.R.drawable.investor
+    // Financial (USD based)
+    SILVER_COLLECTOR(
+        titleRes = com.taytek.basehw.R.string.badge_silver_collector_title,
+        descRes = com.taytek.basehw.R.string.badge_silver_collector_desc,
+        emoji = "🥈",
+        color = 0xFF9E9E9E
     ),
-    BIG_SPENDER(
-        titleRes = com.taytek.basehw.R.string.badge_big_spender_title,
-        descRes = com.taytek.basehw.R.string.badge_big_spender_desc,
-        emoji = "💎",
-        color = 0xFF37474F,
-        iconRes = com.taytek.basehw.R.drawable.big_spendor
+    GOLDEN_COLLECTOR(
+        titleRes = com.taytek.basehw.R.string.badge_golden_collector_title,
+        descRes = com.taytek.basehw.R.string.badge_golden_collector_desc,
+        emoji = "🥇",
+        color = 0xFFFFD700
     ),
 
-    // Collections
-    CURATOR(
-        titleRes = com.taytek.basehw.R.string.badge_curator_title,
-        descRes = com.taytek.basehw.R.string.badge_curator_desc,
-        emoji = "🗂️",
-        color = 0xFFBF360C,
-        iconRes = com.taytek.basehw.R.drawable.curator
+    // Custom
+    CUSTOM_MAKER(
+        titleRes = com.taytek.basehw.R.string.badge_custom_maker_title,
+        descRes = com.taytek.basehw.R.string.badge_custom_maker_desc,
+        emoji = "🎨",
+        color = 0xFF4CAF50
     ),
 
     // Box status

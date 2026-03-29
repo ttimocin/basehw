@@ -15,6 +15,7 @@ data class MasterData(
     val isPremium: Boolean = false,
     val dataSource: String = "",
     val caseNum: String = "",
-    val feature: String? = null
+    val feature: String? = null,
+    val category: String? = null
 )
 

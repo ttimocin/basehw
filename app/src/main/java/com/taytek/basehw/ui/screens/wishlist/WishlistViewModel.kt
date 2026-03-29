@@ -41,6 +41,11 @@ class WishlistViewModel @Inject constructor(
         clearSelection()
     }
 
+    fun setSeriesView(isSeries: Boolean) {
+        _isSeriesView.value = isSeries
+        clearSelection()
+    }
+
     val wishlistPaged: Flow<PagingData<UserCar>> = _searchQuery
         .flatMapLatest { query ->
             repository.getWishlist(query.takeIf { it.isNotBlank() })

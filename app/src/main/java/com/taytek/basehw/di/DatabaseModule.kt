@@ -40,6 +40,9 @@ object DatabaseModule {
                 .addMigrations(AppDatabase.MIGRATION_16_17)
                 .addMigrations(AppDatabase.MIGRATION_17_18)
                 .addMigrations(AppDatabase.MIGRATION_19_20)
+                .addMigrations(AppDatabase.MIGRATION_20_21)
+                .addMigrations(AppDatabase.MIGRATION_21_22)
+                .addMigrations(AppDatabase.MIGRATION_22_23)
             .fallbackToDestructiveMigration()
             .build()
     }

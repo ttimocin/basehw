@@ -18,9 +18,10 @@ import com.taytek.basehw.data.local.entity.CollectionCarCrossRef
         CustomCollectionEntity::class,
         CollectionCarCrossRef::class
     ],
-    version = 20,
+    version = 23,
     exportSchema = false
 )
+@androidx.room.TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun masterDataDao(): MasterDataDao
     abstract fun userCarDao(): UserCarDao
@@ -28,6 +29,19 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         const val DATABASE_NAME = "basehw_db"
+
+        val MIGRATION_22_23 = object : Migration(22, 23) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_master_data_brand_toyNum` ON `master_data` (`brand`, `toyNum`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_master_data_brand_modelName_year` ON `master_data` (`brand`, `modelName`, `year`)")
+            }
+        }
+
+        val MIGRATION_21_22 = object : Migration(21, 22) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE user_cars ADD COLUMN additionalPhotosBackup TEXT")
+            }
+        }
 
         val MIGRATION_14_15 = object : Migration(14, 15) {
             override fun migrate(db: SupportSQLiteDatabase) {
@@ -201,6 +215,12 @@ abstract class AppDatabase : RoomDatabase() {
         val MIGRATION_19_20 = object : Migration(19, 20) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE master_data ADD COLUMN category TEXT")
+            }
+        }
+
+        val MIGRATION_20_21 = object : Migration(20, 21) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE user_cars ADD COLUMN additionalPhotos TEXT")
             }
         }
     }

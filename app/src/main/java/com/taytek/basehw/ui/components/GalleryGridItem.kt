@@ -39,23 +39,71 @@ fun GalleryGridItem(
     val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
     val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
     
-    val sthBorderColor = if (isSthCar) Color(0xFFB8860B) else if (isChaseCar) Color.Black else if (isThCar) Color(0xFF71797E) else Color.Transparent
     val defaultBorderColor = if (isDark) Color.White.copy(alpha = 0.2f) else MaterialTheme.colorScheme.outline
- 
+
+    // Animated shimmer beam for STH cards
+    val infiniteTransition = rememberInfiniteTransition(label = "sth_shimmer")
+    val angle by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 2500, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "sth_angle"
+    )
+
+    val sthGoldDark = Color(0xFF8B6914)
+    val sthGoldMid = Color(0xFFB8860B)
+
+    val cardShape = RoundedCornerShape(14.dp)
+
+    // Generate animated sweep gradient brush for STH border
+    val shimmerBorderModifier = if (isSthCar && !isSelected) {
+        val fraction = angle / 360f
+        val shimmerColors = buildList {
+            val beamWidth = 0.12f
+            val steps = 48
+            for (i in 0 until steps) {
+                val t = i.toFloat() / steps
+                val dist = kotlin.math.min(
+                    kotlin.math.abs(t - fraction),
+                    kotlin.math.min(
+                        kotlin.math.abs(t - fraction + 1f),
+                        kotlin.math.abs(t - fraction - 1f)
+                    )
+                )
+                val brightness = (1f - (dist / beamWidth).coerceIn(0f, 1f))
+                val color = androidx.compose.ui.graphics.lerp(sthGoldMid, Color.White, brightness * brightness)
+                add(color)
+            }
+            add(first()) // close the loop
+        }
+        val shimmerBrush = Brush.sweepGradient(shimmerColors)
+        Modifier.border(2.5.dp, shimmerBrush, cardShape)
+    } else if (isChaseCar && !isSelected) {
+        val chaseColor = if (isDark) Color.White else Color.Black
+        Modifier.border(2.dp, chaseColor, cardShape)
+    } else if (!isSelected) {
+        Modifier.border(1.dp, defaultBorderColor.copy(alpha = 0.05f), cardShape)
+    } else {
+        Modifier
+    }
+
     Box(
         modifier = modifier
             .aspectRatio(1f)
-            .border(
-                width = if (isSthCar || isChaseCar) 2.dp else 1.dp,
-                color = if (isSthCar || isChaseCar) sthBorderColor else defaultBorderColor,
-                shape = RoundedCornerShape(14.dp)
-            )
-            .clip(RoundedCornerShape(14.dp))
-            .shadow(elevation = 2.dp, shape = RoundedCornerShape(14.dp))
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(baseColor, darkerColor)
-                )
+            .then(shimmerBorderModifier)
+
+            .clip(cardShape)
+            .shadow(elevation = if (isSelected) 0.dp else 1.dp, shape = cardShape)
+            .background(if (isSelected) MaterialTheme.colorScheme.primaryContainer else Color.Transparent)
+            .then(
+                if (!isSelected) {
+                    Modifier.background(Brush.linearGradient(colors = listOf(baseColor, darkerColor)))
+                } else {
+                    Modifier
+                }
             )
             .combinedClickable(
                 onClick = {
@@ -231,6 +279,23 @@ fun GalleryGridItem(
                                 fontSize = 9.sp
                             ),
                             color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
+                        )
+                    }
+                }
+
+                if (car.isCustom) {
+                    Surface(
+                        color = Color(0xFF4CAF50), // Green for custom
+                        shape = RoundedCornerShape(6.dp)
+                    ) {
+                        Text(
+                            text = "CUSTOM",
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 9.sp
+                            ),
+                            color = Color.White,
                             modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                         )
                     }

@@ -31,6 +31,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
@@ -56,6 +57,23 @@ import kotlinx.coroutines.launch
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import kotlinx.coroutines.flow.map
+import android.content.Context
+import android.net.Uri
+import androidx.core.content.FileProvider
+import java.io.File
+import java.io.FileOutputStream
+import android.content.Intent
+import android.content.ContextWrapper
+import androidx.credentials.exceptions.NoCredentialException
+
+private fun findActivity(context: Context): Activity? {
+    var currentContext = context
+    while (currentContext is ContextWrapper) {
+        if (currentContext is Activity) return currentContext
+        currentContext = currentContext.baseContext
+    }
+    return null
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -90,50 +108,89 @@ fun ProfileScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     
     // ... rest of the setup
-    val webClientId = try { 
-        context.getString(context.resources.getIdentifier("default_web_client_id", "string", context.packageName)) 
-    } catch(e: Exception) { "" }
+    val webClientId = remember(context) {
+        val resId = context.resources.getIdentifier("default_web_client_id", "string", context.packageName)
+        if (resId != 0) {
+            context.getString(resId)
+        } else {
+            ""
+        }
+    }
+
+    fun handleCredentialResult(result: GetCredentialResponse, viewModel: ProfileViewModel) {
+        val credential = result.credential
+        if (credential is GoogleIdTokenCredential) {
+            viewModel.signInWithGoogle(credential.idToken)
+        } else if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+            val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+            viewModel.signInWithGoogle(googleIdTokenCredential.idToken)
+        }
+    }
 
     val handleSignIn = {
-        // ... (existing handleSignIn code)
         if (webClientId.isBlank()) {
+            viewModel.setErrorMessage("Google Web Client ID bulunamadı. Lütfen yöneticinize danışın.")
             Log.e("Auth", "Web Client ID bulunamadı! Lütfen google-services.json eklendiğinden emin olun.")
         } else {
             coroutineScope.launch {
-                val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
-                    .setFilterByAuthorizedAccounts(false)
-                    .setServerClientId(webClientId)
-                    .setAutoSelectEnabled(false)
-                    .build()
-
-                val request: GetCredentialRequest = GetCredentialRequest.Builder()
-                    .addCredentialOption(googleIdOption)
-                    .build()
-
                 try {
                     if (!uiState.consentGranted) {
                         viewModel.setErrorMessage(context.getString(com.taytek.basehw.R.string.accept_terms_error))
-                        return@launch
-                    }
-                    val result = credentialManager.getCredential(
-                        request = request,
-                        context = context as Activity
-                    )
-                    
-                    val credential = result.credential
-                    if (credential is GoogleIdTokenCredential) {
-                        viewModel.signInWithGoogle(credential.idToken)
-                    } else if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
-                        val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
-                        viewModel.signInWithGoogle(googleIdTokenCredential.idToken)
-                    }
+                    } else {
+                        val activity = findActivity(context)
+                        if (activity == null) {
+                            viewModel.setErrorMessage("Activity context not found.")
+                        } else {
+                            // Best Practice: Try specialized authorized accounts first, then fallback
+                            val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
+                                .setFilterByAuthorizedAccounts(true) // Try pre-authorized accounts
+                                .setServerClientId(webClientId)
+                                .setAutoSelectEnabled(true)
+                                .build()
 
+                            val request: GetCredentialRequest = GetCredentialRequest.Builder()
+                                .addCredentialOption(googleIdOption)
+                                .build()
+
+                            try {
+                                val result = credentialManager.getCredential(
+                                    request = request,
+                                    context = activity
+                                )
+                                handleCredentialResult(result, viewModel)
+                            } catch (e: NoCredentialException) {
+                                // Fallback: Show all Google accounts
+                                val fallbackOption = GetGoogleIdOption.Builder()
+                                    .setFilterByAuthorizedAccounts(false)
+                                    .setServerClientId(webClientId)
+                                    .setAutoSelectEnabled(false)
+                                    .build()
+                                
+                                val fallbackRequest = GetCredentialRequest.Builder()
+                                    .addCredentialOption(fallbackOption)
+                                    .build()
+                                    
+                                val result = credentialManager.getCredential(
+                                    request = fallbackRequest,
+                                    context = activity
+                                )
+                                handleCredentialResult(result, viewModel)
+                            }
+                        }
+                    }
                 } catch (e: GetCredentialException) {
-                    Log.e("Auth", "Giriş penceresi iptal edildi veya hata: ${e.message}")
+                    val errorMsg = e.message ?: "Bilinmeyen giriş hatası"
+                    Log.e("Auth", "Hata: $errorMsg")
+                    if (errorMsg.contains("no credentials available", ignoreCase = true)) {
+                        viewModel.setErrorMessage("Hesap bulunamadı veya uygulama imzası (SHA-1) doğrulanmadı. Lütfen Firebase Console ayarlarınızı kontrol edin.")
+                    } else {
+                        viewModel.setErrorMessage("Giriş başarısız: $errorMsg")
+                    }
                 }
             }
         }
     }
+
 
     val exportSuccessMsg = stringResource(com.taytek.basehw.R.string.export_success)
 
@@ -148,13 +205,39 @@ fun ProfileScreen(
         contract = ActivityResultContracts.CreateDocument("text/csv")
     ) { uri ->
         uri?.let {
-            context.contentResolver.openOutputStream(it)?.let { outputStream ->
-                viewModel.exportToExcel(outputStream)
+            coroutineScope.launch {
+                context.contentResolver.openOutputStream(it)?.let { outputStream ->
+                    viewModel.exportToExcel(outputStream)
+                }
             }
         }
     }
 
 
+
+    val jsonExportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/json")
+    ) { uri ->
+        uri?.let {
+            coroutineScope.launch {
+                context.contentResolver.openOutputStream(it)?.let { outputStream ->
+                    viewModel.exportToJson(outputStream)
+                }
+            }
+        }
+    }
+
+    val pdfExportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/pdf")
+    ) { uri ->
+        uri?.let {
+            coroutineScope.launch {
+                context.contentResolver.openOutputStream(it)?.let { outputStream ->
+                    viewModel.exportToPdf(outputStream)
+                }
+            }
+        }
+    }
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
@@ -236,6 +319,18 @@ fun ProfileScreen(
             onDismiss = { viewModel.setEditingUsername(false) },
             onSave = { viewModel.saveEditedUsername(it) },
             onCheckAvailability = { viewModel.checkUsernameAvailability(it) }
+        )
+    }
+
+    if (uiState.showExportDialog) {
+        ExportOptionsDialog(
+            onDismiss = { viewModel.dismissExportDialog() },
+            onDownloadCsv = { excelExportLauncher.launch("HotWheels_Collection.csv") },
+            onDownloadJson = { jsonExportLauncher.launch("HotWheels_Collection.json") },
+            onDownloadPdf = { pdfExportLauncher.launch("HotWheels_Collection.pdf") },
+            onShareCsv = { handleShareExport(context, viewModel, coroutineScope, format = 0) },
+            onShareJson = { handleShareExport(context, viewModel, coroutineScope, format = 1) },
+            onSharePdf = { handleShareExport(context, viewModel, coroutineScope, format = 2) }
         )
     }
 }
@@ -590,6 +685,47 @@ fun ProfileScreenContent(
                             }
                         }
                     }
+                    
+                    // Email Verification Status
+                    val isEmailAccount = currentUser.providerData.any { it.providerId == "password" }
+                    if (isEmailAccount) {
+                        Spacer(Modifier.height(4.dp))
+                        val isVerified = currentUser.isEmailVerified
+                        if (isVerified) {
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                Icon(Icons.Default.CheckCircle, null, tint = Color(0xFF4CAF50), modifier = Modifier.size(16.dp))
+                                Text(text = stringResource(com.taytek.basehw.R.string.email_verified), style = MaterialTheme.typography.labelSmall, color = Color(0xFF4CAF50), fontWeight = FontWeight.Bold)
+                            }
+                        } else {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                    Icon(Icons.Default.Error, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(16.dp))
+                                    Text(text = stringResource(com.taytek.basehw.R.string.email_not_verified), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.error, fontWeight = FontWeight.Bold)
+                                }
+                                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    TextButton(
+                                        onClick = { viewModel.sendEmailVerification() },
+                                        enabled = !uiState.isLoadingVerification && !uiState.verificationEmailSent,
+                                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+                                    ) {
+                                        if (uiState.isLoadingVerification) CircularProgressIndicator(modifier = Modifier.size(12.dp), strokeWidth = 2.dp)
+                                        else Text(
+                                            text = if (uiState.verificationEmailSent) stringResource(com.taytek.basehw.R.string.verification_sent) 
+                                                   else stringResource(com.taytek.basehw.R.string.send_verification_btn),
+                                            style = MaterialTheme.typography.labelSmall
+                                        )
+                                    }
+                                    TextButton(
+                                        onClick = { viewModel.reloadUser() },
+                                        enabled = !uiState.isLoadingVerification,
+                                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+                                    ) {
+                                        Text(stringResource(com.taytek.basehw.R.string.check_status_btn), style = MaterialTheme.typography.labelSmall)
+                                    }
+                                }
+                            }
+                        }
+                    }
                     Spacer(Modifier.height(4.dp))
                     Box(modifier = Modifier.background(Color(0xFFE8EAF6), RoundedCornerShape(16.dp)).padding(horizontal = 12.dp, vertical = 6.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -644,12 +780,15 @@ fun ProfileScreenContent(
             ) {
                 Column {
                     if (currentUser != null) {
-                        CloudBackupItem(uiState, viewModel)
+                        val isEmailAccount = currentUser.providerData.any { it.providerId == "password" }
+                        val isVerified = currentUser.isEmailVerified || !isEmailAccount
+                        
+                        CloudBackupItem(uiState, viewModel, isVerified)
                         HorizontalDivider(modifier = Modifier.padding(horizontal = 20.dp))
-                        RestoreDataItem(uiState, viewModel)
+                        RestoreDataItem(uiState, viewModel, isVerified)
                         HorizontalDivider(modifier = Modifier.padding(horizontal = 20.dp))
                     }
-                    ProfileListItem(Icons.Default.FileDownload, stringResource(com.taytek.basehw.R.string.excel_export_title)) { excelExportLauncher.launch("HotWheels_Collection.csv") }
+                    ProfileListItem(Icons.Default.FileDownload, stringResource(com.taytek.basehw.R.string.excel_export_title)) { viewModel.onExportClick() }
                     HorizontalDivider(modifier = Modifier.padding(horizontal = 20.dp))
                     SyncGitHubItem(uiState, viewModel, workManager)
                 }
@@ -795,7 +934,8 @@ fun LanguageSelector(languageState: String, context: android.content.Context, vi
 }
 
 @Composable
-fun CloudBackupItem(uiState: ProfileUiState, viewModel: ProfileViewModel) {
+fun CloudBackupItem(uiState: ProfileUiState, viewModel: ProfileViewModel, isVerified: Boolean) {
+    val isEnabled = !uiState.isLoading && isVerified
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -805,7 +945,8 @@ fun CloudBackupItem(uiState: ProfileUiState, viewModel: ProfileViewModel) {
                 else
                     AppPrimary.copy(alpha = 0.15f)
             )
-            .clickable(enabled = !uiState.isLoading) { viewModel.backupToCloud() }
+            .clickable(enabled = isEnabled) { viewModel.backupToCloud() }
+            .alpha(if (isVerified) 1f else 0.6f)
     ) {
         Row(
             modifier = Modifier.padding(vertical = 16.dp, horizontal = 20.dp).fillMaxWidth(),
@@ -825,25 +966,53 @@ fun CloudBackupItem(uiState: ProfileUiState, viewModel: ProfileViewModel) {
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
-                val subtitle = if (uiState.isLoading && uiState.syncStatusMsg?.contains("Yedek") == true) uiState.syncStatusMsg else if (uiState.syncSuccess && uiState.syncStatusMsg?.contains("Yedek") == true) uiState.syncStatusMsg else if (uiState.error != null && uiState.error!!.contains("Yedek")) uiState.error else null
-                if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Yedek")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+                if (!isVerified) {
+                    Text(
+                        text = stringResource(com.taytek.basehw.R.string.verification_required_for_cloud),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.error,
+                        fontWeight = FontWeight.Medium
+                    )
+                } else {
+                    val subtitle = if (uiState.isLoading && uiState.syncStatusMsg?.contains("Yedek") == true) uiState.syncStatusMsg else if (uiState.syncSuccess && uiState.syncStatusMsg?.contains("Yedek") == true) uiState.syncStatusMsg else if (uiState.error != null && uiState.error!!.contains("Yedek")) uiState.error else null
+                    if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Yedek")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+                }
             }
-            Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outline)
+            if (isVerified) Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outline)
+            else Icon(Icons.Default.Lock, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(16.dp))
         }
     }
 }
 
 @Composable
-fun RestoreDataItem(uiState: ProfileUiState, viewModel: ProfileViewModel) {
-    Row(modifier = Modifier.fillMaxWidth().clickable(enabled = !uiState.isLoading) { viewModel.restoreFromCloud() }.padding(vertical = 16.dp, horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically) {
+fun RestoreDataItem(uiState: ProfileUiState, viewModel: ProfileViewModel, isVerified: Boolean) {
+    val isEnabled = !uiState.isLoading && isVerified
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(enabled = isEnabled) { viewModel.restoreFromCloud() }
+            .padding(vertical = 16.dp, horizontal = 20.dp)
+            .alpha(if (isVerified) 1f else 0.6f),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Icon(Icons.Default.SettingsBackupRestore, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(24.dp))
         Spacer(Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(text = stringResource(com.taytek.basehw.R.string.restore_data_title), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Medium)
-            val subtitle = if (uiState.isLoading && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.syncSuccess && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.error != null && uiState.error!!.contains("Geri")) uiState.error else null
-            if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Geri")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+            if (!isVerified) {
+                Text(
+                    text = stringResource(com.taytek.basehw.R.string.verification_required_for_cloud),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.error,
+                    fontWeight = FontWeight.Medium
+                )
+            } else {
+                val subtitle = if (uiState.isLoading && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.syncSuccess && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.error != null && uiState.error!!.contains("Geri")) uiState.error else null
+                if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Geri")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+            }
         }
-        Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outline)
+        if (isVerified) Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outline)
+        else Icon(Icons.Default.Lock, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(16.dp))
     }
 }
 
@@ -922,6 +1091,171 @@ fun ErrorMessages(uiState: ProfileUiState) {
             textAlign = androidx.compose.ui.text.style.TextAlign.Center, 
             modifier = Modifier.fillMaxWidth().padding(16.dp)
         )
+    }
+}
+
+@Composable
+fun ExportOptionsDialog(
+    onDismiss: () -> Unit,
+    onDownloadCsv: () -> Unit,
+    onDownloadJson: () -> Unit,
+    onDownloadPdf: () -> Unit,
+    onShareCsv: () -> Unit,
+    onShareJson: () -> Unit,
+    onSharePdf: () -> Unit
+) {
+    var selectedFormatIndex by remember { mutableStateOf(0) } // 0: CSV, 1: JSON, 2: PDF
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { 
+            Text(
+                stringResource(com.taytek.basehw.R.string.export_options_title),
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
+            ) 
+        },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(20.dp), modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    stringResource(com.taytek.basehw.R.string.excel_export_desc),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                
+                // Format Selector (3-way Toggle)
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                    border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
+                ) {
+                    Row(modifier = Modifier.padding(4.dp)) {
+                        FormatToggleItem(
+                            text = stringResource(com.taytek.basehw.R.string.export_format_csv),
+                            isSelected = selectedFormatIndex == 0,
+                            onClick = { selectedFormatIndex = 0 },
+                            modifier = Modifier.weight(1f)
+                        )
+                        FormatToggleItem(
+                            text = stringResource(com.taytek.basehw.R.string.export_format_json),
+                            isSelected = selectedFormatIndex == 1,
+                            onClick = { selectedFormatIndex = 1 },
+                            modifier = Modifier.weight(1f)
+                        )
+                        FormatToggleItem(
+                            text = stringResource(com.taytek.basehw.R.string.export_format_pdf),
+                            isSelected = selectedFormatIndex == 2,
+                            onClick = { selectedFormatIndex = 2 },
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                }
+
+                // Action Buttons
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Button(
+                        onClick = { 
+                            when(selectedFormatIndex) {
+                                0 -> onShareCsv()
+                                1 -> onShareJson()
+                                2 -> onSharePdf()
+                            }
+                        },
+                        modifier = Modifier.weight(1f).height(52.dp),
+                        shape = RoundedCornerShape(14.dp),
+                        elevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp)
+                    ) {
+                        Icon(Icons.Default.Share, null, modifier = Modifier.size(20.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text(stringResource(com.taytek.basehw.R.string.export_share), fontWeight = FontWeight.SemiBold)
+                    }
+                    
+                    OutlinedButton(
+                        onClick = { 
+                            when(selectedFormatIndex) {
+                                0 -> onDownloadCsv()
+                                1 -> onDownloadJson()
+                                2 -> onDownloadPdf()
+                            }
+                        },
+                        modifier = Modifier.weight(1f).height(52.dp),
+                        shape = RoundedCornerShape(14.dp),
+                        border = androidx.compose.foundation.BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
+                    ) {
+                        Icon(Icons.Default.Download, null, modifier = Modifier.size(20.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text(stringResource(com.taytek.basehw.R.string.export_download), fontWeight = FontWeight.SemiBold)
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(com.taytek.basehw.R.string.cancel), fontWeight = FontWeight.Bold)
+            }
+        }
+    )
+}
+
+@Composable
+fun FormatToggleItem(text: String, isSelected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent)
+            .clickable(onClick = onClick)
+            .padding(vertical = 12.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+            fontWeight = if (isSelected) FontWeight.ExtraBold else FontWeight.Medium,
+            style = MaterialTheme.typography.labelSmall, // Smaller text for 3-cols
+            maxLines = 1,
+            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+        )
+    }
+}
+
+fun handleShareExport(context: android.content.Context, viewModel: ProfileViewModel, scope: kotlinx.coroutines.CoroutineScope, format: Int) {
+    scope.launch {
+        try {
+            val (fileName, mimeType) = when(format) {
+                1 -> "HotWheels_Collection.json" to "application/json"
+                2 -> "HotWheels_Collection.pdf" to "application/pdf"
+                else -> "HotWheels_Collection.csv" to "text/csv"
+            }
+            
+            val cacheFile = java.io.File(context.cacheDir, fileName)
+            java.io.FileOutputStream(cacheFile).use { fos ->
+                when(format) {
+                    1 -> viewModel.exportToJson(fos)
+                    2 -> viewModel.exportToPdf(fos)
+                    else -> viewModel.exportToExcel(fos)
+                }
+            }
+            
+            val uri: android.net.Uri = androidx.core.content.FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.fileprovider",
+                cacheFile
+            )
+            
+            val intent = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
+                type = mimeType
+                putExtra(android.content.Intent.EXTRA_STREAM, uri)
+                addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            
+            context.startActivity(android.content.Intent.createChooser(intent, "Share Collection"))
+        } catch (e: Exception) {
+            android.util.Log.e("ProfileScreen", "Share error: ${e.message}")
+        }
     }
 }
 

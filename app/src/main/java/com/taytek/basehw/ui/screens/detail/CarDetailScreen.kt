@@ -1,5 +1,11 @@
 package com.taytek.basehw.ui.screens.detail
 
+import com.taytek.basehw.R
+import androidx.compose.ui.res.stringResource
+import com.taytek.basehw.ui.theme.DarkNavy
+import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.toColor
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.filled.DeleteSweep
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,14 +24,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.taytek.basehw.domain.model.Brand
-import com.taytek.basehw.ui.theme.HotWheelsRed
-import com.taytek.basehw.ui.theme.MatchboxBlue
-import com.taytek.basehw.ui.theme.MiniGTSilver
-import com.taytek.basehw.ui.theme.MajoretteYellow
-import com.taytek.basehw.ui.theme.JadaPurple
-import com.taytek.basehw.ui.theme.SikuBlue
-import com.taytek.basehw.ui.theme.KaidoHouseColor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.graphics.Color
@@ -39,16 +38,23 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
-import com.taytek.basehw.BuildConfig
-import java.io.File
-import androidx.compose.ui.platform.LocalContext
 import java.util.Date
+import android.net.Uri
+import java.util.UUID
+import com.taytek.basehw.ui.util.UCropContract
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.ui.platform.LocalContext
+import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CarDetailScreen(
     carId: Long,
     onNavigateBack: () -> Unit,
+    onMoveToCollection: (Long, Long) -> Unit = { _, _ -> },
+    fromWishlist: Boolean = false,
     viewModel: CarDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -60,24 +66,60 @@ fun CarDetailScreen(
     var showEditValueDialog by remember { mutableStateOf(false) }
     var showEditPurchaseDateDialog by remember { mutableStateOf(false) }
     var showEditNoteDialog by remember { mutableStateOf(false) }
+    var showShareDialog by remember { mutableStateOf(false) }
+    var shareCaption by remember { mutableStateOf("") }
     
     val context = LocalContext.current
-    var photoUri by remember { mutableStateOf<android.net.Uri?>(null) }
+    var cameraImageUri by remember { mutableStateOf<Uri?>(null) }
+    var isAddingAdditional by remember { mutableStateOf(false) }
 
-    val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-        if (success) photoUri?.let { viewModel.onUserPhotoUrlChanged(it.toString()) }
+    val cropLauncher = rememberLauncherForActivityResult(
+        contract = UCropContract()
+    ) { croppedUri ->
+        if (croppedUri != null) {
+            if (isAddingAdditional) {
+                viewModel.addAdditionalPhoto(croppedUri.toString())
+            } else {
+                viewModel.onUserPhotoUrlChanged(croppedUri.toString())
+            }
+        }
     }
 
-    val galleryLauncher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        uri?.let { viewModel.onUserPhotoUrlChanged(it.toString()) }
+    val cameraLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicture()
+    ) { success ->
+        if (success && cameraImageUri != null) {
+            val dir = File(context.filesDir, "car_photos")
+            if (!dir.exists()) dir.mkdirs()
+            val destinationUri = Uri.fromFile(File(dir, "cropped_${UUID.randomUUID()}.jpg"))
+            cropLauncher.launch(UCropContract.UCropInput(cameraImageUri!!, destinationUri))
+        }
     }
 
-    val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+    val galleryLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        if (uri != null) {
+            val dir = File(context.filesDir, "car_photos")
+            if (!dir.exists()) dir.mkdirs()
+            val destinationUri = Uri.fromFile(File(dir, "cropped_${UUID.randomUUID()}.jpg"))
+            cropLauncher.launch(UCropContract.UCropInput(uri, destinationUri))
+        }
+    }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
         if (isGranted) {
-            val photoFile = File(context.filesDir, "car_photos/camera_${System.currentTimeMillis()}.jpg")
-            photoFile.parentFile?.mkdirs()
-            val uri = FileProvider.getUriForFile(context, "${BuildConfig.APPLICATION_ID}.fileprovider", photoFile)
-            photoUri = uri
+            val dir = File(context.filesDir, "car_photos")
+            if (!dir.exists()) dir.mkdirs()
+            val file = File(dir, "${UUID.randomUUID()}.jpg")
+            val uri = FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.fileprovider",
+                file
+            )
+            cameraImageUri = uri
             cameraLauncher.launch(uri)
         }
     }
@@ -88,6 +130,19 @@ fun CarDetailScreen(
 
     LaunchedEffect(carId) { viewModel.loadCar(carId) }
     LaunchedEffect(uiState.isDeleted) { if (uiState.isDeleted) onNavigateBack() }
+
+    if (uiState.showVerificationDialog) {
+        AlertDialog(
+            onDismissRequest = viewModel::dismissVerificationDialog,
+            title = { Text(stringResource(R.string.share_verification_required_title)) },
+            text = { Text(stringResource(R.string.share_verification_required_desc)) },
+            confirmButton = {
+                TextButton(onClick = viewModel::dismissVerificationDialog) {
+                    Text(stringResource(R.string.ok))
+                }
+            }
+        )
+    }
 
     Scaffold(
         topBar = {
@@ -115,16 +170,7 @@ fun CarDetailScreen(
                 val car = uiState.car!!
                 val master = car.masterData
                 val brand = master?.brand ?: car.manualBrand
-                val brandColor = when (brand) {
-                    Brand.HOT_WHEELS -> HotWheelsRed
-                    Brand.MATCHBOX   -> MatchboxBlue
-                    Brand.MINI_GT    -> MiniGTSilver
-                    Brand.MAJORETTE  -> MajoretteYellow
-                    Brand.JADA       -> JadaPurple
-                    Brand.SIKU       -> SikuBlue
-                    Brand.KAIDO_HOUSE -> KaidoHouseColor
-                    null -> MaterialTheme.colorScheme.primary
-                }
+                val brandColor = brand?.toColor() ?: MaterialTheme.colorScheme.primary
 
                 Column(
                     modifier = Modifier
@@ -132,112 +178,129 @@ fun CarDetailScreen(
                         .padding(padding)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    // Hero image (Öncelik: Kullanıcının kendi fotoğrafı)
-                    val displayImageUrl = car.userPhotoUrl ?: master?.imageUrl
-                    val isWikiImage = car.userPhotoUrl == null &&
-                        (master?.imageUrl?.contains("wikia.nocookie.net") == true ||
-                         master?.imageUrl?.contains("fandom.com") == true)
-                    val wikiLabel = when (master?.brand) {
-                        Brand.HOT_WHEELS -> "Hot Wheels Wiki"
-                        Brand.MATCHBOX   -> "Matchbox Wiki"
-                        Brand.MINI_GT    -> null
-                        Brand.MAJORETTE  -> "Majorette Wiki"
-                        Brand.JADA       -> "Jada Wiki"
-                        Brand.SIKU       -> null
-                        Brand.KAIDO_HOUSE -> null
-                        null             -> null
-                    }
-                    if (!displayImageUrl.isNullOrBlank()) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(240.dp)
-                                .clickable { viewModel.togglePhotoOptionMenu(true) }
-                        ) {
-                            AsyncImage(
-                                model = displayImageUrl,
-                                contentDescription = master?.modelName ?: car.manualModelName ?: stringResource(com.taytek.basehw.R.string.detail_title),
-                                modifier = Modifier.fillMaxSize(),
-                                contentScale = ContentScale.Fit
-                            )
-                            if (isWikiImage && wikiLabel != null) {
-                                Surface(
+                    Spacer(Modifier.height(8.dp))
+
+                    // Hero section with Pager and Overlay Buttons
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(260.dp)
+                    ) {
+                        val car = uiState.car!!
+                        val master = car.masterData
+                        val allPhotos = remember(car.userPhotoUrl, car.additionalPhotos, master?.imageUrl) {
+                            mutableListOf<String>().apply {
+                                car.userPhotoUrl?.let { add(it) }
+                                addAll(car.additionalPhotos)
+                                if (isEmpty()) master?.imageUrl?.let { add(it) }
+                            }
+                        }
+
+                        if (allPhotos.isNotEmpty()) {
+                            val pagerState = rememberPagerState(pageCount = { allPhotos.size })
+                            HorizontalPager(
+                                state = pagerState,
+                                modifier = Modifier.fillMaxSize()
+                            ) { page ->
+                                Box(
                                     modifier = Modifier
-                                        .align(Alignment.BottomStart)
-                                        .padding(8.dp),
-                                    color = Color.Black.copy(alpha = 0.55f),
-                                    shape = androidx.compose.foundation.shape.RoundedCornerShape(6.dp)
+                                        .fillMaxSize()
+                                        .clickable { viewModel.togglePhotoOptionMenu(true) }
                                 ) {
-                                    Text(
-                                        text = wikiLabel,
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = Color.White.copy(alpha = 0.85f),
-                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp)
+                                    AsyncImage(
+                                        model = allPhotos[page],
+                                        contentDescription = null,
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentScale = ContentScale.Fit
                                     )
                                 }
                             }
-
-                            // Change Photo Camera Icon
-                            Surface(
+                            
+                            // Page indicator
+                            if (allPhotos.size > 1) {
+                                Row(
+                                    Modifier
+                                        .height(30.dp)
+                                        .fillMaxWidth()
+                                        .align(Alignment.BottomCenter)
+                                        .padding(bottom = 8.dp),
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    repeat(allPhotos.size) { iteration ->
+                                        val color = if (pagerState.currentPage == iteration) Color.White else Color.White.copy(alpha = 0.5f)
+                                        Box(
+                                            modifier = Modifier
+                                                .padding(horizontal = 3.dp)
+                                                .clip(androidx.compose.foundation.shape.CircleShape)
+                                                .background(color.copy(alpha = 0.7f))
+                                                .size(6.dp)
+                                        )
+                                    }
+                                }
+                            }
+                        } else {
+                            // Placeholder if no photo
+                            Box(
                                 modifier = Modifier
-                                    .align(Alignment.BottomEnd)
-                                    .padding(8.dp)
-                                    .size(40.dp)
+                                    .fillMaxSize()
+                                    .background(MaterialTheme.colorScheme.surfaceVariant)
                                     .clickable { viewModel.togglePhotoOptionMenu(true) },
-                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
-                                shape = androidx.compose.foundation.shape.CircleShape,
-                                shadowElevation = 4.dp
+                                contentAlignment = Alignment.Center
                             ) {
-                                Box(contentAlignment = Alignment.Center) {
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                     Icon(
-                                        imageVector = Icons.Default.PhotoCamera,
-                                        contentDescription = stringResource(com.taytek.basehw.R.string.change_photo),
-                                        tint = MaterialTheme.colorScheme.onPrimary,
-                                        modifier = Modifier.size(20.dp)
+                                        Icons.Default.AddAPhoto,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(48.dp),
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                                    )
+                                    Spacer(Modifier.height(8.dp))
+                                    Text(
+                                        stringResource(com.taytek.basehw.R.string.add_photo),
+                                        style = MaterialTheme.typography.labelLarge,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
                                     )
                                 }
                             }
+                        }
 
-                            // Favorite Heart
-                            IconButton(
-                                onClick = { viewModel.toggleFavorite() },
-                                modifier = Modifier
-                                    .align(Alignment.TopEnd)
-                                    .padding(8.dp)
-                                    .background(Color.Black.copy(alpha = 0.3f), androidx.compose.foundation.shape.CircleShape)
-                            ) {
+                        // Change Photo Camera Icon
+                        Surface(
+                            modifier = Modifier
+                                .align(Alignment.BottomEnd)
+                                .padding(8.dp)
+                                .size(40.dp)
+                                .clickable { viewModel.togglePhotoOptionMenu(true) },
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
+                            shape = androidx.compose.foundation.shape.CircleShape,
+                            shadowElevation = 4.dp
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
                                 Icon(
-                                    imageVector = if (car.isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                                    contentDescription = stringResource(com.taytek.basehw.R.string.favorite),
-                                    tint = if (car.isFavorite) Color(0xFFFF4D6D) else Color.White
+                                    imageVector = Icons.Default.PhotoCamera,
+                                    contentDescription = stringResource(com.taytek.basehw.R.string.change_photo),
+                                    tint = MaterialTheme.colorScheme.onPrimary,
+                                    modifier = Modifier.size(20.dp)
                                 )
                             }
                         }
-                    } else {
-                        // Eğer hiç fotoğraf yoksa (manuel ekleme vb.) bir placeholder gösterelim
-                        Box(
+
+                        // Favorite Heart
+                        IconButton(
+                            onClick = { viewModel.toggleFavorite() },
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .height(200.dp)
-                                .background(MaterialTheme.colorScheme.surfaceVariant)
-                                .clickable { viewModel.togglePhotoOptionMenu(true) },
-                            contentAlignment = Alignment.Center
+                                .align(Alignment.TopEnd)
+                                .padding(8.dp)
+                                .background(Color.Black.copy(alpha = 0.3f), androidx.compose.foundation.shape.CircleShape)
                         ) {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Icon(
-                                    Icons.Default.AddAPhoto,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(48.dp),
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-                                )
-                                Spacer(Modifier.height(8.dp))
-                                Text(
-                                    stringResource(com.taytek.basehw.R.string.add_photo),
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-                                )
-                            }
+                            Icon(
+                                imageVector = if (car.isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                                contentDescription = stringResource(com.taytek.basehw.R.string.favorite),
+                                tint = if (car.isFavorite) Color(0xFFFF4D6D) else Color.White
+                            )
                         }
                     }
+
 
                     Column(
                         modifier = Modifier.padding(20.dp),
@@ -265,14 +328,14 @@ fun CarDetailScreen(
                                 if (b == Brand.HOT_WHEELS) {
                                     val tierLabel = when {
                                         isSth -> "⭐ STH"
-                                        isChase -> "🕶️ CHASE"
+                                        isChase -> "CHASE"
                                         isTh -> "🔥 TH"
                                         isPremium -> "🏁 " + stringResource(com.taytek.basehw.R.string.premium)
                                         else -> stringResource(com.taytek.basehw.R.string.regular)
                                     }
                                     val tierColor = when {
                                         isSth -> Color(0xFFB8860B)
-                                        isChase -> Color.Black
+                                        isChase -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.White else Color.Black
                                         isTh -> Color(0xFF71797E)
                                         isPremium -> MaterialTheme.colorScheme.tertiary
                                         else -> MaterialTheme.colorScheme.onSurfaceVariant
@@ -320,6 +383,10 @@ fun CarDetailScreen(
 
                         // User data
                         DetailRow(stringResource(com.taytek.basehw.R.string.condition_label), if (car.isOpened) stringResource(com.taytek.basehw.R.string.condition_opened) else stringResource(com.taytek.basehw.R.string.condition_boxed))
+                        
+                        if (car.isCustom) {
+                            DetailRow(stringResource(com.taytek.basehw.R.string.custom_label), stringResource(com.taytek.basehw.R.string.ok))
+                        }
                         
                         DetailRow(
                             label = stringResource(com.taytek.basehw.R.string.storage_label), 
@@ -397,7 +464,7 @@ fun CarDetailScreen(
 
                         Spacer(Modifier.height(24.dp))
 
-                        if (!displaySeries.isNullOrBlank() && (!uiState.isSeriesInWishlist || uiState.seriesJustAdded)) {
+                        if (!fromWishlist && !displaySeries.isNullOrBlank() && (!uiState.isSeriesInWishlist || uiState.seriesJustAdded)) {
                             OutlinedButton(
                                 onClick = viewModel::addSeriesToWishlist,
                                 enabled = !uiState.seriesJustAdded && !uiState.isSavingSeries,
@@ -423,6 +490,65 @@ fun CarDetailScreen(
                                         Spacer(Modifier.width(8.dp))
                                         Text(stringResource(com.taytek.basehw.R.string.add_series_to_wanted), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                                     }
+                                }
+                            }
+                        }
+
+                        if (car.isWishlist) {
+                            Button(
+                                onClick = { 
+                                    onMoveToCollection(master?.id ?: -1L, car.id)
+                                },
+                                modifier = Modifier.fillMaxWidth().height(52.dp),
+                                shape = RoundedCornerShape(14.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = com.taytek.basehw.ui.theme.AppPrimary)
+                            ) {
+                                Icon(Icons.Default.AddHome, contentDescription = null)
+                                Spacer(Modifier.width(8.dp))
+                                Text(stringResource(com.taytek.basehw.R.string.add_to_collection_btn), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                            }
+                            Spacer(Modifier.height(16.dp))
+                        }
+
+                        Spacer(Modifier.height(16.dp))
+
+                        // Share to Community button
+                        val hasShareablePhoto = car.backupPhotoUrl != null || car.userPhotoUrl != null
+                        OutlinedButton(
+                            onClick = {
+                                shareCaption = ""
+                                showShareDialog = true
+                            },
+                            enabled = hasShareablePhoto && !uiState.isSharing && !uiState.isShared,
+                            modifier = Modifier.fillMaxWidth().height(52.dp),
+                            shape = RoundedCornerShape(14.dp),
+                            border = BorderStroke(
+                                1.5.dp,
+                                if (uiState.isShared) Color(0xFF4CAF50) else com.taytek.basehw.ui.theme.AppPrimary
+                            ),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = if (uiState.isShared) Color(0xFF4CAF50) else com.taytek.basehw.ui.theme.AppPrimary,
+                                disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                            )
+                        ) {
+                            when {
+                                uiState.isSharing -> {
+                                    CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = com.taytek.basehw.ui.theme.AppPrimary)
+                                }
+                                uiState.isShared -> {
+                                    Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(20.dp))
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(stringResource(com.taytek.basehw.R.string.shared_successfully), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                }
+                                else -> {
+                                    Icon(Icons.Default.Share, contentDescription = null, modifier = Modifier.size(20.dp))
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(
+                                        if (hasShareablePhoto) stringResource(com.taytek.basehw.R.string.share_to_community)
+                                        else stringResource(com.taytek.basehw.R.string.photo_required_share),
+                                        style = MaterialTheme.typography.titleMedium,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
                                 }
                             }
                         }
@@ -588,6 +714,40 @@ fun CarDetailScreen(
         )
     }
 
+    // Share to Community dialog
+    if (showShareDialog) {
+        AlertDialog(
+            onDismissRequest = { showShareDialog = false },
+            title = { Text(stringResource(com.taytek.basehw.R.string.share_to_community)) },
+            text = {
+                OutlinedTextField(
+                    value = shareCaption,
+                    onValueChange = { shareCaption = it },
+                    placeholder = { Text(stringResource(com.taytek.basehw.R.string.share_caption_hint)) },
+                    modifier = Modifier.fillMaxWidth(),
+                    minLines = 2,
+                    maxLines = 4,
+                    shape = RoundedCornerShape(12.dp)
+                )
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        viewModel.shareToFeed(shareCaption.trim())
+                        showShareDialog = false
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = com.taytek.basehw.ui.theme.AppPrimary)
+                ) {
+                    Text(stringResource(com.taytek.basehw.R.string.share_button))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showShareDialog = false }) {
+                    Text(stringResource(com.taytek.basehw.R.string.cancel))
+                }
+            }
+        )
+    }
     if (uiState.isPhotoOptionMenuVisible) {
         ModalBottomSheet(
             onDismissRequest = { viewModel.togglePhotoOptionMenu(false) },
@@ -597,9 +757,10 @@ fun CarDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 32.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
                 Text(
-                    text = stringResource(com.taytek.basehw.R.string.add_photo_options),
+                    text = stringResource(com.taytek.basehw.R.string.main_photo),
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(16.dp),
                     fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
@@ -607,24 +768,54 @@ fun CarDetailScreen(
                 ListItem(
                     headlineContent = { Text(stringResource(com.taytek.basehw.R.string.take_photo)) },
                     leadingContent = { Icon(Icons.Default.PhotoCamera, contentDescription = null) },
-                    modifier = Modifier.clickable { permissionLauncher.launch(android.Manifest.permission.CAMERA) }
+                    modifier = Modifier.clickable { 
+                        isAddingAdditional = false
+                        permissionLauncher.launch(android.Manifest.permission.CAMERA) 
+                    }
                 )
                 ListItem(
                     headlineContent = { Text(stringResource(com.taytek.basehw.R.string.pick_from_gallery)) },
                     leadingContent = { Icon(Icons.Default.PhotoLibrary, contentDescription = null) },
-                    modifier = Modifier.clickable { galleryLauncher.launch("image/*") }
+                    modifier = Modifier.clickable { 
+                        isAddingAdditional = false
+                        galleryLauncher.launch("image/*") 
+                    }
+                )
+                
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                
+                Text(
+                    text = stringResource(com.taytek.basehw.R.string.additional_photos),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(16.dp),
+                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
                 )
                 ListItem(
-                    headlineContent = { Text(stringResource(com.taytek.basehw.R.string.add_from_url)) },
-                    leadingContent = { Icon(Icons.Default.Link, contentDescription = null) },
-                    modifier = Modifier.clickable { viewModel.toggleUrlInputDialog(true) }
+                    headlineContent = { Text(stringResource(com.taytek.basehw.R.string.add_additional_photo)) },
+                    leadingContent = { Icon(Icons.Default.AddAPhoto, contentDescription = null) },
+                    modifier = Modifier.clickable { 
+                        isAddingAdditional = true
+                        galleryLauncher.launch("image/*") 
+                    }
                 )
-                if (uiState.car?.userPhotoUrl != null) {
+                ListItem(
+                    headlineContent = { Text(stringResource(com.taytek.basehw.R.string.take_additional_photo)) },
+                    leadingContent = { Icon(Icons.Default.CameraAlt, contentDescription = null) },
+                    modifier = Modifier.clickable { 
+                        isAddingAdditional = true
+                        permissionLauncher.launch(android.Manifest.permission.CAMERA) 
+                    }
+                )
+                
+                if (uiState.car?.userPhotoUrl != null || (uiState.car?.additionalPhotos?.isNotEmpty() == true)) {
+                    HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                     ListItem(
-                        headlineContent = { Text(stringResource(com.taytek.basehw.R.string.remove_photo)) },
-                        leadingContent = { Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
+                        headlineContent = { Text(stringResource(com.taytek.basehw.R.string.remove_all_photos)) },
+                        leadingContent = { Icon(Icons.Default.DeleteSweep, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
                         modifier = Modifier.clickable { 
                             viewModel.onUserPhotoUrlChanged(null)
+                            // We can also clear additional photos here if we want
+                            uiState.car?.additionalPhotos?.indices?.forEach { _ -> viewModel.removeAdditionalPhoto(0) }
                             viewModel.togglePhotoOptionMenu(false)
                         }
                     )
@@ -650,7 +841,13 @@ fun CarDetailScreen(
             },
             confirmButton = {
                 Button(
-                    onClick = { viewModel.onUserPhotoUrlChanged(urlText) },
+                    onClick = { 
+                        if (isAddingAdditional) {
+                            viewModel.addAdditionalPhoto(urlText)
+                        } else {
+                            viewModel.onUserPhotoUrlChanged(urlText)
+                        }
+                    },
                     enabled = urlText.isNotBlank()
                 ) {
                     Text(stringResource(com.taytek.basehw.R.string.ok))

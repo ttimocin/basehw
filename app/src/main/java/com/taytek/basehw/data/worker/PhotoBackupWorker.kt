@@ -30,25 +30,65 @@ class PhotoBackupWorker @AssistedInject constructor(
 
         val userId = authRepository.currentUser?.uid ?: return Result.success()
         val wrapper = userCarDao.getByIdWithMaster(carId).firstOrNull() ?: return Result.success()
-        val localPhoto = wrapper.car.userPhotoUrl ?: return Result.success()
+        // Main Photo Backup
+        val mainLocalPhoto = wrapper.car.userPhotoUrl
+        var mainRemoteUrl = wrapper.car.backupPhotoUrl
 
-        if (localPhoto.startsWith("http://") || localPhoto.startsWith("https://")) {
-            return Result.success()
+        if (mainLocalPhoto != null && !mainLocalPhoto.startsWith("http")) {
+            val uploadUri = carPhotoLocalStore.persistCompressed(mainLocalPhoto, carId)
+                ?: return Result.retry()
+            if (uploadUri != mainLocalPhoto) {
+                userCarDao.updateUserPhotoUrl(carId, uploadUri)
+            }
+            mainRemoteUrl = supabaseStorageDataSource.uploadUserCarPhoto(userId, carId, uploadUri)
+                ?: return Result.retry()
+            userCarDao.updateBackupPhotoUrl(carId, mainRemoteUrl)
         }
 
-        val uploadUri = carPhotoLocalStore.persistCompressed(localPhoto, carId)
-            ?: return Result.retry()
-        if (uploadUri != localPhoto) {
-            userCarDao.updateUserPhotoUrl(carId, uploadUri)
+        // Additional Photos Backup
+        val currentAdditionalLocal = wrapper.car.additionalPhotos
+        val currentAdditionalBackup = wrapper.car.additionalPhotosBackup.toMutableList()
+        val newAdditionalLocal = currentAdditionalLocal.toMutableList()
+        var changed = false
+
+        for (i in currentAdditionalLocal.indices) {
+            val photo = currentAdditionalLocal[i]
+            if (!photo.startsWith("http")) {
+                // To avoid re-uploading if we already have it in backup list at same index?
+                // Actually simpler: if it's local, upload and update list.
+                val compUri = carPhotoLocalStore.persistCompressed(photo, carId, "add_$i") 
+                    ?: return Result.retry()
+                if (compUri != photo) {
+                    newAdditionalLocal[i] = compUri
+                    changed = true
+                }
+                
+                val remote = supabaseStorageDataSource.uploadUserCarPhoto(userId, carId, compUri, "add_$i")
+                    ?: return Result.retry()
+                
+                // Track remote URLs in additionalPhotosBackup
+                if (i < currentAdditionalBackup.size) {
+                    currentAdditionalBackup[i] = remote
+                } else {
+                    currentAdditionalBackup.add(remote)
+                }
+                changed = true
+            }
         }
 
-        val remoteUrl = supabaseStorageDataSource.uploadUserCarPhoto(userId, carId, uploadUri)
-            ?: return Result.retry()
+        if (changed) {
+            userCarDao.updateAdditionalPhotos(carId, newAdditionalLocal)
+            userCarDao.updateAdditionalPhotosBackup(carId, currentAdditionalBackup)
+        }
 
-        userCarDao.updateBackupPhotoUrl(carId, remoteUrl)
-
+        // Sync to Firestore if needed
         if (wrapper.car.firestoreId.isNotBlank()) {
-            firestoreDataSource.updateCarBackupPhotoUrl(wrapper.car.firestoreId, remoteUrl)
+            if (mainRemoteUrl != null) {
+                firestoreDataSource.updateCarBackupPhotoUrl(wrapper.car.firestoreId, mainRemoteUrl)
+            }
+            if (changed) {
+                firestoreDataSource.updateAdditionalPhotosBackup(wrapper.car.firestoreId, currentAdditionalBackup)
+            }
         }
         return Result.success()
     }

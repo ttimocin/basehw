@@ -24,14 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.taytek.basehw.domain.model.Brand
-import com.taytek.basehw.ui.theme.HotWheelsRed
+import com.taytek.basehw.domain.model.toColor
 import com.taytek.basehw.ui.screens.detail.SavingAction
-import com.taytek.basehw.ui.theme.MatchboxBlue
-import com.taytek.basehw.ui.theme.MiniGTSilver
-import com.taytek.basehw.ui.theme.MajoretteYellow
-import com.taytek.basehw.ui.theme.JadaPurple
-import com.taytek.basehw.ui.theme.SikuBlue
-import com.taytek.basehw.ui.theme.KaidoHouseColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,6 +35,7 @@ fun MasterDetailScreen(
     onAddCarClick: (Long) -> Unit,
     onNavigateToWishlist: () -> Unit = {},
     fromSth: Boolean = false,
+    fromWishlist: Boolean = false,
     viewModel: MasterDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -78,15 +73,7 @@ fun MasterDetailScreen(
             }
             else -> {
                 val master = uiState.masterData!!
-                val brandColor = when (master.brand) {
-                    Brand.HOT_WHEELS -> HotWheelsRed
-                    Brand.MATCHBOX   -> MatchboxBlue
-                    Brand.MINI_GT    -> MiniGTSilver
-                    Brand.MAJORETTE  -> MajoretteYellow
-                    Brand.JADA       -> JadaPurple
-                    Brand.SIKU       -> SikuBlue
-                    Brand.KAIDO_HOUSE -> KaidoHouseColor
-                }
+                val brandColor = master.brand.toColor()
 
                 Column(
                     modifier = Modifier
@@ -110,14 +97,15 @@ fun MasterDetailScreen(
                             )
                             
                             // Wiki label
-                            val wikiLabel = when (master.brand) {
-                                Brand.HOT_WHEELS -> "Hot Wheels Wiki"
-                                Brand.MATCHBOX   -> "Matchbox Wiki"
-                                Brand.MINI_GT    -> null
-                                Brand.MAJORETTE  -> "Majorette Wiki"
-                                Brand.JADA       -> "Jada Wiki"
-                                Brand.SIKU       -> null
-                                Brand.KAIDO_HOUSE -> null
+                            val wikiLabel = master.brand.let { b ->
+                                when(b) {
+                                    Brand.HOT_WHEELS -> "Hot Wheels Wiki"
+                                    Brand.MATCHBOX   -> "Matchbox Wiki"
+                                    Brand.MAJORETTE  -> "Majorette Wiki"
+                                    Brand.JADA       -> "Jada Wiki"
+                                    Brand.GREENLIGHT -> "Greenlight Wiki"
+                                    else -> null
+                                }
                             }
                             if ((master.imageUrl.contains("wikia.nocookie.net") || master.imageUrl.contains("fandom.com")) && wikiLabel != null) {
                                 Surface(
@@ -221,54 +209,56 @@ fun MasterDetailScreen(
                             Text(stringResource(com.taytek.basehw.R.string.add_to_collection_btn), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                         }
 
-                        // Arananlara Ekle button
-                        OutlinedButton(
-                            onClick = viewModel::addToWishlist,
-                            modifier = Modifier.fillMaxWidth().height(56.dp),
-                            enabled = !uiState.isSaving,
-                            shape = RoundedCornerShape(14.dp),
-                            border = BorderStroke(
-                                1.5.dp,
-                                if (!uiState.isSaving) HotWheelsRed
-                                else MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
-                            ),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = HotWheelsRed,
-                                disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
-                            )
-                        ) {
-                            if (uiState.savingAction == SavingAction.SINGLE) {
-                                CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = HotWheelsRed)
-                            } else {
-                                Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(20.dp))
-                                Spacer(Modifier.width(8.dp))
-                                Text(stringResource(com.taytek.basehw.R.string.add_to_wanted_title), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                            }
-                        }
-
-                        // Seri olarak Arananlara Ekle button (only if series exists, not from STH)
-                        if (master.series.isNotBlank() && !fromSth) {
+                        if (!fromWishlist) {
+                            // Arananlara Ekle button
                             OutlinedButton(
-                                onClick = viewModel::addSeriesToWishlist,
+                                onClick = viewModel::addToWishlist,
                                 modifier = Modifier.fillMaxWidth().height(56.dp),
                                 enabled = !uiState.isSaving,
                                 shape = RoundedCornerShape(14.dp),
                                 border = BorderStroke(
                                     1.5.dp,
-                                    if (!uiState.isSaving) Color(0xFFFF8C00)
+                                    if (!uiState.isSaving) Brand.HOT_WHEELS.toColor()
                                     else MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
                                 ),
                                 colors = ButtonDefaults.outlinedButtonColors(
-                                    contentColor = Color(0xFFFF8C00),
+                                    contentColor = Brand.HOT_WHEELS.toColor(),
                                     disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
                                 )
                             ) {
-                                if (uiState.savingAction == SavingAction.SERIES) {
-                                    CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color(0xFFFF8C00))
+                                if (uiState.savingAction == SavingAction.SINGLE) {
+                                    CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Brand.HOT_WHEELS.toColor())
                                 } else {
-                                    Icon(Icons.Default.Layers, contentDescription = null, modifier = Modifier.size(20.dp))
+                                    Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(20.dp))
                                     Spacer(Modifier.width(8.dp))
-                                    Text(stringResource(com.taytek.basehw.R.string.add_series_to_wanted), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                    Text(stringResource(com.taytek.basehw.R.string.add_to_wanted_title), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                }
+                            }
+
+                            // Seri olarak Arananlara Ekle button (only if series exists, not from STH)
+                            if (master.series.isNotBlank() && !fromSth) {
+                                OutlinedButton(
+                                    onClick = viewModel::addSeriesToWishlist,
+                                    modifier = Modifier.fillMaxWidth().height(56.dp),
+                                    enabled = !uiState.isSaving,
+                                    shape = RoundedCornerShape(14.dp),
+                                    border = BorderStroke(
+                                        1.5.dp,
+                                        if (!uiState.isSaving) Color(0xFFFF8C00)
+                                        else MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
+                                    ),
+                                    colors = ButtonDefaults.outlinedButtonColors(
+                                        contentColor = Color(0xFFFF8C00),
+                                        disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
+                                    )
+                                ) {
+                                    if (uiState.savingAction == SavingAction.SERIES) {
+                                        CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color(0xFFFF8C00))
+                                    } else {
+                                        Icon(Icons.Default.Layers, contentDescription = null, modifier = Modifier.size(20.dp))
+                                        Spacer(Modifier.width(8.dp))
+                                        Text(stringResource(com.taytek.basehw.R.string.add_series_to_wanted), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                    }
                                 }
                             }
                         }

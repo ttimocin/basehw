@@ -1,5 +1,6 @@
 package com.taytek.basehw.ui.screens.wishlist
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -52,8 +53,20 @@ import com.taytek.basehw.ui.theme.*
 fun WishlistScreen(
     onAddCarClick: () -> Unit,
     onCarClick: (Long) -> Unit,
+    onAddCarWithMasterId: (Long, Long?) -> Unit = { _, _ -> },
+    initialTab: Int = -1,
+    onConsumeInitialTab: () -> Unit = {},
     viewModel: WishlistViewModel = hiltViewModel()
 ) {
+    LaunchedEffect(initialTab) {
+        if (initialTab == 1) {
+            viewModel.setSeriesView(true)
+            onConsumeInitialTab()
+        } else if (initialTab == 0) {
+            viewModel.setSeriesView(false)
+            onConsumeInitialTab()
+        }
+    }
     val cars = viewModel.wishlistPaged.collectAsLazyPagingItems()
     val searchQuery by viewModel.searchQuery.collectAsState()
     val isSeriesView by viewModel.isSeriesView.collectAsState()
@@ -95,28 +108,13 @@ fun WishlistScreen(
         Brand.MATCHBOX to com.taytek.basehw.R.drawable.matchbox,
         Brand.MINI_GT to if (isDarkTheme) com.taytek.basehw.R.drawable.minigtdark else com.taytek.basehw.R.drawable.minigt,
         Brand.MAJORETTE to com.taytek.basehw.R.drawable.majorette,
-        Brand.JADA to com.taytek.basehw.R.drawable.jada,
+        Brand.GREENLIGHT to com.taytek.basehw.R.drawable.greenlight,
         Brand.SIKU to com.taytek.basehw.R.drawable.siku,
         Brand.KAIDO_HOUSE to com.taytek.basehw.R.drawable.kaido
     )
 
     Scaffold(
-        topBar = {
-            if (isSelectionMode) {
-                Surface(
-                    tonalElevation = 6.dp,
-                    shadowElevation = 6.dp,
-                    color = MaterialTheme.colorScheme.surface
-                ) {
-                    SelectionHeader(
-                        selectedCount = selectionCount,
-                        selectionText = selectionText,
-                        onClearSelection = { viewModel.clearSelection() },
-                        onDeleteSelected = { viewModel.deleteSelected() }
-                    )
-                }
-            }
-        },
+        modifier = Modifier.fillMaxSize(),
         containerColor = MaterialTheme.colorScheme.background
     ) { scaffoldPadding ->
     Box(
@@ -375,11 +373,34 @@ fun WishlistScreen(
                         SeriesTrackingCard(
                             series = series,
                             isSelected = isSelected,
-                            onSelect = { viewModel.toggleSeriesSelection(series.brand, series.seriesName) }
+                            onSelect = { viewModel.toggleSeriesSelection(series.brand, series.seriesName) },
+                            onItemClick = onAddCarWithMasterId
                         )
                         Spacer(Modifier.height(16.dp))
                     }
                 }
+            }
+        }
+
+        // Floating Selection Header
+        AnimatedVisibility(
+            visible = isSelectionMode,
+            enter = fadeIn() + expandVertically(),
+            exit = fadeOut() + shrinkVertically(),
+            modifier = Modifier.align(Alignment.TopCenter)
+        ) {
+            Surface(
+                tonalElevation = 6.dp,
+                shadowElevation = 8.dp,
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
+                shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+            ) {
+                SelectionHeader(
+                    selectedCount = selectionCount,
+                    selectionText = selectionText,
+                    onClearSelection = { viewModel.clearSelection() },
+                    onDeleteSelected = { viewModel.deleteSelected() }
+                )
             }
         }
     }
@@ -391,7 +412,8 @@ fun WishlistScreen(
 private fun SeriesTrackingCard(
     series: com.taytek.basehw.domain.model.SeriesTracking,
     isSelected: Boolean = false,
-    onSelect: () -> Unit = {}
+    onSelect: () -> Unit = {},
+    onItemClick: (Long, Long?) -> Unit = { _, _ -> }
 ) {
     Card(
         modifier = Modifier
@@ -401,13 +423,21 @@ private fun SeriesTrackingCard(
                 onClick = {},
                 onLongClick = onSelect
             )
-            .shadow(if (isSelected) 8.dp else 2.dp, RoundedCornerShape(16.dp), clip = false),
+            .border(
+                width = if (isSelected) 0.dp else 1.dp,
+                color = if (isSelected) 
+                            Color.Transparent 
+                        else 
+                            MaterialTheme.colorScheme.outline.copy(alpha = 0.05f),
+                shape = RoundedCornerShape(16.dp)
+            )
+            .shadow(elevation = if (isSelected) 0.dp else 1.dp, shape = RoundedCornerShape(16.dp), clip = true),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = if (isSelected)
                 MaterialTheme.colorScheme.primaryContainer
             else
-                MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                MaterialTheme.colorScheme.surface
         )
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -476,7 +506,11 @@ private fun SeriesTrackingCard(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp),
+                        .clip(RoundedCornerShape(8.dp))
+                        .clickable(enabled = !item.isInCollection) {
+                            onItemClick(item.masterData.id, item.wishlistId)
+                        }
+                        .padding(vertical = 8.dp, horizontal = 4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(

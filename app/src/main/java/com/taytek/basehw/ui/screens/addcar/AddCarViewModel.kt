@@ -40,11 +40,13 @@ data class AddCarUiState(
     val purchasePrice: String = "",
     val estimatedValue: String = "",
     val selectedCurrency: com.taytek.basehw.domain.model.AppCurrency? = null,
+    val isCustom: Boolean = false,
     val isSaving: Boolean = false,
     val saveSuccess: Boolean = false,
     val isPhotoOptionMenuVisible: Boolean = false,
     val isUrlInputDialogVisible: Boolean = false,
     val ocrHintMessage: String? = null,
+    val deleteId: Long? = null,
     val error: String? = null
 )
 
@@ -170,6 +172,10 @@ class AddCarViewModel @Inject constructor(
         }
     }
 
+    fun setDeleteId(id: Long) {
+        _uiState.update { it.copy(deleteId = id) }
+    }
+
     fun onMasterDataSelected(masterData: MasterData) {
         _uiState.update {
             it.copy(
@@ -181,6 +187,10 @@ class AddCarViewModel @Inject constructor(
 
     fun onIsOpenedChanged(isOpened: Boolean) {
         _uiState.update { it.copy(isOpened = isOpened) }
+    }
+
+    fun onIsCustomChanged(isCustom: Boolean) {
+        _uiState.update { it.copy(isCustom = isCustom) }
     }
 
     fun onPurchaseDateChanged(date: Date?) {
@@ -248,25 +258,7 @@ class AddCarViewModel @Inject constructor(
     }
 
     fun addCarToCollection() {
-        saveCarToDatabase(isWishlist = false)
-    }
-
-    fun addCarToWishlist() {
-        saveCarToDatabase(isWishlist = true)
-    }
-
-    fun addSeriesToWishlist() {
-        val master = _uiState.value.selectedMasterData ?: return
-        if (master.series.isBlank()) return
-        viewModelScope.launch {
-            _uiState.update { it.copy(isSaving = true, error = null) }
-            try {
-                userCarRepository.addSeriesToWishlist(master.brand, master.series, master.year)
-                _uiState.update { it.copy(isSaving = false, saveSuccess = true) }
-            } catch (e: Exception) {
-                _uiState.update { it.copy(isSaving = false, error = e.message) }
-            }
-        }
+        saveCarToDatabase()
     }
 
     private fun parsePrice(price: String): Double? {
@@ -279,7 +271,7 @@ class AddCarViewModel @Inject constructor(
         }
     }
 
-    private fun saveCarToDatabase(isWishlist: Boolean) {
+    private fun saveCarToDatabase() {
         val state = _uiState.value
         if (!state.isManualMode && state.selectedMasterData == null) return
         if (state.isManualMode && state.manualModelName.isBlank()) {
@@ -317,10 +309,11 @@ class AddCarViewModel @Inject constructor(
                         purchaseDate = state.purchaseDate,
                         personalNote = state.personalNote,
                         storageLocation = state.storageLocation,
-                        isWishlist = isWishlist,
                         userPhotoUrl = state.userPhotoUrl,
                         purchasePrice = storedPurchasePrice,
-                        estimatedValue = storedEstimatedValue
+                        estimatedValue = storedEstimatedValue,
+                        isCustom = state.isCustom,
+                        isWishlist = false
                     )
                 } else {
                     val selectedMaster = state.selectedMasterData!!
@@ -337,14 +330,23 @@ class AddCarViewModel @Inject constructor(
                         purchaseDate = state.purchaseDate,
                         personalNote = state.personalNote,
                         storageLocation = state.storageLocation,
-                        isWishlist = isWishlist,
+                        isWishlist = false,
                         userPhotoUrl = state.userPhotoUrl,
                         purchasePrice = storedPurchasePrice,
-                        estimatedValue = storedEstimatedValue
+                        estimatedValue = storedEstimatedValue,
+                        isCustom = state.isCustom
                     )
                 }
 
                 addCarToCollectionUseCase(carToAdd)
+                
+                // If there's a deleteId (moving from wishlist), delete the old record
+                state.deleteId?.let { idToRemove ->
+                    if (idToRemove != -1L) {
+                        userCarRepository.deleteCar(idToRemove)
+                    }
+                }
+
                 _uiState.update { it.copy(isSaving = false, saveSuccess = true) }
             } catch (e: Exception) {
                 _uiState.update { it.copy(isSaving = false, error = e.message) }

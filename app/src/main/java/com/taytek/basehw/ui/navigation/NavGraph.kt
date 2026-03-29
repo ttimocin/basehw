@@ -28,51 +28,102 @@ fun NavGraph(navController: NavHostController) {
             val navigateToTab by navBackStackEntry.savedStateHandle
                 .getStateFlow("navigate_to_tab", -1)
                 .collectAsState()
+            val wishlistTab by navBackStackEntry.savedStateHandle
+                .getStateFlow("wishlist_tab", -1)
+                .collectAsState()
             MainScreen(
                 navigateToTab = navigateToTab,
+                wishlistTab = wishlistTab,
                 onConsumeTabNavigation = {
                     navBackStackEntry.savedStateHandle["navigate_to_tab"] = -1
+                },
+                onConsumeWishlistTab = {
+                    navBackStackEntry.savedStateHandle["wishlist_tab"] = -1
                 },
                 onAddCarClick = { navController.navigate(Screen.AddCar.createRoute()) },
                 onAddCarCameraClick = { navController.navigate(Screen.AddCar.createRoute(autoCamera = true)) },
                 onAddWantedCarClick = { navController.navigate(Screen.AddWantedCar.route) },
-                onCarClick = { carId ->
-                    navController.navigate(Screen.CarDetail.createRoute(carId))
+                onCarClick = { carId, fromWishlist ->
+                    navController.navigate(Screen.CarDetail.createRoute(carId, fromWishlist))
                 },
                 onFolderClick = { folderId ->
                     navController.navigate(Screen.FolderDetail.createRoute(folderId))
                 },
                 onPrivacyPolicyClick = { navController.navigate(Screen.PrivacyPolicy.route) },
                 onTermsOfUseClick = { navController.navigate(Screen.TermsOfUse.route) },
-                onAddCarWithMasterIdClick = { masterId ->
-                    navController.navigate(Screen.MasterDetail.createRoute(masterId))
+                onAddCarWithMasterIdClick = { masterId, fromWishlist ->
+                    navController.navigate(Screen.MasterDetail.createRoute(masterId, fromWishlist))
+                },
+                onAddCarWithMasterIdAndDeleteClick = { masterId, deleteId, fromWishlist ->
+                    if (deleteId != null && deleteId != -1L) {
+                        navController.navigate(Screen.CarDetail.createRoute(deleteId, fromWishlist))
+                    } else {
+                        navController.navigate(Screen.MasterDetail.createRoute(masterId, fromWishlist))
+                    }
                 },
                 onSthCarClick = { masterId ->
                     navController.navigate(Screen.SthMasterDetail.createRoute(masterId))
+                },
+                onCommunityClick = { navController.navigate(Screen.Community.route) },
+                onUserProfileClick = { uid ->
+                    navController.navigate(Screen.UserProfile.createRoute(uid))
+                }
+            )
+        }
+
+        composable(Screen.Community.route) {
+            com.taytek.basehw.ui.screens.community.CommunityScreen(
+                onUserProfileClick = { uid ->
+                    navController.navigate(Screen.UserProfile.createRoute(uid))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.UserProfile.route,
+            arguments = listOf(navArgument("uid") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val uid = backStackEntry.arguments?.getString("uid") ?: return@composable
+            com.taytek.basehw.ui.screens.community.UserProfileScreen(
+                userId = uid,
+                onNavigateBack = { navController.popBackStack() },
+                onUserClick = { targetUid ->
+                    navController.navigate(Screen.UserProfile.createRoute(targetUid))
                 }
             )
         }
 
         composable(
             route = Screen.AddCar.route,
-            arguments = listOf(navArgument("masterId") { 
-                type = NavType.LongType 
+            arguments = listOf(navArgument("masterId") {
+                type = NavType.LongType
                 defaultValue = -1L
             }, navArgument("autoCamera") {
                 type = NavType.BoolType
                 defaultValue = false
+            }, navArgument("deleteId") {
+                type = NavType.LongType
+                defaultValue = -1L
             })
         ) { backStackEntry ->
             val masterId = backStackEntry.arguments?.getLong("masterId") ?: -1L
             val autoCamera = backStackEntry.arguments?.getBoolean("autoCamera") ?: false
+            val deleteId = backStackEntry.arguments?.getLong("deleteId") ?: -1L
             AddCarScreen(
                 masterDataId = masterId,
                 openCameraOnLaunch = autoCamera,
+                deleteId = deleteId,
                 onNavigateBack = { navController.popBackStack() },
-                onSaveSuccess = {
-                    // After adding a car, go to Collection tab (tab index 8)
-                    navController.getBackStackEntry(Screen.Main.route)
-                        .savedStateHandle["navigate_to_tab"] = 8
+                onSaveSuccess = { isWishlist, isSeries ->
+                    if (isWishlist) {
+                        navController.getBackStackEntry(Screen.Main.route)
+                            .savedStateHandle["navigate_to_tab"] = 1
+                        navController.getBackStackEntry(Screen.Main.route)
+                            .savedStateHandle["wishlist_tab"] = if (isSeries) 1 else 0
+                    } else {
+                        navController.getBackStackEntry(Screen.Main.route)
+                            .savedStateHandle["navigate_to_tab"] = 8
+                    }
                     navController.popBackStack(Screen.Main.route, false)
                 }
             )
@@ -86,22 +137,35 @@ fun NavGraph(navController: NavHostController) {
 
         composable(
             route = Screen.CarDetail.route,
-            arguments = listOf(navArgument("carId") { type = NavType.LongType })
+            arguments = listOf(
+                navArgument("carId") { type = NavType.LongType },
+                navArgument("fromWishlist") { type = NavType.BoolType; defaultValue = false }
+            )
         ) { backStackEntry ->
             val carId = backStackEntry.arguments?.getLong("carId") ?: -1L
+            val fromWishlist = backStackEntry.arguments?.getBoolean("fromWishlist") ?: false
             CarDetailScreen(
                 carId = carId,
-                onNavigateBack = { navController.popBackStack() }
+                fromWishlist = fromWishlist,
+                onNavigateBack = { navController.popBackStack() },
+                onMoveToCollection = { masterId, deleteId ->
+                    navController.navigate(Screen.AddCar.createRoute(masterId = masterId, deleteId = deleteId))
+                }
             )
         }
 
         composable(
             route = Screen.MasterDetail.route,
-            arguments = listOf(navArgument("masterId") { type = NavType.LongType })
+            arguments = listOf(
+                navArgument("masterId") { type = NavType.LongType },
+                navArgument("fromWishlist") { type = NavType.BoolType; defaultValue = false }
+            )
         ) { backStackEntry ->
             val masterId = backStackEntry.arguments?.getLong("masterId") ?: -1L
+            val fromWishlist = backStackEntry.arguments?.getBoolean("fromWishlist") ?: false
             com.taytek.basehw.ui.screens.detail.MasterDetailScreen(
                 masterId = masterId,
+                fromWishlist = fromWishlist,
                 onNavigateBack = { navController.popBackStack() },
                 onAddCarClick = { id ->
                     navController.navigate(Screen.AddCar.createRoute(id))

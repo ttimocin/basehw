@@ -33,7 +33,7 @@ class SupabaseStorageDataSource @Inject constructor(
         Log.w("SupabaseStorage", "Firebase token alınamadı", it)
     }.getOrNull()
 
-    suspend fun uploadUserCarPhoto(userId: String, carId: Long, localUriString: String): String? {
+    suspend fun uploadUserCarPhoto(userId: String, carId: Long, localUriString: String, suffix: String? = null): String? {
         if (!remoteConfig.isPhotoBackupEnabled()) return null
 
         val baseUrl = remoteConfig.getPhotoBackupSupabaseUrl().trim().trimEnd('/')
@@ -47,7 +47,7 @@ class SupabaseStorageDataSource @Inject constructor(
 
         val bytes = readImageBytes(localUriString) ?: return null
         val contentType = context.contentResolver.getType(Uri.parse(localUriString)) ?: "image/jpeg"
-        val objectPath = "${userId}/cars/${carId}.jpg"
+        val objectPath = if (suffix != null) "${userId}/cars/${carId}_$suffix.jpg" else "${userId}/cars/${carId}.jpg"
 
         Log.d(
             "SupabaseStorage",

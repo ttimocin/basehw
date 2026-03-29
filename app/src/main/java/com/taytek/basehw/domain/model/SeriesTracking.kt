@@ -9,5 +9,6 @@ data class SeriesTracking(
 data class SeriesTrackingItem(
     val masterData: MasterData,
     val isInCollection: Boolean,
-    val isInWishlist: Boolean
+    val isInWishlist: Boolean,
+    val wishlistId: Long? = null
 )

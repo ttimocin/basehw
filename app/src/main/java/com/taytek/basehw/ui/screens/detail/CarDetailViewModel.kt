@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.update
+import com.google.firebase.auth.FirebaseAuth
 
 data class DetailUiState(
     val car: UserCar? = null,
@@ -21,7 +23,11 @@ data class DetailUiState(
     val isUrlInputDialogVisible: Boolean = false,
     val isSavingSeries: Boolean = false,
     val isSeriesInWishlist: Boolean = false,
-    val seriesJustAdded: Boolean = false
+    val seriesJustAdded: Boolean = false,
+    val isSharing: Boolean = false,
+    val isShared: Boolean = false,
+    val isEmailVerified: Boolean = false,
+    val showVerificationDialog: Boolean = false
 )
 
 @HiltViewModel
@@ -31,7 +37,9 @@ class CarDetailViewModel @Inject constructor(
     private val customCollectionRepository: com.taytek.basehw.domain.repository.CustomCollectionRepository,
     private val userCarRepository: com.taytek.basehw.domain.repository.UserCarRepository,
     private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager,
-    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository
+    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository,
+    private val communityRepository: com.taytek.basehw.domain.repository.CommunityRepository,
+    private val auth: com.google.firebase.auth.FirebaseAuth
 ) : ViewModel() {
 
     val currencyCode: Flow<String> = appSettingsManager.currencyFlow
@@ -54,6 +62,7 @@ class CarDetailViewModel @Inject constructor(
     val uiState: StateFlow<DetailUiState> = _uiState.asStateFlow()
 
     init {
+        _uiState.update { it.copy(isEmailVerified = auth.currentUser?.isEmailVerified == true) }
         viewModelScope.launch {
             currencyRepository.refreshRates()
         }
@@ -221,5 +230,68 @@ class CarDetailViewModel @Inject constructor(
                 _uiState.update { it.copy(error = e.message) }
             }
         }
+    }
+
+    fun addAdditionalPhoto(url: String) {
+        val car = _uiState.value.car ?: return
+        viewModelScope.launch {
+            try {
+                val updatedPhotos = car.additionalPhotos.toMutableList().apply { add(url) }
+                userCarRepository.updateCar(car.copy(additionalPhotos = updatedPhotos))
+                _uiState.update { it.copy(isUrlInputDialogVisible = false) }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(error = e.message) }
+            }
+        }
+    }
+
+    fun removeAdditionalPhoto(index: Int) {
+        val car = _uiState.value.car ?: return
+        if (index < 0 || index >= car.additionalPhotos.size) return
+        viewModelScope.launch {
+            try {
+                val updatedPhotos = car.additionalPhotos.toMutableList().apply { removeAt(index) }
+                userCarRepository.updateCar(car.copy(additionalPhotos = updatedPhotos))
+            } catch (e: Exception) {
+                _uiState.update { it.copy(error = e.message) }
+            }
+        }
+    }
+
+    fun shareToFeed(caption: String) {
+        val user = auth.currentUser
+        if (user == null || !user.isEmailVerified) {
+            _uiState.update { it.copy(showVerificationDialog = true) }
+            return
+        }
+        val car = _uiState.value.car ?: return
+        val imageUrl = car.backupPhotoUrl ?: car.userPhotoUrl ?: return
+        val modelName = car.masterData?.modelName ?: car.manualModelName ?: "Unknown"
+        val brand: String = car.masterData?.brand?.displayName ?: car.manualBrand?.displayName ?: "Unknown"
+        val year: Int? = car.masterData?.year ?: car.manualYear
+        val series: String? = car.masterData?.series?.takeIf { it.isNotBlank() } ?: car.manualSeries
+
+        viewModelScope.launch {
+            _uiState.update { it.copy(isSharing = true) }
+            val result = communityRepository.createPost(
+                carModelName = modelName,
+                carBrand = brand,
+                carYear = year,
+                carSeries = series,
+                carImageUrl = imageUrl,
+                caption = caption
+            )
+            result.onSuccess {
+                _uiState.update { it.copy(isSharing = false, isShared = true) }
+                delay(2000)
+                _uiState.update { it.copy(isShared = false) }
+            }.onFailure { e ->
+                _uiState.update { it.copy(isSharing = false, error = e.message) }
+            }
+        }
+    }
+
+    fun dismissVerificationDialog() {
+        _uiState.update { it.copy(showVerificationDialog = false) }
     }
 }

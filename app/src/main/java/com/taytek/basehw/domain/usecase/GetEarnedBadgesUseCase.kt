@@ -10,32 +10,44 @@ import javax.inject.Inject
 
 class GetEarnedBadgesUseCase @Inject constructor(
     private val userCarRepository: UserCarRepository,
-    private val customCollectionRepository: CustomCollectionRepository
+    private val customCollectionRepository: CustomCollectionRepository,
+    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository,
+    private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager
 ) {
     operator fun invoke(): Flow<List<BadgeType>> = combine(
         combine(
             userCarRepository.getTotalCarsCount(),
             userCarRepository.getBrandCounts(),
             userCarRepository.getHwTierStats(),
-            userCarRepository.getBoxStatusCounts()
-        ) { totalCars, brandStats, hwTier, boxStats ->
+            userCarRepository.getBoxStatusCounts(),
+            userCarRepository.getCustomStats()
+        ) { totalCars, brandStats, hwTier, boxStats, customStats ->
             BadgeInputs(
                 totalCars = totalCars,
                 premiumCount = hwTier.premiumCount,
                 matchboxCount = brandStats.firstOrNull { it.brand == Brand.MATCHBOX }?.count ?: 0,
                 brandsRepresented = brandStats.count { it.count > 0 },
-                totalBoxed = boxStats.firstOrNull { !it.isOpened }?.count ?: 0
+                totalBoxed = boxStats.firstOrNull { !it.isOpened }?.count ?: 0,
+                customCount = customStats.customCount
             )
         },
         combine(
             userCarRepository.getTotalPurchasePrice(),
             userCarRepository.getTotalEstimatedValue(),
-            customCollectionRepository.getAllCollections()
-        ) { purchase, estimated, collections ->
+            currencyRepository.getRates(),
+            appSettingsManager.currencyFlow
+        ) { purchase, estimated, rates, currentCurrency ->
+            // Convert everything to USD for consistent badge evaluation
+            val usdRate = if (currentCurrency == "USD") 1.0 else rates?.rates?.get("USD") ?: 1.0
+            val eurRate = if (currentCurrency == "EUR") 1.0 else rates?.rates?.get(currentCurrency) ?: 1.0
+            
+            // Current value in EUR = BaseValue / eurRate
+            // Current value in USD = (BaseValue / eurRate) * usdRate
+            val conversionFactor = usdRate / (if (eurRate == 0.0) 1.0 else eurRate)
+            
             FinancialInputs(
-                totalPurchase = purchase,
-                totalEstimated = estimated,
-                folderCount = collections.size
+                totalPurchaseUsd = purchase * conversionFactor,
+                totalEstimatedUsd = estimated * conversionFactor
             )
         }
     ) { inputs, finance ->
@@ -54,12 +66,12 @@ class GetEarnedBadgesUseCase @Inject constructor(
         if (inputs.matchboxCount >= 10) earned += BadgeType.MATCHBOX_FAN
         if (inputs.brandsRepresented >= 3) earned += BadgeType.MULTI_BRAND
 
-        // Financial
-        if (finance.totalEstimated >= 500.0) earned += BadgeType.INVESTOR
-        if (finance.totalPurchase >= 2000.0) earned += BadgeType.BIG_SPENDER
+        // Financial (USD based)
+        if (finance.totalEstimatedUsd >= 100.0) earned += BadgeType.SILVER_COLLECTOR
+        if (finance.totalEstimatedUsd >= 1000.0) earned += BadgeType.GOLDEN_COLLECTOR
 
-        // Folders
-        if (finance.folderCount >= 3) earned += BadgeType.CURATOR
+        // Custom
+        if (inputs.customCount >= 10) earned += BadgeType.CUSTOM_MAKER
 
         // Box status
         val ratio = if (inputs.totalCars > 0) inputs.totalBoxed.toDouble() / inputs.totalCars else 0.0
@@ -74,11 +86,11 @@ private data class BadgeInputs(
     val premiumCount: Int,
     val matchboxCount: Int,
     val brandsRepresented: Int,
-    val totalBoxed: Int
+    val totalBoxed: Int,
+    val customCount: Int
 )
 
 private data class FinancialInputs(
-    val totalPurchase: Double,
-    val totalEstimated: Double,
-    val folderCount: Int
+    val totalPurchaseUsd: Double,
+    val totalEstimatedUsd: Double
 )

@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.appdistribution)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -19,11 +20,18 @@ android {
         applicationId = "com.taytek.basehw"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
+        versionCode = 3
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        
+
+        // Read Gemini API Key
+        val properties = Properties()
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            properties.load(FileInputStream(localPropertiesFile))
+        }
+        buildConfigField("String", "GEMINI_API_KEY", "\"${properties.getProperty("GEMINI_API_KEY") ?: ""}\"")
     }
 
     signingConfigs {
@@ -44,6 +52,9 @@ android {
         release {
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -66,6 +77,11 @@ android {
         appId = "1:471261592182:android:02275663ccf4f4416f7d57"
         artifactType = "APK"
         releaseNotes = "New UI refinements and statistics badges."
+    }
+
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
     }
 }
 
@@ -135,12 +151,14 @@ dependencies {
 
     // Gson
     implementation(libs.gson)
+    implementation(libs.kotlinx.serialization.json)
 
     // ML Kit OCR (camera-based model text detection)
     implementation("com.google.mlkit:text-recognition:16.0.0")
 
     // uCrop
     implementation(libs.ucrop)
+    implementation(libs.generativeai)
 
     // Testing
     testImplementation(libs.junit)

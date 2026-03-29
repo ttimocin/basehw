@@ -103,6 +103,8 @@ class UserCarRepositoryImpl @Inject constructor(
 
     override suspend fun addCar(car: UserCar): Long {
         val persistedPhotoUrl = preprocessPhotoUrl(car.userPhotoUrl)
+        val persistedAdditional = car.additionalPhotos.map { preprocessPhotoUrl(it) ?: it }
+        
         val preservedBackupUrl = car.backupPhotoUrl.takeIf { isRemoteUrl(it) }
         val finalBackupUrl = if (isRemoteUrl(persistedPhotoUrl)) {
             persistedPhotoUrl
@@ -111,7 +113,8 @@ class UserCarRepositoryImpl @Inject constructor(
         }
         val entity = car.copy(
             userPhotoUrl = persistedPhotoUrl,
-            backupPhotoUrl = finalBackupUrl
+            backupPhotoUrl = finalBackupUrl,
+            additionalPhotos = persistedAdditional
         ).toEntity()
         val id = dao.insert(entity)
 
@@ -124,7 +127,7 @@ class UserCarRepositoryImpl @Inject constructor(
             uploadCarToFirestore(wrapper.car, wrapper.master?.brand, wrapper.master?.modelName, wrapper.master?.year)
         }
 
-        enqueuePhotoBackupIfNeeded(id, persistedPhotoUrl)
+        enqueuePhotoBackupIfNeeded(id)
         return id
     }
 
@@ -136,6 +139,7 @@ class UserCarRepositoryImpl @Inject constructor(
             firestoreDataSource.deleteCar(firestoreId)
         }
         deletePhotoFromSupabaseIfNeeded(photoUrl)
+        carWithMaster?.car?.additionalPhotosBackup?.forEach { deletePhotoFromSupabaseIfNeeded(it) }
         dao.deleteById(id)
     }
 
@@ -148,6 +152,7 @@ class UserCarRepositoryImpl @Inject constructor(
                 firestoreDataSource.deleteCar(firestoreId)
             }
             deletePhotoFromSupabaseIfNeeded(photoUrl)
+            carWithMaster?.car?.additionalPhotosBackup?.forEach { deletePhotoFromSupabaseIfNeeded(it) }
         }
         dao.deleteByIds(ids)
     }
@@ -157,6 +162,10 @@ class UserCarRepositoryImpl @Inject constructor(
         val previousLocalPhotoUrl = previous?.userPhotoUrl
         val previousBackupPhotoUrl = previous?.backupPhotoUrl
         val persistedPhotoUrl = preprocessPhotoUrl(car.userPhotoUrl)
+        
+        // Handle additional photos preprocessing
+        val persistedAdditional = car.additionalPhotos.map { preprocessPhotoUrl(it) ?: it }
+        
         val preservedBackupUrl = car.backupPhotoUrl.takeIf { isRemoteUrl(it) }
         val finalBackupUrl = when {
             persistedPhotoUrl.isNullOrBlank() -> null
@@ -167,7 +176,8 @@ class UserCarRepositoryImpl @Inject constructor(
 
         val entity = car.copy(
             userPhotoUrl = persistedPhotoUrl,
-            backupPhotoUrl = finalBackupUrl
+            backupPhotoUrl = finalBackupUrl,
+            additionalPhotos = persistedAdditional
         ).toEntity()
         dao.update(entity)
 
@@ -175,7 +185,7 @@ class UserCarRepositoryImpl @Inject constructor(
             deletePhotoFromSupabaseIfNeeded(previousBackupPhotoUrl)
         }
 
-        enqueuePhotoBackupIfNeeded(entity.id, persistedPhotoUrl)
+        enqueuePhotoBackupIfNeeded(entity.id)
 
         // Real-time sync to Firestore if possible
         if (authRepository.currentUser != null) {
@@ -212,7 +222,8 @@ class UserCarRepositoryImpl @Inject constructor(
             "isFavorite" to carEntity.isFavorite,
             "isSeriesOnly" to carEntity.isSeriesOnly,
             "userPhotoUrl" to finalPhotoUrl,
-            "backupPhotoUrl" to finalPhotoUrl
+            "backupPhotoUrl" to finalPhotoUrl,
+            "additionalPhotosBackup" to carEntity.additionalPhotosBackup
         )
         val firestoreId = firestoreDataSource.uploadCarMap(data, carEntity.firestoreId)
         if (!firestoreId.isNullOrBlank() && carEntity.firestoreId.isBlank()) {
@@ -283,6 +294,8 @@ class UserCarRepositoryImpl @Inject constructor(
 
             val resolvedId = masterDataDao.getIdByIdentity(brand, modelName, year)
             // Allow restoration even if not in master list (e.g. manual entries or legacy catalog items)
+            val additionalRemote = (data["additionalPhotosBackup"] as? List<*>)?.filterIsInstance<String>() ?: emptyList()
+            
             val entity = UserCarEntity(
                 masterDataId = resolvedId,
                 manualModelName = data["manualModelName"] as? String,
@@ -303,7 +316,9 @@ class UserCarRepositoryImpl @Inject constructor(
                 isSeriesOnly = data["isSeriesOnly"] as? Boolean ?: false,
                 firestoreId = firestoreId,
                 userPhotoUrl = (data["userPhotoUrl"] as? String),
-                backupPhotoUrl = (data["backupPhotoUrl"] as? String) ?: (data["userPhotoUrl"] as? String)
+                backupPhotoUrl = (data["backupPhotoUrl"] as? String) ?: (data["userPhotoUrl"] as? String),
+                additionalPhotos = additionalRemote,
+                additionalPhotosBackup = additionalRemote
             )
             dao.insert(entity)
         }
@@ -354,7 +369,12 @@ class UserCarRepositoryImpl @Inject constructor(
             // 1) Delete user's Supabase photo objects referenced by local records.
             // This runs before auth account deletion while Firebase ID token is still valid.
             val supabaseUrls = dao.getAllCarsWithMasterList()
-                .mapNotNull { it.car.backupPhotoUrl ?: it.car.userPhotoUrl }
+                .flatMap { 
+                     val urls = mutableListOf<String>()
+                     (it.car.backupPhotoUrl ?: it.car.userPhotoUrl)?.let { u -> urls.add(u) }
+                     urls.addAll(it.car.additionalPhotosBackup)
+                     urls
+                }
                 .filter { it.contains("/storage/v1/object/public/") }
                 .distinct()
 
@@ -437,6 +457,15 @@ class UserCarRepositoryImpl @Inject constructor(
         return dao.getValueAddedSince(startOfMonth).map { it ?: 0.0 }
     }
 
+    override fun getCustomStats(): Flow<com.taytek.basehw.domain.model.CustomStats> {
+        return dao.getCustomCounts().map { count ->
+            com.taytek.basehw.domain.model.CustomStats(
+                originalCount = count?.originalCount ?: 0,
+                customCount = count?.customCount ?: 0
+            )
+        }
+    }
+
     override suspend fun addSeriesToWishlist(brand: Brand, series: String, year: Int?) {
         val seriesItems = masterDataDao.getListBySeriesAndYear(brand.name, series, year)
         seriesItems.forEach { master ->
@@ -514,11 +543,13 @@ class UserCarRepositoryImpl @Inject constructor(
                     val masterDomain = master.toDomain()
                     val isInCollection = collectionItems.any { it.master?.id == master.id }
                     val isInWishlist = wishlistItems.any { it.master?.id == master.id }
+                    val wishlistId = wishlistItems.find { it.master?.id == master.id }?.car?.id
                     
                     com.taytek.basehw.domain.model.SeriesTrackingItem(
                         masterData = masterDomain,
                         isInCollection = isInCollection,
-                        isInWishlist = isInWishlist
+                        isInWishlist = isInWishlist,
+                        wishlistId = wishlistId
                     )
                 }
 
@@ -561,10 +592,8 @@ class UserCarRepositoryImpl @Inject constructor(
         return url.startsWith("http://") || url.startsWith("https://")
     }
 
-    private fun enqueuePhotoBackupIfNeeded(carId: Long, userPhotoUrl: String?) {
+    private fun enqueuePhotoBackupIfNeeded(carId: Long) {
         if (authRepository.currentUser == null) return
-        if (userPhotoUrl.isNullOrBlank()) return
-        if (userPhotoUrl.startsWith("http://") || userPhotoUrl.startsWith("https://")) return
 
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)

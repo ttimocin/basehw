@@ -1,5 +1,6 @@
 package com.taytek.basehw.ui.screens.collection
 
+import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -49,6 +50,7 @@ import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.ui.components.*
 import com.taytek.basehw.ui.theme.*
 import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.toColor
 import com.taytek.basehw.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,21 +78,7 @@ fun CollectionScreen(
     val columns = if (isGridView) 3 else 1
 
     Scaffold(
-        topBar = {
-            if (isSelectionMode) {
-                Surface(
-                    tonalElevation = 6.dp,
-                    shadowElevation = 6.dp,
-                    color = MaterialTheme.colorScheme.surface
-                ) {
-                    SelectionHeader(
-                        selectedCount = selectedIds.size,
-                        onClearSelection = { viewModel.clearSelection() },
-                        onDeleteSelected = { viewModel.deleteSelected() }
-                    )
-                }
-            }
-        }
+        modifier = Modifier.fillMaxSize()
     ) { padding ->
         Box(
             modifier = Modifier
@@ -237,7 +225,28 @@ fun CollectionScreen(
                 }
             )
         }
+
+        // Floating Selection Header
+        AnimatedVisibility(
+            visible = isSelectionMode,
+            enter = fadeIn() + expandVertically(),
+            exit = fadeOut() + shrinkVertically(),
+            modifier = Modifier.align(Alignment.TopCenter)
+        ) {
+            Surface(
+                tonalElevation = 6.dp,
+                shadowElevation = 8.dp,
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
+                shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+            ) {
+                SelectionHeader(
+                    selectedCount = selectedIds.size,
+                    onClearSelection = { viewModel.clearSelection() },
+                    onDeleteSelected = { viewModel.deleteSelected() }
+                )
+            }
         }
+    }
     }
 }
 
@@ -337,7 +346,7 @@ fun BrandFilterRow(
             val isSelected = selectedBrand == null
             Box(
                 modifier = Modifier
-                    .height(64.dp) // Match BrandLogoChip height for alignment
+                    .height(48.dp) // Match height or keep it compact
                     .widthIn(min = 64.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(if (isSelected) AppPrimary else Color.Transparent)
@@ -347,7 +356,7 @@ fun BrandFilterRow(
                         shape = RoundedCornerShape(12.dp)
                     )
                     .clickable { onBrandSelected(null) }
-                    .padding(horizontal = 16.dp, vertical = 8.dp), // Controlled internal padding
+                    .padding(horizontal = 16.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -402,6 +411,7 @@ fun BrandLogoChip(
             Brand.JADA -> R.drawable.jada
             Brand.SIKU -> R.drawable.siku
             Brand.KAIDO_HOUSE -> R.drawable.kaido
+            Brand.GREENLIGHT -> R.drawable.greenlight
         }
         Image(
             painter = painterResource(id = drawableId),

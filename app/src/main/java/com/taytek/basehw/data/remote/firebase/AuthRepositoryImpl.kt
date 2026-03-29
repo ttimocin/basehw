@@ -174,6 +174,24 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun sendEmailVerification(): Result<Unit> {
+        return try {
+            auth.currentUser?.sendEmailVerification()?.await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun reloadUser(): Result<FirebaseUser?> {
+        return try {
+            auth.currentUser?.reload()?.await()
+            Result.success(auth.currentUser)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     override suspend fun signInAnonymously(): Result<com.taytek.basehw.domain.model.User> {
         return try {
             val result = auth.signInAnonymously().await()

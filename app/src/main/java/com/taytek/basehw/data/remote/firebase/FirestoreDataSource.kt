@@ -159,6 +159,20 @@ class FirestoreDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateAdditionalPhotosBackup(firestoreId: String, photoUrls: List<String>): Boolean {
+        val ref = userCollectionRef() ?: return false
+        return try {
+            ref.document(firestoreId).update(
+                mapOf(
+                    "additionalPhotosBackup" to photoUrls
+                )
+            ).await()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
     suspend fun clearMappingsForFolder(folderFirestoreId: String): Boolean {
         val ref = userMappingsRef() ?: return false
         return try {

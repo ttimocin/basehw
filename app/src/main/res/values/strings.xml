@@ -2,7 +2,7 @@
 <resources>
     <!-- App Meta -->
     <string name="app_name">BaseHW</string>
-    <string name="default_web_client_id" translatable="false">1086036124505-o0u4c56e2978spn7l3q5lsq29b8c0i5a.apps.googleusercontent.com</string>
+    <string name="default_web_client_id" translatable="false">471261592182-764lmjpqjtn9baiobafbntcavs7r1gok.apps.googleusercontent.com</string>
 
     <!-- General -->
 
@@ -31,6 +31,29 @@
     <string name="nav_folders">Klasörler</string>
     <string name="nav_profile">Profil</string>
     <string name="nav_search">Ara</string>
+    <string name="nav_community">Topluluk</string>
+
+    <!-- Community Social Feed -->
+    <string name="community_feed">Akış</string>
+    <string name="community_following">Takipler</string>
+    <string name="community_ranking">Sıralama</string>
+    <string name="share_to_community">Toplulukta Paylaş</string>
+    <string name="share_caption_hint">Bir yorum ekle…</string>
+    <string name="share_button">Paylaş</string>
+    <string name="like">Beğen</string>
+    <string name="comment">Yorum</string>
+    <string name="follow">Takip Et</string>
+    <string name="unfollow">Takipten Çık</string>
+    <string name="followers">Takipçi</string>
+    <string name="following_label">Takip</string>
+    <string name="posts_label">Paylaşım</string>
+    <string name="login_required_feed">Feed\'i görmek için giriş yap</string>
+    <string name="no_posts_yet">Henüz paylaşım yok</string>
+    <string name="no_comments_yet">Henüz yorum yok</string>
+    <string name="photo_required_share">Paylaşmak için fotoğraf yedeklemesi gerekli</string>
+    <string name="shared_successfully">Başarıyla paylaşıldı!</string>
+    <string name="write_comment">Yorum yaz…</string>
+    <string name="send">Gönder</string>
 
     <!-- Home Components -->
     <string name="hello_collector">Merhaba</string>
@@ -148,6 +171,19 @@
     <string name="no_account">Hesabınız yok mu? Kayıt olun</string>
     <string name="forgot_password">Şifremi Unuttum</string>
     <string name="password_reset_sent">Şifre sıfırlama e-postası gönderildi. Lütfen gelen kutunuzu kontrol edin.</string>
+    <string name="email_verified">E-posta Onaylandı</string>
+    <string name="email_not_verified">E-posta Onaylanmadı</string>
+    <string name="send_verification_btn">Onay E-postası Gönder</string>
+    <string name="verification_sent">E-posta Gönderildi</string>
+    <string name="check_status_btn">Durumu Kontrol Et</string>
+    <string name="verification_required_for_cloud">Bulut işlemleri için e-posta onayı gereklidir.</string>
+    <string name="verification_required_title">E-posta Onayı Gerekli</string>
+    <string name="verification_required_desc">Topluluk özelliklerini kullanabilmek için lütfen e-posta adresinizi onaylayın. Onay linki e-postanıza gönderilmiştir.</string>
+    <string name="refresh_status">Durumu Yenile</string>
+    <string name="share_verification_required_title">Onay Gerekli</string>
+    <string name="share_verification_required_desc">Paylaşım yapabilmek için önce e-postanızı onaylamanız gerekmektedir. Lütfen e-postanızı kontrol edin.</string>
+    <string name="error_content_rejected">İçeriğiniz topluluk kurallarına aykırı bulundu: %1$s</string>
+    <string name="error_moderation_failed">İçerik denetimi sırasında bir hata oluştu. Lütfen tekrar deneyin.</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Listeniz Boş</string>
@@ -235,12 +271,12 @@
     <string name="badge_matchbox_fan_desc">10 veya daha fazla Matchbox aracın var.</string>
     <string name="badge_multi_brand_title">Çok Markacı</string>
     <string name="badge_multi_brand_desc">3 veya daha fazla farklı markaya sahipsin.</string>
-    <string name="badge_investor_title">Yatırımcı</string>
-    <string name="badge_investor_desc">Koleksiyonun toplam değeri 500₺ üzerinde.</string>
-    <string name="badge_big_spender_title">Büyük Harcama</string>
-    <string name="badge_big_spender_desc">Toplam alış fiyatın 2000₺ üzerinde.</string>
-    <string name="badge_curator_title">Küratör</string>
-    <string name="badge_curator_desc">En az 3 özel klasör oluşturdun.</string>
+    <string name="badge_silver_collector_title">Gümüş Koleksiyoner</string>
+    <string name="badge_silver_collector_desc">Koleksiyon değerin 100$ barajını geçti!</string>
+    <string name="badge_golden_collector_title">Altın Koleksiyoner</string>
+    <string name="badge_golden_collector_desc">1000$ değerinde devasa bir koleksiyon!</string>
+    <string name="badge_custom_maker_title">Custom Ustası</string>
+    <string name="badge_custom_maker_desc">Koleksiyonuna en az 10 adet özel yapım (Custom) aracın var.</string>
     <string name="badge_moc_collector_title">MOC Koleksiyoneri</string>
     <string name="badge_moc_collector_desc">Tüm araçlarının %%80\'i kutulu.</string>
 
@@ -330,11 +366,17 @@
     <string name="cloud_backup_title">Bulut Yedekleme</string>
     <string name="last_synced">Son senkronizasyon: </string>
     <string name="restore_data_title">Veriyi Geri Yükle</string>
-    <string name="excel_export_title">Excel dosyası olarak dışarı aktar</string>
-    <string name="excel_export_desc">Koleksiyonunu Excel formatında cihazına kaydet</string>
-    <string name="export_success">Koleksiyon başarıyla Excel dosyasına aktarıldı.</string>
+    <string name="excel_export_title">Koleksiyonu dışarı aktar</string>
+    <string name="excel_export_desc">Koleksiyonunuzu farklı formatlarda dışarı aktarın</string>
+    <string name="export_success">Koleksiyon başarıyla aktarıldı.</string>
     <string name="settings_support_title">AYARLAR VE DESTEK</string>
     <string name="help_support">Yardım ve Destek</string>
+    <string name="export_format_csv">Excel (.csv)</string>
+    <string name="export_format_json">Veri (.json)</string>
+    <string name="export_format_pdf">Rapor (.pdf)</string>
+    <string name="export_options_title">Dışarı Aktarma Seçenekleri</string>
+    <string name="export_share">Paylaş</string>
+    <string name="export_download">Cihaza İndir</string>
     <plurals name="cars_selected">
         <item quantity="one">%d araba seçildi</item>
         <item quantity="other">%d araba seçildi</item>
@@ -390,5 +432,14 @@
     <string name="no_chase_found">Chase araç bulunamadı.</string>
     <string name="no_th_found">TH araç bulunamadı.</string>
     <string name="case_label">CASE %s</string>
+    <string name="custom_label">Custom (Özel Yapım)</string>
+    <string name="original_label">Orijinal</string>
+    <string name="custom_distribution">Custom / Orijinal Dağılımı</string>
+    <string name="main_photo">Ana Fotoğraf</string>
+    <string name="additional_photos">Ek Fotoğraflar</string>
+    <string name="add_additional_photo">Galeriden Ek Fotoğraf Seç</string>
+    <string name="take_additional_photo">Kamerayla Ek Fotoğraf Çek</string>
+    <string name="remove_all_photos">Tüm Fotoğrafları Kaldır</string>
+    <string name="add_photo_url">URL ile Fotoğraf Ekle</string>
 </resources>
 

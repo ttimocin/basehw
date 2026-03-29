@@ -21,8 +21,12 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
-import java.io.OutputStream
 import javax.inject.Inject
+import com.google.gson.GsonBuilder
+import java.io.OutputStream
+import android.graphics.Paint
+import android.graphics.Typeface
+import android.graphics.pdf.PdfDocument
 
 data class ProfileUiState(
     val isLoading: Boolean = false,
@@ -44,7 +48,10 @@ data class ProfileUiState(
     val showAuthOptionSelection: Boolean = false,
     val showEmailAuthFields: Boolean = false,
     val username: String = "",
-    val consentGranted: Boolean = false
+    val consentGranted: Boolean = false,
+    val isLoadingVerification: Boolean = false,
+    val verificationEmailSent: Boolean = false,
+    val showExportDialog: Boolean = false
 )
 
 @HiltViewModel
@@ -270,9 +277,35 @@ class ProfileViewModel @Inject constructor(
 
             val result = authRepository.signUpWithEmail(email, password, finalUsername)
             result.onSuccess { user ->
+                // Auto send verification email on sign up
+                authRepository.sendEmailVerification()
                 _uiState.update { it.copy(isLoading = false, userData = user) }
             }.onFailure { error ->
                 _uiState.update { it.copy(isLoading = false, error = error.message ?: "Kayıt başarısız.") }
+            }
+        }
+    }
+
+    fun sendEmailVerification() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoadingVerification = true, error = null) }
+            val result = authRepository.sendEmailVerification()
+            result.onSuccess {
+                _uiState.update { it.copy(isLoadingVerification = false, verificationEmailSent = true) }
+            }.onFailure { error ->
+                _uiState.update { it.copy(isLoadingVerification = false, error = error.message) }
+            }
+        }
+    }
+
+    fun reloadUser() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoadingVerification = true, error = null) }
+            val result = authRepository.reloadUser()
+            result.onSuccess {
+                _uiState.update { it.copy(isLoadingVerification = false) }
+            }.onFailure { error ->
+                _uiState.update { it.copy(isLoadingVerification = false, error = error.message) }
             }
         }
     }
@@ -496,40 +529,64 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun exportToExcel(outputStream: OutputStream) {
-        viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null, syncStatusMsg = null) }
-            try {
+    suspend fun exportToExcel(outputStream: OutputStream) {
+        _uiState.update { it.copy(isLoading = true, error = null, syncStatusMsg = null, showExportDialog = false) }
+        try {
                 val cars = userCarRepository.getAllCarsWithMasterList()
+                val rate = conversionRate.value
+                val symbol = currencySymbol.value
+                val lang = languageFlow.value.ifBlank { "tr" }
                 
                 withContext(Dispatchers.IO) {
-                    // Write UTF-8 BOM for Excel compatibility
-                    outputStream.write(0xEF)
-                    outputStream.write(0xBB)
-                    outputStream.write(0xBF)
+                    val writer = outputStream.bufferedWriter(java.nio.charset.Charset.forName("ISO-8859-9"))
+                    val sep = ";"
                     
-                    val writer = outputStream.bufferedWriter(Charsets.UTF_8)
+                    // Localized Headers (ASCII-safe for TR)
+                    val columns = when(lang) {
+                        "en" -> listOf("Brand", "Model", "Year", "Series", "Status", "Toy Num", "Col Num", "Case", "Feature", "Category", "Purchase Date", "Price ($symbol)", "Value ($symbol)", "Note", "Location")
+                        "de" -> listOf("Marke", "Modell", "Jahr", "Serie", "Status", "Spielzeug Nr", "Kollektions-Nr", "Case", "Merkmal", "Kategorie", "Kaufdatum", "Preis ($symbol)", "Wert ($symbol)", "Notiz", "Standort")
+                        else -> listOf("Marka", "Model", "Yil", "Seri", "Durum", "Toy Num", "Col Num", "Case", "Ozellik", "Kategori", "Satin Alim Tarihi", "Fiyat ($symbol)", "Deger ($symbol)", "Not", "Konum")
+                    }
                     
-                    // Header
-                    val columns = listOf("Brand", "Model", "Year", "Series", "Status", "Purchase Date", "Price", "Value", "Note", "Location")
-                    writer.write(columns.joinToString(";"))
+                    writer.write(columns.joinToString(sep))
                     writer.newLine()
                     
                     // Data
                     cars.forEach { car ->
+                        val priceStr = car.purchasePrice?.let { 
+                            val converted = it * rate
+                            "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}"
+                        } ?: "0.00"
+                        
+                        val valueStr = car.estimatedValue?.let { 
+                            val converted = it * rate
+                            "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}"
+                        } ?: "0.00"
+
+                        val statusStr = when(lang) {
+                            "en" -> if (car.isOpened) "Opened" else "Mint"
+                            "de" -> if (car.isOpened) "Geöffnet" else "OVP"
+                            else -> if (car.isOpened) "Acilmis" else "Kapali"
+                        }
+
                         val row = listOf(
-                            car.masterData?.brand?.name ?: "",
-                            car.masterData?.modelName?.replace(";", ",") ?: "",
-                            car.masterData?.year?.toString() ?: "",
-                            car.masterData?.series?.replace(";", ",") ?: "",
-                            if (car.isOpened) "Opened" else "Mint",
-                            car.purchaseDate?.toString()?.replace(";", ",") ?: "",
-                            car.purchasePrice?.toString() ?: "0.0",
-                            car.estimatedValue?.toString() ?: "0.0",
-                            car.personalNote.replace("\n", " ").replace(";", ","),
-                            car.storageLocation.replace(";", ",")
+                            car.masterData?.brand?.name ?: car.manualBrand?.name ?: "",
+                            car.masterData?.modelName?.replace(sep, ",") ?: car.manualModelName?.replace(sep, ",") ?: "",
+                            (car.masterData?.year ?: car.manualYear)?.toString() ?: "",
+                            car.masterData?.series?.replace(sep, ",") ?: car.manualSeries?.replace(sep, ",") ?: "",
+                            statusStr,
+                            car.masterData?.toyNum ?: "",
+                            car.masterData?.colNum ?: "",
+                            car.masterData?.caseNum ?: "",
+                            car.masterData?.feature ?: "",
+                            car.masterData?.category ?: "",
+                            car.purchaseDate?.toString()?.replace(sep, ",") ?: "",
+                            priceStr,
+                            valueStr,
+                            car.personalNote.replace("\n", " ").replace(sep, ","),
+                            car.storageLocation.replace(sep, ",")
                         )
-                        writer.write(row.joinToString(";"))
+                        writer.write(row.joinToString(sep))
                         writer.newLine()
                     }
                     
@@ -541,11 +598,213 @@ class ProfileViewModel @Inject constructor(
             } catch (e: Exception) {
                 _uiState.update { it.copy(isLoading = false, error = "Export failed: ${e.message}") }
             }
+    }
+
+    suspend fun exportToJson(outputStream: OutputStream) {
+        _uiState.update { it.copy(isLoading = true, error = null, showExportDialog = false) }
+        try {
+            val cars = userCarRepository.getAllCarsWithMasterList()
+            val rate = conversionRate.value
+            val symbol = currencySymbol.value
+            
+            val cleanData = cars.map { car ->
+                mutableMapOf<String, Any?>().apply {
+                    // ... (rest of core data)
+                    val brand = car.masterData?.brand?.displayName ?: car.manualBrand?.displayName
+                    val model = car.masterData?.modelName ?: car.manualModelName
+                    
+                    if (!brand.isNullOrBlank()) put("marka", brand)
+                    if (!model.isNullOrBlank()) put("model", model)
+                    
+                    // Master Data Details (Only if not blank)
+                    car.masterData?.let { md ->
+                        if (md.series.isNotBlank()) put("seri", md.series)
+                        if (md.seriesNum.isNotBlank()) put("seri_no", md.seriesNum)
+                        md.year?.let { put("yil", it) }
+                        if (md.color.isNotBlank()) put("renk", md.color)
+                        if (md.toyNum.isNotBlank()) put("toy_no", md.toyNum)
+                        if (md.colNum.isNotBlank()) put("col_no", md.colNum)
+                        if (md.caseNum.isNotBlank()) put("case", md.caseNum)
+                        md.feature?.let { if (it.isNotBlank()) put("ozellik", it) }
+                        md.category?.let { if (it.isNotBlank()) put("kategori", it) }
+                    } ?: run {
+                        // Manual Data fallback
+                        car.manualYear?.let { put("yil", it) }
+                        car.manualSeries?.let { if (it.isNotBlank()) put("seri", it) }
+                    }
+                    
+                    // User Collection Data
+                    put("durum", if (car.isOpened) "Acilmis" else "Kapali")
+                    if (car.personalNote.isNotBlank()) put("not", car.personalNote)
+                    if (car.storageLocation.isNotBlank()) put("konum", car.storageLocation)
+                    
+                    car.purchasePrice?.let { if (it > 0) {
+                        val converted = it * rate
+                        put("fiyat", "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}") 
+                    } }
+                    car.estimatedValue?.let { if (it > 0) {
+                        val converted = it * rate
+                        put("deger", "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}") 
+                    } }
+                    
+                    if (car.quantity > 1) put("adet", car.quantity)
+                    if (car.isFavorite) put("favori", true)
+                    if (car.isCustom) put("custom", true)
+                }
+            }
+
+            val gson = com.google.gson.GsonBuilder()
+                .setPrettyPrinting()
+                .disableHtmlEscaping()
+                .create()
+            val jsonString = gson.toJson(cleanData)
+            
+            withContext(Dispatchers.IO) {
+                outputStream.bufferedWriter(Charsets.UTF_8).use { it.write(jsonString) }
+            }
+            _uiState.update { it.copy(isLoading = false, syncStatusMsg = "EXPORT_SUCCESS") }
+        } catch (e: Exception) {
+            _uiState.update { it.copy(isLoading = false, error = "Export failed: ${e.message}") }
+        }
+    }
+
+    suspend fun exportToPdf(outputStream: OutputStream) {
+        _uiState.update { it.copy(isLoading = true, error = null, showExportDialog = false) }
+        try {
+            val cars = userCarRepository.getAllCarsWithMasterList()
+            val rate = conversionRate.value
+            val symbol = currencySymbol.value
+            
+            withContext(Dispatchers.IO) {
+                // ... (existing PDF code same up to car values) ...
+                val pdfDocument = PdfDocument()
+                val pageWidth = 595 // A4 width in points
+                val pageHeight = 842 // A4 height in points
+                val margin = 40f
+                
+                val titlePaint = Paint().apply {
+                    typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                    textSize = 20f
+                    color = android.graphics.Color.BLACK
+                }
+                
+                val headerPaint = Paint().apply {
+                    typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                    textSize = 10f
+                    color = android.graphics.Color.WHITE
+                }
+                
+                val dataPaint = Paint().apply {
+                    textSize = 9f
+                    color = android.graphics.Color.BLACK
+                }
+                
+                val footerPaint = Paint().apply {
+                    textSize = 8f
+                    color = android.graphics.Color.GRAY
+                }
+
+                val headerBgPaint = Paint().apply {
+                    color = android.graphics.Color.rgb(180, 0, 0) // HotWheels Red-ish
+                }
+                
+                val rowBgPaint = Paint().apply {
+                    color = android.graphics.Color.rgb(245, 245, 245)
+                }
+
+                val cols = listOf("Marka", "Model", "Seri", "Yıl", "Durum", "Fiyat", "Değer")
+                val colWidths = listOf(75f, 135f, 100f, 35f, 55f, 55f, 60f)
+                val rowHeight = 22f
+                
+                var pageNumber = 1
+                var pageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNumber).create()
+                var page = pdfDocument.startPage(pageInfo)
+                var canvas = page.canvas
+                
+                canvas.drawText("HotWheels Koleksiyon Raporu", margin, 60f, titlePaint)
+                val dateStr = java.text.SimpleDateFormat("dd.MM.yyyy", java.util.Locale.getDefault()).format(java.util.Date())
+                canvas.drawText("Tarih: $dateStr", margin, 80f, dataPaint)
+                
+                var currentY = 110f
+                canvas.drawRect(margin, currentY, pageWidth - margin, currentY + 25f, headerBgPaint)
+                var currentX = margin + 5f
+                cols.forEachIndexed { index, title ->
+                    canvas.drawText(title, currentX, currentY + 17f, headerPaint)
+                    currentX += colWidths[index]
+                }
+                currentY += 25f
+
+                cars.forEachIndexed { carIndex, car ->
+                    if (currentY + rowHeight > pageHeight - margin - 30f) {
+                        canvas.drawText("Sayfa $pageNumber", pageWidth / 2f - 20f, pageHeight - 20f, footerPaint)
+                        pdfDocument.finishPage(page)
+                        pageNumber++
+                        pageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNumber).create()
+                        page = pdfDocument.startPage(pageInfo)
+                        canvas = page.canvas
+                        
+                        currentY = margin
+                        canvas.drawRect(margin, currentY, pageWidth - margin, currentY + 25f, headerBgPaint)
+                        currentX = margin + 5f
+                        cols.forEachIndexed { index, title ->
+                            canvas.drawText(title, currentX, currentY + 17f, headerPaint)
+                            currentX += colWidths[index]
+                        }
+                        currentY += 25f
+                    }
+                    
+                    if (carIndex % 2 == 1) {
+                        canvas.drawRect(margin, currentY, pageWidth - margin, currentY + rowHeight, rowBgPaint)
+                    }
+                    
+                    currentX = margin + 5f
+                    val carValues = listOf(
+                        car.masterData?.brand?.displayName ?: car.manualBrand?.displayName ?: "",
+                        car.masterData?.modelName ?: car.manualModelName ?: "",
+                        car.masterData?.series ?: car.manualSeries ?: "",
+                        (car.masterData?.year ?: car.manualYear)?.toString() ?: "-",
+                        if (car.isOpened) "Açılmış" else "Kapalı",
+                        car.purchasePrice?.let { 
+                            val converted = it * rate
+                            "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}"
+                        } ?: "-",
+                        car.estimatedValue?.let { 
+                            val converted = it * rate
+                            "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}"
+                        } ?: "-"
+                    )
+                    
+                    carValues.forEachIndexed { index, value ->
+                        val limit = (colWidths[index] / 4.5).toInt()
+                        val text = if (value.length > limit) value.take(limit) + ".." else value
+                        canvas.drawText(text, currentX, currentY + 15f, dataPaint)
+                        currentX += colWidths[index]
+                    }
+                    
+                    currentY += rowHeight
+                }
+                
+                canvas.drawText("Sayfa $pageNumber", pageWidth / 2f - 20f, pageHeight - 20f, footerPaint)
+                pdfDocument.finishPage(page)
+                pdfDocument.writeTo(outputStream)
+                pdfDocument.close()
+            }
+            _uiState.update { it.copy(isLoading = false, syncStatusMsg = "EXPORT_SUCCESS") }
+        } catch (e: Exception) {
+            _uiState.update { it.copy(isLoading = false, error = "PDF Export Error: ${e.message}") }
         }
     }
 
     fun clearMessages() {
         _uiState.update { it.copy(error = null, syncSuccess = false, syncStatusMsg = null) }
+    }
+
+    fun onExportClick() {
+        _uiState.update { it.copy(showExportDialog = true) }
+    }
+
+    fun dismissExportDialog() {
+        _uiState.update { it.copy(showExportDialog = false) }
     }
 
     fun setErrorMessage(message: String?) {

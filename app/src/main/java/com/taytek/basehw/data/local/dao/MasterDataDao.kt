@@ -46,6 +46,12 @@ interface MasterDataDao {
     @Update
     suspend fun update(item: MasterDataEntity)
 
+    @Update
+    suspend fun updateAll(items: List<MasterDataEntity>)
+
+    @Query("SELECT * FROM master_data WHERE brand = :brand")
+    suspend fun getAllByBrandForSeed(brand: String): List<MasterDataEntity>
+
     @Query("DELETE FROM master_data WHERE brand = :brand")
     suspend fun deleteByBrand(brand: String)
 
@@ -187,4 +193,13 @@ interface MasterDataDao {
 
     @Query("SELECT * FROM master_data WHERE dataSource = :dataSource AND year IS :year AND modelName = :modelName AND brand = :brand")
     suspend fun getVariationsLight(dataSource: String, year: Int?, modelName: String, brand: String): List<MasterDataEntity>
+
+    @Query("SELECT * FROM master_data WHERE brand = :brand AND toyNum = :toyNum AND toyNum != ''")
+    suspend fun getByToyNumGlobal(brand: String, toyNum: String): List<MasterDataEntity>
+
+    @Query("SELECT * FROM master_data WHERE brand = :brand AND modelName = :modelName AND year = :year")
+    suspend fun getByIdentityGlobal(brand: String, modelName: String, year: Int?): List<MasterDataEntity>
+
+    @Delete
+    suspend fun delete(item: MasterDataEntity)
 }

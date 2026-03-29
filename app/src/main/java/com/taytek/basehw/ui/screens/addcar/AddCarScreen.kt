@@ -1,5 +1,8 @@
 package com.taytek.basehw.ui.screens.addcar
 
+import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.toColor
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -46,15 +49,9 @@ import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.taytek.basehw.ui.util.UCropContract
 import com.taytek.basehw.ui.util.CameraModelOcrHelper
-import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.MasterData
-import com.taytek.basehw.ui.theme.HotWheelsRed
-import com.taytek.basehw.ui.theme.MatchboxBlue
-import com.taytek.basehw.ui.theme.MiniGTSilver
-import com.taytek.basehw.ui.theme.MajoretteYellow
-import com.taytek.basehw.ui.theme.JadaPurple
-import com.taytek.basehw.ui.theme.SikuBlue
-import com.taytek.basehw.ui.theme.KaidoHouseColor
+import com.taytek.basehw.ui.theme.AppBackground
+import com.taytek.basehw.ui.theme.AppTextSecondary
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,12 +59,19 @@ fun AddCarScreen(
     onNavigateBack: () -> Unit,
     masterDataId: Long = -1L,
     openCameraOnLaunch: Boolean = false,
-    onSaveSuccess: (() -> Unit)? = null,
+    onSaveSuccess: ((Boolean, Boolean) -> Unit)? = null,
+    deleteId: Long = -1L,
     viewModel: AddCarViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val searchResults = viewModel.searchResults.collectAsLazyPagingItems()
     var stableSuggestions by remember { mutableStateOf<List<MasterData>>(emptyList()) }
+
+    LaunchedEffect(deleteId) {
+        if (deleteId != -1L) {
+            viewModel.setDeleteId(deleteId)
+        }
+    }
 
     LaunchedEffect(masterDataId) {
         if (masterDataId != -1L) {
@@ -149,7 +153,7 @@ fun AddCarScreen(
     LaunchedEffect(uiState.saveSuccess) {
         if (uiState.saveSuccess) {
             viewModel.clearSaveSuccess()
-            if (onSaveSuccess != null) onSaveSuccess() else onNavigateBack()
+            if (onSaveSuccess != null) onSaveSuccess(false, false) else onNavigateBack()
         }
     }
 
@@ -223,15 +227,7 @@ fun AddCarScreen(
                     contentPadding = PaddingValues(horizontal = 4.dp)
                 ) {
                     items(Brand.entries.toTypedArray()) { brand ->
-                        val brandColor = when (brand) {
-                            Brand.HOT_WHEELS -> HotWheelsRed
-                            Brand.MATCHBOX   -> MatchboxBlue
-                            Brand.MINI_GT    -> MiniGTSilver
-                            Brand.MAJORETTE  -> MajoretteYellow
-                            Brand.JADA       -> JadaPurple
-                            Brand.SIKU       -> SikuBlue
-                            Brand.KAIDO_HOUSE -> KaidoHouseColor
-                        }
+                        val brandColor = brand.toColor()
                         val isSelected = uiState.selectedBrand == brand
                         Surface(
                             modifier = Modifier
@@ -260,15 +256,7 @@ fun AddCarScreen(
                 ) {
                     FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_model_details))
                     
-                    val brandColor = when (uiState.selectedBrand) {
-                        Brand.HOT_WHEELS -> HotWheelsRed
-                        Brand.MATCHBOX   -> MatchboxBlue
-                        Brand.MINI_GT    -> MiniGTSilver
-                        Brand.MAJORETTE  -> MajoretteYellow
-                        Brand.JADA       -> JadaPurple
-                        Brand.SIKU       -> SikuBlue
-                        Brand.KAIDO_HOUSE -> KaidoHouseColor
-                    }
+                    val brandColor = uiState.selectedBrand.toColor()
                     
                     Surface(
                         modifier = Modifier
@@ -594,6 +582,22 @@ fun AddCarScreen(
                         )
                     }
 
+                    // — CUSTOM FLAG —
+                    Row(
+                        modifier = Modifier.fillMaxWidth().clickable { viewModel.onIsCustomChanged(!uiState.isCustom) },
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Checkbox(
+                            checked = uiState.isCustom,
+                            onCheckedChange = viewModel::onIsCustomChanged
+                        )
+                        Text(
+                            text = stringResource(com.taytek.basehw.R.string.custom_label),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+
                     // — COLLECTION INFO —
                     FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_collection_info))
 
@@ -687,7 +691,7 @@ fun AddCarScreen(
                         }
                     }
 
-                    Spacer(Modifier.height(16.dp))
+                    Spacer(Modifier.height(24.dp))
                 }
             }
         }

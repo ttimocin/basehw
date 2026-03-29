@@ -160,19 +160,22 @@ class RemoteYearSyncWorker @AssistedInject constructor(
     }
 
     private suspend fun upsertMasterData(entity: MasterDataEntity): Boolean {
-        val existingByToyNum = entity.toyNum
-            .takeIf { it.isNotBlank() }
-            ?.let { masterDataDao.getByToyNumAndDataSource(it, entity.dataSource) }
+        // Global check (ignores dataSource differences between JSON and Sync)
+        val existingByToyNum = if (entity.toyNum.isNotBlank()) {
+            masterDataDao.getByToyNumGlobal(entity.brand, entity.toyNum).firstOrNull()
+        } else null
+
         val existingByIdentity = if (existingByToyNum == null) {
-            masterDataDao.getByIdentity(
-                brand = entity.brand,
-                modelName = entity.modelName,
-                year = entity.year,
-                dataSource = entity.dataSource
-            )
-        } else {
-            null
-        }
+            val potentialMatches = masterDataDao.getByIdentityGlobal(entity.brand, entity.modelName, entity.year)
+            potentialMatches.firstOrNull { match ->
+                // Only merge if toyNums are compatible:
+                // 1. One side has no toyNum info
+                // 2. Or they have the exact same toyNum
+                // (Prevents merging STH with different toyNum into Mainline)
+                match.toyNum.isBlank() || entity.toyNum.isBlank() || match.toyNum == entity.toyNum
+            }
+        } else null
+
         val existing = existingByToyNum ?: existingByIdentity
 
         if (existing == null) {
@@ -188,16 +191,16 @@ class RemoteYearSyncWorker @AssistedInject constructor(
         val updatedEntity = existing.copy(
             brand = entity.brand,
             modelName = entity.modelName,
-            series = entity.series,
-            seriesNum = entity.seriesNum,
-            year = entity.year,
+            series = entity.series.ifBlank { existing.series },
+            seriesNum = entity.seriesNum.ifBlank { existing.seriesNum },
+            year = entity.year ?: existing.year,
             color = entity.color.ifBlank { existing.color },
             imageUrl = entity.imageUrl.ifBlank { existing.imageUrl },
             scale = entity.scale.ifBlank { existing.scale },
             toyNum = entity.toyNum.ifBlank { existing.toyNum },
             colNum = entity.colNum.ifBlank { existing.colNum },
-            isPremium = entity.isPremium,
-            dataSource = entity.dataSource,
+            isPremium = entity.isPremium || existing.isPremium,
+            dataSource = existing.dataSource, // Keep local data source
             caseNum = entity.caseNum.ifBlank { existing.caseNum },
             feature = normalizedNewFeature ?: existing.feature
         )
@@ -216,7 +219,7 @@ class RemoteYearSyncWorker @AssistedInject constructor(
     private fun SupabaseEdgeCarDto.toEntityOrNull(): MasterDataEntity? {
         if (modelName.isBlank()) return null
         val normalizedBrand = normalizeBrand(brand) ?: return null
-        val normalizedDataSource = dataSource.ifBlank { normalizedBrand.lowercase() }
+        val normalizedDataSource = if (normalizedBrand == Brand.KAIDO_HOUSE.name) "kaido" else dataSource.ifBlank { normalizedBrand.lowercase() }
         val parsedYear = year?.replace(Regex("[^0-9]"), "")?.toIntOrNull()
         val validFeatures = setOf("sth", "chase", "th")
         val normalizedFeature = feature?.trim()?.lowercase()?.takeIf { it in validFeatures }

@@ -42,6 +42,7 @@ interface UserCarRepository {
     fun getTotalEstimatedValue(): Flow<Double>
     fun getCarsAddedSinceCount(startOfMonth: Long): Flow<Int>
     fun getValueAddedSince(startOfMonth: Long): Flow<Double>
+    fun getCustomStats(): Flow<com.taytek.basehw.domain.model.CustomStats>
     suspend fun addSeriesToWishlist(brand: Brand, series: String, year: Int?)
     suspend fun deleteWishlistSeries(brand: Brand, seriesName: String)
     suspend fun isSeriesInWishlist(brand: Brand, series: String): Boolean

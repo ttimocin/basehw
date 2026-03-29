@@ -37,15 +37,9 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.taytek.basehw.domain.model.Brand
-import com.taytek.basehw.domain.model.MasterData
+import com.taytek.basehw.domain.model.toColor
 import com.taytek.basehw.ui.theme.HotWheelsRed
-import com.taytek.basehw.ui.theme.MatchboxBlue
-import com.taytek.basehw.ui.theme.MiniGTSilver
-import com.taytek.basehw.ui.theme.MajoretteYellow
-import com.taytek.basehw.ui.theme.AppPrimary
-import com.taytek.basehw.ui.theme.JadaPurple
-import com.taytek.basehw.ui.theme.SikuBlue
-import com.taytek.basehw.ui.theme.KaidoHouseColor
+import com.taytek.basehw.domain.model.MasterData
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -114,15 +108,7 @@ fun AddWantedCarScreen(
                     contentPadding = PaddingValues(horizontal = 4.dp)
                 ) {
                     items(Brand.entries.toTypedArray()) { brand ->
-                        val brandColor = when (brand) {
-                            Brand.HOT_WHEELS -> HotWheelsRed
-                            Brand.MATCHBOX   -> MatchboxBlue
-                            Brand.MINI_GT    -> MiniGTSilver
-                            Brand.MAJORETTE  -> MajoretteYellow
-                            Brand.JADA       -> JadaPurple
-                            Brand.SIKU       -> SikuBlue
-                            Brand.KAIDO_HOUSE -> KaidoHouseColor
-                        }
+                        val brandColor = brand.toColor()
                         val isSelected = uiState.selectedBrand == brand
                         Surface(
                             modifier = Modifier
@@ -150,15 +136,7 @@ fun AddWantedCarScreen(
                 ) {
                     FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_model_details))
                     
-                    val brandColor = when (uiState.selectedBrand) {
-                        Brand.HOT_WHEELS -> HotWheelsRed
-                        Brand.MATCHBOX   -> MatchboxBlue
-                        Brand.MINI_GT    -> MiniGTSilver
-                        Brand.MAJORETTE  -> MajoretteYellow
-                        Brand.JADA       -> JadaPurple
-                        Brand.SIKU       -> SikuBlue
-                        Brand.KAIDO_HOUSE -> KaidoHouseColor
-                    }
+                    val brandColor = uiState.selectedBrand?.toColor() ?: HotWheelsRed
                     
                     Surface(
                         modifier = Modifier
@@ -343,14 +321,14 @@ fun AddWantedCarScreen(
                             .height(56.dp),
                         enabled = (uiState.selectedMasterData != null || uiState.isManualMode) && !uiState.isSaving,
                         shape = RoundedCornerShape(14.dp),
-                        border = BorderStroke(1.5.dp, if ((uiState.selectedMasterData != null || uiState.isManualMode) && !uiState.isSaving) HotWheelsRed else MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
+                        border = BorderStroke(1.5.dp, if ((uiState.selectedMasterData != null || uiState.isManualMode) && !uiState.isSaving) Brand.HOT_WHEELS.toColor() else MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = HotWheelsRed,
+                            contentColor = Brand.HOT_WHEELS.toColor(),
                             disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
                         )
                     ) {
                         if (uiState.isSaving) {
-                            CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = HotWheelsRed)
+                            CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Brand.HOT_WHEELS.toColor())
                         } else {
                             Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(20.dp))
                             Spacer(Modifier.width(8.dp))

@@ -27,7 +27,8 @@ fun MasterDataEntity.toDomain(): MasterData = MasterData(
     isPremium = isPremium,
     dataSource = dataSource,
     caseNum = caseNum,
-    feature = feature
+    feature = feature,
+    category = category
 )
 
 fun MasterData.toEntity(): MasterDataEntity = MasterDataEntity(
@@ -45,7 +46,8 @@ fun MasterData.toEntity(): MasterDataEntity = MasterDataEntity(
     isPremium = isPremium,
     dataSource = dataSource,
     caseNum = caseNum,
-    feature = feature
+    feature = feature,
+    category = category
 )
 
 // UserCar mappers
@@ -72,7 +74,10 @@ fun UserCarEntity.toDomain(masterData: MasterData?): UserCar = UserCar(
     estimatedValue = estimatedValue,
     isFavorite = isFavorite,
     isSeriesOnly = isSeriesOnly,
-    quantity = 1
+    isCustom = isCustom,
+    quantity = quantity,
+    additionalPhotos = additionalPhotos,
+    additionalPhotosBackup = additionalPhotosBackup
 )
 
 fun UserCarWithMaster.toDomain(): UserCar = UserCar(
@@ -97,11 +102,15 @@ fun UserCarWithMaster.toDomain(): UserCar = UserCar(
     purchasePrice = car.purchasePrice,
     estimatedValue = car.estimatedValue,
     isFavorite = car.isFavorite,
-    isSeriesOnly = car.isSeriesOnly
+    isSeriesOnly = car.isSeriesOnly,
+    isCustom = car.isCustom,
+    quantity = car.quantity,
+    additionalPhotos = car.additionalPhotos,
+    additionalPhotosBackup = car.additionalPhotosBackup
 )
 
 fun GroupedUserCarWithMaster.toDomain(): UserCar = data.toDomain().copy(
-    quantity = quantity ?: 1
+    quantity = rowCount
 )
 
 fun UserCar.toEntity(): UserCarEntity = UserCarEntity(
@@ -125,7 +134,11 @@ fun UserCar.toEntity(): UserCarEntity = UserCarEntity(
     purchasePrice = purchasePrice,
     estimatedValue = estimatedValue,
     isFavorite = isFavorite,
-    isSeriesOnly = isSeriesOnly
+    isSeriesOnly = isSeriesOnly,
+    isCustom = isCustom,
+    quantity = quantity,
+    additionalPhotos = additionalPhotos,
+    additionalPhotosBackup = additionalPhotosBackup
 )
 
 // Custom Collection mappers

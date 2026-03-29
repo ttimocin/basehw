@@ -31,6 +31,29 @@
     <string name="nav_folders">Ordner</string>
     <string name="nav_profile">Profil</string>
     <string name="nav_search">Gesucht</string>
+    <string name="nav_community">Community</string>
+
+    <!-- Community Social Feed -->
+    <string name="community_feed">Feed</string>
+    <string name="community_following">Folge ich</string>
+    <string name="community_ranking">Rangliste</string>
+    <string name="share_to_community">In der Community teilen</string>
+    <string name="share_caption_hint">Kommentar hinzufügen…</string>
+    <string name="share_button">Teilen</string>
+    <string name="like">Gefällt mir</string>
+    <string name="comment">Kommentar</string>
+    <string name="follow">Folgen</string>
+    <string name="unfollow">Entfolgen</string>
+    <string name="followers">Follower</string>
+    <string name="following_label">Folge ich</string>
+    <string name="posts_label">Beiträge</string>
+    <string name="login_required_feed">Melde dich an, um den Feed zu sehen</string>
+    <string name="no_posts_yet">Noch keine Beiträge</string>
+    <string name="no_comments_yet">Noch keine Kommentare</string>
+    <string name="photo_required_share">Foto-Backup zum Teilen erforderlich</string>
+    <string name="shared_successfully">Erfolgreich geteilt!</string>
+    <string name="write_comment">Kommentar schreiben…</string>
+    <string name="send">Senden</string>
 
     <!-- Home Components -->
     <string name="hello_collector">Hallo</string>
@@ -145,6 +168,19 @@
     <string name="no_account">Noch kein Konto? Registrieren</string>
     <string name="forgot_password">Passwort vergessen?</string>
     <string name="password_reset_sent">Passwort-Reset-E-Mail gesendet. Bitte überprüfen Sie Ihren Posteingang.</string>
+    <string name="email_verified">E-Mail verifiziert</string>
+    <string name="email_not_verified">E-Mail nicht verifiziert</string>
+    <string name="send_verification_btn">Verifizierungs-E-Mail senden</string>
+    <string name="verification_sent">E-Mail gesendet</string>
+    <string name="check_status_btn">Status prüfen</string>
+    <string name="verification_required_for_cloud">Für Cloud-Aktionen ist eine E-Mail-Verifizierung erforderlich.</string>
+    <string name="verification_required_title">E-Mail-Verifizierung erforderlich</string>
+    <string name="verification_required_desc">Bitte verifizieren Sie Ihre E-Mail-Adresse, um Community-Funktionen nutzen zu können. Ein Verifizierungslink wurde an Ihre E-Mail gesendet.</string>
+    <string name="refresh_status">Status aktualisieren</string>
+    <string name="share_verification_required_title">Verifizierung erforderlich</string>
+    <string name="share_verification_required_desc">Sie müssen Ihre E-Mail verifizieren, bevor Sie teilen können. Bitte überprüfen Sie Ihren Posteingang.</string>
+    <string name="error_content_rejected">Ihr Inhalt verstößt gegen die Community-Richtlinien: %1$s</string>
+    <string name="error_moderation_failed">Bei der Inhaltsmoderation ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Ihre Liste ist leer</string>
@@ -232,12 +268,12 @@
     <string name="badge_matchbox_fan_desc">Du hast 10 oder mehr Matchbox Autos.</string>
     <string name="badge_multi_brand_title">Multi-Marke</string>
     <string name="badge_multi_brand_desc">Du besitzt Autos von 3 oder mehr verschiedenen Marken.</string>
-    <string name="badge_investor_title">Investor</string>
-    <string name="badge_investor_desc">Der Gesamtwert deiner Sammlung liegt bei über 500₺.</string>
-    <string name="badge_big_spender_title">Großverdiener</string>
-    <string name="badge_big_spender_desc">Dein Gesamtkaufpreis liegt bei über 2000₺.</string>
-    <string name="badge_curator_title">Kurator</string>
-    <string name="badge_curator_desc">Du hast mindestens 3 eigene Ordner erstellt.</string>
+    <string name="badge_silver_collector_title">Silber-Sammler</string>
+    <string name="badge_silver_collector_desc">Dein Sammlungswert hat die $100-Marke überschritten!</string>
+    <string name="badge_golden_collector_title">Gold-Sammler</string>
+    <string name="badge_golden_collector_desc">Eine riesige Sammlung im Wert von über $1000!</string>
+    <string name="badge_custom_maker_title">Custom-Profi</string>
+    <string name="badge_custom_maker_desc">Du hast mindestens 10 Custom-Autos zur Sammlung hinzugefügt.</string>
     <string name="badge_moc_collector_title">MOC-Sammler</string>
     <string name="badge_moc_collector_desc">80%% deiner Autos sind in der Box.</string>
 
@@ -327,11 +363,17 @@
     <string name="cloud_backup_title">Cloud-Backup</string>
     <string name="last_synced">Zuletzt synchronisiert: </string>
     <string name="restore_data_title">Daten wiederherstellen</string>
-    <string name="excel_export_title">Als Excel-Datei exportieren</string>
-    <string name="excel_export_desc">Speichern Sie Ihre Sammlung im Excel-Format auf Ihrem Gerät</string>
-    <string name="export_success">Sammlung erfolgreich in Excel-Datei exportiert.</string>
+    <string name="excel_export_title">Kollektion exportieren</string>
+    <string name="excel_export_desc">Exportieren Sie Ihre Kollektion in verschiedenen Formaten</string>
+    <string name="export_success">Kollektion erfolgreich exportiert.</string>
     <string name="settings_support_title">EINSTELLUNGEN &amp; SUPPORT</string>
     <string name="help_support">Hilfe &amp; Support</string>
+    <string name="export_format_csv">Excel (.csv)</string>
+    <string name="export_format_json">Daten (.json)</string>
+    <string name="export_format_pdf">Bericht (.pdf)</string>
+    <string name="export_options_title">Export-Optionen</string>
+    <string name="export_share">Teilen</string>
+    <string name="export_download">Auf Gerät speichern</string>
     <plurals name="cars_selected">
         <item quantity="one">%d Auto ausgewählt</item>
         <item quantity="other">%d Autos ausgewählt</item>
@@ -382,4 +424,7 @@
     <string name="no_chase_found">Keine Chase-Autos gefunden.</string>
     <string name="no_th_found">Keine TH-Autos gefunden.</string>
     <string name="case_label">CASE %s</string>
+    <string name="custom_label">Custom (Maßgeschneidert)</string>
+    <string name="original_label">Original</string>
+    <string name="custom_distribution">Custom / Original Verteilung</string>
 </resources>

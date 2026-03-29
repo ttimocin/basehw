@@ -27,7 +27,6 @@ import com.taytek.basehw.ui.screens.statistics.StatisticsScreen
 import com.taytek.basehw.ui.screens.wishlist.WishlistScreen
 import com.taytek.basehw.ui.theme.AppBackground
 import com.taytek.basehw.ui.theme.AppTextSecondary
-import com.taytek.basehw.ui.theme.HotWheelsRed
 import com.taytek.basehw.ui.navigation.Screen
 import com.taytek.basehw.R
 
@@ -36,14 +35,19 @@ fun MainScreen(
     onAddCarClick: () -> Unit,
     onAddCarCameraClick: () -> Unit,
     onAddWantedCarClick: () -> Unit,
-    onCarClick: (Long) -> Unit,
+    onCarClick: (Long, Boolean) -> Unit,
     onFolderClick: (Long) -> Unit,
     onPrivacyPolicyClick: () -> Unit,
     onTermsOfUseClick: () -> Unit,
-    onAddCarWithMasterIdClick: (Long) -> Unit,
-    onSthCarClick: (Long) -> Unit = onAddCarWithMasterIdClick,
+    onAddCarWithMasterIdClick: (Long, Boolean) -> Unit,
+    onAddCarWithMasterIdAndDeleteClick: (Long, Long?, Boolean) -> Unit = { _, _, _ -> },
+    onSthCarClick: (Long) -> Unit = { id -> onAddCarWithMasterIdClick(id, false) },
     navigateToTab: Int = -1,
-    onConsumeTabNavigation: () -> Unit = {}
+    wishlistTab: Int = -1,
+    onConsumeTabNavigation: () -> Unit = {},
+    onConsumeWishlistTab: () -> Unit = {},
+    onCommunityClick: () -> Unit = {},
+    onUserProfileClick: (String) -> Unit = {}
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(0) }
     var previousTab by rememberSaveable { mutableStateOf(0) }
@@ -78,18 +82,19 @@ fun MainScreen(
             when (selectedTab) {
                 0 -> { // ANASAYFA (Figma Redesign)
                     HomeScreen(
-                        onCarClick = onCarClick,
-                        onProfileClick = { selectedTab = 2 },
+                        onCarClick = { id -> onCarClick(id, false) },
+                        onProfileClick = { selectedTab = 3 },
                         onCameraClick = onAddCarCameraClick,
                         onAddClick = onAddCarClick,
                         onViewAllClick = { selectedTab = 8 },
-                        onMasterCarClick = onAddCarWithMasterIdClick
+                        onMasterCarClick = { id -> onAddCarWithMasterIdClick(id, false) },
+                        onCommunityClick = { selectedTab = 2 }
                     )
                 }
                 8 -> { // KOLEKSİYON (Legacy)
                     CollectionScreen(
                         onAddCarClick = onAddCarClick,
-                        onCarClick = onCarClick,
+                        onCarClick = { id -> onCarClick(id, false) },
                         onStatisticsClick = { 
                             previousTab = selectedTab
                             selectedTab = 5 
@@ -99,10 +104,18 @@ fun MainScreen(
                 1 -> { // SEARCH / Wishlist
                     WishlistScreen(
                         onAddCarClick = onAddWantedCarClick,
-                        onCarClick = onCarClick
+                        onCarClick = { id -> onCarClick(id, true) },
+                        onAddCarWithMasterId = { masterId, deleteId -> onAddCarWithMasterIdAndDeleteClick(masterId, deleteId, true) },
+                        initialTab = wishlistTab,
+                        onConsumeInitialTab = onConsumeWishlistTab
                     )
                 }
-                2 -> { // PROFILE
+                2 -> { // COMMUNITY
+                    com.taytek.basehw.ui.screens.community.CommunityScreen(
+                        onUserProfileClick = onUserProfileClick
+                    )
+                }
+                3 -> { // PROFILE
                     ProfileScreen(
                         onStatisticsClick = { 
                             previousTab = selectedTab

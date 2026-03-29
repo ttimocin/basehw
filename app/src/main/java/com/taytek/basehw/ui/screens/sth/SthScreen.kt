@@ -390,9 +390,9 @@ private fun SthCarItem(
                         overflow = TextOverflow.Ellipsis
                     )
                 }
-                if (masterData.colNum.isNotBlank() || masterData.toyNum.isNotBlank()) {
+                if (masterData.colNum.isNotBlank()) {
                     Text(
-                        text = if (masterData.colNum.isNotBlank()) masterData.colNum else masterData.toyNum,
+                        text = masterData.colNum,
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f),
                         fontWeight = FontWeight.Bold

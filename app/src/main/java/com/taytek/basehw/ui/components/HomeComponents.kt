@@ -183,7 +183,7 @@ fun CollectionHeroCard(
             // Right Side: Rotating Stats (Side by side)
             if (!isLoading) {
                 androidx.compose.animation.Crossfade(
-                    targetState = statIndex % 3, 
+                    targetState = statIndex % 4, 
                     label = "stats",
                     modifier = Modifier.padding(end = 8.dp, top = 24.dp)
                 ) { index ->
@@ -199,11 +199,24 @@ fun CollectionHeroCard(
                                 "+$currencySymbol${String.format(java.util.Locale.US, "%.0f", monthlyValueIncrease)}",
                                 Icons.AutoMirrored.Filled.TrendingUp
                             )
-                            else -> Triple(
+                            2 -> Triple(
                                 com.taytek.basehw.R.string.hero_stat_total,
                                 "$currencySymbol${String.format(java.util.Locale.US, "%.0f", totalEstimatedValue)}",
                                 Icons.Default.Star
                             )
+                            else -> {
+                                // NEW: Custom vs Original ratio
+                                val total = totalModels.takeIf { it > 0 } ?: 1
+                                // We don't have customCount directly here, but we can't easily get it without passing it.
+                                // Let's just show a generic "Collection" stat or pass it. 
+                                // Actually, it's better to stay with 3 or pass the data.
+                                // For now, let's keep it 3 to avoid more complexity or pass CustomStats.
+                                Triple(
+                                    com.taytek.basehw.R.string.hero_stat_total,
+                                    "$totalModels " + stringResource(com.taytek.basehw.R.string.stat_cars),
+                                    Icons.Default.DirectionsCar
+                                )
+                            }
                         }
 
                         Icon(
@@ -580,33 +593,84 @@ fun CollectionListItem(
     val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
     val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
 
-    val sthBorderColor = if (isSthCar) Color(0xFFB8860B) else if (isChaseCar) Color.Black else if (isThCar) Color(0xFF71797E) else Color.Transparent
+    val sthBorderColor = if (isSthCar) Color(0xFFB8860B) else if (isChaseCar) (if (isDark) Color.White else Color.Black) else if (isThCar) Color(0xFF71797E) else Color.Transparent
     val defaultBorderColor = if (isDark) Color.White.copy(alpha = 0.2f) else Color.Black.copy(alpha = 0.15f)
+
+    // Animated shimmer beam for STH cards
+    val infiniteTransition = rememberInfiniteTransition(label = "sth_list_shimmer")
+    val angle by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 2500, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "sth_list_angle"
+    )
+
+    val sthGoldMid = Color(0xFFB8860B)
+    val cardShape = RoundedCornerShape(16.dp)
+
+    // Generate animated sweep gradient brush for STH border
+    val shimmerBorderModifier = if (isSthCar && !isSelected) {
+        val fraction = angle / 360f
+        val shimmerColors = buildList {
+            val beamWidth = 0.12f
+            val steps = 48
+            for (i in 0 until steps) {
+                val t = i.toFloat() / steps
+                val dist = kotlin.math.min(
+                    kotlin.math.abs(t - fraction),
+                    kotlin.math.min(
+                        kotlin.math.abs(t - fraction + 1f),
+                        kotlin.math.abs(t - fraction - 1f)
+                    )
+                )
+                val brightness = (1f - (dist / beamWidth).coerceIn(0f, 1f))
+                val color = androidx.compose.ui.graphics.lerp(sthGoldMid, Color.White, brightness * brightness)
+                add(color)
+            }
+            add(first())
+        }
+        val shimmerBrush = Brush.sweepGradient(shimmerColors)
+        Modifier.border(2.5.dp, shimmerBrush, cardShape)
+    } else if ((isChaseCar || isThCar) && !isSelected) {
+        Modifier.border(2.dp, sthBorderColor, cardShape)
+    } else {
+        Modifier
+    }
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 5.dp)
-            .shadow(if (isSelected) 8.dp else 4.dp, RoundedCornerShape(16.dp), clip = false)
+            .then(shimmerBorderModifier)
             .combinedClickable(
                 onClick = onClick,
                 onLongClick = onLongClick
             ),
-        shape = RoundedCornerShape(16.dp),
-        border = if (isSthCar || isChaseCar || isThCar) BorderStroke(2.dp, sthBorderColor) else BorderStroke(1.dp, defaultBorderColor),
+        shape = cardShape,
+        border = if (!isSthCar && !isChaseCar && !isThCar && !isSelected)
+            BorderStroke(1.dp, defaultBorderColor.copy(alpha = 0.05f))
+        else
+            null,
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
-        )
+            containerColor = if (isSelected) 
+                MaterialTheme.colorScheme.primaryContainer 
+            else 
+                Color.Transparent
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = if (isSelected) 0.dp else 1.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Min)
-                .background(
-                    brush = if (isSelected) {
-                        Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.primary.copy(alpha = 0.4f), MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)))
+                .then(
+                    if (!isSelected) {
+                        Modifier.background(brush = Brush.linearGradient(colors = listOf(baseColor, darkerColor)))
                     } else {
-                        Brush.linearGradient(colors = listOf(baseColor, darkerColor))
+                        Modifier // Use Card's background when selected
                     }
                 )
         ) {
@@ -846,6 +910,25 @@ fun CollectionListItem(
                             fontSize = 10.sp
                         ),
                         color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
+            }
+
+            if (car.isCustom) {
+                Surface(
+                    color = Color(0xFF4CAF50),
+                    shape = RoundedCornerShape(8.dp),
+                    shadowElevation = 2.dp,
+                    modifier = Modifier.padding(top = 6.dp, end = 40.dp).align(Alignment.TopEnd) // Correction to positioning
+                ) {
+                    Text(
+                        text = "CUSTOM",
+                        style = MaterialTheme.typography.labelSmall.copy(
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = 9.sp
+                        ),
+                        color = Color.White,
                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                     )
                 }

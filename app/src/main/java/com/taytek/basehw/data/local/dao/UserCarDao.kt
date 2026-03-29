@@ -22,24 +22,37 @@ data class HwTierCount(
     val premiumCount: Int
 )
 
+data class CustomCount(
+    val originalCount: Int,
+    val customCount: Int
+)
+
 @Dao
 interface UserCarDao {
 
     @Transaction
-    @Query("SELECT *, COUNT(*) as quantity FROM user_cars WHERE isWishlist = 0 GROUP BY COALESCE(masterDataId, -1), manualModelName, manualBrand, manualYear, isOpened ORDER BY id DESC")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, COUNT(*) as rowCount FROM user_cars WHERE isWishlist = 0 GROUP BY COALESCE(masterDataId, -1), manualModelName, manualBrand, manualYear, isOpened ORDER BY id DESC")
     fun getAllWithMaster(): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
-    @Query("SELECT *, COUNT(*) as quantity FROM user_cars WHERE isWishlist = 0 AND isSeriesOnly = 0 GROUP BY COALESCE(masterDataId, -1), manualModelName, manualBrand, manualYear, isOpened ORDER BY id DESC")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, COUNT(*) as rowCount FROM user_cars WHERE isWishlist = 0 AND isSeriesOnly = 0 GROUP BY COALESCE(masterDataId, -1), manualModelName, manualBrand, manualYear, isOpened ORDER BY id DESC")
     fun getCollectionRecentlyAdded(): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
-    @Query("SELECT *, 1 as quantity FROM user_cars WHERE isWishlist = 1 AND isSeriesOnly = 0 ORDER BY id DESC")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, 1 as rowCount FROM user_cars WHERE isWishlist = 1 AND isSeriesOnly = 0 ORDER BY id DESC")
     fun getWishlistWithMaster(): PagingSource<Int, UserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, 1 as quantity
+        SELECT u.*, 1 as rowCount
         FROM user_cars u
         LEFT JOIN master_data m ON u.masterDataId = m.id
         WHERE u.isWishlist = 1
@@ -56,8 +69,10 @@ interface UserCarDao {
     fun getWishlistWithMasterFiltered(query: String?): PagingSource<Int, UserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, COUNT(*) as quantity FROM user_cars u 
+        SELECT *, COUNT(*) as rowCount FROM user_cars u 
         LEFT JOIN master_data m ON u.masterDataId = m.id 
         WHERE u.isWishlist = 0 
         AND (:query IS NULL OR COALESCE(m.modelName, u.manualModelName) LIKE '%' || :query || '%')
@@ -74,8 +89,10 @@ interface UserCarDao {
     ): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, COUNT(*) as quantity FROM user_cars u 
+        SELECT *, COUNT(*) as rowCount FROM user_cars u 
         LEFT JOIN master_data m ON u.masterDataId = m.id 
         WHERE u.isWishlist = 0 
         AND (:query IS NULL OR COALESCE(m.modelName, u.manualModelName) LIKE '%' || :query || '%')
@@ -92,8 +109,10 @@ interface UserCarDao {
     ): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, COUNT(*) as quantity FROM user_cars u 
+        SELECT *, COUNT(*) as rowCount FROM user_cars u 
         LEFT JOIN master_data m ON u.masterDataId = m.id 
         WHERE u.isWishlist = 0 
         AND (:query IS NULL OR COALESCE(m.modelName, u.manualModelName) LIKE '%' || :query || '%')
@@ -110,8 +129,10 @@ interface UserCarDao {
     ): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, COUNT(*) as quantity FROM user_cars u 
+        SELECT *, COUNT(*) as rowCount FROM user_cars u 
         LEFT JOIN master_data m ON u.masterDataId = m.id 
         WHERE u.isWishlist = 0 
         AND (:query IS NULL OR COALESCE(m.modelName, u.manualModelName) LIKE '%' || :query || '%')
@@ -128,8 +149,10 @@ interface UserCarDao {
     ): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, COUNT(*) as quantity FROM user_cars u 
+        SELECT *, COUNT(*) as rowCount FROM user_cars u 
         LEFT JOIN master_data m ON u.masterDataId = m.id 
         WHERE u.isWishlist = 0 
         AND (:query IS NULL OR COALESCE(m.modelName, u.manualModelName) LIKE '%' || :query || '%')
@@ -146,8 +169,10 @@ interface UserCarDao {
     ): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, COUNT(*) as quantity FROM user_cars u 
+        SELECT *, COUNT(*) as rowCount FROM user_cars u 
         LEFT JOIN master_data m ON u.masterDataId = m.id 
         WHERE u.isWishlist = 0 
         AND (:query IS NULL OR COALESCE(m.modelName, u.manualModelName) LIKE '%' || :query || '%')
@@ -164,8 +189,10 @@ interface UserCarDao {
     ): PagingSource<Int, GroupedUserCarWithMaster>
 
     @Transaction
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
     @Query("""
-        SELECT u.*, COUNT(*) as quantity FROM user_cars u 
+        SELECT *, COUNT(*) as rowCount FROM user_cars u 
         LEFT JOIN master_data m ON u.masterDataId = m.id 
         WHERE u.isWishlist = 0 
         AND (:query IS NULL OR COALESCE(m.modelName, u.manualModelName) LIKE '%' || :query || '%')
@@ -183,7 +210,9 @@ interface UserCarDao {
 
 
     @Transaction
-    @Query("SELECT *, 1 as quantity FROM user_cars WHERE id = :id")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, 1 as rowCount FROM user_cars WHERE id = :id")
     fun getByIdWithMaster(id: Long): Flow<UserCarWithMaster?>
 
     @Query("SELECT COUNT(*) FROM user_cars WHERE isWishlist = 0")
@@ -232,7 +261,14 @@ interface UserCarDao {
         WHERE u.isWishlist = 0 AND COALESCE(m.brand, u.manualBrand) = 'HOT_WHEELS'
     """)
     fun getHwTierCounts(): Flow<HwTierCount?>
-
+    @Query("""
+        SELECT 
+            SUM(CASE WHEN isCustom = 0 THEN 1 ELSE 0 END) as originalCount,
+            SUM(CASE WHEN isCustom = 1 THEN 1 ELSE 0 END) as customCount
+        FROM user_cars
+        WHERE isWishlist = 0
+    """)
+    fun getCustomCounts(): Flow<CustomCount?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(car: UserCarEntity): Long
@@ -261,23 +297,37 @@ interface UserCarDao {
     @Query("UPDATE user_cars SET backupPhotoUrl = :url WHERE id = :id")
     suspend fun updateBackupPhotoUrl(id: Long, url: String?)
 
+    @Query("UPDATE user_cars SET additionalPhotosBackup = :urls WHERE id = :id")
+    suspend fun updateAdditionalPhotosBackup(id: Long, urls: List<String>)
+
+    @Query("UPDATE user_cars SET additionalPhotos = :urls WHERE id = :id")
+    suspend fun updateAdditionalPhotos(id: Long, urls: List<String>)
+
     @Transaction
-    @Query("SELECT *, 1 as quantity FROM user_cars")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, 1 as rowCount FROM user_cars")
     suspend fun getAllCarsWithMasterList(): List<UserCarWithMaster>
 
     @Transaction
-    @Query("SELECT *, 1 as quantity FROM user_cars WHERE firestoreId = ''")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, 1 as rowCount FROM user_cars WHERE firestoreId = ''")
     suspend fun getUnsyncedWithMasterList(): List<UserCarWithMaster>
 
     @Query("DELETE FROM user_cars")
     suspend fun deleteAll()
 
     @Transaction
-    @Query("SELECT *, 1 as quantity FROM user_cars WHERE isWishlist = 1")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, 1 as rowCount FROM user_cars WHERE isWishlist = 1")
     suspend fun getWishlistWithMasterList(): List<UserCarWithMaster>
 
     @Transaction
-    @Query("SELECT *, 1 as quantity FROM user_cars")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT *, 1 as rowCount FROM user_cars")
     fun getAllWithMasterListFlow(): Flow<List<UserCarWithMaster>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

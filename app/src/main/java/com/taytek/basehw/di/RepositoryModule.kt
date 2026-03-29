@@ -44,4 +44,10 @@ abstract class RepositoryModule {
     abstract fun bindCurrencyRepository(
         impl: com.taytek.basehw.data.repository.CurrencyRepositoryImpl
     ): com.taytek.basehw.domain.repository.CurrencyRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCommunityRepository(
+        impl: com.taytek.basehw.data.repository.CommunityRepositoryImpl
+    ): com.taytek.basehw.domain.repository.CommunityRepository
 }
