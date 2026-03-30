@@ -1,0 +1,141 @@
+﻿> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+
+> Task :app:kspDebugKotlin FAILED
+.\gradlew : e: [ksp] D:/Yedek/basehw/app/src/main/java/com
+/taytek/basehw/data/repository/CommunityRepositoryImpl.kt:
+ (33, 23): Function declaration must have a name
+At line:1 char:1
++ .\gradlew assembleDebug > install_log.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (e: [ksp] D:/Y
+    ed...ust have a name:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+e: Error occurred in KSP, check log for detail
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:29:9 Expec
+ting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:29:18 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:29:20 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:29:26 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:29:27 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:30:9 Expec
+ting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:30:20 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:30:22 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:30:28 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:31:9 Expec
+ting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:31:16 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:31:18 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:31:24 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:32:9 Expec
+ting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:32:19 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:32:21 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:32:27 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:33:5 Expec
+ting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:33:6 Expec
+ting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:33:8 Expec
+ting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:33:14 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:33:15 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:33:21 Expe
+cting member declaration
+e: file:///D:/Yedek/basehw/app/src/main/java/com/taytek/ba
+sehw/data/repository/CommunityRepositoryImpl.kt:33:23 Expe
+cting member declaration
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:kspDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.
+compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotli
+nCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output
+.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 4s
+32 actionable tasks: 1 executed, 31 up-to-date

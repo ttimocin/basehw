@@ -33,7 +33,10 @@ data class HomeUiState(
     val totalValue: Double = 0.0,
     val monthlyValueIncrease: Double = 0.0,
     val searchQuery: String = "",
-    val currencySymbol: String = "€"
+    val currencySymbol: String = "€",
+    val showRestorePrompt: Boolean = false,
+    val isRestoring: Boolean = false,
+    val isCloudCheckInProgress: Boolean = false
 )
 
 @HiltViewModel
@@ -48,6 +51,8 @@ class HomeViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+
+    private var hasCheckedForBackup = false
 
     val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
@@ -94,6 +99,9 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             currencyRepository.refreshRates()
         }
+
+        // Check for backup on startup
+        checkForBackup()
     }
 
     private fun observeUserData() {
@@ -116,7 +124,59 @@ class HomeViewModel @Inject constructor(
                             )
                         }
                     }
+                    
+                    // Profile data loaded
+                } else {
+                    hasCheckedForBackup = false
+                    _uiState.update { it.copy(showRestorePrompt = false) }
                 }
+            }
+        }
+    }
+
+    private fun checkForBackup() {
+        if (hasCheckedForBackup) return
+        println("DEBUG_BACKUP: checkForBackup started")
+        viewModelScope.launch {
+            _uiState.update { it.copy(isCloudCheckInProgress = true) }
+            println("DEBUG_BACKUP: Waiting 3 seconds...")
+            kotlinx.coroutines.delay(3000)
+            
+            val totalCarsFlow = userCarRepository.getTotalCarsCount()
+            val totalCars = totalCarsFlow.first()
+            println("DEBUG_BACKUP: Local totalCars = $totalCars")
+            
+            if (totalCars == 0) {
+                println("DEBUG_BACKUP: Local is empty, calling hasCloudData...")
+                val hasCloud = userCarRepository.hasCloudData()
+                println("DEBUG_BACKUP: hasCloudData result = $hasCloud")
+                if (hasCloud) {
+                    println("DEBUG_BACKUP: Showing restore prompt")
+                    _uiState.update { it.copy(showRestorePrompt = true) }
+                } else {
+                    println("DEBUG_BACKUP: No cloud data found or check failed")
+                }
+            } else {
+                println("DEBUG_BACKUP: Local is NOT empty, skipping cloud check")
+            }
+            hasCheckedForBackup = true
+            _uiState.update { it.copy(isCloudCheckInProgress = false) }
+        }
+    }
+
+    fun dismissRestorePrompt() {
+        _uiState.update { it.copy(showRestorePrompt = false) }
+    }
+
+    fun restoreFromCloud() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(showRestorePrompt = false, isRestoring = true) }
+            try {
+                userCarRepository.syncFromFirestore()
+            } catch (e: Exception) {
+                // Log or handle error if needed
+            } finally {
+                _uiState.update { it.copy(isRestoring = false) }
             }
         }
     }

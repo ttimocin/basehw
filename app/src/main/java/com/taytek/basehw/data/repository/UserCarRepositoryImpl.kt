@@ -592,6 +592,24 @@ class UserCarRepositoryImpl @Inject constructor(
         return url.startsWith("http://") || url.startsWith("https://")
     }
 
+    override suspend fun hasCloudData(): Boolean = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+        val user = authRepository.currentUser
+        println("DEBUG_BACKUP: hasCloudData check. User: ${user?.uid}")
+        if (user == null) return@withContext false
+        try {
+            kotlinx.coroutines.withTimeout(5000) {
+                val cars = firestoreDataSource.fetchAllCars()
+                val folders = firestoreDataSource.fetchAllFolders()
+                val mappings = firestoreDataSource.fetchAllMappings()
+                println("DEBUG_BACKUP: Cloud counts - Cars: ${cars.size}, Folders: ${folders.size}, Mappings: ${mappings.size}")
+                cars.isNotEmpty() || folders.isNotEmpty() || mappings.isNotEmpty()
+            }
+        } catch (e: Exception) {
+            println("DEBUG_BACKUP: hasCloudData error: ${e.message}")
+            false
+        }
+    }
+
     private fun enqueuePhotoBackupIfNeeded(carId: Long) {
         if (authRepository.currentUser == null) return
 

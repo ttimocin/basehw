@@ -19,8 +19,13 @@ class AppSettingsManager @Inject constructor(
     private val _themeFlow = MutableStateFlow(prefs.getInt(KEY_THEME, 2))
     val themeFlow: StateFlow<Int> = _themeFlow.asStateFlow()
 
-    // "tr", "en", "de", or "" for system default
-    private val _languageFlow = MutableStateFlow(prefs.getString(KEY_LANGUAGE, "") ?: "")
+    // Initial language detection
+    private val _languageFlow = MutableStateFlow(
+        prefs.getString(KEY_LANGUAGE, "")?.takeIf { it.isNotEmpty() } ?: run {
+            val systemLang = java.util.Locale.getDefault().language
+            if (listOf("tr", "en", "de", "fr", "ar", "es", "pt", "ru", "uk").contains(systemLang)) systemLang else "en"
+        }
+    )
     val languageFlow: StateFlow<String> = _languageFlow.asStateFlow()
 
     // "USD", "EUR", "GBP", "TRY" or "" if not set
@@ -64,11 +69,20 @@ class AppSettingsManager @Inject constructor(
         prefs.edit().putBoolean(KEY_HAS_COMPLETED_2026_CLEANUP, completed).apply()
     }
 
+    fun hasAcceptedCommunityRules(): Boolean {
+        return prefs.getBoolean(KEY_COMMUNITY_RULES_ACCEPTED, false)
+    }
+
+    fun setAcceptedCommunityRules(accepted: Boolean) {
+        prefs.edit().putBoolean(KEY_COMMUNITY_RULES_ACCEPTED, accepted).apply()
+    }
+
     companion object {
         private const val KEY_THEME = "pref_theme"
         private const val KEY_LANGUAGE = "pref_language"
         private const val KEY_CURRENCY = "pref_currency"
         private const val KEY_CATALOG_SYNC_CURSOR = "pref_catalog_sync_cursor"
         private const val KEY_HAS_COMPLETED_2026_CLEANUP = "pref_has_completed_2026_cleanup"
+        private const val KEY_COMMUNITY_RULES_ACCEPTED = "pref_community_rules_accepted"
     }
 }

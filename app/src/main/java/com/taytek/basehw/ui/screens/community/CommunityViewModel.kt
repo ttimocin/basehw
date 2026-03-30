@@ -21,6 +21,7 @@ data class CommunityUiState(
     val isLoadingFollowing: Boolean = false,
     val isSignedIn: Boolean = false,
     val isEmailVerified: Boolean = false,
+    val currentUserUid: String? = null,
     val error: String? = null,
 
     // Comments
@@ -36,13 +37,17 @@ data class CommunityUiState(
 
     // Leaderboard
     val topUsers: List<User> = emptyList(),
-    val isLoadingLeaderboard: Boolean = false
+    val isLoadingLeaderboard: Boolean = false,
+    val showRulesDialog: Boolean = false,
+    val pendingCommentText: String? = null,
+    val currentUser: User? = null
 )
 
 @HiltViewModel
 class CommunityViewModel @Inject constructor(
     private val repository: CommunityRepository,
-    private val auth: FirebaseAuth
+    private val auth: FirebaseAuth,
+    private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CommunityUiState())
@@ -51,14 +56,23 @@ class CommunityViewModel @Inject constructor(
     private val authListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
         val user = firebaseAuth.currentUser
         val signedIn = user != null
-        val verified = user?.isEmailVerified == true
+        
+        // Google Play Store test hesabı için e-posta doğrulaması bypass'ı
+        val isTestAccount = user?.email == "googletest@basehw.net"
+        val verified = (user?.isEmailVerified == true) || isTestAccount
+        
         _uiState.value = _uiState.value.copy(
             isSignedIn = signedIn,
-            isEmailVerified = verified
+            isEmailVerified = verified,
+            currentUserUid = user?.uid,
+            currentUser = null // Reset until fetched
         )
-        if (signedIn && verified && _uiState.value.feedPosts.isEmpty() && !_uiState.value.isLoadingFeed) {
-            loadFeed()
-            loadLeaderboard()
+        if (signedIn && verified) {
+            loadCurrentUser(user?.uid ?: "")
+            if (_uiState.value.feedPosts.isEmpty() && !_uiState.value.isLoadingFeed) {
+                loadFeed()
+                loadLeaderboard()
+            }
         }
     }
 
@@ -70,11 +84,14 @@ class CommunityViewModel @Inject constructor(
         viewModelScope.launch {
             auth.currentUser?.reload()?.addOnCompleteListener {
                 val user = auth.currentUser
+                val isTestAccount = user?.email == "googletest@basehw.net"
+                val verifiedValue = user?.isEmailVerified == true || isTestAccount
+                
                 _uiState.value = _uiState.value.copy(
                     isSignedIn = user != null,
-                    isEmailVerified = user?.isEmailVerified == true
+                    isEmailVerified = verifiedValue
                 )
-                if (user?.isEmailVerified == true) {
+                if (verifiedValue) {
                     loadFeed()
                     loadLeaderboard()
                 }
@@ -143,6 +160,20 @@ class CommunityViewModel @Inject constructor(
         }
     }
 
+    fun deletePost(postId: String) {
+        viewModelScope.launch {
+            repository.deletePost(postId).onSuccess {
+                _uiState.value = _uiState.value.copy(
+                    feedPosts = _uiState.value.feedPosts.filter { it.id != postId },
+                    followingPosts = _uiState.value.followingPosts.filter { it.id != postId },
+                    profilePosts = _uiState.value.profilePosts.filter { it.id != postId }
+                )
+            }.onFailure { e ->
+                _uiState.value = _uiState.value.copy(error = e.message)
+            }
+        }
+    }
+
     // ── Comments ───────────────────────────────────────────
 
     fun openComments(postId: String) {
@@ -168,6 +199,10 @@ class CommunityViewModel @Inject constructor(
     }
 
     fun addComment(text: String) {
+        if (!appSettingsManager.hasAcceptedCommunityRules()) {
+            _uiState.value = _uiState.value.copy(showRulesDialog = true, pendingCommentText = text)
+            return
+        }
         val postId = _uiState.value.activeCommentPostId ?: return
         viewModelScope.launch {
             repository.addComment(postId, text).onSuccess { comment ->
@@ -184,6 +219,31 @@ class CommunityViewModel @Inject constructor(
                         if (p.id == postId) p.copy(commentCount = p.commentCount + 1) else p
                     }
                 )
+            }
+        }
+    }
+
+    fun deleteComment(postId: String, commentId: String) {
+        val previousState = _uiState.value
+        
+        // Optimistic update
+        _uiState.value = _uiState.value.copy(
+            activePostComments = _uiState.value.activePostComments.filter { it.id != commentId },
+            feedPosts = _uiState.value.feedPosts.map { p ->
+                if (p.id == postId) p.copy(commentCount = (p.commentCount - 1).coerceAtLeast(0)) else p
+            },
+            followingPosts = _uiState.value.followingPosts.map { p ->
+                if (p.id == postId) p.copy(commentCount = (p.commentCount - 1).coerceAtLeast(0)) else p
+            },
+            profilePosts = _uiState.value.profilePosts.map { p ->
+                if (p.id == postId) p.copy(commentCount = (p.commentCount - 1).coerceAtLeast(0)) else p
+            }
+        )
+
+        viewModelScope.launch {
+            repository.deleteComment(postId, commentId).onFailure { e ->
+                // Rollback on failure
+                _uiState.value = previousState.copy(error = e.message)
             }
         }
     }
@@ -212,6 +272,13 @@ class CommunityViewModel @Inject constructor(
 
             repository.isFollowing(uid).onSuccess { following ->
                 _uiState.value = _uiState.value.copy(isFollowingProfile = following)
+            }
+            
+            // Sync rules acceptance from profile
+            repository.getUserProfile(uid).onSuccess { user ->
+                if (user.rulesAccepted && !appSettingsManager.hasAcceptedCommunityRules()) {
+                    appSettingsManager.setAcceptedCommunityRules(true)
+                }
             }
         }
     }
@@ -242,5 +309,33 @@ class CommunityViewModel @Inject constructor(
 
     fun clearProfile() {
         _uiState.value = _uiState.value.copy(profileUser = null, profilePosts = emptyList(), isFollowingProfile = false)
+    }
+
+    fun dismissRulesDialog() {
+        _uiState.value = _uiState.value.copy(showRulesDialog = false)
+    }
+
+    fun acceptRules() {
+        viewModelScope.launch {
+            repository.acceptRules().onSuccess {
+                appSettingsManager.setAcceptedCommunityRules(true)
+                val pendingText = _uiState.value.pendingCommentText
+                _uiState.value = _uiState.value.copy(showRulesDialog = false, pendingCommentText = null)
+                if (pendingText != null) {
+                    addComment(pendingText)
+                }
+            }.onFailure { e ->
+                _uiState.value = _uiState.value.copy(error = e.message)
+            }
+        }
+    }
+
+    private fun loadCurrentUser(uid: String) {
+        if (uid.isEmpty()) return
+        viewModelScope.launch {
+            repository.getUserProfile(uid).onSuccess { user ->
+                _uiState.value = _uiState.value.copy(currentUser = user)
+            }
+        }
     }
 }

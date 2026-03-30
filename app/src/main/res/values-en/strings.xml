@@ -181,6 +181,11 @@
     <string name="share_verification_required_desc">You must verify your email before sharing. Please check your inbox.</string>
     <string name="error_content_rejected">Your content was found to be against community rules: %1$s</string>
     <string name="error_moderation_failed">An error occurred during content moderation. Please try again.</string>
+    <string name="delete">Delete</string>
+    <string name="delete_post_title">Delete Post</string>
+    <string name="delete_post_msg">Are you sure you want to delete this post? This action cannot be undone.</string>
+    <string name="delete_confirm">Delete</string>
+    <string name="delete_cancel">Cancel</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Your List is Empty</string>
@@ -427,5 +432,11 @@
     <string name="custom_label">Custom (Modified)</string>
     <string name="original_label">Original</string>
     <string name="custom_distribution">Custom / Original Distribution</string>
+    <string name="delete_comment_confirm">Delete</string>
+    <string name="delete_comment_confirmation">Are you sure you want to delete this comment?</string>
+    <string name="restore_prompt_title">Backup Found</string>
+    <string name="restore_prompt_desc">We found an existing collection in your account. Would you like to restore it to this device?</string>
+    <string name="restore_now">Restore Now</string>
+    <string name="later">Later</string>
+    <string name="restoring_data">Restoring your collection...</string>
 </resources>
-

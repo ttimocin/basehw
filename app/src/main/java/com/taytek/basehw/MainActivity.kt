@@ -39,8 +39,11 @@ class MainActivity : ComponentActivity() {
         var lang = prefs.getString("pref_language", "") ?: ""
         
         if (lang.isEmpty()) {
-            val systemLang = Locale.getDefault().language
-            lang = if (systemLang == "tr" || systemLang == "de") systemLang else "en"
+            val systemLocale = Locale.getDefault()
+            val systemLang = systemLocale.language
+            // Desteklenen diller listesi
+            val supportedLangs = listOf("tr", "de", "fr", "ar", "es", "pt", "ru", "uk")
+            lang = if (supportedLangs.contains(systemLang)) systemLang else "en"
         }
         
         val locale = Locale(lang)

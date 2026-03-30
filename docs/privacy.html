@@ -80,44 +80,37 @@
             
             <h2>1. Data We Collect</h2>
             <p>The app may collect the following data:
-            • Car photos you optionally upload or select from the gallery (stored on Supabase Storage)
+            • Car photos you optionally upload (stored on Supabase Storage)
             • When signing in with Google: your email address and profile picture (via Firebase Authentication)
             • Model car information you add to your collection (brand, series, year, condition, notes)
-            • Your device's camera (used only when you want to take a photo)
-            • Your Wanted list</p>
+            • Community data: Posts you share, likes, and comments you write
+            • Social graph: Users you follow and your followers
+            • Your device's camera (used only when you want to take a photo)</p>
 
             <h2>2. How We Use Your Data</h2>
             <p>Collected data is used only for:
-            • Cloud backup of your collection and synchronization across devices
-            • Personalizing app features
+            • Cloud backup and synchronization across devices
+            • Managing the community feed and interactions
+            • AI-powered content moderation (Google Gemini)
             
-            Your data is never shared with, sold to, or used by third parties for advertising purposes.</p>
+            Your data is never sold or used for third-party advertising.</p>
 
-            <h2>3. Google Firebase and Supabase Services</h2>
+            <h2>3. Cloud Services and AI Moderation</h2>
             <p>The app uses Google Firebase and Supabase:
-            • Firebase Authentication: Secure sign-in with Google
-            • Firebase Firestore: Cloud storage of your collection and wanted list.
-            • Supabase Storage: Photos you upload are stored in our secure cloud storage.
-            
+            • Firebase Firestore: Secure cloud storage for collection and social data.
+            • Supabase Storage: Secure cloud storage for photos.
+            • AI Moderation: Comments and captions are automatically moderated by Google Gemini AI for community safety. Only text content is analyzed; no personal metadata (IDs, names) is transmitted to the AI service.
+
             Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
             Supabase Privacy Policy: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
 
-            <h2>4. AI Content Moderation (GDPR Compliant)</h2>
-            <p>To maintain a safe community, post captions and comments are automatically moderated using Google Gemini AI.
-            • **Anonymization**: Only the raw text content is sent to the AI service. No personal identifiers (Names, UIDs, IP addresses) are transmitted.
-            • **Purpose**: Detection of profanity, hate speech, and harassment to enforce community guidelines.</p>
+            <h2>4. Data Deletion and Control</h2>
+            <p>• **Comment Deletion**: You can delete your comments at any time by long-pressing on the comment within the app.
+            • **Post Deletion**: You can remove your shared posts via your profile page.
+            • **Account Deletion**: You can permanently delete your account and all associated data (collection, social graph, account) via the "Delete Account" button on the "Profile" page. Alternatively, email <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a>.</p>
 
-            <h2>5. Device Permissions</h2>
-            <p>The app requests Camera (CAMERA) permission to take photos and Gallery/Media access to select existing photos. Photos are stored in your device's internal storage. If you are signed in, this data is securely synchronized to our cloud systems (Firebase and Supabase) for backup purposes.</p>
-
-            <h2>5. Data Security</h2>
-            <p>Your data is protected by industry-standard security infrastructure. All data uploaded to the cloud is accessible only through your Google account authentication.</p>
-
-            <h2>6. Data Deletion</h2>
-            <p>You can delete your account and all associated data instantly using the "Delete Account" button on the "Profile" page within the app. Alternatively, you can send an email to <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a> for your deletion request.</p>
-
-            <h2>7. Contact</h2>
-            <p>For privacy-related questions: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+            <h2>5. Contact</h2>
+            <p>For privacy inquiries: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
         </div>
 
         <!-- Turkish -->
@@ -128,92 +121,78 @@
 
             <h2>1. Toplanan Veriler</h2>
             <p>Uygulama aşağıdaki verileri toplayabilir:
-            • İsteğe bağlı olarak yüklediğiniz veya galeriden seçtiğiniz araba fotoğrafları (Supabase Storage'a yüklenir)
-            • Google Hesabı ile girişte: e-posta adresiniz ve profil görseliniz (Firebase Authentication aracılığıyla)
-            • Koleksiyonunuza eklediğiniz model araç bilgileri (marka, seri, yıl, durum, notlar)
-            • Cihazınızın kamerası (yalnızca fotoğraf çekmek istediğinizde kullanılır)
-            • Arananlar listeniz</p>
+            • İsteğe bağlı olarak yüklediğiniz araba fotoğrafları (Supabase Storage'da saklanır)
+            • Google ile girişte: E-posta adresiniz ve profil görseliniz (Firebase Authentication)
+            • Koleksiyon verileriniz (marka, seri, yıl, durum, notlar)
+            • Topluluk verileri: Paylaştığınız gönderiler, beğenileriniz ve yazdığınız yorumlar
+            • Sosyal veriler: Takip ettiğiniz kullanıcılar ve takipçileriniz
+            • Cihaz kamerası (fotoğraf çekimi için)</p>
 
             <h2>2. Verilerin Kullanımı</h2>
-            <p>Toplanan veriler yalnızca şu amaçlarla kullanılır:
-            • Koleksiyonunuzun bulut yedeklenmesi ve farklı cihazlar arasında senkronizasyonu
-            • Uygulama özelliklerinin kişiselleştirilmesi
+            <p>Toplanan veriler şu amaçlarla kullanılır:
+            • Koleksiyonun bulut yedeklenmesi ve cihazlar arası senkronizasyon
+            • Topluluk akışının ve etkileşimlerin yönetilmesi
+            • AI destekli içerik denetimi (Google Gemini)
             
-            Verileriniz hiçbir şekilde üçüncü taraflarla paylaşılmaz, satılmaz veya reklam amacıyla kullanılmaz.</p>
+            Verileriniz üçüncü taraflara satılmaz veya reklam amaçlı kullanılmaz.</p>
 
-            <h2>3. Google Firebase ve Supabase Hizmetleri</h2>
-            <p>Uygulama Google Firebase ve Supabase platformlarını kullanmaktadır:
-            • Firebase Authentication: Google ile güvenli oturum açma
-            • Firebase Firestore: Koleksiyon ve arananlar verilerinizin bulut depolaması.
-            • Supabase Storage: Yüklediğiniz fotoğraflar güvenli bulut depolama alanımızda saklanır.
-            
-            Firebase Gizlilik Politikası: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
-            Supabase Gizlilik Politikası: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
+            <h2>3. Bulut Hizmetleri ve AI Denetimi</h2>
+            <p>Uygulama Google Firebase ve Supabase kullanmaktadır:
+            • Firebase Firestore: Koleksiyon ve sosyal veriler için güvenli bulut depolama.
+            • Supabase Storage: Fotoğraflar için güvenli bulut depolama.
+            • AI Moderasyon: Topluluk güvenliği için yorum ve açıklamalar Google Gemini AI ile otomatik olarak denetlenir. Sadece metin içeriği analiz edilir; kişisel meta veriler (isim, ID) AI servisiyle paylaşılmaz.
 
-            <h2>4. Yapay Zeka İçerik Denetimi (GDPR Uyumlu)</h2>
-            <p>Güvenli bir topluluk ortamı sağlamak adına, paylaşılan açıklamalar ve yorumlar Google Gemini AI kullanılarak otomatik olarak denetlenir.
-            • **Anonimleştirme**: AI servisine yalnızca ilgili metin içeriği gönderilir. İsim, Kullanıcı ID (UID) veya IP adresi gibi kişisel veriler asla paylaşılmaz.
-            • **Amaç**: Topluluk kurallarını ihlal eden küfür, nefret söylemi ve saldırgan içeriklerin tespit edilmesi.</p>
+            Firebase Gizlilik: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
+            Supabase Gizlilik: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
 
-            <h2>5. Cihaz İzinleri</h2>
-            <p>Uygulama, fotoğraflarınızı çekebilmek için Kamera (CAMERA) izni ve mevcut fotoğrafları seçebilmek için Galeri/Medya erişimi talep eder. Fotoğraflar cihazınızın dahili depolama alanında saklanır. Eğer oturum açmışsanız, bu veriler bulut yedekleme amacıyla güvenli bir şekilde bulut tabanlı sistemlerimize (Firebase ve Supabase) senkronize edilir.</p>
+            <h2>4. Veri Silme ve Kontrol</h2>
+            <p>• **Yorum Silme**: Paylaştığınız yorumları, yorumun üzerine basılı tutarak dilediğiniz zaman silebilirsiniz.
+            • **Gönderi Silme**: Paylaştığınız gönderileri kendi profilinizden silebilirsiniz.
+            • **Hesap Silme**: Profil sayfasındaki "Hesabımı Sil" butonu ile tüm verilerinizi (koleksiyon, topluluk etkileşimleri ve hesap) kalıcı olarak silebilirsiniz. Alternatif olarak: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a>.</p>
 
-            <h2>5. Veri Güvenliği</h2>
-            <p>Verileriniz endüstri standardı güvenlik altyapısıyla korunmaktadır. Buluta yüklenen tüm verilere yalnızca Google hesabınızla yetkilendirilmiş şekilde erişilebilmektedir.</p>
-
-            <h2>6. Veri Silme</h2>
-            <p>Hesabınızı ve tüm verilerinizi uygulama içindeki "Profil" sayfasından "Hesabımı Sil" butonunu kullanarak anında silebilirsiniz. Alternatif olarak, silme talebiniz için <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a> adresine e-posta gönderebilirsiniz.</p>
-
-            <h2>7. İletişim</h2>
-            <p>Gizlilikle ilgili sorularınız için: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+            <h2>5. İletişim</h2>
+            <p>Gizlilik sorularınız için: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
         </div>
 
         <!-- German -->
         <div id="content-de" class="content-section">
             <h1>Datenschutzrichtlinie</h1>
             <span class="update-date">Letzte Aktualisierung: März 2026</span>
-            <p>Diese Datenschutzrichtlinie erläutert, wie die BaseHW-App Ihre personenbezogenen Daten erfasst, verwendet und schützt.</p>
+            <p>Diese Richtlinie erläutert, wie BaseHW Ihre personenbezogenen Daten erfasst, nutzt und schützt.</p>
 
             <h2>1. Erfasste Daten</h2>
             <p>Die App kann folgende Daten erfassen:
-            • Fotos von Autos, die Sie optional hochladen oder aus der Galerie auswählen (auf Supabase Storage gespeichert)
-            • Bei der Google-Anmeldung: Ihre E-Mail-Adresse und Ihr Profilbild (über Firebase Authentication)
-            • Modellauto-Informationen, die Sie Ihrer Sammlung hinzufügen (Marke, Serie, Jahr, Zustand, Notizen)
-            • Kamerazugriff Ihres Geräts (wird nur verwendet, wenn Sie ein Foto aufnehmen möchten)
-            • Ihre Wunschliste</p>
+            • Optionale Fotos (gespeichert auf Supabase Storage)
+            • Google-Anmeldung: E-Mail und Profilbild (Firebase Authentication)
+            • Sammlungsdaten (Marke, Serie, Jahr, Zustand, Notizen)
+            • Community-Daten: Beiträge, Likes und Kommentare
+            • Soziale Daten: Gefolgte Nutzer und Follower
+            • Kamera (nur für Fotoaufnahmen)</p>
 
-            <h2>2. Verwendung Ihrer Daten</h2>
-            <p>Die erfassten Daten werden nur verwendet für:
-            • Cloud-Backup Ihrer Sammlung und geräteübergreifende Synchronisierung
-            • Personalisierung der App-Funktionen
+            <h2>2. Verwendung der Daten</h2>
+            <p>Ihre Daten werden verwendet für:
+            • Cloud-Backup und Synchronisierung
+            • Verwaltung des Community-Feeds und Interaktionen
+            • KI-gestützte Inhaltsmoderation (Google Gemini)
             
-            Ihre Daten werden niemals an Dritte weitergegeben, verkauft oder für Werbezwecke verwendet.</p>
+            Ihre Daten werden nicht verkauft oder für Werbung Dritter genutzt.</p>
 
-            <h2>3. Google Firebase- und Supabase-Dienste</h2>
+            <h2>3. Cloud-Dienste und KI-Moderation</h2>
             <p>Die App verwendet Google Firebase und Supabase:
-            • Firebase Authentication: sichere Anmeldung mit Google
-            • Firebase Firestore: Cloud-Speicherung Ihrer Sammlung und Wunschliste.
-            • Supabase Storage: Von Ihnen hochgeladene Fotos werden in unserem sicheren Cloud-Speicher gespeichert.
-            
-            Firebase-Datenschutzrichtlinie: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
-            Supabase-Datenschutzrichtlinie: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
+            • Firebase Firestore: Sicherer Cloud-Speicher für Sammlungs- und Sozialdaten.
+            • Supabase Storage: Sicherer Cloud-Speicher für Fotos.
+            • KI-Moderation: Kommentare und Beschreibungen werden durch Google Gemini KI automatisiert geprüft. Es werden nur Texte analysiert; keine persönlichen IDs oder Namen werden übertragen.
 
-            <h2>4. KI-Inhaltsmoderation (DSGVO-konform)</h2>
-            <p>Um eine sichere Community-Umgebung zu gewährleisten, werden Post-Beschreibungen und Kommentare automatisch mit Google Gemini AI moderiert.
-            • **Anonymisierung**: Nur der reine Textinhalt wird an den KI-Dienst gesendet. Es werden keine persönlichen Identifikatoren (Namen, UIDs, IP-Adressen) übertragen.
-            • **Zweck**: Erkennung von Profanität, Hassrede und Belästigung zur Durchsetzung der Community-Richtlinien.</p>
+            Firebase Datenschutz: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
+            Supabase Datenschutz: <a href="https://supabase.com/privacy" target="_blank">https://supabase.com/privacy</a></p>
 
-            <h2>5. Gerätezugriff</h2>
-            <p>Die App benötigt Kamerazugriff (CAMERA), um Fotos aufzunehmen, und Galerie-/Medienzugriff, um vorhandene Fotos auszuwählen. Fotos werden im internen Speicher Ihres Geräts gespeichert. Wenn Sie angemeldet sind, werden diese Daten zu Sicherungszwecken sicher mit unseren Cloud-Systemen (Firebase und Supabase) synchronisiert.</p>
+            <h2>4. Datenlöschung und Kontrolle</h2>
+            <p>• **Kommentar löschen**: Jede eigene Kommentare können jederzeit durch langes Drücken innerhalb der App gelöscht werden.
+            • **Beitrag löschen**: Eigene Beiträge können über die Profilseite entfernt werden.
+            • **Konto löschen**: Über "Konto löschen" in den Profileinstellungen können Sie alle Daten permanent entfernen. Kontakt: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a>.</p>
 
-            <h2>5. Datensicherheit</h2>
-            <p>Ihre Daten sind durch branchenübliche Sicherheitsinfrastrukturen geschützt. Alle in die Cloud hochgeladenen Daten sind nur über Ihre Google-Konto-Authentifizierung zugänglich.</p>
-
-            <h2>6. Datenlöschung</h2>
-            <p>Sie können Ihr Konto und alle zugehörigen Daten sofort über die Schaltfläche "Konto löschen" auf der Seite "Profil" in der App löschen. Alternativ können Sie eine E-Mail an <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a> senden, um Ihren Löschantrag zu stellen.</p>
-
-            <h2>7. Kontakt</h2>
-            <p>Bei Fragen: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
+            <h2>5. Kontakt</h2>
+            <p>Bei Fragen zum Datenschutz: <a href="mailto:taytekofficial@gmail.com">taytekofficial@gmail.com</a></p>
         </div>
     </div>
 

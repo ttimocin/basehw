@@ -94,11 +94,29 @@ fun UserProfileScreen(
 
                         Spacer(Modifier.height(12.dp))
 
-                        Text(
-                            text = uiState.profileUser?.username ?: "User",
-                            style = MaterialTheme.typography.headlineSmall,
-                            fontWeight = FontWeight.Bold
-                        )
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = uiState.profileUser?.username ?: "User",
+                                style = MaterialTheme.typography.headlineSmall,
+                                fontWeight = FontWeight.Bold
+                            )
+                            if (uiState.profileUser?.isAdmin == true) {
+                                Spacer(Modifier.width(8.dp))
+                                Surface(
+                                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
+                                    shape = RoundedCornerShape(6.dp)
+                                ) {
+                                    Text(
+                                        text = "🛡️ ADMIN",
+                                        style = MaterialTheme.typography.labelMedium,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 10.sp,
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                }
+                            }
+                        }
 
                         Spacer(Modifier.height(16.dp))
 
@@ -151,9 +169,16 @@ fun UserProfileScreen(
                 CommentsBottomSheet(
                     comments = uiState.activePostComments,
                     isLoading = uiState.isLoadingComments,
+                    currentUserUid = uiState.currentUserUid,
                     onAddComment = viewModel::addComment,
+                    onDeleteComment = { commentId -> 
+                        uiState.activeCommentPostId?.let { postId ->
+                            viewModel.deleteComment(postId, commentId)
+                        }
+                    },
                     onDismiss = viewModel::closeComments,
-                    onUserClick = onUserClick
+                    onUserClick = onUserClick,
+                    currentUser = uiState.currentUser
                 )
             }
         }

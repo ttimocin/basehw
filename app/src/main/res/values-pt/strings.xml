@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <string name="ok">OK</string>
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="loading">Carregando...</string>
+    <string name="error_occurred">Ocorreu um erro</string>
+    <string name="back">Voltar</string>
+    <string name="edit">Editar</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Coleção</string>
+    <string name="nav_anasayfa">Início</string>
+    <string name="hello_name_template">Olá, %s</string>
+    <string name="sth_label">STH</string>
+    <string name="premium_label_upper">PREMIUM</string>
+    <string name="hot_wheels_year_template">Hot Wheels %d</string>
+    <string name="content_desc_profile">Perfil</string>
+    <string name="content_desc_clear">Limpar</string>
+    <string name="content_desc_more">Mais</string>
+    <string name="premium_coming_soon">Recursos Premium em breve</string>
+    <string name="nav_wanted">Desejados</string>
+    <string name="nav_add">Adicionar</string>
+    <string name="nav_stats">Estatísticas</string>
+    <string name="nav_folders">Pastas</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_search">Buscar</string>
+    <string name="nav_community">Comunidade</string>
+
+    <!-- Community Social Feed -->
+    <string name="community_feed">Feed</string>
+    <string name="community_following">Seguindo</string>
+    <string name="community_ranking">Ranking</string>
+    <string name="share_to_community">Compartilhar na Comunidade</string>
+    <string name="share_caption_hint">Adicione um comentário…</string>
+    <string name="share_button">Compartilhar</string>
+    <string name="like">Curtir</string>
+    <string name="comment">Comentar</string>
+    <string name="follow">Seguir</string>
+    <string name="unfollow">Deixar de seguir</string>
+    <string name="followers">Seguidores</string>
+    <string name="following_label">Seguindo</string>
+    <string name="posts_label">Postagens</string>
+    <string name="login_required_feed">Faça login para ver o feed</string>
+    <string name="no_posts_yet">Ainda não há postagens</string>
+    <string name="no_comments_yet">Ainda não há comentários</string>
+    <string name="photo_required_share">Backup de fotos necessário para compartilhar</string>
+    <string name="shared_successfully">Compartilhado com sucesso!</string>
+    <string name="write_comment">Escrever comentário…</string>
+    <string name="send">Enviar</string>
+
+    <!-- Home Components -->
+    <string name="hello_collector">Olá</string>
+    <string name="welcome_back">Bem-vindo de volta à sua garagem</string>
+    <string name="total_models">Total de Modelos: %d</string>
+    <string name="total_models_label">Total de modelos</string>
+    <string name="search_in_collection">Buscar pelo nome do modelo, código ou série...</string>
+    <string name="search_models">Buscar modelos...</string>
+    <string name="clear">Limpar</string>
+    <string name="filter">Filtro</string>
+    <string name="unknown_model">Modelo Desconhecido</string>
+    <string name="latest_addition">Última Adição</string>
+    <string name="favorite">Favorito</string>
+    <string name="hero_stat_this_month">Este mês</string>
+    <string name="this_month_short">Este mês</string>
+    <string name="hero_stat_monthly">Mensal</string>
+    <string name="hero_stat_total">Total</string>
+    <string name="manual_mode_btn">Manual</string>
+    <string name="welcome_greeting">Bem-vindo à sua coleção!</string>
+    <string name="scan">Escanear</string>
+    <string name="wanted_short">Desejado</string>
+    <string name="treasure_short">Tesouro</string>
+    <string name="recently_added">Adicionados Recentemente</string>
+    <string name="current_value">Valor atual</string>
+    <string name="see_all">Ver Todos</string>
+    <string name="view_all">Ver Todos</string>
+
+    <!-- Photo Options -->
+    <string name="add_photo_options">Opções de Upload de Foto</string>
+    <string name="take_photo">Tirar Foto</string>
+    <string name="pick_from_gallery">Escolher da Galeria</string>
+    <string name="add_from_url">Adicionar via URL</string>
+    <string name="enter_image_url">Digite a URL da imagem</string>
+    <string name="url_placeholder">https://example.com/imagem.jpg</string>
+    <string name="camera_permission_denied">Permissão da câmera negada. É necessário conceder esta permissão para tirar fotos.</string>
+    <string name="invalid_url_error">URL inválida. Por favor, insira um link de imagem válido.</string>
+    <string name="manual_model_name">Nome do Modelo</string>
+    <string name="manual_year">Ano</string>
+    <string name="manual_series">Série</string>
+    <string name="manual_series_num">Nº da Série</string>
+    <string name="manual_scale">Escala</string>
+    <string name="manual_is_premium">Veículo Premium</string>
+    <string name="manual_brand">Marca</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="advanced_filters">Filtros Avançados</string>
+    <string name="brand">Marca</string>
+    <string name="all">Todos</string>
+    <string name="year">Ano</string>
+    <string name="series">Série</string>
+    <string name="condition">Condição</string>
+    <string name="boxed">Na caixa</string>
+    <string name="opened">Aberto</string>
+    <string name="apply_filters">Aplicar Filtros</string>
+    <string name="clear_all">Limpar Tudo</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Configurações</string>
+    <string name="sync_section">Sincronização</string>
+    <string name="pull_new_models">Baixar Novos Modelos</string>
+    <string name="pull_new_models_desc">Baixar atualizações do banco de dados de modelos da nuvem.</string>
+    <string name="sync">Sincronizar</string>
+    <string name="sync_in_progress">Atualizando banco de dados. Por favor, aguarde...</string>
+    <string name="sync_success">Sucesso! Banco de dados atualizado. ✅</string>
+    <string name="sync_failed">Falha na atualização. Verifique sua conexão. ❌</string>
+    <string name="sync_cancelled">Cancelado. 🛑</string>
+    
+    <string name="app_info_section">Sobre o Aplicativo</string>
+    <string name="version">Versão</string>
+    
+    <string name="appearance_section">Aparência e Idioma</string>
+    <string name="theme">Tema</string>
+    <string name="theme_auto">Seguir Sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="language">Idioma</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">العربية</string>
+    <string name="language_es">Español</string>
+    <string name="language_pt">Português</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_uk">Українська</string>
+    
+    <string name="support_section">Suporte</string>
+    <string name="contact_us">Fale Conosco</string>
+    <string name="contact_us_desc">Envie seus comentários, sugestões ou reclamações.</string>
+
+    <!-- Legal Section -->
+    <string name="legal_section">Jurídico</string>
+    <string name="privacy_policy">Política de Privacidade</string>
+    <string name="terms_of_use">Termos de Uso</string>
+    
+    <!-- Profile Screen -->
+    <string name="login_for_cloud">Faça login para backup na nuvem</string>
+    <string name="login_desc">Mantenha sua coleção e lista de desejos seguras fazendo login com o Google.</string>
+    <string name="login_google">Fazer login com o Google</string>
+    <string name="login_signup_btn">Entrar / Cadastrar</string>
+    <string name="login_promo_text">Faça login com segurança do Google para não perder sua coleção</string>
+    <string name="collector_name">Colecionador</string>
+    <string name="firebase_cloud_ops">Operações na Nuvem Firebase</string>
+    <string name="backup_cloud">Fazer Backup na Nuvem</string>
+    <string name="restore_cloud">Restaurar da Nuvem</string>
+    <string name="logout">Sair</string>
+    <string name="delete_account">Excluir Conta</string>
+    <string name="delete_account_dialog_title">Excluir Conta e Dados</string>
+    <string name="delete_account_dialog_text">Tem certeza de que deseja excluir sua conta? Seus carros, fotos e pastas no Firebase serão excluídos PERMANENTEMENTE. Esta ação não pode ser desfeita.</string>
+    <string name="delete_account_confirm">Sim, Excluir Tudo</string>
+    <string name="delete_account_cancel">Cancelar</string>
+    <string name="reauth_required_error">Por segurança, você precisa autenticar novamente. Por favor, faça login de novo e tente novamente.</string>
+    <string name="delete_account_success">Conta e todos os dados excluídos com sucesso.</string>
+    <string name="email_label">E-mail</string>
+    <string name="password_label">Senha</string>
+    <string name="currency_setting">Escolha da Moeda</string>
+    <string name="login_btn">Entrar</string>
+    <string name="login_with_email_btn">Entrar com e-mail</string>
+    <string name="register_btn">Cadastrar</string>
+    <string name="have_account">Já tem uma conta? Entrar</string>
+    <string name="no_account">Não tem uma conta? Cadastre-se</string>
+    <string name="forgot_password">Esqueci a Senha</string>
+    <string name="password_reset_sent">E-mail de redefinição de senha enviado.</string>
+    <string name="email_verified">E-mail Verificado</string>
+    <string name="email_not_verified">E-mail Não Verificado</string>
+    <string name="send_verification_btn">Enviar E-mail de Verificação</string>
+    <string name="verification_sent">E-mail Enviado</string>
+    <string name="check_status_btn">Verificar Status</string>
+    <string name="verification_required_for_cloud">Verificação de e-mail necessária para operações na nuvem.</string>
+    <string name="verification_required_title">Verificação de E-mail Necessária</string>
+    <string name="verification_required_desc">Por favor, verifique seu e-mail para usar as funcionalidades da comunidade.</string>
+    <string name="refresh_status">Atualizar Status</string>
+    <string name="share_verification_required_title">Verificação Necessária</string>
+    <string name="share_verification_required_desc">Você precisa verificar seu e-mail antes de compartilhar.</string>
+    <string name="error_content_rejected">Seu conteúdo foi rejeitado pelas regras da comunidade: %1$s</string>
+    <string name="error_moderation_failed">Erro durante a moderação do conteúdo. Tente novamente.</string>
+    <string name="delete">Excluir</string>
+    <string name="delete_post_title">Excluir Postagem</string>
+    <string name="delete_post_msg">Tem certeza de que deseja excluir esta postagem? Não pode ser desfeito.</string>
+    <string name="delete_confirm">Excluir</string>
+    <string name="delete_cancel">Cancelar</string>
+
+    <!-- Wishlist Screen -->
+    <string name="empty_wishlist_title">Sua lista está vazia</string>
+    <string name="empty_wishlist_desc">Você ainda não adicionou nenhum modelo desejado.</string>
+
+    <!-- Add Car Screen -->
+    <string name="add_new_car">Adicionar Novo Carro</string>
+    <string name="empty_collection_title">Sua coleção está vazia!</string>
+    <string name="empty_collection_desc">Você ainda não adicionou nenhum carro.</string>
+    <string name="empty_collection_btn">Adicionar Primeiro Carro</string>
+    <string name="empty_collection_or">ou</string>
+    <string name="empty_collection_hint">Pressione o botão + abaixo</string>
+    <string name="brand_label">Marca</string>
+    <string name="search_model_hint">Buscar Modelo…</string>
+    <string name="selected">Selecionado</string>
+    <string name="no_results_for">Nenhum resultado encontrado para \"%s\".</string>
+    <string name="matching_models">Modelos Encontrados</string>
+    <string name="box_condition">Estado da Caixa</string>
+    <string name="opened_unboxed">Aberto (Sem Caixa)</string>
+    <string name="boxed_moc">Na Caixa (MOC)</string>
+    <string name="storage_location">Localização de Armazenamento</string>
+    <string name="storage_location_hint">Ex: Prateleira A-3, Vitrine…</string>
+    <string name="personal_note">Nota Pessoal</string>
+    <string name="personal_note_hint">Suas notas sobre este carro…</string>
+    <string name="add_btn">Adicionar</string>
+    <string name="error_title">Erro</string>
+    <string name="add_photo">Adicionar Foto</string>
+    <string name="change_photo">Alterar</string>
+    <string name="remove_photo">Remover</string>
+
+    <!-- Statistics Screen -->
+    <string name="statistics_title">Estatísticas</string>
+    <string name="collection_summary">Resumo da Coleção</string>
+    <string name="total_cars_stat">Total de Veículos</string>
+    <string name="no_stats_data">Ainda não há dados para estatísticas.</string>
+    <string name="brand_distribution">Distribuição por Marca</string>
+
+    <!-- Detail Screen -->
+    <string name="detail_title">Detalhe</string>
+    <string name="car_not_found">Veículo não encontrado.</string>
+    <string name="delete_car">Excluir</string>
+    <string name="delete_car_dialog_title">Excluir Carro</string>
+    <string name="delete_car_dialog_text">Este veículo será excluído permanentemente da sua coleção. Tem certeza?</string>
+
+    <string name="col_num">Nº da Coleção</string>
+    <string name="toy_num">Nº do Produto</string>
+    <string name="scale_label">Escala</string>
+    <string name="year_label">Ano</string>
+    <string name="series_label">Série</string>
+    <string name="series_num_label">Nº da Série</string>
+    <string name="condition_label">Condição</string>
+    <string name="condition_opened">Aberto</string>
+    <string name="condition_boxed">📦 Na Caixa</string>
+    <string name="storage_label">Armazenamento</string>
+    <string name="purchase_date_label">Data de Compra</string>
+    <string name="note_label">Nota</string>
+
+    <!-- New Stats & Profile -->
+    <string name="stats_purchase_price">Preço de Compra</string>
+    <string name="stats_current_value">Valor Atual</string>
+    <string name="purchase_price_label">Preço de Compra</string>
+    <string name="estimated_value_label">Valor Atual</string>
+    <string name="select_currency">Selecionar Moeda</string>
+    <string name="currency_selection_desc">Defina a moeda principal da sua coleção. Pode ser alterada depois.</string>
+    <string name="select_brand_first">Por favor, selecione primeiro uma marca</string>
+    <string name="collection_statistics_desc">Gráficos, valores, medalhas</string>
+    <string name="collection_statistics_desc_detailed">Gráficos, valores e estatísticas de medalhas</string>
+
+    <!-- Badges -->
+    <string name="earned_badges_title">🏅 Medalhas Ganhas</string>
+    <string name="earned_badges_count">%1$d / %2$d medalhas ganhas</string>
+    <string name="locked_badges_title">Medalhas Bloqueadas</string>
+
+    <string name="badge_first_car_title">Primeiro Passo</string>
+    <string name="badge_first_car_desc">Você adicionou seu primeiro veículo!</string>
+    <string name="badge_ten_cars_title">Bom Começo</string>
+    <string name="badge_ten_cars_desc">Você tem 10 veículos na coleção.</string>
+    <string name="badge_fifty_cars_title">Colecionador Real</string>
+    <string name="badge_fifty_cars_desc">Uma coleção séria de 50 veículos!</string>
+    <string name="badge_hundred_cars_title">Lenda</string>
+    <string name="badge_hundred_cars_desc">100 veículos! Uma coleção lendária.</string>
+    <string name="badge_premium_hunter_title">Caçador Premium</string>
+    <string name="badge_premium_hunter_desc">Você tem 5 ou mais Hot Wheels Premium.</string>
+    <string name="badge_matchbox_fan_title">Fã de Matchbox</string>
+    <string name="badge_matchbox_fan_desc">Você tem 10 ou mais veículos Matchbox.</string>
+    <string name="badge_multi_brand_title">Multimarca</string>
+    <string name="badge_multi_brand_desc">Você tem 3 ou mais marcas diferentes.</string>
+    <string name="badge_silver_collector_title">Colecionador de Prata</string>
+    <string name="badge_silver_collector_desc">O valor da sua coleção passou de $100!</string>
+    <string name="badge_golden_collector_title">Colecionador de Ouro</string>
+    <string name="badge_golden_collector_desc">Uma coleção enorme de $1000!</string>
+    <string name="badge_custom_maker_title">Mestre Custom</string>
+    <string name="badge_custom_maker_desc">Você tem pelo menos 10 veículos customizados (Custom).</string>
+    <string name="badge_moc_collector_title">Colecionador MOC</string>
+    <string name="badge_moc_collector_desc">80%% dos seus veículos estão na caixa original.</string>
+
+    <!-- Collections / Pastas -->
+    <string name="my_folders">Minhas Pastas</string>
+    <string name="folders_subtitle">Organize suas coleções</string>
+    <string name="create_folder">Criar Pasta</string>
+    <string name="no_folders_yet">Você ainda não criou nenhuma pasta.</string>
+    <string name="car_count">%1$d Veículos</string>
+    <string name="delete_btn">Excluir</string>
+    <string name="create_new_folder">Criar Nova Pasta</string>
+    <string name="folder_name">Nome da Pasta</string>
+    <string name="description_optional">Descrição (Opcional)</string>
+    <string name="create_btn">Criar</string>
+    <string name="cancel_btn">Cancelar</string>
+    <string name="folder_detail_title">Detalhes da Pasta</string>
+    <string name="back_btn">Voltar</string>
+    <string name="no_cars_in_folder">Ainda não há veículos nesta pasta.</string>
+    <string name="add_to_folder">Adicionar à Pasta</string>
+    <string name="manage_folders">Gerenciar Pastas</string>
+    <string name="manage_folders_count">Gerenciar Pastas (%1$d)</string>
+    <string name="no_folders_hint">Você ainda não tem pastas. Pode criar na aba Pastas.</string>
+
+    <!-- Sorting -->
+    <string name="sort_order">Ordenar por</string>
+    <string name="sort_newest">Mais Recente</string>
+    <string name="sort_oldest">Mais Antigo</string>
+    <string name="sort_brand_az">Marca (A-Z)</string>
+    <string name="sort_year_new">Ano (Novo-Antigo)</string>
+    <string name="sort_year_old">Ano (Antigo-Novo)</string>
+    <string name="sort_price_high">Preço (Alto-Baixo)</string>
+    <string name="sort_price_low">Preço (Baixo-Alto)</string>
+
+    <!-- AddCarScreen Figma UI strings -->
+    <string name="section_brand">MARCA</string>
+    <string name="section_model_details">DETALHES DO MODELO</string>
+    <string name="section_condition">CONDIÇÃO</string>
+    <string name="section_currency">MOEDA</string>
+    <string name="section_price_details">DETALHES DE PREÇO</string>
+    <string name="section_collection_info">INFORMAÇÃO DA COLEÇÃO</string>
+    <string name="condition_mint">Mint</string>
+    <string name="condition_loose">Loose</string>
+    <string name="search_model_placeholder">Buscar modelo</string>
+    <string name="price_purchase">Preço de Compra</string>
+    <string name="price_market">Valor de Mercado</string>
+    <string name="price_placeholder">0,00</string>
+    <string name="notes_placeholder">Notas pessoais, modificações ou história...</string>
+    <string name="add_to_collection_btn">Adicionar à Coleção</string>
+    <string name="reset_btn">Redefinir</string>
+
+    <!-- WishlistScreen / Search screen -->
+    <string name="search_screen_title">Explorar</string>
+    <string name="search_screen_subtitle">Novos modelos e marcas</string>
+    <string name="search_placeholder">Buscar marca ou modelo...</string>
+    <string name="collection_screen_subtitle">Busque, filtre e organize seus carros</string>
+    <string name="trend_brands">Marcas em Tendência</string>
+    <string name="wishlist_title">Minha Lista</string>
+    <string name="empty_wishlist_subtitle">Marque os modelos que você busca!</string>
+    <string name="not_specified">Não especificado</string>
+    <string name="tap_to_add_note">Toque para adicionar uma nota...</string>
+    <string name="edit_storage_title">Editar Localização</string>
+    <string name="edit_price_title">Editar Preço de Compra</string>
+    <string name="edit_value_title">Editar Valor Atual</string>
+    <string name="edit_note_title">Editar Nota</string>
+
+    <!-- Profile Screen Redesign Strings -->
+    <string name="premium_member">MEMBRO PREMIUM</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="stat_cars">Carros</string>
+    <string name="stat_value">Valor Atual</string>
+    <string name="stat_boxed">Na Caixa</string>
+    <string name="data_management">GESTÃO DE DADOS</string>
+    <string name="statistics_section">ESTATÍSTICAS</string>
+    <string name="collection_statistics">Estatísticas da Coleção</string>
+    <string name="username_label">Nome de Usuário</string>
+    <string name="username_hint">Escolha um nome de usuário único</string>
+    <string name="username_taken">Este nome de usuário já está sendo usado.</string>
+    <string name="username_invalid">O usuário deve ter 3-20 caracteres (a-z, 0-9, _).</string>
+    <string name="consent_text">Eu consinto com o backup e processamento dos meus dados.</string>
+    <string name="consent_text_with_links">Eu aceito a Política de Privacidade e os Termos de Uso.</string>
+    <string name="accept_terms_error">Por favor, aceite a Política de Privacidade e os Termos de Uso para continuar.</string>
+    <string name="password_criteria_error">A senha deve ter pelo menos 8 caracteres; incluir maiúsculas, minúsculas e números.</string>
+    <string name="select_username_title">Selecionar Usuário</string>
+    <string name="select_username_desc">Parece que é sua primeira vez. Por favor, escolha um nome de usuário:</string>
+    <string name="save_btn">Salvar</string>
+    <string name="skip_btn">Voltar</string>
+    <string name="cloud_backup_title">Backup na Nuvem</string>
+    <string name="last_synced">Última sincronização: </string>
+    <string name="restore_data_title">Restaurar Dados</string>
+    <string name="excel_export_title">Exportar Coleção</string>
+    <string name="excel_export_desc">Exportar sua coleção em diferentes formatos</string>
+    <string name="export_success">Coleção exportada com sucesso.</string>
+    <string name="settings_support_title">AJUSTES E SUPORTE</string>
+    <string name="help_support">Ajuda e Suporte</string>
+    <string name="export_format_csv">Excel (.csv)</string>
+    <string name="export_format_json">Dados (.json)</string>
+    <string name="export_format_pdf">Relatório (.pdf)</string>
+    <string name="export_options_title">Opções de Exportação</string>
+    <string name="export_share">Compartilhar</string>
+    <string name="export_download">Baixar no dispositivo</string>
+    <plurals name="cars_selected">
+        <item quantity="one">%d carro selecionado</item>
+        <item quantity="other">%d carros selecionados</item>
+    </plurals>
+    <plurals name="series_selected">
+        <item quantity="one">%d série selecionada</item>
+        <item quantity="other">%d séries selecionadas</item>
+    </plurals>
+    <string name="premium">Premium</string>
+    <string name="regular">Regular</string>
+    <string name="remember_me">Lembrar-me</string>
+    <string name="email_empty_error">Por favor, insira primeiro seu e-mail.</string>
+    <string name="support_title">Ajuda e Suporte</string>
+    <string name="support_subject_label">Assunto</string>
+    <string name="support_message_label">Mensagem</string>
+    <string name="support_username_label">Usuário</string>
+    <string name="support_submit_btn">Enviar</string>
+    <string name="support_success_msg">Seu feedback foi enviado com sucesso!</string>
+    <string name="support_error_msg">Erro durante o envio.</string>
+    <string name="support_captcha_label">Controle de Segurança</string>
+    <string name="support_captcha_error">Resposta de captcha incorreta.</string>
+    <string name="support_subject_hint">ex. Sugestão, Bug, Pergunta</string>
+    <string name="support_message_hint">Seu feedback...</string>
+    <string name="support_captcha_instruction">Resolva a operação:</string>
+    <string name="edit_username_title">Editar Usuário</string>
+    <string name="available">Disponível</string>
+    <string name="unavailable">Indisponível</string>
+    <string name="tab_models">Modelos</string>
+    <string name="tab_series">Séries</string>
+    <string name="empty_series_tracking">Nenhuma série adicionada ainda.</string>
+    <string name="table_header_model">Modelo</string>
+    <string name="table_header_no">No</string>
+    <string name="table_header_status">Status</string>
+    <string name="status_in_collection">Na Coleção</string>
+    <string name="status_wanted">Desejado</string>
+    <string name="data_source_label">Fonte</string>
+    <string name="add_to_wanted_title">Adicionar aos Desejados</string>
+    <string name="add_series_to_wanted">Adicionar Série Completa</string>
+    <string name="series_added_to_wanted">Série adicionada aos desejados</string>
+    <string name="color_label">Cor</string>
+
+    <!-- STH Screen Localization -->
+    <string name="sth_title">Super Treasure Hunts</string>
+    <string name="chase_title">Chase Cars</string>
+    <string name="th_title">Treasure Hunts</string>
+    <string name="sth_desc">Descubra os modelos Hot Wheels STH mais raros</string>
+    <string name="chase_desc">Modelos Premium Chase (Nº de Série 0/5)</string>
+    <string name="th_desc">Modelos Treasure Hunt Clássicos</string>
+    <string name="search_sth">Buscar em modelos STH</string>
+    <string name="search_chase">Buscar em modelos Chase</string>
+    <string name="search_th">Buscar em modelos TH</string>
+    <string name="no_sth_found">Nenhum veículo STH encontrado.</string>
+    <string name="no_chase_found">Nenhum veículo Chase encontrado.</string>
+    <string name="no_th_found">Nenhum veículo TH encontrado.</string>
+    <string name="case_label">CASE %s</string>
+    <string name="custom_label">Custom (Personalizado)</string>
+    <string name="original_label">Original</string>
+    <string name="custom_distribution">Distribuição Custom / Original</string>
+    <string name="main_photo">Foto Principal</string>
+    <string name="additional_photos">Fotos Adicionais</string>
+    <string name="add_additional_photo">Adicionar Foto da Galeria</string>
+    <string name="take_additional_photo">Tirar Foto com Câmera</string>
+    <string name="remove_all_photos">Remover Todas as Fotos</string>
+    <string name="add_photo_url">Adicionar Foto via URL</string>
+    <string name="delete_comment_confirm">Excluir</string>
+    <string name="delete_comment_confirmation">Tem certeza de que deseja excluir este comentário?</string>
+    
+    <!-- Community Rules Dialog -->
+    <string name="community_rules_title">Regras da Comunidade</string>
+    <string name="community_rules_intro">Bem-vindo! Antes de compartilhar, aceite nossas regras:</string>
+    <string name="rule_1">1. Seja Respeitoso: Trate os outros com respeito.</string>
+    <string name="rule_2">2. Sem Ofensas: Não use linguagem agressiva.</string>
+    <string name="rule_3">3. Conteúdo de Qualidade: Poste apenas sobre Hot Wheels e modelismo.</string>
+    <string name="rule_4">4. Segurança: Não compartilhe dados pessoais.</string>
+    <string name="accept_rules_btn">Lido e Aceito</string>
+    <string name="restore_prompt_title">Backup Encontrado</string>
+    <string name="restore_prompt_desc">Uma coleção salva foi encontrada. Deseja carregar neste dispositivo?</string>
+    <string name="restore_now">Carregar Agora</string>
+    <string name="later">Depois</string>
+    <string name="restoring_data">Carregando coleção...</string>
+</resources>

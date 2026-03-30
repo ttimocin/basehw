@@ -195,6 +195,16 @@ class FirestoreDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateRulesAccepted(accepted: Boolean): Boolean {
+        val doc = userPrefsDoc() ?: return false
+        return try {
+            doc.update("rulesAccepted", accepted).await()
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
     suspend fun deleteUserAccountData(): Result<Unit> {
         val id = userId ?: return Result.failure(Exception("Kullanıcı bulunamadı."))
         return try {

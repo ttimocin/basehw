@@ -180,7 +180,12 @@
     <string name="share_verification_required_title">Verifizierung erforderlich</string>
     <string name="share_verification_required_desc">Sie müssen Ihre E-Mail verifizieren, bevor Sie teilen können. Bitte überprüfen Sie Ihren Posteingang.</string>
     <string name="error_content_rejected">Ihr Inhalt verstößt gegen die Community-Richtlinien: %1$s</string>
-    <string name="error_moderation_failed">Bei der Inhaltsmoderation ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</string>
+    <string name="error_moderation_failed">Ein Fehler ist bei der Inhaltsmoderation aufgetreten. Bitte versuchen Sie es erneut.</string>
+    <string name="delete">Löschen</string>
+    <string name="delete_post_title">Beitrag löschen</string>
+    <string name="delete_post_msg">Sind Sie sicher, dass Sie diesen Beitrag löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="delete_confirm">Löschen</string>
+    <string name="delete_cancel">Abbrechen</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Ihre Liste ist leer</string>
@@ -427,4 +432,6 @@
     <string name="custom_label">Custom (Maßgeschneidert)</string>
     <string name="original_label">Original</string>
     <string name="custom_distribution">Custom / Original Verteilung</string>
+    <string name="delete_comment_confirm">Löschen</string>
+    <string name="delete_comment_confirmation">Sind Sie sicher, dass Sie diesen Kommentar löschen möchten?</string>
 </resources>

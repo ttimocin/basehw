@@ -10,6 +10,8 @@ data class CommunityPost(
     val carSeries: String? = null,
     val carImageUrl: String = "",
     val caption: String = "",
+    val carFeature: String? = null,
+    val authorIsAdmin: Boolean = false,
     val likeCount: Int = 0,
     val commentCount: Int = 0,
     val createdAt: Long = 0L,

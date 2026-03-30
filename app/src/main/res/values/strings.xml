@@ -133,6 +133,12 @@
     <string name="language_tr">Türkçe</string>
     <string name="language_en">English</string>
     <string name="language_de">Deutsch</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">العربية</string>
+    <string name="language_es">Español</string>
+    <string name="language_pt">Português</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_uk">Українська</string>
     
     <string name="support_section">Destek</string>
     <string name="contact_us">Bize Bildirin</string>
@@ -184,6 +190,11 @@
     <string name="share_verification_required_desc">Paylaşım yapabilmek için önce e-postanızı onaylamanız gerekmektedir. Lütfen e-postanızı kontrol edin.</string>
     <string name="error_content_rejected">İçeriğiniz topluluk kurallarına aykırı bulundu: %1$s</string>
     <string name="error_moderation_failed">İçerik denetimi sırasında bir hata oluştu. Lütfen tekrar deneyin.</string>
+    <string name="delete">Sil</string>
+    <string name="delete_post_title">Gönderiyi Sil</string>
+    <string name="delete_post_msg">Bu gönderiyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</string>
+    <string name="delete_confirm">Sil</string>
+    <string name="delete_cancel">İptal</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Listeniz Boş</string>
@@ -415,7 +426,7 @@
     <string name="data_source_label">Kaynak</string>
     <string name="add_to_wanted_title">Arananlara Ekle</string>
     <string name="add_series_to_wanted">Tüm Seriyi Arananlara Ekle</string>
-        <string name="series_added_to_wanted">Seri Arananlara Eklendi</string>
+    <string name="series_added_to_wanted">Seri Arananlara Eklendi</string>
     <string name="color_label">Renk</string>
 
     <!-- STH Screen Localization -->
@@ -441,5 +452,20 @@
     <string name="take_additional_photo">Kamerayla Ek Fotoğraf Çek</string>
     <string name="remove_all_photos">Tüm Fotoğrafları Kaldır</string>
     <string name="add_photo_url">URL ile Fotoğraf Ekle</string>
+    <string name="delete_comment_confirm">Sil</string>
+    <string name="delete_comment_confirmation">Bu yorumu silmek istediğinize emin misiniz?</string>
+    
+    <!-- Community Rules Dialog -->
+    <string name="community_rules_title">Topluluk Kuralları</string>
+    <string name="community_rules_intro">Hoş geldin! Topluluğumuzda paylaşım yapmadan önce kurallarımızı onaylaman gerekiyor:</string>
+    <string name="rule_1">1. Saygılı Ol: Diğer üyelere karşı her zaman saygılı davranın.</string>
+    <string name="rule_2">2. Küfür ve Hakaret Yasaktır: Paylaşımlarda ve yorumlarda küfür veya saldırgan dil kullanmayın.</string>
+    <string name="rule_3">3. Kaliteli İçerik: Sadece Hot Wheels ve model araçlarla ilgili paylaşımlar yapın.</string>
+    <string name="rule_4">4. Güvenlik: Kişisel verilerinizi paylaşmayın ve güvenli olmayan bağlantılar göndermeyin.</string>
+    <string name="accept_rules_btn">Okudum, Kabul Ediyorum</string>
+    <string name="restore_prompt_title">Yedek Bulundu</string>
+    <string name="restore_prompt_desc">Hesabınızda kayıtlı bir koleksiyon bulundu. Bu cihaza yüklemek ister misiniz?</string>
+    <string name="restore_now">Şimdi Yükle</string>
+    <string name="later">Sonra</string>
+    <string name="restoring_data">Koleksiyonunuz yükleniyor...</string>
 </resources>
-

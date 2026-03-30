@@ -159,15 +159,29 @@ fun HomeScreen(
                     }
                 }
 
-                // Empty state
-                if (recentlyAddedCars.itemCount == 0) {
-                    item {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(160.dp),
-                            contentAlignment = androidx.compose.ui.Alignment.Center
-                        ) {
+                // Empty state or Cloud Check state
+                item {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(160.dp),
+                        contentAlignment = androidx.compose.ui.Alignment.Center
+                    ) {
+                        if (uiState.isCloudCheckInProgress) {
+                            Column(horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.size(32.dp),
+                                    strokeWidth = 3.dp,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                                Spacer(Modifier.height(12.dp))
+                                Text(
+                                    text = stringResource(R.string.restoring_data),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        } else if (recentlyAddedCars.itemCount == 0) {
                             Text(
                                 text = stringResource(R.string.empty_collection_desc),
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -175,6 +189,57 @@ fun HomeScreen(
                                 modifier = Modifier.padding(32.dp)
                             )
                         }
+                    }
+                }
+            }
+        }
+
+        // --- Restoration Prompt Dialog ---
+        if (uiState.showRestorePrompt) {
+            AlertDialog(
+                onDismissRequest = viewModel::dismissRestorePrompt,
+                title = { Text(stringResource(R.string.restore_prompt_title)) },
+                text = { Text(stringResource(R.string.restore_prompt_desc)) },
+                confirmButton = {
+                    Button(
+                        onClick = viewModel::restoreFromCloud,
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                    ) {
+                        Text(stringResource(R.string.restore_now))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = viewModel::dismissRestorePrompt) {
+                        Text(stringResource(R.string.later))
+                    }
+                }
+            )
+        }
+
+        // --- Restoration Loading Overlay ---
+        if (uiState.isRestoring) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.scrim.copy(alpha = 0.6f))
+                    .clickable(enabled = false) {},
+                contentAlignment = androidx.compose.ui.Alignment.Center
+            ) {
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(24.dp),
+                        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                        Spacer(Modifier.height(16.dp))
+                        Text(
+                            text = stringResource(R.string.restoring_data),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold
+                        )
                     }
                 }
             }

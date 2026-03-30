@@ -32,27 +32,40 @@ class CommunityRepositoryImpl @Inject constructor(
         carYear: Int?,
         carSeries: String?,
         carImageUrl: String,
-        caption: String
+        caption: String,
+        carFeature: String?
     ): Result<String> {
         val uid = currentUid ?: return Result.failure(Exception("Not signed in"))
         
         // AI Content Moderation (Anonymized: only caption is sent)
-        val moderationResult = contentModerator.validateContent(caption).getOrNull()
-        if (moderationResult?.is_safe == false) {
-            return Result.failure(Exception(moderationResult.reason ?: "İçerik kurallara aykırı bulundu."))
+        val moderationResult = contentModerator.validateContent(caption).fold(
+            onSuccess = { result -> result },
+            onFailure = { e -> 
+                Log.e("CommunityRepo", "Moderation API failure in createPost", e)
+                return Result.failure(Exception("Topluluk kurallari denetlenemedi, lutfen tekrar deneyin."))
+            }
+        )
+
+        if (!moderationResult.is_safe) {
+            return Result.failure(Exception(moderationResult.reason ?: "Icerik kurallara aykiri bulundu."))
         }
 
         return try {
-            val username = fetchUsername(uid) ?: "User"
+            val userDoc = firestore.collection("users").document(uid).get().await()
+            val username = userDoc.getString("username") ?: "User"
+            val authorIsAdmin = userDoc.getBoolean("isAdmin") ?: false
+            
             val data = hashMapOf(
                 "authorUid" to uid,
                 "authorUsername" to username,
+                "authorIsAdmin" to authorIsAdmin,
                 "carModelName" to carModelName,
                 "carBrand" to carBrand,
                 "carYear" to carYear,
                 "carSeries" to carSeries,
                 "carImageUrl" to carImageUrl,
                 "caption" to caption,
+                "carFeature" to carFeature,
                 "likeCount" to 0,
                 "commentCount" to 0,
                 "createdAt" to com.google.firebase.Timestamp.now(),
@@ -66,22 +79,6 @@ class CommunityRepositoryImpl @Inject constructor(
                 .await()
 
             Result.success(docRef.id)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
-
-    override suspend fun deletePost(postId: String): Result<Unit> {
-        val uid = currentUid ?: return Result.failure(Exception("Not signed in"))
-        return try {
-            firestore.collection("posts").document(postId)
-                .update("isActive", false).await()
-
-            firestore.collection("users").document(uid)
-                .update("postCount", com.google.firebase.firestore.FieldValue.increment(-1))
-                .await()
-
-            Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -214,8 +211,15 @@ class CommunityRepositoryImpl @Inject constructor(
         val uid = currentUid ?: return Result.failure(Exception("Not signed in"))
         
         // AI Content Moderation (Anonymized: only text is sent)
-        val moderationResult = contentModerator.validateContent(text).getOrNull()
-        if (moderationResult?.is_safe == false) {
+        val moderationResult = contentModerator.validateContent(text).fold(
+            onSuccess = { result -> result },
+            onFailure = { e -> 
+                Log.e("CommunityRepo", "Moderation API failure in addComment", e)
+                return Result.failure(Exception("Topluluk kuralları denetlenemedi, lütfen tekrar deneyin. (AI Bağlantı Hatası)"))
+            }
+        )
+
+        if (!moderationResult.is_safe) {
             return Result.failure(Exception(moderationResult.reason ?: "İçerik kurallara aykırı bulundu."))
         }
 
@@ -357,7 +361,9 @@ class CommunityRepositoryImpl @Inject constructor(
                 photoUrl = doc.getString("photoUrl"),
                 followerCount = doc.getLong("followerCount")?.toInt() ?: 0,
                 followingCount = doc.getLong("followingCount")?.toInt() ?: 0,
-                postCount = doc.getLong("postCount")?.toInt() ?: 0
+                postCount = doc.getLong("postCount")?.toInt() ?: 0,
+                rulesAccepted = doc.getBoolean("rulesAccepted") ?: false,
+                isAdmin = doc.getBoolean("isAdmin") ?: false
             )
             Result.success(user)
         } catch (e: Exception) {
@@ -380,12 +386,68 @@ class CommunityRepositoryImpl @Inject constructor(
                     photoUrl = doc.getString("photoUrl"),
                     followerCount = doc.getLong("followerCount")?.toInt() ?: 0,
                     followingCount = doc.getLong("followingCount")?.toInt() ?: 0,
-                    postCount = doc.getLong("postCount")?.toInt() ?: 0
+                    postCount = doc.getLong("postCount")?.toInt() ?: 0,
+                    rulesAccepted = doc.getBoolean("rulesAccepted") ?: false
                 )
             }
             Result.success(users)
         } catch (e: Exception) {
             Log.e("CommunityRepo", "getTopUsers error", e)
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun deletePost(postId: String): Result<Unit> {
+        val uid = currentUid ?: return Result.failure(Exception("Not signed in"))
+        return try {
+            val postRef = firestore.collection("posts").document(postId)
+            val postDoc = postRef.get().await()
+            
+            if (!postDoc.exists()) return Result.failure(Exception("Post not found"))
+            
+            val authorUid = postDoc.getString("authorUid")
+            if (authorUid != uid) {
+                return Result.failure(Exception("You can only delete your own posts"))
+            }
+
+            val userRef = firestore.collection("users").document(uid)
+
+            firestore.runBatch { batch ->
+                batch.delete(postRef)
+                batch.update(userRef, "postCount", com.google.firebase.firestore.FieldValue.increment(-1))
+            }.await()
+            
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Log.e("CommunityRepo", "deletePost error", e)
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun deleteComment(postId: String, commentId: String): Result<Unit> {
+        return try {
+            Log.d("CommunityRepo", "Deleting comment: $commentId from post: $postId")
+            val postRef = firestore.collection("posts").document(postId)
+            val commentRef = postRef.collection("comments").document(commentId)
+
+            firestore.runBatch { batch ->
+                batch.delete(commentRef)
+                batch.update(postRef, "commentCount", com.google.firebase.firestore.FieldValue.increment(-1))
+            }.await()
+            
+            Log.d("CommunityRepo", "Comment deleted successfully")
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun acceptRules(): Result<Unit> {
+        val uid = currentUid ?: return Result.failure(Exception("Not signed in"))
+        return try {
+            firestore.collection("users").document(uid).update("rulesAccepted", true).await()
+            Result.success(Unit)
+        } catch (e: Exception) {
             Result.failure(e)
         }
     }
@@ -413,6 +475,8 @@ class CommunityRepositoryImpl @Inject constructor(
                 carSeries = doc.getString("carSeries"),
                 carImageUrl = doc.getString("carImageUrl") ?: "",
                 caption = doc.getString("caption") ?: "",
+                carFeature = doc.getString("carFeature"),
+                authorIsAdmin = doc.getBoolean("authorIsAdmin") ?: false,
                 likeCount = doc.getLong("likeCount")?.toInt() ?: 0,
                 commentCount = doc.getLong("commentCount")?.toInt() ?: 0,
                 createdAt = timestamp?.toDate()?.time ?: 0L,

@@ -26,12 +26,16 @@ import java.util.*
 fun CommentsBottomSheet(
     comments: List<CommunityComment>,
     isLoading: Boolean,
+    currentUserUid: String?,
     onAddComment: (String) -> Unit,
+    onDeleteComment: (String) -> Unit,
     onDismiss: () -> Unit,
-    onUserClick: (String) -> Unit
+    onUserClick: (String) -> Unit,
+    currentUser: com.taytek.basehw.domain.model.User? = null
 ) {
     var commentText by remember { mutableStateOf("") }
     val dateFormat = remember { SimpleDateFormat("dd MMM, HH:mm", Locale.getDefault()) }
+    var commentToDelete by remember { mutableStateOf<CommunityComment?>(null) }
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -83,10 +87,15 @@ fun CommentsBottomSheet(
                         contentPadding = PaddingValues(vertical = 8.dp)
                     ) {
                         items(comments) { comment ->
+                            val isCommentOwner = comment.authorUid == currentUser?.uid
+                            val isAdmin = currentUser?.isAdmin == true
+                            
                             CommentItem(
                                 comment = comment,
                                 dateFormat = dateFormat,
-                                onUserClick = onUserClick
+                                canDelete = isCommentOwner || isAdmin,
+                                onUserClick = onUserClick,
+                                onLongClick = { commentToDelete = comment }
                             )
                         }
                     }
@@ -132,17 +141,43 @@ fun CommentsBottomSheet(
             }
         }
     }
+
+    // Confirmation Dialog
+    if (commentToDelete != null) {
+        AlertDialog(
+            onDismissRequest = { commentToDelete = null },
+            title = { Text(stringResource(R.string.delete_comment_confirm)) },
+            text = { Text(stringResource(R.string.delete_comment_confirmation)) },
+            confirmButton = {
+                TextButton(onClick = { onDeleteComment(commentToDelete!!.id); commentToDelete = null }) {
+                    Text(stringResource(R.string.delete_comment_confirm), color = AppPrimary, fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { commentToDelete = null }) {
+                    Text(stringResource(R.string.cancel), color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+        )
+    }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun CommentItem(
     comment: CommunityComment,
     dateFormat: SimpleDateFormat,
-    onUserClick: (String) -> Unit
+    canDelete: Boolean,
+    onUserClick: (String) -> Unit,
+    onLongClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .combinedClickable(
+                onClick = { },
+                onLongClick = if (canDelete) onLongClick else null
+            )
             .padding(horizontal = 16.dp, vertical = 6.dp)
     ) {
         Box(
@@ -169,6 +204,22 @@ private fun CommentItem(
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable { onUserClick(comment.authorUid) }
                 )
+                if (comment.authorIsAdmin) {
+                    Spacer(Modifier.width(4.dp))
+                    Surface(
+                        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
+                        shape = RoundedCornerShape(4.dp)
+                    ) {
+                        Text(
+                            text = "🛡️ ADMIN",
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Black,
+                            fontSize = 7.sp,
+                            modifier = Modifier.padding(horizontal = 3.dp, vertical = 1.dp),
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
+                }
                 Spacer(Modifier.width(8.dp))
                 Text(
                     text = if (comment.createdAt > 0) dateFormat.format(Date(comment.createdAt)) else "",

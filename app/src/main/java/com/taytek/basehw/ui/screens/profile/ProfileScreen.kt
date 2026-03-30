@@ -333,6 +333,50 @@ fun ProfileScreen(
             onSharePdf = { handleShareExport(context, viewModel, coroutineScope, format = 2) }
         )
     }
+
+    if (uiState.showRestorePrompt) {
+        AlertDialog(
+            onDismissRequest = { viewModel.dismissRestorePrompt() },
+            title = { Text(stringResource(com.taytek.basehw.R.string.restore_prompt_title)) },
+            text = { Text(stringResource(com.taytek.basehw.R.string.restore_prompt_desc)) },
+            confirmButton = {
+                Button(onClick = { viewModel.restoreFromCloud() }) {
+                    Text(stringResource(com.taytek.basehw.R.string.restore_now))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { viewModel.dismissRestorePrompt() }) {
+                    Text(stringResource(com.taytek.basehw.R.string.later))
+                }
+            }
+        )
+    }
+
+    if (uiState.isCloudCheckInProgress || uiState.isLoading) {
+        Box(
+            modifier = Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.5f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ) {
+                Column(
+                    modifier = Modifier.padding(24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    CircularProgressIndicator()
+                    Text(
+                        text = if (uiState.isCloudCheckInProgress) 
+                               stringResource(com.taytek.basehw.R.string.restoring_data)
+                               else (uiState.syncStatusMsg ?: stringResource(com.taytek.basehw.R.string.loading)),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+        }
+    }
 }
 
 // --- DIALOG HELPERS ---
@@ -917,7 +961,17 @@ fun ThemeSelector(themeState: Int, viewModel: ProfileViewModel) {
 @Composable
 fun LanguageSelector(languageState: String, context: android.content.Context, viewModel: ProfileViewModel) {
     var showMenu by remember { mutableStateOf(false) }
-    val langOptions = listOf("tr" to stringResource(com.taytek.basehw.R.string.language_tr), "en" to stringResource(com.taytek.basehw.R.string.language_en), "de" to stringResource(com.taytek.basehw.R.string.language_de))
+    val langOptions = listOf(
+        "tr" to stringResource(com.taytek.basehw.R.string.language_tr),
+        "en" to stringResource(com.taytek.basehw.R.string.language_en),
+        "de" to stringResource(com.taytek.basehw.R.string.language_de),
+        "fr" to stringResource(com.taytek.basehw.R.string.language_fr),
+        "ar" to stringResource(com.taytek.basehw.R.string.language_ar),
+        "es" to stringResource(com.taytek.basehw.R.string.language_es),
+        "pt" to stringResource(com.taytek.basehw.R.string.language_pt),
+        "ru" to stringResource(com.taytek.basehw.R.string.language_ru),
+        "uk" to stringResource(com.taytek.basehw.R.string.language_uk)
+    )
     val currentLangName = langOptions.find { it.first == languageState }?.second ?: langOptions.first().second
     Box(modifier = Modifier.fillMaxWidth().clickable { showMenu = true }.padding(vertical = 18.dp, horizontal = 20.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -987,32 +1041,51 @@ fun CloudBackupItem(uiState: ProfileUiState, viewModel: ProfileViewModel, isVeri
 @Composable
 fun RestoreDataItem(uiState: ProfileUiState, viewModel: ProfileViewModel, isVerified: Boolean) {
     val isEnabled = !uiState.isLoading && isVerified
-    Row(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
+            .background(
+                if (MaterialTheme.colorScheme.background == DarkNavy)
+                    MaterialTheme.colorScheme.surface
+                else
+                    MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.2f)
+            )
             .clickable(enabled = isEnabled) { viewModel.restoreFromCloud() }
-            .padding(vertical = 16.dp, horizontal = 20.dp)
-            .alpha(if (isVerified) 1f else 0.6f),
-        verticalAlignment = Alignment.CenterVertically
+            .alpha(if (isVerified) 1f else 0.6f)
     ) {
-        Icon(Icons.Default.SettingsBackupRestore, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(24.dp))
-        Spacer(Modifier.width(16.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(text = stringResource(com.taytek.basehw.R.string.restore_data_title), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Medium)
-            if (!isVerified) {
+        Row(
+            modifier = Modifier.padding(vertical = 16.dp, horizontal = 20.dp).fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                Icons.Default.CloudDownload, 
+                null, 
+                tint = if (MaterialTheme.colorScheme.background == DarkNavy) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primary, 
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(Modifier.width(16.dp))
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = stringResource(com.taytek.basehw.R.string.verification_required_for_cloud),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.error,
-                    fontWeight = FontWeight.Medium
+                    text = stringResource(com.taytek.basehw.R.string.restore_data_title), 
+                    style = MaterialTheme.typography.bodyLarge, 
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
-            } else {
-                val subtitle = if (uiState.isLoading && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.syncSuccess && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.error != null && uiState.error!!.contains("Geri")) uiState.error else null
-                if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Geri")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+                if (!isVerified) {
+                    Text(
+                        text = stringResource(com.taytek.basehw.R.string.verification_required_for_cloud),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.error,
+                        fontWeight = FontWeight.Medium
+                    )
+                } else {
+                    val subtitle = if (uiState.isLoading && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.syncSuccess && uiState.syncStatusMsg?.contains("Geri") == true) uiState.syncStatusMsg else if (uiState.error != null && uiState.error!!.contains("Geri")) uiState.error else null
+                    if (subtitle != null) Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = if (uiState.error != null && uiState.error!!.contains("Geri")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary)
+                }
             }
+            if (isVerified) Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outline)
+            else Icon(Icons.Default.Lock, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(16.dp))
         }
-        if (isVerified) Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outline)
-        else Icon(Icons.Default.Lock, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(16.dp))
     }
 }
 

@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 import com.google.gson.GsonBuilder
+import kotlinx.coroutines.flow.first
 import java.io.OutputStream
 import android.graphics.Paint
 import android.graphics.Typeface
@@ -51,7 +52,9 @@ data class ProfileUiState(
     val consentGranted: Boolean = false,
     val isLoadingVerification: Boolean = false,
     val verificationEmailSent: Boolean = false,
-    val showExportDialog: Boolean = false
+    val showExportDialog: Boolean = false,
+    val showRestorePrompt: Boolean = false,
+    val isCloudCheckInProgress: Boolean = false
 )
 
 @HiltViewModel
@@ -201,6 +204,7 @@ class ProfileViewModel @Inject constructor(
                         showUsernamePrompt = user.username == null // Prompt if no username
                     ) 
                 }
+                checkForBackupAfterLogin()
             }.onFailure { error ->
                 _uiState.update { 
                     it.copy(isLoading = false, error = error.message ?: "Giriş başarısız.") 
@@ -215,6 +219,7 @@ class ProfileViewModel @Inject constructor(
             val result = authRepository.signInWithEmail(email, password)
             result.onSuccess { user ->
                 _uiState.update { it.copy(isLoading = false, userData = user) }
+                checkForBackupAfterLogin()
             }.onFailure { error ->
                 _uiState.update { 
                     it.copy(isLoading = false, error = error.message ?: "Giriş başarısız.") 
@@ -280,6 +285,7 @@ class ProfileViewModel @Inject constructor(
                 // Auto send verification email on sign up
                 authRepository.sendEmailVerification()
                 _uiState.update { it.copy(isLoading = false, userData = user) }
+                checkForBackupAfterLogin()
             }.onFailure { error ->
                 _uiState.update { it.copy(isLoading = false, error = error.message ?: "Kayıt başarısız.") }
             }
@@ -477,7 +483,7 @@ class ProfileViewModel @Inject constructor(
 
     fun restoreFromCloud() {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null, syncSuccess = false, syncStatusMsg = "Geri yükleniyor...") }
+            _uiState.update { it.copy(isLoading = true, error = null, syncSuccess = false, syncStatusMsg = "Geri yükleniyor...", showRestorePrompt = false) }
             try {
                 userCarRepository.syncFromFirestore()
                 _uiState.update { it.copy(isLoading = false, syncSuccess = true, syncStatusMsg = "Geri yükleme başarılı!") }
@@ -485,6 +491,26 @@ class ProfileViewModel @Inject constructor(
                 _uiState.update { it.copy(isLoading = false, error = e.localizedMessage ?: "Geri yükleme hatası.") }
             }
         }
+    }
+
+    private fun checkForBackupAfterLogin() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isCloudCheckInProgress = true) }
+            // Wait for auth to settle
+            kotlinx.coroutines.delay(2000)
+            
+            val totalCars = userCarRepository.getTotalCarsCount().first()
+            if (totalCars == 0) {
+                if (userCarRepository.hasCloudData()) {
+                    _uiState.update { it.copy(showRestorePrompt = true) }
+                }
+            }
+            _uiState.update { it.copy(isCloudCheckInProgress = false) }
+        }
+    }
+
+    fun dismissRestorePrompt() {
+        _uiState.update { it.copy(showRestorePrompt = false) }
     }
 
     fun deleteAccount() {

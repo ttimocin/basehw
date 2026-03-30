@@ -1,15 +1,20 @@
 package com.taytek.basehw.domain.util
 
-import com.google.ai.client.generativeai.GenerativeModel
-import com.google.ai.client.generativeai.type.BlockThreshold
-import com.google.ai.client.generativeai.type.HarmCategory
-import com.google.ai.client.generativeai.type.SafetySetting
-import com.google.ai.client.generativeai.type.content
 import com.taytek.basehw.BuildConfig
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
+import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
+import java.util.concurrent.TimeUnit
 
 @Serializable
 data class ModerationResult(
@@ -20,46 +25,71 @@ data class ModerationResult(
 @Singleton
 class ContentModerator @Inject constructor() {
 
-    private val json = Json { ignoreUnknownKeys = true }
-    
-    // Safety settings to block harmful content at the model level
-    private val safetySettings = listOf(
-        SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.ONLY_HIGH),
-        SafetySetting(HarmCategory.HATE_SPEECH, BlockThreshold.ONLY_HIGH),
-        SafetySetting(HarmCategory.SEXUALLY_EXPLICIT, BlockThreshold.ONLY_HIGH),
-        SafetySetting(HarmCategory.DANGEROUS_CONTENT, BlockThreshold.ONLY_HIGH)
-    )
-
-    private val model = GenerativeModel(
-        modelName = "gemini-1.5-flash",
-        apiKey = BuildConfig.GEMINI_API_KEY,
-        safetySettings = safetySettings,
-        systemInstruction = content { 
-            text("Sen bir topluluk moderatörüsün. Sana gelen metni ırkçılık, saldırganlık, küfür ve nefret söylemi açısından incele. " +
-                 "Eğer metin uygunsuzsa {\"is_safe\": false, \"reason\": \"Kısa Türkçe sebep\"} şeklinde, " +
-                 "uygunsa {\"is_safe\": true} şeklinde SADECE geçerli bir JSON olarak yanıt ver. Başka açıklama yapma.")
-        }
-    )
-
-    suspend fun validateContent(text: String): Result<ModerationResult> {
-        if (text.isBlank()) return Result.success(ModerationResult(true))
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(15, TimeUnit.SECONDS)
+        .build()
         
-        return try {
-            // Anonymized: only the text is sent
-            val response = model.generateContent(text)
-            val responseText = response.text?.trim() ?: return Result.failure(Exception("AI'dan boş cevap geldi."))
+    private val json = Json { ignoreUnknownKeys = true }
+
+    suspend fun validateContent(text: String): Result<ModerationResult> = withContext(Dispatchers.IO) {
+        if (text.isBlank()) return@withContext Result.success(ModerationResult(true))
+
+        val apiKey = BuildConfig.GROQ_API_KEY
+        val url = "https://api.groq.com/openai/v1/chat/completions"
+        
+        try {
+            // JSON'u manuel String olarak değil, JSONObject ile güvenli oluşturuyoruz
+            val root = JSONObject()
+            root.put("model", "llama-3.3-70b-versatile")
             
-            // Extract JSON if AI surrounds it with markdown code blocks
-            val cleanJson = responseText.removePrefix("```json").removeSuffix("```").trim()
-            val result = json.decodeFromString<ModerationResult>(cleanJson)
-            Result.success(result)
-        } catch (e: Exception) {
-            // If AI blocks it due to safety filters, it throws an exception or returns null text
-            if (e.message?.contains("SAFETY") == true) {
-                Result.success(ModerationResult(false, "İçerik güvenlik filtrelerine takıldı (saldırganlık veya nefret söylemi)."))
-            } else {
-                Result.failure(e)
+            val messages = JSONArray()
+            
+            // Sistem mesajı (Talimatlar)
+            val systemMsg = JSONObject()
+            systemMsg.put("role", "system")
+            systemMsg.put("content", "Sen bir içerik moderatörüsün. Metni küfür ve nefret söylemi açısından incele. Yanıtı SADECE şu formatta bir JSON objesi olarak ver: {\"is_safe\": true} veya {\"is_safe\": false, \"reason\": \"...\"}")
+            messages.put(systemMsg)
+            
+            // Kullanıcı mesajı (İncelenecek metin)
+            val userMsg = JSONObject()
+            userMsg.put("role", "user")
+            userMsg.put("content", text)
+            messages.put(userMsg)
+            
+            root.put("messages", messages)
+            
+            // JSON Modunu zorunlu kılıyoruz
+            val responseFormat = JSONObject()
+            responseFormat.put("type", "json_object")
+            root.put("response_format", responseFormat)
+            root.put("temperature", 0)
+
+            val requestBody = root.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
+            
+            val request = Request.Builder()
+                .url(url)
+                .addHeader("Authorization", "Bearer $GROQ_API_KEY")
+                .post(requestBody)
+                .build()
+
+            val response = client.newCall(request).execute()
+            val responseBody = response.body?.string() ?: ""
+
+            if (!response.isSuccessful) {
+                return@withContext Result.failure(Exception("Groq Hatası: ${response.code} - $responseBody"))
             }
+
+            // Gelen yanıtın içindeki mesajı çekiyoruz
+            val responseJson = JSONObject(responseBody)
+            val choices = responseJson.getJSONArray("choices")
+            val aiContent = choices.getJSONObject(0).getJSONObject("message").getString("content")
+            
+            val result = json.decodeFromString<ModerationResult>(aiContent)
+            Result.success(result)
+
+        } catch (e: Exception) {
+            Result.failure(Exception("Hata: ${e.localizedMessage}"))
         }
     }
 }

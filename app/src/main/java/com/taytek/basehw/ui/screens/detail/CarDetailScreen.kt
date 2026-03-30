@@ -1,5 +1,7 @@
 package com.taytek.basehw.ui.screens.detail
 
+import com.taytek.basehw.ui.screens.community.CommunityRulesDialog
+
 import com.taytek.basehw.R
 import androidx.compose.ui.res.stringResource
 import com.taytek.basehw.ui.theme.DarkNavy
@@ -141,6 +143,13 @@ fun CarDetailScreen(
                     Text(stringResource(R.string.ok))
                 }
             }
+        )
+    }
+
+    if (uiState.showRulesDialog) {
+        CommunityRulesDialog(
+            onAccept = viewModel::acceptRules,
+            onDismiss = viewModel::dismissRulesDialog
         )
     }
 

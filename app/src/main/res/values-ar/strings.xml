@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Meta -->
+    <string name="app_name">BaseHW</string>
+
+    <!-- General -->
+    <string name="ok">موافق</string>
+    <string name="save">حفظ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="loading">جاري التحميل...</string>
+    <string name="error_occurred">حدث خطأ</string>
+    <string name="back">رجوع</string>
+    <string name="edit">تعديل</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">المجموعة</string>
+    <string name="nav_anasayfa">الرئيسية</string>
+    <string name="hello_name_template">مرحباً، %s</string>
+    <string name="sth_label">STH</string>
+    <string name="premium_label_upper">بريميوم</string>
+    <string name="hot_wheels_year_template">هوت ويلز %d</string>
+    <string name="content_desc_profile">الملف الشخصي</string>
+    <string name="content_desc_clear">مسح</string>
+    <string name="content_desc_more">المزيد</string>
+    <string name="premium_coming_soon">ميزات البريميوم قريباً</string>
+    <string name="nav_wanted">المطلوب</string>
+    <string name="nav_add">إضافة</string>
+    <string name="nav_stats">الإحصائيات</string>
+    <string name="nav_folders">المجلدات</string>
+    <string name="nav_profile">الملف الشخصي</string>
+    <string name="nav_search">المطلوب</string>
+    <string name="nav_community">المجتمع</string>
+
+    <!-- Community Social Feed -->
+    <string name="community_feed">آخر الأخبار</string>
+    <string name="community_following">المتابعات</string>
+    <string name="community_ranking">التصنيف</string>
+    <string name="share_to_community">مشاركة مع المجتمع</string>
+    <string name="share_caption_hint">أضف تعليقاً…</string>
+    <string name="share_button">مشاركة</string>
+    <string name="like">إعجاب</string>
+    <string name="comment">تعليق</string>
+    <string name="follow">متابعة</string>
+    <string name="unfollow">إلغاء المتابعة</string>
+    <string name="followers">متابعين</string>
+    <string name="following_label">متابعة</string>
+    <string name="posts_label">منشورات</string>
+    <string name="login_required_feed">سجل الدخول لرؤية المنشورات</string>
+    <string name="no_posts_yet">لا توجد منشورات بعد</string>
+    <string name="no_comments_yet">لا توجد تعليقات بعد</string>
+    <string name="photo_required_share">مطلوب نسخة احتياطية للصور للمشاركة</string>
+    <string name="shared_successfully">تمت المشاركة بنجاح!</string>
+    <string name="write_comment">اكتب تعليقاً…</string>
+    <string name="send">إرسال</string>
+
+    <!-- Home Components -->
+    <string name="hello_collector">مرحباً</string>
+    <string name="welcome_back">مرحباً بك مجدداً في مرآبك</string>
+    <string name="total_models">إجمالي الموديلات: %d</string>
+    <string name="total_models_label">إجمالي الموديلات</string>
+    <string name="search_in_collection">البحث بالاسم أو الكود أو السلسلة...</string>
+    <string name="search_models">ابحث عن الموديلات...</string>
+    <string name="clear">مسح</string>
+    <string name="filter">تصفية</string>
+    <string name="unknown_model">موديل غير معروف</string>
+    <string name="latest_addition">آخر إضافة</string>
+    <string name="favorite">المفضلة</string>
+    <string name="hero_stat_this_month">هذا الشهر</string>
+    <string name="this_month_short">هذا الشهر</string>
+    <string name="hero_stat_monthly">شهري</string>
+    <string name="hero_stat_total">الإجمالي</string>
+    <string name="manual_mode_btn">يدوي</string>
+    <string name="scan">مسح ضوئي</string>
+    <string name="wanted_short">مطلوب</string>
+    <string name="treasure_short">كنز</string>
+    <string name="recently_added">أضيفت مؤخراً</string>
+    <string name="current_value">القيمة الحالية</string>
+    <string name="view_all">عرض الكل</string>
+
+    <!-- Photo Options -->
+    <string name="add_photo_options">خيارات تحميل الصور</string>
+    <string name="take_photo">التقاط صورة</string>
+    <string name="pick_from_gallery">اختر من المعرض</string>
+    <string name="add_from_url">إضافة رابط URL</string>
+    <string name="enter_image_url">أدخل رابط الصورة</string>
+    <string name="url_placeholder">https://example.com/image.jpg</string>
+    <string name="camera_permission_denied">تم رفض إذن الكاميرا. تحتاج لمنح هذا الإذن لالتقاط الصور.</string>
+    <string name="invalid_url_error">رابط غير صالح. يرجى إدخال رابط صورة صحيح.</string>
+    <string name="manual_model_name">اسم الموديل</string>
+    <string name="manual_year">السنة</string>
+    <string name="manual_series">السلسلة</string>
+    <string name="manual_series_num">رقم السلسلة</string>
+    <string name="manual_scale">المقياس</string>
+    <string name="manual_is_premium">سيارة بريميوم</string>
+    <string name="manual_brand">العلامة التجارية</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="advanced_filters">فلاتر متقدمة</string>
+    <string name="brand">العلامة التجارية</string>
+    <string name="all">الكل</string>
+    <string name="year">السنة</string>
+    <string name="series">السلسلة</string>
+    <string name="condition">الحالة</string>
+    <string name="boxed">في العلبة</string>
+    <string name="opened">مفتوح</string>
+    <string name="apply_filters">تطبيق الفلاتر</string>
+    <string name="clear_all">مسح الكل</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="sync_section">المزامنة</string>
+    <string name="pull_new_models">جلب موديلات جديدة</string>
+    <string name="pull_new_models_desc">تنزيل آخر التعديلات على قاعدة البيانات من السحابة.</string>
+    <string name="sync">مزامنة الآن</string>
+    <string name="sync_in_progress">جاري تحديث قاعدة البيانات. يرجى الانتظار...</string>
+    <string name="sync_success">نجاح! تم تحديث قاعدة البيانات. ✅</string>
+    <string name="sync_failed">فشل التحديث. يرجى التحقق من اتصال الإنترنت. ❌</string>
+    <string name="sync_cancelled">تم الإلغاء. 🛑</string>
+    
+    <string name="app_info_section">عن التطبيق</string>
+    <string name="version">الإصدار</string>
+    
+    <string name="appearance_section">المظهر واللغة</string>
+    <string name="theme">المظهر</string>
+    <string name="theme_auto">النظام</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="language">اللغة</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">العربية</string>
+    
+    <string name="support_section">الدعم</string>
+    <string name="contact_us">اتصل بنا</string>
+    <string name="contact_us_desc">أرسل لنا ملاحظاتك أو اقتراحاتك أو شكواك.</string>
+
+    <!-- Legal Section -->
+    <string name="legal_section">قانوني</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="terms_of_use">شروط الاستخدام</string>
+    
+    <!-- Profile Screen -->
+    <string name="login_for_cloud">تسجيل الدخول للنسخ الاحتياطي السحابي</string>
+    <string name="login_desc">سجل الدخول باستخدام جوجل للحفاظ على مجموعتك وقائمة رغباتك آمنة في جميع الأوقات.</string>
+    <string name="login_google">تسجيل الدخول باستخدام جوجل</string>
+    <string name="login_signup_btn">تسجيل الدخول / الاشتراك</string>
+    <string name="login_promo_text">سجل الدخول بأمان باستخدام جوجل لتجنب فقدان بياناتك</string>
+    <string name="collector_name">جامع</string>
+    <string name="firebase_cloud_ops">عمليات السحابة فايربيز</string>
+    <string name="backup_cloud">نسخ جميع البيانات احتياطياً للسحابة</string>
+    <string name="restore_cloud">استعادة من السحابة إلى الجهاز</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="delete_account">حذف حسابي</string>
+    <string name="delete_account_dialog_title">حذف الحساب والبيانات</string>
+    <string name="delete_account_dialog_text">هل أنت متأكد أنك تريد حذف حسابك؟ سيؤدي هذا إلى حذف جميع سياراتك وصورك ومجلداتك على فايربيز بشكل نهائي. هذا الإجراء لا يمكن التراجع عنه.</string>
+    <string name="delete_account_confirm">نعم، احذف كل شيء</string>
+    <string name="delete_account_cancel">إلغاء</string>
+    <string name="reauth_required_error">لأسباب أمنية، تحتاج لتحديث جلستك. يرجى تسجيل الدخول مرة أخرى وإعادة المحاولة.</string>
+    <string name="delete_account_success">تم حذف الحساب وجميع البيانات بنجاح.</string>
+    <string name="email_label">البريد الإلكتروني</string>
+    <string name="password_label">كلمة المرور</string>
+    <string name="login_btn">تسجيل الدخول</string>
+    <string name="login_with_email_btn">تسجيل الدخول بالبريد الإلكتروني</string>
+    <string name="register_btn">تسجيل</string>
+    <string name="have_account">لديك حساب بالفعل؟ سجل دخولك</string>
+    <string name="no_account">ليس لديك حساب؟ سجل الآن</string>
+    <string name="forgot_password">نسيت كلمة المرور؟</string>
+    <string name="password_reset_sent">تم إرسال بريد إعادة تعيين كلمة المرور. يرجى التحقق من بريدك.</string>
+    <string name="email_verified">تم تأكيد البريد</string>
+    <string name="email_not_verified">لم يتم تأكيد البريد</string>
+    <string name="send_verification_btn">إرسال بريد التأكيد</string>
+    <string name="verification_sent">تم إرسال البريد</string>
+    <string name="check_status_btn">التحقق من الحالة</string>
+    <string name="verification_required_for_cloud">مطلوب تأكيد البريد الإلكتروني لعمليات السحابة.</string>
+    <string name="verification_required_title">مطلوب تأكيد البريد الإلكتروني</string>
+    <string name="verification_required_desc">يرجى تأكيد بريدك الإلكتروني لاستخدام ميزات المجتمع. تم إرسال رابط التأكيد.</string>
+    <string name="refresh_status">تحديث الحالة</string>
+    <string name="share_verification_required_title">مطلوب تأكيد</string>
+    <string name="share_verification_required_desc">يجب تأكيد بريدك قبل المشاركة. يرجى التحقق من بريدك.</string>
+    <string name="error_content_rejected">تم رفض محتواك لمخالفته قواعد المجتمع: %1$s</string>
+    <string name="error_moderation_failed">حدث خطأ أثناء فحص المحتوى. يرجى المحاولة مرة أخرى.</string>
+    <string name="delete">حذف</string>
+    <string name="delete_post_title">حذف المنشور</string>
+    <string name="delete_post_msg">هل أنت متأكد أنك تريد حذف هذا المنشور؟ لا يمكن التراجع عن هذا الإجراء.</string>
+    <string name="delete_confirm">حذف</string>
+    <string name="delete_cancel">إلغاء</string>
+
+    <!-- Wishlist Screen -->
+    <string name="empty_wishlist_title">قائمتك فارغة</string>
+    <string name="empty_wishlist_desc">لم تضف أي موديل مطلوب بعد.\nحدد الموديلات التي تريد إضافتها!</string>
+
+    <!-- Add Car Screen -->
+    <string name="add_new_car">إضافة سيارة جديدة</string>
+    <string name="empty_collection_title">مجموعتك فارغة!</string>
+    <string name="empty_collection_desc">لم تضف أي سيارات بعد.\nابدأ ببناء مجموعتك البريميوم!</string>
+    <string name="empty_collection_btn">أضف أول سيارة لك</string>
+    <string name="empty_collection_or">أو</string>
+    <string name="empty_collection_hint">اضغط على زر + أدناه</string>
+    <string name="brand_label">العلامة التجارية</string>
+    <string name="search_model_hint">ابحث عن موديل…</string>
+    <string name="selected">محدد</string>
+    <string name="no_results_for">لا توجد نتائج لـ "%s".</string>
+    <string name="matching_models">الموديلات المطابقة</string>
+    <string name="box_condition">حالة العلبة</string>
+    <string name="opened_unboxed">مفتوح (بدون علبة)</string>
+    <string name="boxed_moc">في العلبة (MOC)</string>
+    <string name="storage_location">مكان التخزين</string>
+    <string name="storage_location_hint">مثلاً: الرف A-3، في العرض…</string>
+    <string name="personal_note">ملاحظة شخصية</string>
+    <string name="personal_note_hint">ملاحظاتك حول هذه السيارة…</string>
+    <string name="add_btn">إضافة</string>
+    <string name="error_title">خطأ</string>
+    <string name="add_photo">إضافة صورة</string>
+    <string name="change_photo">تغيير</string>
+    <string name="remove_photo">إزالة</string>
+
+    <!-- Statistics Screen -->
+    <string name="statistics_title">الإحصائيات</string>
+    <string name="collection_summary">ملخص المجموعة</string>
+    <string name="total_cars_stat">إجمالي السيارات</string>
+    <string name="no_stats_data">لا توجد بيانات متاحة للإحصائيات بعد.</string>
+    <string name="brand_distribution">توزيع العلامات التجارية</string>
+
+    <!-- Detail Screen -->
+    <string name="detail_title">التفاصيل</string>
+    <string name="car_not_found">السيارة غير موجودة.</string>
+    <string name="delete_car">حذف</string>
+    <string name="delete_car_dialog_title">حذف السيارة</string>
+    <string name="delete_car_dialog_text">سيتم حذف هذه السيارة نهائياً من مجموعتك. هل أنت متأكد؟</string>
+
+    <string name="col_num">رقم المجموعة</string>
+    <string name="toy_num">رقم اللعبة</string>
+    <string name="scale_label">المقياس</string>
+    <string name="year_label">السنة</string>
+    <string name="series_label">السلسلة</string>
+    <string name="series_num_label">رقم السلسلة</string>
+    <string name="condition_label">الحالة</string>
+    <string name="condition_opened">مفتوح</string>
+    <string name="condition_boxed">📦 في العلبة</string>
+    <string name="storage_label">التخزين</string>
+    <string name="purchase_date_label">تاريخ الشراء</string>
+    <string name="note_label">ملاحظة</string>
+
+    <!-- New Stats & Profile -->
+    <string name="stats_purchase_price">سعر الشراء</string>
+    <string name="stats_current_value">القيمة الحالية</string>
+    <string name="purchase_price_label">سعر الشراء</string>
+    <string name="estimated_value_label">القيمة الحالية</string>
+    <string name="select_currency">اختر العملة</string>
+    <string name="currency_selection_desc">حدد العملة العالمية لمجموعتك. لا يمكن تغيير هذا الخيار لاحقاً.</string>
+    <string name="select_brand_first">يرجى اختيار علامة تجارية أولاً</string>
+    <string name="collection_statistics_desc">رسوم بيانية، قيم، أوسمة</string>
+    <string name="collection_statistics_desc_detailed">رسوم بيانية وقيم وإحصائيات الأوسمة</string>
+
+    <!-- Badges -->
+    <string name="earned_badges_title">🏅 الأوسمة المكتسبة</string>
+    <string name="earned_badges_count">تم كسب %1$d / %2$d أوسمة</string>
+    <string name="locked_badges_title">الأوسمة المقفلة</string>
+
+    <string name="badge_first_car_title">الخطوة الأولى</string>
+    <string name="badge_first_car_desc">لقد أضفت أول سيارة لمجموعتك!</string>
+    <string name="badge_ten_cars_title">بداية قوية</string>
+    <string name="badge_ten_cars_desc">لديك مجموعة من 10 سيارات.</string>
+    <string name="badge_fifty_cars_title">جامع حقيقي</string>
+    <string name="badge_fifty_cars_desc">مجموعة جادة تضم 50 سيارة!</string>
+    <string name="badge_hundred_cars_title">أسطورة</string>
+    <string name="badge_hundred_cars_desc">100 سيارة! مجموعة أسطورية.</string>
+    <string name="badge_premium_hunter_title">صائد البريميوم</string>
+    <string name="badge_premium_hunter_desc">لديك 5 سيارات هوت ويلز بريميوم أو أكثر.</string>
+    <string name="badge_matchbox_fan_title">محبي ماتشبوكس</string>
+    <string name="badge_matchbox_fan_desc">لديك 10 سيارات ماتشبوكس أو أكثر.</string>
+    <string name="badge_multi_brand_title">متعدد العلامات</string>
+    <string name="badge_multi_brand_desc">تمتلك سيارات من 3 علامات تجارية مختلفة أو أكثر.</string>
+    <string name="badge_silver_collector_title">الجامع الفضي</string>
+    <string name="badge_silver_collector_desc">تجاوزت قيمة مجموعتك حاجز الـ 100 دولار!</string>
+    <string name="badge_golden_collector_title">الجامع الذهبي</string>
+    <string name="badge_golden_collector_desc">مجموعة ضخمة تزيد قيمتها عن 1000 دولار!</string>
+    <string name="badge_custom_maker_title">صانع الكستم</string>
+    <string name="badge_custom_maker_desc">أضفت ما لا يقل عن 10 سيارات معدلة (كستم) للمجموعة.</string>
+    <string name="badge_moc_collector_title">جامع MOC</string>
+    <string name="badge_moc_collector_desc">80%% من سياراتك في علبها.</string>
+
+    <!-- Collections / Folders -->
+    <string name="my_folders">مجلداتي</string>
+    <string name="folders_subtitle">نظم مجموعاتك</string>
+    <string name="create_folder">إنشاء مجلد</string>
+    <string name="no_folders_yet">لم تقم بإنشاء أي مجلد بعد.</string>
+    <string name="car_count">%1$d سيارات</string>
+    <string name="delete_btn">حذف</string>
+    <string name="create_new_folder">إنشاء مجلد جديد</string>
+    <string name="folder_name">اسم المجلد</string>
+    <string name="description_optional">الوصف (اختياري)</string>
+    <string name="create_btn">إنشاء</string>
+    <string name="cancel_btn">إلغاء</string>
+    <string name="folder_detail_title">تفاصيل المجلد</string>
+    <string name="back_btn">رجوع</string>
+    <string name="no_cars_in_folder">لا توجد سيارات في هذا المجلد بعد.</string>
+    <string name="add_to_folder">إضافة للمجلد</string>
+    <string name="manage_folders">إدارة المجلدات</string>
+    <string name="manage_folders_count">إدارة المجلدات (%1$d)</string>
+    <string name="no_folders_hint">ليس لديك أي مجلدات بعد. يمكنك إنشاء واحد من تبويب المجلدات.</string>
+
+    <!-- Sorting -->
+    <string name="sort_order">ترتيب الفرز</string>
+    <string name="sort_newest">الأحدث أولاً</string>
+    <string name="sort_oldest">الأقدم أولاً</string>
+    <string name="sort_brand_az">العلامة التجارية (A-Z)</string>
+    <string name="sort_year_new">السنة (جديد-قديم)</string>
+    <string name="sort_year_old">السنة (قديم-جديد)</string>
+    <string name="sort_price_high">السعر (عالي-منخفض)</string>
+    <string name="sort_price_low">السعر (منخفض-عالي)</string>
+
+    <!-- AddCarScreen Figma UI strings -->
+    <string name="section_brand">العلامة التجارية</string>
+    <string name="section_model_details">تفاصيل الموديل</string>
+    <string name="section_condition">الحالة</string>
+    <string name="section_currency">العملة</string>
+    <string name="section_price_details">تفاصيل السعر</string>
+    <string name="section_collection_info">معلومات المجموعة</string>
+    <string name="condition_mint">مينت</string>
+    <string name="condition_loose">لوس</string>
+    <string name="search_model_placeholder">ابحث عن موديل</string>
+    <string name="price_purchase">سعر الشراء</string>
+    <string name="price_market">القيمة السوقية</string>
+    <string name="price_placeholder">0.00</string>
+    <string name="notes_placeholder">ملاحظات شخصية، تعديلات، أو تاريخ...</string>
+    <string name="add_to_collection_btn">إضافة للمجموعة</string>
+    <string name="reset_btn">إعادة تعيين</string>
+
+    <!-- WishlistScreen / Search screen -->
+    <string name="search_screen_title">المطلوب</string>
+    <string name="search_screen_subtitle">موديلات وعلامات تجارية جديدة</string>
+    <string name="search_placeholder">ابحث عن علامة تجارية أو موديل...</string>
+    <string name="collection_screen_subtitle">ابحث، فلتر وادر سياراتك</string>
+    <string name="trend_brands">علامات تجارية رائجة</string>
+    <string name="wishlist_title">قائمة رغباتي</string>
+    <string name="empty_wishlist_subtitle">حدد الموديلات التي تبحث عنها!</string>
+    <string name="not_specified">غير محدد</string>
+    <string name="tap_to_add_note">اضغط لإضافة ملاحظة...</string>
+    <string name="edit_storage_title">تعديل مكان التخزين</string>
+    <string name="edit_price_title">تعديل سعر الشراء</string>
+    <string name="edit_value_title">تعديل القيمة الحالية</string>
+    <string name="edit_note_title">تعديل الملاحظة</string>
+
+    <!-- Profile Screen Redesign Strings -->
+    <string name="premium_member">عضو بريميوم</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="stat_cars">سيارات</string>
+    <string name="stat_value">القيمة الحالية</string>
+    <string name="stat_boxed">في العلبة</string>
+    <string name="data_management">إدارة البيانات</string>
+    <string name="statistics_section">الإحصائيات</string>
+    <string name="collection_statistics">إحصائيات المجموعة</string>
+    <string name="username_label">اسم المستخدم</string>
+    <string name="username_hint">اختر اسم مستخدم فريد</string>
+    <string name="username_taken">اسم المستخدم هذا مأخوذ بالفعل.</string>
+    <string name="username_invalid">اسم المستخدم يجب أن يكون 3-20 حرفاً (a-z، 0-9، _).</string>
+    <string name="consent_text">أوافق على النسخ الاحتياطي ومعالجة بياناتي.</string>
+    <string name="consent_text_with_links">أوافق على سياسة الخصوصية وشروط الاستخدام.</string>
+    <string name="accept_terms_error">يرجى الموافقة على سياسة الخصوصية وشروط الاستخدام للمتابعة.</string>
+    <string name="password_criteria_error">كلمة المرور يجب أن تكون 8 أحرف على الأقل، تشمل حرفاً كبيراً وصغيراً ورقماً.</string>
+    <string name="select_username_title">اختر اسم مستخدم</string>
+    <string name="select_username_desc">يبدو أنك هنا للمرة الأولى. يرجى اختيار اسم مستخدم:</string>
+    <string name="save_btn">حفظ</string>
+    <string name="skip_btn">تخطي</string>
+    <string name="cloud_backup_title">النسخ الاحتياطي السحابي</string>
+    <string name="last_synced">آخر مزامنة: </string>
+    <string name="restore_data_title">استعادة البيانات</string>
+    <string name="excel_export_title">تصدير المجموعة</string>
+    <string name="excel_export_desc">صدر مجموعتك بتنسيقات مختلفة</string>
+    <string name="export_success">تم تصدير المجموعة بنجاح.</string>
+    <string name="settings_support_title">الإعدادات والدعم</string>
+    <string name="help_support">المساعدة والدعم</string>
+    <string name="export_format_csv">إكسل (.csv)</string>
+    <string name="export_format_json">بيانات (.json)</string>
+    <string name="export_format_pdf">تقرير (.pdf)</string>
+    <string name="export_options_title">خيارات التصدير</string>
+    <string name="export_share">مشاركة</string>
+    <string name="export_download">تحميل للجهاز</string>
+    <plurals name="cars_selected">
+        <item quantity="one">تم اختيار %d سيارة</item>
+        <item quantity="other">تم اختيار %d سيارات</item>
+    </plurals>
+    <string name="premium">بريميوم</string>
+    <string name="regular">عادي</string>
+    <string name="remember_me">تذكرني</string>
+    <string name="email_empty_error">يرجى إدخال بريدك الإلكتروني أولاً.</string>
+    <string name="support_title">المساعدة والدعم</string>
+    <string name="support_subject_label">الموضوع</string>
+    <string name="support_message_label">الرسالة</string>
+    <string name="support_username_label">اسم المستخدم</string>
+    <string name="support_submit_btn">إرسال</string>
+    <string name="support_success_msg">تم إرسال الملاحظات بنجاح!</string>
+    <string name="support_error_msg">خطأ أثناء الإرسال.</string>
+    <string name="support_captcha_label">اختبار الأمان</string>
+    <string name="support_captcha_error">إجابة الاختبار خاطئة.</string>
+    <string name="support_subject_hint">مثلاً: اقتراح، خطأ، سؤال</string>
+    <string name="support_message_hint">ملاحظاتك...</string>
+    <string name="support_captcha_instruction">حل مسألة الرياضيات:</string>
+    <string name="edit_username_title">تعديل اسم المستخدم</string>
+    <string name="available">متاح</string>
+    <string name="unavailable">غير متاح</string>
+    <string name="currency_setting">اختيار العملة</string>
+    <string name="tab_models">الموديلات</string>
+    <string name="tab_series">السلاسل</string>
+    <string name="empty_series_tracking">لم يتم تتبع أي سلسلة بعد.</string>
+    <string name="table_header_model">الموديل</string>
+    <string name="table_header_no">الرقم</string>
+    <string name="table_header_status">الحالة</string>
+    <string name="status_in_collection">في المجموعة</string>
+    <string name="status_wanted">مطلوب</string>
+    <string name="data_source_label">المصدر</string>
+    <string name="add_to_wanted_title">إضافة للمطلوب</string>
+    <string name="add_series_to_wanted">إضافة السلسلة كاملة للمطلوب</string>
+
+    <!-- STH Screen Localization -->
+    <string name="sth_title">Super Treasure Hunts</string>
+    <string name="chase_title">Chase Cars</string>
+    <string name="th_title">Treasure Hunts</string>
+    <string name="sth_desc">اكتشف أندر موديلات هوت ويلز STH</string>
+    <string name="chase_desc">موديلات بريميوم Chase (رقم السلسلة 0/5)</string>
+    <string name="th_desc">موديلات Treasure Hunt الكلاسيكية</string>
+    <string name="search_sth">البحث في موديلات STH</string>
+    <string name="search_chase">البحث في موديلات Chase</string>
+    <string name="search_th">البحث في موديلات TH</string>
+    <string name="no_sth_found">لم يتم العثور على سيارات STH.</string>
+    <string name="no_chase_found">لم يتم العثور على سيارات Chase.</string>
+    <string name="no_th_found">لم يتم العثور على سيارات TH.</string>
+    <string name="case_label">CASE %s</string>
+    <string name="custom_label">كستم (معدل)</string>
+    <string name="original_label">أصلي</string>
+    <string name="custom_distribution">توزيع الكستم / الأصلي</string>
+    <string name="delete_comment_confirm">حذف</string>
+    <string name="delete_comment_confirmation">هل أنت متأكد أنك تريد حذف هذا التعليق؟</string>
+    <string name="restore_prompt_title">تم العثور على نسخة احتياطية</string>
+    <string name="restore_prompt_desc">وجدنا مجموعة موجودة مسبقاً في حسابك. هل تود استعادتها لهذا الجهاز؟</string>
+    <string name="restore_now">استعادة الآن</string>
+    <string name="later">لاحقاً</string>
+    <string name="restoring_data">جاري استعادة مجموعتك...</string>
+</resources>

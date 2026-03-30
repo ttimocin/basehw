@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General -->
+    <string name="ok">ОК</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="loading">Загрузка...</string>
+    <string name="error_occurred">Произошла ошибка</string>
+    <string name="back">Назад</string>
+    <string name="edit">Изменить</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">Коллекция</string>
+    <string name="nav_anasayfa">Главная</string>
+    <string name="hello_name_template">Привет, %s</string>
+    <string name="sth_label">STH</string>
+    <string name="premium_label_upper">PREMIUM</string>
+    <string name="hot_wheels_year_template">Hot Wheels %d</string>
+    <string name="content_desc_profile">Профиль</string>
+    <string name="content_desc_clear">Очистить</string>
+    <string name="content_desc_more">Еще</string>
+    <string name="premium_coming_soon">Премиум-функции скоро появятся</string>
+    <string name="nav_wanted">Хотелки</string>
+    <string name="nav_add">Добавить</string>
+    <string name="nav_stats">Статистика</string>
+    <string name="nav_folders">Папки</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="nav_search">Поиск</string>
+    <string name="nav_community">Сообщество</string>
+
+    <!-- Community Social Feed -->
+    <string name="community_feed">Лента</string>
+    <string name="community_following">Подписки</string>
+    <string name="community_ranking">Рейтинг</string>
+    <string name="share_to_community">Поделиться в сообществе</string>
+    <string name="share_caption_hint">Добавить комментарий…</string>
+    <string name="share_button">Поделиться</string>
+    <string name="like">Нравится</string>
+    <string name="comment">Комментировать</string>
+    <string name="follow">Подписаться</string>
+    <string name="unfollow">Отписаться</string>
+    <string name="followers">Подписчики</string>
+    <string name="following_label">Подписки</string>
+    <string name="posts_label">Публикации</string>
+    <string name="login_required_feed">Войдите, чтобы увидеть ленту</string>
+    <string name="no_posts_yet">Пока нет публикаций</string>
+    <string name="no_comments_yet">Пока нет комментариев</string>
+    <string name="photo_required_share">Для публикации требуется облачное сохранение фото</string>
+    <string name="shared_successfully">Успешно опубликовано!</string>
+    <string name="write_comment">Написать комментарий…</string>
+    <string name="send">Отправить</string>
+
+    <!-- Home Components -->
+    <string name="hello_collector">Привет</string>
+    <string name="welcome_back">Добро пожаловать в гараж</string>
+    <string name="total_models">Всего моделей: %d</string>
+    <string name="total_models_label">Всего моделей</string>
+    <string name="search_in_collection">Поиск по названию, коду или серии...</string>
+    <string name="search_models">Поиск моделей...</string>
+    <string name="clear">Очистить</string>
+    <string name="filter">Фильтр</string>
+    <string name="unknown_model">Неизвестная модель</string>
+    <string name="latest_addition">Последнее добавление</string>
+    <string name="favorite">Избранное</string>
+    <string name="hero_stat_this_month">В этом месяце</string>
+    <string name="this_month_short">В этом месяце</string>
+    <string name="hero_stat_monthly">Месяц</string>
+    <string name="hero_stat_total">Всего</string>
+    <string name="manual_mode_btn">Вручную</string>
+    <string name="welcome_greeting">Добро пожаловать в коллекцию!</string>
+    <string name="scan">Сканировать</string>
+    <string name="wanted_short">Хотелка</string>
+    <string name="treasure_short">Поиск</string>
+    <string name="recently_added">Недавно добавленные</string>
+    <string name="current_value">Текущая стоимость</string>
+    <string name="see_all">Посмотреть все</string>
+    <string name="view_all">Посмотреть все</string>
+
+    <!-- Photo Options -->
+    <string name="add_photo_options">Варианты загрузки фото</string>
+    <string name="take_photo">Сделать фото</string>
+    <string name="pick_from_gallery">Выбрать из галереи</string>
+    <string name="add_from_url">Добавить по ссылке</string>
+    <string name="enter_image_url">Введите URL изображения</string>
+    <string name="url_placeholder">https://example.com/image.jpg</string>
+    <string name="camera_permission_denied">В доступе к камере отказано. Необходимо разрешение для создания фото.</string>
+    <string name="invalid_url_error">Неверный URL. Введите прямую ссылку на изображение.</string>
+    <string name="manual_model_name">Название модели</string>
+    <string name="manual_year">Год</string>
+    <string name="manual_series">Серия</string>
+    <string name="manual_series_num">Номер в серии</string>
+    <string name="manual_scale">Масштаб</string>
+    <string name="manual_is_premium">Премиум модель</string>
+    <string name="manual_brand">Бренд</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="advanced_filters">Расширенные фильтры</string>
+    <string name="brand">Бренд</string>
+    <string name="all">Все</string>
+    <string name="year">Год</string>
+    <string name="series">Серия</string>
+    <string name="condition">Состояние</string>
+    <string name="boxed">В упаковке</string>
+    <string name="opened">Распакован</string>
+    <string name="apply_filters">Применить фильтры</string>
+    <string name="clear_all">Очистить все</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Настройки</string>
+    <string name="sync_section">Синхронизация</string>
+    <string name="pull_new_models">Обновить модели</string>
+    <string name="pull_new_models_desc">Загрузить свежую базу моделей из облака.</string>
+    <string name="sync">Синхронизировать</string>
+    <string name="sync_in_progress">Обновление базы данных. Пожалуйста, подождите...</string>
+    <string name="sync_success">Успешно! База данных обновлена. ✅</string>
+    <string name="sync_failed">Ошибка обновления. Проверьте интернет. ❌</string>
+    <string name="sync_cancelled">Отменено. 🛑</string>
+    
+    <string name="app_info_section">О приложении</string>
+    <string name="version">Версия</string>
+    
+    <string name="appearance_section">Внешний вид и язык</string>
+    <string name="theme">Тема</string>
+    <string name="theme_auto">Системная</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="language">Язык</string>
+    <string name="language_tr">Türkçe</string>
+    <string name="language_en">English</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">العربية</string>
+    <string name="language_es">Español</string>
+    <string name="language_pt">Português</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_uk">Українська</string>
+    
+    <string name="support_section">Поддержка</string>
+    <string name="contact_us">Связаться с нами</string>
+    <string name="contact_us_desc">Присылайте отзывы, предложения или жалобы.</string>
+
+    <!-- Legal Section -->
+    <string name="legal_section">Юридическая информация</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="terms_of_use">Условия использования</string>
+    
+    <!-- Profile Screen -->
+    <string name="login_for_cloud">Войдите для синхронизации</string>
+    <string name="login_desc">Держите коллекцию в безопасности, войдя через Google.</string>
+    <string name="login_google">Войти через Google</string>
+    <string name="login_signup_btn">Войти / Регистрация</string>
+    <string name="login_promo_text">Войдите в аккаунт, чтобы не потерять данные коллекции</string>
+    <string name="collector_name">Коллекционер</string>
+    <string name="firebase_cloud_ops">Облачные операции Firebase</string>
+    <string name="backup_cloud">Сделать бэкап в облако</string>
+    <string name="restore_cloud">Восстановить из облака</string>
+    <string name="logout">Выйти</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="delete_account_dialog_title">Удаление данных</string>
+    <string name="delete_account_dialog_text">Вы уверены? Ваши данные и фото будут БЕЗВОЗВРАТНО удалены из облака.</string>
+    <string name="delete_account_confirm">Да, удалить все</string>
+    <string name="delete_account_cancel">Отмена</string>
+    <string name="reauth_required_error">Требуется повторный вход для подтверждения безопасности.</string>
+    <string name="delete_account_success">Аккаунт и данные успешно удалены.</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Пароль</string>
+    <string name="currency_setting">Валюта</string>
+    <string name="login_btn">Войти</string>
+    <string name="login_with_email_btn">Войти через Email</string>
+    <string name="register_btn">Регистрация</string>
+    <string name="have_account">Уже есть аккаунт? Войти</string>
+    <string name="no_account">Нет аккаунта? Регистрация</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="password_reset_sent">Письмо для сброса пароля отправлено.</string>
+    <string name="email_verified">Email подтвержден</string>
+    <string name="email_not_verified">Email не подтвержден</string>
+    <string name="send_verification_btn">Подтвердить Email</string>
+    <string name="verification_sent">Письмо отправлено</string>
+    <string name="check_status_btn">Проверить статус</string>
+    <string name="verification_required_for_cloud">Подтверждение Email необходимо для работы с облаком.</string>
+    <string name="verification_required_title">Подтвердите Email</string>
+    <string name="verification_required_desc">Подтвердите почту для использования социальных функций.</string>
+    <string name="refresh_status">Обновить</string>
+    <string name="share_verification_required_title">Требуется подтверждение</string>
+    <string name="share_verification_required_desc">Перед публикацией необходимо подтвердить Email.</string>
+    <string name="error_content_rejected">Контент отклонен: %1$s</string>
+    <string name="error_moderation_failed">Ошибка модерации. Попробуйте снова.</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_post_title">Удалить публикацию</string>
+    <string name="delete_post_msg">Удалить эту публикацию? Это действие нельзя отменить.</string>
+    <string name="delete_confirm">Удалить</string>
+    <string name="delete_cancel">Отмена</string>
+
+    <!-- Wishlist Screen -->
+    <string name="empty_wishlist_title">Список пуст</string>
+    <string name="empty_wishlist_desc">Вы еще не добавили ни одной хотелки.</string>
+
+    <!-- Add Car Screen -->
+    <string name="add_new_car">Добавить модель</string>
+    <string name="empty_collection_title">Коллекция пуста!</string>
+    <string name="empty_collection_desc">Вы еще не добавили ни одной машины.</string>
+    <string name="empty_collection_btn">Добавить первую</string>
+    <string name="empty_collection_or">или</string>
+    <string name="empty_collection_hint">Нажмите + внизу</string>
+    <string name="brand_label">Бренд</string>
+    <string name="search_model_hint">Поиск модели…</string>
+    <string name="selected">Выбрано</string>
+    <string name="no_results_for">Ничего не найдено для \"%s\".</string>
+    <string name="matching_models">Подходящие модели</string>
+    <string name="box_condition">Коробка</string>
+    <string name="opened_unboxed">Распакован</string>
+    <string name="boxed_moc">В упаковке (MOC)</string>
+    <string name="storage_location">Место хранения</string>
+    <string name="storage_location_hint">Напр: Полка А-3, Витрина…</string>
+    <string name="personal_note">Заметка</string>
+    <string name="personal_note_hint">Ваши заметки об этой модели…</string>
+    <string name="add_btn">Добавить</string>
+    <string name="error_title">Ошибка</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="change_photo">Изменить</string>
+    <string name="remove_photo">Удалить</string>
+
+    <!-- Statistics Screen -->
+    <string name="statistics_title">Статистика</string>
+    <string name="collection_summary">Сводка коллекции</string>
+    <string name="total_cars_stat">Всего машин</string>
+    <string name="no_stats_data">Данных для статистики пока недостаточно.</string>
+    <string name="brand_distribution">Распределение по брендам</string>
+
+    <!-- Detail Screen -->
+    <string name="detail_title">Детали</string>
+    <string name="car_not_found">Машина не найдена.</string>
+    <string name="delete_car">Удалить</string>
+    <string name="delete_car_dialog_title">Удаление модели</string>
+    <string name="delete_car_dialog_text">Удалить эту модель из коллекции навсегда?</string>
+
+    <string name="col_num">Номер коллекции</string>
+    <string name="toy_num">Артикул</string>
+    <string name="scale_label">Масштаб</string>
+    <string name="year_label">Год</string>
+    <string name="series_label">Серия</string>
+    <string name="series_num_label">Номер в серии</string>
+    <string name="condition_label">Состояние</string>
+    <string name="condition_opened">Распакован</string>
+    <string name="condition_boxed">📦 В упаковке</string>
+    <string name="storage_label">Хранение</string>
+    <string name="purchase_date_label">Дата покупки</string>
+    <string name="note_label">Заметка</string>
+
+    <!-- New Stats & Profile -->
+    <string name="stats_purchase_price">Цена покупки</string>
+    <string name="stats_current_value">Текущая цена</string>
+    <string name="purchase_price_label">Цена покупки</string>
+    <string name="estimated_value_label">Текущая цена</string>
+    <string name="select_currency">Выберите валюту</string>
+    <string name="currency_selection_desc">Выберите основную валюту коллекции. Можно изменить позже.</string>
+    <string name="select_brand_first">Сначала выберите бренд</string>
+    <string name="collection_statistics_desc">Графики, цены, значки</string>
+    <string name="collection_statistics_desc_detailed">Детальная статистика: графики, цены, значки</string>
+
+    <!-- Badges -->
+    <string name="earned_badges_title">🏅 Полученные значки</string>
+    <string name="earned_badges_count">Получено значков: %1$d / %2$d</string>
+    <string name="locked_badges_title">Заблокированные значки</string>
+
+    <string name="badge_first_car_title">Первый шаг</string>
+    <string name="badge_first_car_desc">Вы добавили первую машину в коллекцию!</string>
+    <string name="badge_ten_cars_title">Отличный старт</string>
+    <string name="badge_ten_cars_desc">В коллекции уже 10 машин.</string>
+    <string name="badge_fifty_cars_title">Серьезный коллекционер</string>
+    <string name="badge_fifty_cars_desc">Уже 50 моделей! Внушительно.</string>
+    <string name="badge_hundred_cars_title">Легенда</string>
+    <string name="badge_hundred_cars_desc">100 машин! Легендарная коллекция.</string>
+    <string name="badge_premium_hunter_title">Охотник за премом</string>
+    <string name="badge_premium_hunter_desc">У вас 5 или более Hot Wheels Premium.</string>
+    <string name="badge_matchbox_fan_title">Фанат Matchbox</string>
+    <string name="badge_matchbox_fan_desc">У вас 10 или более Matchbox.</string>
+    <string name="badge_multi_brand_title">Мультибрендовый</string>
+    <string name="badge_multi_brand_desc">В коллекции 3 и более разных брендов.</string>
+    <string name="badge_silver_collector_title">Серебряный коллекционер</string>
+    <string name="badge_silver_collector_desc">Стоимость коллекции перевалила за $100!</string>
+    <string name="badge_golden_collector_title">Золотой коллекционер</string>
+    <string name="badge_golden_collector_desc">Огромная коллекция стоимостью свыше $1000!</string>
+    <string name="badge_custom_maker_title">Мастер кастома</string>
+    <string name="badge_custom_maker_desc">В коллекции 10 и более кастомных (Custom) моделей.</string>
+    <string name="badge_moc_collector_title">MOC Коллекционер</string>
+    <string name="badge_moc_collector_desc">80%% вашей коллекции в упаковке.</string>
+
+    <!-- Collections / Folders -->
+    <string name="my_folders">Мои папки</string>
+    <string name="folders_subtitle">Организуйте вашу коллекцию</string>
+    <string name="create_folder">Создать папку</string>
+    <string name="no_folders_yet">Вы еще не создали ни одной папки.</string>
+    <string name="car_count">Машин: %1$d</string>
+    <string name="delete_btn">Удалить</string>
+    <string name="create_new_folder">Создать новую папку</string>
+    <string name="folder_name">Название папки</string>
+    <string name="description_optional">Описание (необязательно)</string>
+    <string name="create_btn">Создать</string>
+    <string name="cancel_btn">Отмена</string>
+    <string name="folder_detail_title">Детали папки</string>
+    <string name="back_btn">Назад</string>
+    <string name="no_cars_in_folder">В этой папке пока нет машин.</string>
+    <string name="add_to_folder">Добавить в папку</string>
+    <string name="manage_folders">Управление папками</string>
+    <string name="manage_folders_count">Управление папками (%1$d)</string>
+    <string name="no_folders_hint">Создайте папки для организации моделей.</string>
+
+    <!-- Sorting -->
+    <string name="sort_order">Сортировка</string>
+    <string name="sort_newest">Сначала новые</string>
+    <string name="sort_oldest">Сначала старые</string>
+    <string name="sort_brand_az">Бренд (А-Я)</string>
+    <string name="sort_year_new">Год (от новых)</string>
+    <string name="sort_year_old">Год (от старых)</string>
+    <string name="sort_price_high">Цена (высокая)</string>
+    <string name="sort_price_low">Цена (низкая)</string>
+
+    <!-- AddCarScreen Figma UI strings -->
+    <string name="section_brand">БРЕНД</string>
+    <string name="section_model_details">ДЕТАЛИ МОДЕЛИ</string>
+    <string name="section_condition">СОСТОЯНИЕ</string>
+    <string name="section_currency">ВАЛЮТА</string>
+    <string name="section_price_details">ЦЕНА</string>
+    <string name="section_collection_info">ИНФОРМАЦИЯ</string>
+    <string name="condition_mint">Mint (Идеал)</string>
+    <string name="condition_loose">Loose (Распак)</string>
+    <string name="search_model_placeholder">Поиск модели</string>
+    <string name="price_purchase">Цена покупки</string>
+    <string name="price_market">Рыночная цена</string>
+    <string name="price_placeholder">0,00</string>
+    <string name="notes_placeholder">Личные заметки, модификации, история…</string>
+    <string name="add_to_collection_btn">Добавить в коллекцию</string>
+    <string name="reset_btn">Сброс</string>
+
+    <!-- WishlistScreen / Search screen -->
+    <string name="search_screen_title">Обзор</string>
+    <string name="search_screen_subtitle">Новые модели и бренды</string>
+    <string name="search_placeholder">Поиск бренда или модели…</string>
+    <string name="collection_screen_subtitle">Поиск, фильтры и сортировка коллекции</string>
+    <string name="trend_brands">Популярные бренды</string>
+    <string name="wishlist_title">Мои хотелки</string>
+    <string name="empty_wishlist_subtitle">Отмечайте модели, которые ищете!</string>
+    <string name="not_specified">Не указано</string>
+    <string name="tap_to_add_note">Нажмите, чтобы добавить заметку…</string>
+    <string name="edit_storage_title">Изменить место хранения</string>
+    <string name="edit_price_title">Изменить цену покупки</string>
+    <string name="edit_value_title">Изменить текущую цену</string>
+    <string name="edit_note_title">Изменить заметку</string>
+
+    <!-- Profile Screen Redesign Strings -->
+    <string name="premium_member">PREMIUM УЧАСТНИК</string>
+    <string name="edit_profile">Изменить профиль</string>
+    <string name="stat_cars">Машин</string>
+    <string name="stat_value">Стоимость</string>
+    <string name="stat_boxed">В упаковке</string>
+    <string name="data_management">УПРАВЛЕНИЕ ДАННЫМИ</string>
+    <string name="statistics_section">СТАТИСТИКА</string>
+    <string name="collection_statistics">Статистика коллекции</string>
+    <string name="username_label">Имя пользователя</string>
+    <string name="username_hint">Выберите уникальное имя</string>
+    <string name="username_taken">Это имя уже занято.</string>
+    <string name="username_invalid">Имя должно быть 3-20 символов (a-z, 0-9, _).</string>
+    <string name="consent_text">Я согласен на обработку моих данных.</string>
+    <string name="consent_text_with_links">Я согласен с условиями и политикой конфиденциальности.</string>
+    <string name="accept_terms_error">Примите условия для продолжения.</string>
+    <string name="password_criteria_error">Пароль должен быть от 8 символов, иметь заглавные, строчные буквы и цифры.</string>
+    <string name="select_username_title">Выбор имени</string>
+    <string name="select_username_desc">Похоже, вы здесь впервые. Выберите имя пользователя:</string>
+    <string name="save_btn">Сохранить</string>
+    <string name="skip_btn">Назад</string>
+    <string name="cloud_backup_title">Облачное сохранение</string>
+    <string name="last_synced">Последняя синхронизация: </string>
+    <string name="restore_data_title">Восстановление данных</string>
+    <string name="excel_export_title">Экспорт коллекции</string>
+    <string name="excel_export_desc">Экспорт в различных форматах</string>
+    <string name="export_success">Успешно экспортировано.</string>
+    <string name="settings_support_title">НАСТРОЙКИ</string>
+    <string name="help_support">Помощь и поддержка</string>
+    <string name="export_format_csv">Excel (.csv)</string>
+    <string name="export_format_json">Данные (.json)</string>
+    <string name="export_format_pdf">Отчет (.pdf)</string>
+    <string name="export_options_title">Варианты экспорта</string>
+    <string name="export_share">Поделиться</string>
+    <string name="export_download">Скачать на устройство</string>
+    <plurals name="cars_selected">
+        <item quantity="one">Выбрана %d машина</item>
+        <item quantity="few">Выбрано %d машины</item>
+        <item quantity="other">Выбрано %d машин</item>
+    </plurals>
+    <plurals name="series_selected">
+        <item quantity="one">Выбрана %d серия</item>
+        <item quantity="few">Выбрано %d серии</item>
+        <item quantity="other">Выбрано %d серий</item>
+    </plurals>
+    <string name="premium">Премиум</string>
+    <string name="regular">Обычные</string>
+    <string name="remember_me">Запомнить меня</string>
+    <string name="email_empty_error">Для начала введите Email.</string>
+    <string name="support_title">Помощь и поддержка</string>
+    <string name="support_subject_label">Тема</string>
+    <string name="support_message_label">Сообщение</string>
+    <string name="support_username_label">Пользователь</string>
+    <string name="support_submit_btn">Отправить</string>
+    <string name="support_success_msg">Ваш отзыв отправлен!</string>
+    <string name="support_error_msg">Ошибка при отправке.</string>
+    <string name="support_captcha_label">Проверка безопасности</string>
+    <string name="support_captcha_error">Неверный ответ капчи.</string>
+    <string name="support_subject_hint">напр. Ошибка, Предложение, Вопрос</string>
+    <string name="support_message_hint">Ваше сообщение...</string>
+    <string name="support_captcha_instruction">Решите пример:</string>
+    <string name="edit_username_title">Изменить имя пользователя</string>
+    <string name="available">Доступно</string>
+    <string name="unavailable">Занято</string>
+    <string name="tab_models">Модели</string>
+    <string name="tab_series">Серии</string>
+    <string name="empty_series_tracking">Серии пока не добавлены.</string>
+    <string name="table_header_model">Модель</string>
+    <string name="table_header_no">№</string>
+    <string name="table_header_status">Статус</string>
+    <string name="status_in_collection">В коллекции</string>
+    <string name="status_wanted">В поиске</string>
+    <string name="data_source_label">Источник</string>
+    <string name="add_to_wanted_title">В хотелки</string>
+    <string name="add_series_to_wanted">Всю серию в хотелки</string>
+    <string name="series_added_to_wanted">Серия добавлена в хотелки</string>
+    <string name="color_label">Цвет</string>
+
+    <!-- STH Screen Localization -->
+    <string name="sth_title">Super Treasure Hunts</string>
+    <string name="chase_title">Chase Cars</string>
+    <string name="th_title">Treasure Hunts</string>
+    <string name="sth_desc">Откройте самые редкие Hot Wheels STH</string>
+    <string name="chase_desc">Премиум Chase модели (0/5 в серии)</string>
+    <string name="th_desc">Классические Treasure Hunt модели</string>
+    <string name="search_sth">Поиск по STH</string>
+    <string name="search_chase">Поиск по Chase</string>
+    <string name="search_th">Поиск по TH</string>
+    <string name="no_sth_found">STH модели не найдены.</string>
+    <string name="no_chase_found">Chase модели не найдены.</string>
+    <string name="no_th_found">TH модели не найдены.</string>
+    <string name="case_label">КЕЙС %s</string>
+    <string name="custom_label">Кастом (Custom)</string>
+    <string name="original_label">Оригинал</string>
+    <string name="custom_distribution">Кастомы / Оригиналы</string>
+    <string name="main_photo">Основное фото</string>
+    <string name="additional_photos">Доп. фото</string>
+    <string name="add_additional_photo">Добавить фото из галереи</string>
+    <string name="take_additional_photo">Сделать доп. фото камерой</string>
+    <string name="remove_all_photos">Удалить все фото</string>
+    <string name="add_photo_url">Добавить фото по ссылке</string>
+    <string name="delete_comment_confirm">Удалить</string>
+    <string name="delete_comment_confirmation">Вы уверены, что хотите удалить комментарий?</string>
+    
+    <!-- Community Rules Dialog -->
+    <string name="community_rules_title">Правила сообщества</string>
+    <string name="community_rules_intro">Добро пожаловать! Примите правила перед публикацией:</string>
+    <string name="rule_1">1. Уважение: Будьте вежливы с другими участниками.</string>
+    <string name="rule_2">2. Никаких оскорблений: Не используйте мат и агрессию.</string>
+    <string name="rule_3">3. Качественный контент: Только про Hot Wheels и масштабные модели.</string>
+    <string name="rule_4">4. Безопасность: Не делитесь личными данными.</string>
+    <string name="accept_rules_btn">Прочитано, согласен</string>
+    <string name="restore_prompt_title">Найден бэкап</string>
+    <string name="restore_prompt_desc">В облаке найдена ваша коллекция. Загрузить на это устройство?</string>
+    <string name="restore_now">Загрузить</string>
+    <string name="later">Позже</string>
+    <string name="restoring_data">Загрузка данных коллекции…</string>
+</resources>

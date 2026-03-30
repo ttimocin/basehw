@@ -75,6 +75,9 @@ fun NavGraph(navController: NavHostController) {
             com.taytek.basehw.ui.screens.community.CommunityScreen(
                 onUserProfileClick = { uid ->
                     navController.navigate(Screen.UserProfile.createRoute(uid))
+                },
+                onProfileClick = {
+                    navController.navigate(Screen.Main.route)
                 }
             )
         }

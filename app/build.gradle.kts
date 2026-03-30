@@ -16,11 +16,13 @@ android {
     namespace = "com.taytek.basehw"
     compileSdk = 36
 
+    useLibrary("org.apache.http.legacy")
+
     defaultConfig {
         applicationId = "com.taytek.basehw"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
-        versionCode = 3
+        versionCode = 4
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -32,6 +34,7 @@ android {
             properties.load(FileInputStream(localPropertiesFile))
         }
         buildConfigField("String", "GEMINI_API_KEY", "\"${properties.getProperty("GEMINI_API_KEY") ?: ""}\"")
+        buildConfigField("String", "GROQ_API_KEY", "\"${properties.getProperty("GROQ_API_KEY") ?: ""}\"")
     }
 
     signingConfigs {
@@ -82,6 +85,15 @@ android {
     lint {
         checkReleaseBuilds = false
         abortOnError = false
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/INDEX.LIST"
+            excludes += "/META-INF/DEPENDENCIES"
+            // Ensure system classes don't conflict with library classes
+            pickFirsts += "org/apache/http/**"
+        }
     }
 }
 
@@ -158,7 +170,6 @@ dependencies {
 
     // uCrop
     implementation(libs.ucrop)
-    implementation(libs.generativeai)
 
     // Testing
     testImplementation(libs.junit)

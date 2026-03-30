@@ -48,4 +48,5 @@ interface UserCarRepository {
     suspend fun isSeriesInWishlist(brand: Brand, series: String): Boolean
     fun getWishlistSeriesTracking(): Flow<List<com.taytek.basehw.domain.model.SeriesTracking>>
     suspend fun getAllCarsWithMasterList(): List<UserCar>
+    suspend fun hasCloudData(): Boolean
 }

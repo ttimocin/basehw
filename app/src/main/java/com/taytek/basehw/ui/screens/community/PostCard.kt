@@ -1,9 +1,12 @@
 package com.taytek.basehw.ui.screens.community
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.graphics.Color
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -24,12 +27,15 @@ import com.taytek.basehw.ui.theme.AppPrimary
 import java.text.SimpleDateFormat
 import java.util.*
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PostCard(
     post: CommunityPost,
     onLikeClick: () -> Unit,
     onCommentClick: () -> Unit,
     onUserClick: (String) -> Unit,
+    onDeleteClick: (() -> Unit)? = null,
+    currentUser: com.taytek.basehw.domain.model.User? = null,
     modifier: Modifier = Modifier
 ) {
     val dateFormat = remember { SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault()) }
@@ -37,15 +43,59 @@ fun PostCard(
         if (post.createdAt > 0) dateFormat.format(Date(post.createdAt)) else ""
     }
 
+    val isSth = post.carFeature?.lowercase() == "sth"
+    val stsColor = Color(0xFFFF8C00) // Deep Orange
+
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    val isMyPost = post.authorUid == currentUser?.uid
+    val isAdmin = currentUser?.isAdmin == true
+    val canDelete = isMyPost || isAdmin
+
+    if (showDeleteDialog) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+            title = { Text(stringResource(R.string.delete_post_title)) },
+            text = { Text(stringResource(R.string.delete_post_msg)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDeleteDialog = false
+                        onDeleteClick?.invoke()
+                    },
+                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error)
+                ) {
+                    Text(stringResource(R.string.delete_confirm))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteDialog = false }) {
+                    Text(stringResource(R.string.delete_cancel))
+                }
+            }
+        )
+    }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .then(
+                if (isSth) Modifier.border(2.dp, stsColor, RoundedCornerShape(20.dp))
+                else Modifier
+            )
+            .combinedClickable(
+                onClick = { /* Could open full post/detail if needed */ },
+                onLongClick = {
+                    if (canDelete) {
+                        showDeleteDialog = true
+                    }
+                }
+            ),
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = if (isSth) 4.dp else 2.dp)
     ) {
         Column {
             // ── Header: User info ──────────────────────────
@@ -73,19 +123,39 @@ fun PostCard(
                 }
                 Spacer(Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = post.authorUsername,
-                        style = MaterialTheme.typography.titleSmall,
-                        fontWeight = FontWeight.Bold,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = post.authorUsername,
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f, fill = false)
+                        )
+                        if (post.authorIsAdmin) {
+                            Spacer(Modifier.width(4.dp))
+                            Surface(
+                                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
+                                shape = RoundedCornerShape(4.dp)
+                            ) {
+                                Text(
+                                    text = "🛡️ ADMIN",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    fontWeight = FontWeight.Black,
+                                    fontSize = 8.sp,
+                                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                                )
+                            }
+                        }
+                    }
                     Text(
                         text = dateText,
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+
                 // Brand chip
                 AssistChip(
                     onClick = {},
@@ -122,11 +192,29 @@ fun PostCard(
                     fontWeight = FontWeight.Bold
                 )
                 if (!post.carSeries.isNullOrBlank()) {
-                    Text(
-                        text = "${post.carSeries}${post.carYear?.let { " • $it" } ?: ""}",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = "${post.carSeries}${post.carYear?.let { " • $it" } ?: ""}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.weight(1f)
+                        )
+                        if (post.carFeature?.lowercase() == "sth") {
+                            Text(
+                                text = "STH",
+                                color = stsColor,
+                                fontWeight = FontWeight.ExtraBold,
+                                style = MaterialTheme.typography.labelLarge
+                            )
+                        } else if (!post.carFeature.isNullOrBlank()) {
+                            Text(
+                                text = post.carFeature.uppercase(),
+                                color = AppPrimary,
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.labelSmall
+                            )
+                        }
+                    }
                 }
                 if (post.caption.isNotBlank()) {
                     Spacer(Modifier.height(8.dp))

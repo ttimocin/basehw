@@ -112,7 +112,8 @@ fun MainScreen(
                 }
                 2 -> { // COMMUNITY
                     com.taytek.basehw.ui.screens.community.CommunityScreen(
-                        onUserProfileClick = onUserProfileClick
+                        onUserProfileClick = onUserProfileClick,
+                        onProfileClick = { selectedTab = 3 }
                     )
                 }
                 3 -> { // PROFILE

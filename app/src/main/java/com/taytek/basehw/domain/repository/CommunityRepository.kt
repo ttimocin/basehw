@@ -11,7 +11,8 @@ interface CommunityRepository {
         carYear: Int?,
         carSeries: String?,
         carImageUrl: String,
-        caption: String
+        caption: String,
+        carFeature: String?
     ): Result<String>
 
     suspend fun deletePost(postId: String): Result<Unit>
@@ -39,4 +40,8 @@ interface CommunityRepository {
     suspend fun getFollowingUids(): Result<List<String>>
 
     suspend fun getTopUsers(limit: Int = 20): Result<List<User>>
+
+    suspend fun deleteComment(postId: String, commentId: String): Result<Unit>
+
+    suspend fun acceptRules(): Result<Unit>
 }

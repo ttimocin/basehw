@@ -27,7 +27,9 @@ data class DetailUiState(
     val isSharing: Boolean = false,
     val isShared: Boolean = false,
     val isEmailVerified: Boolean = false,
-    val showVerificationDialog: Boolean = false
+    val showVerificationDialog: Boolean = false,
+    val showRulesDialog: Boolean = false,
+    val pendingShareCaption: String? = null
 )
 
 @HiltViewModel
@@ -264,12 +266,17 @@ class CarDetailViewModel @Inject constructor(
             _uiState.update { it.copy(showVerificationDialog = true) }
             return
         }
+        if (!appSettingsManager.hasAcceptedCommunityRules()) {
+            _uiState.update { it.copy(showRulesDialog = true, pendingShareCaption = caption) }
+            return
+        }
         val car = _uiState.value.car ?: return
         val imageUrl = car.backupPhotoUrl ?: car.userPhotoUrl ?: return
         val modelName = car.masterData?.modelName ?: car.manualModelName ?: "Unknown"
         val brand: String = car.masterData?.brand?.displayName ?: car.manualBrand?.displayName ?: "Unknown"
         val year: Int? = car.masterData?.year ?: car.manualYear
         val series: String? = car.masterData?.series?.takeIf { it.isNotBlank() } ?: car.manualSeries
+        val feature: String? = car.masterData?.feature
 
         viewModelScope.launch {
             _uiState.update { it.copy(isSharing = true) }
@@ -279,7 +286,8 @@ class CarDetailViewModel @Inject constructor(
                 carYear = year,
                 carSeries = series,
                 carImageUrl = imageUrl,
-                caption = caption
+                caption = caption,
+                carFeature = feature
             )
             result.onSuccess {
                 _uiState.update { it.copy(isSharing = false, isShared = true) }
@@ -293,5 +301,24 @@ class CarDetailViewModel @Inject constructor(
 
     fun dismissVerificationDialog() {
         _uiState.update { it.copy(showVerificationDialog = false) }
+    }
+
+    fun dismissRulesDialog() {
+        _uiState.update { it.copy(showRulesDialog = false) }
+    }
+
+    fun acceptRules() {
+        viewModelScope.launch {
+            communityRepository.acceptRules().onSuccess {
+                appSettingsManager.setAcceptedCommunityRules(true)
+                val pendingCaption = _uiState.value.pendingShareCaption
+                _uiState.update { it.copy(showRulesDialog = false, pendingShareCaption = null) }
+                if (pendingCaption != null) {
+                    shareToFeed(pendingCaption)
+                }
+            }.onFailure { e ->
+                _uiState.update { it.copy(error = e.message) }
+            }
+        }
     }
 }
