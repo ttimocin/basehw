@@ -69,7 +69,7 @@ class ContentModerator @Inject constructor() {
             
             val request = Request.Builder()
                 .url(url)
-                .addHeader("Authorization", "Bearer $GROQ_API_KEY")
+                .addHeader("Authorization", "Bearer $apiKey")
                 .post(requestBody)
                 .build()
 
