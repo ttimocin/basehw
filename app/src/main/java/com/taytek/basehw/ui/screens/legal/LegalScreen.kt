@@ -194,7 +194,7 @@ private fun TermsTR() {
     LegalSection("2. Kullanıcı Sorumluluğu ve Topluluk Kuralları")
     LegalParagraph("• İçerik Sorumluluğu: Paylaştığınız fotoğraf, açıklama ve yorumlardan tamamen siz sorumlusunuz.\n" +
             "• Saygılı Etkileşim: Küfür, hakaret, nefret söylemi ve taciz içeren her türlü içerik kesinlikle yasaktır.\n" +
-            "• AI Moderasyon: Topluluk kurallarını ihlal eden içerikler AI sistemlerimiz tarafından otomatik olarak engellenebilir veya silinebilir.")
+            "• AI Moderasyon: Topluluk kurallarını ihlal eden içerikler Groq AI sistemlerimiz tarafından otomatik olarak engellenebilir veya silinebilir.")
 
     LegalSection("3. Fikri Mülkiyet")
     LegalParagraph("Araba bilgileri ve görselleri Hot Wheels, Matchbox ve diğer ilgili kaynaklardan bilgilendirme amaçlı alınmaktadır. Bu görsellerin mülkiyeti ilgili markalara aittir.")
@@ -218,7 +218,7 @@ private fun TermsEN() {
     LegalSection("2. User Responsibility and Community Rules")
     LegalParagraph("• Content: You are solely responsible for the photos, captions, and comments you share.\n" +
             "• Etiquette: Profanity, hate speech, harassment, and illegal content are strictly prohibited.\n" +
-            "• AI Moderation: Content violating community rules may be automatically blocked or removed by our AI systems.")
+            "• AI Moderation: Content violating community rules may be automatically blocked or removed by our Groq AI systems.")
 
     LegalSection("3. Intellectual Property")
     LegalParagraph("Model car images are sourced from official and collector communities for informational purposes. Ownership belongs to the respective trademark holders.")
@@ -242,7 +242,7 @@ private fun TermsDE() {
     LegalSection("2. Nutzerverantwortung und Community-Regeln")
     LegalParagraph("• Inhalte: Sie sind verantwortlich für alle geteilten Fotos, Texte und Kommentare.\n" +
             "• Verhalten: Beleidigungen, Hassrede und Belästigungen sind streng untersagt.\n" +
-            "• KI-Moderation: Verstöße gegen Community-Regeln können durch unsere KI-Systeme automatisch blockiert oder gelöscht werden.")
+            "• KI-Moderation: Verstöße gegen Community-Regeln können durch unsere Groq KI-Systeme automatisch blockiert oder gelöscht werden.")
 
     LegalSection("3. Geistiges Eigentum")
     LegalParagraph("Fahrzeugbilder stammen zu Informationszwecken aus offiziellen Sammlerquellen. Das Eigentum verbleibt bei den jeweiligen Rechteinhabern.")
