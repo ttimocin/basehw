@@ -95,34 +95,6 @@ fun MasterDetailScreen(
                                 modifier = Modifier.fillMaxSize(),
                                 contentScale = ContentScale.Fit
                             )
-                            
-                            // Wiki label
-                            val wikiLabel = master.brand.let { b ->
-                                when(b) {
-                                    Brand.HOT_WHEELS -> "Hot Wheels Wiki"
-                                    Brand.MATCHBOX   -> "Matchbox Wiki"
-                                    Brand.MAJORETTE  -> "Majorette Wiki"
-                                    Brand.JADA       -> "Jada Wiki"
-                                    Brand.GREENLIGHT -> "Greenlight Wiki"
-                                    else -> null
-                                }
-                            }
-                            if ((master.imageUrl.contains("wikia.nocookie.net") || master.imageUrl.contains("fandom.com")) && wikiLabel != null) {
-                                Surface(
-                                    modifier = Modifier
-                                        .align(Alignment.BottomStart)
-                                        .padding(8.dp),
-                                    color = Color.Black.copy(alpha = 0.55f),
-                                    shape = RoundedCornerShape(6.dp)
-                                ) {
-                                    Text(
-                                        text = wikiLabel,
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = Color.White.copy(alpha = 0.85f),
-                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp)
-                                    )
-                                }
-                            }
                         }
                     }
 

@@ -18,9 +18,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    // Dummy base URL — actual URLs are passed dynamically via @Url in each call
-    private const val WIKI_BASE_URL = "https://hotwheels.fandom.com/"
-
     @Provides
     @Singleton
     fun provideGson(): Gson = GsonBuilder()
@@ -44,7 +41,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(WIKI_BASE_URL)
+            .baseUrl("https://api.example.com/") // Generic base URL - actual calls should use @Url if needed
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

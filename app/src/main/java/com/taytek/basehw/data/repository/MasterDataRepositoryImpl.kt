@@ -58,7 +58,7 @@ class MasterDataRepositoryImpl @Inject constructor(
     }
 
     override suspend fun syncFromSource(brand: Brand) {
-        // Actual sync is done via WikiSyncWorker (WorkManager)
+        // Actual sync is done via RemoteYearSyncWorker (WorkManager)
         // This method is kept for direct use in tests or one-shot triggers
     }
 

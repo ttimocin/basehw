@@ -83,13 +83,13 @@ private fun PrivacyPolicyTR() {
     LegalParagraph("Verileriniz şu amaçlarla kullanılır:\n\n" +
             "• Koleksiyonunuzun bulut yedeklenmesi ve cihazlar arası senkronizasyon\n" +
             "• Topluluk akışının oluşturulması ve etkileşimlerin yönetilmesi\n" +
-            "• İçerik güvenliğinin AI (Google Gemini) yardımıyla denetlenmesi\n\n" +
+            "• İçerik güvenliğinin Groq AI yardımıyla denetlenmesi\n\n" +
             "Verileriniz üçüncü taraflara satılmaz veya reklam amaçlı kullanılmaz.")
 
     LegalSection("3. Bulut Hizmetleri ve AI Denetimi")
     LegalParagraph("• Firebase: Koleksiyon ve topluluk verileri Firestore'da güvenle saklanır.\n" +
             "• Supabase: Yüklediğiniz fotoğraflar Supabase bulut depolamasında tutulur.\n" +
-            "• AI Moderasyon: Topluluk güvenliği için yorum ve açıklamalar Google Gemini AI ile otomatik olarak denetlenir. Bu işlem sırasında kişisel kimlik bilgileriniz (isim, ID) paylaşılmaz, sadece metin içeriği analiz edilir.")
+            "• AI Moderasyon: Topluluk güvenliği için yorum ve açıklamalar Groq AI ile otomatik olarak denetlenir. Bu işlem sırasında kişisel kimlik bilgileriniz (isim, ID) paylaşılmaz, sadece metin içeriği analiz edilir.")
 
     LegalSection("4. Veri Silme ve Kontrol")
     LegalParagraph("• Yorum Silme: Paylaştığınız yorumları, yorumun üzerine basılı tutarak dilediğiniz zaman silebilirsiniz.\n" +
@@ -119,13 +119,13 @@ private fun PrivacyPolicyEN() {
     LegalParagraph("Your data is used for:\n\n" +
             "• Cloud backup and sync across devices\n" +
             "• Rendering the community feed and managing interactions\n" +
-            "• Content moderation using AI (Google Gemini)\n\n" +
+            "• Content moderation using Groq AI\n\n" +
             "Your data is never sold or used for third-party advertising.")
 
     LegalSection("3. Cloud Services and AI Moderation")
     LegalParagraph("• Firebase: Collection and social data are securely stored in Firestore.\n" +
             "• Supabase: Photos are kept in Supabase cloud storage.\n" +
-            "• AI Moderation: Comments and captions are automatically moderated by Google Gemini AI for safety. No personal identifiers (names, IDs) are shared during this text-only analysis.")
+            "• AI Moderation: Comments and captions are automatically moderated by Groq AI for safety. No personal identifiers (names, IDs) are shared during this text-only analysis.")
 
     LegalSection("4. Data Deletion and Control")
     LegalParagraph("• Delete Comment: You can delete your own comments anytime by long-pressing on the comment.\n" +
@@ -155,13 +155,13 @@ private fun PrivacyPolicyDE() {
     LegalParagraph("Ihre Daten werden verwendet für:\n\n" +
             "• Cloud-Backup und Synchronisierung\n" +
             "• Bereitstellung des Community-Feeds und Interaktionen\n" +
-            "• Inhaltsmoderation mittels KI (Google Gemini)\n\n" +
+            "• Inhaltsmoderation mittels Groq KI\n\n" +
             "Ihre Daten werden nicht verkauft oder für Werbung Dritter genutzt.")
 
     LegalSection("3. Cloud-Dienste und KI-Moderation")
     LegalParagraph("• Firebase: Sammlungs- und Sozialdaten werden sicher in Firestore gespeichert.\n" +
             "• Supabase: Fotos werden im Supabase-Cloud-Speicher aufbewahrt.\n" +
-            "• KI-Moderation: Kommentare und Beschreibungen werden zur Sicherheit automatisiert durch Google Gemini KI geprüft. Dabei werden keine persönlichen Identifikatoren übertragen.")
+            "• KI-Moderation: Kommentare und Beschreibungen werden zur Sicherheit automatisiert durch Groq KI geprüft. Dabei werden keine persönlichen Identifikatoren übertragen.")
 
     LegalSection("4. Datenlöschung und Kontrolle")
     LegalParagraph("• Kommentar löschen: Eigene Kommentare können jederzeit durch langes Drücken gelöscht werden.\n" +
@@ -197,7 +197,7 @@ private fun TermsTR() {
             "• AI Moderasyon: Topluluk kurallarını ihlal eden içerikler AI sistemlerimiz tarafından otomatik olarak engellenebilir veya silinebilir.")
 
     LegalSection("3. Fikri Mülkiyet")
-    LegalParagraph("Araba görselleri Hot Wheels, Matchbox ve diğer ilgili wiki kaynaklarından bilgilendirme amaçlı alınmaktadır. Bu görsellerin mülkiyeti ilgili topluluklara ve markalara aittir.")
+    LegalParagraph("Araba bilgileri ve görselleri Hot Wheels, Matchbox ve diğer ilgili kaynaklardan bilgilendirme amaçlı alınmaktadır. Bu görsellerin mülkiyeti ilgili markalara aittir.")
 
     LegalSection("4. Hizmet Kesintisi")
     LegalParagraph("Hizmet 'olduğu gibi' sunulur. Veri kaybı veya teknik aksaklıklardan dolayı geliştirici sorumlu tutulamaz.")
@@ -221,7 +221,7 @@ private fun TermsEN() {
             "• AI Moderation: Content violating community rules may be automatically blocked or removed by our AI systems.")
 
     LegalSection("3. Intellectual Property")
-    LegalParagraph("Model car images are sourced from Wiki communities for informational purposes. Ownership belongs to the respective trademark holders and communities.")
+    LegalParagraph("Model car images are sourced from official and collector communities for informational purposes. Ownership belongs to the respective trademark holders.")
 
     LegalSection("4. Limitation of Liability")
     LegalParagraph("The service is provided 'as is'. Developers are not liable for any data loss or technical interruptions.")
@@ -245,7 +245,7 @@ private fun TermsDE() {
             "• KI-Moderation: Verstöße gegen Community-Regeln können durch unsere KI-Systeme automatisch blockiert oder gelöscht werden.")
 
     LegalSection("3. Geistiges Eigentum")
-    LegalParagraph("Fahrzeugbilder stammen zu Informationszwecken aus Wiki-Quellen. Das Eigentum verbleibt bei den jeweiligen Rechteinhabern.")
+    LegalParagraph("Fahrzeugbilder stammen zu Informationszwecken aus offiziellen Sammlerquellen. Das Eigentum verbleibt bei den jeweiligen Rechteinhabern.")
 
     LegalSection("4. Haftungsausschluss")
     LegalParagraph("Der Dienst wird 'wie besehen' bereitgestellt. Die Entwickler haften nicht für Datenverluste.")
