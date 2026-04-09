@@ -25,7 +25,6 @@ repo_files.txt
 # Databases & Sensitive Assets
 app/src/main/assets/**/*.json
 /Script/
-/supabase/
 
 # Logs & Temp
 *.log
