@@ -32,6 +32,9 @@
     <string name="community_feed">Стрічка</string>
     <string name="community_following">Підписки</string>
     <string name="community_ranking">Рейтинг</string>
+    <string name="notifications_title">Сповіщення</string>
+    <string name="notifications_empty">Поки що немає сповіщень.</string>
+    <string name="notif_started_following">підписався(лася) на вас.</string>
     <string name="share_to_community">Поділитися у спільноті</string>
     <string name="share_caption_hint">Додати коментар…</string>
     <string name="share_button">Поділитися</string>
@@ -72,6 +75,9 @@
     <string name="wanted_short">Бажана</string>
     <string name="treasure_short">Пошук</string>
     <string name="recently_added">Нещодавно додані</string>
+    <string name="home_news_section">Новини Diecast</string>
+    <string name="news_detail_title">Новина</string>
+    <string name="news_not_found">Статтю не знайдено.</string>
     <string name="current_value">Поточна вартість</string>
     <string name="see_all">Переглянути все</string>
     <string name="view_all">Переглянути все</string>
@@ -124,6 +130,8 @@
     <string name="theme_auto">Системна</string>
     <string name="theme_light">Світла</string>
     <string name="theme_dark">Темна</string>
+    <string name="theme_cyber">Неон (синтвейв)</string>
+    <string name="theme_neon_cyan">Неон ціан</string>
     <string name="language">Мова</string>
     <string name="language_tr">Türkçe</string>
     <string name="language_en">English</string>
@@ -143,6 +151,24 @@
     <string name="legal_section">Юридична інформація</string>
     <string name="privacy_policy">Політика конфіденційності</string>
     <string name="terms_of_use">Умови використання</string>
+
+    <!-- Privacy Policy Content -->
+    <string name="privacy_last_updated">Останнє оновлення: Березень 2026</string>
+    <string name="privacy_intro">Ця політика конфіденційності пояснює, як додаток BaseHW збирає, використовує та захищає ваші персональні дані.</string>
+    <string name="privacy_section_1_title">1. Дані, які ми збираємо</string>
+    <string name="privacy_section_1_text">Додаток може збирати такі дані:\n\n• Додаткові фото автомобілів (зберігаються в Supabase Storage)\n• Вхід через Google: електронна пошта та фото профілю (Firebase Authentication)\n• Дані колекції (бренд, серія, рік, стан, ціна/ринкова вартість, нотатки)\n• Дані спільноти: публікації, вподобання та коментарі\n• Соціальний граф: підписки та підписники\n• Прямі повідомлення між користувачами (DM)\n• Камера пристрою (для розпізнавання моделей ШІ та зйомки фото)</string>
+    <string name="privacy_section_2_title">2. Як ми використовуємо ваші дані</string>
+    <string name="privacy_section_2_text">Ваші дані використовуються для:\n\n• Хмарного резервного копіювання та синхронізації між пристроями\n• Відображення стрічки спільноти та керування взаємодіями\n• Модерації контенту за допомогою Groq AI\n• Аналізу фотографій за допомогою ШІ для автоматичного витягування інформації про модель\n\nВаші дані ніколи не продаються і не використовуються для сторонньої реклами.</string>
+    <string name="privacy_section_3_title">3. Хмарні сервіси та ШІ-модерація</string>
+    <string name="privacy_section_3_text">• Firebase: дані колекції та соціальні дані надійно зберігаються в хмарі Firestore.\n• Supabase: фотографії зберігаються в хмарному сховищі Supabase.\n• ШІ-модерація: коментарі та підписи автоматично модеруються Groq AI для безпеки спільноти. Під час цього текстового аналізу не передаються персональні ідентифікатори чи імена.</string>
+    <string name="privacy_section_4_title">4. Видалення та контроль даних</string>
+    <string name="privacy_section_4_text">• Видалення коментаря: видаліть свої коментарі в будь-який час довгим натисканням.\n• Видалення публікації: видаліть публікації на сторінці профілю.\n• Видалення акаунту: натисніть «Видалити акаунт» на сторінці профілю, щоб безповоротно видалити всі дані (колекцію, соціальні взаємодії та акаунт).</string>
+    <string name="privacy_section_5_title">5. Конфіденційність дітей</string>
+    <string name="privacy_section_5_text">Сервіс не призначений для дітей молодше 13 років, і ми свідомо не збираємо персональні дані у дітей молодше 13 років.\n\nКористувачі віком від 13 до 18 років (або досягнення повноліття у своїй юрисдикції) можуть користуватися Сервісом лише за згодою та під наглядом батька, матері або законного опікуна. За потреби згідно із законом ми можемо запросити підтвердження згоди батьків.\n\nЯкщо ви вважаєте, що ми зібрали дані дитини молодше 13 років без згоди батьків, звʼяжіться з нами — ми видалимо ці дані.</string>
+    <string name="privacy_section_6_title">6. Безпека даних</string>
+    <string name="privacy_section_6_text">Ми застосовуємо технічні та організаційні заходи для захисту ваших персональних даних. Проте жоден спосіб передачі через Інтернет чи електронного зберігання не є на 100% безпечним. Хоча ми прагнемо захистити ваші дані, ми не можемо гарантувати абсолютну безпеку.</string>
+    <string name="privacy_section_7_title">7. Контакти</string>
+    <string name="privacy_section_7_text">Питання щодо конфіденційності:\ntaytekofficial@gmail.com</string>
     
     <!-- Profile Screen -->
     <string name="login_for_cloud">Увійдіть для синхронізації</string>
@@ -155,12 +181,20 @@
     <string name="backup_cloud">Зробити бекап у хмару</string>
     <string name="restore_cloud">Відновити з хмари</string>
     <string name="logout">Вийти</string>
+    <string name="logout_confirm_title">Вийти</string>
+    <string name="logout_confirm_message">Ви впевнені, що хочете вийти з облікового запису?</string>
     <string name="delete_account">Видалити акаунт</string>
     <string name="delete_account_dialog_title">Видалення даних</string>
     <string name="delete_account_dialog_text">Ви впевнені? Ваші дані та фото будуть НАЗАВЖДИ видалені з хмари.</string>
     <string name="delete_account_confirm">Так, видалити все</string>
     <string name="delete_account_cancel">Скасувати</string>
+    <string name="error_forum_banned">Вас заблоковано на форумі. Ви не можете виконати цю дію.</string>
+    <string name="error_moderation_unavailable">Модерація контенту наразі недоступна. Будь ласка, спробуйте ще раз.</string>
+    <string name="error_admin_mod_required">Для цієї дії потрібні права адміністратора або модератора.</string>
+    <string name="error_content_rules_violation">Ваш контент порушує правила спільноти.</string>
     <string name="reauth_required_error">Потрібно повторно авторизуватися для підтвердження безпеки.</string>
+    <string name="vm_delete_account_reauth_required">З міркувань безпеки увійдіть ще раз і повторіть видалення акаунта.</string>
+    <string name="vm_remote_cleanup_failed_with_link">Не вдалося видалити частину хмарних даних (%s). Спробуйте ще раз. Якщо проблема зберігається: https://supabase.com/docs/guides/platform/delete-your-project</string>
     <string name="delete_account_success">Акаунт та дані успішно видалено.</string>
     <string name="email_label">Email</string>
     <string name="password_label">Пароль</string>
@@ -190,6 +224,19 @@
     <string name="delete_post_msg">Видалити цю публікацію? Цю дію не можна скасувати.</string>
     <string name="delete_confirm">Видалити</string>
     <string name="delete_cancel">Скасувати</string>
+    <string name="report_post">Поскаржитися</string>
+    <string name="report_post_content_desc">Поскаржитися на допис</string>
+    <string name="report_post_dialog_title">Поскаржитися на допис</string>
+    <string name="report_post_dialog_hint">Оберіть причину. Можна додати коротку примітку.</string>
+    <string name="report_reason_profanity">Лайка або образи</string>
+    <string name="report_reason_harmful">Шкідливий або небезпечний вміст</string>
+    <string name="report_reason_spam">Спам або реклама</string>
+    <string name="report_reason_harassment">Домагання або цькування</string>
+    <string name="report_reason_other">Інше</string>
+    <string name="report_post_details_hint">Додаткова примітка за бажанням</string>
+    <string name="report_post_submit">Надіслати скаргу</string>
+    <string name="report_post_sent">Дякуємо, ми отримали вашу скаргу.</string>
+    <string name="report_post_feedback_subject">Скарга на допис у спільноті</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Список порожній</string>
@@ -241,6 +288,9 @@
     <string name="series_label">Серія</string>
     <string name="series_num_label">Номер у серії</string>
     <string name="condition_label">Стан</string>
+    <string name="hw_card_type_label">Тип картки</string>
+    <string name="hw_card_short">Коротка картка</string>
+    <string name="hw_card_long">Довга картка</string>
     <string name="condition_opened">Розпакована</string>
     <string name="condition_boxed">📦 В упаковці</string>
     <string name="storage_label">Зберігання</string>
@@ -258,33 +308,7 @@
     <string name="collection_statistics_desc">Графіки, ціни, значки</string>
     <string name="collection_statistics_desc_detailed">Детальна статистика: графіки, ціни, значки</string>
 
-    <!-- Badges -->
-    <string name="earned_badges_title">🏅 Отримані значки</string>
-    <string name="earned_badges_count">Отримано значків: %1$d / %2$d</string>
-    <string name="locked_badges_title">Заблоковані значки</string>
 
-    <string name="badge_first_car_title">Перший крок</string>
-    <string name="badge_first_car_desc">Ви додали першу машину до колекції!</string>
-    <string name="badge_ten_cars_title">Гарний старт</string>
-    <string name="badge_ten_cars_desc">У колекції вже 10 машин.</string>
-    <string name="badge_fifty_cars_title">Серйозний колекціонер</string>
-    <string name="badge_fifty_cars_desc">Вже 50 моделей! Вражаюче.</string>
-    <string name="badge_hundred_cars_title">Легенда</string>
-    <string name="badge_hundred_cars_desc">100 машин! Легендарна колекція.</string>
-    <string name="badge_premium_hunter_title">Мисливець за премом</string>
-    <string name="badge_premium_hunter_desc">У вас 5 або більше Hot Wheels Premium.</string>
-    <string name="badge_matchbox_fan_title">Фанат Matchbox</string>
-    <string name="badge_matchbox_fan_desc">У вас 10 або більше Matchbox.</string>
-    <string name="badge_multi_brand_title">Мультибрендовий</string>
-    <string name="badge_multi_brand_desc">У колекції 3 та більше різних брендів.</string>
-    <string name="badge_silver_collector_title">Срібний колекціонер</string>
-    <string name="badge_silver_collector_desc">Вартість колекції перевищила $100!</string>
-    <string name="badge_golden_collector_title">Золотий колекціонер</string>
-    <string name="badge_golden_collector_desc">Величезна колекція вартістю понад $1000!</string>
-    <string name="badge_custom_maker_title">Майстер кастому</string>
-    <string name="badge_custom_maker_desc">У колекції 10 і більше кастомних (Custom) моделей.</string>
-    <string name="badge_moc_collector_title">MOC Колекціонер</string>
-    <string name="badge_moc_collector_desc">80%% вашої колекції в упаковці.</string>
 
     <!-- Collections / Folders -->
     <string name="my_folders">Мої папки</string>
@@ -414,6 +438,25 @@
     <string name="unavailable">Зайнято</string>
     <string name="tab_models">Моделі</string>
     <string name="tab_series">Серії</string>
+    <string name="tab_variant_hunt">Варіанти</string>
+    <string name="variant_hunt_add_similar_cta">Усі схожі</string>
+    <string name="variant_hunt_dialog_title">Полювання на варіанти — ключові слова</string>
+    <string name="variant_hunt_keywords_label">Ключові слова</string>
+    <string name="variant_hunt_keywords_hint">Розділяйте комами або пробілами</string>
+    <string name="variant_hunt_match_count">Знайдено збігів: %d</string>
+    <string name="variant_hunt_too_many_matches">Не більше 500 збігів; звузьте слова.</string>
+    <string name="variant_hunt_no_matches">Немає відповідних рядків каталогу.</string>
+    <string name="variant_hunt_empty_groups">Поки немає груп. Натисніть «Усі схожі» біля моделі в бажаннях.</string>
+    <string name="variant_hunt_confirm">Створити групу</string>
+    <string name="variant_hunt_keywords_empty">Введіть хоча б одне слово.</string>
+    <string name="variant_hunt_error_generic">Не вдалося створити групу.</string>
+    <string name="variant_hunt_section_title">Групи полювання</string>
+    <string name="variant_hunt_delete_group">Видалити групу</string>
+    <string name="variant_hunt_delete_confirm_title">Видалити групу?</string>
+    <string name="variant_hunt_delete_confirm_message">Цю групу варіантів буде видалено. Продовжити?</string>
+    <string name="table_header_year">Рік</string>
+    <string name="table_header_series">Серія</string>
+    <string name="table_header_toy">Toy#</string>
     <string name="empty_series_tracking">Серії поки не додані.</string>
     <string name="table_header_model">Модель</string>
     <string name="table_header_no">№</string>
@@ -465,4 +508,10 @@
     <string name="restore_now">Завантажити</string>
     <string name="later">Пізніше</string>
     <string name="restoring_data">Завантаження даних колекції…</string>
+    <string name="dialog_info_title">Інформація</string>
+    <string name="settings_subtitle_help_support">Отримайте допомогу, повідомте про проблеми та надішліть відгук</string>
+    <string name="settings_subtitle_privacy_policy">Дізнайтеся, як використовуються і захищаються ваші дані</string>
+    <string name="settings_subtitle_terms_of_use">Перегляньте умови використання застосунку</string>
+    <string name="settings_subtitle_community_rules">Прочитайте правила спільноти та принципи модерації</string>
+    <string name="settings_subtitle_logout">Безпечно вийдіть зі свого акаунта</string>
 </resources>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Meta -->
+    <string name="app_name">BaseHW</string>
+    <string name="default_web_client_id" translatable="false">471261592182-764lmjpqjtn9baiobafbntcavs7r1gok.apps.googleusercontent.com</string>
+
     <!-- General -->
     <string name="ok">OK</string>
     <string name="save">Salvar</string>
@@ -32,6 +36,9 @@
     <string name="community_feed">Feed</string>
     <string name="community_following">Seguindo</string>
     <string name="community_ranking">Ranking</string>
+    <string name="notifications_title">Notificações</string>
+    <string name="notifications_empty">Nenhuma notificação ainda.</string>
+    <string name="notif_started_following">começou a seguir você.</string>
     <string name="share_to_community">Compartilhar na Comunidade</string>
     <string name="share_caption_hint">Adicione um comentário…</string>
     <string name="share_button">Compartilhar</string>
@@ -45,17 +52,36 @@
     <string name="login_required_feed">Faça login para ver o feed</string>
     <string name="no_posts_yet">Ainda não há postagens</string>
     <string name="no_comments_yet">Ainda não há comentários</string>
-    <string name="photo_required_share">Backup de fotos necessário para compartilhar</string>
+    <string name="photo_required_share">Por favor, adicione uma foto para compartilhar na comunidade</string>
     <string name="shared_successfully">Compartilhado com sucesso!</string>
     <string name="write_comment">Escrever comentário…</string>
     <string name="send">Enviar</string>
+    <string name="dm_write_message">Escrever mensagem</string>
+    <string name="dm_empty">Ainda não há mensagens. Envie a primeira mensagem.</string>
+    <string name="dm_load_error">As mensagens não puderam ser carregadas</string>
+    <string name="dm_send_error">A mensagem não pôde ser enviada</string>
+    <!-- Relative Time Format -->
+    <string name="time_just_now">agora</string>
+    <string name="time_minutes_ago">há %1$d min</string>
+    <string name="time_hours_ago">há %1$d h</string>
+    <string name="time_days_ago">há %1$d dias</string>
+    <string name="dm_inbox_title">Caixa de entrada</string>
+    <string name="dm_inbox_empty">Ainda não há conversas.</string>
+    <string name="feed_compose_title">Compartilhar no Feed</string>
+    <string name="feed_compose_hint">Escreva seus pensamentos ou selecione um carro para compartilhar</string>
+    <string name="feed_compose_selected">Selecionado: %1$s</string>
+    <string name="feed_compose_car_fallback">Carro</string>
+    <string name="feed_compose_clear_selection">Limpar seleção</string>
+    <string name="feed_compose_pick_car">Selecionar Carro</string>
+    <string name="feed_picker_title">Selecionar carro para compartilhar</string>
+    <string name="feed_picker_empty">Nenhum carro na lista</string>
 
     <!-- Home Components -->
     <string name="hello_collector">Olá</string>
     <string name="welcome_back">Bem-vindo de volta à sua garagem</string>
     <string name="total_models">Total de Modelos: %d</string>
     <string name="total_models_label">Total de modelos</string>
-    <string name="search_in_collection">Buscar pelo nome do modelo, código ou série...</string>
+    <string name="search_in_collection">Buscar pelo nome do modelo, código, série</string>
     <string name="search_models">Buscar modelos...</string>
     <string name="clear">Limpar</string>
     <string name="filter">Filtro</string>
@@ -72,6 +98,9 @@
     <string name="wanted_short">Desejado</string>
     <string name="treasure_short">Tesouro</string>
     <string name="recently_added">Adicionados Recentemente</string>
+    <string name="home_news_section">Notícias Diecast</string>
+    <string name="news_detail_title">Notícia</string>
+    <string name="news_not_found">Artigo não encontrado.</string>
     <string name="current_value">Valor atual</string>
     <string name="see_all">Ver Todos</string>
     <string name="view_all">Ver Todos</string>
@@ -124,6 +153,11 @@
     <string name="theme_auto">Seguir Sistema</string>
     <string name="theme_light">Claro</string>
     <string name="theme_dark">Escuro</string>
+    <string name="theme_cyber">Neon (Synthwave)</string>
+    <string name="theme_neon_cyan">Neon ciano</string>
+    <string name="font_family">Fonte</string>
+    <string name="font_space_grotesk">Space Grotesk</string>
+    <string name="font_inter">Inter</string>
     <string name="language">Idioma</string>
     <string name="language_tr">Türkçe</string>
     <string name="language_en">English</string>
@@ -143,6 +177,38 @@
     <string name="legal_section">Jurídico</string>
     <string name="privacy_policy">Política de Privacidade</string>
     <string name="terms_of_use">Termos de Uso</string>
+
+    <!-- Privacy Policy Content -->
+    <string name="privacy_last_updated">Última atualização: Março 2026</string>
+    <string name="privacy_intro">Esta política de privacidade explica como o aplicativo BaseHW coleta, usa e protege seus dados pessoais.</string>
+    <string name="privacy_section_1_title">1. Dados Coletados</string>
+    <string name="privacy_section_1_text">O aplicativo pode coletar os seguintes dados:\n\n• Fotos opcionais de carros (armazenadas no Supabase Storage)\n• Login com Google: Seu e-mail e foto de perfil (Firebase Authentication)\n• Dados da coleção (marca, série, ano, condição, preço / valor de mercado, notas)\n• Dados da comunidade: Postagens compartilhadas, curtidas e comentários\n• Gráfico social: Usuários que você segue e seus seguidores\n• Mensagens diretas entre usuários (DM)\n• Câmera do dispositivo (para identificação de modelos por IA e captura de fotos)</string>
+    <string name="privacy_section_2_title">2. Como Usamos Seus Dados</string>
+    <string name="privacy_section_2_text">Seus dados são usados para:\n\n• Backup na nuvem e sincronização entre dispositivos\n• Renderização do feed da comunidade e gestão de interações\n• Moderação de conteúdo usando Groq AI\n• Análise de fotos usando inteligência artificial para extração automática de informações do modelo\n\nSeus dados nunca são vendidos ou usados para publicidade de terceiros.</string>
+    <string name="privacy_section_3_title">3. Serviços em Nuvem e Moderação por AI</string>
+    <string name="privacy_section_3_text">• Firebase: Dados da coleção e sociais são armazenados com segurança no Firestore.\n• Supabase: As fotos são mantidas no armazenamento em nuvem do Supabase.\n• Moderação por AI: Comentários e legendas são moderados automaticamente pela Groq AI para segurança. Nenhum identificador pessoal (nomes, IDs) é compartilhado durante esta análise apenas de texto.</string>
+    <string name="privacy_section_4_title">4. Exclusão e Controle de Dados</string>
+    <string name="privacy_section_4_text">• Excluir Comentário: Você pode excluir seus próprios comentários a qualquer momento pressionando longamente sobre o comentário.\n• Excluir Postagem: Você pode remover suas postagens da sua página de perfil.\n• Excluir Conta: Use o botão \'Excluir Conta\' na página de Perfil para apagar permanentemente todos os seus dados (coleção, interações sociais e conta).</string>
+    <string name="privacy_section_5_title">5. Privacidade infantil</string>
+    <string name="privacy_section_5_text">O Serviço não se destina a crianças menores de 13 anos e não coletamos intencionalmente dados pessoais de crianças menores de 13 anos.\n\nUsuários de 13 a 18 anos (ou da maioridade em sua jurisdição) só podem usar o Serviço com o consentimento e supervisão de um responsável legal ou tutor. Podemos solicitar comprovação do consentimento dos pais quando exigido por lei.\n\nSe você acredita que coletamos dados de uma criança menor de 13 anos sem consentimento dos pais, entre em contato conosco e removeremos os dados.</string>
+    <string name="privacy_section_6_title">6. Segurança dos dados</string>
+    <string name="privacy_section_6_text">Empregamos medidas técnicas e organizacionais para proteger suas informações pessoais. Porém, nenhum método de transmissão pela Internet ou armazenamento eletrônico é 100% seguro. Embora nos esforcemos para proteger seus dados, não podemos garantir segurança absoluta.</string>
+    <string name="privacy_section_7_title">7. Contato</string>
+    <string name="privacy_section_7_text">Para dúvidas sobre privacidade:\ntaytekofficial@gmail.com</string>
+
+    <!-- Terms of Use Content -->
+    <string name="terms_last_updated">Última atualização: Março 2026</string>
+    <string name="terms_intro">Ao usar o aplicativo BaseHW, você concorda con os seguintes termos.</string>
+    <string name="terms_section_1_title">1. Objetivo</string>
+    <string name="terms_section_1_text">O BaseHW é um aplicativo de gestão e comunidade projetado para colecionadores de modelos de carros diecast.</string>
+    <string name="terms_section_2_title">2. Responsabilidade do Usuário e Regras da Comunidade</string>
+    <string name="terms_section_2_text">• Conteúdo: Você é o único responsável pelas fotos, legendas e comentários que compartilha.\n• Etiqueta: Profanidade, discurso de ódio, assédio e conteúdo ilegal são estritamente proibidos.\n• Moderação por AI: Conteúdos que violem as regras da comunidade podem ser bloqueados ou removidos automaticamente pelos nossos sistemas Groq AI.</string>
+    <string name="terms_section_3_title">3. Propriedade Intelectual</string>
+    <string name="terms_section_3_text">As imagens dos modelos de carros são obtidas de comunidades oficiais e de colecionadores para fins informativos. A propriedade pertence aos respectivos detentores das marcas registradas.</string>
+    <string name="terms_section_4_title">4. Limitação de Responsabilidade</string>
+    <string name="terms_section_4_text">O serviço é fornecido \'como está\'. Os desenvolvedores não são responsáveis por qualquer perda de dados ou interrupções técnicas.</string>
+    <string name="terms_section_5_title">5. Contato</string>
+    <string name="terms_section_5_text">Para suporte:\ntaytekofficial@gmail.com</string>
     
     <!-- Profile Screen -->
     <string name="login_for_cloud">Faça login para backup na nuvem</string>
@@ -155,11 +221,18 @@
     <string name="backup_cloud">Fazer Backup na Nuvem</string>
     <string name="restore_cloud">Restaurar da Nuvem</string>
     <string name="logout">Sair</string>
+    <string name="logout_confirm_title">Sair</string>
+    <string name="logout_confirm_message">Tem certeza de que deseja sair da sua conta?</string>
     <string name="delete_account">Excluir Conta</string>
     <string name="delete_account_dialog_title">Excluir Conta e Dados</string>
     <string name="delete_account_dialog_text">Tem certeza de que deseja excluir sua conta? Seus carros, fotos e pastas no Firebase serão excluídos PERMANENTEMENTE. Esta ação não pode ser desfeita.</string>
     <string name="delete_account_confirm">Sim, Excluir Tudo</string>
     <string name="delete_account_cancel">Cancelar</string>
+    <string name="error_forum_banned">Você foi banido do fórum. Você não pode realizar esta ação.</string>
+    <string name="error_moderation_unavailable">A moderação de conteúdo não está disponível no momento. Por favor, tente novamente.</string>
+    <string name="error_admin_mod_required">Privilégios de administrador ou moderador são necessários para esta ação.</string>
+    <string name="error_content_rules_violation">Seu conteúdo foi considerado contra as regras da comunidade.</string>
+    <string name="account_actions_title">Ações da conta</string>
     <string name="reauth_required_error">Por segurança, você precisa autenticar novamente. Por favor, faça login de novo e tente novamente.</string>
     <string name="delete_account_success">Conta e todos os dados excluídos com sucesso.</string>
     <string name="email_label">E-mail</string>
@@ -190,6 +263,19 @@
     <string name="delete_post_msg">Tem certeza de que deseja excluir esta postagem? Não pode ser desfeito.</string>
     <string name="delete_confirm">Excluir</string>
     <string name="delete_cancel">Cancelar</string>
+    <string name="report_post">Denunciar</string>
+    <string name="report_post_content_desc">Denunciar publicação</string>
+    <string name="report_post_dialog_title">Denunciar publicação</string>
+    <string name="report_post_dialog_hint">Escolha um motivo. Você pode adicionar uma nota curta.</string>
+    <string name="report_reason_profanity">Palavrões ou insultos</string>
+    <string name="report_reason_harmful">Conteúdo nocivo ou perigoso</string>
+    <string name="report_reason_spam">Spam ou anúncios</string>
+    <string name="report_reason_harassment">Assédio ou bullying</string>
+    <string name="report_reason_other">Outro</string>
+    <string name="report_post_details_hint">Nota extra (opcional)</string>
+    <string name="report_post_submit">Enviar denúncia</string>
+    <string name="report_post_sent">Obrigado, recebemos sua denúncia.</string>
+    <string name="report_post_feedback_subject">Denúncia de publicação na comunidade</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Sua lista está vazia</string>
@@ -258,33 +344,7 @@
     <string name="collection_statistics_desc">Gráficos, valores, medalhas</string>
     <string name="collection_statistics_desc_detailed">Gráficos, valores e estatísticas de medalhas</string>
 
-    <!-- Badges -->
-    <string name="earned_badges_title">🏅 Medalhas Ganhas</string>
-    <string name="earned_badges_count">%1$d / %2$d medalhas ganhas</string>
-    <string name="locked_badges_title">Medalhas Bloqueadas</string>
 
-    <string name="badge_first_car_title">Primeiro Passo</string>
-    <string name="badge_first_car_desc">Você adicionou seu primeiro veículo!</string>
-    <string name="badge_ten_cars_title">Bom Começo</string>
-    <string name="badge_ten_cars_desc">Você tem 10 veículos na coleção.</string>
-    <string name="badge_fifty_cars_title">Colecionador Real</string>
-    <string name="badge_fifty_cars_desc">Uma coleção séria de 50 veículos!</string>
-    <string name="badge_hundred_cars_title">Lenda</string>
-    <string name="badge_hundred_cars_desc">100 veículos! Uma coleção lendária.</string>
-    <string name="badge_premium_hunter_title">Caçador Premium</string>
-    <string name="badge_premium_hunter_desc">Você tem 5 ou mais Hot Wheels Premium.</string>
-    <string name="badge_matchbox_fan_title">Fã de Matchbox</string>
-    <string name="badge_matchbox_fan_desc">Você tem 10 ou mais veículos Matchbox.</string>
-    <string name="badge_multi_brand_title">Multimarca</string>
-    <string name="badge_multi_brand_desc">Você tem 3 ou mais marcas diferentes.</string>
-    <string name="badge_silver_collector_title">Colecionador de Prata</string>
-    <string name="badge_silver_collector_desc">O valor da sua coleção passou de $100!</string>
-    <string name="badge_golden_collector_title">Colecionador de Ouro</string>
-    <string name="badge_golden_collector_desc">Uma coleção enorme de $1000!</string>
-    <string name="badge_custom_maker_title">Mestre Custom</string>
-    <string name="badge_custom_maker_desc">Você tem pelo menos 10 veículos customizados (Custom).</string>
-    <string name="badge_moc_collector_title">Colecionador MOC</string>
-    <string name="badge_moc_collector_desc">80%% dos seus veículos estão na caixa original.</string>
 
     <!-- Collections / Pastas -->
     <string name="my_folders">Minhas Pastas</string>
@@ -340,6 +400,7 @@
     <string name="collection_screen_subtitle">Busque, filtre e organize seus carros</string>
     <string name="trend_brands">Marcas em Tendência</string>
     <string name="wishlist_title">Minha Lista</string>
+    <string name="collection_tab_title">Minha coleção</string>
     <string name="empty_wishlist_subtitle">Marque os modelos que você busca!</string>
     <string name="not_specified">Não especificado</string>
     <string name="tap_to_add_note">Toque para adicionar uma nota...</string>
@@ -347,6 +408,18 @@
     <string name="edit_price_title">Editar Preço de Compra</string>
     <string name="edit_value_title">Editar Valor Atual</string>
     <string name="edit_note_title">Editar Nota</string>
+
+    <!-- NonUserProfileScreen Strings -->
+    <string name="nonuser_login_cloud_title">Entrar para backup na nuvem</string>
+    <string name="nonuser_login_cloud_desc">Mantenha seus dados seguros e junte-se à nossa comunidade.</string>
+    <string name="nonuser_signin_google">Entrar com o Google</string>
+    <string name="nonuser_login_signup">Entrar / Cadastrar-se</string>
+    <string name="nonuser_feature_backup">Backup na nuvem</string>
+    <string name="nonuser_feature_backup_desc">Faça backup de todos os seus dados na nuvem</string>
+    <string name="nonuser_feature_community">Acesso à comunidade</string>
+    <string name="nonuser_feature_community_desc">Junte-se à comunidade de colecionadores</string>
+    <string name="nonuser_feature_restore">Restaurar da nuvem</string>
+    <string name="nonuser_feature_restore_desc">Restaure sua coleção com um toque</string>
 
     <!-- Profile Screen Redesign Strings -->
     <string name="premium_member">MEMBRO PREMIUM</string>
@@ -360,10 +433,12 @@
     <string name="username_label">Nome de Usuário</string>
     <string name="username_hint">Escolha um nome de usuário único</string>
     <string name="username_taken">Este nome de usuário já está sendo usado.</string>
-    <string name="username_invalid">O usuário deve ter 3-20 caracteres (a-z, 0-9, _).</string>
+    <string name="username_invalid">O usuário deve ter 3-8 caracteres (a-z, 0-9, _).</string>
     <string name="consent_text">Eu consinto com o backup e processamento dos meus dados.</string>
     <string name="consent_text_with_links">Eu aceito a Política de Privacidade e os Termos de Uso.</string>
     <string name="accept_terms_error">Por favor, aceite a Política de Privacidade e os Termos de Uso para continuar.</string>
+    <string name="mandatory_consent_title">Consentimento obrigatório antes de continuar</string>
+    <string name="mandatory_consent_desc">Para usar o aplicativo, você deve aceitar a Política de Privacidade e os Termos de Uso. Se não aceitar, sua sessão será encerrada.</string>
     <string name="password_criteria_error">A senha deve ter pelo menos 8 caracteres; incluir maiúsculas, minúsculas e números.</string>
     <string name="select_username_title">Selecionar Usuário</string>
     <string name="select_username_desc">Parece que é sua primeira vez. Por favor, escolha um nome de usuário:</string>
@@ -412,6 +487,25 @@
     <string name="unavailable">Indisponível</string>
     <string name="tab_models">Modelos</string>
     <string name="tab_series">Séries</string>
+    <string name="tab_variant_hunt">Variantes</string>
+    <string name="variant_hunt_add_similar_cta">Adicionar similares</string>
+    <string name="variant_hunt_dialog_title">Caça a variantes — palavras-chave</string>
+    <string name="variant_hunt_keywords_label">Palavras-chave</string>
+    <string name="variant_hunt_keywords_hint">Separe com vírgulas ou espaços</string>
+    <string name="variant_hunt_match_count">%d correspondências</string>
+    <string name="variant_hunt_too_many_matches">No máximo 500 correspondências; refine as palavras-chave.</string>
+    <string name="variant_hunt_no_matches">Sem linhas de catálogo correspondentes.</string>
+    <string name="variant_hunt_empty_groups">Ainda sem grupos. Use «Adicionar similares» num modelo da lista de desejos.</string>
+    <string name="variant_hunt_confirm">Criar grupo</string>
+    <string name="variant_hunt_keywords_empty">Introduza pelo menos uma palavra-chave.</string>
+    <string name="variant_hunt_error_generic">Não foi possível criar o grupo.</string>
+    <string name="variant_hunt_section_title">Grupos de caça</string>
+    <string name="variant_hunt_delete_group">Eliminar grupo</string>
+    <string name="variant_hunt_delete_confirm_title">Eliminar grupo?</string>
+    <string name="variant_hunt_delete_confirm_message">Este grupo de variantes será removido. Continuar?</string>
+    <string name="table_header_year">Ano</string>
+    <string name="table_header_series">Série</string>
+    <string name="table_header_toy">Toy#</string>
     <string name="empty_series_tracking">Nenhuma série adicionada ainda.</string>
     <string name="table_header_model">Modelo</string>
     <string name="table_header_no">No</string>
@@ -463,4 +557,164 @@
     <string name="restore_now">Carregar Agora</string>
     <string name="later">Depois</string>
     <string name="restoring_data">Carregando coleção...</string>
+    <string name="collection_tab_title_simple">Coleção</string>
+    <string name="wishlist_title_simple">Lista de desejos</string>
+
+    <!-- Community Leaderboard Toggle -->
+    <string name="leaderboard_most_valuable">Mais Valioso</string>
+    <string name="leaderboard_most_cars">Mais Carros</string>
+
+    <!-- Community CTA Card -->
+    <string name="community_community_title">Comunidade</string>
+    <string name="community_community_desc">Explore novos colecionadores, descubra modelos raros.</string>
+    <string name="community_explore">Explorar</string>
+
+    <!-- User/Profile Fallbacks -->
+    <string name="collector_fallback">Colecionador</string>
+    <string name="posts_section_title">PUBLICAÇÕES</string>
+    <string name="profile_no_posts">Ainda não há publicações</string>
+
+    <!-- Avatar Picker -->
+    <string name="avatar_pick_title">Escolher Avatar</string>
+    <string name="avatar_default_title">Avatares Padrão</string>
+    <string name="avatar_upload_gallery">Upload da Galeria</string>
+    <string name="avatar_cancel">Cancelar</string>
+    <string name="avatar_desc">Avatar</string>
+    <!-- Content Descriptions -->
+    <string name="inbox_desc">Caixa de entrada</string>
+    <string name="message_desc">Enviar mensagem</string>
+
+    <!-- ProfileViewModel Error/Status Messages -->
+    <string name="vm_login_failed">Falha no login.</string>
+    <string name="vm_register_failed">Falha no registro.</string>
+    <string name="vm_consent_required">Por favor, aceite o processamento de dados.</string>
+    <string name="vm_password_criteria">A senha deve ter pelo menos 8 caracteres, incluindo maiúsculas, minúsculas e um dígito.</string>
+    <string name="vm_username_format">O nome de usuário deve ter 3-8 caracteres e conter apenas letras, números e sublinhados.</string>
+    <string name="vm_username_inappropriate">Nome de usuário inapropriado.</string>
+    <string name="vm_username_generation_failed">Não foi possível gerar o nome de usuário. Por favor, insira manualmente.</string>
+    <string name="vm_username_taken">Este nome de usuário já está em uso.</string>
+    <string name="vm_username_check_failed">Não foi possível verificar o nome de usuário, verifique suas regras do Firebase.</string>
+    <string name="vm_username_invalid">Nome de usuário inválido ou inapropriado.</string>
+    <string name="vm_username_assign_failed">Não foi possível atribuir o nome de usuário, tente novamente.</string>
+    <string name="vm_reset_failed">Não foi possível enviar o e-mail de redefinição.</string>
+    <string name="vm_backing_up">Fazendo backup...</string>
+    <string name="vm_backup_success">Backup realizado com sucesso!</string>
+    <string name="vm_backup_error">Erro de backup.</string>
+    <string name="vm_restoring">Restaurando...</string>
+    <string name="vm_restore_success">Restauração concluída com sucesso!</string>
+    <string name="vm_restore_error">Erro de restauração.</string>
+    <string name="vm_cleaning_data">Limpando dados...</string>
+    <string name="vm_data_clean_error">Erro ao limpar dados: %s</string>
+    <string name="vm_deleting_account">Excluindo conta...</string>
+    <string name="vm_delete_account_reauth_required">Por segurança, faça login novamente e tente excluir sua conta mais uma vez.</string>
+    <string name="vm_remote_cleanup_failed_with_link">Alguns dados em nuvem não puderam ser excluídos (%s). Tente novamente. Se persistir: https://supabase.com/docs/guides/platform/delete-your-project</string>
+    <string name="vm_visibility_error">Não foi possível salvar as configurações de visibilidade</string>
+    <string name="vm_avatar_select_error">Não foi possível selecionar o avatar</string>
+    <string name="vm_avatar_upload_error">Não foi possível enviar o avatar</string>
+    <string name="vm_avatar_upload_exception">Erro no envio do avatar</string>
+    <string name="vm_export_failed">Falha na exportação: %s</string>
+
+    <!-- CommunityViewModel Error/Status Messages -->
+    <string name="vm_community_post_empty">Escreva um texto ou selecione um carro para compartilhar</string>
+    <string name="vm_community_post_cooldown">Você pode fazer no máximo 2 publicações seguidas. Aguarde %s para uma nova publicação</string>
+    <string name="vm_community_service_unavailable">O serviço da comunidade não está disponível. Tente novamente mais tarde</string>
+    <string name="vm_community_supabase_error">As configurações de conexão do Supabase estão incorretas ou inacessíveis.</string>
+    <string name="vm_community_post_failed">Não foi possível criar a publicação. Os detalhes do erro não puderam ser obtidos.</string>
+    <string name="vm_community_follow_failed">Falha ao seguir</string>
+
+    <!-- Additional UI Strings -->
+    <string name="chase_label">CHASE</string>
+    <string name="th_label">TH</string>
+    <string name="search_brand_not_found_format">Nenhum resultado encontrado para %s</string>
+    <string name="edit_username">Editar nome de usuário</string>
+    <string name="share_collection_chooser_title">Compartilhar coleção</string>
+    <string name="privacy_visibility_section">Privacidade e visibilidade</string>
+    <string name="collection_visibility_title">Visibilidade da coleção</string>
+    <string name="wishlist_visibility_title">Visibilidade da lista de desejos</string>
+    <string name="visibility_public">Público</string>
+    <string name="visibility_private">Privado</string>
+    <string name="collection_visibility_public">Coleção: Público</string>
+    <string name="collection_visibility_private">Coleção: Privado</string>
+    <string name="wishlist_visibility_public">Lista de desejos: Público</string>
+    <string name="wishlist_visibility_private">Lista de desejos: Privado</string>
+    <string name="atakas_title">Troca</string>
+    <string name="atakas_found">%1$d correspondências encontradas. Você pode discutir ofertas por mensagem.</string>
+    <string name="atakas_not_found">Nenhuma correspondência encontrada no momento.</string>
+    <string name="atakas_hidden_collection_private">A correspondência não pode ser mostrada porque a visibilidade da coleção deste usuário está fechada.</string>
+    <string name="trade_match_reverse_title">Solicitações correspondentes às suas</string>
+    <string name="trade_match_reverse_found">%1$d correspondências da sua coleção na lista de desejos do outro usuário.</string>
+    <string name="trade_match_reverse_hidden">A correspondência inversa não pode ser mostrada porque a visibilidade da lista de desejos deste usuário está fechada.</string>
+    <string name="profile_photo_desc">Foto de perfil</string>
+    <string name="inbox_icon_desc">Caixa de entrada</string>
+    <string name="message_user">Enviar mensagem</string>
+    <string name="condition_near_mint">Na caixa (Near MINT)</string>
+    <string name="condition_damaged">Na caixa (Danificado)</string>
+
+    <!-- Block User -->
+    <string name="block_user_title">Bloquear utilizador</string>
+    <string name="block_user_message">Deseja bloquear %1$s? Este utilizador será removido dos seus seguidores e não poderá segui-lo novamente.</string>
+    <string name="block_user_confirm">Bloquear</string>
+
+    <!-- Blocked Users -->
+    <string name="blocked_users_title">Utilizadores bloqueados</string>
+    <string name="unblock_user_title">Desbloquear utilizador</string>
+    <string name="unblock_user_message">Deseja desbloquear %1$s? Este utilizador poderá segui-lo novamente.</string>
+    <string name="unblock_user_confirm">Desbloquear</string>
+
+    <string name="edit_avatar_action">Editar avatar</string>
+    <string name="profile_edit_avatar_title">Avatar</string>
+    <string name="profile_edit_email_title">E-mail</string>
+    <string name="profile_edit_username_title">Nome de usuário</string>
+    <string name="profile_edit_password_title">Alterar senha</string>
+    <string name="profile_edit_password_help">Um link de redefinição de senha será enviado para o seu endereço de e-mail.</string>
+    <string name="profile_web_client_error">ID de cliente da Web do Google não encontrado. Entre em contato com o administrador.</string>
+    <string name="profile_activity_not_found">Atividade não encontrada.</string>
+    <string name="profile_login_failed_template">Falha ao entrar: %1$s</string>
+    <string name="profile_login_error">Erro de login desconhecido</string>
+
+    <!-- Ranks Screen -->
+    <string name="ranks_title">Classificações</string>
+    <string name="ranks_your_rank">Sua Classificação</string>
+    <string name="ranks_score_range">Intervalo de Pontos</string>
+    <string name="ranks_view_all">Todas as Classificações</string>
+    <string name="ranks_next_rank">Próxima classificação: %s</string>
+    <string name="ranks_points_needed">%d pontos necessários</string>
+    <string name="ranks_max_rank">🏆 Parabéns! Você alcançou a classificação máxima!</string>
+    <string name="ranks_current_score">Pontuação atual</string>
+    <string name="ranks_score_label">%d pontos</string>
+    <string name="end_to_end_encrypted">Esta conversa é criptografada de ponta a ponta.</string>
+
+    <!-- Admin Panel -->
+    <string name="admin_panel_title">🛡️ Painel Admin</string>
+    <string name="admin_management_section">🛡️ Gestão</string>
+    <string name="admin_forum_management">Gestão do Fórum</string>
+    <string name="admin_tab_members">Membros</string>
+    <string name="admin_tab_banned">Banidos</string>
+    <string name="admin_tab_members_with_count">Membros (%1$d)</string>
+    <string name="admin_tab_banned_with_count">Banidos (%1$d)</string>
+    <string name="admin_search_users_hint">Buscar membros...</string>
+    <string name="admin_search_banned_hint">Buscar banidos...</string>
+    <string name="admin_no_users_found">Membro não encontrado</string>
+    <string name="admin_no_search_results">Nenhum membro corresponde à busca</string>
+    <string name="admin_no_banned_users">Nenhum membro banido</string>
+    <string name="admin_ban_user_dialog_title">Banir Usuário</string>
+    <string name="admin_ban_reason_determining">Motivo para: %1$s</string>
+    <string name="admin_ban_reason_optional">Motivo do banimento (opcional)</string>
+    <string name="admin_ban_confirm">Banir</string>
+    <string name="admin_make_mod">Tornar Mod</string>
+    <string name="admin_remove_mod">Remover Mod</string>
+    <string name="admin_unban_confirm">Desbanir</string>
+    <string name="admin_access_denied">Acesso Negado</string>
+    <string name="admin_posts_count_label">%1$d postagens</string>
+    <string name="admin_badge_banned_label">BANIDO</string>
+    <string name="admin_badge">🛡️ ADMIN</string>
+    <string name="mod_badge">🛡️ MOD</string>
+    <string name="community_admin_badge">ADMIN</string>
+    <string name="community_mod_badge">MOD</string>
+    <string name="dialog_info_title">Informação</string>
+    <string name="settings_subtitle_help_support">Obtenha ajuda, relate problemas e envie feedback</string>
+    <string name="settings_subtitle_privacy_policy">Saiba como seus dados sao usados e protegidos</string>
+    <string name="settings_subtitle_terms_of_use">Revise os termos de uso do aplicativo</string>
+    <string name="settings_subtitle_community_rules">Leia as regras da comunidade e as diretrizes de moderacao</string>
+    <string name="settings_subtitle_logout">Saia da sua conta com seguranca</string>
 </resources>

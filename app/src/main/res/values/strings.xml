@@ -34,9 +34,14 @@
     <string name="nav_community">Topluluk</string>
 
     <!-- Community Social Feed -->
+    <string name="empty_list_fallback">Listede kimse yok</string>
+    <string name="close">Kapat</string>
     <string name="community_feed">Akış</string>
-    <string name="community_following">Takipler</string>
+    <string name="community_following">Takip Edilen</string>
     <string name="community_ranking">Sıralama</string>
+    <string name="notifications_title">Bildirimler</string>
+    <string name="notifications_empty">Hiç bildiriminiz yok.</string>
+    <string name="notif_started_following">seni takip etmeye başladı.</string>
     <string name="share_to_community">Toplulukta Paylaş</string>
     <string name="share_caption_hint">Bir yorum ekle…</string>
     <string name="share_button">Paylaş</string>
@@ -45,22 +50,65 @@
     <string name="follow">Takip Et</string>
     <string name="unfollow">Takipten Çık</string>
     <string name="followers">Takipçi</string>
-    <string name="following_label">Takip</string>
+    <string name="following_label">Takip Edilen</string>
     <string name="posts_label">Paylaşım</string>
     <string name="login_required_feed">Feed\'i görmek için giriş yap</string>
+    <string name="login_required">Bu işlem için giriş yapmanız gerekiyor.</string>
+    <string name="login_required_backup">Yedekleme için giriş yapmanız gerekmektedir.</string>
     <string name="no_posts_yet">Henüz paylaşım yok</string>
     <string name="no_comments_yet">Henüz yorum yok</string>
-    <string name="photo_required_share">Paylaşmak için fotoğraf yedeklemesi gerekli</string>
+    <string name="photo_required_share">Toplulukta paylaşmak için lütfen fotoğraf ekleyin</string>
     <string name="shared_successfully">Başarıyla paylaşıldı!</string>
     <string name="write_comment">Yorum yaz…</string>
     <string name="send">Gönder</string>
+    <string name="community_user_fallback">Kullanıcı</string>
+    <string name="community_admin_badge">ADMIN</string>
+    <string name="community_mod_badge">MOD</string>
+    <string name="mod_badge">🛡️ MOD</string>
+    <string name="message_user">Mesaj Gönder</string>
+    <string name="dm_write_message">Mesaj yaz</string>
+    <string name="dm_empty">Henüz mesaj yok. İlk mesajı sen gönder.</string>
+    <string name="dm_load_error">Mesajlar yüklenemedi</string>
+    <string name="dm_send_error">Mesaj gönderilemedi</string>
+
+    <!-- Relative Time Format -->
+    <string name="time_just_now">şimdi</string>
+    <string name="time_minutes_ago">%1$d dk önce</string>
+    <string name="time_hours_ago">%1$d saat önce</string>
+    <string name="time_days_ago">%1$d gün önce</string>
+    <string name="dm_inbox_title">Mesaj Kutusu</string>
+    <string name="dm_inbox_empty">Henüz bir konuşma yok.</string>
+    <string name="feed_compose_title">Feed\'de Paylaş</string>
+    <string name="feed_compose_hint">Düşünceni yaz veya araç seçerek paylaş</string>
+    <string name="feed_compose_selected">Seçili: %1$s</string>
+    <string name="feed_compose_car_fallback">Araç</string>
+    <string name="feed_compose_clear_selection">Seçimi temizle</string>
+    <string name="feed_compose_pick_car">Araç Seç</string>
+    <string name="feed_picker_title">Paylaşım için araç seç</string>
+    <string name="feed_picker_empty">Listede araç yok</string>
+    <string name="privacy_visibility_section">Gizlilik ve Görünürlük</string>
+    <string name="collection_visibility_title">Collection görünürlüğü</string>
+    <string name="wishlist_visibility_title">Wanted görünürlüğü</string>
+    <string name="visibility_public">Herkese açık</string>
+    <string name="visibility_private">Gizli</string>
+    <string name="collection_visibility_public">Collection: Açık</string>
+    <string name="collection_visibility_private">Collection: Gizli</string>
+    <string name="wishlist_visibility_public">Wanted: Açık</string>
+    <string name="wishlist_visibility_private">Wanted: Gizli</string>
+    <string name="atakas_title">Takas</string>
+    <string name="atakas_found">%1$d eşleşme bulundu. Mesajla teklif konuşabilirsiniz.</string>
+    <string name="atakas_not_found">Şu an eşleşen wanted bulunmuyor.</string>
+    <string name="atakas_hidden_collection_private">Bu kullanıcının collection görünürlüğü kapalı olduğu için eşleşme gösterilemiyor.</string>
+    <string name="trade_match_reverse_title">Sana Uyan İstekleri</string>
+    <string name="trade_match_reverse_found">Karşı tarafın istek listesinde koleksiyonundan %1$d eşleşme var.</string>
+    <string name="trade_match_reverse_hidden">Bu kullanıcının wanted görünürlüğü kapalı olduğu için ters eşleşme gösterilemiyor.</string>
 
     <!-- Home Components -->
     <string name="hello_collector">Merhaba</string>
     <string name="welcome_back">Garajınıza tekrar hoş geldiniz</string>
     <string name="total_models">Toplam Model: %d</string>
     <string name="total_models_label">Toplam model</string>
-    <string name="search_in_collection">Model adı, kod veya seri ara...</string>
+    <string name="search_in_collection">Model, seri, kod ara</string>
     <string name="search_models">Modelleri ara...</string>
     <string name="clear">Temizle</string>
     <string name="filter">Filtre</string>
@@ -77,9 +125,13 @@
     <string name="wanted_short">Aranan</string>
     <string name="treasure_short">Hazine</string>
     <string name="recently_added">Son Eklenenler</string>
+    <string name="home_news_section">Diecast Haberleri</string>
+    <string name="news_detail_title">Haber</string>
+    <string name="news_not_found">Haber bulunamadı.</string>
     <string name="current_value">Güncel değer</string>
     <string name="see_all">Tümünü Gör</string>
     <string name="view_all">Tümünü Gör</string>
+    <string name="collection_count">%1$d öğe</string>
 
     <!-- Photo Options -->
     <string name="add_photo_options">Fotoğraf Yükleme Seçenekleri</string>
@@ -101,7 +153,7 @@
     <!-- Filter Bottom Sheet -->
     <string name="advanced_filters">Gelişmiş Filtreler</string>
     <string name="brand">Marka</string>
-    <string name="all">Hepsi</string>
+    <string name="all">Tümü</string>
     <string name="year">Yıl</string>
     <string name="series">Seri</string>
     <string name="condition">Durum</string>
@@ -129,6 +181,11 @@
     <string name="theme_auto">Sisteme Uy</string>
     <string name="theme_light">Aydınlık</string>
     <string name="theme_dark">Karanlık</string>
+    <string name="theme_cyber">Neon (Synthwave)</string>
+    <string name="theme_neon_cyan">Neon Cyan</string>
+    <string name="font_family">Yazı Tipi</string>
+    <string name="font_space_grotesk">Space Grotesk</string>
+    <string name="font_inter">Inter</string>
     <string name="language">Dil</string>
     <string name="language_tr">Türkçe</string>
     <string name="language_en">English</string>
@@ -148,6 +205,38 @@
     <string name="legal_section">Yasal</string>
     <string name="privacy_policy">Gizlilik Politikası</string>
     <string name="terms_of_use">Kullanım Koşulları</string>
+
+    <!-- Privacy Policy Content -->
+    <string name="privacy_last_updated">Son güncelleme: Mart 2026</string>
+    <string name="privacy_intro">Bu gizlilik politikası, BaseHW uygulamasının kişisel verilerinizi nasıl topladığını, kullandığını ve koruduğunu açıklamaktadır.</string>
+    <string name="privacy_section_1_title">1. Toplanan Veriler</string>
+    <string name="privacy_section_1_text">Uygulama aşağıdaki verileri toplayabilir:\n\n• İsteğe bağlı olarak yüklediğiniz araba fotoğrafları (Supabase Storage platformunda saklanır)\n• Google ile girişte: E-posta adresiniz ve profil görseliniz (Firebase Authentication)\n• Koleksiyon verileriniz (marka, seri, yıl, durum, fiyat/piyasa değeri, notlar)\n• Topluluk verileri: Paylaştığınız gönderiler, beğenileriniz ve yazdığınız yorumlar\n• Takip bilgileri: Takip ettiğiniz kullanıcılar ve takipçileriniz\n• Kullanıcılar arası doğrudan mesajlaşmalar (DM)\n• Cihaz kamerası (AI ile model otomatik tanıma ve fotoğraf çekimi için)</string>
+    <string name="privacy_section_2_title">2. Verilerin Kullanımı</string>
+    <string name="privacy_section_2_text">Verileriniz şu amaçlarla kullanılır:\n\n• Koleksiyonunuzun bulut yedeklenmesi ve cihazlar arası senkronizasyon\n• Topluluk akışının oluşturulması ve etkileşimlerin yönetilmesi\n• İçerik güvenliğinin Groq AI yardımıyla denetlenmesi\n• Fotoğrafların yapay zeka ile analiz edilerek model bilgilerinin otomatik çıkarılması\n\nVerileriniz üçüncü taraflara satılmaz veya reklam amaçlı kullanılmaz.</string>
+    <string name="privacy_section_3_title">3. Bulut Hizmetleri ve AI Denetimi</string>
+    <string name="privacy_section_3_text">• Firebase: Koleksiyon ve topluluk verileri Firestore\'da güvenle saklanır.\n• Supabase: Yüklediğiniz fotoğraflar Supabase bulut depolamasında tutulur.\n• AI Moderasyon: Topluluk güvenliği için yorum ve açıklamalar Groq AI ile otomatik olarak denetlenir. Bu işlem sırasında kişisel kimlik bilgileriniz (isim, ID) paylaşılmaz, sadece metin içeriği analiz edilir.</string>
+    <string name="privacy_section_4_title">4. Veri Silme ve Kontrol</string>
+    <string name="privacy_section_4_text">• Yorum Silme: Paylaştığınız yorumları, yorumun üzerine basılı tutarak dilediğiniz zaman silebilirsiniz.\n• Gönderi Silme: Paylaştığınız gönderileri kendi profilinizden silebilirsiniz.\n• Hesap Silme: Profil sayfasındaki \'Hesabımı Sil\' butonu ile tüm verilerinizi (koleksiyon, topluluk etkileşimleri ve hesap) kalıcı olarak silebilirsiniz.</string>
+    <string name="privacy_section_5_title">5. Çocukların Gizliliği</string>
+    <string name="privacy_section_5_text">Hizmet 13 yaşın altındaki çocuklara yönelik değildir ve bilerek 13 yaşın altındaki çocuklardan kişisel bilgi toplamayız.\n\n13–18 yaş arası kullanıcılar (veya yargı bölgesinde reşit olma yaşı), Hizmeti yalnızca bir ebeveyn veya vasinin rızası ve gözetimi altında kullanabilir. Yasal olarak gerekli olduğunda ebeveyn rızasının doğrulanmasını talep edebiliriz.\n\n13 yaşın altındaki bir çocuktan ebeveyn rızası olmadan veri topladığımıza inanıyorsanız lütfen bizimle iletişime geçin; verileri sileriz.</string>
+    <string name="privacy_section_6_title">6. Veri Güvenliği</string>
+    <string name="privacy_section_6_text">Kişisel bilgilerinizi korumak için teknik ve idari önlemler uyguluyoruz. Ancak İnternet üzerinden iletimin veya elektronik depolamanın yüzde yüz güvenli olmadığını unutmayın. Verilerinizi korumak için çaba göstersek de mutlak güvenliği garanti edemeyiz.</string>
+    <string name="privacy_section_7_title">7. İletişim</string>
+    <string name="privacy_section_7_text">Gizlilikle ilgili sorularınız için:\ntaytekofficial@gmail.com</string>
+
+    <!-- Terms of Use Content -->
+    <string name="terms_last_updated">Son güncelleme: Mart 2026</string>
+    <string name="terms_intro">BaseHW uygulamasını kullanarak aşağıdaki koşulları kabul etmiş sayılırsınız.</string>
+    <string name="terms_section_1_title">1. Uygulamanın Amacı</string>
+    <string name="terms_section_1_text">BaseHW, diecast model araba koleksiyoncuları için tasarlanmış bir yönetim ve topluluk uygulamasıdır.</string>
+    <string name="terms_section_2_title">2. Kullanıcı Sorumluluğu ve Topluluk Kuralları</string>
+    <string name="terms_section_2_text">• İçerik Sorumluluğu: Paylaştığınız fotoğraf, açıklama ve yorumlardan tamamen siz sorumlusunuz.\n• Saygılı Etkileşim: Küfür, hakaret, nefret söylemi ve taciz içeren her türlü içerik kesinlikle yasaktır.\n• AI Moderasyon: Topluluk kurallarını ihlal eden içerikler Groq AI sistemlerimiz tarafından otomatik olarak engellenebilir veya silinebilir.</string>
+    <string name="terms_section_3_title">3. Fikri Mülkiyet</string>
+    <string name="terms_section_3_text">Araba bilgileri ve görselleri Hot Wheels, Matchbox ve diğer ilgili kaynaklardan bilgilendirme amaçlı alınmaktadır. Bu görsellerin mülkiyeti ilgili markalara aittir.</string>
+    <string name="terms_section_4_title">4. Hizmet Kesintisi</string>
+    <string name="terms_section_4_text">Hizmet \'olduğu gibi\' sunulur. Veri kaybı veya teknik aksaklıklardan dolayı geliştirici sorumlu tutulamaz.</string>
+    <string name="terms_section_5_title">5. İletişim</string>
+    <string name="terms_section_5_text">Destek ve sorularınız için:\ntaytekofficial@gmail.com</string>
     
     <!-- Profile Screen -->
     <string name="login_for_cloud">Bulut Yedekleme İçin Giriş Yapın</string>
@@ -160,13 +249,25 @@
     <string name="backup_cloud">Tüm Veriyi Buluta Yedekle</string>
     <string name="restore_cloud">Buluttan Cihaza Geri Yükle</string>
     <string name="logout">Çıkış Yap</string>
+    <string name="logout_confirm_title">Çıkış Yap</string>
+    <string name="logout_confirm_message">Hesabınızdan çıkış yapmak istediğinizden emin misiniz?</string>
     <string name="delete_account">Hesabımı Sil</string>
     <string name="delete_account_dialog_title">Hesabı ve Verileri Sil</string>
     <string name="delete_account_dialog_text">Hesabınızı silmek istediğinizden emin misiniz? Bu işlem sonucunda Firebase üzerindeki tüm arabalarınız, fotoğraflarınız ve klasörleriniz KALICI olarak silinecektir. Bu işlem geri alınamaz.</string>
     <string name="delete_account_confirm">Evet, Her Şeyi Sil</string>
     <string name="delete_account_cancel">Vazgeç</string>
+    <string name="error_forum_banned">Forumdan engellendiniz. Bu işlemi yapamazsınız.</string>
+    <string name="error_moderation_unavailable">İçerik denetimi şu anda kullanılamıyor. Lütfen tekrar deneyin.</string>
+    <string name="error_admin_mod_required">Bu işlem için admin veya moderatör yetkisi gerekiyor.</string>
+    <string name="error_content_rules_violation">İçeriğiniz topluluk kurallarına aykırı bulundu.</string>
+    <string name="account_actions_title">Hesap İşlemleri</string>
     <string name="reauth_required_error">Güvenlik nedeniyle oturumunuzu tazelemeniz gerekiyor. Lütfen tekrar giriş yapıp işlemi tekrar deneyin.</string>
     <string name="delete_account_success">Hesap ve tüm veriler başarıyla silindi.</string>
+
+    <string name="community_and_social_section">TOPLULUK VE SOSYAL</string>
+    <string name="settings_official_website">Resmi Web Sitesi</string>
+    <string name="settings_github_repo">GitHub Deposu</string>
+
     <string name="email_label">E-posta</string>
     <string name="password_label">Şifre</string>
     <string name="currency_setting">Para Birimi Seçimi</string>
@@ -195,6 +296,19 @@
     <string name="delete_post_msg">Bu gönderiyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</string>
     <string name="delete_confirm">Sil</string>
     <string name="delete_cancel">İptal</string>
+    <string name="report_post">Bildir</string>
+    <string name="report_post_content_desc">Gönderiyi bildir</string>
+    <string name="report_post_dialog_title">Gönderiyi bildir</string>
+    <string name="report_post_dialog_hint">Neden bildirdiğinizi seçin. İsterseniz kısa not ekleyin.</string>
+    <string name="report_reason_profanity">Küfür veya hakaret</string>
+    <string name="report_reason_harmful">Zararlı veya tehlikeli içerik</string>
+    <string name="report_reason_spam">Spam veya reklam</string>
+    <string name="report_reason_harassment">Taciz veya zorbalık</string>
+    <string name="report_reason_other">Diğer</string>
+    <string name="report_post_details_hint">Ek not (isteğe bağlı)</string>
+    <string name="report_post_submit">Bildirimi gönder</string>
+    <string name="report_post_sent">Bildirimin alındı, teşekkürler.</string>
+    <string name="report_post_feedback_subject">Topluluk gönderisi bildirimi</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">Listeniz Boş</string>
@@ -246,6 +360,9 @@
     <string name="series_label">Seri</string>
     <string name="series_num_label">Seri No</string>
     <string name="condition_label">Durum</string>
+    <string name="hw_card_type_label">Kart tipi</string>
+    <string name="hw_card_short">Kısa kart</string>
+    <string name="hw_card_long">Uzun kart</string>
     <string name="condition_opened">Açık</string>
     <string name="condition_boxed">📦 Kutulu</string>
     <string name="storage_label">Depo</string>
@@ -263,33 +380,7 @@
     <string name="collection_statistics_desc">Grafikler, değerler, rozetler</string>
     <string name="collection_statistics_desc_detailed">Grafikler, değerler ve rozet istatistikleri</string>
 
-    <!-- Badges -->
-    <string name="earned_badges_title">🏅 Kazanılan Rozetler</string>
-    <string name="earned_badges_count">%1$d / %2$d rozet kazanıldı</string>
-    <string name="locked_badges_title">Kilitli Rozetler</string>
 
-    <string name="badge_first_car_title">İlk Adım</string>
-    <string name="badge_first_car_desc">Koleksiyonuna ilk aracı ekledin!</string>
-    <string name="badge_ten_cars_title">Üst Düzey Başlangıç</string>
-    <string name="badge_ten_cars_desc">10 araç koleksiyonuna sahipsin.</string>
-    <string name="badge_fifty_cars_title">Gerçek Koleksiyoner</string>
-    <string name="badge_fifty_cars_desc">50 araçla ciddi bir koleksiyon!</string>
-    <string name="badge_hundred_cars_title">Efsane</string>
-    <string name="badge_hundred_cars_desc">100 araç! Efsane bir koleksiyon.</string>
-    <string name="badge_premium_hunter_title">Premium Avcısı</string>
-    <string name="badge_premium_hunter_desc">5 veya daha fazla Hot Wheels Premium aracın var.</string>
-    <string name="badge_matchbox_fan_title">Matchbox Fanı</string>
-    <string name="badge_matchbox_fan_desc">10 veya daha fazla Matchbox aracın var.</string>
-    <string name="badge_multi_brand_title">Çok Markacı</string>
-    <string name="badge_multi_brand_desc">3 veya daha fazla farklı markaya sahipsin.</string>
-    <string name="badge_silver_collector_title">Gümüş Koleksiyoner</string>
-    <string name="badge_silver_collector_desc">Koleksiyon değerin 100$ barajını geçti!</string>
-    <string name="badge_golden_collector_title">Altın Koleksiyoner</string>
-    <string name="badge_golden_collector_desc">1000$ değerinde devasa bir koleksiyon!</string>
-    <string name="badge_custom_maker_title">Custom Ustası</string>
-    <string name="badge_custom_maker_desc">Koleksiyonuna en az 10 adet özel yapım (Custom) aracın var.</string>
-    <string name="badge_moc_collector_title">MOC Koleksiyoneri</string>
-    <string name="badge_moc_collector_desc">Tüm araçlarının %%80\'i kutulu.</string>
 
     <!-- Collections / Folders -->
     <string name="my_folders">Klasörlerim</string>
@@ -328,8 +419,10 @@
     <string name="section_currency">PARA BİRİMİ</string>
     <string name="section_price_details">FİYAT DETAYLARI</string>
     <string name="section_collection_info">KOLEKSİYON BİLGİSİ</string>
-    <string name="condition_mint">Mint</string>
-    <string name="condition_loose">Loose</string>
+    <string name="condition_mint">Kutulu (MINT)</string>
+    <string name="condition_loose">Kutusuz (Loose)</string>
+    <string name="condition_near_mint">Kutulu (Near MINT)</string>
+    <string name="condition_damaged">Kutulu (Damaged)</string>
     <string name="search_model_placeholder">Model ara</string>
     <string name="price_purchase">Alış Fiyatı</string>
     <string name="price_market">Piyasa Değeri</string>
@@ -345,6 +438,7 @@
     <string name="collection_screen_subtitle">Arabalarini ara, filtrele ve düzenle</string>
     <string name="trend_brands">Trend Markalar</string>
     <string name="wishlist_title">İstek Listem</string>
+    <string name="collection_tab_title">Koleksiyonum</string>
     <string name="empty_wishlist_subtitle">Aranan modelleri işaretleyin!</string>
     <string name="not_specified">Belirtilmedi</string>
     <string name="tap_to_add_note">Not eklemek için dokunun...</string>
@@ -352,6 +446,18 @@
     <string name="edit_price_title">Alış Fiyatını Düzenle</string>
     <string name="edit_value_title">Güncel Değeri Düzenle</string>
     <string name="edit_note_title">Notu Düzenle</string>
+
+    <!-- NonUserProfileScreen Strings -->
+    <string name="nonuser_login_cloud_title">Bulut Yedekleme İçin Giriş Yapın</string>
+    <string name="nonuser_login_cloud_desc">Verilerinizi güvenle saklayın ve topluluğumuza katılın.</string>
+    <string name="nonuser_signin_google">Google ile Giriş Yap</string>
+    <string name="nonuser_login_signup">Giriş Yap / Kayıt Ol</string>
+    <string name="nonuser_feature_backup">Bulut Yedekleme</string>
+    <string name="nonuser_feature_backup_desc">Tüm verilerinizi bulutta yedekleyin</string>
+    <string name="nonuser_feature_community">Topluluk Erişimi</string>
+    <string name="nonuser_feature_community_desc">Koleksiyoner topluluğuna katılın</string>
+    <string name="nonuser_feature_restore">Buluttan Geri Yükle</string>
+    <string name="nonuser_feature_restore_desc">Tek dokunuşla koleksiyonunuzu geri yükleyin</string>
 
     <!-- Profile Screen Redesign Strings -->
     <string name="premium_member">PREMIUM ÜYE</string>
@@ -365,10 +471,12 @@
     <string name="username_label">Kullanıcı Adı</string>
     <string name="username_hint">Benzersiz bir kullanıcı adı seçin</string>
     <string name="username_taken">Bu kullanıcı adı zaten alınmış.</string>
-    <string name="username_invalid">Kullanıcı adı 3-20 karakter olmalı (a-z, 0-9, _).</string>
+    <string name="username_invalid">Kullanıcı adı 3-8 karakter olmalı (a-z, 0-9, _).</string>
     <string name="consent_text">Verilerimin yedeklenmesini ve işlenmesini onaylıyorum.</string>
     <string name="consent_text_with_links">Gizlilik Politikası ve Kullanım Koşullarını onaylıyorum.</string>
     <string name="accept_terms_error">Lütfen devam etmek için Gizlilik Politikası ve Kullanım Koşullarını onaylayın.</string>
+    <string name="mandatory_consent_title">Devam Etmeden Önce Onay Gerekli</string>
+    <string name="mandatory_consent_desc">Uygulamayı kullanmak için Gizlilik Politikası ve Kullanım Koşullarını kabul etmelisiniz. Kabul etmezseniz oturumunuz kapatılır.</string>
     <string name="password_criteria_error">Şifre en az 8 karakter olmalı; büyük harf, küçük harf ve rakam içermelidir.</string>
     <string name="select_username_title">Kullanıcı Adı Seç</string>
     <string name="select_username_desc">Görünüşe göre ilk kez giriş yapıyorsun. Lütfen bir kullanıcı adı belirle:</string>
@@ -379,6 +487,16 @@
     <string name="restore_data_title">Veriyi Geri Yükle</string>
     <string name="excel_export_title">Koleksiyonu dışarı aktar</string>
     <string name="excel_export_desc">Koleksiyonunuzu farklı formatlarda dışarı aktarın</string>
+    <string name="import_collection_title">Koleksiyonu içe aktar</string>
+    <string name="import_collection_desc">JSON, CSV veya PDF dosyasından metin alanlarıyla ekler (fotoğraf yok)</string>
+    <string name="import_mode_dialog_title">İçe aktarma modu</string>
+    <string name="import_mode_merge">Mevcut koleksiyona birleştir</string>
+    <string name="import_mode_replace">Yerel koleksiyonu değiştir</string>
+    <string name="import_replace_warning_title">Dikkat</string>
+    <string name="import_replace_warning_body">Tüm yerel araç kayıtları ve özel koleksiyon klasör bağlantıları silinecek. Devam edilsin mi?</string>
+    <string name="import_replace_confirm">Evet, sil ve içe aktar</string>
+    <string name="import_collection_result">İçe aktarma tamamlandı: %1$d eklendi, %2$d atlandı (zaten vardı), %3$d eksik satır, %4$d format uyarısı</string>
+    <string name="import_collection_failed">İçe aktarma başarısız</string>
     <string name="export_success">Koleksiyon başarıyla aktarıldı.</string>
     <string name="settings_support_title">AYARLAR VE DESTEK</string>
     <string name="help_support">Yardım ve Destek</string>
@@ -387,7 +505,11 @@
     <string name="export_format_pdf">Rapor (.pdf)</string>
     <string name="export_options_title">Dışarı Aktarma Seçenekleri</string>
     <string name="export_share">Paylaş</string>
-    <string name="export_download">Cihaza İndir</string>
+    <string name="export_download">İndir</string>
+    <string name="export_download_desc">Dosyayı cihaza kaydet</string>
+    <string name="export_share_action">Paylaş</string>
+    <string name="export_share_desc">Başka bir uygulamayla paylaş</string>
+    <string name="export_select_format">Format Seçin</string>
     <plurals name="cars_selected">
         <item quantity="one">%d araba seçildi</item>
         <item quantity="other">%d araba seçildi</item>
@@ -417,6 +539,25 @@
     <string name="unavailable">Kullanılamaz</string>
     <string name="tab_models">Modeller</string>
     <string name="tab_series">Seriler</string>
+    <string name="tab_variant_hunt">Varyantlar</string>
+    <string name="variant_hunt_add_similar_cta">Benzer tüm araçları ekle</string>
+    <string name="variant_hunt_dialog_title">Varyant avı — anahtar kelimeler</string>
+    <string name="variant_hunt_keywords_label">Anahtar kelimeler</string>
+    <string name="variant_hunt_keywords_hint">Virgül veya boşlukla ayırın</string>
+    <string name="variant_hunt_match_count">%d eşleşme bulundu</string>
+    <string name="variant_hunt_too_many_matches">En fazla 500 eşleşme; lütfen kelimeleri daraltın.</string>
+    <string name="variant_hunt_no_matches">Eşleşen master kaydı yok.</string>
+    <string name="variant_hunt_empty_groups">Henüz av grubu yok. Aranan bir modelde «Benzer tüm araçları ekle» ile başlayın.</string>
+    <string name="variant_hunt_confirm">Grubu oluştur</string>
+    <string name="variant_hunt_keywords_empty">En az bir anahtar kelime girin.</string>
+    <string name="variant_hunt_error_generic">Grup oluşturulamadı.</string>
+    <string name="variant_hunt_section_title">Varyant avı grupları</string>
+    <string name="variant_hunt_delete_group">Varyant grubunu sil</string>
+    <string name="variant_hunt_delete_confirm_title">Grubu sil?</string>
+    <string name="variant_hunt_delete_confirm_message">Bu varyant grubu silinecek. Emin misiniz?</string>
+    <string name="table_header_year">Yıl</string>
+    <string name="table_header_series">Seri</string>
+    <string name="table_header_toy">Toy#</string>
     <string name="empty_series_tracking">Henüz seri eklenmemiş.</string>
     <string name="table_header_model">Model</string>
     <string name="table_header_no">No</string>
@@ -462,10 +603,204 @@
     <string name="rule_2">2. Küfür ve Hakaret Yasaktır: Paylaşımlarda ve yorumlarda küfür veya saldırgan dil kullanmayın.</string>
     <string name="rule_3">3. Kaliteli İçerik: Sadece Hot Wheels ve model araçlarla ilgili paylaşımlar yapın.</string>
     <string name="rule_4">4. Güvenlik: Kişisel verilerinizi paylaşmayın ve güvenli olmayan bağlantılar göndermeyin.</string>
+    <string name="rule_5">5. Kültürel kapsayıcılık: Farklı kültürlere ve geleneklere saygı gösterin.</string>
+    <string name="community_rules_inclusivity">Kurallara kültürel kapsayıcılık ve farklı kültürlere saygı maddesi eklendi.</string>
     <string name="accept_rules_btn">Okudum, Kabul Ediyorum</string>
     <string name="restore_prompt_title">Yedek Bulundu</string>
     <string name="restore_prompt_desc">Hesabınızda kayıtlı bir koleksiyon bulundu. Bu cihaza yüklemek ister misiniz?</string>
     <string name="restore_now">Şimdi Yükle</string>
     <string name="later">Sonra</string>
     <string name="restoring_data">Koleksiyonunuz yükleniyor...</string>
+    <string name="collection_tab_title_simple">Koleksiyon</string>
+    <string name="wishlist_title_simple">Arananlar</string>
+
+    <!-- Community Leaderboard Toggle -->
+    <string name="leaderboard_most_valuable">En Değerli</string>
+    <string name="leaderboard_most_cars">En Çok Araba</string>
+
+    <!-- Community CTA Card -->
+    <string name="community_community_title">Topluluk</string>
+    <string name="community_community_desc">Yeni koleksiyonerleri keşfet, nadir modelleri incele.</string>
+    <string name="community_explore">Keşfet</string>
+
+    <!-- User/Profile Fallbacks -->
+    <string name="collector_fallback">Collector</string>
+    <string name="posts_section_title">PAYLAŞIMLAR</string>
+    <string name="profile_no_posts">Henüz gönderi yok</string>
+
+    <!-- Avatar Picker -->
+    <string name="avatar_pick_title">Avatar Seç</string>
+    <string name="avatar_default_title">Varsayılan Avatarlar</string>
+    <string name="avatar_upload_gallery">Galeriden Yükle</string>
+    <string name="avatar_cancel">İptal</string>
+    <string name="avatar_desc">Avatar</string>
+    <string name="avatar_content_desc">Avatar</string>
+    <string name="admin_badge">🛡️ ADMIN</string>
+
+    <!-- Content Descriptions -->
+    <string name="inbox_desc">Gelen Kutusu</string>
+    <string name="message_desc">Mesaj Gönder</string>
+    <string name="profile_photo_desc">Profil Fotoğrafı</string>
+    <string name="inbox_icon_desc">Gelen Kutusu</string>
+
+    <!-- Car Fallback -->
+    <string name="car_model_fallback">Model</string>
+    <string name="car_brand_fallback">Bilinmeyen</string>
+
+    <!-- STH/STS -->
+    <string name="sth_label_short">STH</string>
+    <string name="chase_label">CHASE</string>
+    <string name="th_label">TH</string>
+    <string name="search_brand_not_found_format">%s için sonuç bulunamadı</string>
+    <string name="edit_username">Kullanıcı Adını Düzenle</string>
+    <string name="share_collection_chooser_title">Koleksiyonu Paylaş</string>
+
+    <!-- Number Formats -->
+    <string name="posts_count">%1$d %2$s</string>
+    <string name="followers_count">%1$d %2$s</string>
+    <string name="posts_stat">%1$d %2$s</string>
+    <string name="plurals_series">Seri</string>
+    <string name="car_series">• %1$d</string>
+    <string name="car_series_full">%1$s • %2$d</string>
+
+    <!-- Cooldown Format -->
+    <string name="cooldown_format">%1$d:%2$02d</string>
+
+    <!-- Export -->
+    <string name="export_current_currency">Seçili: %1$s (%2$s)</string>
+
+    <!-- Rank Formatting -->
+    <string name="rank_prefix">0%d</string>
+
+    <!-- Statistics Screen -->
+    <string name="stats_back">Geri</string>
+    <string name="stats_regular">Normal</string>
+    <string name="stats_premium">🏁 Premium</string>
+
+    <!-- Add Car Screen -->
+    <string name="addcar_info_title">Bilgi</string>
+
+    <!-- Collection Screen -->
+    <string name="collection_cancel">İptal</string>
+    <string name="collection_delete">Sil</string>
+    <string name="collection_all">Tümü</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_back">Geri</string>
+    <string name="profile_edit">Profili Düzenle</string>
+    <string name="edit_avatar_action">Avatarı Düzenle</string>
+    <string name="profile_edit_avatar_title">Avatar</string>
+    <string name="profile_edit_email_title">E-posta</string>
+    <string name="profile_edit_username_title">Kullanıcı Adı</string>
+    <string name="profile_edit_password_title">Şifre Değiştir</string>
+    <string name="profile_edit_password_help">Şifre değiştirmek için e-posta adresinize sıfırlama bağlantısı gönderilir.</string>
+    <string name="profile_web_client_error">Google Web Client ID bulunamadı. Lütfen yöneticinize danışın.</string>
+    <string name="profile_activity_not_found">Activity bulunamadı.</string>
+    <string name="profile_login_failed_template">Giriş başarısız: %1$s</string>
+    <string name="profile_login_error">Bilinmeyen giriş hatası</string>
+    <string name="profile_auth_error">Hata: %s</string>
+    <string name="profile_unknown">Bilinmeyen</string>
+
+    <!-- Car Detail -->
+    <string name="detail_unknown">Bilinmeyen</string>
+
+    <!-- Fallback Labels -->
+    <string name="fallback_collector">Koleksiyoner</string>
+    <string name="fallback_user">Kullanıcı</string>
+    <string name="fallback_model">Model</string>
+    <string name="fallback_unknown_brand">Bilinmeyen</string>
+    <string name="fallback_wanted">Aranan</string>
+
+    <!-- ProfileViewModel Error/Status Messages -->
+    <string name="vm_login_failed">Giriş başarısız.</string>
+    <string name="vm_register_failed">Kayıt başarısız.</string>
+    <string name="vm_consent_required">Lütfen veri kullanım onayını işaretleyin.</string>
+    <string name="vm_password_criteria">Şifre en az 8 karakter olmalı; büyük harf, küçük harf ve rakam içermelidir.</string>
+    <string name="vm_username_format">Kullanıcı adı 3-8 karakter olmalı ve sadece harf, rakam ve alt çizgi içermelidir.</string>
+    <string name="vm_username_inappropriate">Uygunsuz kullanıcı adı.</string>
+    <string name="vm_username_generation_failed">Kullanıcı adı oluşturulamadı. Lütfen manuel girin.</string>
+    <string name="vm_username_taken">Bu kullanıcı adı zaten alınmış.</string>
+    <string name="vm_username_check_failed">Kullanıcı adı kontrol edilemedi, lütfen Firebase kurallarınızı kontrol edin.</string>
+    <string name="vm_username_invalid">Geçersiz veya uygunsuz kullanıcı adı.</string>
+    <string name="vm_username_assign_failed">Kullanıcı adı atanamadı, lütfen tekrar deneyin.</string>
+    <string name="vm_reset_failed">Sıfırlama e-postası gönderilemedi.</string>
+    <string name="vm_backing_up">Yedekleniyor...</string>
+    <string name="vm_backup_success">Yedekleme başarılı!</string>
+    <string name="vm_backup_error">Yedekleme hatası.</string>
+    <string name="vm_restoring">Geri yükleniyor...</string>
+    <string name="vm_restore_success">Geri yükleme başarılı!</string>
+    <string name="vm_restore_error">Geri yükleme hatası.</string>
+    <string name="vm_cleaning_data">Veriler temizleniyor...</string>
+    <string name="vm_data_clean_error">Veri temizleme hatası: %s</string>
+    <string name="vm_deleting_account">Hesap siliniyor...</string>
+    <string name="vm_delete_account_reauth_required">Güvenlik nedeniyle yeniden giriş gerekli. Lütfen çıkış yapıp tekrar giriş yapın ve hesabı silmeyi yeniden deneyin.</string>
+    <string name="vm_remote_cleanup_failed_with_link">Bazı bulut verileri temizlenemedi (%s). Lütfen tekrar deneyin. Sorun sürerse manuel silme yardımı: https://supabase.com/docs/guides/platform/delete-your-project</string>
+    <string name="vm_visibility_error">Görünürlük ayarı kaydedilemedi</string>
+    <string name="vm_avatar_select_error">Avatar seçilemedi</string>
+    <string name="vm_avatar_upload_error">Avatar yüklenemedi</string>
+    <string name="vm_avatar_upload_exception">Avatar yükleme hatası</string>
+    <string name="vm_export_failed">Dışa aktarma başarısız: %s</string>
+
+    <!-- CommunityViewModel Error/Status Messages -->
+    <string name="vm_community_post_empty">Paylaşım için metin yazın veya araç seçin</string>
+    <string name="vm_community_post_cooldown">Arka arkaya en fazla 2 paylaşım yapabilirsin. Yeni paylaşım için %s bekle</string>
+    <string name="vm_community_comment_cooldown">Arka arkaya en fazla 5 yorum yapabilirsin. Yeni yorum için %s bekle</string>
+    <string name="vm_community_service_unavailable">Topluluk servisi hazır değil. Lütfen kısa süre sonra tekrar deneyin</string>
+    <string name="vm_community_supabase_error">Supabase bağlantı ayarı hatalı veya erişilemiyor.</string>
+    <string name="vm_community_post_failed">Paylaşım oluşturulamadı. Hata detayı alınamadı.</string>
+    <string name="vm_community_follow_failed">Takip işlemi başarısız oldu</string>
+
+    <!-- Block User -->
+    <string name="block_user_title">Kullanıcıyı Engelle</string>
+    <string name="block_user_message">%1$s kullanıcısını engellemek istiyor musunuz? Bu kullanıcı takipçilerinizden çıkarılacak ve sizi tekrar takip edemeyecek.</string>
+    <string name="block_user_confirm">Engelle</string>
+
+    <!-- Blocked Users -->
+    <string name="blocked_users_title">Engellenen Kullanıcılar</string>
+    <string name="unblock_user_title">Engeli Kaldır</string>
+    <string name="unblock_user_message">%1$s kullanıcısının engelini kaldırmak istiyor musunuz? Bu kullanıcı sizi tekrar takip edebilecek.</string>
+    <string name="unblock_user_confirm">Engeli Kaldır</string>
+
+    <!-- Ranks Screen -->
+    <string name="ranks_title">Rütbeler</string>
+    <string name="ranks_your_rank">Senin Rütbən</string>
+    <string name="ranks_score_range">Puan Aralığı</string>
+    <string name="ranks_view_all">Tüm Rütbeler</string>
+    <string name="ranks_next_rank">Sonraki Rütbe: %s</string>
+    <string name="ranks_points_needed">%d puan gerekli</string>
+    <string name="ranks_max_rank">🏆 Tebrikler! Maksimum rütbeye ulaştınız!</string>
+    <string name="ranks_current_score">Mevcut Puan</string>
+    <string name="ranks_score_label">%d puan</string>
+
+    <string name="end_to_end_encrypted">Bu konuşma uçtan uca şifrelenmektedir.</string>
+
+    <!-- Admin Panel -->
+    <string name="admin_panel_title">🛡️ Admin Paneli</string>
+    <string name="admin_management_section">🛡️ Yönetim</string>
+    <string name="admin_forum_management">Forum yönetimi</string>
+    <string name="admin_tab_members">Üyeler</string>
+    <string name="admin_tab_banned">Engellenenler</string>
+    <string name="admin_tab_members_with_count">Üyeler (%1$d)</string>
+    <string name="admin_tab_banned_with_count">Engellenenler (%1$d)</string>
+    <string name="admin_search_users_hint">Kullanıcı ara...</string>
+    <string name="admin_search_banned_hint">Engellenen kullanıcı ara...</string>
+    <string name="admin_no_users_found">Kullanıcı bulunamadı</string>
+    <string name="admin_no_search_results">Arama kriterine uygun kullanıcı bulunamadı</string>
+    <string name="admin_no_banned_users">Engellenen kullanıcı bulunmuyor</string>
+    <string name="admin_ban_user_dialog_title">Kullanıcıyı Engelle</string>
+    <string name="admin_ban_reason_determining">Sebep belirleniyor: %1$s</string>
+    <string name="admin_ban_reason_optional">Engel sebebi (opsiyonel)</string>
+    <string name="admin_ban_confirm">Engelle</string>
+    <string name="admin_make_mod">Mod Yap</string>
+    <string name="admin_remove_mod">Mod Çıkar</string>
+    <string name="admin_unban_confirm">Engeli Kaldır</string>
+    <string name="admin_access_denied">Erişim reddedildi</string>
+    <string name="admin_posts_count_label">%1$d paylaşım</string>
+    <string name="admin_badge_banned_label">ENGELLİ</string>
+    <string name="dialog_info_title">Bilgi</string>
+    <string name="settings_subtitle_help_support">Sorun bildir, geri bildirim gönder ve yardım al</string>
+    <string name="settings_subtitle_privacy_policy">Verilerinizin nasıl işlendiğini ve korunduğunu öğrenin</string>
+    <string name="settings_subtitle_terms_of_use">Uygulama kullanım şartlarını görüntüleyin</string>
+    <string name="settings_subtitle_community_rules">Topluluk kurallarını ve moderasyon ilkelerini okuyun</string>
+    <string name="settings_subtitle_logout">Hesabınızdan güvenli çıkış yapın</string>
 </resources>

@@ -2,6 +2,7 @@
 <resources>
     <!-- App Meta -->
     <string name="app_name">BaseHW</string>
+    <string name="default_web_client_id" translatable="false">471261592182-764lmjpqjtn9baiobafbntcavs7r1gok.apps.googleusercontent.com</string>
 
     <!-- General -->
     <string name="ok">موافق</string>
@@ -33,8 +34,11 @@
 
     <!-- Community Social Feed -->
     <string name="community_feed">آخر الأخبار</string>
-    <string name="community_following">المتابعات</string>
+    <string name="community_following">متابَعون</string>
     <string name="community_ranking">التصنيف</string>
+    <string name="notifications_title">التنبيهات</string>
+    <string name="notifications_empty">لا توجد تنبيهات حالياً.</string>
+    <string name="notif_started_following">بدأ في متابعتك.</string>
     <string name="share_to_community">مشاركة مع المجتمع</string>
     <string name="share_caption_hint">أضف تعليقاً…</string>
     <string name="share_button">مشاركة</string>
@@ -43,22 +47,43 @@
     <string name="follow">متابعة</string>
     <string name="unfollow">إلغاء المتابعة</string>
     <string name="followers">متابعين</string>
-    <string name="following_label">متابعة</string>
+    <string name="following_label">متابَعون</string>
     <string name="posts_label">منشورات</string>
     <string name="login_required_feed">سجل الدخول لرؤية المنشورات</string>
     <string name="no_posts_yet">لا توجد منشورات بعد</string>
     <string name="no_comments_yet">لا توجد تعليقات بعد</string>
-    <string name="photo_required_share">مطلوب نسخة احتياطية للصور للمشاركة</string>
+    <string name="photo_required_share">يرجى إضافة صورة للمشاركة في المجتمع</string>
     <string name="shared_successfully">تمت المشاركة بنجاح!</string>
     <string name="write_comment">اكتب تعليقاً…</string>
     <string name="send">إرسال</string>
+    <string name="community_user_fallback">مستخدم</string>
+    <string name="community_admin_badge">مسؤول</string>
+    <string name="dm_write_message">كتابة رسالة</string>
+    <string name="dm_empty">لا توجد رسائل بعد. أرسل أول رسالة.</string>
+    <string name="dm_load_error">فشل تحميل الرسائل</string>
+    <string name="dm_send_error">فشل إرسال الرسالة</string>
+    <string name="dm_inbox_title">صندوق الوارد</string>
+    <!-- Relative Time Format -->
+    <string name="time_just_now">الآن</string>
+    <string name="time_minutes_ago">منذ %1$d دقيقة</string>
+    <string name="time_hours_ago">منذ %1$d ساعة</string>
+    <string name="time_days_ago">منذ %1$d يوم</string>
+    <string name="dm_inbox_empty">لا توجد محادثات بعد.</string>
+    <string name="feed_compose_title">مشاركة في الخلاصة</string>
+    <string name="feed_compose_hint">اكتب أفكارك أو اختر سيارة للمشاركة</string>
+    <string name="feed_compose_selected">المحدد: %1$s</string>
+    <string name="feed_compose_car_fallback">سيارة</string>
+    <string name="feed_compose_clear_selection">مسح التحديد</string>
+    <string name="feed_compose_pick_car">اختيار سيارة</string>
+    <string name="feed_picker_title">اختر سيارة للمشاركة</string>
+    <string name="feed_picker_empty">لا توجد سيارات في القائمة</string>
 
     <!-- Home Components -->
     <string name="hello_collector">مرحباً</string>
     <string name="welcome_back">مرحباً بك مجدداً في مرآبك</string>
     <string name="total_models">إجمالي الموديلات: %d</string>
     <string name="total_models_label">إجمالي الموديلات</string>
-    <string name="search_in_collection">البحث بالاسم أو الكود أو السلسلة...</string>
+    <string name="search_in_collection">البحث عن النموذج، السلسلة، الرمز</string>
     <string name="search_models">ابحث عن الموديلات...</string>
     <string name="clear">مسح</string>
     <string name="filter">تصفية</string>
@@ -74,6 +99,9 @@
     <string name="wanted_short">مطلوب</string>
     <string name="treasure_short">كنز</string>
     <string name="recently_added">أضيفت مؤخراً</string>
+    <string name="home_news_section">أخبار الديكاست</string>
+    <string name="news_detail_title">خبر</string>
+    <string name="news_not_found">لم يُعثر على المقال.</string>
     <string name="current_value">القيمة الحالية</string>
     <string name="view_all">عرض الكل</string>
 
@@ -125,6 +153,11 @@
     <string name="theme_auto">النظام</string>
     <string name="theme_light">فاتح</string>
     <string name="theme_dark">داكن</string>
+    <string name="theme_cyber">نيون (سينثويف)</string>
+    <string name="theme_neon_cyan">نيون سماوي</string>
+    <string name="font_family">نوع الخط</string>
+    <string name="font_space_grotesk">Space Grotesk</string>
+    <string name="font_inter">Inter</string>
     <string name="language">اللغة</string>
     <string name="language_tr">Türkçe</string>
     <string name="language_en">English</string>
@@ -140,6 +173,38 @@
     <string name="legal_section">قانوني</string>
     <string name="privacy_policy">سياسة الخصوصية</string>
     <string name="terms_of_use">شروط الاستخدام</string>
+
+    <!-- Privacy Policy Content -->
+    <string name="privacy_last_updated">آخر تحديث: مارس 2026</string>
+    <string name="privacy_intro">تشرح سياسة الخصوصية هذه كيف يقوم تطبيق BaseHW بجمع بياناتك الشخصية واستخدامها وحمايتها.</string>
+    <string name="privacy_section_1_title">1. البيانات التي نجمعها</string>
+    <string name="privacy_section_1_text">قد يجمع التطبيق البيانات التالية:\n\n• صور اختيارية للسيارات (تخزن على Supabase Storage)\n• تسجيل الدخول بجوجل: بريدك الإلكتروني وصورة ملفك الشخصي (Firebase Authentication)\n• بيانات المجموعة (العلامة التجارية، السلسلة، السنة، الحالة، السعر / القيمة السوقية، الملاحظات)\n• بيانات المجتمع: المنشورات التي تشاركها، وإعجاباتك، وتعليقاتك\n• الرسم البياني الاجتماعي: المستخدمون الذين تتابعهم ومتابعوك\n• المراسلة المباشرة بين المستخدمين (DM)\n• كاميرا الجهاز (للتعرف التلقائي على الموديلات بالذكاء الاصطناعي والتقاط الصور)</string>
+    <string name="privacy_section_2_title">2. كيف نستخدم بياناتك</string>
+    <string name="privacy_section_2_text">تستخدم بياناتك من أجل:\n\n• النسخ الاحتياطي السحابي والمزامنة بين الأجهزة\n• عرض خلاصة المجتمع وإدارة التفاعلات\n• الإشراف على المحتوى باستخدام Groq AI\n• تحليل الصور باستخدام الذكاء الاصطناعي لاستخراج معلومات الموديلات تلقائياً\n\nلا يتم بيع بياناتك أبداً أو استخدامها لإعلانات أطراف ثالثة.</string>
+    <string name="privacy_section_3_title">3. الخدمات السحابية والذكاء الاصطناعي للإشراف</string>
+    <string name="privacy_section_3_text">• Firebase: يتم تخزين بيانات المجموعة والبيانات الاجتماعية بشكل آمن في Firestore.\n• Supabase: يتم الاحتفاظ بالصور في التخزين السحابي لـ Supabase.\n• الإشراف بالذكاء الاصطناعي: يتم الإشراف على التعليقات والوصف تلقائياً بواسطة Groq AI لضمان السلامة. لا تتم مشاركة أي معرفات شخصية (أسماء، معرفات) خلال هذا التحليل النصي فقط.</string>
+    <string name="privacy_section_4_title">4. حذف البيانات والتحكم فيها</string>
+    <string name="privacy_section_4_text">• حذف التعليق: يمكنك حذف تعليقاتك الخاصة في أي وقت عن طريق الضغط مطولاً على التعليق.\n• حذف المنشور: يمكنك إزالة منشوراتك من صفحة ملفك الشخصي.\n• حذف الحساب: استخدم زر \'حذف الحساب\' في صفحة الملف الشخصي لمسح جميع بياناتك بشكل دائم (المجموعة، التفاعلات الاجتماعية، والحساب).</string>
+    <string name="privacy_section_5_title">5. خصوصية الأطفال</string>
+    <string name="privacy_section_5_text">الخدمة غير موجهة للأطفال دون سن 13 عاماً، ولا نجمع عن علم معلومات شخصية من أطفال دون سن 13 عاماً.\n\nيجوز للمستخدمين الذين تتراوح أعمارهم بين 13 و18 عاماً (أو سن الرشد في اختصاصهم القضائي) استخدام الخدمة فقط بموافقة وإشراف ولي أمر أو وصي قانوني. قد نطلب التحقق من موافقة الوالدين حيث يقتضي القانون ذلك.\n\nإذا كنت تعتقد أننا جمعنا بيانات من طفل دون سن 13 عاماً دون موافقة الوالدين، يُرجى الاتصال بنا وسنقوم بحذفها.</string>
+    <string name="privacy_section_6_title">6. أمن البيانات</string>
+    <string name="privacy_section_6_text">نستخدم تدابير تقنية وتنظيمية لحماية معلوماتك الشخصية. ومع ذلك، لا توجد طريقة نقل عبر الإنترنت أو تخزين إلكتروني آمنة بنسبة 100٪. بينما نسعى لحماية بياناتك، لا يمكننا ضمان أماناً مطلقاً.</string>
+    <string name="privacy_section_7_title">7. الاتصال</string>
+    <string name="privacy_section_7_text">للاستفسارات المتعلقة بالخصوصية:\ntaytekofficial@gmail.com</string>
+
+    <!-- Terms of Use Content -->
+    <string name="terms_last_updated">آخر تحديث: مارس 2026</string>
+    <string name="terms_intro">باستخدام تطبيق BaseHW، فإنك توافق على الشروط التالية.</string>
+    <string name="terms_section_1_title">1. الغرض</string>
+    <string name="terms_section_1_text">BaseHW هو تطبيق إدارة ومجتمع مصمم لهواة جمع سيارات النماذج (diecast).</string>
+    <string name="terms_section_2_title">2. مسؤولية المستخدم وقواعد المجتمع</string>
+    <string name="terms_section_2_text">• المحتوى: أنت المسؤول الوحيد عن الصور والوصف والتعليقات التي تشاركها.\n• الآداب العامة: يمنع منعاً باتاً السب، وخطاب الكراهية، والمضايقة، والمحتوى غير القانوني.\n• الإشراف بالذكاء الاصطناعي: قد يتم حظر أو إزالة المحتوى الذي ينتهك قواعد المجتمع تلقائياً بواسطة أنظمة Groq AI الخاصة بنا.</string>
+    <string name="terms_section_3_title">3. الملكية الفكرية</string>
+    <string name="terms_section_3_text">يتم الحصول على صور سيارات النماذج من المصادر الرسمية ومجتمعات الهواة لأغراض إعلامية. تعود الملكية لأصحاب العلامات التجارية المعنيين.</string>
+    <string name="terms_section_4_title">4. تحديد المسؤولية</string>
+    <string name="terms_section_4_text">يتم تقديم الخدمة \'كما هي\'. المطورون ليسوا مسؤولين عن أي فقدان للبيانات أو انقطاع تقني.</string>
+    <string name="terms_section_5_title">5. الاتصال</string>
+    <string name="terms_section_5_text">للدعم:\ntaytekofficial@gmail.com</string>
     
     <!-- Profile Screen -->
     <string name="login_for_cloud">تسجيل الدخول للنسخ الاحتياطي السحابي</string>
@@ -152,11 +217,18 @@
     <string name="backup_cloud">نسخ جميع البيانات احتياطياً للسحابة</string>
     <string name="restore_cloud">استعادة من السحابة إلى الجهاز</string>
     <string name="logout">تسجيل الخروج</string>
+    <string name="logout_confirm_title">تسجيل الخروج</string>
+    <string name="logout_confirm_message">هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟</string>
     <string name="delete_account">حذف حسابي</string>
     <string name="delete_account_dialog_title">حذف الحساب والبيانات</string>
     <string name="delete_account_dialog_text">هل أنت متأكد أنك تريد حذف حسابك؟ سيؤدي هذا إلى حذف جميع سياراتك وصورك ومجلداتك على فايربيز بشكل نهائي. هذا الإجراء لا يمكن التراجع عنه.</string>
     <string name="delete_account_confirm">نعم، احذف كل شيء</string>
     <string name="delete_account_cancel">إلغاء</string>
+    <string name="error_forum_banned">لقد تم حظرك من المنتدى. لا يمكنك القيام بهذا الإجراء.</string>
+    <string name="error_moderation_unavailable">إشراف المحتوى غير متاح حاليًا. يرجى المحاولة مرة أخرى.</string>
+    <string name="error_admin_mod_required">مطلوب صلاحية المسؤول أو المشرف لهذا الإجراء.</string>
+    <string name="error_content_rules_violation">تم العثور على محتواك مخالفاً لقواعد المجتمع.</string>
+    <string name="account_actions_title">إجراءات الحساب</string>
     <string name="reauth_required_error">لأسباب أمنية، تحتاج لتحديث جلستك. يرجى تسجيل الدخول مرة أخرى وإعادة المحاولة.</string>
     <string name="delete_account_success">تم حذف الحساب وجميع البيانات بنجاح.</string>
     <string name="email_label">البريد الإلكتروني</string>
@@ -186,6 +258,19 @@
     <string name="delete_post_msg">هل أنت متأكد أنك تريد حذف هذا المنشور؟ لا يمكن التراجع عن هذا الإجراء.</string>
     <string name="delete_confirm">حذف</string>
     <string name="delete_cancel">إلغاء</string>
+    <string name="report_post">إبلاغ</string>
+    <string name="report_post_content_desc">الإبلاغ عن المنشور</string>
+    <string name="report_post_dialog_title">الإبلاغ عن المنشور</string>
+    <string name="report_post_dialog_hint">اختر السبب. يمكنك إضافة ملاحظة قصيرة.</string>
+    <string name="report_reason_profanity">ألفاظ نابية أو إهانات</string>
+    <string name="report_reason_harmful">محتوى ضار أو خطير</string>
+    <string name="report_reason_spam">بريد مزعج أو إعلانات</string>
+    <string name="report_reason_harassment">تحرش أو تنمر</string>
+    <string name="report_reason_other">أخرى</string>
+    <string name="report_post_details_hint">ملاحظة إضافية (اختياري)</string>
+    <string name="report_post_submit">إرسال البلاغ</string>
+    <string name="report_post_sent">شكرًا، تم استلام بلاغك.</string>
+    <string name="report_post_feedback_subject">بلاغ عن منشور في المجتمع</string>
 
     <!-- Wishlist Screen -->
     <string name="empty_wishlist_title">قائمتك فارغة</string>
@@ -254,33 +339,7 @@
     <string name="collection_statistics_desc">رسوم بيانية، قيم، أوسمة</string>
     <string name="collection_statistics_desc_detailed">رسوم بيانية وقيم وإحصائيات الأوسمة</string>
 
-    <!-- Badges -->
-    <string name="earned_badges_title">🏅 الأوسمة المكتسبة</string>
-    <string name="earned_badges_count">تم كسب %1$d / %2$d أوسمة</string>
-    <string name="locked_badges_title">الأوسمة المقفلة</string>
 
-    <string name="badge_first_car_title">الخطوة الأولى</string>
-    <string name="badge_first_car_desc">لقد أضفت أول سيارة لمجموعتك!</string>
-    <string name="badge_ten_cars_title">بداية قوية</string>
-    <string name="badge_ten_cars_desc">لديك مجموعة من 10 سيارات.</string>
-    <string name="badge_fifty_cars_title">جامع حقيقي</string>
-    <string name="badge_fifty_cars_desc">مجموعة جادة تضم 50 سيارة!</string>
-    <string name="badge_hundred_cars_title">أسطورة</string>
-    <string name="badge_hundred_cars_desc">100 سيارة! مجموعة أسطورية.</string>
-    <string name="badge_premium_hunter_title">صائد البريميوم</string>
-    <string name="badge_premium_hunter_desc">لديك 5 سيارات هوت ويلز بريميوم أو أكثر.</string>
-    <string name="badge_matchbox_fan_title">محبي ماتشبوكس</string>
-    <string name="badge_matchbox_fan_desc">لديك 10 سيارات ماتشبوكس أو أكثر.</string>
-    <string name="badge_multi_brand_title">متعدد العلامات</string>
-    <string name="badge_multi_brand_desc">تمتلك سيارات من 3 علامات تجارية مختلفة أو أكثر.</string>
-    <string name="badge_silver_collector_title">الجامع الفضي</string>
-    <string name="badge_silver_collector_desc">تجاوزت قيمة مجموعتك حاجز الـ 100 دولار!</string>
-    <string name="badge_golden_collector_title">الجامع الذهبي</string>
-    <string name="badge_golden_collector_desc">مجموعة ضخمة تزيد قيمتها عن 1000 دولار!</string>
-    <string name="badge_custom_maker_title">صانع الكستم</string>
-    <string name="badge_custom_maker_desc">أضفت ما لا يقل عن 10 سيارات معدلة (كستم) للمجموعة.</string>
-    <string name="badge_moc_collector_title">جامع MOC</string>
-    <string name="badge_moc_collector_desc">80%% من سياراتك في علبها.</string>
 
     <!-- Collections / Folders -->
     <string name="my_folders">مجلداتي</string>
@@ -336,6 +395,7 @@
     <string name="collection_screen_subtitle">ابحث، فلتر وادر سياراتك</string>
     <string name="trend_brands">علامات تجارية رائجة</string>
     <string name="wishlist_title">قائمة رغباتي</string>
+    <string name="collection_tab_title">مجموعتي</string>
     <string name="empty_wishlist_subtitle">حدد الموديلات التي تبحث عنها!</string>
     <string name="not_specified">غير محدد</string>
     <string name="tap_to_add_note">اضغط لإضافة ملاحظة...</string>
@@ -343,6 +403,18 @@
     <string name="edit_price_title">تعديل سعر الشراء</string>
     <string name="edit_value_title">تعديل القيمة الحالية</string>
     <string name="edit_note_title">تعديل الملاحظة</string>
+
+    <!-- NonUserProfileScreen Strings -->
+    <string name="nonuser_login_cloud_title">تسجيل الدخول للنسخ الاحتياطي السحابي</string>
+    <string name="nonuser_login_cloud_desc">حافظ على أمان بياناتك وانضم إلى مجتمعنا.</string>
+    <string name="nonuser_signin_google">تسجيل الدخول باستخدام Google</string>
+    <string name="nonuser_login_signup">تسجيل الدخول / التسجيل</string>
+    <string name="nonuser_feature_backup">نسخ احتياطي سحابي</string>
+    <string name="nonuser_feature_backup_desc">نسخ احتياطي لجميع بياناتك على السحابة</string>
+    <string name="nonuser_feature_community">الوصول إلى المجتمع</string>
+    <string name="nonuser_feature_community_desc">انضم إلى مجتمع المجمعين</string>
+    <string name="nonuser_feature_restore">استعادة من السحابة</string>
+    <string name="nonuser_feature_restore_desc">استعد مجموعتك بلمسة واحدة</string>
 
     <!-- Profile Screen Redesign Strings -->
     <string name="premium_member">عضو بريميوم</string>
@@ -356,10 +428,12 @@
     <string name="username_label">اسم المستخدم</string>
     <string name="username_hint">اختر اسم مستخدم فريد</string>
     <string name="username_taken">اسم المستخدم هذا مأخوذ بالفعل.</string>
-    <string name="username_invalid">اسم المستخدم يجب أن يكون 3-20 حرفاً (a-z، 0-9، _).</string>
+    <string name="username_invalid">اسم المستخدم يجب أن يكون 3-8 حرفاً (a-z، 0-9، _).</string>
     <string name="consent_text">أوافق على النسخ الاحتياطي ومعالجة بياناتي.</string>
     <string name="consent_text_with_links">أوافق على سياسة الخصوصية وشروط الاستخدام.</string>
     <string name="accept_terms_error">يرجى الموافقة على سياسة الخصوصية وشروط الاستخدام للمتابعة.</string>
+    <string name="mandatory_consent_title">الموافقة مطلوبة قبل المتابعة</string>
+    <string name="mandatory_consent_desc">لاستخدام التطبيق، يجب أن توافق على سياسة الخصوصية وشروط الاستخدام. إذا لم توافق، سيتم إنهاء جلستك.</string>
     <string name="password_criteria_error">كلمة المرور يجب أن تكون 8 أحرف على الأقل، تشمل حرفاً كبيراً وصغيراً ورقماً.</string>
     <string name="select_username_title">اختر اسم مستخدم</string>
     <string name="select_username_desc">يبدو أنك هنا للمرة الأولى. يرجى اختيار اسم مستخدم:</string>
@@ -405,6 +479,25 @@
     <string name="currency_setting">اختيار العملة</string>
     <string name="tab_models">الموديلات</string>
     <string name="tab_series">السلاسل</string>
+    <string name="tab_variant_hunt">المتغيرات</string>
+    <string name="variant_hunt_add_similar_cta">إضافة كل المشابهة</string>
+    <string name="variant_hunt_dialog_title">صيد المتغيرات — كلمات مفتاحية</string>
+    <string name="variant_hunt_keywords_label">كلمات مفتاحية</string>
+    <string name="variant_hunt_keywords_hint">افصل بفواصل أو مسافات</string>
+    <string name="variant_hunt_match_count">تم العثور على %d تطابقًا</string>
+    <string name="variant_hunt_too_many_matches">500 تطابق كحد أقصى؛ قلّص الكلمات المفتاحية.</string>
+    <string name="variant_hunt_no_matches">لا توجد صفوف مطابقة في الكتالوج.</string>
+    <string name="variant_hunt_empty_groups">لا مجموعات بعد. استخدم «إضافة كل المشابهة» على نموذج في قائمة الأمنيات.</string>
+    <string name="variant_hunt_confirm">إنشاء المجموعة</string>
+    <string name="variant_hunt_keywords_empty">أدخل كلمة مفتاحية واحدة على الأقل.</string>
+    <string name="variant_hunt_error_generic">تعذر إنشاء المجموعة.</string>
+    <string name="variant_hunt_section_title">مجموعات الصيد</string>
+    <string name="variant_hunt_delete_group">حذف المجموعة</string>
+    <string name="variant_hunt_delete_confirm_title">حذف المجموعة؟</string>
+    <string name="variant_hunt_delete_confirm_message">ستُزال مجموعة المتغيرات هذه. هل تريد المتابعة؟</string>
+    <string name="table_header_year">السنة</string>
+    <string name="table_header_series">السلسلة</string>
+    <string name="table_header_toy">Toy#</string>
     <string name="empty_series_tracking">لم يتم تتبع أي سلسلة بعد.</string>
     <string name="table_header_model">الموديل</string>
     <string name="table_header_no">الرقم</string>
@@ -439,4 +532,189 @@
     <string name="restore_now">استعادة الآن</string>
     <string name="later">لاحقاً</string>
     <string name="restoring_data">جاري استعادة مجموعتك...</string>
+    <string name="collection_tab_title_simple">المجموعة</string>
+    <string name="wishlist_title_simple">قائمة الأمنيات</string>
+
+    <!-- Community Leaderboard Toggle -->
+    <string name="leaderboard_most_valuable">الأكثر قيمة</string>
+    <string name="leaderboard_most_cars">الأكثر سيارات</string>
+
+    <!-- Community CTA Card -->
+    <string name="community_community_title">المجتمع</string>
+    <string name="community_community_desc">استكشف جامعين جدد، اكتشف نماذج نادرة.</string>
+    <string name="community_explore">استكشاف</string>
+
+    <!-- User/Profile Fallbacks -->
+    <string name="collector_fallback">جامع</string>
+    <string name="posts_section_title">المنشورات</string>
+    <string name="profile_no_posts">لا توجد منشورات بعد</string>
+
+    <!-- Avatar Picker -->
+    <string name="avatar_pick_title">اختيار الصورة الرمزية</string>
+    <string name="avatar_default_title">الصور الرمزية الافتراضية</string>
+    <string name="avatar_upload_gallery">تحميل من المعرض</string>
+    <string name="avatar_cancel">إلغاء</string>
+    <string name="avatar_desc">الصورة الرمزية</string>
+    <string name="admin_badge">🛡️ مشرف</string>
+
+    <!-- Content Descriptions -->
+    <string name="inbox_desc">صندوق الوارد</string>
+    <string name="message_desc">إرسال رسالة</string>
+
+    <!-- ProfileViewModel Error/Status Messages -->
+    <string name="vm_login_failed">فشل تسجيل الدخول.</string>
+    <string name="vm_register_failed">فشل التسجيل.</string>
+    <string name="vm_consent_required">يرجى الموافقة على معالجة البيانات.</string>
+    <string name="vm_password_criteria">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، بما في ذلك أحرف كبيرة وصغيرة ورقم.</string>
+    <string name="vm_username_format">يجب أن يتكون اسم المستخدم من 3-8 أحرف ويحتوي فقط على أحرف وأرقام وشرطات سفلية.</string>
+    <string name="vm_username_inappropriate">اسم مستخدم غير لائق.</string>
+    <string name="vm_username_generation_failed">تعذر إنشاء اسم المستخدم. يرجى إدخاله يدويًا.</string>
+    <string name="vm_username_taken">اسم المستخدم هذا مستخدم بالفعل.</string>
+    <string name="vm_username_check_failed">تعذر التحقق من اسم المستخدم، يرجى التحقق من قواعد Firebase.</string>
+    <string name="vm_username_invalid">اسم مستخدم غير صالح أو غير لائق.</string>
+    <string name="vm_username_assign_failed">تعذر تعيين اسم المستخدم، يرجى المحاولة مرة أخرى.</string>
+    <string name="vm_reset_failed">تعذر إرسال بريد إعادة التعيين.</string>
+    <string name="vm_backing_up">جارٍ النسخ الاحتياطي...</string>
+    <string name="vm_backup_success">تم النسخ الاحتياطي بنجاح!</string>
+    <string name="vm_backup_error">خطأ في النسخ الاحتياطي.</string>
+    <string name="vm_restoring">جارٍ الاستعادة...</string>
+    <string name="vm_restore_success">تمت الاستعادة بنجاح!</string>
+    <string name="vm_restore_error">خطأ في الاستعادة.</string>
+    <string name="vm_cleaning_data">جارٍ تنظيف البيانات...</string>
+    <string name="vm_data_clean_error">خطأ في تنظيف البيانات: %s</string>
+    <string name="vm_deleting_account">جارٍ حذف الحساب...</string>
+    <string name="vm_delete_account_reauth_required">لأسباب أمنية، يرجى تسجيل الدخول مرة أخرى ثم إعادة محاولة حذف الحساب.</string>
+    <string name="vm_remote_cleanup_failed_with_link">تعذر حذف بعض بيانات السحابة (%s). حاول مرة أخرى. إذا استمر الفشل: https://supabase.com/docs/guides/platform/delete-your-project</string>
+    <string name="vm_visibility_error">تعذر حفظ إعدادات الرؤية</string>
+    <string name="vm_avatar_select_error">تعذر تحديد الصورة الرمزية</string>
+    <string name="vm_avatar_upload_error">تعذر تحميل الصورة الرمزية</string>
+    <string name="vm_avatar_upload_exception">خطأ في تحميل الصورة الرمزية</string>
+    <string name="vm_export_failed">فشل التصدير: %s</string>
+
+    <!-- CommunityViewModel Error/Status Messages -->
+    <string name="vm_community_post_empty">اكتب نصًا أو اختر سيارة للمشاركة</string>
+    <string name="vm_community_post_cooldown">يمكنك نشر منشورين متتاليين كحد أقصى. انتظر %s لمنشور جديد</string>
+    <string name="vm_community_service_unavailable">خدمة المجتمع غير متاحة. يرجى المحاولة لاحقًا</string>
+    <string name="vm_community_supabase_error">إعدادات اتصال Supabase غير صحيحة أو غير متاحة.</string>
+    <string name="vm_community_post_failed">تعذر إنشاء المنشور. لم يتم الحصول على تفاصيل الخطأ.</string>
+    <string name="vm_community_follow_failed">فشل المتابعة</string>
+
+    <!-- Additional UI Strings -->
+    <string name="chase_label">CHASE</string>
+    <string name="th_label">TH</string>
+    <string name="search_brand_not_found_format">لم يتم العثور على نتائج لـ %s</string>
+    <string name="edit_username">تعديل اسم المستخدم</string>
+    <string name="share_collection_chooser_title">مشاركة المجموعة</string>
+    <string name="language_es">Español</string>
+    <string name="language_pt">Português</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_uk">Українська</string>
+    <string name="privacy_visibility_section">الخصوصية والرؤية</string>
+    <string name="collection_visibility_title">رؤية المجموعة</string>
+    <string name="wishlist_visibility_title">رؤية قائمة الأمنيات</string>
+    <string name="visibility_public">عام</string>
+    <string name="visibility_private">خاص</string>
+    <string name="collection_visibility_public">المجموعة: عام</string>
+    <string name="collection_visibility_private">المجموعة: خاص</string>
+    <string name="wishlist_visibility_public">قائمة الأمنيات: عام</string>
+    <string name="wishlist_visibility_private">قائمة الأمنيات: خاص</string>
+    <string name="atakas_title">التبادل</string>
+    <string name="atakas_found">تم العثور على %1$d تطابق. يمكنك مناقشة العروض عبر الرسائل.</string>
+    <string name="atakas_not_found">لم يتم العثور على تطابق في الوقت الحالي.</string>
+    <string name="atakas_hidden_collection_private">لا يمكن عرض التطابق لأن رؤية مجموعة هذا المستخدم مغلقة.</string>
+    <string name="trade_match_reverse_title">طلبات تتطابق مع طلباتك</string>
+    <string name="trade_match_reverse_found">%1$d تطابق من مجموعتك في قائمة أمنيات المستخدم الآخر.</string>
+    <string name="trade_match_reverse_hidden">لا يمكن عرض التطابق العكسي لأن رؤية قائمة أمنيات هذا المستخدم مغلقة.</string>
+    <string name="see_all">عرض الكل</string>
+    <string name="welcome_greeting">مرحباً بك في مجموعتك!</string>
+    <string name="main_photo">الصورة الرئيسية</string>
+    <string name="additional_photos">صور إضافية</string>
+    <string name="add_additional_photo">اختيار صورة إضافية من المعرض</string>
+    <string name="take_additional_photo">التقاط صورة إضافية بالكاميرا</string>
+    <string name="remove_all_photos">إزالة جميع الصور</string>
+    <string name="add_photo_url">إضافة صورة عبر الرابط</string>
+    <string name="community_rules_title">قواعد المجتمع</string>
+    <string name="community_rules_intro">مرحباً! قبل المشاركة في مجتمعنا، يجب أن توافق على قواعدنا:</string>
+    <string name="rule_1">1. كن محترماً: عامل الأعضاء الآخرين دائماً باحترام.</string>
+    <string name="rule_2">2. بدون إهانات: لا تستخدم لغة مسيئة أو عدوانية في المنشورات أو التعليقات.</string>
+    <string name="rule_3">3. محتوى ذو جودة: شارك فقط منشورات عن هوت ويلز وسيارات النماذج.</string>
+    <string name="rule_4">4. الأمان: لا تشارك بيانات شخصية أو ترسل روابط غير آمنة.</string>
+    <string name="accept_rules_btn">قرأت وأوافق</string>
+    <string name="profile_photo_desc">صورة الملف الشخصي</string>
+    <string name="inbox_icon_desc">صندوق الوارد</string>
+    <string name="message_user">إرسال رسالة</string>
+    <plurals name="series_selected">
+        <item quantity="one">تم اختيار سلسلة واحدة</item>
+        <item quantity="two">تم اختيار سلسلتين</item>
+        <item quantity="few">تم اختيار %d سلاسل</item>
+        <item quantity="other">تم اختيار %d سلسلة</item>
+    </plurals>
+    <string name="color_label">اللون</string>
+    <string name="series_added_to_wanted">تمت إضافة السلسلة إلى المطلوب</string>
+    <string name="condition_near_mint">في العلبة (Near MINT)</string>
+    <string name="condition_damaged">في العلبة (تالف)</string>
+
+    <!-- Block User -->
+    <string name="block_user_title">حظر المستخدم</string>
+    <string name="block_user_message">هل تريد حظر %1$s؟ ستتم إزالة هذا المستخدم من متابعيك ولن يتمكن من متابعتك مرة أخرى.</string>
+    <string name="block_user_confirm">حظر</string>
+
+    <!-- Blocked Users -->
+    <string name="blocked_users_title">المستخدمون المحظورون</string>
+    <string name="unblock_user_title">إلغاء الحظر</string>
+    <string name="unblock_user_message">هل تريد إلغاء حظر %1$s؟ سيتمكن هذا المستخدم من متابعتك مرة أخرى.</string>
+    <string name="unblock_user_confirm">إلغاء الحظر</string>
+
+    <string name="edit_avatar_action">تعديل الصورة الرمزية</string>
+    <string name="profile_edit_avatar_title">الصورة الرمزية</string>
+    <string name="profile_edit_email_title">البريد الإلكتروني</string>
+    <string name="profile_edit_username_title">اسم المستخدم</string>
+    <string name="profile_edit_password_title">تغيير كلمة المرور</string>
+    <string name="profile_edit_password_help">سيتم إرسال رابط إعادة تعيين كلمة المرور إلى عنوان بريدك الإلكتروني.</string>
+    <string name="profile_web_client_error">لم يتم العثور على معرف عميل ويب Google. يرجى الاتصال بالمسؤول.</string>
+    <string name="profile_activity_not_found">لم يتم العثور على النشاط.</string>
+    <string name="profile_login_failed_template">فشل تسجيل الدخول: %1$s</string>
+    <string name="profile_login_error">خطأ في تسجيل الدخول غير معروف</string>
+
+    <!-- Ranks Screen -->
+    <string name="ranks_title">الرتب</string>
+    <string name="ranks_your_rank">رتبتك</string>
+    <string name="ranks_score_range">نطاق النقاط</string>
+    <string name="ranks_view_all">جميع الرتب</string>
+    <string name="ranks_next_rank">الرتبة التالية: %s</string>
+    <string name="ranks_points_needed">تحتاج %d نقاط</string>
+    <string name="ranks_max_rank">🏆 مبروك! لقد وصلت إلى أقصى رتبة!</string>
+    <string name="ranks_current_score">النقاط الحالية</string>
+    <string name="ranks_score_label">%d نقاط</string>
+    <string name="end_to_end_encrypted">هذه المحادثة مشفرة من البداية إلى النهاية.</string>
+
+    <!-- Admin Panel -->
+    <string name="admin_panel_title">🛡️ لوحة المسؤول</string>
+    <string name="admin_management_section">🛡️ الإدارة</string>
+    <string name="admin_forum_management">إدارة المنتدى</string>
+    <string name="admin_tab_members">الأعضاء</string>
+    <string name="admin_tab_banned">المحظورون</string>
+    <string name="admin_tab_members_with_count">الأعضاء (%1$d)</string>
+    <string name="admin_tab_banned_with_count">المحظورون (%1$d)</string>
+    <string name="admin_search_users_hint">البحث عن الأعضاء...</string>
+    <string name="admin_search_banned_hint">البحث عن المحظورين...</string>
+    <string name="admin_no_users_found">لم يتم العثور على العضو</string>
+    <string name="admin_no_search_results">لا توجد نتائج مطابقة للبحث</string>
+    <string name="admin_no_banned_users">لا يوجد أعضاء محظورون</string>
+    <string name="admin_ban_user_dialog_title">حظر المستخدم</string>
+    <string name="admin_ban_reason_determining">السبب لـ: %1$s</string>
+    <string name="admin_ban_reason_optional">سبب الحظر (اختياري)</string>
+    <string name="admin_ban_confirm">حظر</string>
+    <string name="admin_make_mod">تعيين مشرف</string>
+    <string name="admin_remove_mod">إزالة مشرف</string>
+    <string name="admin_unban_confirm">إلغاء الحظر</string>
+    <string name="admin_access_denied">تم رفض الوصول</string>
+    <string name="admin_posts_count_label">%1$d منشورات</string>
+    <string name="admin_badge_banned_label">محظور</string>
+    <string name="dialog_info_title">معلومات</string>
+    <string name="settings_subtitle_help_support">احصل على المساعدة وابلغ عن المشاكل وارسل الملاحظات</string>
+    <string name="settings_subtitle_privacy_policy">تعرف على كيفية استخدام بياناتك وحمايتها</string>
+    <string name="settings_subtitle_terms_of_use">راجع شروط استخدام التطبيق</string>
+    <string name="settings_subtitle_community_rules">اقرأ قواعد المجتمع وارشادات الاشراف</string>
+    <string name="settings_subtitle_logout">سجل الخروج من حسابك بشكل امن</string>
 </resources>
