@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.taytek.basehw.R
+import com.taytek.basehw.ui.theme.cyberRootBackgroundColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,10 +32,12 @@ fun SupportScreen(
     onBack: () -> Unit,
     viewModel: SupportViewModel = hiltViewModel()
 ) {
+    BackHandler { onBack() }
     val uiState by viewModel.uiState.collectAsState()
     val scrollState = rememberScrollState()
 
     Scaffold(
+        containerColor = cyberRootBackgroundColor(),
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.support_title), fontWeight = FontWeight.Bold) },
@@ -41,7 +45,10 @@ fun SupportScreen(
                     IconButton(onClick = onBack) {
                         Icon(Icons.Default.ArrowBack, contentDescription = null)
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = cyberRootBackgroundColor()
+                )
             )
         }
     ) { paddingValues ->

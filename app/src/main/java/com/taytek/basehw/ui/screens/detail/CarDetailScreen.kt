@@ -4,8 +4,11 @@ import com.taytek.basehw.ui.screens.community.CommunityRulesDialog
 
 import com.taytek.basehw.R
 import androidx.compose.ui.res.stringResource
+import com.taytek.basehw.ui.theme.AppTheme
 import com.taytek.basehw.ui.theme.DarkNavy
 import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.HwCardType
+import com.taytek.basehw.domain.model.HwCardTypeRules
 import com.taytek.basehw.domain.model.toColor
 
 import androidx.compose.foundation.layout.*
@@ -19,6 +22,7 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.filled.DeleteSweep
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,13 +32,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.*
+import com.taytek.basehw.ui.theme.LocalThemeVariant
+import com.taytek.basehw.ui.theme.ThemeVariant
+import com.taytek.basehw.ui.theme.neonCyanActionGradientBrush
+import com.taytek.basehw.ui.theme.cyberActionGradientBrush
+import com.taytek.basehw.ui.theme.CyberKnockoutIconTint
+import com.taytek.basehw.ui.theme.NeonCyanKnockoutIconTint
 import androidx.compose.material3.Surface
 import java.text.SimpleDateFormat
 import java.util.Locale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -68,6 +80,7 @@ fun CarDetailScreen(
     var showEditValueDialog by remember { mutableStateOf(false) }
     var showEditPurchaseDateDialog by remember { mutableStateOf(false) }
     var showEditNoteDialog by remember { mutableStateOf(false) }
+    var showEditHwCardDialog by remember { mutableStateOf(false) }
     var showShareDialog by remember { mutableStateOf(false) }
     var shareCaption by remember { mutableStateOf("") }
     
@@ -197,11 +210,10 @@ fun CarDetailScreen(
                     ) {
                         val car = uiState.car!!
                         val master = car.masterData
-                        val allPhotos = remember(car.userPhotoUrl, car.additionalPhotos, master?.imageUrl) {
+                        val allPhotos = remember(car.userPhotoUrl, car.additionalPhotos) {
                             mutableListOf<String>().apply {
-                                car.userPhotoUrl?.let { add(it) }
-                                addAll(car.additionalPhotos)
-                                if (isEmpty()) master?.imageUrl?.let { add(it) }
+                                car.userPhotoUrl?.let { if (it == master?.imageUrl) null else it }?.let { add(it) }
+                                addAll(car.additionalPhotos.filter { it != master?.imageUrl })
                             }
                         }
 
@@ -249,10 +261,13 @@ fun CarDetailScreen(
                             }
                         } else {
                             // Placeholder if no photo
+                            val baseColor = MaterialTheme.colorScheme.surfaceContainerLow
+                            val darkerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                            
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .background(MaterialTheme.colorScheme.surfaceVariant)
+                                    .background(Brush.linearGradient(colors = listOf(baseColor, darkerColor)))
                                     .clickable { viewModel.togglePhotoOptionMenu(true) },
                                 contentAlignment = Alignment.Center
                             ) {
@@ -334,6 +349,7 @@ fun CarDetailScreen(
                                 val isSth = feature == "sth"
                                 val isChase = feature == "chase"
                                 val isTh = feature == "th"
+                                val isDarkTheme = MaterialTheme.colorScheme.background.luminance() < 0.5f
                                 if (b == Brand.HOT_WHEELS) {
                                     val tierLabel = when {
                                         isSth -> "⭐ STH"
@@ -344,14 +360,20 @@ fun CarDetailScreen(
                                     }
                                     val tierColor = when {
                                         isSth -> Color(0xFFB8860B)
-                                        isChase -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.White else Color.Black
+                                        isChase -> if (isDarkTheme) Color(0xFFF1F5F9) else Color.Black
                                         isTh -> Color(0xFF71797E)
                                         isPremium -> MaterialTheme.colorScheme.tertiary
                                         else -> MaterialTheme.colorScheme.onSurfaceVariant
                                     }
                                     AssistChip(
                                         onClick = {},
-                                        label = { Text(text = tierLabel, style = MaterialTheme.typography.labelMedium) },
+                                        label = {
+                                            Text(
+                                                text = tierLabel,
+                                                style = MaterialTheme.typography.labelMedium,
+                                                color = tierColor
+                                            )
+                                        },
                                         colors = AssistChipDefaults.assistChipColors(
                                             containerColor = tierColor.copy(alpha = 0.12f),
                                             labelColor = tierColor
@@ -391,7 +413,26 @@ fun CarDetailScreen(
                         HorizontalDivider(modifier = Modifier.padding(vertical = 6.dp))
 
                         // User data
-                        DetailRow(stringResource(com.taytek.basehw.R.string.condition_label), if (car.isOpened) stringResource(com.taytek.basehw.R.string.condition_opened) else stringResource(com.taytek.basehw.R.string.condition_boxed))
+                        val conditionObj = car.condition
+                        DetailRow(
+                            label = stringResource(com.taytek.basehw.R.string.condition_label),
+                            value = stringResource(conditionObj.titleRes),
+                            valueColor = Color(conditionObj.hexColor)
+                        )
+
+                        if (HwCardTypeRules.showForUserCar(car)) {
+                            val cardLabel = stringResource(com.taytek.basehw.R.string.hw_card_type_label)
+                            val cardValue = when (car.hwCardType) {
+                                HwCardType.SHORT -> stringResource(com.taytek.basehw.R.string.hw_card_short)
+                                HwCardType.LONG -> stringResource(com.taytek.basehw.R.string.hw_card_long)
+                                null -> stringResource(com.taytek.basehw.R.string.not_specified)
+                            }
+                            DetailRow(
+                                label = cardLabel,
+                                value = cardValue,
+                                onEdit = { showEditHwCardDialog = true }
+                            )
+                        }
                         
                         if (car.isCustom) {
                             DetailRow(stringResource(com.taytek.basehw.R.string.custom_label), stringResource(com.taytek.basehw.R.string.ok))
@@ -454,110 +495,348 @@ fun CarDetailScreen(
                                 }
                             }
                             Spacer(Modifier.height(4.dp))
+                            val baseColorNote = MaterialTheme.colorScheme.surfaceContainerLow
+                            val darkerColorNote = MaterialTheme.colorScheme.surfaceContainerHigh
+
                             Card(
                                 Modifier.fillMaxWidth().clickable {
                                     editValueText = car.personalNote
                                     showEditNoteDialog = true
                                 },
                                 shape = RoundedCornerShape(10.dp),
-                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+                                border = BorderStroke(
+                                    1.dp,
+                                    if (MaterialTheme.colorScheme.background.luminance() < 0.5f) AppTheme.tokens.cardBorderMuted else AppTheme.tokens.cardBorderStandard
+                                ),
+                                colors = CardDefaults.cardColors(containerColor = Color.Transparent)
                             ) {
-                                Text(
-                                    text = car.personalNote.ifBlank { stringResource(com.taytek.basehw.R.string.tap_to_add_note) }, 
-                                    modifier = Modifier.padding(12.dp),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = if (car.personalNote.isBlank()) MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f) else MaterialTheme.colorScheme.onSurface
-                                )
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(Brush.linearGradient(colors = listOf(baseColorNote, darkerColorNote)))
+                                ) {
+                                    Text(
+                                        text = car.personalNote.ifBlank { stringResource(com.taytek.basehw.R.string.tap_to_add_note) }, 
+                                        modifier = Modifier.padding(12.dp),
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = if (car.personalNote.isBlank()) MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f) else MaterialTheme.colorScheme.onSurface
+                                    )
+                                }
                             }
                         }
 
                         Spacer(Modifier.height(24.dp))
 
                         if (!fromWishlist && !displaySeries.isNullOrBlank() && (!uiState.isSeriesInWishlist || uiState.seriesJustAdded)) {
-                            OutlinedButton(
-                                onClick = viewModel::addSeriesToWishlist,
-                                enabled = !uiState.seriesJustAdded && !uiState.isSavingSeries,
-                                modifier = Modifier.fillMaxWidth().height(52.dp),
-                                shape = RoundedCornerShape(14.dp),
-                                border = BorderStroke(1.5.dp, if (uiState.seriesJustAdded) Color(0xFF4CAF50) else Color(0xFFFF8C00)),
-                                colors = ButtonDefaults.outlinedButtonColors(
-                                    contentColor = if (uiState.seriesJustAdded) Color(0xFF4CAF50) else Color(0xFFFF8C00),
-                                    disabledContentColor = if (uiState.seriesJustAdded) Color(0xFF4CAF50) else Color(0xFFFF8C00).copy(alpha = 0.6f)
-                                )
-                            ) {
-                                when {
-                                    uiState.isSavingSeries -> {
-                                        CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color(0xFFFF8C00))
+                            val successGreen = Color(0xFF4CAF50)
+                            val shell = LocalThemeVariant.current
+                            when {
+                                uiState.seriesJustAdded -> {
+                                    OutlinedButton(
+                                        onClick = {},
+                                        enabled = false,
+                                        modifier = Modifier.fillMaxWidth().height(52.dp),
+                                        shape = RoundedCornerShape(14.dp),
+                                        border = BorderStroke(1.5.dp, successGreen),
+                                        colors = ButtonDefaults.outlinedButtonColors(
+                                            contentColor = successGreen,
+                                            disabledContentColor = successGreen
+                                        )
+                                    ) {
+                                        Text(
+                                            stringResource(com.taytek.basehw.R.string.series_added_to_wanted),
+                                            style = MaterialTheme.typography.labelLarge,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
                                     }
-                                    uiState.seriesJustAdded -> {
-                                        Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(20.dp))
-                                        Spacer(Modifier.width(8.dp))
-                                        Text(stringResource(com.taytek.basehw.R.string.series_added_to_wanted), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                }
+                                shell == ThemeVariant.Cyber -> {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(52.dp)
+                                            .alpha(if (!uiState.isSavingSeries) 1f else 0.65f)
+                                            .clip(RoundedCornerShape(14.dp))
+                                            .background(cyberWideNeonFillBrush())
+                                            .clickable(
+                                                enabled = !uiState.isSavingSeries,
+                                                onClick = viewModel::addSeriesToWishlist
+                                            ),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        when {
+                                            uiState.isSavingSeries -> {
+                                                CircularProgressIndicator(
+                                                    modifier = Modifier.size(22.dp),
+                                                    strokeWidth = 2.dp,
+                                                    color = CyberKnockoutIconTint
+                                                )
+                                            }
+                                            else -> {
+                                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                                    Icon(
+                                                        Icons.Default.Add,
+                                                        contentDescription = null,
+                                                        tint = CyberKnockoutIconTint
+                                                    )
+                                                    Spacer(Modifier.width(8.dp))
+                                                    Text(
+                                                        stringResource(com.taytek.basehw.R.string.add_series_to_wanted),
+                                                        style = MaterialTheme.typography.titleMedium,
+                                                        fontWeight = FontWeight.SemiBold,
+                                                        color = CyberKnockoutIconTint
+                                                    )
+                                                }
+                                            }
+                                        }
                                     }
-                                    else -> {
-                                        Icon(Icons.Default.Layers, contentDescription = null, modifier = Modifier.size(20.dp))
-                                        Spacer(Modifier.width(8.dp))
-                                        Text(stringResource(com.taytek.basehw.R.string.add_series_to_wanted), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                }
+                                shell == ThemeVariant.NeonCyan -> {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(52.dp)
+                                            .alpha(if (!uiState.isSavingSeries) 1f else 0.65f)
+                                            .clip(RoundedCornerShape(14.dp))
+                                            .background(neonCyanActionGradientBrush())
+                                            .clickable(
+                                                enabled = !uiState.isSavingSeries,
+                                                onClick = viewModel::addSeriesToWishlist
+                                            ),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        when {
+                                            uiState.isSavingSeries -> {
+                                                CircularProgressIndicator(
+                                                    modifier = Modifier.size(22.dp),
+                                                    strokeWidth = 2.dp,
+                                                    color = NeonCyanKnockoutIconTint
+                                                )
+                                            }
+                                            else -> {
+                                                Text(
+                                                    stringResource(com.taytek.basehw.R.string.add_series_to_wanted),
+                                                    style = MaterialTheme.typography.labelLarge,
+                                                    fontWeight = FontWeight.SemiBold,
+                                                    color = NeonCyanKnockoutIconTint
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                                else -> {
+                                    val outlineColor = MaterialTheme.colorScheme.primary
+                                    OutlinedButton(
+                                        onClick = viewModel::addSeriesToWishlist,
+                                        enabled = !uiState.isSavingSeries,
+                                        modifier = Modifier.fillMaxWidth().height(52.dp),
+                                        shape = RoundedCornerShape(14.dp),
+                                        border = BorderStroke(1.5.dp, outlineColor),
+                                        colors = ButtonDefaults.outlinedButtonColors(
+                                            contentColor = outlineColor,
+                                            disabledContentColor = outlineColor.copy(alpha = 0.6f)
+                                        )
+                                    ) {
+                                        when {
+                                            uiState.isSavingSeries -> {
+                                                CircularProgressIndicator(
+                                                    modifier = Modifier.size(22.dp),
+                                                    strokeWidth = 2.dp,
+                                                    color = outlineColor
+                                                )
+                                            }
+                                            else -> {
+                                                Text(
+                                                    stringResource(com.taytek.basehw.R.string.add_series_to_wanted),
+                                                    style = MaterialTheme.typography.labelLarge,
+                                                    fontWeight = FontWeight.SemiBold
+                                                )
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
 
                         if (car.isWishlist) {
-                            Button(
-                                onClick = { 
-                                    onMoveToCollection(master?.id ?: -1L, car.id)
-                                },
-                                modifier = Modifier.fillMaxWidth().height(52.dp),
-                                shape = RoundedCornerShape(14.dp),
-                                colors = ButtonDefaults.buttonColors(containerColor = com.taytek.basehw.ui.theme.AppPrimary)
-                            ) {
-                                Icon(Icons.Default.AddHome, contentDescription = null)
-                                Spacer(Modifier.width(8.dp))
-                                Text(stringResource(com.taytek.basehw.R.string.add_to_collection_btn), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                            }
-                            Spacer(Modifier.height(16.dp))
-                        }
-
-                        Spacer(Modifier.height(16.dp))
-
-                        // Share to Community button
-                        val hasShareablePhoto = car.backupPhotoUrl != null || car.userPhotoUrl != null
-                        OutlinedButton(
-                            onClick = {
-                                shareCaption = ""
-                                showShareDialog = true
-                            },
-                            enabled = hasShareablePhoto && !uiState.isSharing && !uiState.isShared,
-                            modifier = Modifier.fillMaxWidth().height(52.dp),
-                            shape = RoundedCornerShape(14.dp),
-                            border = BorderStroke(
-                                1.5.dp,
-                                if (uiState.isShared) Color(0xFF4CAF50) else com.taytek.basehw.ui.theme.AppPrimary
-                            ),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = if (uiState.isShared) Color(0xFF4CAF50) else com.taytek.basehw.ui.theme.AppPrimary,
-                                disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-                            )
-                        ) {
-                            when {
-                                uiState.isSharing -> {
-                                    CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = com.taytek.basehw.ui.theme.AppPrimary)
+                            when (LocalThemeVariant.current) {
+                                ThemeVariant.Cyber -> {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(52.dp)
+                                            .clip(RoundedCornerShape(14.dp))
+                                            .background(cyberWideNeonFillBrush())
+                                            .clickable {
+                                                onMoveToCollection(master?.id ?: -1L, car.id)
+                                            },
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            Icon(
+                                                Icons.Default.AddHome,
+                                                contentDescription = null,
+                                                tint = CyberKnockoutIconTint
+                                            )
+                                            Spacer(Modifier.width(8.dp))
+                                            Text(
+                                                stringResource(com.taytek.basehw.R.string.add_to_collection_btn),
+                                                style = MaterialTheme.typography.titleMedium,
+                                                fontWeight = FontWeight.SemiBold,
+                                                color = CyberKnockoutIconTint
+                                            )
+                                        }
+                                    }
                                 }
-                                uiState.isShared -> {
-                                    Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(20.dp))
-                                    Spacer(Modifier.width(8.dp))
-                                    Text(stringResource(com.taytek.basehw.R.string.shared_successfully), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                ThemeVariant.NeonCyan -> {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(52.dp)
+                                            .clip(RoundedCornerShape(14.dp))
+                                            .background(neonCyanActionGradientBrush())
+                                            .clickable {
+                                                onMoveToCollection(master?.id ?: -1L, car.id)
+                                            },
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            Icon(
+                                                Icons.Default.AddHome,
+                                                contentDescription = null,
+                                                tint = NeonCyanKnockoutIconTint
+                                            )
+                                            Spacer(Modifier.width(8.dp))
+                                            Text(
+                                                stringResource(com.taytek.basehw.R.string.add_to_collection_btn),
+                                                style = MaterialTheme.typography.titleMedium,
+                                                fontWeight = FontWeight.SemiBold,
+                                                color = NeonCyanKnockoutIconTint
+                                            )
+                                        }
+                                    }
                                 }
                                 else -> {
-                                    Icon(Icons.Default.Share, contentDescription = null, modifier = Modifier.size(20.dp))
-                                    Spacer(Modifier.width(8.dp))
+                                    Button(
+                                        onClick = {
+                                            onMoveToCollection(master?.id ?: -1L, car.id)
+                                        },
+                                        modifier = Modifier.fillMaxWidth().height(52.dp),
+                                        shape = RoundedCornerShape(14.dp),
+                                        colors = ButtonDefaults.buttonColors(containerColor = AppTheme.tokens.primaryAccent)
+                                    ) {
+                                        Icon(Icons.Default.AddHome, contentDescription = null)
+                                        Spacer(Modifier.width(8.dp))
+                                        Text(
+                                            stringResource(com.taytek.basehw.R.string.add_to_collection_btn),
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                        Spacer(Modifier.height(if (car.isWishlist) 8.dp else 16.dp))
+
+                        // Share to Community button
+                        when {
+                            uiState.isShared -> {
+                                OutlinedButton(
+                                    onClick = {
+                                        shareCaption = ""
+                                        showShareDialog = true
+                                    },
+                                    enabled = false,
+                                    modifier = Modifier.fillMaxWidth().height(52.dp),
+                                    shape = RoundedCornerShape(14.dp),
+                                    border = BorderStroke(1.5.dp, Color(0xFF4CAF50)),
+                                    colors = ButtonDefaults.outlinedButtonColors(
+                                        contentColor = Color(0xFF4CAF50),
+                                        disabledContentColor = Color(0xFF4CAF50)
+                                    )
+                                ) {
                                     Text(
-                                        if (hasShareablePhoto) stringResource(com.taytek.basehw.R.string.share_to_community)
-                                        else stringResource(com.taytek.basehw.R.string.photo_required_share),
-                                        style = MaterialTheme.typography.titleMedium,
+                                        stringResource(com.taytek.basehw.R.string.shared_successfully),
+                                        style = MaterialTheme.typography.labelLarge,
                                         fontWeight = FontWeight.SemiBold
                                     )
+                                }
+                            }
+                            LocalThemeVariant.current == ThemeVariant.Cyber && !uiState.isShared -> {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(52.dp)
+                                        .alpha(if (!uiState.isSharing) 1f else 0.65f)
+                                        .clip(RoundedCornerShape(14.dp))
+                                        .background(AppTheme.tokens.selectionIconTint)
+                                        .padding(1.5.dp)
+                                        .clip(RoundedCornerShape(12.5.dp))
+                                        .background(MaterialTheme.colorScheme.surface)
+                                        .clickable(
+                                            enabled = !uiState.isSharing,
+                                            onClick = {
+                                                shareCaption = ""
+                                                showShareDialog = true
+                                            }
+                                        ),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    when {
+                                        uiState.isSharing -> {
+                                            CircularProgressIndicator(
+                                                modifier = Modifier.size(22.dp),
+                                                strokeWidth = 2.dp,
+                                                color = AppTheme.tokens.selectionIconTint
+                                            )
+                                        }
+                                        else -> {
+                                            Text(
+                                                stringResource(com.taytek.basehw.R.string.share_to_community),
+                                                style = MaterialTheme.typography.labelLarge,
+                                                fontWeight = FontWeight.SemiBold,
+                                                color = MaterialTheme.colorScheme.onSurface
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                            else -> {
+                                val shareOutline = when (LocalThemeVariant.current) {
+                                    ThemeVariant.NeonCyan -> AppTheme.tokens.selectionIconTint
+                                    else -> MaterialTheme.colorScheme.primary
+                                }
+                                OutlinedButton(
+                                    onClick = {
+                                        shareCaption = ""
+                                        showShareDialog = true
+                                    },
+                                    enabled = !uiState.isSharing && !uiState.isShared,
+                                    modifier = Modifier.fillMaxWidth().height(52.dp),
+                                    shape = RoundedCornerShape(14.dp),
+                                    border = BorderStroke(1.5.dp, shareOutline),
+                                    colors = ButtonDefaults.outlinedButtonColors(
+                                        contentColor = shareOutline,
+                                        disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                                    )
+                                ) {
+                                    when {
+                                        uiState.isSharing -> {
+                                            CircularProgressIndicator(
+                                                modifier = Modifier.size(22.dp),
+                                                strokeWidth = 2.dp,
+                                                color = shareOutline
+                                            )
+                                        }
+                                        else -> {
+                                            Text(
+                                                stringResource(com.taytek.basehw.R.string.share_to_community),
+                                                style = MaterialTheme.typography.labelLarge,
+                                                fontWeight = FontWeight.SemiBold
+                                            )
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -592,6 +871,49 @@ fun CarDetailScreen(
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = false }) { Text(stringResource(com.taytek.basehw.R.string.cancel)) }
+            }
+        )
+    }
+
+    if (showEditHwCardDialog && uiState.car != null) {
+        val carForCard = uiState.car!!
+        AlertDialog(
+            onDismissRequest = { showEditHwCardDialog = false },
+            title = { Text(stringResource(com.taytek.basehw.R.string.hw_card_type_label)) },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    HwCardType.entries.forEach { type ->
+                        val label = when (type) {
+                            HwCardType.SHORT -> stringResource(com.taytek.basehw.R.string.hw_card_short)
+                            HwCardType.LONG -> stringResource(com.taytek.basehw.R.string.hw_card_long)
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    viewModel.updateHwCardType(type)
+                                    showEditHwCardDialog = false
+                                }
+                                .padding(vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = carForCard.hwCardType == type,
+                                onClick = {
+                                    viewModel.updateHwCardType(type)
+                                    showEditHwCardDialog = false
+                                }
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(label, style = MaterialTheme.typography.bodyLarge)
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showEditHwCardDialog = false }) {
+                    Text(stringResource(com.taytek.basehw.R.string.cancel))
+                }
             }
         )
     }
@@ -740,14 +1062,51 @@ fun CarDetailScreen(
                 )
             },
             confirmButton = {
-                Button(
-                    onClick = {
-                        viewModel.shareToFeed(shareCaption.trim())
-                        showShareDialog = false
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = com.taytek.basehw.ui.theme.AppPrimary)
-                ) {
-                    Text(stringResource(com.taytek.basehw.R.string.share_button))
+                when (LocalThemeVariant.current) {
+                    ThemeVariant.Cyber -> {
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(cyberActionGradientBrush())
+                                .clickable {
+                                    viewModel.shareToFeed(shareCaption.trim())
+                                    showShareDialog = false
+                                }
+                                .padding(horizontal = 16.dp, vertical = 10.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                stringResource(com.taytek.basehw.R.string.share_button),
+                                color = CyberKnockoutIconTint,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                    ThemeVariant.NeonCyan -> {
+                        Button(
+                            onClick = {
+                                viewModel.shareToFeed(shareCaption.trim())
+                                showShareDialog = false
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = AppTheme.tokens.primaryAccent,
+                                contentColor = NeonCyanKnockoutIconTint
+                            )
+                        ) {
+                            Text(stringResource(com.taytek.basehw.R.string.share_button))
+                        }
+                    }
+                    else -> {
+                        Button(
+                            onClick = {
+                                viewModel.shareToFeed(shareCaption.trim())
+                                showShareDialog = false
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = AppTheme.tokens.primaryAccent)
+                        ) {
+                            Text(stringResource(com.taytek.basehw.R.string.share_button))
+                        }
+                    }
                 }
             },
             dismissButton = {
@@ -871,8 +1230,25 @@ fun CarDetailScreen(
     }
 }
 
+/** Synthwave: anasayfa kamera / wishlist “Koleksiyona ekle” ile aynı geniş neon dolgu. */
 @Composable
-private fun DetailRow(label: String, value: String, onEdit: (() -> Unit)? = null) {
+@ReadOnlyComposable
+private fun cyberWideNeonFillBrush(): Brush = Brush.linearGradient(
+    colors = listOf(
+        AppTheme.tokens.selectionIconTint,
+        AppTheme.tokens.primaryAccent
+    ),
+    start = Offset(0f, 0f),
+    end = Offset(1000f, 0f)
+)
+
+@Composable
+private fun DetailRow(
+    label: String, 
+    value: String, 
+    valueColor: Color = MaterialTheme.colorScheme.onSurface,
+    onEdit: (() -> Unit)? = null
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -885,7 +1261,9 @@ private fun DetailRow(label: String, value: String, onEdit: (() -> Unit)? = null
             color = MaterialTheme.colorScheme.onSurfaceVariant)
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(value, style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface)
+                color = valueColor,
+                fontWeight = if (valueColor != MaterialTheme.colorScheme.onSurface) FontWeight.Bold else FontWeight.Normal
+            )
             if (onEdit != null) {
                 Spacer(Modifier.width(8.dp))
                 Icon(

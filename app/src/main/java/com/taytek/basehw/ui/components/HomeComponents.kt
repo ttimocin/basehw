@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.geometry.*
 import androidx.compose.ui.layout.*
 import androidx.compose.ui.res.*
@@ -118,10 +119,11 @@ fun CollectionHeroCard(
             .clip(RoundedCornerShape(26.dp))
             .background(
                 Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFF0033CC),
-                        Color(0xFF1E90FF)
-                    )
+                    colors = if (MaterialTheme.colorScheme.background.luminance() < 0.5f) {
+                        listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)
+                    } else {
+                        listOf(Color(0xFF0033CC), Color(0xFF1E90FF))
+                    }
                 )
             )
     ) {
@@ -271,17 +273,25 @@ fun FeaturedCarCard(
             .shadow(12.dp, RoundedCornerShape(24.dp), clip = false)
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        border = BorderStroke(
+            1.dp,
+            if (MaterialTheme.colorScheme.background.luminance() < 0.5f) AppTheme.tokens.cardBorderMuted else AppTheme.tokens.cardBorderStandard
+        )
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            val imageToShow = car.userPhotoUrl ?: car.masterData?.imageUrl
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)))
+        ) {
+            val imageToShow = (car.backupPhotoUrl ?: car.userPhotoUrl)?.takeIf { it != car.masterData?.imageUrl }
             AsyncImage(
                 model = imageToShow,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
+
             
             // Gradient Overlay
             Box(
@@ -310,15 +320,15 @@ fun FeaturedCarCard(
                     Icon(
                         imageVector = Icons.Default.Star,
                         contentDescription = null,
-                        tint = AppPrimary,
+                        tint = AppTheme.tokens.primaryAccent,
                         modifier = Modifier.size(16.dp)
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
+                    Spacer(Modifier.width(6.dp))
                     Text(
-                        text = stringResource(com.taytek.basehw.R.string.favorite),
-                        color = AppPrimary,
+                        text = stringResource(com.taytek.basehw.R.string.latest_addition),
                         style = MaterialTheme.typography.labelMedium,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
                     )
                 }
             }
@@ -331,13 +341,13 @@ fun FeaturedCarCard(
             ) {
                 Text(
                     text = car.masterData?.modelName ?: car.manualModelName ?: stringResource(com.taytek.basehw.R.string.unknown_model),
-                    color = MaterialTheme.colorScheme.surface,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = stringResource(com.taytek.basehw.R.string.latest_addition),
-                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                     style = MaterialTheme.typography.labelLarge
                 )
             }
@@ -368,7 +378,7 @@ fun SearchBarWithFilter(
                 .shadow(3.dp, RoundedCornerShape(16.dp))
                 .clip(RoundedCornerShape(16.dp))
                 .background(
-                    if (MaterialTheme.colorScheme.background == DarkNavy)
+                    if (com.taytek.basehw.ui.theme.isDarkThemeUi())
                         MaterialTheme.colorScheme.surface
                     else
                         MaterialTheme.colorScheme.primaryContainer
@@ -397,9 +407,11 @@ fun SearchBarWithFilter(
                         Box(Modifier.weight(1f)) {
                             if (query.isEmpty()) {
                                 Text(
-                                    text = stringResource(com.taytek.basehw.R.string.search_in_collection), 
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    fontSize = 14.sp,
+                                    text = stringResource(com.taytek.basehw.R.string.search_in_collection),
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        fontSize = 14.sp
+                                    ),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 ) 
@@ -422,7 +434,7 @@ fun SearchBarWithFilter(
                             Icon(
                                 imageVector = Icons.Default.FilterList,
                                 contentDescription = stringResource(com.taytek.basehw.R.string.filter),
-                                tint = AppPrimary,
+                                tint = neonShellChromeIconTint(),
                                 modifier = Modifier.size(18.dp)
                             )
                         }
@@ -431,18 +443,36 @@ fun SearchBarWithFilter(
             )
         }
 
-        IconButton(
-            onClick = onStatsClick,
-            modifier = Modifier
-                .size(40.dp)
-                .background(AppPrimary, RoundedCornerShape(12.dp))
-        ) {
-            Icon(
-                imageVector = Icons.Default.BarChart,
-                contentDescription = stringResource(com.taytek.basehw.R.string.statistics_title),
-                tint = MaterialTheme.colorScheme.surface,
-                modifier = Modifier.size(24.dp)
-            )
+        when (LocalThemeVariant.current) {
+            ThemeVariant.Cyber -> {
+                CyberNeonIconButton(
+                    onClick = onStatsClick,
+                    imageVector = Icons.Default.BarChart,
+                    contentDescription = stringResource(com.taytek.basehw.R.string.statistics_title)
+                )
+            }
+            ThemeVariant.NeonCyan -> {
+                NeonCyanNeonIconButton(
+                    onClick = onStatsClick,
+                    imageVector = Icons.Default.BarChart,
+                    contentDescription = stringResource(com.taytek.basehw.R.string.statistics_title)
+                )
+            }
+            else -> {
+                IconButton(
+                    onClick = onStatsClick,
+                    modifier = Modifier
+                        .size(40.dp)
+                        .background(AppTheme.tokens.primaryAccent, RoundedCornerShape(12.dp))
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.BarChart,
+                        contentDescription = stringResource(com.taytek.basehw.R.string.statistics_title),
+                        tint = MaterialTheme.colorScheme.surface,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
         }
     }
 }
@@ -454,20 +484,20 @@ fun FilterBottomSheet(
     currentBrand: String?,
     currentYear: Int?,
     currentSeries: String?,
-    currentIsOpened: Boolean?,
+    currentCondition: String?,
     currentSortOrder: com.taytek.basehw.domain.model.SortOrder = com.taytek.basehw.domain.model.SortOrder.DATE_ADDED_DESC,
-    onApply: (brand: String?, year: Int?, series: String?, isOpened: Boolean?, sortOrder: com.taytek.basehw.domain.model.SortOrder) -> Unit
+    onApply: (brand: String?, year: Int?, series: String?, condition: String?, sortOrder: com.taytek.basehw.domain.model.SortOrder) -> Unit
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
         containerColor = MaterialTheme.colorScheme.background,
-        dragHandle = { BottomSheetDefaults.DragHandle(color = AppPrimary.copy(alpha = 0.3f)) }
+        dragHandle = { BottomSheetDefaults.DragHandle(color = AppTheme.tokens.primaryAccent.copy(alpha = 0.3f)) }
     ) {
         var brand by remember { mutableStateOf(currentBrand) }
         var yearInput by remember { mutableStateOf(currentYear?.toString() ?: "") }
         var series by remember { mutableStateOf(currentSeries ?: "") }
-        var isOpened by remember { mutableStateOf(currentIsOpened) }
+        var condition by remember { mutableStateOf(currentCondition) }
         var sortOrder by remember { mutableStateOf(currentSortOrder) }
 
         Column(
@@ -519,16 +549,27 @@ fun FilterBottomSheet(
                 )
             }
 
-            // Status
+            // Status (Condition)
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(stringResource(com.taytek.basehw.R.string.condition), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     contentPadding = PaddingValues(end = 24.dp)
                 ) {
-                    item { FilterChip(selected = isOpened == null, onClick = { isOpened = null }, label = { Text(stringResource(com.taytek.basehw.R.string.all)) }) }
-                    item { FilterChip(selected = isOpened == false, onClick = { isOpened = false }, label = { Text(stringResource(com.taytek.basehw.R.string.boxed)) }) }
-                    item { FilterChip(selected = isOpened == true, onClick = { isOpened = true }, label = { Text(stringResource(com.taytek.basehw.R.string.opened)) }) }
+                    item { 
+                        FilterChip(
+                            selected = condition == null, 
+                            onClick = { condition = null }, 
+                            label = { Text(stringResource(com.taytek.basehw.R.string.all)) }
+                        ) 
+                    }
+                    items(com.taytek.basehw.domain.model.VehicleCondition.values()) { state ->
+                        FilterChip(
+                            selected = condition == state.name,
+                            onClick = { condition = state.name },
+                            label = { Text(stringResource(state.titleRes)) }
+                        )
+                    }
                 }
             }
 
@@ -553,11 +594,11 @@ fun FilterBottomSheet(
 
             Button(
                 onClick = {
-                    onApply(brand, yearInput.toIntOrNull(), series, isOpened, sortOrder)
+                    onApply(brand, yearInput.toIntOrNull(), series, condition, sortOrder)
                 },
                 modifier = Modifier.fillMaxWidth().height(56.dp),
                 shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = AppPrimary)
+                colors = ButtonDefaults.buttonColors(containerColor = AppTheme.tokens.primaryAccent)
             ) {
                 Text(stringResource(com.taytek.basehw.R.string.apply_filters), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
@@ -572,29 +613,34 @@ fun FilterBottomSheet(
     }
 }
 
+data class WishlistVariantHuntRowActions(val onOpenVariantHunt: () -> Unit)
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CollectionListItem(
     car: UserCar,
     onClick: () -> Unit,
     onLongClick: () -> Unit = {},
-    isSelected: Boolean = false
+    isSelected: Boolean = false,
+    wishlistVariantHunt: WishlistVariantHuntRowActions? = null
 ) {
     val modelName = car.masterData?.modelName ?: car.manualModelName ?: stringResource(com.taytek.basehw.R.string.unknown_model)
     val brandName = car.masterData?.brand?.displayName ?: car.manualBrand?.displayName ?: ""
     val seriesName = car.masterData?.series?.takeIf { it.isNotBlank() } ?: car.manualSeries ?: ""
     val year = (car.masterData?.year ?: car.manualYear)?.toString() ?: ""
-    val imageToShow = car.userPhotoUrl ?: car.masterData?.imageUrl
+    val imageToShow = (car.backupPhotoUrl ?: car.userPhotoUrl)?.let { if (it == car.masterData?.imageUrl) null else it }
     val feature = car.masterData?.feature?.lowercase()
     val isSthCar = feature == "sth"
     val isChaseCar = feature == "chase"
     val isThCar = feature == "th"
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
+    val isDark = MaterialTheme.colorScheme.background.luminance() < 0.5f
+    val tokens = AppTheme.tokens
+    val brand = AppTheme.brand
+    val baseColor = MaterialTheme.colorScheme.surfaceContainerLow
+    val darkerColor = MaterialTheme.colorScheme.surfaceContainerHigh
 
-    val sthBorderColor = if (isSthCar) Color(0xFFB8860B) else if (isChaseCar) (if (isDark) Color.White else Color.Black) else if (isThCar) Color(0xFF71797E) else Color.Transparent
-    val defaultBorderColor = if (isDark) Color.White.copy(alpha = 0.2f) else Color.Black.copy(alpha = 0.15f)
+    val sthBorderColor = if (isSthCar) brand.sthGoldDeep else if (isChaseCar) (if (isDark) brand.chaseText else brand.chaseBlack) else if (isThCar) Color(0xFF71797E) else Color.Transparent
+    val defaultBorderColor = tokens.cardBorderStandard
 
     // Animated shimmer beam for STH cards
     val infiniteTransition = rememberInfiniteTransition(label = "sth_list_shimmer")
@@ -602,17 +648,25 @@ fun CollectionListItem(
         initialValue = 0f,
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2500, easing = LinearEasing),
+            animation = tween(durationMillis = 4000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "sth_list_angle"
     )
 
-    val sthGoldMid = Color(0xFFB8860B)
     val cardShape = RoundedCornerShape(16.dp)
 
-    // Generate animated sweep gradient brush for STH border
-    val shimmerBorderModifier = if (isSthCar && !isSelected) {
+    val (baseShimmerColor, targetShimmerColor) = when {
+        isSthCar -> brand.sthGoldDeep to Color.White
+        isChaseCar -> {
+            if (isDark) brand.chaseText to brand.chaseBlack
+            else brand.chaseBlack to brand.chaseText
+        }
+        else -> Color.Transparent to Color.Transparent
+    }
+
+    // Generate animated sweep gradient brush for STH or Chase border
+    val shimmerBorderModifier = if ((isSthCar || isChaseCar) && !isSelected) {
         val fraction = angle / 360f
         val shimmerColors = buildList {
             val beamWidth = 0.12f
@@ -627,14 +681,14 @@ fun CollectionListItem(
                     )
                 )
                 val brightness = (1f - (dist / beamWidth).coerceIn(0f, 1f))
-                val color = androidx.compose.ui.graphics.lerp(sthGoldMid, Color.White, brightness * brightness)
+                val color = androidx.compose.ui.graphics.lerp(baseShimmerColor, targetShimmerColor, brightness * brightness)
                 add(color)
             }
             add(first())
         }
         val shimmerBrush = Brush.sweepGradient(shimmerColors)
         Modifier.border(2.5.dp, shimmerBrush, cardShape)
-    } else if ((isChaseCar || isThCar) && !isSelected) {
+    } else if (isThCar && !isSelected) {
         Modifier.border(2.dp, sthBorderColor, cardShape)
     } else {
         Modifier
@@ -651,7 +705,7 @@ fun CollectionListItem(
             ),
         shape = cardShape,
         border = if (!isSthCar && !isChaseCar && !isThCar && !isSelected)
-            BorderStroke(1.dp, defaultBorderColor.copy(alpha = 0.05f))
+            BorderStroke(1.dp, if (isDark) tokens.cardBorderMuted else defaultBorderColor)
         else
             null,
         colors = CardDefaults.cardColors(
@@ -662,6 +716,10 @@ fun CollectionListItem(
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = if (isSelected) 0.dp else 1.dp)
     ) {
+        val conditionObj = car.condition
+        val isBoxed = conditionObj != com.taytek.basehw.domain.model.VehicleCondition.LOOSE
+        val wishlistHuntCta = wishlistVariantHunt?.takeIf { car.isWishlist && car.masterDataId != null }
+        val showBoxConditionChip = isBoxed && wishlistHuntCta == null
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -697,7 +755,7 @@ fun CollectionListItem(
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                            .background(Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh))),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
@@ -738,9 +796,9 @@ fun CollectionListItem(
                     val scale = car.masterData?.scale?.takeIf { it.isNotBlank() } ?: car.manualScale?.takeIf { it.isNotBlank() } ?: "1:64"
                     Text(
                         text = listOfNotNull(
-                            brandName.uppercase().takeIf { it.isNotBlank() },
-                            scale,
-                            year.takeIf { it.isNotBlank() }
+                            if (brandName.isNotBlank()) brandName.uppercase() else null,
+                            scale.takeIf { it.isNotBlank() },
+                            if (year.isNotBlank()) year else null
                         ).joinToString(" - "),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -772,11 +830,34 @@ fun CollectionListItem(
                     Text(
                         text = seriesName,
                         style = MaterialTheme.typography.labelSmall,
-                        color = AppPrimary,
+                        color = tokens.primaryAccent,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         fontSize = 10.sp
                     )
+                }
+                if (wishlistHuntCta != null) {
+                    Spacer(Modifier.height(6.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.End
+                    ) {
+                        TextButton(
+                            onClick = wishlistHuntCta.onOpenVariantHunt,
+                            contentPadding = PaddingValues(horizontal = 6.dp, vertical = 2.dp),
+                            modifier = Modifier.heightIn(min = 32.dp)
+                        ) {
+                            Text(
+                                text = stringResource(com.taytek.basehw.R.string.variant_hunt_add_similar_cta),
+                                style = MaterialTheme.typography.labelSmall,
+                                fontSize = 10.sp,
+                                lineHeight = 12.sp,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                                textAlign = TextAlign.End
+                            )
+                        }
+                    }
                 }
 
             }
@@ -805,7 +886,8 @@ fun CollectionListItem(
                 )
             }
 
-            if (isSthCar || isChaseCar || isThCar || !car.isOpened) {
+            // Rozetler + kutu chip üst sağda; «Benzer tüm araçları ekle» metinle çakışmasın diye sütun içinde (aşağıda).
+            if (isSthCar || isChaseCar || isThCar || showBoxConditionChip) {
                 Row(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
@@ -815,7 +897,7 @@ fun CollectionListItem(
                 ) {
                     if (isSthCar) {
                         Surface(
-                            color = Color(0xFF1A1300),
+                            color = brand.sthTagBackground,
                             shape = RoundedCornerShape(8.dp),
                             shadowElevation = 2.dp
                         ) {
@@ -824,9 +906,9 @@ fun CollectionListItem(
                                 style = MaterialTheme.typography.labelSmall.copy(
                                     fontWeight = FontWeight.ExtraBold,
                                     fontSize = 9.sp,
-                                    color = Color(0xFFFFD54F),
+                                    color = brand.sthTagText,
                                     shadow = Shadow(
-                                        color = Color(0xFFFFD700).copy(alpha = 0.6f),
+                                        color = brand.sthTagGlow.copy(alpha = 0.6f),
                                         offset = Offset(0f, 0f),
                                         blurRadius = 8f
                                     )
@@ -838,55 +920,65 @@ fun CollectionListItem(
 
                     if (isChaseCar) {
                         Surface(
-                            color = Color.Black,
+                            color = brand.chaseBlack,
                             shape = RoundedCornerShape(8.dp),
                             shadowElevation = 2.dp,
-                            border = BorderStroke(0.5.dp, Color.White.copy(alpha = 0.5f))
+                            border = BorderStroke(0.5.dp, brand.chaseBorder)
                         ) {
                             Text(
                                 text = "CHASE",
                                 style = MaterialTheme.typography.labelSmall.copy(
                                     fontWeight = FontWeight.ExtraBold,
                                     fontSize = 8.sp,
-                                    color = Color.White
+                                    color = brand.chaseText
                                 ),
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                        )
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                            )
+                        }
                     }
-                }
 
-                if (isThCar) {
-                    Surface(
-                        color = Color(0xFFE5E4E2),
-                        shape = RoundedCornerShape(8.dp),
-                        shadowElevation = 2.dp,
-                        border = BorderStroke(0.5.dp, Color.Black.copy(alpha = 0.2f))
-                    ) {
-                        Text(
-                            text = "TH",
-                            style = MaterialTheme.typography.labelSmall.copy(
-                                fontWeight = FontWeight.ExtraBold,
-                                fontSize = 9.sp,
-                                color = Color.DarkGray
-                            ),
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                        )
-                    }
-                }
-
-                if (!car.isOpened) {
+                    if (isThCar) {
                         Surface(
-                            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
+                            color = brand.thGray,
+                            shape = RoundedCornerShape(8.dp),
+                            shadowElevation = 2.dp,
+                            border = BorderStroke(0.5.dp, Color.Black.copy(alpha = 0.2f))
+                        ) {
+                            Text(
+                                text = "TH",
+                                style = MaterialTheme.typography.labelSmall.copy(
+                                    fontWeight = FontWeight.ExtraBold,
+                                    fontSize = 9.sp,
+                                    color = brand.thText
+                                ),
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                            )
+                        }
+                    }
+
+                    if (showBoxConditionChip) {
+                        Surface(
+                            color = Color(conditionObj.hexColor).copy(alpha = 0.9f),
                             shape = RoundedCornerShape(8.dp),
                             shadowElevation = 2.dp
                         ) {
+                            val label = when (conditionObj) {
+                                com.taytek.basehw.domain.model.VehicleCondition.MINT -> "MINT"
+                                com.taytek.basehw.domain.model.VehicleCondition.NEAR_MINT -> "N.MINT"
+                                com.taytek.basehw.domain.model.VehicleCondition.DAMAGED -> "DMG"
+                                else -> "MOC"
+                            }
                             Text(
-                                text = "MOC",
+                                text = label,
                                 style = MaterialTheme.typography.labelSmall.copy(
                                     fontWeight = FontWeight.ExtraBold,
-                                    fontSize = 9.sp
+                                    fontSize = 8.sp
                                 ),
-                                color = MaterialTheme.colorScheme.onSurface,
+                                color = if (conditionObj == com.taytek.basehw.domain.model.VehicleCondition.MINT) {
+                                    MaterialTheme.colorScheme.onSurface
+                                } else {
+                                    Color.White
+                                },
                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                             )
                         }

@@ -5,9 +5,12 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.HwCardType
+import com.taytek.basehw.domain.model.HwCardTypeRules
 import com.taytek.basehw.domain.model.MasterData
 import com.taytek.basehw.domain.model.CurrencyRates
 import com.taytek.basehw.domain.model.UserCar
+import com.taytek.basehw.domain.model.VehicleCondition
 import com.taytek.basehw.domain.usecase.AddCarToCollectionUseCase
 import com.taytek.basehw.domain.usecase.GetMasterDataByIdUseCase
 import com.taytek.basehw.domain.usecase.SearchMasterDataUseCase
@@ -32,7 +35,7 @@ data class AddCarUiState(
     val manualSeriesNum: String = "",
     val manualScale: String = "1:64",
     val manualIsPremium: Boolean = false,
-    val isOpened: Boolean = false,
+    val condition: VehicleCondition = VehicleCondition.MINT,
     val purchaseDate: Date? = Date(),
     val personalNote: String = "",
     val storageLocation: String = "",
@@ -47,7 +50,11 @@ data class AddCarUiState(
     val isUrlInputDialogVisible: Boolean = false,
     val ocrHintMessage: String? = null,
     val deleteId: Long? = null,
-    val error: String? = null
+    val isAiAnalysing: Boolean = false,
+    val isAiBackgroundAnalysing: Boolean = false,
+    val aiAnalysisResult: com.taytek.basehw.domain.util.VisionAnalysisResult? = null,
+    val error: String? = null,
+    val hwCardType: HwCardType = HwCardType.SHORT
 )
 
 @HiltViewModel
@@ -57,7 +64,8 @@ class AddCarViewModel @Inject constructor(
     private val addCarToCollectionUseCase: AddCarToCollectionUseCase,
     private val userCarRepository: com.taytek.basehw.domain.repository.UserCarRepository,
     private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager,
-    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository
+    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository,
+    private val openAiVisionHelper: com.taytek.basehw.domain.util.OpenAiVisionHelper
 ) : ViewModel() {
 
     private val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
@@ -185,9 +193,17 @@ class AddCarViewModel @Inject constructor(
         }
     }
 
-    fun onIsOpenedChanged(isOpened: Boolean) {
-        _uiState.update { it.copy(isOpened = isOpened) }
+    fun onConditionChanged(condition: VehicleCondition) {
+        _uiState.update { it.copy(condition = condition) }
     }
+
+    fun onHwCardTypeChanged(type: HwCardType) {
+        _uiState.update { it.copy(hwCardType = type) }
+    }
+
+    private fun shouldPersistHwCardType(state: AddCarUiState): Boolean =
+        HwCardTypeRules.showForManual(state.isManualMode, state.manualBrand) ||
+            (!state.isManualMode && state.selectedMasterData?.let { HwCardTypeRules.showForMaster(it) } == true)
 
     fun onIsCustomChanged(isCustom: Boolean) {
         _uiState.update { it.copy(isCustom = isCustom) }
@@ -223,6 +239,57 @@ class AddCarViewModel @Inject constructor(
 
     fun onEstimatedValueChanged(value: String) {
         _uiState.update { it.copy(estimatedValue = value) }
+    }
+
+    fun onAnalyzeImage(base64Image: String, isBackground: Boolean = false) {
+        viewModelScope.launch {
+            _uiState.update { 
+                if (isBackground) it.copy(isAiBackgroundAnalysing = true, error = null)
+                else it.copy(isAiAnalysing = true, error = null) 
+            }
+            val result = openAiVisionHelper.analyzeVehicleImage(base64Image)
+            result.onSuccess { analysis ->
+                _uiState.update { state ->
+                    val detectedBrand = Brand.entries.find { 
+                        it.displayName.contains(analysis.brand ?: "", ignoreCase = true) || 
+                        (analysis.brand ?: "").contains(it.name, ignoreCase = true)
+                    } ?: state.selectedBrand
+
+                    val updateSearch = state.selectedMasterData == null
+
+                    // Apply to manual fields or search query
+                    state.copy(
+                        isAiAnalysing = false,
+                        isAiBackgroundAnalysing = false,
+                        aiAnalysisResult = analysis,
+                        condition = VehicleCondition.fromString(analysis.condition),
+                        // If user hasn't selected a car, auto-fill text fields
+                        manualModelName = if (updateSearch) (analysis.model ?: state.manualModelName) else state.manualModelName,
+                        manualBrand = if (updateSearch) detectedBrand else state.manualBrand,
+                        manualSeries = if (updateSearch) (analysis.series ?: state.manualSeries) else state.manualSeries,
+                        manualYear = if (updateSearch) (analysis.year ?: state.manualYear) else state.manualYear,
+                        personalNote = analysis.conditionNote ?: state.personalNote,
+                        estimatedValue = if (updateSearch && state.estimatedValue.isBlank()) (analysis.estimatedValue?.toString() ?: state.estimatedValue) else state.estimatedValue,
+                        // If in search mode, update query
+                        searchQuery = if (updateSearch) (analysis.model ?: state.searchQuery) else state.searchQuery,
+                        selectedBrand = if (updateSearch) detectedBrand else state.selectedBrand
+                    )
+                }
+                
+                // If not in manual mode and no car selected, trigger a search with the AI-detected model name
+                if (!_uiState.value.isManualMode && analysis.model != null && _uiState.value.selectedMasterData == null) {
+                    _searchTrigger.value = Pair(_uiState.value.selectedBrand, analysis.model)
+                }
+            }.onFailure { e ->
+                _uiState.update {
+                    it.copy(
+                        isAiAnalysing = false,
+                        isAiBackgroundAnalysing = false,
+                        error = e.localizedMessage ?: "Analysis failed"
+                    )
+                }
+            }
+        }
     }
 
     fun toggleManualMode() {
@@ -295,6 +362,8 @@ class AddCarViewModel @Inject constructor(
                 val storedPurchasePrice = parsePrice(state.purchasePrice)?.let { it / rate }
                 val storedEstimatedValue = parsePrice(state.estimatedValue)?.let { it / rate }
 
+                val cardTypeToSave = if (shouldPersistHwCardType(state)) state.hwCardType else null
+
                 val carToAdd = if (state.isManualMode) {
                     UserCar(
                         masterDataId = null,
@@ -305,7 +374,7 @@ class AddCarViewModel @Inject constructor(
                         manualSeriesNum = state.manualSeriesNum,
                         manualScale = state.manualScale,
                         manualIsPremium = state.manualIsPremium,
-                        isOpened = state.isOpened,
+                        condition = state.condition,
                         purchaseDate = state.purchaseDate,
                         personalNote = state.personalNote,
                         storageLocation = state.storageLocation,
@@ -313,7 +382,8 @@ class AddCarViewModel @Inject constructor(
                         purchasePrice = storedPurchasePrice,
                         estimatedValue = storedEstimatedValue,
                         isCustom = state.isCustom,
-                        isWishlist = false
+                        isWishlist = false,
+                        hwCardType = cardTypeToSave
                     )
                 } else {
                     val selectedMaster = state.selectedMasterData!!
@@ -326,7 +396,7 @@ class AddCarViewModel @Inject constructor(
                         manualSeriesNum = selectedMaster.seriesNum.takeIf { it.isNotBlank() },
                         manualScale = selectedMaster.scale,
                         manualIsPremium = selectedMaster.isPremium,
-                        isOpened = state.isOpened,
+                        condition = state.condition,
                         purchaseDate = state.purchaseDate,
                         personalNote = state.personalNote,
                         storageLocation = state.storageLocation,
@@ -334,7 +404,8 @@ class AddCarViewModel @Inject constructor(
                         userPhotoUrl = state.userPhotoUrl,
                         purchasePrice = storedPurchasePrice,
                         estimatedValue = storedEstimatedValue,
-                        isCustom = state.isCustom
+                        isCustom = state.isCustom,
+                        hwCardType = cardTypeToSave
                     )
                 }
 

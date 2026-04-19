@@ -4,17 +4,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.google.firebase.auth.FirebaseUser
 import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.DiecastNews
 import com.taytek.basehw.domain.model.MasterData
 import com.taytek.basehw.domain.model.User
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.domain.repository.AuthRepository
+import com.taytek.basehw.domain.repository.NewsRepository
 import com.taytek.basehw.domain.repository.UserCarRepository
 import com.taytek.basehw.domain.usecase.SearchAllMasterDataUseCase
 import com.taytek.basehw.domain.usecase.SearchMasterDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -43,6 +47,7 @@ data class HomeUiState(
 class HomeViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val userCarRepository: UserCarRepository,
+    private val newsRepository: NewsRepository,
     private val searchMasterDataUseCase: SearchMasterDataUseCase,
     private val searchAllMasterDataUseCase: SearchAllMasterDataUseCase,
     private val appSettingsManager: AppSettingsManager,
@@ -52,7 +57,12 @@ class HomeViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
+    private val _newsItems = MutableStateFlow<List<DiecastNews>>(emptyList())
+    val newsItems: StateFlow<List<DiecastNews>> = _newsItems.asStateFlow()
+
     private var hasCheckedForBackup = false
+    private var lastCheckedBackupUid: String? = null
+    private var backupCheckJob: Job? = null
 
     val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), "EUR")
@@ -95,38 +105,34 @@ class HomeViewModel @Inject constructor(
     init {
         observeUserData()
         observeStats()
-        
+        loadDiecastNews()
+
         viewModelScope.launch {
             currencyRepository.refreshRates()
         }
+    }
 
-        // Check for backup on startup
-        checkForBackup()
+    private fun loadDiecastNews() {
+        viewModelScope.launch {
+            newsRepository.getLatest(5).onSuccess { list ->
+                _newsItems.value = list
+            }
+        }
     }
 
     private fun observeUserData() {
         viewModelScope.launch {
             authRepository.currentUserFlow.collect { firebaseUser ->
                 if (firebaseUser != null) {
-                    val profileResult = authRepository.getUserProfile()
-                    profileResult.onSuccess { user ->
-                        _uiState.update {
-                            it.copy(
-                                userName = user.username ?: user.email.substringBefore("@"),
-                                profilePhotoUrl = user.photoUrl ?: firebaseUser.photoUrl?.toString()
-                            )
-                        }
-                    }.onFailure {
-                        _uiState.update {
-                            it.copy(
-                                userName = firebaseUser.displayName ?: firebaseUser.email?.substringBefore("@") ?: "Collector",
-                                profilePhotoUrl = firebaseUser.photoUrl?.toString()
-                            )
-                        }
-                    }
+                    loadUserPresentation(firebaseUser)
+
+                    scheduleBackupCheck(firebaseUser.uid)
                     
                     // Profile data loaded
                 } else {
+                    backupCheckJob?.cancel()
+                    backupCheckJob = null
+                    lastCheckedBackupUid = null
                     hasCheckedForBackup = false
                     _uiState.update { it.copy(showRestorePrompt = false) }
                 }
@@ -134,32 +140,49 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun checkForBackup() {
-        if (hasCheckedForBackup) return
-        println("DEBUG_BACKUP: checkForBackup started")
+    fun refreshUserData() {
+        val firebaseUser = authRepository.currentUser ?: return
         viewModelScope.launch {
+            loadUserPresentation(firebaseUser)
+        }
+        loadDiecastNews()
+    }
+
+    private suspend fun loadUserPresentation(firebaseUser: FirebaseUser) {
+        val profileResult = authRepository.getUserProfile()
+        profileResult.onSuccess { user ->
+            _uiState.update {
+                it.copy(
+                    userName = user.username ?: user.email.substringBefore("@"),
+                    profilePhotoUrl = user.photoUrl ?: firebaseUser.photoUrl?.toString()
+                )
+            }
+        }.onFailure {
+            _uiState.update {
+                it.copy(
+                    userName = firebaseUser.displayName ?: firebaseUser.email?.substringBefore("@") ?: "Collector",
+                    profilePhotoUrl = firebaseUser.photoUrl?.toString()
+                )
+            }
+        }
+    }
+
+    private fun scheduleBackupCheck(uid: String) {
+        if (hasCheckedForBackup && lastCheckedBackupUid == uid) return
+        backupCheckJob?.cancel()
+        backupCheckJob = viewModelScope.launch {
             _uiState.update { it.copy(isCloudCheckInProgress = true) }
-            println("DEBUG_BACKUP: Waiting 3 seconds...")
-            kotlinx.coroutines.delay(3000)
-            
             val totalCarsFlow = userCarRepository.getTotalCarsCount()
             val totalCars = totalCarsFlow.first()
-            println("DEBUG_BACKUP: Local totalCars = $totalCars")
             
             if (totalCars == 0) {
-                println("DEBUG_BACKUP: Local is empty, calling hasCloudData...")
                 val hasCloud = userCarRepository.hasCloudData()
-                println("DEBUG_BACKUP: hasCloudData result = $hasCloud")
                 if (hasCloud) {
-                    println("DEBUG_BACKUP: Showing restore prompt")
-                    _uiState.update { it.copy(showRestorePrompt = true) }
-                } else {
-                    println("DEBUG_BACKUP: No cloud data found or check failed")
+                    restoreFromCloud()
                 }
-            } else {
-                println("DEBUG_BACKUP: Local is NOT empty, skipping cloud check")
             }
             hasCheckedForBackup = true
+            lastCheckedBackupUid = uid
             _uiState.update { it.copy(isCloudCheckInProgress = false) }
         }
     }
@@ -172,7 +195,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(showRestorePrompt = false, isRestoring = true) }
             try {
-                userCarRepository.syncFromFirestore()
+                userCarRepository.mergeFromSupabase()
             } catch (e: Exception) {
                 // Log or handle error if needed
             } finally {
@@ -182,6 +205,14 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun observeStats() {
+        data class BaseStats(
+            val total: Int,
+            val monthly: Int,
+            val wanted: Int,
+            val sth: Int,
+            val rawValue: Double
+        )
+
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.DAY_OF_MONTH, 1)
         calendar.set(Calendar.HOUR_OF_DAY, 0)
@@ -192,31 +223,27 @@ class HomeViewModel @Inject constructor(
 
         viewModelScope.launch {
             combine(
-                userCarRepository.getTotalCarsCount(),
-                userCarRepository.getCarsAddedSinceCount(startOfMonth),
-                userCarRepository.getWantedNotInCollectionCount(),
-                userCarRepository.getSthCarsCount(),
-                userCarRepository.getTotalEstimatedValue(),
+                combine(
+                    userCarRepository.getTotalCarsCount(),
+                    userCarRepository.getCarsAddedSinceCount(startOfMonth),
+                    userCarRepository.getWantedNotInCollectionCount(),
+                    userCarRepository.getSthCarsCount(),
+                    userCarRepository.getTotalEstimatedValue()
+                ) { total, monthly, wanted, sth, rawValue ->
+                    BaseStats(total, monthly, wanted, sth, rawValue)
+                },
                 userCarRepository.getValueAddedSince(startOfMonth),
                 conversionRate,
                 currencySymbol
-            ) { args ->
-                val total = args[0] as Int
-                val monthly = args[1] as Int
-                val wanted = args[2] as Int
-                val sth = args[3] as Int
-                val rawValue = args[4] as Double
-                val rawIncrease = args[5] as Double
-                val rate = args[6] as Double
-                val symbol = args[7] as String
+            ) { base, rawIncrease, rate, symbol ->
 
                 _uiState.update { 
                     it.copy(
-                        totalCars = total,
-                        monthlyAdded = monthly,
-                        wantedCount = wanted,
-                        sthCount = sth,
-                        totalValue = rawValue * rate,
+                        totalCars = base.total,
+                        monthlyAdded = base.monthly,
+                        wantedCount = base.wanted,
+                        sthCount = base.sth,
+                        totalValue = base.rawValue * rate,
                         monthlyValueIncrease = rawIncrease * rate,
                         currencySymbol = symbol
                     )
@@ -237,5 +264,11 @@ class HomeViewModel @Inject constructor(
 
     fun updateSelectedBrand(brand: Brand?) {
         _selectedBrand.value = brand
+    }
+
+    fun getHomeStatsPagerInitialPage(): Int = appSettingsManager.getHomeStatsPagerPage()
+
+    fun onHomeStatsPagerPageChanged(page: Int) {
+        appSettingsManager.setHomeStatsPagerPage(page)
     }
 }

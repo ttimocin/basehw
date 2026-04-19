@@ -2,6 +2,7 @@ package com.taytek.basehw.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.taytek.basehw.BuildConfig
 import com.taytek.basehw.data.remote.api.CurrencyApiService
 import dagger.Module
 import dagger.Provides
@@ -28,7 +29,11 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
+            level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
         }
         return OkHttpClient.Builder()
             .addInterceptor(logging)

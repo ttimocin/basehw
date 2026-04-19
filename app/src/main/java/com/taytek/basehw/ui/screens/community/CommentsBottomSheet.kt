@@ -9,15 +9,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.*
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.foundation.focusable
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.*
+import androidx.compose.ui.graphics.Color
 import com.taytek.basehw.R
 import com.taytek.basehw.domain.model.CommunityComment
-import com.taytek.basehw.ui.theme.AppPrimary
+import com.taytek.basehw.ui.theme.AppTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,7 +70,7 @@ fun CommentsBottomSheet(
                             .height(100.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        CircularProgressIndicator(color = AppPrimary)
+                        CircularProgressIndicator(color = AppTheme.tokens.primaryAccent)
                     }
                 } else if (comments.isEmpty()) {
                     Box(
@@ -89,11 +92,12 @@ fun CommentsBottomSheet(
                         items(comments) { comment ->
                             val isCommentOwner = comment.authorUid == currentUser?.uid
                             val isAdmin = currentUser?.isAdmin == true
+                            val isMod = currentUser?.isMod == true
                             
                             CommentItem(
                                 comment = comment,
                                 dateFormat = dateFormat,
-                                canDelete = isCommentOwner || isAdmin,
+                                canDelete = isCommentOwner || isAdmin || isMod,
                                 onUserClick = onUserClick,
                                 onLongClick = { commentToDelete = comment }
                             )
@@ -119,9 +123,11 @@ fun CommentsBottomSheet(
                     shape = RoundedCornerShape(20.dp),
                     maxLines = 3,
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = AppPrimary,
-                        cursorColor = AppPrimary
-                    )
+                        focusedBorderColor = AppTheme.tokens.primaryAccent,
+                        cursorColor = AppTheme.tokens.primaryAccent
+                    ),
+                    keyboardOptions = androidx.compose.foundation.text.KeyboardOptions.Default,
+                    singleLine = false
                 )
                 Spacer(Modifier.width(8.dp))
                 FilledIconButton(
@@ -133,7 +139,7 @@ fun CommentsBottomSheet(
                     },
                     enabled = commentText.isNotBlank(),
                     colors = IconButtonDefaults.filledIconButtonColors(
-                        containerColor = AppPrimary
+                        containerColor = AppTheme.tokens.primaryAccent
                     )
                 ) {
                     Icon(Icons.Default.Send, contentDescription = stringResource(R.string.send))
@@ -150,7 +156,7 @@ fun CommentsBottomSheet(
             text = { Text(stringResource(R.string.delete_comment_confirmation)) },
             confirmButton = {
                 TextButton(onClick = { onDeleteComment(commentToDelete!!.id); commentToDelete = null }) {
-                    Text(stringResource(R.string.delete_comment_confirm), color = AppPrimary, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.delete_comment_confirm), color = AppTheme.tokens.primaryAccent, fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -184,13 +190,13 @@ private fun CommentItem(
             modifier = Modifier
                 .size(32.dp)
                 .clip(CircleShape)
-                .background(AppPrimary.copy(alpha = 0.1f))
+                .background(AppTheme.tokens.primaryAccent.copy(alpha = 0.1f))
                 .clickable { onUserClick(comment.authorUid) },
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = comment.authorUsername.take(1).uppercase(),
-                color = AppPrimary,
+                color = AppTheme.tokens.primaryAccent,
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp
             )
@@ -211,12 +217,27 @@ private fun CommentItem(
                         shape = RoundedCornerShape(4.dp)
                     ) {
                         Text(
-                            text = "🛡️ ADMIN",
+                            text = stringResource(id = R.string.admin_badge),
                             style = MaterialTheme.typography.labelSmall,
                             fontWeight = FontWeight.Black,
                             fontSize = 7.sp,
                             modifier = Modifier.padding(horizontal = 3.dp, vertical = 1.dp),
                             color = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
+                } else if (comment.authorIsMod) {
+                    Spacer(Modifier.width(4.dp))
+                    Surface(
+                        color = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                        shape = RoundedCornerShape(4.dp)
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.mod_badge),
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Black,
+                            fontSize = 7.sp,
+                            modifier = Modifier.padding(horizontal = 3.dp, vertical = 1.dp),
+                            color = androidx.compose.ui.graphics.Color.White
                         )
                     }
                 }

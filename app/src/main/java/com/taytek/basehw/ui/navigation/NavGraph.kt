@@ -6,8 +6,12 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import java.net.URLEncoder
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.taytek.basehw.ui.navigation.Screen
 import com.taytek.basehw.ui.screens.addcar.AddCarScreen
 import com.taytek.basehw.ui.screens.addcar.AddWantedCarScreen
@@ -17,6 +21,8 @@ import com.taytek.basehw.ui.screens.detail.CarDetailScreen
 import com.taytek.basehw.ui.screens.legal.LegalScreen
 import com.taytek.basehw.ui.screens.legal.LegalType
 import com.taytek.basehw.ui.screens.main.MainScreen
+import com.taytek.basehw.ui.screens.profile.ProfileViewModel
+import com.taytek.basehw.ui.screens.profile.ProfileEditScreen
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -32,6 +38,7 @@ fun NavGraph(navController: NavHostController) {
                 .getStateFlow("wishlist_tab", -1)
                 .collectAsState()
             MainScreen(
+                navController = navController,
                 navigateToTab = navigateToTab,
                 wishlistTab = wishlistTab,
                 onConsumeTabNavigation = {
@@ -51,6 +58,7 @@ fun NavGraph(navController: NavHostController) {
                 },
                 onPrivacyPolicyClick = { navController.navigate(Screen.PrivacyPolicy.route) },
                 onTermsOfUseClick = { navController.navigate(Screen.TermsOfUse.route) },
+                onForumRulesClick = { navController.navigate(Screen.CommunityRules.route) },
                 onAddCarWithMasterIdClick = { masterId, fromWishlist ->
                     navController.navigate(Screen.MasterDetail.createRoute(masterId, fromWishlist))
                 },
@@ -65,8 +73,20 @@ fun NavGraph(navController: NavHostController) {
                     navController.navigate(Screen.SthMasterDetail.createRoute(masterId))
                 },
                 onCommunityClick = { navController.navigate(Screen.Community.route) },
+                onInboxClick = { navController.navigate(Screen.DirectInbox.route) },
+                onNotificationsClick = { navController.navigate(Screen.Notifications.route) },
                 onUserProfileClick = { uid ->
                     navController.navigate(Screen.UserProfile.createRoute(uid))
+                },
+                onEditProfileClick = {
+                    navController.navigate(Screen.ProfileEdit.route)
+                },
+                onDirectMessageClick = { targetUid, username ->
+                    val encoded = URLEncoder.encode(username, StandardCharsets.UTF_8.toString())
+                    navController.navigate(Screen.DirectMessage.createRoute(targetUid, encoded))
+                },
+                onAdminPanelClick = {
+                    navController.navigate(Screen.AdminPanel.route)
                 }
             )
         }
@@ -76,8 +96,50 @@ fun NavGraph(navController: NavHostController) {
                 onUserProfileClick = { uid ->
                     navController.navigate(Screen.UserProfile.createRoute(uid))
                 },
+                onInboxClick = {
+                    navController.navigate(Screen.DirectInbox.route)
+                },
                 onProfileClick = {
                     navController.navigate(Screen.Main.route)
+                },
+                onNavigateToAdminPanel = {
+                    navController.navigate(Screen.AdminPanel.route)
+                },
+                onLoginClick = {
+                    navController.popBackStack(Screen.Main.route, false)
+                    navController.getBackStackEntry(Screen.Main.route)
+                        .savedStateHandle["navigate_to_tab"] = 2
+                },
+                onRanksClick = {
+                    navController.navigate(Screen.Ranks.route)
+                },
+                onNotificationsClick = {
+                    navController.navigate(Screen.Notifications.route)
+                }
+            )
+        }
+
+        composable(Screen.AdminPanel.route) {
+            com.taytek.basehw.ui.screens.community.AdminPanelRoute(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.DirectInbox.route) {
+            com.taytek.basehw.ui.screens.community.DirectInboxScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onOpenConversation = { targetUid, username ->
+                    val encoded = URLEncoder.encode(username, StandardCharsets.UTF_8.toString())
+                    navController.navigate(Screen.DirectMessage.createRoute(targetUid, encoded))
+                }
+            )
+        }
+
+        composable(Screen.Notifications.route) {
+            com.taytek.basehw.ui.screens.community.NotificationsScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onNavigateToUser = { uid ->
+                    navController.navigate(Screen.UserProfile.createRoute(uid))
                 }
             )
         }
@@ -90,9 +152,48 @@ fun NavGraph(navController: NavHostController) {
             com.taytek.basehw.ui.screens.community.UserProfileScreen(
                 userId = uid,
                 onNavigateBack = { navController.popBackStack() },
-                onUserClick = { targetUid ->
-                    navController.navigate(Screen.UserProfile.createRoute(targetUid))
+                onEditProfileClick = {
+                    navController.navigate(Screen.ProfileEdit.route)
+                },
+                onMessageClick = { targetUid, username ->
+                    val encoded = URLEncoder.encode(username, StandardCharsets.UTF_8.toString())
+                    navController.navigate(Screen.DirectMessage.createRoute(targetUid, encoded))
+                },
+                onInboxClick = {
+                    navController.navigate(Screen.DirectInbox.route)
+                },
+                onNotificationsClick = {
+                    navController.navigate(Screen.Notifications.route)
+                },
+                onAdminPanelClick = {
+                    navController.navigate(Screen.AdminPanel.route)
+                },
+                onStatsClick = {
+                    navController.navigate(Screen.Statistics.route)
                 }
+            )
+        }
+
+        composable(Screen.ProfileEdit.route) {
+            ProfileEditScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(
+            route = Screen.DirectMessage.route,
+            arguments = listOf(
+                navArgument("uid") { type = NavType.StringType },
+                navArgument("username") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val uid = backStackEntry.arguments?.getString("uid") ?: return@composable
+            val usernameEncoded = backStackEntry.arguments?.getString("username") ?: "User"
+            val username = URLDecoder.decode(usernameEncoded, StandardCharsets.UTF_8.toString())
+            com.taytek.basehw.ui.screens.community.DirectMessageScreen(
+                peerUid = uid,
+                peerUsername = username,
+                onNavigateBack = { navController.popBackStack() }
             )
         }
 
@@ -217,6 +318,13 @@ fun NavGraph(navController: NavHostController) {
             )
         }
 
+        composable(Screen.CommunityRules.route) {
+            LegalScreen(
+                type = LegalType.COMMUNITY_RULES,
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
         composable(
             route = Screen.FolderDetail.route,
             arguments = listOf(navArgument("folderId") { type = NavType.LongType })
@@ -227,6 +335,27 @@ fun NavGraph(navController: NavHostController) {
                 onCarClick = { carId ->
                     navController.navigate(Screen.CarDetail.createRoute(carId))
                 },
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.Statistics.route) {
+            com.taytek.basehw.ui.screens.statistics.StatisticsScreen(
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.Ranks.route) {
+            com.taytek.basehw.ui.screens.community.RanksScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(
+            route = Screen.NewsDetail.route,
+            arguments = listOf(navArgument("newsId") { type = NavType.StringType })
+        ) {
+            com.taytek.basehw.ui.screens.news.NewsDetailScreen(
                 onNavigateBack = { navController.popBackStack() }
             )
         }

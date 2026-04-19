@@ -8,6 +8,7 @@ import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.MasterData
 import com.taytek.basehw.domain.model.CurrencyRates
 import com.taytek.basehw.domain.model.UserCar
+import com.taytek.basehw.domain.model.VehicleCondition
 import com.taytek.basehw.domain.usecase.AddCarToCollectionUseCase
 import com.taytek.basehw.domain.usecase.SearchMasterDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -91,8 +92,8 @@ class AddWantedCarViewModel @Inject constructor(
         }
     }
 
-    fun onIsOpenedChanged(isOpened: Boolean) {
-        _uiState.update { it.copy(isOpened = isOpened) }
+    fun onConditionChanged(condition: VehicleCondition) {
+        _uiState.update { it.copy(condition = condition) }
     }
 
     fun onPurchaseDateChanged(date: Date?) {
@@ -219,7 +220,7 @@ class AddWantedCarViewModel @Inject constructor(
                         manualSeriesNum = state.manualSeriesNum,
                         manualScale = state.manualScale,
                         manualIsPremium = state.manualIsPremium,
-                        isOpened = state.isOpened,
+                        condition = state.condition,
                         purchaseDate = state.purchaseDate,
                         personalNote = state.personalNote,
                         storageLocation = state.storageLocation,
@@ -239,7 +240,7 @@ class AddWantedCarViewModel @Inject constructor(
                         manualSeriesNum = selectedMaster.seriesNum.takeIf { it.isNotBlank() },
                         manualScale = selectedMaster.scale,
                         manualIsPremium = selectedMaster.isPremium,
-                        isOpened = state.isOpened,
+                        condition = state.condition,
                         purchaseDate = state.purchaseDate,
                         personalNote = state.personalNote,
                         storageLocation = state.storageLocation,

@@ -1,37 +1,57 @@
 package com.taytek.basehw.ui.screens.main
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.outlined.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.outlined.StarOutline
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.taytek.basehw.ui.components.CustomBottomNavigation
-import com.taytek.basehw.ui.screens.home.HomeScreen
-import com.taytek.basehw.ui.screens.collection.CollectionScreen
-import com.taytek.basehw.ui.screens.profile.ProfileScreen
-import com.taytek.basehw.ui.screens.statistics.StatisticsScreen
-import com.taytek.basehw.ui.screens.wishlist.WishlistScreen
-import com.taytek.basehw.ui.theme.AppBackground
-import com.taytek.basehw.ui.theme.AppTextSecondary
-import com.taytek.basehw.ui.navigation.Screen
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.taytek.basehw.R
+import com.taytek.basehw.ui.components.CustomBottomNavigation
+import com.taytek.basehw.ui.screens.collection.CollectionScreenWithTabs
+import com.taytek.basehw.ui.screens.community.CommunityViewModel
+import com.taytek.basehw.ui.screens.community.UserProfileScreen
+import com.taytek.basehw.ui.screens.home.HomeScreen
+import com.taytek.basehw.ui.screens.profile.NonUserProfileScreen
+import com.taytek.basehw.ui.screens.profile.ProfileViewModel
+import com.taytek.basehw.ui.screens.community.CommunityScreen
+import com.taytek.basehw.ui.screens.statistics.StatisticsScreen
+import com.taytek.basehw.ui.navigation.Screen
+import com.taytek.basehw.ui.theme.CyberGradientBottom
+import com.taytek.basehw.ui.theme.CyberGradientMid
+import com.taytek.basehw.ui.theme.CyberGradientTop
+import com.taytek.basehw.ui.theme.LocalThemeVariant
+import com.taytek.basehw.ui.theme.NeonCyanGradientBottom
+import com.taytek.basehw.ui.theme.NeonCyanGradientMid
+import com.taytek.basehw.ui.theme.NeonCyanGradientTop
+import com.taytek.basehw.ui.theme.ThemeVariant
+import com.taytek.basehw.ui.theme.cyberRootBackgroundColor
+import com.taytek.basehw.ui.theme.isNeonShellTheme
+import androidx.navigation.NavHostController
 
 @Composable
 fun MainScreen(
+    navController: NavHostController,
     onAddCarClick: () -> Unit,
     onAddCarCameraClick: () -> Unit,
     onAddWantedCarClick: () -> Unit,
@@ -39,6 +59,7 @@ fun MainScreen(
     onFolderClick: (Long) -> Unit,
     onPrivacyPolicyClick: () -> Unit,
     onTermsOfUseClick: () -> Unit,
+    onForumRulesClick: () -> Unit,
     onAddCarWithMasterIdClick: (Long, Boolean) -> Unit,
     onAddCarWithMasterIdAndDeleteClick: (Long, Long?, Boolean) -> Unit = { _, _, _ -> },
     onSthCarClick: (Long) -> Unit = { id -> onAddCarWithMasterIdClick(id, false) },
@@ -47,26 +68,55 @@ fun MainScreen(
     onConsumeTabNavigation: () -> Unit = {},
     onConsumeWishlistTab: () -> Unit = {},
     onCommunityClick: () -> Unit = {},
-    onUserProfileClick: (String) -> Unit = {}
+    onInboxClick: () -> Unit = {},
+    onNotificationsClick: () -> Unit = {},
+    onUserProfileClick: (String) -> Unit = {},
+    onEditProfileClick: () -> Unit = {},
+    onDirectMessageClick: (String, String) -> Unit = { _, _ -> },
+    onAdminPanelClick: () -> Unit = {}
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(0) }
     var previousTab by rememberSaveable { mutableStateOf(0) }
+    var selectedCollectionContentTab by rememberSaveable { mutableStateOf(0) }
+    var reopenProfileSettingsOnReturn by rememberSaveable { mutableStateOf(false) }
+
+    val profileViewModel: ProfileViewModel = hiltViewModel()
+    val communityViewModel: CommunityViewModel = hiltViewModel()
+    val currentUser by profileViewModel.currentUser.collectAsStateWithLifecycle()
+    val profileUiState by profileViewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(navigateToTab) {
         if (navigateToTab >= 0) {
             previousTab = selectedTab
-            selectedTab = if (navigateToTab == 4) 8 else navigateToTab
+            if (navigateToTab == 1) {
+                selectedTab = 8
+                selectedCollectionContentTab = 1
+            } else {
+                selectedTab = if (navigateToTab == 4) 8 else navigateToTab
+                if (selectedTab == 8) selectedCollectionContentTab = 0
+            }
             onConsumeTabNavigation()
         }
     }
 
+    val themeVariant = LocalThemeVariant.current
+    val neonBackgroundBrush = when (themeVariant) {
+        ThemeVariant.Cyber ->
+            Brush.verticalGradient(listOf(CyberGradientTop, CyberGradientMid, CyberGradientBottom))
+        ThemeVariant.NeonCyan ->
+            Brush.verticalGradient(listOf(NeonCyanGradientTop, NeonCyanGradientMid, NeonCyanGradientBottom))
+        else -> null
+    }
+
     Scaffold(
+        containerColor = cyberRootBackgroundColor(),
         bottomBar = {
             CustomBottomNavigation(
                 selectedTab = selectedTab,
-                onTabSelected = { 
+                onTabSelected = {
                     previousTab = selectedTab
-                    selectedTab = it 
+                    if (it == 8) selectedCollectionContentTab = 0
+                    selectedTab = it
                 },
                 onAddClick = onAddCarClick
             )
@@ -76,83 +126,151 @@ fun MainScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = paddingValues.calculateBottomPadding())
-                .background(MaterialTheme.colorScheme.background)
+                .then(
+                    if (isNeonShellTheme() && neonBackgroundBrush != null) {
+                        Modifier.background(neonBackgroundBrush)
+                    } else {
+                        Modifier.background(MaterialTheme.colorScheme.background)
+                    }
+                )
         ) {
+            // Profile tab (3) - NonUserProfileScreen tam ekran, kendi BottomNav'ı var
+            if (selectedTab == 3) {
+                val shouldRenderAuthFlow =
+                    currentUser?.uid.isNullOrBlank() ||
+                        profileUiState.showMandatoryConsentDialog ||
+                        profileUiState.showUsernamePrompt ||
+                        profileUiState.pendingUsernamePromptAfterConsent
+                if (shouldRenderAuthFlow) {
+                    NonUserProfileScreen(
+                        onSettingsClick = {},
+                        onPrivacyPolicyClick = onPrivacyPolicyClick,
+                        onTermsOfUseClick = onTermsOfUseClick,
+                        onForumRulesClick = onForumRulesClick,
+                        viewModel = profileViewModel
+                    )
+                } else {
+                    UserProfileScreen(
+                        userId = currentUser!!.uid,
+                        viewModel = communityViewModel,
+                        onNavigateBack = { selectedTab = previousTab },
+                        showBackButton = false,
+                        openSettingsOnEnter = reopenProfileSettingsOnReturn,
+                        onConsumeOpenSettings = { reopenProfileSettingsOnReturn = false },
+                        onMessageClick = onDirectMessageClick,
+                        onInboxClick = onInboxClick,
+                        onNotificationsClick = onNotificationsClick,
+                        onSupportClick = {
+                            previousTab = selectedTab
+                            reopenProfileSettingsOnReturn = true
+                            selectedTab = 6
+                        },
+                        onPrivacyPolicyClick = onPrivacyPolicyClick,
+                        onTermsOfUseClick = onTermsOfUseClick,
+                        onForumRulesClick = onForumRulesClick,
+                        onSettingsClick = {
+                            reopenProfileSettingsOnReturn = true
+                        },
+                        onEditProfileClick = onEditProfileClick,
+                        onStatsClick = {
+                            previousTab = selectedTab
+                            selectedTab = 5
+                        },
+                        onAdminPanelClick = onAdminPanelClick
+                    )
+                }
+            }
+
+            // Diğer ekranlar - MainScreen Scaffold padding ile
             when (selectedTab) {
-                0 -> { // ANASAYFA (Figma Redesign)
+                0 -> {
                     HomeScreen(
                         onCarClick = { id -> onCarClick(id, false) },
                         onProfileClick = { selectedTab = 3 },
                         onCameraClick = onAddCarCameraClick,
                         onAddClick = onAddCarClick,
-                        onViewAllClick = { selectedTab = 8 },
+                        onViewAllClick = {
+                            selectedCollectionContentTab = 0
+                            selectedTab = 8
+                        },
                         onMasterCarClick = { id -> onAddCarWithMasterIdClick(id, false) },
-                        onCommunityClick = { selectedTab = 2 }
+                        onCommunityClick = {
+                            onCommunityClick()
+                            selectedTab = 2
+                        },
+                        onNewsClick = { newsId ->
+                            navController.navigate(Screen.NewsDetail.createRoute(newsId))
+                        },
+                        contentPadding = paddingValues
                     )
                 }
-                8 -> { // KOLEKSİYON (Legacy)
-                    CollectionScreen(
-                        onAddCarClick = onAddCarClick,
-                        onCarClick = { id -> onCarClick(id, false) },
-                        onStatisticsClick = { 
+
+                8 -> {
+                    CollectionScreenWithTabs(
+                        selectedContentTab = selectedCollectionContentTab,
+                        onContentTabSelected = { selectedCollectionContentTab = it },
+                        onAddCollectionCarClick = onAddCarClick,
+                        onCollectionCarClick = { id -> onCarClick(id, false) },
+                        onAddWishlistCarClick = onAddWantedCarClick,
+                        onWishlistCarClick = { id -> onCarClick(id, true) },
+                        onAddCarWithMasterId = { masterId, deleteId ->
+                            onAddCarWithMasterIdAndDeleteClick(masterId, deleteId, true)
+                        },
+                        initialWishlistTab = wishlistTab,
+                        onConsumeWishlistTab = onConsumeWishlistTab,
+                        onStatisticsClick = {
                             previousTab = selectedTab
-                            selectedTab = 5 
+                            selectedTab = 5
+                        },
+                        contentPadding = paddingValues
+                    )
+                }
+
+                2 -> {
+                    CommunityScreen(
+                        viewModel = communityViewModel,
+                        onUserProfileClick = onUserProfileClick,
+                        onInboxClick = onInboxClick,
+                        onProfileClick = { selectedTab = 3 },
+                        onLoginClick = { selectedTab = 3 },
+                        onNavigateToAdminPanel = onAdminPanelClick,
+                        onRanksClick = {
+                            navController.navigate(Screen.Ranks.route)
+                        },
+                        onNotificationsClick = onNotificationsClick
+                    )
+                }
+
+                5 -> {
+                    StatisticsScreen(
+                        onBack = { selectedTab = previousTab },
+                        contentPadding = paddingValues
+                    )
+                }
+
+                6 -> {
+                    com.taytek.basehw.ui.screens.support.SupportScreen(
+                        onBack = {
+                            if (reopenProfileSettingsOnReturn) {
+                                selectedTab = 3
+                            } else {
+                                selectedTab = previousTab
+                            }
                         }
                     )
                 }
-                1 -> { // SEARCH / Wishlist
-                    WishlistScreen(
-                        onAddCarClick = onAddWantedCarClick,
-                        onCarClick = { id -> onCarClick(id, true) },
-                        onAddCarWithMasterId = { masterId, deleteId -> onAddCarWithMasterIdAndDeleteClick(masterId, deleteId, true) },
-                        initialTab = wishlistTab,
-                        onConsumeInitialTab = onConsumeWishlistTab
-                    )
-                }
-                2 -> { // COMMUNITY
-                    com.taytek.basehw.ui.screens.community.CommunityScreen(
-                        onUserProfileClick = onUserProfileClick,
-                        onProfileClick = { selectedTab = 3 }
-                    )
-                }
-                3 -> { // PROFILE
-                    ProfileScreen(
-                        onStatisticsClick = { 
-                            previousTab = selectedTab
-                            selectedTab = 5 
-                        },
-                        onSupportClick = { 
-                            previousTab = selectedTab
-                            selectedTab = 6 
-                        }, // Yeni tab
-                        onPrivacyPolicyClick = onPrivacyPolicyClick,
-                        onTermsOfUseClick = onTermsOfUseClick
-                    )
-                }
-                5 -> { // Statistics (Profile'dan veya Collection'dan erişim)
-                    StatisticsScreen(
-                        onBack = { selectedTab = previousTab } // Geldiği yere geri dön
-                    )
-                }
-                6 -> { // HELP & SUPPORT
-                    com.taytek.basehw.ui.screens.support.SupportScreen(
-                        onBack = { selectedTab = previousTab } // Geldiği yere geri dön
-                    )
-                }
-                7 -> { // STH
+
+                7 -> {
                     com.taytek.basehw.ui.screens.sth.SthScreen(
                         onAddCarClick = onAddCarClick,
-                        onCarClick = { masterId ->
-                            onSthCarClick(masterId)
-                        }
+                        onCarClick = { masterId -> onSthCarClick(masterId) },
+                        contentPadding = paddingValues
                     )
                 }
             }
         }
     }
 }
-
 
 @Composable
 fun WantedPlaceholder() {
@@ -169,7 +287,7 @@ fun PremiumPlaceholder() {
                 modifier = Modifier.size(64.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
-            Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.size(16.dp))
             Text(
                 stringResource(R.string.premium_coming_soon),
                 style = MaterialTheme.typography.titleMedium,

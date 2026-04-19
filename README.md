@@ -11,6 +11,8 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-teal.svg?style=flat-square)](LICENSE)
   [![Android](https://img.shields.io/badge/Platform-Android_24%2B-blue?style=flat-square&logo=android)](https://developer.android.com/)
   [![Kotlin](https://img.shields.io/badge/Language-Kotlin_2.0-purple?style=flat-square&logo=kotlin)](https://kotlinlang.org/)
+  <br>
+  <a href="https://www.basehw.net"><b>Official Website: www.basehw.net</b></a>
 </div>
 
 ---
@@ -27,6 +29,7 @@
 
 ## 🌟 Next-Generation Features
 
+- **🌐 [Official Website](https://www.basehw.net):** Explore all features and legal documentation on our high-performance landing page.
 - **💡 ML Kit Smart OCR:** Effortlessly add new cars to your vault using your camera! Our AI-powered text recognition automatically identifies model names directly from the physical packaging.
 - **🎨 Premium Fidelity UI/UX:** A bespoke, nature-inspired Krem/Olive Green design system emphasizing modern typography, smooth glassmorphic elements, and dynamic micro-animations for an unparalleled user experience.
 - **🏎️ Ultra-Brand Support:** Not just the basics. Manage collections across top-tier brands including **Hot Wheels, Matchbox, Majorette, MiniGT, Inno64, Tarmac Works, and Kaido House**.
@@ -50,9 +53,9 @@ BaseHW is a showcase of modern Android development standards:
 4. Open and build using **Android Studio Meerkat** (or newer) to fully leverage Compose preview features.
 
 ## 📜 Legal & Resources
-- 🔒 **[Privacy Policy](https://ttimocin.github.io/basehw/privacy.html)**
-- 📝 **[Terms of Use](https://ttimocin.github.io/basehw/terms.html)**
-- 🗑️ **[Account Deletion](https://ttimocin.github.io/basehw/delete-account.html)**
+- 🔒 **[Privacy Policy](https://www.basehw.net/docs/privacy)**
+- 📝 **[Terms of Use](https://www.basehw.net/docs/terms)**
+- 🗑️ **[Account Deletion](https://www.basehw.net/docs/privacy#4)**
 
 ---
 <div align="center">

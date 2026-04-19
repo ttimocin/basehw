@@ -2,10 +2,15 @@
 <resources>
     <style name="Theme.BaseHW" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
         <item name="postSplashScreenTheme">@style/Theme.BaseHW.Main</item>
     </style>
 
-    <style name="Theme.BaseHW.Main" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Default "dark icon" bit off so cold start matches dark/Cyber UIs; Light theme fixes this in code. -->
+    <style name="Theme.BaseHW.Main" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
 
     <style name="Theme.BaseHW.UCrop" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

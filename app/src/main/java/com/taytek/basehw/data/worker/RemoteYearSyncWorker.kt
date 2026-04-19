@@ -87,7 +87,7 @@ class RemoteYearSyncWorker @AssistedInject constructor(
             Log.w(TAG, "Supabase edge URL is blank; sync skipped")
             return@withContext Result.failure()
         }
-        Log.d(TAG, "🚀 Starting sync: url=$edgeUrl, hasApiKey=${apiKey.isNotBlank()}")
+
 
         syncFromSupabaseEdge(edgeUrl = edgeUrl, apiKey = apiKey)
     }
@@ -151,7 +151,7 @@ class RemoteYearSyncWorker @AssistedInject constructor(
                 appSettingsManager.setCatalogSyncCursor(newCursor)
             }
 
-            Log.d(TAG, "✅ Supabase edge sync complete: records=${payload.records.size}, changed=$changedCount, cursor=${if (newCursor.isBlank()) "unchanged" else "updated"}")
+
             Result.success()
         } catch (e: Exception) {
             Log.e(TAG, "❌ Supabase edge sync failed: ${e.message}", e)

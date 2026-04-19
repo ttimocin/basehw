@@ -25,6 +25,9 @@ repo_files.txt
 # Databases & Sensitive Assets
 app/src/main/assets/**/*.json
 /Script/
+/supabase/*
+!/supabase/migrations/
+!/supabase/functions/
 
 # Logs & Temp
 *.log
@@ -33,3 +36,23 @@ compile_errors.txt
 error_log.txt
 *.png
 repo_files.txt
+
+# Debug databases
+*.db
+
+# IDE / local secrets (never commit API keys)
+.vscode/mcp.json
+.qwen/
+
+# Debug scripts with embedded Supabase anon keys — use env vars locally
+debug_showcase.js
+wipe_showcase_data.js
+
+# Scratch / dump files
+comunityscreen.txt
+konusma.txt
+postcard.txt
+ranksscreen.txt
+
+# Editor backup clutter
+*.bak

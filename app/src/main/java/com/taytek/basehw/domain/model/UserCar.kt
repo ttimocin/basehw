@@ -13,7 +13,7 @@ data class UserCar(
     val manualSeriesNum: String? = null,
     val manualScale: String? = null,
     val manualIsPremium: Boolean? = null,
-    val isOpened: Boolean = false,
+    val condition: VehicleCondition = VehicleCondition.MINT,
     val purchaseDate: Date? = null,
     val personalNote: String = "",
     val storageLocation: String = "",
@@ -28,5 +28,6 @@ data class UserCar(
     val isCustom: Boolean = false,
     val quantity: Int = 1,
     val additionalPhotos: List<String> = emptyList(),
-    val additionalPhotosBackup: List<String> = emptyList()
+    val additionalPhotosBackup: List<String> = emptyList(),
+    val hwCardType: HwCardType? = null
 )

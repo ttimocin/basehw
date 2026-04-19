@@ -24,7 +24,7 @@ class CollectionViewModel @Inject constructor(
         val brand: String?,
         val year: Int?,
         val series: String?,
-        val opened: Boolean?,
+        val condition: String?,
         val sort: SortOrder
     )
 
@@ -40,8 +40,8 @@ class CollectionViewModel @Inject constructor(
     private val _selectedSeries = MutableStateFlow<String?>(null)
     val selectedSeries: StateFlow<String?> = _selectedSeries.asStateFlow()
 
-    private val _selectedIsOpened = MutableStateFlow<Boolean?>(null)
-    val selectedIsOpened: StateFlow<Boolean?> = _selectedIsOpened.asStateFlow()
+    private val _selectedCondition = MutableStateFlow<String?>(null)
+    val selectedCondition: StateFlow<String?> = _selectedCondition.asStateFlow()
 
     private val _sortOrder = MutableStateFlow(SortOrder.DATE_ADDED_DESC)
     val sortOrder: StateFlow<SortOrder> = _sortOrder.asStateFlow()
@@ -58,20 +58,29 @@ class CollectionViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val carsPaged: Flow<PagingData<UserCar>> = combine(
-        _searchQuery, _selectedBrand, _selectedYear, _selectedSeries, _selectedIsOpened, _sortOrder
-    ) { args ->
-        CollectionQuery(
-            query = args[0] as String?,
-            brand = args[1] as String?,
-            year = args[2] as Int?,
-            series = args[3] as String?,
-            opened = args[4] as Boolean?,
-            sort = args[5] as SortOrder
-        )
+        combine(
+            _searchQuery,
+            _selectedBrand,
+            _selectedYear,
+            _selectedSeries,
+            _selectedCondition
+        ) { query, brand, year, series, condition ->
+            CollectionQuery(
+                query = query,
+                brand = brand,
+                year = year,
+                series = series,
+                condition = condition,
+                sort = SortOrder.DATE_ADDED_DESC
+            )
+        },
+        _sortOrder
+    ) { query, sort ->
+        query.copy(sort = sort)
     }
         .distinctUntilChanged()
         .flatMapLatest { q ->
-            repository.getCollection(q.query, q.brand, q.year, q.series, q.opened, q.sort)
+            repository.getCollection(q.query, q.brand, q.year, q.series, q.condition, q.sort)
         }
         .cachedIn(viewModelScope)
 
@@ -79,11 +88,11 @@ class CollectionViewModel @Inject constructor(
         _searchQuery.value = if (query.isBlank()) null else query
     }
 
-    fun updateFilters(brand: String?, year: Int?, series: String?, isOpened: Boolean?, sortOrder: SortOrder) {
+    fun updateFilters(brand: String?, year: Int?, series: String?, condition: String?, sortOrder: SortOrder) {
         _selectedBrand.value = brand
         _selectedYear.value = year
         _selectedSeries.value = if (series.isNullOrBlank()) null else series
-        _selectedIsOpened.value = isOpened
+        _selectedCondition.value = condition
         _sortOrder.value = sortOrder
     }
 

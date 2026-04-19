@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -81,27 +82,12 @@ fun MasterDetailScreen(
                         .padding(padding)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    // Hero image
-                    if (master.imageUrl.isNotBlank()) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(260.dp)
-                                .background(Color.White)
-                        ) {
-                            AsyncImage(
-                                model = master.imageUrl,
-                                contentDescription = master.modelName,
-                                modifier = Modifier.fillMaxSize(),
-                                contentScale = ContentScale.Fit
-                            )
-                        }
-                    }
+                    // Hero image removed as per user preference (no stock images)
 
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
+                     Column(
+                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                     ) {
                         // Brand and Premium info
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -120,6 +106,7 @@ fun MasterDetailScreen(
                                 val isSth = feature == "sth"
                                 val isChase = feature == "chase"
                                 val isTh = feature == "th"
+                                val isDarkTheme = MaterialTheme.colorScheme.background.luminance() < 0.5f
                                 
                                 val tierLabel = when {
                                     isSth -> "⭐ STH"
@@ -130,14 +117,20 @@ fun MasterDetailScreen(
                                 }
                                 val tierColor = when {
                                     isSth -> Color(0xFFB8860B)
-                                    isChase -> Color.Black
+                                    isChase -> if (isDarkTheme) Color(0xFFF1F5F9) else Color.Black
                                     isTh -> Color(0xFF71797E)
                                     master.isPremium -> MaterialTheme.colorScheme.tertiary
                                     else -> MaterialTheme.colorScheme.onSurfaceVariant
                                 }
                                 AssistChip(
                                     onClick = {},
-                                    label = { Text(tierLabel, style = MaterialTheme.typography.labelMedium) },
+                                    label = {
+                                        Text(
+                                            tierLabel,
+                                            style = MaterialTheme.typography.labelMedium,
+                                            color = tierColor
+                                        )
+                                    },
                                     colors = AssistChipDefaults.assistChipColors(
                                         containerColor = tierColor.copy(alpha = 0.12f),
                                         labelColor = tierColor
@@ -154,7 +147,7 @@ fun MasterDetailScreen(
                             shape = RoundedCornerShape(16.dp),
                             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
                         ) {
-                            Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                                 if (master.colNum.isNotBlank()) MasterDetailRow(stringResource(com.taytek.basehw.R.string.col_num), "#${master.colNum}")
                                 if (master.toyNum.isNotBlank()) MasterDetailRow(stringResource(com.taytek.basehw.R.string.toy_num), master.toyNum)
                                 MasterDetailRow(stringResource(com.taytek.basehw.R.string.scale_label), master.scale.ifBlank { "1:64" })
@@ -167,7 +160,7 @@ fun MasterDetailScreen(
                             }
                         }
 
-                        Spacer(Modifier.height(24.dp))
+                        Spacer(Modifier.height(12.dp))
 
                         // Add to Collection Button
                         Button(
@@ -227,9 +220,7 @@ fun MasterDetailScreen(
                                     if (uiState.savingAction == SavingAction.SERIES) {
                                         CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color(0xFFFF8C00))
                                     } else {
-                                        Icon(Icons.Default.Layers, contentDescription = null, modifier = Modifier.size(20.dp))
-                                        Spacer(Modifier.width(8.dp))
-                                        Text(stringResource(com.taytek.basehw.R.string.add_series_to_wanted), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                                        Text(stringResource(com.taytek.basehw.R.string.add_series_to_wanted), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
                                     }
                                 }
                             }

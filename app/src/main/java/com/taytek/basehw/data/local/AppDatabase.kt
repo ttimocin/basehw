@@ -6,19 +6,24 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.taytek.basehw.data.local.dao.MasterDataDao
 import com.taytek.basehw.data.local.dao.UserCarDao
+import com.taytek.basehw.data.local.dao.VariantHuntDao
 import com.taytek.basehw.data.local.entity.MasterDataEntity
 import com.taytek.basehw.data.local.entity.UserCarEntity
 import com.taytek.basehw.data.local.entity.CustomCollectionEntity
 import com.taytek.basehw.data.local.entity.CollectionCarCrossRef
+import com.taytek.basehw.data.local.entity.VariantHuntGroupEntity
+import com.taytek.basehw.data.local.entity.VariantHuntGroupItemEntity
 
 @Database(
     entities = [
-        MasterDataEntity::class, 
+        MasterDataEntity::class,
         UserCarEntity::class,
         CustomCollectionEntity::class,
-        CollectionCarCrossRef::class
+        CollectionCarCrossRef::class,
+        VariantHuntGroupEntity::class,
+        VariantHuntGroupItemEntity::class
     ],
-    version = 23,
+    version = 25,
     exportSchema = false
 )
 @androidx.room.TypeConverters(Converters::class)
@@ -26,9 +31,53 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun masterDataDao(): MasterDataDao
     abstract fun userCarDao(): UserCarDao
     abstract fun customCollectionDao(): com.taytek.basehw.data.local.dao.CustomCollectionDao
+    abstract fun variantHuntDao(): VariantHuntDao
 
     companion object {
         const val DATABASE_NAME = "basehw_db"
+
+        val MIGRATION_24_25 = object : Migration(24, 25) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE user_cars ADD COLUMN hwCardType TEXT")
+            }
+        }
+
+        val MIGRATION_23_24 = object : Migration(23, 24) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `variant_hunt_groups` (
+                        `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        `brand` TEXT NOT NULL,
+                        `title` TEXT NOT NULL,
+                        `seedMasterDataId` INTEGER NOT NULL,
+                        `seedUserCarId` INTEGER,
+                        `keywordsDelimited` TEXT NOT NULL,
+                        `createdAtMillis` INTEGER NOT NULL,
+                        `completedAtMillis` INTEGER,
+                        `isActive` INTEGER NOT NULL,
+                        FOREIGN KEY(`seedMasterDataId`) REFERENCES `master_data`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+                    )
+                    """.trimIndent()
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_variant_hunt_groups_brand` ON `variant_hunt_groups` (`brand`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_variant_hunt_groups_isActive` ON `variant_hunt_groups` (`isActive`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_variant_hunt_groups_seedMasterDataId` ON `variant_hunt_groups` (`seedMasterDataId`)")
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `variant_hunt_group_items` (
+                        `groupId` INTEGER NOT NULL,
+                        `masterDataId` INTEGER NOT NULL,
+                        PRIMARY KEY(`groupId`, `masterDataId`),
+                        FOREIGN KEY(`groupId`) REFERENCES `variant_hunt_groups`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+                        FOREIGN KEY(`masterDataId`) REFERENCES `master_data`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+                    )
+                    """.trimIndent()
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_variant_hunt_group_items_groupId` ON `variant_hunt_group_items` (`groupId`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_variant_hunt_group_items_masterDataId` ON `variant_hunt_group_items` (`masterDataId`)")
+            }
+        }
 
         val MIGRATION_22_23 = object : Migration(22, 23) {
             override fun migrate(db: SupportSQLiteDatabase) {

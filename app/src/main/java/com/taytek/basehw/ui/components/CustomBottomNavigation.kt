@@ -4,6 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -21,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.taytek.basehw.R
-import com.taytek.basehw.ui.theme.AppPrimary
 
 @Composable
 fun CustomBottomNavigation(
@@ -29,11 +31,12 @@ fun CustomBottomNavigation(
     onTabSelected: (Int) -> Unit,
     onAddClick: () -> Unit  // Geriye dönük uyumluluk için tutuldu, artık kullanılmıyor
 ) {
-    // Figma tasarımı: beyaz bar + hafif üst border, 4 tab, FAB YOK
+    // Figma tasarımı: beyaz bar + hafif üst border, 5 tab, FAB YOK
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .windowInsetsPadding(WindowInsets.navigationBars),
+            // navigationBars alone can be 0 on first frame / gesture nav; safeDrawing includes the bottom safe area.
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom)),
         color = MaterialTheme.colorScheme.surfaceContainerLow,
         shadowElevation = 8.dp,
         tonalElevation = 0.dp
@@ -65,13 +68,6 @@ fun CustomBottomNavigation(
                     isSelected = selectedTab == 8,
                     onClick = { onTabSelected(8) }
                 )
-                // Tab 1: SEARCH
-                NavTab(
-                    icon = Icons.Outlined.Search,
-                    label = stringResource(com.taytek.basehw.R.string.nav_search),
-                    isSelected = selectedTab == 1,
-                    onClick = { onTabSelected(1) }
-                )
                 // Tab 7: STH
                 NavTab(
                     icon = if (selectedTab == 7) Icons.Filled.Star else Icons.Outlined.Star,
@@ -85,6 +81,13 @@ fun CustomBottomNavigation(
                     label = stringResource(R.string.nav_community),
                     isSelected = selectedTab == 2,
                     onClick = { onTabSelected(2) }
+                )
+                // Tab 3: PROFILE
+                NavTab(
+                    icon = if (selectedTab == 3) Icons.Filled.AccountCircle else Icons.Outlined.AccountCircle,
+                    label = stringResource(R.string.nav_profile),
+                    isSelected = selectedTab == 3,
+                    onClick = { onTabSelected(3) }
                 )
             }
         }

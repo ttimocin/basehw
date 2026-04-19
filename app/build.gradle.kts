@@ -1,5 +1,6 @@
 import java.util.Properties
 import java.io.FileInputStream
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
@@ -12,6 +13,9 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+configurations.configureEach {
+}
+
 android {
     namespace = "com.taytek.basehw"
     compileSdk = 36
@@ -22,7 +26,7 @@ android {
         applicationId = "com.taytek.basehw"
         minSdk = 26
         targetSdk = 36
-        versionCode = 4
+        versionCode = 7
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -33,8 +37,10 @@ android {
         if (localPropertiesFile.exists()) {
             properties.load(FileInputStream(localPropertiesFile))
         }
-        buildConfigField("String", "GEMINI_API_KEY", "\"${properties.getProperty("GEMINI_API_KEY") ?: ""}\"")
-        buildConfigField("String", "GROQ_API_KEY", "\"${properties.getProperty("GROQ_API_KEY") ?: ""}\"")
+        // API keys removed - now proxied through Supabase Edge Functions
+        // GROQ_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY are stored as Supabase secrets
+        buildConfigField("String", "SUPABASE_URL", "\"${properties.getProperty("SUPABASE_URL") ?: ""}\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${properties.getProperty("SUPABASE_ANON_KEY") ?: ""}\"")
     }
 
     signingConfigs {
@@ -68,9 +74,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
     buildFeatures {
         compose = true
         buildConfig = true
@@ -83,8 +86,8 @@ android {
     }
 
     lint {
-        checkReleaseBuilds = false
-        abortOnError = false
+        checkReleaseBuilds = true
+        abortOnError = true
     }
 
     packaging {
@@ -94,6 +97,15 @@ android {
             // Ensure system classes don't conflict with library classes
             pickFirsts += "org/apache/http/**"
         }
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 
@@ -104,14 +116,15 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
-    implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.appcompat)
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation("androidx.compose.material:material")
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons.extended)
 
@@ -165,8 +178,16 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.kotlinx.serialization.json)
 
+    // Supabase (v3+)
+    implementation(platform(libs.supabase.bom))
+    implementation(libs.supabase.postgrest)
+    implementation(libs.supabase.storage)
+    implementation(libs.supabase.realtime)
+    implementation(libs.supabase.auth)
+    implementation(libs.ktor.client.okhttp)
+
     // ML Kit OCR (camera-based model text detection)
-    implementation("com.google.mlkit:text-recognition:16.0.0")
+    implementation(libs.mlkit.text.recognition)
 
     // uCrop
     implementation(libs.ucrop)

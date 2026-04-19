@@ -1,22 +1,28 @@
 package com.taytek.basehw.ui.screens.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,6 +32,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -34,12 +42,24 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import kotlinx.coroutines.flow.distinctUntilChanged
 import com.taytek.basehw.R
 import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.domain.model.DiecastNews
 import com.taytek.basehw.domain.model.MasterData
 import com.taytek.basehw.domain.model.UserCar
-import com.taytek.basehw.ui.theme.AppPrimary
-import com.taytek.basehw.ui.theme.DarkNavy
+import com.taytek.basehw.ui.theme.AppTheme
+import com.taytek.basehw.ui.theme.CyberKnockoutIconTint
+import com.taytek.basehw.ui.theme.cyberActionGradientBrush
+import com.taytek.basehw.ui.theme.CyberNeonIconButton
+import com.taytek.basehw.ui.theme.CyberNeonSquareButton
+import com.taytek.basehw.ui.theme.LocalThemeVariant
+import com.taytek.basehw.ui.theme.NeonCyanNeonIconButton
+import com.taytek.basehw.ui.theme.NeonCyanNeonSquareButton
+import com.taytek.basehw.ui.theme.NeonCyanKnockoutIconTint
+import com.taytek.basehw.ui.theme.ThemeVariant
+import com.taytek.basehw.ui.theme.neonCyanActionGradientBrush
+import com.taytek.basehw.ui.theme.isDarkThemeUi
 
 
 
@@ -52,33 +72,15 @@ fun FigmaHomeHeader(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
+            .padding(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 0.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = stringResource(R.string.hello_name_template, userName),
             style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.ExtraBold,
+            fontWeight = FontWeight.Black,
             color = MaterialTheme.colorScheme.onBackground
         )
-        
-        IconButton(
-            onClick = onProfileClick,
-            modifier = Modifier
-                .size(44.dp)
-                .background(
-                    color = AppPrimary.copy(alpha = 0.1f),
-                    shape = CircleShape
-                )
-        ) {
-            Icon(
-                imageVector = Icons.Default.AccountCircle,
-                contentDescription = stringResource(R.string.nav_profile),
-                tint = AppPrimary,
-                modifier = Modifier.size(26.dp)
-            )
-        }
     }
 }
 
@@ -96,7 +98,7 @@ fun FigmaSearchBar(
 ) {
     var showBrandMenu by remember { mutableStateOf(false) }
     val screenWidthDp = LocalConfiguration.current.screenWidthDp
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val isDark = isDarkThemeUi()
     val placeholderFontSize = (screenWidthDp * 0.034f).coerceIn(11f, 14f).sp
 
     Row(
@@ -148,8 +150,10 @@ fun FigmaSearchBar(
                             if (query.isEmpty()) {
                                 Text(
                                     text = stringResource(R.string.search_in_collection),
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    style = MaterialTheme.typography.bodySmall.copy(fontSize = placeholderFontSize),
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        fontSize = placeholderFontSize
+                                    ),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
@@ -176,7 +180,7 @@ fun FigmaSearchBar(
                                 Icon(
                                     imageVector = Icons.Default.FilterList,
                                     contentDescription = stringResource(R.string.filter),
-                                    tint = if (selectedBrand == null) MaterialTheme.colorScheme.onSurfaceVariant else AppPrimary,
+                                    tint = if (selectedBrand == null) MaterialTheme.colorScheme.onSurfaceVariant else AppTheme.tokens.primaryAccent,
                                     modifier = Modifier.size(18.dp)
                                 )
                             }
@@ -201,7 +205,7 @@ fun FigmaSearchBar(
                                                 Icon(
                                                     imageVector = Icons.Default.Check,
                                                     contentDescription = null,
-                                                    tint = AppPrimary,
+                                                    tint = AppTheme.tokens.primaryAccent,
                                                     modifier = Modifier.size(16.dp)
                                                 )
                                             }
@@ -220,38 +224,71 @@ fun FigmaSearchBar(
         }
 
         // 2. External Buttons (Camera & Add)
-        // Camera (Transparent bg, Orange icon)
-        IconButton(
-            onClick = onCameraClick,
-            modifier = Modifier.size(40.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Default.PhotoCamera,
-                contentDescription = stringResource(R.string.scan),
-                tint = AppPrimary,
-                modifier = Modifier.size(24.dp)
-            )
-        }
+        when (LocalThemeVariant.current) {
+            ThemeVariant.Cyber -> {
+                CyberNeonIconButton(
+                    onClick = onCameraClick,
+                    imageVector = Icons.Default.PhotoCamera,
+                    contentDescription = stringResource(R.string.scan)
+                )
+                CyberNeonSquareButton(onClick = onAddClick) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = stringResource(R.string.add_new_car),
+                        tint = CyberKnockoutIconTint,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
+            ThemeVariant.NeonCyan -> {
+                NeonCyanNeonIconButton(
+                    onClick = onCameraClick,
+                    imageVector = Icons.Default.PhotoCamera,
+                    contentDescription = stringResource(R.string.scan)
+                )
+                NeonCyanNeonSquareButton(onClick = onAddClick) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = stringResource(R.string.add_new_car),
+                        tint = NeonCyanKnockoutIconTint,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
+            else -> {
+            IconButton(
+                onClick = onCameraClick,
+                modifier = Modifier.size(40.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.PhotoCamera,
+                    contentDescription = stringResource(R.string.scan),
+                    tint = AppTheme.tokens.primaryAccent,
+                    modifier = Modifier.size(24.dp)
+                )
+            }
 
-        // Add (Orange bg, White icon)
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .shadow(elevation = 2.dp, shape = RoundedCornerShape(12.dp))
-                .background(AppPrimary, RoundedCornerShape(12.dp))
-                .clickable { onAddClick() },
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = stringResource(R.string.add_new_car),
-                tint = MaterialTheme.colorScheme.background,
-                modifier = Modifier.size(24.dp)
-            )
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .shadow(elevation = 2.dp, shape = RoundedCornerShape(12.dp))
+                    .background(AppTheme.tokens.primaryAccent, RoundedCornerShape(12.dp))
+                    .clickable { onAddClick() },
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = stringResource(R.string.add_new_car),
+                    tint = MaterialTheme.colorScheme.background,
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+            }
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FigmaStatsSection(
     totalCars: Int,
@@ -261,54 +298,100 @@ fun FigmaStatsSection(
     totalValue: Double,
     monthlyValueIncrease: Double = 0.0,
     currencySymbol: String = "TL",
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    initialPagerPage: Int = 0,
+    onPagerPageChanged: (Int) -> Unit = {}
 ) {
+    val safeInitial = initialPagerPage.coerceIn(0, 1)
+    val pagerState = rememberPagerState(
+        initialPage = safeInitial,
+        pageCount = { 2 }
+    )
+
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.settledPage }
+            .distinctUntilChanged()
+            .collect { onPagerPageChanged(it) }
+    }
+
+    val cardHeight = 90.dp
+
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+            .padding(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 2.dp)
     ) {
-        // Row 1: Total Models & Current Value
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            FigmaSmallStatCard(
-                label = stringResource(R.string.total_models_label),
-                value = totalCars.toString(),
-                modifier = Modifier.weight(1f),
-                badgeValue = if (monthlyAdded > 0) "+$monthlyAdded" else null,
-                badgeLabel = stringResource(R.string.this_month_short)
-            )
-            FigmaSmallStatCard(
-                label = stringResource(R.string.current_value),
-                value = String.format("%.2f %s", totalValue, currencySymbol),
-                modifier = Modifier.weight(1f),
-                valueColor = AppPrimary,
-                badgeValue = if (monthlyValueIncrease > 0) String.format("+%.0f", monthlyValueIncrease) else null,
-                badgeLabel = stringResource(R.string.this_month_short)
-            )
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxWidth()
+        ) { page ->
+            when (page) {
+                0 -> Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    FigmaSmallStatCard(
+                        label = stringResource(R.string.total_models_label),
+                        value = totalCars.toString(),
+                        modifier = Modifier.weight(1f),
+                        badgeValue = if (monthlyAdded > 0) "+$monthlyAdded" else null,
+                        badgeLabel = stringResource(R.string.this_month_short),
+                        cardHeight = cardHeight
+                    )
+                    FigmaSmallStatCard(
+                        label = stringResource(R.string.current_value),
+                        value = String.format("%.2f %s", totalValue, currencySymbol),
+                        modifier = Modifier.weight(1f),
+                        valueColor = MaterialTheme.colorScheme.onSurface,
+                        badgeValue = if (monthlyValueIncrease > 0) String.format("+%.0f", monthlyValueIncrease) else null,
+                        badgeLabel = stringResource(R.string.this_month_short),
+                        cardHeight = cardHeight
+                    )
+                }
+                else -> Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    FigmaSmallStatCard(
+                        label = stringResource(R.string.wanted_short),
+                        value = wantedCount.toString(),
+                        modifier = Modifier.weight(1f),
+                        cardHeight = cardHeight
+                    )
+                    FigmaSmallStatCard(
+                        label = stringResource(R.string.treasure_short),
+                        value = sthCount.toString(),
+                        modifier = Modifier.weight(1f),
+                        valueColor = MaterialTheme.colorScheme.onSurface,
+                        cardHeight = cardHeight
+                    )
+                }
+            }
         }
 
-        // Row 2: Wanted & Treasure
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        val hintTint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.42f)
+        val rtl = LocalLayoutDirection.current == LayoutDirection.Rtl
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp, bottom = 0.dp),
+            contentAlignment = Alignment.Center
         ) {
-            FigmaSmallStatCard(
-                label = stringResource(R.string.wanted_short),
-                value = wantedCount.toString(),
-                modifier = Modifier.weight(1f),
-                cardHeight = 96.dp
-            )
-            FigmaSmallStatCard(
-                label = stringResource(R.string.treasure_short),
-                value = sthCount.toString(),
-                modifier = Modifier.weight(1f),
-                valueColor = AppPrimary,
-                cardHeight = 96.dp
-            )
+            @Suppress("DEPRECATION")
+            when (pagerState.settledPage) {
+                0 -> Icon(
+                    imageVector = if (rtl) Icons.Filled.KeyboardArrowLeft else Icons.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp),
+                    tint = hintTint
+                )
+                else -> Icon(
+                    imageVector = if (rtl) Icons.Filled.KeyboardArrowRight else Icons.Filled.KeyboardArrowLeft,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp),
+                    tint = hintTint
+                )
+            }
         }
     }
 }
@@ -321,88 +404,130 @@ fun FigmaSmallStatCard(
     valueColor: Color = Color.Unspecified,
     badgeValue: String? = null,
     badgeLabel: String? = null,
-    cardHeight: Dp = 110.dp
+    cardHeight: Dp = 90.dp
 ) {
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
+    val shellVariant = LocalThemeVariant.current
+    val cyberPink = shellVariant == ThemeVariant.Cyber
+    val neonCyan = shellVariant == ThemeVariant.NeonCyan
+    val labelColor = when {
+        cyberPink || neonCyan -> Color.White.copy(alpha = 0.72f)
+        MaterialTheme.colorScheme.background.luminance() < 0.5f -> Color.White.copy(alpha = 0.6f)
+        else -> Color.Black.copy(alpha = 0.8f)
+    }
+    val valueResolved = when {
+        neonCyan && valueColor == Color.Unspecified -> AppTheme.tokens.primaryAccent
+        cyberPink && valueColor == Color.Unspecified -> Color.White
+        valueColor != Color.Unspecified -> valueColor
+        else -> AppTheme.tokens.primaryAccent
+    }
+    val badgeCaptionColor = when {
+        cyberPink || neonCyan -> Color.White.copy(alpha = 0.78f)
+        MaterialTheme.colorScheme.background.luminance() < 0.5f -> Color.White.copy(alpha = 0.7f)
+        else -> Color.Black.copy(alpha = 0.85f)
+    }
 
+    val corner = 16.dp
     Card(
         modifier = modifier
-            .height(cardHeight) // Fixed height to ensure consistent grid and enough space
+            .height(cardHeight)
             .border(
                 width = 1.dp,
-                color = AppPrimary.copy(alpha = 0.6f),
-                shape = RoundedCornerShape(20.dp) // Slightly more rounded
+                color = AppTheme.tokens.cardBorderStandard,
+                shape = RoundedCornerShape(corner)
             ),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(corner),
         colors = CardDefaults.cardColors(containerColor = Color.Transparent),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp) // Flat design looks cleaner with border
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
                     brush = Brush.linearGradient(
-                        colors = listOf(baseColor, darkerColor)
+                        colors = listOf(
+                            MaterialTheme.colorScheme.surfaceContainerLow,
+                            MaterialTheme.colorScheme.surfaceContainerHigh
+                        )
                     )
                 )
-                .padding(14.dp)
+                .padding(horizontal = 10.dp, vertical = 8.dp)
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.SpaceBetween // Top, Middle, Bottom distribution
+                verticalArrangement = Arrangement.spacedBy(2.dp)
             ) {
-                // Top: Label
                 Text(
-                    text = label.uppercase(), // All caps for a professional dashboard look
-                    style = MaterialTheme.typography.labelMedium,
+                    text = label.uppercase(),
+                    style = MaterialTheme.typography.labelSmall,
                     fontWeight = FontWeight.ExtraBold,
-                    color = if (isDark) Color.White.copy(alpha = 0.6f) else Color.Black.copy(alpha = 0.5f),
-                    letterSpacing = 1.sp
+                    color = labelColor,
+                    letterSpacing = 0.6.sp,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    lineHeight = 14.sp
                 )
 
-                // Middle: Large Value
                 Text(
                     text = value,
-                    style = MaterialTheme.typography.headlineMedium.copy(fontSize = 28.sp),
+                    style = MaterialTheme.typography.titleLarge.copy(fontSize = 22.sp, lineHeight = 24.sp),
                     fontWeight = FontWeight.Black,
-                    color = AppPrimary,
+                    color = valueResolved,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
 
-                // Bottom: Badge (if exists)
-                if (badgeValue != null && badgeLabel != null) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(6.dp)
-                    ) {
-                        // Badge Value (Left)
-                        Box(
-                            modifier = Modifier
-                                .background(AppPrimary, RoundedCornerShape(6.dp))
-                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                // Sabit alt şerit: rozet yokken boş taşma olmasın, iki kart aynı hizada kalsın
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(18.dp),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    if (badgeValue != null && badgeLabel != null) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
+                            Box(
+                                modifier = Modifier
+                                    .then(
+                                        when (shellVariant) {
+                                            ThemeVariant.Cyber -> Modifier.background(
+                                                brush = cyberActionGradientBrush(),
+                                                shape = RoundedCornerShape(4.dp)
+                                            )
+                                            ThemeVariant.NeonCyan -> Modifier.background(
+                                                brush = neonCyanActionGradientBrush(),
+                                                shape = RoundedCornerShape(4.dp)
+                                            )
+                                            else -> Modifier.background(
+                                                AppTheme.tokens.primaryAccent,
+                                                RoundedCornerShape(4.dp)
+                                            )
+                                        }
+                                    )
+                                    .padding(horizontal = 5.dp, vertical = 1.dp)
+                            ) {
+                                Text(
+                                    text = badgeValue,
+                                    color = when (shellVariant) {
+                                        ThemeVariant.Cyber -> CyberKnockoutIconTint
+                                        ThemeVariant.NeonCyan -> NeonCyanKnockoutIconTint
+                                        else -> Color.White
+                                    },
+                                    fontSize = 9.sp,
+                                    fontWeight = FontWeight.Black
+                                )
+                            }
                             Text(
-                                text = badgeValue,
-                                color = Color.White,
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Black
+                                text = badgeLabel,
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.Bold,
+                                color = badgeCaptionColor,
+                                fontSize = 10.sp
                             )
                         }
-
-                        // Badge Label (Right)
-                        Text(
-                            text = badgeLabel,
-                            style = MaterialTheme.typography.labelSmall,
-                            fontWeight = FontWeight.Bold,
-                            color = if (isDark) Color.White.copy(alpha = 0.7f) else Color.Black.copy(alpha = 0.6f)
-                        )
                     }
-                } else {
-                    // Empty space to maintain layout if no badge
-                    Spacer(Modifier.height(16.dp))
                 }
             }
         }
@@ -416,18 +541,16 @@ fun FigmaRecentlyAddedCardItem(
     modifier: Modifier = Modifier
 ) {
     val modelName = car.masterData?.modelName ?: car.manualModelName ?: stringResource(R.string.unknown_model)
-    val photoUrl = car.userPhotoUrl ?: car.masterData?.imageUrl
+    val photoUrl = (car.backupPhotoUrl ?: car.userPhotoUrl)?.takeIf { it != car.masterData?.imageUrl }
 
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
+
 
     Card(
         modifier = modifier
             .fillMaxWidth()
             .border(
                 width = 1.dp,
-                color = AppPrimary.copy(alpha = 0.6f),
+                color = AppTheme.tokens.cardBorderStandard,
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() },
@@ -438,7 +561,10 @@ fun FigmaRecentlyAddedCardItem(
         Row(
             modifier = Modifier.background(
                 brush = Brush.linearGradient(
-                    colors = listOf(baseColor, darkerColor)
+                    colors = listOf(
+                        MaterialTheme.colorScheme.surfaceContainerLow,
+                        MaterialTheme.colorScheme.surfaceContainerHigh
+                    )
                 )
             ),
             verticalAlignment = Alignment.CenterVertically
@@ -489,19 +615,17 @@ fun FigmaRecentlyAddedVerticalCard(
     modifier: Modifier = Modifier
 ) {
     val modelName = car.masterData?.modelName ?: car.manualModelName ?: stringResource(R.string.unknown_model)
-    val photoUrl = car.userPhotoUrl ?: car.masterData?.imageUrl
+    val photoUrl = (car.backupPhotoUrl ?: car.userPhotoUrl)?.takeIf { it != car.masterData?.imageUrl }
     val brand = car.masterData?.brand ?: car.manualBrand
     val seriesName = car.masterData?.series?.takeIf { it.isNotBlank() } ?: car.manualSeries ?: ""
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
+
 
     Card(
         modifier = modifier
             .width(160.dp)
             .border(
                 width = 1.dp,
-                color = AppPrimary.copy(alpha = 0.6f),
+                color = AppTheme.tokens.cardBorderStandard,
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() },
@@ -512,7 +636,10 @@ fun FigmaRecentlyAddedVerticalCard(
         Column(
             modifier = Modifier.background(
                 brush = Brush.linearGradient(
-                    colors = listOf(baseColor, darkerColor)
+                    colors = listOf(
+                        MaterialTheme.colorScheme.surfaceContainerLow,
+                        MaterialTheme.colorScheme.surfaceContainerHigh
+                    )
                 )
             )
         ) {
@@ -592,8 +719,75 @@ fun FigmaRecentlyAddedVerticalCard(
 }
 
 @Composable
+fun FigmaDiecastNewsCard(
+    news: DiecastNews,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+            .width(200.dp)
+            .border(
+                width = 1.dp,
+                color = AppTheme.tokens.cardBorderStandard,
+                shape = RoundedCornerShape(16.dp)
+            )
+            .clickable { onClick() },
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(
+            modifier = Modifier.background(
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        MaterialTheme.colorScheme.surfaceContainerLow,
+                        MaterialTheme.colorScheme.surfaceContainerHigh
+                    )
+                )
+            )
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp)
+                    .clip(RoundedCornerShape(16.dp, 16.dp, 0.dp, 0.dp))
+                    .background(MaterialTheme.colorScheme.background)
+            ) {
+                if (news.imageUrl.isNotBlank()) {
+                    AsyncImage(
+                        model = news.imageUrl,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Outlined.ImageNotSupported,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.35f),
+                        modifier = Modifier
+                            .size(40.dp)
+                            .align(Alignment.Center)
+                    )
+                }
+            }
+            Text(
+                text = news.title,
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onSurface,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(10.dp)
+            )
+        }
+    }
+}
+
+@Composable
 fun getBrandLogo(brand: Brand?): Int? {
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val isDark = isDarkThemeUi()
     return when (brand) {
         Brand.HOT_WHEELS -> com.taytek.basehw.R.drawable.hotwheels
         Brand.MATCHBOX -> com.taytek.basehw.R.drawable.matchbox
@@ -616,7 +810,7 @@ fun FigmaRecentlyAddedListItem(
     val brandName = car.masterData?.brand?.name ?: car.manualBrand?.name ?: ""
     val seriesName = car.masterData?.series?.takeIf { it.isNotBlank() } ?: car.manualSeries ?: ""
     val year = car.masterData?.year ?: car.manualYear
-    val photoUrl = car.userPhotoUrl ?: car.masterData?.imageUrl
+    val photoUrl = (car.backupPhotoUrl ?: car.userPhotoUrl)?.takeIf { it != car.masterData?.imageUrl }
 
     Card(
         modifier = modifier
@@ -692,7 +886,7 @@ fun FigmaRecentlyAddedListItem(
                             .padding(horizontal = 4.dp, vertical = 2.dp)
                     ) {
                         Text(
-                            text = "CHASE",
+                            text = stringResource(R.string.chase_label),
                             fontSize = 8.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White
@@ -707,7 +901,7 @@ fun FigmaRecentlyAddedListItem(
                             .padding(horizontal = 4.dp, vertical = 2.dp)
                     ) {
                         Text(
-                            text = "TH",
+                            text = stringResource(R.string.th_label),
                             fontSize = 8.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White
@@ -796,7 +990,7 @@ fun HomeSuggestionItem(
                     model = masterData.imageUrl,
                     contentDescription = masterData.modelName,
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Fit
                 )
             } else {
                 Icon(
@@ -829,9 +1023,13 @@ fun HomeSuggestionItem(
                         fontWeight = FontWeight.SemiBold
                     )
                 }
-                if (masterData.series.isNotBlank()) {
+                if (masterData.series.isNotBlank() || masterData.seriesNum.isNotBlank()) {
+                    val seriesText = listOfNotNull(
+                        masterData.series.takeIf { it.isNotBlank() },
+                        masterData.seriesNum.takeIf { it.isNotBlank() }
+                    ).joinToString(" ")
                     Text(
-                        text = masterData.series,
+                        text = seriesText,
                         style = MaterialTheme.typography.bodySmall, // Increased from labelSmall
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
@@ -841,49 +1039,49 @@ fun HomeSuggestionItem(
 
                 val feature = masterData.feature?.lowercase()
                 
-                if (feature == "sth") {
-                    Box(
-                        modifier = Modifier
-                            .background(Color(0xFFE0B94C), RoundedCornerShape(4.dp))
-                            .padding(horizontal = 4.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = "STH",
-                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
-                            color = Color.Black,
-                            fontWeight = FontWeight.ExtraBold
-                        )
-                    }
-                }
-                if (feature == "chase") {
-                    Box(
-                        modifier = Modifier
-                            .background(Color.Black, RoundedCornerShape(4.dp))
-                            .border(1.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(4.dp))
-                            .padding(horizontal = 4.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = "CHASE",
-                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
-                            color = Color.White,
-                            fontWeight = FontWeight.ExtraBold
-                        )
-                    }
-                }
-                if (feature == "th") {
-                    Box(
-                        modifier = Modifier
-                            .background(Color(0xFF71797E), RoundedCornerShape(4.dp))
-                            .padding(horizontal = 4.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = "TH",
-                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
-                            color = Color.White,
-                            fontWeight = FontWeight.ExtraBold
-                        )
-                    }
-                }
+                        if (feature == "sth") {
+                            Box(
+                                modifier = Modifier
+                                    .background(Color(0xFFE0B94C), RoundedCornerShape(4.dp))
+                                    .padding(horizontal = 4.dp, vertical = 2.dp)
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.sth_label),
+                                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.ExtraBold
+                                )
+                            }
+                        }
+                        if (feature == "chase") {
+                            Box(
+                                modifier = Modifier
+                                    .background(Color.Black, RoundedCornerShape(4.dp))
+                                    .border(1.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(4.dp))
+                                    .padding(horizontal = 4.dp, vertical = 2.dp)
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.chase_label),
+                                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                                    color = Color.White,
+                                    fontWeight = FontWeight.ExtraBold
+                                )
+                            }
+                        }
+                        if (feature == "th") {
+                            Box(
+                                modifier = Modifier
+                                    .background(Color(0xFF71797E), RoundedCornerShape(4.dp))
+                                    .padding(horizontal = 4.dp, vertical = 2.dp)
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.th_label),
+                                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                                    color = Color.White,
+                                    fontWeight = FontWeight.ExtraBold
+                                )
+                            }
+                        }
             }
         }
     }

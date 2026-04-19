@@ -3,9 +3,15 @@ package com.taytek.basehw.ui.screens.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.asFlow
+import android.util.Log
 import kotlinx.coroutines.flow.filterNotNull
 import com.google.firebase.auth.FirebaseUser
+import com.taytek.basehw.data.remote.network.SupabaseStorageDataSource
+import com.taytek.basehw.domain.model.BadgeType
+import com.taytek.basehw.domain.model.CollectionRankCalculator
+import com.taytek.basehw.domain.model.fromInputs
 import com.taytek.basehw.domain.repository.AuthRepository
+import com.taytek.basehw.domain.repository.CommunityRepository
 import com.taytek.basehw.domain.repository.UserCarRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,18 +31,27 @@ import javax.inject.Inject
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.first
 import java.io.OutputStream
+import android.net.Uri
+import com.taytek.basehw.domain.model.CollectionImportMode
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
+import com.taytek.basehw.domain.model.VehicleCondition
+import com.taytek.basehw.R
+import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 data class ProfileUiState(
     val isLoading: Boolean = false,
+    /** True while buluta yedekle / buluttan yükle runs (no full-screen [isLoading] overlay). */
+    val isCloudDataOpRunning: Boolean = false,
     val error: String? = null,
     val syncSuccess: Boolean = false,
     val syncStatusMsg: String? = null,
     val userData: com.taytek.basehw.domain.model.User? = null,
     val isUsernameAvailable: Boolean? = null,
     val showUsernamePrompt: Boolean = false,
+    val pendingUsernamePromptAfterConsent: Boolean = false,
     val isEditingUsername: Boolean = false,
     val isSyncing: Boolean = false,
     val syncStatusResId: Int? = null,
@@ -54,15 +69,20 @@ data class ProfileUiState(
     val verificationEmailSent: Boolean = false,
     val showExportDialog: Boolean = false,
     val showRestorePrompt: Boolean = false,
-    val isCloudCheckInProgress: Boolean = false
+    val isCloudCheckInProgress: Boolean = false,
+    val showMandatoryConsentDialog: Boolean = false,
+    val isEmailVerified: Boolean = false
 )
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
+    @param:ApplicationContext private val context: Context,
     private val authRepository: AuthRepository,
     private val userCarRepository: UserCarRepository,
+    private val communityRepository: CommunityRepository,
     private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager,
-    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository
+    private val currencyRepository: com.taytek.basehw.domain.repository.CurrencyRepository,
+    private val storageDataSource: SupabaseStorageDataSource
 ) : ViewModel() {
 
     val currencyCode: StateFlow<String> = appSettingsManager.currencyFlow
@@ -86,12 +106,19 @@ class ProfileViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
     val totalBoxed: StateFlow<Int> = userCarRepository.getBoxStatusCounts()
-        .map { list -> list.find { !it.isOpened }?.count ?: 0 }
+        .map { list -> list.filter { it.condition != "LOOSE" }.sumOf { it.count } }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
     val totalOpened: StateFlow<Int> = userCarRepository.getBoxStatusCounts()
-        .map { list -> list.find { it.isOpened }?.count ?: 0 }
+        .map { list -> list.find { it.condition == "LOOSE" }?.count ?: 0 }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+
+    val activeBadge: StateFlow<BadgeType> = userCarRepository.getRankCars()
+        .map { cars ->
+            val inputs = CollectionRankCalculator.calculate(cars)
+            BadgeType.fromInputs(inputs)
+        }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), BadgeType.ROOKIE)
 
     fun setCurrency(code: String) {
         appSettingsManager.setCurrency(code)
@@ -99,6 +126,7 @@ class ProfileViewModel @Inject constructor(
 
     val themeFlow = appSettingsManager.themeFlow
     val languageFlow = appSettingsManager.languageFlow
+    val fontFlow = appSettingsManager.fontFlow
 
     fun setTheme(theme: Int) {
         appSettingsManager.setTheme(theme)
@@ -106,6 +134,10 @@ class ProfileViewModel @Inject constructor(
 
     fun setLanguage(languageCode: String) {
         appSettingsManager.setLanguage(languageCode)
+    }
+
+    fun setFontFamily(fontFamily: Int) {
+        appSettingsManager.setFontFamily(fontFamily)
     }
 
     fun enqueueRemoteSync(workManager: androidx.work.WorkManager) {
@@ -124,26 +156,26 @@ class ProfileViewModel @Inject constructor(
             request
         )
 
-        _uiState.update { it.copy(syncStatusResId = com.taytek.basehw.R.string.sync_in_progress, isSyncing = true) }
+        _uiState.update { it.copy(syncStatusResId = R.string.sync_in_progress, isSyncing = true) }
 
         viewModelScope.launch {
             workManager.getWorkInfoByIdLiveData(request.id).asFlow().filterNotNull().collect { workInfo ->
                 when (workInfo.state) {
                     androidx.work.WorkInfo.State.SUCCEEDED -> {
                         _uiState.update { it.copy(
-                            syncStatusResId = com.taytek.basehw.R.string.sync_success,
+                            syncStatusResId = R.string.sync_success,
                             isSyncing = false
                         )}
                     }
                     androidx.work.WorkInfo.State.FAILED -> {
                         _uiState.update { it.copy(
-                            syncStatusResId = com.taytek.basehw.R.string.sync_failed,
+                            syncStatusResId = R.string.sync_failed,
                             isSyncing = false
                         )}
                     }
                     androidx.work.WorkInfo.State.CANCELLED -> {
                         _uiState.update { it.copy(
-                            syncStatusResId = com.taytek.basehw.R.string.sync_cancelled,
+                            syncStatusResId = R.string.sync_cancelled,
                             isSyncing = false
                         )}
                     }
@@ -172,21 +204,56 @@ class ProfileViewModel @Inject constructor(
                 if (firebaseUser != null) {
                     val profileResult = authRepository.getUserProfile()
                     if (profileResult.isSuccess) {
-                        _uiState.update { it.copy(userData = profileResult.getOrNull()) }
+                        val userProfile = profileResult.getOrNull()
+                        val shouldPromptForUsername =
+                            userProfile?.googleUsernameOnboardingRequired == true &&
+                                userProfile.googleUsernameOnboardingCompleted != true
+                        if (userProfile?.privacyAccepted == true) {
+                            appSettingsManager.setAcceptedPrivacyTerms(true)
+                        }
+                        val needsConsent = userProfile?.privacyAccepted != true && !appSettingsManager.hasAcceptedPrivacyTerms()
+                        _uiState.update {
+                            it.copy(
+                                userData = userProfile,
+                                showMandatoryConsentDialog = needsConsent,
+                                showUsernamePrompt = shouldPromptForUsername && !needsConsent,
+                                pendingUsernamePromptAfterConsent = shouldPromptForUsername && needsConsent,
+                                isEmailVerified = firebaseUser.isEmailVerified
+                            )
+                        }
+                        viewModelScope.launch {
+                            val localCarCount = runCatching { userCarRepository.getTotalCarsCount().first() }.getOrDefault(0)
+                            if (localCarCount > 0) {
+                                runCatching { userCarRepository.syncToSupabase() }
+                                    .onFailure { e ->
+                                        Log.w("ProfileViewModel", "Profile sync skipped: ${e.message}", e)
+                                    }
+                            }
+                        }
                     } else {
-                        // Fallback to minimal info if firestore fetch fails
+                        // Fallback to minimal info if profile fetch fails
                         _uiState.update { 
                             it.copy(
                                 userData = com.taytek.basehw.domain.model.User(
                                     uid = firebaseUser.uid,
                                     email = firebaseUser.email ?: "",
                                     photoUrl = firebaseUser.photoUrl?.toString()
-                                )
+                                ),
+                                showMandatoryConsentDialog = !appSettingsManager.hasAcceptedPrivacyTerms(),
+                                showUsernamePrompt = false,
+                                pendingUsernamePromptAfterConsent = false
                             ) 
                         }
                     }
                 } else {
-                    _uiState.update { it.copy(userData = null) }
+                    _uiState.update {
+                        it.copy(
+                            userData = null,
+                            showMandatoryConsentDialog = false,
+                            showUsernamePrompt = false,
+                            pendingUsernamePromptAfterConsent = false
+                        )
+                    }
                 }
             }
         }
@@ -197,17 +264,23 @@ class ProfileViewModel @Inject constructor(
             _uiState.update { it.copy(isLoading = true, error = null) }
             val result = authRepository.signInWithGoogle(idToken)
             result.onSuccess { user ->
-                _uiState.update { 
+                val shouldPromptForUsername =
+                    user.googleUsernameOnboardingRequired && !user.googleUsernameOnboardingCompleted
+                // Check if user has accepted privacy terms - show consent dialog if not
+                val needsConsent = user.privacyAccepted != true
+                _uiState.update {
                     it.copy(
-                        isLoading = false, 
+                        isLoading = false,
                         userData = user,
-                        showUsernamePrompt = user.username == null // Prompt if no username
-                    ) 
+                        showUsernamePrompt = shouldPromptForUsername && !needsConsent,
+                        pendingUsernamePromptAfterConsent = shouldPromptForUsername && needsConsent,
+                        showMandatoryConsentDialog = needsConsent
+                    )
                 }
                 checkForBackupAfterLogin()
             }.onFailure { error ->
                 _uiState.update { 
-                    it.copy(isLoading = false, error = error.message ?: "Giriş başarısız.") 
+                    it.copy(isLoading = false, error = error.message ?: getString(R.string.vm_login_failed)) 
                 }
             }
         }
@@ -218,35 +291,32 @@ class ProfileViewModel @Inject constructor(
             _uiState.update { it.copy(isLoading = true, error = null) }
             val result = authRepository.signInWithEmail(email, password)
             result.onSuccess { user ->
-                _uiState.update { it.copy(isLoading = false, userData = user) }
+                // Check if user has accepted privacy terms - show consent dialog if not
+                val needsConsent = user.privacyAccepted != true
+                _uiState.update { it.copy(isLoading = false, userData = user, showMandatoryConsentDialog = needsConsent) }
                 checkForBackupAfterLogin()
             }.onFailure { error ->
                 _uiState.update { 
-                    it.copy(isLoading = false, error = error.message ?: "Giriş başarısız.") 
+                    it.copy(isLoading = false, error = error.message ?: getString(R.string.vm_login_failed)) 
                 }
             }
         }
     }
 
-    fun signUpWithEmail(email: String, password: String, username: String, consentGranted: Boolean) {
-        if (!consentGranted) {
-            _uiState.update { it.copy(error = "Lütfen veri kullanım onayını işaretleyin.") }
-            return
-        }
-
+    fun signUpWithEmail(email: String, password: String, username: String) {
         if (!com.taytek.basehw.domain.util.AuthValidator.isPasswordValid(password)) {
-            _uiState.update { it.copy(error = "Şifre en az 8 karakter olmalı; büyük harf, küçük harf ve rakam içermelidir.") }
+            _uiState.update { it.copy(error = getString(R.string.vm_password_criteria)) }
             return
         }
 
         if (username.isNotBlank()) {
             if (!com.taytek.basehw.domain.util.AuthValidator.isUsernameFormatValid(username)) {
-                _uiState.update { it.copy(error = "Kullanıcı adı 3-20 karakter olmalı ve sadece harf, rakam ve alt çizgi içermelidir.") }
+                _uiState.update { it.copy(error = getString(R.string.vm_username_format)) }
                 return
             }
 
             if (!com.taytek.basehw.domain.util.AuthValidator.isUsernameClean(username)) {
-                _uiState.update { it.copy(error = "Uygunsuz kullanıcı adı.") }
+                _uiState.update { it.copy(error = getString(R.string.vm_username_inappropriate)) }
                 return
             }
         }
@@ -256,26 +326,17 @@ class ProfileViewModel @Inject constructor(
             
             var finalUsername = username.trim()
             if (finalUsername.isEmpty()) {
-                var uniqueUsernameFound = false
-                var attempt = 0
-                while (!uniqueUsernameFound && attempt < 5) {
-                    val randomSuffix = (10000..99999).random()
-                    finalUsername = "user_$randomSuffix"
-                    val available = authRepository.checkUsernameAvailable(finalUsername).getOrDefault(false)
-                    if (available) {
-                        uniqueUsernameFound = true
-                    }
-                    attempt++
-                }
-                if (!uniqueUsernameFound) {
-                    _uiState.update { it.copy(isLoading = false, error = "Kullanıcı adı oluşturulamadı. Lütfen manuel girin.") }
+                val generated = generateFallbackUsername(email)
+                if (generated == null) {
+                    _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_username_generation_failed)) }
                     return@launch
                 }
+                finalUsername = generated
             } else {
                 // Re-check username availability if provided manually
                 val availableResult = authRepository.checkUsernameAvailable(finalUsername)
                 if (!availableResult.getOrDefault(false)) {
-                    _uiState.update { it.copy(isLoading = false, error = "Bu kullanıcı adı zaten alınmış.") }
+                    _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_username_taken)) }
                     return@launch
                 }
             }
@@ -284,10 +345,11 @@ class ProfileViewModel @Inject constructor(
             result.onSuccess { user ->
                 // Auto send verification email on sign up
                 authRepository.sendEmailVerification()
-                _uiState.update { it.copy(isLoading = false, userData = user) }
+                // New users haven't accepted rules yet - show consent dialog
+                _uiState.update { it.copy(isLoading = false, userData = user, showMandatoryConsentDialog = true) }
                 checkForBackupAfterLogin()
             }.onFailure { error ->
-                _uiState.update { it.copy(isLoading = false, error = error.message ?: "Kayıt başarısız.") }
+                _uiState.update { it.copy(isLoading = false, error = error.message ?: getString(R.string.vm_register_failed)) }
             }
         }
     }
@@ -308,8 +370,13 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoadingVerification = true, error = null) }
             val result = authRepository.reloadUser()
-            result.onSuccess {
-                _uiState.update { it.copy(isLoadingVerification = false) }
+            result.onSuccess { user ->
+                _uiState.update { 
+                    it.copy(
+                        isLoadingVerification = false,
+                        isEmailVerified = user?.isEmailVerified ?: false
+                    ) 
+                }
             }.onFailure { error ->
                 _uiState.update { it.copy(isLoadingVerification = false, error = error.message) }
             }
@@ -317,7 +384,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun checkUsernameAvailability(username: String) {
-        if (username.length < 3) {
+        if (username.length < 3 || username.length > 8) {
             _uiState.update { it.copy(isUsernameAvailable = null) }
             return
         }
@@ -329,7 +396,7 @@ class ProfileViewModel @Inject constructor(
                 _uiState.update { 
                     it.copy(
                         isUsernameAvailable = null, 
-                        error = "Kullanıcı adı kontrol edilemedi, lütfen Firebase kurallarınızı kontrol edin." 
+                        error = getString(R.string.vm_username_check_failed) 
                     ) 
                 }
             }
@@ -337,24 +404,37 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun assignUsername(username: String) {
-        if (!com.taytek.basehw.domain.util.AuthValidator.isUsernameFormatValid(username) || 
-            !com.taytek.basehw.domain.util.AuthValidator.isUsernameClean(username)) {
-            _uiState.update { it.copy(error = "Geçersiz veya uygunsuz kullanıcı adı.") }
+        val trimmedUsername = username.trim()
+        if (!com.taytek.basehw.domain.util.AuthValidator.isUsernameFormatValid(trimmedUsername) ||
+            !com.taytek.basehw.domain.util.AuthValidator.isUsernameClean(trimmedUsername)) {
+            _uiState.update { it.copy(error = getString(R.string.vm_username_invalid)) }
             return
         }
 
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
-            val available = authRepository.checkUsernameAvailable(username).getOrDefault(false)
+            val available = authRepository.checkUsernameAvailable(trimmedUsername).getOrDefault(false)
             if (available) {
-                val result = authRepository.updateUsername(username)
+                val result = authRepository.updateUsername(trimmedUsername)
                 result.onSuccess {
-                    _uiState.update { it.copy(isLoading = false, showUsernamePrompt = false, userData = it.userData?.copy(username = username)) }
+                    authRepository.completeGoogleUsernameOnboarding()
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            showUsernamePrompt = false,
+                            pendingUsernamePromptAfterConsent = false,
+                            userData = it.userData?.copy(
+                                username = trimmedUsername,
+                                googleUsernameOnboardingRequired = false,
+                                googleUsernameOnboardingCompleted = true
+                            )
+                        )
+                    }
                 }.onFailure { error ->
                     _uiState.update { it.copy(isLoading = false, error = error.message) }
                 }
             } else {
-                _uiState.update { it.copy(isLoading = false, error = "Bu kullanıcı adı zaten alınmış.") }
+                _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_username_taken)) }
             }
         }
     }
@@ -362,38 +442,57 @@ class ProfileViewModel @Inject constructor(
     fun skipUsernameSelection() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true, error = null) }
-            
-            var uniqueUsernameFound = false
-            var attempt = 0
-            var generatedUsername = ""
-            
-            while (!uniqueUsernameFound && attempt < 5) {
-                val randomSuffix = (10000..99999).random()
-                generatedUsername = "user_$randomSuffix"
-                val available = authRepository.checkUsernameAvailable(generatedUsername).getOrDefault(false)
-                if (available) {
-                    uniqueUsernameFound = true
-                }
-                attempt++
-            }
-            
-            if (uniqueUsernameFound) {
+
+            val generatedUsername = generateFallbackUsername(_uiState.value.userData?.email)
+            if (generatedUsername != null) {
                 val result = authRepository.updateUsername(generatedUsername)
                 result.onSuccess {
+                    authRepository.completeGoogleUsernameOnboarding()
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
                             showUsernamePrompt = false, 
-                            userData = it.userData?.copy(username = generatedUsername) 
+                            pendingUsernamePromptAfterConsent = false,
+                            userData = it.userData?.copy(
+                                username = generatedUsername,
+                                googleUsernameOnboardingRequired = false,
+                                googleUsernameOnboardingCompleted = true
+                            ) 
                         ) 
                     }
                 }.onFailure { error ->
                     _uiState.update { it.copy(isLoading = false, error = error.message) }
                 }
             } else {
-                _uiState.update { it.copy(isLoading = false, error = "Kullanıcı adı atanamadı, lütfen tekrar deneyin.") }
+                _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_username_assign_failed)) }
             }
         }
+    }
+
+    private suspend fun generateFallbackUsername(email: String?): String? {
+        val rawLocal = email?.substringBefore("@").orEmpty()
+        val cleaned = rawLocal.lowercase().filter { it.isLetterOrDigit() || it == '_' }
+        var base = cleaned.ifBlank { "user" }
+        if (base.length < 3) {
+            base = (base + "usr").take(3)
+        }
+        base = base.take(8)
+
+        if (authRepository.checkUsernameAvailable(base).getOrDefault(false)) {
+            return base
+        }
+
+        for (suffix in 1..99) {
+            val suffixText = suffix.toString()
+            val candidateBaseLength = 8 - suffixText.length
+            if (candidateBaseLength < 3) continue
+            val candidate = base.take(candidateBaseLength) + suffixText
+            if (authRepository.checkUsernameAvailable(candidate).getOrDefault(false)) {
+                return candidate
+            }
+        }
+
+        return null
     }
 
     fun setEditingUsername(isEditing: Boolean) {
@@ -403,7 +502,7 @@ class ProfileViewModel @Inject constructor(
     fun saveEditedUsername(newUsername: String) {
         if (!com.taytek.basehw.domain.util.AuthValidator.isUsernameFormatValid(newUsername) || 
             !com.taytek.basehw.domain.util.AuthValidator.isUsernameClean(newUsername)) {
-            _uiState.update { it.copy(error = "Geçersiz veya uygunsuz kullanıcı adı.") }
+            _uiState.update { it.copy(error = getString(R.string.vm_username_invalid)) }
             return
         }
 
@@ -425,9 +524,9 @@ class ProfileViewModel @Inject constructor(
                     _uiState.update { it.copy(isLoading = false, error = error.message) }
                 }
             } else if (availableResult.isSuccess) {
-                _uiState.update { it.copy(isLoading = false, error = "Bu kullanıcı adı zaten alınmış.") }
+                _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_username_taken)) }
             } else {
-                _uiState.update { it.copy(isLoading = false, error = "Bağlantı hatası, kontrol edilemedi.") }
+                _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_username_check_failed)) }
             }
         }
     }
@@ -442,7 +541,7 @@ class ProfileViewModel @Inject constructor(
             val result = authRepository.sendPasswordResetEmail(email)
             if (result.isFailure) {
                 _uiState.update { 
-                    it.copy(isLoading = false, error = result.exceptionOrNull()?.message ?: "Sıfırlama e-postası gönderilemedi.") 
+                    it.copy(isLoading = false, error = result.exceptionOrNull()?.message ?: getString(R.string.vm_reset_failed)) 
                 }
             } else {
                 _uiState.update { it.copy(isLoading = false, syncStatusMsg = "PASSWORD_RESET_SENT") }
@@ -462,6 +561,9 @@ class ProfileViewModel @Inject constructor(
                         password = "", 
                         isPasswordVisible = false, 
                         isRegisterMode = false,
+                        showUsernamePrompt = false,
+                        pendingUsernamePromptAfterConsent = false,
+                        showMandatoryConsentDialog = false,
                         error = null
                     ) 
                 }
@@ -470,25 +572,72 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun backupToCloud() {
+        val user = authRepository.currentUser
+        if (user == null || user.isAnonymous) {
+            _uiState.update { it.copy(error = getString(R.string.login_required_backup)) }
+            return
+        }
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null, syncSuccess = false, syncStatusMsg = "Yedekleniyor...") }
+            _uiState.update {
+                it.copy(
+                    isCloudDataOpRunning = true,
+                    error = null,
+                    syncSuccess = false,
+                    syncStatusMsg = getString(R.string.vm_backing_up)
+                )
+            }
             try {
-                userCarRepository.syncToFirestore()
-                _uiState.update { it.copy(isLoading = false, syncSuccess = true, syncStatusMsg = "Yedekleme başarılı!") }
+                userCarRepository.syncToSupabase()
+                _uiState.update {
+                    it.copy(
+                        isCloudDataOpRunning = false,
+                        syncSuccess = true,
+                        syncStatusMsg = getString(R.string.vm_backup_success)
+                    )
+                }
             } catch (e: Exception) {
-                _uiState.update { it.copy(isLoading = false, error = e.localizedMessage ?: "Yedekleme hatası.") }
+                _uiState.update {
+                    it.copy(
+                        isCloudDataOpRunning = false,
+                        error = e.localizedMessage ?: getString(R.string.vm_backup_error)
+                    )
+                }
             }
         }
     }
 
     fun restoreFromCloud() {
+        val user = authRepository.currentUser
+        if (user == null || user.isAnonymous) {
+            _uiState.update { it.copy(error = getString(R.string.login_required_backup)) }
+            return
+        }
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null, syncSuccess = false, syncStatusMsg = "Geri yükleniyor...", showRestorePrompt = false) }
+            _uiState.update {
+                it.copy(
+                    isCloudDataOpRunning = true,
+                    error = null,
+                    syncSuccess = false,
+                    syncStatusMsg = getString(R.string.vm_restoring),
+                    showRestorePrompt = false
+                )
+            }
             try {
-                userCarRepository.syncFromFirestore()
-                _uiState.update { it.copy(isLoading = false, syncSuccess = true, syncStatusMsg = "Geri yükleme başarılı!") }
+                userCarRepository.syncFromSupabase()
+                _uiState.update {
+                    it.copy(
+                        isCloudDataOpRunning = false,
+                        syncSuccess = true,
+                        syncStatusMsg = getString(R.string.vm_restore_success)
+                    )
+                }
             } catch (e: Exception) {
-                _uiState.update { it.copy(isLoading = false, error = e.localizedMessage ?: "Geri yükleme hatası.") }
+                _uiState.update {
+                    it.copy(
+                        isCloudDataOpRunning = false,
+                        error = e.localizedMessage ?: getString(R.string.vm_restore_error)
+                    )
+                }
             }
         }
     }
@@ -515,21 +664,12 @@ class ProfileViewModel @Inject constructor(
 
     fun deleteAccount() {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null, syncStatusMsg = "Veriler temizleniyor...") }
-            
-            // 1. Clear Firestore Data
-            val dataResult = userCarRepository.deleteCloudData()
-            if (dataResult.isFailure) {
-                _uiState.update { 
-                    it.copy(isLoading = false, error = "Veri temizleme hatası: ${dataResult.exceptionOrNull()?.message}") 
-                }
-                return@launch
-            }
+            _uiState.update { it.copy(isLoading = true, error = null, syncStatusMsg = getString(R.string.vm_cleaning_data)) }
 
-            // 2. Delete Auth Account
-            _uiState.update { it.copy(syncStatusMsg = "Hesap siliniyor...") }
+            // 1) Delete remote account data + Firebase user
+            _uiState.update { it.copy(syncStatusMsg = getString(R.string.vm_deleting_account)) }
             val authResult = authRepository.deleteAccount()
-            
+
             if (authResult.isFailure) {
                 val errorMsg = authResult.exceptionOrNull()?.message
                 if (errorMsg == "REAUTH_REQUIRED") {
@@ -538,8 +678,16 @@ class ProfileViewModel @Inject constructor(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = "REAUTH_REQUIRED"
+                            error = getString(R.string.vm_delete_account_reauth_required)
                         ) 
+                    }
+                } else if (errorMsg?.startsWith("REMOTE_CLEANUP_FAILED:") == true) {
+                    val reason = errorMsg.removePrefix("REMOTE_CLEANUP_FAILED:").ifBlank { "unknown_error" }
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            error = getString(R.string.vm_remote_cleanup_failed_with_link).format(reason)
+                        )
                     }
                 } else {
                     _uiState.update { 
@@ -547,7 +695,7 @@ class ProfileViewModel @Inject constructor(
                     }
                 }
             } else {
-                // 3. Clear Local Data
+                // 2) Clear local cache/state
                 userCarRepository.clearLocalData()
                 resetAuthState() // FULL RESET after deletion
                 _uiState.update { it.copy(isLoading = false, syncStatusMsg = "SUCCESS_DELETE") }
@@ -571,6 +719,7 @@ class ProfileViewModel @Inject constructor(
                     val columns = when(lang) {
                         "en" -> listOf("Brand", "Model", "Year", "Series", "Status", "Toy Num", "Col Num", "Case", "Feature", "Category", "Purchase Date", "Price ($symbol)", "Value ($symbol)", "Note", "Location")
                         "de" -> listOf("Marke", "Modell", "Jahr", "Serie", "Status", "Spielzeug Nr", "Kollektions-Nr", "Case", "Merkmal", "Kategorie", "Kaufdatum", "Preis ($symbol)", "Wert ($symbol)", "Notiz", "Standort")
+                        "es" -> listOf("Marca", "Modelo", "Año", "Serie", "Estado", "Nº Juguete", "Nº Colección", "Caja", "Característica", "Categoría", "Fecha de Compra", "Precio ($symbol)", "Valor ($symbol)", "Nota", "Ubicación")
                         else -> listOf("Marka", "Model", "Yil", "Seri", "Durum", "Toy Num", "Col Num", "Case", "Ozellik", "Kategori", "Satin Alim Tarihi", "Fiyat ($symbol)", "Deger ($symbol)", "Not", "Konum")
                     }
                     
@@ -589,11 +738,8 @@ class ProfileViewModel @Inject constructor(
                             "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}"
                         } ?: "0.00"
 
-                        val statusStr = when(lang) {
-                            "en" -> if (car.isOpened) "Opened" else "Mint"
-                            "de" -> if (car.isOpened) "Geöffnet" else "OVP"
-                            else -> if (car.isOpened) "Acilmis" else "Kapali"
-                        }
+                        val cond = car.condition
+                        val statusStr = getStatusString(lang, cond)
 
                         val row = listOf(
                             car.masterData?.brand?.name ?: car.manualBrand?.name ?: "",
@@ -622,7 +768,7 @@ class ProfileViewModel @Inject constructor(
                 
                 _uiState.update { it.copy(isLoading = false, syncStatusMsg = "EXPORT_SUCCESS") }
             } catch (e: Exception) {
-                _uiState.update { it.copy(isLoading = false, error = "Export failed: ${e.message}") }
+                _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_export_failed).format(e.message)) }
             }
     }
 
@@ -635,11 +781,12 @@ class ProfileViewModel @Inject constructor(
             
             val cleanData = cars.map { car ->
                 mutableMapOf<String, Any?>().apply {
-                    // ... (rest of core data)
+                    val brandCode = car.masterData?.brand?.name ?: car.manualBrand?.name
                     val brand = car.masterData?.brand?.displayName ?: car.manualBrand?.displayName
                     val model = car.masterData?.modelName ?: car.manualModelName
                     
                     if (!brand.isNullOrBlank()) put("marka", brand)
+                    if (!brandCode.isNullOrBlank()) put("marka_kod", brandCode)
                     if (!model.isNullOrBlank()) put("model", model)
                     
                     // Master Data Details (Only if not blank)
@@ -660,7 +807,8 @@ class ProfileViewModel @Inject constructor(
                     }
                     
                     // User Collection Data
-                    put("durum", if (car.isOpened) "Acilmis" else "Kapali")
+                    val condObj = car.condition
+                    put("durum", condObj.name)
                     if (car.personalNote.isNotBlank()) put("not", car.personalNote)
                     if (car.storageLocation.isNotBlank()) put("konum", car.storageLocation)
                     
@@ -676,6 +824,7 @@ class ProfileViewModel @Inject constructor(
                     if (car.quantity > 1) put("adet", car.quantity)
                     if (car.isFavorite) put("favori", true)
                     if (car.isCustom) put("custom", true)
+                    if (car.isWishlist) put("wishlist", true)
                 }
             }
 
@@ -683,14 +832,19 @@ class ProfileViewModel @Inject constructor(
                 .setPrettyPrinting()
                 .disableHtmlEscaping()
                 .create()
-            val jsonString = gson.toJson(cleanData)
+            val root = mapOf(
+                "exportVersion" to 2,
+                "currency" to currencyCode.value.ifBlank { "EUR" },
+                "cars" to cleanData
+            )
+            val jsonString = gson.toJson(root)
             
             withContext(Dispatchers.IO) {
                 outputStream.bufferedWriter(Charsets.UTF_8).use { it.write(jsonString) }
             }
             _uiState.update { it.copy(isLoading = false, syncStatusMsg = "EXPORT_SUCCESS") }
         } catch (e: Exception) {
-            _uiState.update { it.copy(isLoading = false, error = "Export failed: ${e.message}") }
+            _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_export_failed).format(e.message)) }
         }
     }
 
@@ -738,7 +892,13 @@ class ProfileViewModel @Inject constructor(
                     color = android.graphics.Color.rgb(245, 245, 245)
                 }
 
-                val cols = listOf("Marka", "Model", "Seri", "Yıl", "Durum", "Fiyat", "Değer")
+                val lang = languageFlow.value.ifBlank { "tr" }
+                val cols = when(lang) {
+                    "en" -> listOf("Brand", "Model", "Series", "Year", "Status", "Price", "Value")
+                    "de" -> listOf("Marke", "Modell", "Serie", "Jahr", "Status", "Preis", "Wert")
+                    "es" -> listOf("Marca", "Modelo", "Serie", "Año", "Estado", "Precio", "Valor")
+                    else -> listOf("Marka", "Model", "Seri", "Yıl", "Durum", "Fiyat", "Değer")
+                }
                 val colWidths = listOf(75f, 135f, 100f, 35f, 55f, 55f, 60f)
                 val rowHeight = 22f
                 
@@ -783,27 +943,29 @@ class ProfileViewModel @Inject constructor(
                         canvas.drawRect(margin, currentY, pageWidth - margin, currentY + rowHeight, rowBgPaint)
                     }
                     
+                    val pCond = car.condition
+                    
                     currentX = margin + 5f
+                    val carStatus = getStatusString(lang, pCond)
+
                     val carValues = listOf(
                         car.masterData?.brand?.displayName ?: car.manualBrand?.displayName ?: "",
                         car.masterData?.modelName ?: car.manualModelName ?: "",
                         car.masterData?.series ?: car.manualSeries ?: "",
                         (car.masterData?.year ?: car.manualYear)?.toString() ?: "-",
-                        if (car.isOpened) "Açılmış" else "Kapalı",
+                        carStatus,
                         car.purchasePrice?.let { 
                             val converted = it * rate
                             "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}"
-                        } ?: "-",
+                        } ?: "0.00",
                         car.estimatedValue?.let { 
                             val converted = it * rate
                             "$symbol${String.format(java.util.Locale.US, "%.2f", converted)}"
-                        } ?: "-"
+                        } ?: "0.00"
                     )
                     
                     carValues.forEachIndexed { index, value ->
-                        val limit = (colWidths[index] / 4.5).toInt()
-                        val text = if (value.length > limit) value.take(limit) + ".." else value
-                        canvas.drawText(text, currentX, currentY + 15f, dataPaint)
+                        canvas.drawText(value, currentX, currentY + 15f, dataPaint)
                         currentX += colWidths[index]
                     }
                     
@@ -817,12 +979,70 @@ class ProfileViewModel @Inject constructor(
             }
             _uiState.update { it.copy(isLoading = false, syncStatusMsg = "EXPORT_SUCCESS") }
         } catch (e: Exception) {
-            _uiState.update { it.copy(isLoading = false, error = "PDF Export Error: ${e.message}") }
+            _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_export_failed).format(e.message)) }
+        }
+    }
+
+    fun importCollectionFromUri(uri: Uri, mimeType: String?, mode: CollectionImportMode) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, error = null, syncStatusMsg = null) }
+            try {
+                context.contentResolver.openInputStream(uri)?.use { stream ->
+                    val result = userCarRepository.importCollection(
+                        stream,
+                        mimeType,
+                        mode,
+                        conversionRate.value
+                    )
+                    result.fold(
+                        onSuccess = { stats ->
+                            userCarRepository.triggerSync()
+                            _uiState.update {
+                                it.copy(
+                                    isLoading = false,
+                                    syncSuccess = true,
+                                    syncStatusMsg = context.getString(
+                                        R.string.import_collection_result,
+                                        stats.added,
+                                        stats.skippedDuplicates,
+                                        stats.skippedIncomplete,
+                                        stats.parseFailures
+                                    )
+                                )
+                            }
+                        },
+                        onFailure = { e ->
+                            _uiState.update {
+                                it.copy(
+                                    isLoading = false,
+                                    error = e.message ?: context.getString(R.string.import_collection_failed)
+                                )
+                            }
+                        }
+                    )
+                } ?: _uiState.update {
+                    it.copy(isLoading = false, error = context.getString(R.string.import_collection_failed))
+                }
+            } catch (e: Exception) {
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        error = e.message ?: context.getString(R.string.import_collection_failed)
+                    )
+                }
+            }
         }
     }
 
     fun clearMessages() {
-        _uiState.update { it.copy(error = null, syncSuccess = false, syncStatusMsg = null) }
+        _uiState.update {
+            it.copy(
+                error = null,
+                syncSuccess = false,
+                syncStatusMsg = null,
+                isCloudDataOpRunning = false
+            )
+        }
     }
 
     fun onExportClick() {
@@ -837,6 +1057,129 @@ class ProfileViewModel @Inject constructor(
         _uiState.update { it.copy(error = message) }
     }
 
+    fun updateCollectionVisibility(isPublic: Boolean) {
+        val userData = _uiState.value.userData ?: return
+        val newCollection = isPublic
+        val currentWishlist = userData.isWishlistPublic
+        // Optimistic UI update - toggle immediately
+        _uiState.update {
+            it.copy(userData = it.userData?.copy(isCollectionPublic = newCollection))
+        }
+        viewModelScope.launch {
+            authRepository.updateVisibilitySettings(newCollection, currentWishlist)
+                .onSuccess {
+                    viewModelScope.launch {
+                        runCatching { userCarRepository.syncToSupabase() }
+                            .onFailure { e ->
+                                Log.w("ProfileViewModel", "Visibility sync skipped: ${e.message}", e)
+                            }
+                    }
+                }
+                .onFailure { e ->
+                    // Rollback on failure
+                    _uiState.update {
+                        it.copy(
+                            userData = it.userData?.copy(isCollectionPublic = !newCollection),
+                            error = e.message ?: getString(R.string.vm_visibility_error)
+                        )
+                    }
+                }
+        }
+    }
+
+    fun updateWishlistVisibility(isPublic: Boolean) {
+        val userData = _uiState.value.userData ?: return
+        val currentCollection = userData.isCollectionPublic
+        val newWishlist = isPublic
+        // Optimistic UI update - toggle immediately
+        _uiState.update {
+            it.copy(userData = it.userData?.copy(isWishlistPublic = newWishlist))
+        }
+        viewModelScope.launch {
+            authRepository.updateVisibilitySettings(currentCollection, newWishlist)
+                .onSuccess {
+                    viewModelScope.launch {
+                        runCatching { userCarRepository.syncToSupabase() }
+                            .onFailure { e ->
+                                Log.w("ProfileViewModel", "Visibility sync skipped: ${e.message}", e)
+                            }
+                    }
+                }
+                .onFailure { e ->
+                    // Rollback on failure
+                    _uiState.update {
+                        it.copy(
+                            userData = it.userData?.copy(isWishlistPublic = !newWishlist),
+                            error = e.message ?: getString(R.string.vm_visibility_error)
+                        )
+                    }
+                }
+        }
+    }
+
+    // Avatar Management
+    fun selectDefaultAvatar(avatarId: Int) {
+        val userData = _uiState.value.userData
+
+        if (userData == null) {
+            android.util.Log.e("ProfileViewModel", "userData is null, cannot select avatar")
+            return
+        }
+        viewModelScope.launch {
+
+            authRepository.updateProfileAvatar(avatarId, null) // null = varsayılan avatar, custom URL temizle
+                .onSuccess {
+
+                    _uiState.update {
+                        it.copy(userData = it.userData?.copy(selectedAvatarId = avatarId, customAvatarUrl = null))
+                    }
+                }
+                .onFailure { e ->
+                    android.util.Log.e("ProfileViewModel", "Avatar update FAILED: ${e.message}", e)
+                    _uiState.update { it.copy(error = e.message ?: getString(R.string.vm_avatar_select_error)) }
+                }
+        }
+    }
+
+    fun uploadCustomAvatar(uri: android.net.Uri) {
+        val userData = _uiState.value.userData
+
+        if (userData == null) {
+            android.util.Log.e("ProfileViewModel", "userData is null, cannot upload avatar")
+            return
+        }
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+            try {
+                val previousAvatarUrl = authRepository.getCurrentCustomAvatarUrl().getOrNull()
+
+                val avatarUrl = storageDataSource.uploadUserProfileAvatar(userData.uid, uri.toString())
+
+                if (avatarUrl != null) {
+                    if (!previousAvatarUrl.isNullOrBlank() && previousAvatarUrl != avatarUrl) {
+                        val deleted = storageDataSource.deleteByPublicUrl(previousAvatarUrl)
+
+                    }
+
+                    authRepository.updateProfileAvatar(0, avatarUrl) // 0 = custom upload, URL'yi kaydet
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            userData = it.userData?.copy(selectedAvatarId = 0, customAvatarUrl = avatarUrl)
+                        )
+                    }
+
+                } else {
+                    android.util.Log.e("ProfileViewModel", "Avatar URL is null after upload")
+                    _uiState.update { it.copy(isLoading = false, error = getString(R.string.vm_avatar_upload_error)) }
+                }
+            } catch (e: Exception) {
+                android.util.Log.e("ProfileViewModel", "Avatar upload exception: ${e.message}", e)
+                _uiState.update { it.copy(isLoading = false, error = e.message ?: getString(R.string.vm_avatar_upload_exception)) }
+            }
+        }
+    }
+
     // Auth State Management
     fun updateEmail(value: String) { _uiState.update { it.copy(email = value) } }
     fun updatePassword(value: String) { _uiState.update { it.copy(password = value) } }
@@ -845,13 +1188,68 @@ class ProfileViewModel @Inject constructor(
     fun togglePasswordVisibility() { _uiState.update { it.copy(isPasswordVisible = !it.isPasswordVisible) } }
     fun toggleRememberMe() { _uiState.update { it.copy(rememberMe = !it.rememberMe) } }
     fun updateAuthUsername(value: String) { 
-        _uiState.update { it.copy(username = value) } 
-        checkUsernameAvailability(value)
+        val sanitized = value.take(8)
+        _uiState.update { it.copy(username = sanitized) } 
+        checkUsernameAvailability(sanitized)
     }
     fun setShowAuthOptionSelection(show: Boolean) { _uiState.update { it.copy(showAuthOptionSelection = show) } }
     fun setShowEmailAuthFields(show: Boolean) { _uiState.update { it.copy(showEmailAuthFields = show) } }
     fun toggleConsent() { _uiState.update { it.copy(consentGranted = !it.consentGranted) } }
+
+    fun acceptMandatoryConsent() {
+        appSettingsManager.setAcceptedPrivacyTerms(true)
+        viewModelScope.launch {
+            authRepository.acceptPrivacyTerms()
+                .onSuccess {
+                    _uiState.update {
+                        it.copy(
+                            showMandatoryConsentDialog = false,
+                            showUsernamePrompt = it.pendingUsernamePromptAfterConsent,
+                            pendingUsernamePromptAfterConsent = false,
+                            userData = it.userData?.copy(privacyAccepted = true),
+                            error = null
+                        )
+                    }
+                }
+                .onFailure { e ->
+                    _uiState.update { it.copy(error = e.message ?: getString(R.string.accept_terms_error)) }
+                }
+        }
+    }
+
+    fun declineMandatoryConsent() {
+        signOut()
+    }
     
+    private fun getStatusString(lang: String, cond: VehicleCondition): String {
+        return when (lang) {
+            "en" -> when (cond) {
+                VehicleCondition.MINT -> "Mint"
+                VehicleCondition.NEAR_MINT -> "Near Mint"
+                VehicleCondition.DAMAGED -> "Damaged"
+                VehicleCondition.LOOSE -> "Loose"
+            }
+            "de" -> when (cond) {
+                VehicleCondition.MINT -> "OVP (Mint)"
+                VehicleCondition.NEAR_MINT -> "OVP (Near Mint)"
+                VehicleCondition.DAMAGED -> "Beschadigt"
+                VehicleCondition.LOOSE -> "Lose"
+            }
+            "es" -> when (cond) {
+                VehicleCondition.MINT -> "En caja (Mint)"
+                VehicleCondition.NEAR_MINT -> "En caja (Near Mint)"
+                VehicleCondition.DAMAGED -> "Danado"
+                VehicleCondition.LOOSE -> "Abierto"
+            }
+            else -> when (cond) {
+                VehicleCondition.MINT -> "Kapali (Mint)"
+                VehicleCondition.NEAR_MINT -> "Kapali (Near Mint)"
+                VehicleCondition.DAMAGED -> "Hasarli"
+                VehicleCondition.LOOSE -> "Acilmis"
+            }
+        }
+    }
+
     fun resetAuthState() {
         _uiState.update { 
             it.copy(
@@ -863,8 +1261,15 @@ class ProfileViewModel @Inject constructor(
                 showAuthOptionSelection = false,
                 showEmailAuthFields = false,
                 consentGranted = false,
+                showUsernamePrompt = false,
+                pendingUsernamePromptAfterConsent = false,
+                showMandatoryConsentDialog = false,
                 error = null
             )
         }
+    }
+
+    private fun getString(resId: Int): String {
+        return context.getString(resId)
     }
 }

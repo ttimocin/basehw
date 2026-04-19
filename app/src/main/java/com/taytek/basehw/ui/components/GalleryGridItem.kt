@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.*
 import coil.compose.AsyncImage
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.ui.theme.*
+import android.util.Log
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -30,16 +31,17 @@ fun GalleryGridItem(
     isSelected: Boolean = false,
     modifier: Modifier = Modifier
 ) {
-    val imageUrl = car.userPhotoUrl ?: car.masterData?.imageUrl
-    val feature = car.masterData?.feature?.lowercase()
-    val isSthCar = feature == "sth"
-    val isChaseCar = feature == "chase"
-    val isThCar = feature == "th"
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
+    val imageUrl = (car.backupPhotoUrl ?: car.userPhotoUrl)?.let { if (it == car.masterData?.imageUrl) null else it }
+    val feature = remember(car.masterData?.feature) { car.masterData?.feature?.lowercase() }
+    val isSthCar = remember(feature) { feature == "sth" }
+    val isChaseCar = remember(feature) { feature == "chase" }
+    val isThCar = remember(feature) { feature == "th" }
     
-    val defaultBorderColor = if (isDark) Color.White.copy(alpha = 0.2f) else MaterialTheme.colorScheme.outline
+    val tokens = AppTheme.tokens
+    val brand = AppTheme.brand
+    val baseColor = MaterialTheme.colorScheme.surfaceContainerLow
+    val darkerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+    val isDark = MaterialTheme.colorScheme.background.luminance() < 0.5f
 
     // Animated shimmer beam for STH cards
     val infiniteTransition = rememberInfiniteTransition(label = "sth_shimmer")
@@ -47,47 +49,56 @@ fun GalleryGridItem(
         initialValue = 0f,
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 2500, easing = LinearEasing),
+            animation = tween(durationMillis = 4000, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "sth_angle"
     )
 
-    val sthGoldDark = Color(0xFF8B6914)
-    val sthGoldMid = Color(0xFFB8860B)
-
     val cardShape = RoundedCornerShape(14.dp)
 
-    // Generate animated sweep gradient brush for STH border
-    val shimmerBorderModifier = if (isSthCar && !isSelected) {
-        val fraction = angle / 360f
-        val shimmerColors = buildList {
-            val beamWidth = 0.12f
-            val steps = 48
-            for (i in 0 until steps) {
-                val t = i.toFloat() / steps
-                val dist = kotlin.math.min(
-                    kotlin.math.abs(t - fraction),
-                    kotlin.math.min(
-                        kotlin.math.abs(t - fraction + 1f),
-                        kotlin.math.abs(t - fraction - 1f)
-                    )
-                )
-                val brightness = (1f - (dist / beamWidth).coerceIn(0f, 1f))
-                val color = androidx.compose.ui.graphics.lerp(sthGoldMid, Color.White, brightness * brightness)
-                add(color)
-            }
-            add(first()) // close the loop
+    val (baseShimmerColor, targetShimmerColor) = when {
+        isSthCar -> brand.sthGoldDeep to Color.White
+        isChaseCar -> {
+            if (isDark) brand.chaseText to brand.chaseBlack
+            else brand.chaseBlack to brand.chaseText
         }
-        val shimmerBrush = Brush.sweepGradient(shimmerColors)
-        Modifier.border(2.5.dp, shimmerBrush, cardShape)
-    } else if (isChaseCar && !isSelected) {
-        val chaseColor = if (isDark) Color.White else Color.Black
-        Modifier.border(2.dp, chaseColor, cardShape)
-    } else if (!isSelected) {
-        Modifier.border(1.dp, defaultBorderColor.copy(alpha = 0.05f), cardShape)
-    } else {
-        Modifier
+        else -> Color.Transparent to Color.Transparent
+    }
+
+    // Generate animated sweep gradient brush for STH or Chase border efficiently
+    val shimmerBorderModifier = when {
+        (isSthCar || isChaseCar) && !isSelected -> {
+            val shimmerBrush by remember(angle, baseShimmerColor, targetShimmerColor) {
+                derivedStateOf {
+                    val fraction = angle / 360f
+                    val shimmerColors = buildList {
+                        val beamWidth = 0.12f
+                        val steps = 36 // Reduced steps for performance
+                        for (i in 0 until steps) {
+                            val t = i.toFloat() / steps
+                            val dist = kotlin.math.min(
+                                kotlin.math.abs(t - fraction),
+                                kotlin.math.min(
+                                    kotlin.math.abs(t - fraction + 1f),
+                                    kotlin.math.abs(t - fraction - 1f)
+                                )
+                            )
+                            val brightness = (1f - (dist / beamWidth).coerceIn(0f, 1f))
+                            val color = androidx.compose.ui.graphics.lerp(baseShimmerColor, targetShimmerColor, brightness * brightness)
+                            add(color)
+                        }
+                        add(first())
+                    }
+                    Brush.sweepGradient(shimmerColors)
+                }
+            }
+            Modifier.border(2.5.dp, shimmerBrush, cardShape)
+        }
+        !isSelected -> {
+            Modifier.border(1.dp, tokens.cardBorderStandard, cardShape)
+        }
+        else -> Modifier
     }
 
     Box(
@@ -129,8 +140,8 @@ fun GalleryGridItem(
                     .background(
                         Brush.verticalGradient(
                             listOf(
-                                AppPrimary.copy(alpha = 0.15f),
-                                AppPrimary.copy(alpha = 0.05f)
+                                tokens.placeholderGradientStart,
+                                tokens.placeholderGradientEnd
                             )
                         )
                     ),
@@ -144,12 +155,12 @@ fun GalleryGridItem(
                         Icons.Default.DirectionsCar,
                         contentDescription = null,
                         modifier = Modifier.size(36.dp),
-                        tint = AppPrimary.copy(alpha = 0.5f)
+                        tint = tokens.primaryAccent.copy(alpha = 0.5f)
                     )
                     Text(
                         text = car.masterData?.brand?.shortCode ?: "?",
                         style = MaterialTheme.typography.labelSmall,
-                        color = AppPrimary.copy(alpha = 0.6f)
+                        color = tokens.primaryAccent.copy(alpha = 0.6f)
                     )
                 }
             }
@@ -200,8 +211,10 @@ fun GalleryGridItem(
             )
         }
 
-        // Top-right badges: STH, Chase, TH, MOC
-        if (isSthCar || isChaseCar || isThCar || !car.isOpened) {
+        // Top-right badges: STH, Chase, TH, MOC/Conditions
+        val conditionObj = car.condition
+        val isBoxed = conditionObj != com.taytek.basehw.domain.model.VehicleCondition.LOOSE
+        if (isSthCar || isChaseCar || isThCar || isBoxed) {
             Row(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
@@ -211,7 +224,7 @@ fun GalleryGridItem(
             ) {
                 if (isSthCar) {
                     Surface(
-                        color = Color(0xFF1A1300),
+                        color = brand.sthTagBackground,
                         shape = RoundedCornerShape(6.dp)
                     ) {
                         Text(
@@ -219,9 +232,9 @@ fun GalleryGridItem(
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.ExtraBold,
-                                color = Color(0xFFFFD54F),
+                                color = brand.sthTagText,
                                 shadow = Shadow(
-                                    color = Color(0xFFFFD700).copy(alpha = 0.6f),
+                                    color = brand.sthTagGlow.copy(alpha = 0.6f),
                                     offset = Offset(0f, 0f),
                                     blurRadius = 10f
                                 )
@@ -233,16 +246,16 @@ fun GalleryGridItem(
 
                 if (isChaseCar) {
                     Surface(
-                        color = Color.Black,
+                        color = brand.chaseBlack,
                         shape = RoundedCornerShape(6.dp),
-                        border = BorderStroke(0.5.dp, Color.White.copy(alpha = 0.5f))
+                        border = BorderStroke(0.5.dp, brand.chaseBorder)
                     ) {
                         Text(
                             text = "CHASE",
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontSize = 8.sp,
                                 fontWeight = FontWeight.ExtraBold,
-                                color = Color.White
+                                color = brand.chaseText
                             ),
                             modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                         )
@@ -251,7 +264,7 @@ fun GalleryGridItem(
 
                 if (isThCar) {
                     Surface(
-                        color = Color(0xFFE5E4E2),
+                        color = brand.thGray,
                         shape = RoundedCornerShape(6.dp),
                         border = BorderStroke(0.5.dp, Color.Black.copy(alpha = 0.2f))
                     ) {
@@ -260,26 +273,32 @@ fun GalleryGridItem(
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.ExtraBold,
-                                color = Color.DarkGray
+                                color = brand.thText
                             ),
                             modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                         )
                     }
                 }
 
-                if (!car.isOpened) {
+                if (isBoxed) {
                     Surface(
-                        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
+                        color = Color(conditionObj.hexColor).copy(alpha = 0.9f),
                         shape = RoundedCornerShape(6.dp)
                     ) {
+                        val label = when(conditionObj) {
+                            com.taytek.basehw.domain.model.VehicleCondition.MINT -> "MINT"
+                            com.taytek.basehw.domain.model.VehicleCondition.NEAR_MINT -> "N.MINT"
+                            com.taytek.basehw.domain.model.VehicleCondition.DAMAGED -> "DMG"
+                            else -> "MOC"
+                        }
                         Text(
-                            text = "MOC",
+                            text = label,
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontWeight = FontWeight.ExtraBold,
-                                fontSize = 9.sp
+                                fontSize = 8.sp
                             ),
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
+                            color = if (conditionObj == com.taytek.basehw.domain.model.VehicleCondition.MINT) MaterialTheme.colorScheme.onSurface else Color.White,
+                            modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
                         )
                     }
                 }
@@ -329,7 +348,7 @@ fun GalleryGridItem(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(AppPrimary.copy(alpha = 0.45f)),
+                    .background(tokens.selectionOverlay),
                 contentAlignment = Alignment.Center
             ) {
                 Surface(
@@ -341,7 +360,7 @@ fun GalleryGridItem(
                     Icon(
                         imageVector = Icons.Default.CheckCircle,
                         contentDescription = "Selected",
-                        tint = AppPrimary,
+                        tint = tokens.selectionIconTint,
                         modifier = Modifier.size(36.dp)
                     )
                 }

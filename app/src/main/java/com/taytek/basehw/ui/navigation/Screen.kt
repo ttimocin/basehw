@@ -21,6 +21,7 @@ sealed class Screen(val route: String) {
     }
     data object PrivacyPolicy : Screen("privacy_policy")
     data object TermsOfUse : Screen("terms_of_use")
+    data object CommunityRules : Screen("community_rules")
     data object FolderDetail : Screen("folder_detail/{folderId}") {
         fun createRoute(folderId: Long) = "folder_detail/$folderId"
     }
@@ -28,5 +29,17 @@ sealed class Screen(val route: String) {
     data object Community : Screen("community")
     data object UserProfile : Screen("user_profile/{uid}") {
         fun createRoute(uid: String) = "user_profile/$uid"
+    }
+    data object ProfileEdit : Screen("profile_edit")
+    data object DirectInbox : Screen("direct_inbox")
+    data object DirectMessage : Screen("direct_message/{uid}/{username}") {
+        fun createRoute(uid: String, username: String) = "direct_message/$uid/$username"
+    }
+    data object AdminPanel : Screen("admin_panel")
+    data object Statistics : Screen("statistics")
+    data object Ranks : Screen("ranks")
+    data object Notifications : Screen("notifications")
+    data object NewsDetail : Screen("news_detail/{newsId}") {
+        fun createRoute(newsId: String) = "news_detail/$newsId"
     }
 }

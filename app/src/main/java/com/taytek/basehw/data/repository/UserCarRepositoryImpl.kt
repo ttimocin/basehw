@@ -1,12 +1,14 @@
 package com.taytek.basehw.data.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import androidx.work.OutOfQuotaPolicy
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -14,26 +16,44 @@ import androidx.paging.map
 import com.taytek.basehw.data.local.CarPhotoLocalStore
 import com.taytek.basehw.data.local.dao.MasterDataDao
 import com.taytek.basehw.data.local.dao.UserCarDao
+import com.taytek.basehw.data.local.dao.VariantHuntDao
 import com.taytek.basehw.data.local.entity.CollectionCarCrossRef
 import com.taytek.basehw.data.local.entity.CustomCollectionEntity
 import com.taytek.basehw.data.local.entity.UserCarEntity
+import com.taytek.basehw.data.local.entity.VariantHuntGroupEntity
+import com.taytek.basehw.data.local.entity.UserCarWithMaster
 import com.taytek.basehw.data.mapper.toDomain
 import com.taytek.basehw.data.mapper.toEntity
-import com.taytek.basehw.data.remote.firebase.FirestoreDataSource
 import com.taytek.basehw.data.remote.network.SupabaseStorageDataSource
 import com.taytek.basehw.data.worker.PhotoBackupWorker
+import com.taytek.basehw.data.worker.CollectionSyncWorker
 import com.taytek.basehw.domain.repository.AuthRepository
 import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.BoxStatusStats
 import com.taytek.basehw.domain.model.BrandStats
 import com.taytek.basehw.domain.model.HwTierStats
+import com.taytek.basehw.domain.model.RankCarInput
 import com.taytek.basehw.domain.model.SortOrder
 import com.taytek.basehw.domain.model.UserCar
+import com.taytek.basehw.domain.model.VehicleCondition
+import com.taytek.basehw.domain.repository.SupabaseSyncRepository
 import com.taytek.basehw.domain.repository.UserCarRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
+import androidx.sqlite.db.SimpleSQLiteQuery
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.withContext
+import com.taytek.basehw.domain.model.CollectionImportMode
+import com.taytek.basehw.domain.model.CollectionImportStats
+import com.taytek.basehw.domain.model.VariantHuntGroupSummary
+import com.taytek.basehw.domain.model.VariantHuntMasterRow
+import java.io.InputStream
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -42,20 +62,26 @@ class UserCarRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
     private val dao: UserCarDao,
     private val masterDataDao: MasterDataDao,
+    private val variantHuntDao: VariantHuntDao,
     private val customCollectionDao: com.taytek.basehw.data.local.dao.CustomCollectionDao,
-    private val firestoreDataSource: FirestoreDataSource,
+    private val supabaseSyncRepository: SupabaseSyncRepository,
     private val supabaseStorageDataSource: SupabaseStorageDataSource,
     private val carPhotoLocalStore: CarPhotoLocalStore,
     private val authRepository: AuthRepository,
     private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager
 ) : UserCarRepository {
 
+    private val snapshotJson = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
+    }
+
     override fun getCollection(
         query: String?,
         brand: String?,
         year: Int?,
         series: String?,
-        isOpened: Boolean?,
+        condition: String?,
         sortOrder: SortOrder
     ): Flow<PagingData<UserCar>> {
         return Pager(
@@ -65,15 +91,15 @@ class UserCarRepositoryImpl @Inject constructor(
             val b = brand
             val y = year
             val s = series
-            val o = isOpened
+            val c = condition
             when (sortOrder) {
-                SortOrder.DATE_ADDED_DESC -> dao.getFilteredSortDateDesc(q, b, y, s, o)
-                SortOrder.DATE_ADDED_ASC  -> dao.getFilteredSortDateAsc(q, b, y, s, o)
-                SortOrder.BRAND_ASC       -> dao.getFilteredSortBrandAsc(q, b, y, s, o)
-                SortOrder.YEAR_DESC       -> dao.getFilteredSortYearDesc(q, b, y, s, o)
-                SortOrder.YEAR_ASC        -> dao.getFilteredSortYearAsc(q, b, y, s, o)
-                SortOrder.PRICE_DESC      -> dao.getFilteredSortPriceDesc(q, b, y, s, o)
-                SortOrder.PRICE_ASC       -> dao.getFilteredSortPriceAsc(q, b, y, s, o)
+                SortOrder.DATE_ADDED_DESC -> dao.getFilteredSortDateDesc(q, b, y, c)
+                SortOrder.DATE_ADDED_ASC  -> dao.getFilteredSortDateAsc(q, b, y, c)
+                SortOrder.BRAND_ASC       -> dao.getFilteredSortBrandAsc(q, b, y, c)
+                SortOrder.YEAR_DESC       -> dao.getFilteredSortYearDesc(q, b, y, c)
+                SortOrder.YEAR_ASC        -> dao.getFilteredSortYearAsc(q, b, y, c)
+                SortOrder.PRICE_DESC      -> dao.getFilteredSortPriceDesc(q, b, y, c)
+                SortOrder.PRICE_ASC       -> dao.getFilteredSortPriceAsc(q, b, y, c)
             }
         }.flow.map { pagingData ->
             pagingData.map { it.toDomain() }
@@ -122,39 +148,33 @@ class UserCarRepositoryImpl @Inject constructor(
             dao.updateUserPhotoUrl(id, persistedPhotoUrl)
         }
 
-        // Real-time sync to Firestore if possible
-        dao.getByIdWithMaster(id).firstOrNull()?.let { wrapper ->
-            uploadCarToFirestore(wrapper.car, wrapper.master?.brand, wrapper.master?.modelName, wrapper.master?.year)
-        }
+        syncSnapshotToSupabaseIfSignedIn()
 
         enqueuePhotoBackupIfNeeded(id)
+        refreshVariantHuntCompletion()
         return id
     }
 
     override suspend fun deleteCar(id: Long) {
         val carWithMaster = dao.getByIdWithMaster(id).firstOrNull()
         val photoUrl = carWithMaster?.car?.backupPhotoUrl ?: carWithMaster?.car?.userPhotoUrl
-        val firestoreId = carWithMaster?.car?.firestoreId
-        if (!firestoreId.isNullOrBlank()) {
-            firestoreDataSource.deleteCar(firestoreId)
-        }
         deletePhotoFromSupabaseIfNeeded(photoUrl)
         carWithMaster?.car?.additionalPhotosBackup?.forEach { deletePhotoFromSupabaseIfNeeded(it) }
         dao.deleteById(id)
+        syncSnapshotToSupabaseIfSignedIn()
+        refreshVariantHuntCompletion()
     }
 
     override suspend fun deleteCars(ids: List<Long>) {
         ids.forEach { id ->
             val carWithMaster = dao.getByIdWithMaster(id).firstOrNull()
             val photoUrl = carWithMaster?.car?.backupPhotoUrl ?: carWithMaster?.car?.userPhotoUrl
-            val firestoreId = carWithMaster?.car?.firestoreId
-            if (!firestoreId.isNullOrBlank()) {
-                firestoreDataSource.deleteCar(firestoreId)
-            }
             deletePhotoFromSupabaseIfNeeded(photoUrl)
             carWithMaster?.car?.additionalPhotosBackup?.forEach { deletePhotoFromSupabaseIfNeeded(it) }
         }
         dao.deleteByIds(ids)
+        syncSnapshotToSupabaseIfSignedIn()
+        refreshVariantHuntCompletion()
     }
 
     override suspend fun updateCar(car: UserCar) {
@@ -186,182 +206,185 @@ class UserCarRepositoryImpl @Inject constructor(
         }
 
         enqueuePhotoBackupIfNeeded(entity.id)
-
-        // Real-time sync to Firestore if possible
-        if (authRepository.currentUser != null) {
-            uploadCarToFirestore(entity, car.masterData?.brand?.name, car.masterData?.modelName, car.masterData?.year)
-        }
+        syncSnapshotToSupabaseIfSignedIn()
+        refreshVariantHuntCompletion()
     }
 
-    private suspend fun uploadCarToFirestore(carEntity: UserCarEntity, brand: String?, modelName: String?, year: Int?) {
-        val currentUser = authRepository.currentUser ?: return
-        val finalPhotoUrl = sanitizePhotoUrlForCloud(carEntity.userPhotoUrl, carEntity.backupPhotoUrl)
+    override suspend fun syncToSupabase() {
 
-        val data: Map<String, Any?> = mapOf(
-            "masterDataId" to carEntity.masterDataId,
-            // Catalog search fields
-            "brand" to brand,
-            "modelName" to modelName,
-            "year" to year,
-            // Manual entry fields
-            "manualModelName" to carEntity.manualModelName,
-            "manualBrand" to carEntity.manualBrand,
-            "manualSeries" to carEntity.manualSeries,
-            "manualSeriesNum" to carEntity.manualSeriesNum,
-            "manualYear" to carEntity.manualYear,
-            "manualScale" to carEntity.manualScale,
-            "manualIsPremium" to carEntity.manualIsPremium,
-            // Common fields
-            "isOpened" to carEntity.isOpened,
-            "purchaseDateMillis" to carEntity.purchaseDateMillis,
-            "personalNote" to carEntity.personalNote,
-            "storageLocation" to carEntity.storageLocation,
-            "purchasePrice" to carEntity.purchasePrice,
-            "estimatedValue" to carEntity.estimatedValue,
-            "isWishlist" to carEntity.isWishlist,
-            "isFavorite" to carEntity.isFavorite,
-            "isSeriesOnly" to carEntity.isSeriesOnly,
-            "userPhotoUrl" to finalPhotoUrl,
-            "backupPhotoUrl" to finalPhotoUrl,
-            "additionalPhotosBackup" to carEntity.additionalPhotosBackup
-        )
-        val firestoreId = firestoreDataSource.uploadCarMap(data, carEntity.firestoreId)
-        if (!firestoreId.isNullOrBlank() && carEntity.firestoreId.isBlank()) {
-            dao.updateFirestoreId(carEntity.id, firestoreId)
+        val user = authRepository.currentUser ?: run {
+            Log.w(TAG, "syncToSupabase: NO USER FOUND, ABORTING")
+            return
         }
-    }
-
-    override suspend fun syncToFirestore() {
-        // 0. Sync Preferences (Currency)
-        val currency = appSettingsManager.currencyFlow.value
-        if (currency.isNotBlank()) {
-            firestoreDataSource.saveUserPreferences(mapOf("currency" to currency))
+        if (!user.isEmailVerified) {
+            Log.w(TAG, "syncToSupabase: EMAIL NOT VERIFIED, ABORTING")
+            return
         }
 
-        // 1. Sync Cars
-        val allCars = dao.getAllCarsWithMasterList()
-        allCars.forEach { wrapper ->
-            uploadCarToFirestore(wrapper.car, wrapper.master?.brand, wrapper.master?.modelName, wrapper.master?.year)
-        }
 
-        // 2. Sync Folders
-        val allFolders = customCollectionDao.getAllCollectionsList()
-        allFolders.forEach { folder ->
-            val folderData = mapOf(
-                "name" to folder.name,
-                "description" to folder.description,
-                "coverPhotoUrl" to folder.coverPhotoUrl,
-                "createdAtMillis" to folder.createdAtMillis
-            )
-            val firestoreId = firestoreDataSource.uploadFolderMap(folderData, folder.firestoreId)
-            if (!firestoreId.isNullOrBlank() && folder.firestoreId.isBlank()) {
-                customCollectionDao.updateFirestoreId(folder.id, firestoreId)
-            }
-        }
-
-        // 3. Sync Mappings
-        val allMappings = customCollectionDao.getAllCrossRefs()
-        allMappings.forEach { crossRef ->
-            val car = dao.getByIdWithMaster(crossRef.userCarId).firstOrNull()?.car
-            val folder = customCollectionDao.getAllCollectionsList().find { it.id == crossRef.collectionId }
-            
-            if (car != null && folder != null && car.firestoreId.isNotBlank() && folder.firestoreId.isNotBlank()) {
-                firestoreDataSource.uploadMapping(folder.firestoreId, car.firestoreId)
-            }
-        }
-    }
-
-    override suspend fun syncFromFirestore() {
-        // 0. Sync Preferences
-        val prefs = firestoreDataSource.fetchUserPreferences()
-        prefs?.get("currency")?.let {
-            if (it is String && it.isNotBlank()) {
-                appSettingsManager.setCurrency(it)
-            }
-        }
-
-        // 1. Sync Cars
-        val remoteCars = firestoreDataSource.fetchAllCars()
-        val localFirestoreIds = dao.getAllFirestoreIds().toSet()
-        
-        remoteCars.forEach { data ->
-            val firestoreId = data["firestoreId"] as? String ?: ""
-            if (firestoreId.isBlank() || localFirestoreIds.contains(firestoreId)) return@forEach
-
-            val brand = data["brand"] as? String ?: ""
-            val modelName = data["modelName"] as? String ?: ""
-            val year = (data["year"] as? Number)?.toInt()
-
-            val resolvedId = masterDataDao.getIdByIdentity(brand, modelName, year)
-            // Allow restoration even if not in master list (e.g. manual entries or legacy catalog items)
-            val additionalRemote = (data["additionalPhotosBackup"] as? List<*>)?.filterIsInstance<String>() ?: emptyList()
-            
-            val entity = UserCarEntity(
-                masterDataId = resolvedId,
-                manualModelName = data["manualModelName"] as? String,
-                manualBrand = data["manualBrand"] as? String,
-                manualSeries = data["manualSeries"] as? String,
-                manualSeriesNum = data["manualSeriesNum"] as? String,
-                manualYear = (data["manualYear"] as? Number)?.toInt(),
-                manualScale = data["manualScale"] as? String,
-                manualIsPremium = data["manualIsPremium"] as? Boolean,
-                isOpened = data["isOpened"] as? Boolean ?: false,
-                purchaseDateMillis = (data["purchaseDateMillis"] as? Number)?.toLong(),
-                personalNote = data["personalNote"] as? String ?: "",
-                storageLocation = data["storageLocation"] as? String ?: "",
-                purchasePrice = (data["purchasePrice"] as? Number)?.toDouble(),
-                estimatedValue = (data["estimatedValue"] as? Number)?.toDouble(),
-                isWishlist = data["isWishlist"] as? Boolean ?: false,
-                isFavorite = data["isFavorite"] as? Boolean ?: false,
-                isSeriesOnly = data["isSeriesOnly"] as? Boolean ?: false,
-                firestoreId = firestoreId,
-                userPhotoUrl = (data["userPhotoUrl"] as? String),
-                backupPhotoUrl = (data["backupPhotoUrl"] as? String) ?: (data["userPhotoUrl"] as? String),
-                additionalPhotos = additionalRemote,
-                additionalPhotosBackup = additionalRemote
-            )
-            dao.insert(entity)
-        }
-
-        // 2. Sync Folders
-        val remoteFolders = firestoreDataSource.fetchAllFolders()
-        val localFolderFirestoreIds = customCollectionDao.getAllFirestoreIds().toSet()
-
-        remoteFolders.forEach { data ->
-            val firestoreId = data["firestoreId"] as? String ?: ""
-            if (firestoreId.isBlank() || localFolderFirestoreIds.contains(firestoreId)) return@forEach
-
-            val entity = CustomCollectionEntity(
-                name = data["name"] as? String ?: "",
-                description = data["description"] as? String ?: "",
-                coverPhotoUrl = data["coverPhotoUrl"] as? String,
-                createdAtMillis = (data["createdAtMillis"] as? Number)?.toLong() ?: System.currentTimeMillis(),
-                firestoreId = firestoreId
-            )
-            customCollectionDao.insertCollection(entity)
-        }
-
-        // 3. Sync Mappings
-        val remoteMappings = firestoreDataSource.fetchAllMappings()
-        val allLocalCars = dao.getAllCarsWithMasterList()
-        val allLocalFolders = customCollectionDao.getAllCollectionsList()
-
-        remoteMappings.forEach { data ->
-            val folderFirestoreId = data["folderId"] as? String ?: ""
-            val carFirestoreId = data["carId"] as? String ?: ""
-
-            val localCar = allLocalCars.find { it.car.firestoreId == carFirestoreId }
-            val localFolder = allLocalFolders.find { it.firestoreId == folderFirestoreId }
-
-            if (localCar != null && localFolder != null) {
-                customCollectionDao.insertCrossRef(
-                    CollectionCarCrossRef(
-                        collectionId = localFolder.id,
-                        userCarId = localCar.car.id
-                    )
+        val snapshot = CollectionSnapshotPayload(
+            currency = appSettingsManager.currencyFlow.value.ifBlank { "EUR" },
+            cars = dao.getAllCarsWithMasterList().map { row ->
+                val remoteMain = sanitizePhotoUrlForCloud(row.car.userPhotoUrl, row.car.backupPhotoUrl)
+                val remoteAdditional = (row.car.additionalPhotosBackup + row.car.additionalPhotos)
+                    .filter { isRemoteUrl(it) }
+                    .distinct()
+                SnapshotCar(
+                    localId = row.car.id,
+                    masterDataId = row.car.masterDataId,
+                    masterBrand = row.master?.brand,
+                    masterFeature = row.master?.feature,
+                    masterModelName = row.master?.modelName,
+                    masterYear = row.master?.year,
+                    masterSeries = row.master?.series,
+                    masterToyNum = row.master?.toyNum,
+                    masterDataSource = row.master?.dataSource,
+                    masterImageUrl = row.master?.imageUrl,
+                    manualModelName = row.car.manualModelName,
+                    manualBrand = row.car.manualBrand,
+                    manualSeries = row.car.manualSeries,
+                    manualSeriesNum = row.car.manualSeriesNum,
+                    manualYear = row.car.manualYear,
+                    manualScale = row.car.manualScale,
+                    manualIsPremium = row.car.manualIsPremium,
+                    feature = row.master?.feature,
+                    condition = row.car.condition,
+                    purchaseDateMillis = row.car.purchaseDateMillis,
+                    personalNote = row.car.personalNote,
+                    storageLocation = row.car.storageLocation,
+                    firestoreId = row.car.firestoreId,
+                    isWishlist = row.car.isWishlist,
+                    userPhotoUrl = remoteMain,
+                    backupPhotoUrl = row.car.backupPhotoUrl.takeIf { isRemoteUrl(it) },
+                    purchasePrice = row.car.purchasePrice,
+                    estimatedValue = row.car.estimatedValue,
+                    isFavorite = row.car.isFavorite,
+                    isSeriesOnly = row.car.isSeriesOnly,
+                    isCustom = row.car.isCustom,
+                    quantity = row.car.quantity,
+                    additionalPhotos = remoteAdditional,
+                    additionalPhotosBackup = remoteAdditional,
+                    hwCardType = row.car.hwCardType
                 )
+            },
+            folders = customCollectionDao.getAllCollectionsList().map { SnapshotFolder.fromEntity(it) },
+            mappings = customCollectionDao.getAllCrossRefs().map { SnapshotMapping(it.collectionId, it.userCarId) }
+        )
+
+        val payload = snapshotJson.encodeToString(snapshot)
+
+        supabaseSyncRepository.upsertCollectionSnapshot(user.uid, payload)
+            .getOrElse { 
+                Log.e(TAG, "syncToSupabase: UPSERT FAILED", it)
+                throw it 
+            }
+        
+
+        syncPublicListingsToSupabase(user.uid)
+    }
+
+    private suspend fun syncPublicListingsToSupabase(firebaseUid: String) {
+        val profile = authRepository.getUserProfile().getOrNull() ?: return
+        val shouldPublishCollection = profile.isCollectionPublic
+        val shouldPublishWishlist = profile.isWishlistPublic
+
+        supabaseSyncRepository.deletePublicListings(firebaseUid)
+            .getOrElse { throw it }
+
+        if (!shouldPublishCollection && !shouldPublishWishlist) return
+
+        val listings = dao.getAllCarsWithMasterList()
+            .map { it.toDomain() }
+            .filter { car ->
+                (shouldPublishCollection && !car.isWishlist) || (shouldPublishWishlist && car.isWishlist)
+            }
+            .distinctBy { car -> car.id }
+
+        listings.forEach { car ->
+            val title = listOfNotNull(
+                car.masterData?.brand?.displayName ?: car.manualBrand?.displayName,
+                car.masterData?.modelName ?: car.manualModelName
+            ).joinToString(" ").ifBlank { "BaseHW" }
+            val imageUrl = car.backupPhotoUrl ?: car.userPhotoUrl
+            val listingId = if (car.isWishlist) "wishlist_${car.id}" else "collection_${car.id}"
+            supabaseSyncRepository.publishListing(
+                firebaseUid = firebaseUid,
+                listingId = listingId,
+                title = title,
+                imageUrl = imageUrl
+            ).getOrElse { throw it }
+        }
+    }
+
+    override suspend fun syncFromSupabase() {
+        val user = authRepository.currentUser ?: return
+        val payload = supabaseSyncRepository.fetchCollectionSnapshot(user.uid)
+            .getOrElse { throw it }
+            ?: return
+
+        val snapshot = snapshotJson.decodeFromString<CollectionSnapshotPayload>(payload)
+
+        // Full restore for deterministic state.
+        dao.deleteAll()
+        customCollectionDao.clearAllCrossRefs()
+        customCollectionDao.deleteAllCollections()
+
+        if (snapshot.currency.isNotBlank()) {
+            appSettingsManager.setCurrency(snapshot.currency)
+        }
+
+        val oldToNewCarIds = mutableMapOf<Long, Long>()
+        snapshot.cars.forEach { row ->
+            val resolvedMasterDataId = resolveMasterDataId(row)
+            val newId = dao.insert(row.toEntity(resolvedMasterDataId))
+            oldToNewCarIds[row.localId] = newId
+        }
+
+        val oldToNewFolderIds = mutableMapOf<Long, Long>()
+        snapshot.folders.forEach { row ->
+            val newId = customCollectionDao.insertCollection(row.toEntity())
+            oldToNewFolderIds[row.localId] = newId
+        }
+
+        snapshot.mappings.forEach { row ->
+            val newFolderId = oldToNewFolderIds[row.collectionLocalId] ?: return@forEach
+            val newCarId = oldToNewCarIds[row.carLocalId] ?: return@forEach
+            customCollectionDao.insertCrossRef(
+                CollectionCarCrossRef(
+                    collectionId = newFolderId,
+                    userCarId = newCarId
+                )
+            )
+        }
+        refreshVariantHuntCompletion()
+    }
+
+    override suspend fun mergeFromSupabase() {
+        val user = authRepository.currentUser ?: return
+        val payload = supabaseSyncRepository.fetchCollectionSnapshot(user.uid)
+            .getOrElse { throw it }
+            ?: return
+
+        val snapshot = snapshotJson.decodeFromString<CollectionSnapshotPayload>(payload)
+
+        if (snapshot.currency.isNotBlank()) {
+            appSettingsManager.setCurrency(snapshot.currency)
+        }
+
+        val existingKeys = dao.getAllCarsWithMasterList()
+            .map { it.car }
+            .map { buildMergeKey(it) }
+            .toMutableSet()
+
+        snapshot.cars.forEach { row ->
+            val resolvedMasterDataId = resolveMasterDataId(row)
+            val candidate = row.toEntity(resolvedMasterDataId)
+            val key = buildMergeKey(candidate)
+            if (existingKeys.add(key)) {
+                dao.insert(candidate)
             }
         }
+        refreshVariantHuntCompletion()
     }
 
     override suspend fun deleteCloudData(): Result<Unit> {
@@ -382,8 +405,13 @@ class UserCarRepositoryImpl @Inject constructor(
                 deletePhotoFromSupabaseIfNeeded(url)
             }
 
-            // 2) Delete Firestore user data (cars/folders/mappings/user doc).
-            firestoreDataSource.deleteUserAccountData()
+            // 2) Delete Supabase collection snapshot.
+            val uid = authRepository.currentUser?.uid
+            if (!uid.isNullOrBlank()) {
+                // Remove public collection mirrors along with backup snapshot.
+                supabaseSyncRepository.deletePublicListings(uid)
+                supabaseSyncRepository.deleteCollectionSnapshot(uid)
+            }
             Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
@@ -394,6 +422,7 @@ class UserCarRepositoryImpl @Inject constructor(
         dao.deleteAll()
         customCollectionDao.clearAllCrossRefs()
         customCollectionDao.deleteAllCollections()
+        refreshVariantHuntCompletion()
     }
 
     override fun getCarById(id: Long): Flow<UserCar?> {
@@ -426,7 +455,7 @@ class UserCarRepositoryImpl @Inject constructor(
 
     override fun getBoxStatusCounts(): Flow<List<BoxStatusStats>> {
         return dao.getBoxStatusCounts().map { list ->
-            list.map { BoxStatusStats(isOpened = it.isOpened, count = it.count) }
+            list.map { BoxStatusStats(condition = it.condition, count = it.count) }
         }
     }
 
@@ -479,14 +508,11 @@ class UserCarRepositoryImpl @Inject constructor(
                     isWishlist = true,
                     isSeriesOnly = true
                 )
-                val newId = dao.insert(entity)
-                
-                // Trigger real-time sync if user is logged in
-                if (authRepository.currentUser != null) {
-                    uploadCarToFirestore(entity.copy(id = newId), master.brand, master.modelName, master.year)
-                }
+                dao.insert(entity)
+                syncSnapshotToSupabaseIfSignedIn()
             }
         }
+        refreshVariantHuntCompletion()
     }
 
     override suspend fun deleteWishlistSeries(brand: Brand, seriesName: String) {
@@ -569,6 +595,32 @@ class UserCarRepositoryImpl @Inject constructor(
         return dao.getAllCarsWithMasterList().map { it.toDomain() }
     }
 
+    override fun getAllCarsWithMasterListFlow(): Flow<List<UserCar>> {
+        return dao.getAllWithMasterListFlow().map { list -> list.map { it.toDomain() } }
+    }
+
+
+    override fun getRankCars(): Flow<List<RankCarInput>> {
+        return dao.getRankCarRows().map { rows ->
+            rows.map { row ->
+                RankCarInput(
+                    brand = row.brand?.let { raw ->
+                        try {
+                            Brand.valueOf(raw)
+                        } catch (_: Exception) {
+                            null
+                        }
+                    },
+                    feature = row.feature,
+                    condition = VehicleCondition.fromString(row.condition),
+                    isPremium = row.isPremium == true,
+                    isCustom = row.isCustom,
+                    quantity = row.quantity
+                )
+            }
+        }
+    }
+
     private fun preprocessPhotoUrl(userPhotoUrl: String?): String? {
         if (userPhotoUrl.isNullOrBlank()) return null
         if (userPhotoUrl.startsWith("http://") || userPhotoUrl.startsWith("https://")) return userPhotoUrl
@@ -581,10 +633,71 @@ class UserCarRepositoryImpl @Inject constructor(
         return null
     }
 
+    private suspend fun resolveMasterDataId(row: SnapshotCar): Long? {
+        val brand = row.masterBrand ?: return null
+        val modelName = row.masterModelName ?: return null
+
+        if (!row.masterToyNum.isNullOrBlank()) {
+            val byToy = masterDataDao.getByToyNumGlobal(brand, row.masterToyNum)
+            val bestToyMatch = byToy.firstOrNull { candidate ->
+                val sourceMatches = row.masterDataSource.isNullOrBlank() || candidate.dataSource == row.masterDataSource
+                val seriesMatches = row.masterSeries.isNullOrBlank() || candidate.series == row.masterSeries
+                val yearMatches = row.masterYear == null || candidate.year == row.masterYear
+                sourceMatches && seriesMatches && yearMatches
+            } ?: byToy.firstOrNull()
+            if (bestToyMatch != null) return bestToyMatch.id
+        }
+
+        if (!row.masterDataSource.isNullOrBlank()) {
+            val byIdentityWithSource = masterDataDao.getByIdentity(
+                brand = brand,
+                modelName = modelName,
+                year = row.masterYear,
+                dataSource = row.masterDataSource
+            )
+            if (byIdentityWithSource != null) return byIdentityWithSource.id
+        }
+
+        if (row.masterYear != null) {
+            val byIdentityGlobal = masterDataDao.getByIdentityGlobal(brand, modelName, row.masterYear)
+            val bestIdentityMatch = byIdentityGlobal.firstOrNull { candidate ->
+                row.masterSeries.isNullOrBlank() || candidate.series == row.masterSeries
+            } ?: byIdentityGlobal.firstOrNull()
+            if (bestIdentityMatch != null) return bestIdentityMatch.id
+
+            val simpleId = masterDataDao.getIdByIdentity(brand, modelName, row.masterYear)
+            if (simpleId != null) return simpleId
+        }
+
+        return null
+    }
+
     private suspend fun deletePhotoFromSupabaseIfNeeded(userPhotoUrl: String?) {
         val url = userPhotoUrl ?: return
         if (!url.contains("/storage/v1/object/public/")) return
         supabaseStorageDataSource.deleteByPublicUrl(url)
+    }
+
+    private fun buildMergeKey(car: UserCarEntity): String {
+        val mainPhoto = car.backupPhotoUrl ?: car.userPhotoUrl
+        return listOf(
+            car.masterDataId?.toString().orEmpty(),
+            car.manualBrand.orEmpty().trim().lowercase(),
+            car.manualModelName.orEmpty().trim().lowercase(),
+            car.manualSeries.orEmpty().trim().lowercase(),
+            car.manualSeriesNum.orEmpty().trim().lowercase(),
+            car.manualYear?.toString().orEmpty(),
+            car.condition,
+            car.isWishlist.toString(),
+            car.isSeriesOnly.toString(),
+            car.isCustom.toString(),
+            car.quantity.toString(),
+            car.hwCardType.orEmpty(),
+            car.purchaseDateMillis?.toString().orEmpty(),
+            car.personalNote.trim().lowercase(),
+            car.storageLocation.trim().lowercase(),
+            mainPhoto.orEmpty().trim().lowercase()
+        ).joinToString("|")
     }
 
     private fun isRemoteUrl(url: String?): Boolean {
@@ -593,21 +706,8 @@ class UserCarRepositoryImpl @Inject constructor(
     }
 
     override suspend fun hasCloudData(): Boolean = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
-        val user = authRepository.currentUser
-        println("DEBUG_BACKUP: hasCloudData check. User: ${user?.uid}")
-        if (user == null) return@withContext false
-        try {
-            kotlinx.coroutines.withTimeout(5000) {
-                val cars = firestoreDataSource.fetchAllCars()
-                val folders = firestoreDataSource.fetchAllFolders()
-                val mappings = firestoreDataSource.fetchAllMappings()
-                println("DEBUG_BACKUP: Cloud counts - Cars: ${cars.size}, Folders: ${folders.size}, Mappings: ${mappings.size}")
-                cars.isNotEmpty() || folders.isNotEmpty() || mappings.isNotEmpty()
-            }
-        } catch (e: Exception) {
-            println("DEBUG_BACKUP: hasCloudData error: ${e.message}")
-            false
-        }
+        val user = authRepository.currentUser ?: return@withContext false
+        supabaseSyncRepository.hasCollectionSnapshot(user.uid).getOrDefault(false)
     }
 
     private fun enqueuePhotoBackupIfNeeded(carId: Long) {
@@ -632,4 +732,429 @@ class UserCarRepositoryImpl @Inject constructor(
             request
         )
     }
+    override fun triggerSync() {
+        syncSnapshotToSupabaseIfSignedIn()
+    }
+
+    private fun syncSnapshotToSupabaseIfSignedIn() {
+        val user = authRepository.currentUser
+        if (user != null && user.isEmailVerified) {
+
+        } else if (user != null && !user.isEmailVerified) {
+            android.util.Log.w(TAG, "Auto-sync skipped: Email not verified for ${user.uid}")
+            return
+        } else {
+            return
+        }
+        
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+
+        val request = OneTimeWorkRequestBuilder<CollectionSyncWorker>()
+            .setConstraints(constraints)
+            .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+            .build()
+
+        WorkManager.getInstance(context).enqueueUniqueWork(
+            CollectionSyncWorker.WORK_NAME,
+            ExistingWorkPolicy.REPLACE,
+            request
+        )
+    }
+
+    companion object {
+        private const val TAG = "UserCarRepo"
+        private const val VARIANT_HUNT_MAX_MATCHES = 500
+
+        private val VARIANT_HUNT_STOPWORDS = setOf(
+            "the", "a", "an", "and", "or", "of", "in", "on", "for", "to", "with", "by", "from", "as", "at",
+            "ve", "ile", "bir", "bu", "da", "de", "mi", "mu", "i̇le"
+        )
+
+        /**
+         * modelName başındaki üretici adı (ör. «Audi») zaten `brand = HOT_WHEELS` ile sınırlı;
+         * ayrıca model adında «Audi» geçmeyen (sadece seri/modelde «Avant RS2») satırları yanlışlıkla eler.
+         */
+        private val VARIANT_HUNT_LEADING_CARMAKER_TOKENS = setOf(
+            "acura", "alfa", "aston", "audi", "bentley", "bmw", "bugatti", "buick", "cadillac", "chevrolet",
+            "chevy", "chrysler", "citroen", "dodge", "ferrari", "fiat", "ford", "genesis", "gmc", "honda",
+            "hyundai", "infiniti", "jaguar", "jeep", "kia", "lamborghini", "lancia", "land", "lexus", "lincoln",
+            "lotus", "maserati", "mazda", "mclaren", "mercedes", "mercedesbenz", "mini", "mitsubishi", "nissan",
+            "oldsmobile", "opel", "pagani", "peugeot", "plymouth", "polestar", "pontiac", "porsche", "ram",
+            "renault", "rolls", "rover", "saab", "saturn", "scion", "seat", "skoda", "smart", "subaru", "suzuki",
+            "tesla", "toyota", "triumph", "volkswagen", "vw", "volvo", "romeo"
+        )
+    }
+
+    @Serializable
+    private data class CollectionSnapshotPayload(
+        val currency: String,
+        val cars: List<SnapshotCar>,
+        val folders: List<SnapshotFolder>,
+        val mappings: List<SnapshotMapping>
+    )
+
+    @Serializable
+    private data class SnapshotCar(
+        val localId: Long,
+        val masterDataId: Long?,
+        val masterBrand: String? = null,
+        val masterFeature: String? = null,
+        val masterModelName: String? = null,
+        val masterYear: Int? = null,
+        val masterSeries: String? = null,
+        val masterToyNum: String? = null,
+        val masterDataSource: String? = null,
+        val masterImageUrl: String? = null,
+        val manualModelName: String? = null,
+        val manualBrand: String? = null,
+        val manualSeries: String? = null,
+        val manualSeriesNum: String? = null,
+        val manualYear: Int? = null,
+        val manualScale: String? = null,
+        val manualIsPremium: Boolean? = null,
+        val feature: String? = null,
+        val condition: String = "MINT",
+        val purchaseDateMillis: Long? = null,
+        val personalNote: String = "",
+        val storageLocation: String = "",
+        val firestoreId: String = "",
+        val isWishlist: Boolean = false,
+        val userPhotoUrl: String? = null,
+        val backupPhotoUrl: String? = null,
+        val purchasePrice: Double? = null,
+        val estimatedValue: Double? = null,
+        val isFavorite: Boolean = false,
+        val isSeriesOnly: Boolean = false,
+        val isCustom: Boolean = false,
+        val quantity: Int = 1,
+        val additionalPhotos: List<String> = emptyList(),
+        val additionalPhotosBackup: List<String> = emptyList(),
+        val hwCardType: String? = null
+    ) {
+        private fun isRemote(url: String?): Boolean {
+            return !url.isNullOrBlank() && (url.startsWith("http://") || url.startsWith("https://"))
+        }
+
+        fun toEntity(resolvedMasterDataId: Long?): UserCarEntity {
+            val normalizedMain = when {
+                isRemote(backupPhotoUrl) -> backupPhotoUrl
+                isRemote(userPhotoUrl) -> userPhotoUrl
+                else -> null
+            }
+            val normalizedAdditional = (additionalPhotosBackup + additionalPhotos)
+                .filter { isRemote(it) }
+                .distinct()
+
+            return UserCarEntity(
+            masterDataId = resolvedMasterDataId ?: masterDataId,
+            manualModelName = manualModelName,
+            manualBrand = manualBrand,
+            manualSeries = manualSeries,
+            manualSeriesNum = manualSeriesNum,
+            manualYear = manualYear,
+            manualScale = manualScale,
+            manualIsPremium = manualIsPremium,
+            condition = condition,
+            purchaseDateMillis = purchaseDateMillis,
+            personalNote = personalNote,
+            storageLocation = storageLocation,
+            firestoreId = firestoreId,
+            isWishlist = isWishlist,
+            userPhotoUrl = normalizedMain,
+            backupPhotoUrl = backupPhotoUrl.takeIf { isRemote(it) },
+            purchasePrice = purchasePrice,
+            estimatedValue = estimatedValue,
+            isFavorite = isFavorite,
+            isSeriesOnly = isSeriesOnly,
+            isCustom = isCustom,
+            quantity = quantity,
+            additionalPhotos = normalizedAdditional,
+            additionalPhotosBackup = normalizedAdditional,
+            hwCardType = hwCardType
+        )
+        }
+    }
+
+    @Serializable
+    private data class SnapshotFolder(
+        val localId: Long,
+        val name: String,
+        val description: String = "",
+        val coverPhotoUrl: String? = null,
+        val firestoreId: String = "",
+        val createdAtMillis: Long
+    ) {
+        fun toEntity(): CustomCollectionEntity = CustomCollectionEntity(
+            name = name,
+            description = description,
+            coverPhotoUrl = coverPhotoUrl,
+            firestoreId = firestoreId,
+            createdAtMillis = createdAtMillis
+        )
+
+        companion object {
+            fun fromEntity(entity: CustomCollectionEntity): SnapshotFolder = SnapshotFolder(
+                localId = entity.id,
+                name = entity.name,
+                description = entity.description,
+                coverPhotoUrl = entity.coverPhotoUrl,
+                firestoreId = entity.firestoreId,
+                createdAtMillis = entity.createdAtMillis
+            )
+        }
+    }
+
+    override suspend fun clearAllCars(): Result<Unit> = runCatching {
+        dao.deleteAll()
+        refreshVariantHuntCompletion()
+    }
+
+    override suspend fun importCollection(
+        inputStream: InputStream,
+        mimeTypeHint: String?,
+        mode: CollectionImportMode,
+        conversionRate: Double
+    ): Result<CollectionImportStats> = withContext(Dispatchers.IO) {
+        runCatching {
+            val (rows, parseWarn) = CollectionImportHelper.parseRows(inputStream, mimeTypeHint, conversionRate)
+            if (mode == CollectionImportMode.REPLACE) {
+                clearLocalData()
+            }
+            val existingKeys = if (mode == CollectionImportMode.MERGE) {
+                dao.getAllCarsWithMasterList().map { buildMergeKey(it.car) }.toMutableSet()
+            } else {
+                mutableSetOf()
+            }
+            var added = 0
+            var skippedDup = 0
+            var skippedIncomplete = 0
+            for (row in rows) {
+                val masterId = resolveImportMasterId(row)
+                if (!CollectionImportHelper.isRowImportable(row, masterId != null)) {
+                    skippedIncomplete++
+                    continue
+                }
+                val entity = importRowToEntity(row, masterId)
+                val key = buildMergeKey(entity)
+                if (existingKeys.contains(key)) {
+                    skippedDup++
+                    continue
+                }
+                dao.insert(entity)
+                existingKeys.add(key)
+                added++
+            }
+            refreshVariantHuntCompletion()
+            CollectionImportStats(
+                added = added,
+                skippedDuplicates = skippedDup,
+                skippedIncomplete = skippedIncomplete,
+                parseFailures = parseWarn
+            )
+        }
+    }
+
+    override fun observeActiveVariantHuntGroups(): Flow<List<VariantHuntGroupSummary>> =
+        variantHuntDao.observeActiveGroups().map { list ->
+            list.map { e ->
+                VariantHuntGroupSummary(
+                    id = e.id,
+                    brandCode = e.brand,
+                    title = e.title,
+                    keywords = decodeKeywordsDelimited(e.keywordsDelimited),
+                    createdAtMillis = e.createdAtMillis
+                )
+            }
+        }
+
+    override fun observeVariantHuntGroupRows(groupId: Long): Flow<List<VariantHuntMasterRow>> =
+        variantHuntDao.observeGroupItemRows(groupId).map { rows ->
+            rows.map { r ->
+                VariantHuntMasterRow(
+                    masterDataId = r.master.id,
+                    modelName = r.master.modelName,
+                    year = r.master.year,
+                    series = r.master.series,
+                    seriesNum = r.master.seriesNum,
+                    toyNum = r.master.toyNum,
+                    imageUrl = r.master.imageUrl,
+                    inCollection = r.inCollection != 0
+                )
+            }
+        }
+
+    override suspend fun proposeVariantHuntKeywords(seedMasterDataId: Long): List<String> {
+        val master = masterDataDao.getById(seedMasterDataId) ?: return emptyList()
+        val tokens = tokenizeModelName(master.modelName)
+        val withoutLeadingMake = tokens.dropWhile { it in VARIANT_HUNT_LEADING_CARMAKER_TOKENS }
+        return withoutLeadingMake.ifEmpty { tokens }
+    }
+
+    override suspend fun countVariantHuntMatches(brand: String, keywords: List<String>): Int =
+        withContext(Dispatchers.IO) {
+            masterDataDao.rawSelectMasters(buildKeywordMatchQuery(brand, keywords, null)).size
+        }
+
+    override suspend fun createVariantHuntFromKeywords(
+        seedMasterDataId: Long,
+        seedUserCarId: Long?,
+        keywords: List<String>
+    ): Result<Long> = withContext(Dispatchers.IO) {
+        runCatching {
+            val seed = masterDataDao.getById(seedMasterDataId)
+                ?: error("seed_missing")
+            val normalized = normalizeKeywordList(keywords)
+            require(normalized.isNotEmpty()) { "keywords_empty" }
+            val matches = masterDataDao.rawSelectMasters(
+                buildKeywordMatchQuery(seed.brand, normalized, VARIANT_HUNT_MAX_MATCHES + 1)
+            )
+            require(matches.isNotEmpty()) { "no_matches" }
+            require(matches.size <= VARIANT_HUNT_MAX_MATCHES) { "too_many" }
+            val now = System.currentTimeMillis()
+            val group = VariantHuntGroupEntity(
+                brand = seed.brand,
+                title = seed.modelName.take(120),
+                seedMasterDataId = seed.id,
+                seedUserCarId = seedUserCarId,
+                keywordsDelimited = encodeKeywordsDelimited(normalized),
+                createdAtMillis = now,
+                completedAtMillis = null,
+                isActive = true
+            )
+            val id = variantHuntDao.insertGroupWithItems(group, matches.map { it.id })
+            refreshVariantHuntCompletion()
+            id
+        }
+    }
+
+    override suspend fun deleteVariantHuntGroup(groupId: Long) {
+        withContext(Dispatchers.IO) {
+            variantHuntDao.deleteGroup(groupId)
+        }
+    }
+
+    override suspend fun refreshVariantHuntCompletion() {
+        withContext(Dispatchers.IO) {
+            val now = System.currentTimeMillis()
+            variantHuntDao.findGroupIdsReadyToComplete().forEach { gid ->
+                variantHuntDao.markGroupCompleted(gid, now)
+            }
+        }
+    }
+
+    private fun encodeKeywordsDelimited(keywords: List<String>): String =
+        keywords.map { it.replace("\n", " ").trim() }.filter { it.isNotEmpty() }.joinToString("\n")
+
+    private fun decodeKeywordsDelimited(raw: String): List<String> =
+        raw.split("\n").map { it.trim() }.filter { it.isNotEmpty() }
+
+    private fun normalizeKeywordList(keywords: List<String>): List<String> {
+        val cleaned = keywords.map { sanitizeLikeToken(it) }.filter { it.isNotEmpty() }.distinct()
+        val dropped = cleaned.dropWhile { it in VARIANT_HUNT_LEADING_CARMAKER_TOKENS }
+        return dropped.ifEmpty { cleaned }
+    }
+
+    private fun sanitizeLikeToken(s: String): String =
+        s.lowercase().trim().replace("%", "").replace("_", "").trim()
+            .filter { !it.isISOControl() }
+
+    private fun tokenizeModelName(modelName: String): List<String> =
+        modelName.lowercase()
+            .replace("'", " ")
+            .split(Regex("[^a-z0-9]+"))
+            .map { it.trim() }
+            .filter { it.length >= 2 }
+            .filter { it !in VARIANT_HUNT_STOPWORDS }
+            .distinct()
+            .take(8)
+
+    private fun buildKeywordMatchQuery(brand: String, keywords: List<String>, limit: Int?): SimpleSQLiteQuery {
+        val args = mutableListOf<Any?>()
+        val sb = StringBuilder("SELECT * FROM master_data WHERE brand = ? ")
+        args.add(brand)
+        val safe = keywords.map { sanitizeLikeToken(it) }.filter { it.isNotEmpty() }
+        if (safe.isEmpty()) {
+            sb.append(" AND 0 ")
+        } else {
+            // Katalog aramasıyla uyum: aynı kelime modelName, series, toyNum veya colNum içinde geçebilir.
+            for (k in safe) {
+                val pattern = "%$k%"
+                sb.append(
+                    " AND (lower(modelName) LIKE ? OR lower(series) LIKE ? OR lower(toyNum) LIKE ? OR lower(ifnull(colNum, '')) LIKE ?)"
+                )
+                repeat(4) { args.add(pattern) }
+            }
+        }
+        sb.append(" ORDER BY CASE WHEN year IS NULL THEN 1 ELSE 0 END, year ASC, series ASC, seriesNum ASC ")
+        if (limit != null) {
+            sb.append(" LIMIT ").append(limit.coerceIn(1, 10_000))
+        }
+        return SimpleSQLiteQuery(sb.toString(), args.toTypedArray())
+    }
+
+    private suspend fun resolveImportMasterId(row: CollectionImportHelper.ImportRow): Long? {
+        val brand = row.brandCode
+        if (!row.toyNum.isNullOrBlank()) {
+            val byToy = masterDataDao.getByToyNumGlobal(brand, row.toyNum)
+            val bestToy = byToy.firstOrNull { c ->
+                row.series.isNullOrBlank() || c.series == row.series
+            } ?: byToy.firstOrNull()
+            if (bestToy != null) return bestToy.id
+        }
+        val modelName = row.modelName?.takeIf { it.isNotBlank() } ?: return null
+        if (row.year != null) {
+            val byIdentityGlobal = masterDataDao.getByIdentityGlobal(brand, modelName, row.year)
+            val bestIdentity = byIdentityGlobal.firstOrNull { c ->
+                row.series.isNullOrBlank() || c.series == row.series
+            } ?: byIdentityGlobal.firstOrNull()
+            if (bestIdentity != null) return bestIdentity.id
+            val simpleId = masterDataDao.getIdByIdentity(brand, modelName, row.year)
+            if (simpleId != null) return simpleId
+        }
+        return null
+    }
+
+    private fun importRowToEntity(row: CollectionImportHelper.ImportRow, masterId: Long?): UserCarEntity {
+        val manualModel = if (masterId == null) {
+            row.modelName?.takeIf { it.isNotBlank() }
+                ?: row.toyNum?.takeIf { it.isNotBlank() }
+                ?: "?"
+        } else {
+            null
+        }
+        return UserCarEntity(
+            masterDataId = masterId,
+            manualModelName = manualModel,
+            manualBrand = if (masterId == null) row.brandCode else null,
+            manualSeries = if (masterId == null) row.series else null,
+            manualSeriesNum = if (masterId == null) row.seriesNum else null,
+            manualYear = if (masterId == null) row.year else null,
+            manualScale = null,
+            manualIsPremium = null,
+            condition = row.conditionName,
+            purchaseDateMillis = null,
+            personalNote = row.personalNote,
+            storageLocation = row.storageLocation,
+            firestoreId = "",
+            isWishlist = row.isWishlist,
+            userPhotoUrl = null,
+            backupPhotoUrl = null,
+            purchasePrice = row.purchasePriceBase,
+            estimatedValue = row.estimatedValueBase,
+            isFavorite = row.isFavorite,
+            isSeriesOnly = false,
+            isCustom = row.isCustom,
+            quantity = row.quantity,
+            additionalPhotos = emptyList(),
+            additionalPhotosBackup = emptyList()
+        )
+    }
+
+    @Serializable
+    private data class SnapshotMapping(
+        val collectionLocalId: Long,
+        val carLocalId: Long
+    )
 }

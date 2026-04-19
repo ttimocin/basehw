@@ -3,25 +3,24 @@ package com.taytek.basehw.ui.screens.statistics
 import com.taytek.basehw.domain.model.toColor
 import com.taytek.basehw.domain.model.toIcon
 import com.taytek.basehw.domain.model.Brand
+import com.taytek.basehw.R
 
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.activity.compose.BackHandler
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.BarChart
-import androidx.compose.material.icons.filled.DirectionsCar
-import androidx.compose.material.icons.filled.Inventory2
-import androidx.compose.material.icons.filled.PieChart
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,25 +29,30 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.ui.res.stringResource
-import com.taytek.basehw.domain.model.BadgeType
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.graphics.drawscope.clipRect
+import com.taytek.basehw.ui.theme.AppTheme
+import com.taytek.basehw.ui.theme.cyberRootSurfaceColor
+import com.taytek.basehw.ui.theme.neonShellChromeIconTint
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StatisticsScreen(
     onBack: () -> Unit,
+    contentPadding: PaddingValues? = null,
     viewModel: StatisticsViewModel = hiltViewModel()
 ) {
+    BackHandler { onBack() }
     val totalCars by viewModel.totalCars.collectAsState()
     val boxStatusStats by viewModel.boxStatusStats.collectAsState()
     val brandStats by viewModel.brandStats.collectAsState()
@@ -56,228 +60,143 @@ fun StatisticsScreen(
     val totalPurchasePrice by viewModel.totalPurchasePrice.collectAsState()
     val totalEstimatedValue by viewModel.totalEstimatedValue.collectAsState()
     val customStats by viewModel.customStats.collectAsState()
-    val earnedBadges by viewModel.earnedBadges.collectAsState()
     val currencySymbol by viewModel.currencySymbol.collectAsState()
+    val collectionHistory by viewModel.collectionHistory.collectAsState()
 
     var showPieChart by remember { mutableStateOf(false) }
 
     val scrollState = rememberScrollState()
+    val systemNavBottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+    
+    val bottomPadding = contentPadding?.let {
+        it.calculateBottomPadding() + 48.dp
+    } ?: (systemNavBottom + 32.dp)
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text(stringResource(com.taytek.basehw.R.string.statistics_title), style = MaterialTheme.typography.titleLarge)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = systemNavBottom)
+            .background(cyberRootSurfaceColor())
+    ) {
+        Scaffold(
+            containerColor = cyberRootSurfaceColor(),
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Column {
+                            Text(stringResource(R.string.statistics_title), style = MaterialTheme.typography.titleLarge)
+                            Text(
+                                stringResource(R.string.collection_summary),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBack) {
+                            Icon(
+                                imageVector = Icons.Default.ArrowBack,
+                                contentDescription = "Geri"
+                            )
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = { showPieChart = !showPieChart }) {
+                            Icon(
+                                imageVector = if (showPieChart) Icons.Default.BarChart else Icons.Default.PieChart,
+                                contentDescription = if (showPieChart) "Bar grafik" else "Pasta grafik",
+                                tint = neonShellChromeIconTint()
+                            )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = cyberRootSurfaceColor()
+                    )
+                )
+            }
+        ) { padding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .verticalScroll(scrollState)
+                    .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = bottomPadding),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                // Toplam Araç Sayısı — brand accent (Cyber: turuncu; primary pembe morumsu duruyordu)
+                StatCard(
+                    title = stringResource(R.string.total_cars_stat),
+                    value = totalCars.toString(),
+                    color = AppTheme.tokens.primaryAccent
+                )
+
+                // Değer Kartları
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    StatCard(
+                        title = stringResource(R.string.stats_purchase_price),
+                        value = "${currencySymbol}${"%.2f".format(totalPurchasePrice)}",
+                        color = MaterialTheme.colorScheme.onSurface,
+                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.weight(1f)
+                    )
+                    StatCard(
+                        title = stringResource(R.string.stats_current_value),
+                        value = "${currencySymbol}${"%.2f".format(totalEstimatedValue)}",
+                        color = AppTheme.tokens.primaryAccent,
+                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                if (collectionHistory.isNotEmpty()) {
+                    ValueOverTimeCard(history = collectionHistory, currencySymbol = currencySymbol)
+                }
+
+                if (totalCars > 0 && boxStatusStats.isNotEmpty()) {
+                    BoxStatusCard(boxStatusStats = boxStatusStats, total = totalCars, showPieChart = showPieChart)
+                }
+
+                if (totalCars > 0) {
+                    BrandDistributionCard(brandStats = brandStats, total = totalCars, showPieChart = showPieChart)
+                }
+
+                val hwTotal = hwTierStats.regularCount + hwTierStats.premiumCount
+                if (hwTotal > 0) {
+                    HwTierCard(regularCount = hwTierStats.regularCount, premiumCount = hwTierStats.premiumCount, showPieChart = showPieChart)
+                }
+
+                if (totalCars > 0) {
+                    CustomDistributionCard(
+                        originalCount = customStats.originalCount,
+                        customCount = customStats.customCount,
+                        total = totalCars,
+                        showPieChart = showPieChart
+                    )
+                }
+
+                if (totalCars == 0) {
+                    Box(
+                        modifier = Modifier.fillMaxWidth().padding(32.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
                         Text(
-                            stringResource(com.taytek.basehw.R.string.collection_summary),
-                            style = MaterialTheme.typography.labelMedium,
+                            text = stringResource(R.string.no_stats_data),
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Geri"
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { showPieChart = !showPieChart }) {
-                        Icon(
-                            imageVector = if (showPieChart) Icons.Default.BarChart else Icons.Default.PieChart,
-                            contentDescription = if (showPieChart) "Bar grafik" else "Pasta grafik",
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                )
-            )
-        }
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .verticalScroll(scrollState)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            // Toplam Araç Sayısı (Hero stat — ikonun kaldırıldı)
-            StatCard(
-                title = stringResource(com.taytek.basehw.R.string.total_cars_stat),
-                value = totalCars.toString(),
-                color = MaterialTheme.colorScheme.primary
-            )
-
-            // Collection Values (Değer Kartları)
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                StatCard(
-                    title = stringResource(com.taytek.basehw.R.string.stats_purchase_price),
-                    value = "${currencySymbol}${"%.2f".format(totalPurchasePrice)}",
-                    color = MaterialTheme.colorScheme.onSurface,
-                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.weight(1f)
-                )
-                StatCard(
-                    title = stringResource(com.taytek.basehw.R.string.stats_current_value),
-                    value = "${currencySymbol}${"%.2f".format(totalEstimatedValue)}",
-                    color = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.weight(1f)
-                )
-            }
-
-            // Kutu Durumu Kartı
-            val openedCount = boxStatusStats.find { it.isOpened }?.count ?: 0
-            val boxedCount = boxStatusStats.find { !it.isOpened }?.count ?: 0
-            if (totalCars > 0) {
-                BoxStatusCard(openedCount = openedCount, boxedCount = boxedCount, total = totalCars, showPieChart = showPieChart)
-            }
-
-            // Marka Dağılımı Kartı
-            if (totalCars > 0) {
-                BrandDistributionCard(brandStats = brandStats, total = totalCars, showPieChart = showPieChart)
-            }
-
-            // Hot Wheels Regular / Premium kırılımı
-            val hwTotal = hwTierStats.regularCount + hwTierStats.premiumCount
-            if (hwTotal > 0) {
-                HwTierCard(regularCount = hwTierStats.regularCount, premiumCount = hwTierStats.premiumCount, showPieChart = showPieChart)
-            }
-
-            // Custom / Orijinal Dağılımı
-            if (totalCars > 0) {
-                CustomDistributionCard(
-                    originalCount = customStats.originalCount,
-                    customCount = customStats.customCount,
-                    total = totalCars,
-                    showPieChart = showPieChart
-                )
-            }
-
-            // Earned Badges
-            if (earnedBadges.isNotEmpty()) {
-                BadgesSection(badges = earnedBadges)
-            }
-
-            // Boş Koleksiyon Uyarı
-            if (totalCars == 0) {
-                Box(
-                    modifier = Modifier.fillMaxWidth().padding(32.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = stringResource(com.taytek.basehw.R.string.no_stats_data),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
                 }
+                
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
 }
 
 @Composable
-fun BadgesSection(badges: List<BadgeType>) {
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(
-            text = stringResource(com.taytek.basehw.R.string.earned_badges_title),
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = stringResource(com.taytek.basehw.R.string.earned_badges_count, badges.size, BadgeType.entries.size),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(end = 16.dp)
-        ) {
-            items(badges) { badge ->
-                BadgeCard(badge = badge)
-            }
-        }
-        // Locked badges (greyed out)
-        val lockedBadges = BadgeType.entries.filter { it !in badges }
-        if (lockedBadges.isNotEmpty()) {
-            Text(
-                text = stringResource(com.taytek.basehw.R.string.locked_badges_title),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                contentPadding = PaddingValues(end = 16.dp)
-            ) {
-                items(lockedBadges) { badge ->
-                    BadgeCard(badge = badge, locked = true)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun BadgeCard(badge: BadgeType, locked: Boolean = false) {
-    val badgeColor = Color(badge.color)
-    Card(
-        modifier = androidx.compose.ui.Modifier.width(140.dp),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = if (locked)
-                MaterialTheme.colorScheme.surfaceVariant
-            else
-                badgeColor.copy(alpha = 0.15f)
-        )
-    ) {
-        Column(
-            modifier = androidx.compose.ui.Modifier.padding(14.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            if (badge.iconRes != null) {
-                Image(
-                    painter = painterResource(badge.iconRes),
-                    contentDescription = null,
-                    modifier = Modifier.size(48.dp),
-                    colorFilter = if (locked) ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) }) else null
-                )
-            } else {
-                Text(
-                    text = badge.emoji,
-                    style = MaterialTheme.typography.headlineMedium
-                )
-            }
-            Text(
-                text = stringResource(badge.titleRes),
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold,
-                color = if (locked)
-                    MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-                else
-                    badgeColor
-            )
-            Text(
-                text = if (locked) "🔒 ${stringResource(badge.descRes)}" else stringResource(badge.descRes),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                    alpha = if (locked) 0.4f else 0.8f
-                )
-            )
-        }
-    }
-}
-
-@Composable
-fun StatCard(
+private fun StatCard(
     title: String,
     value: String,
     color: Color,
@@ -287,38 +206,42 @@ fun StatCard(
     Card(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        border = BorderStroke(1.dp, AppTheme.tokens.cardBorderStandard),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
-        Row(
-            modifier = Modifier.padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(brush = Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)))
+            .padding(20.dp)
         ) {
-            Column {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = contentColor
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = value,
-                    style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                    color = color
-                )
-            }
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                color = contentColor
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = value,
+                style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
+                color = color
+            )
         }
     }
 }
 
 @Composable
-fun BoxStatusCard(openedCount: Int, boxedCount: Int, total: Int, showPieChart: Boolean) {
+private fun BoxStatusCard(boxStatusStats: List<com.taytek.basehw.domain.model.BoxStatusStats>, total: Int, showPieChart: Boolean) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        border = BorderStroke(1.dp, AppTheme.tokens.cardBorderStandard),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
-        Column(modifier = Modifier.padding(20.dp)) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(brush = Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)))
+            .padding(20.dp)
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = Icons.Default.Inventory2,
@@ -327,40 +250,56 @@ fun BoxStatusCard(openedCount: Int, boxedCount: Int, total: Int, showPieChart: B
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = stringResource(com.taytek.basehw.R.string.box_condition),
+                    text = stringResource(R.string.box_condition),
                     style = MaterialTheme.typography.titleMedium
                 )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            val openedPercent = if (total > 0) (openedCount.toFloat() / total) else 0f
-            val boxedPercent = if (total > 0) (boxedCount.toFloat() / total) else 0f
-
             if (showPieChart) {
-                val slices = listOf(
-                    PieSliceData(stringResource(com.taytek.basehw.R.string.boxed_moc), boxedCount, MaterialTheme.colorScheme.primary),
-                    PieSliceData(stringResource(com.taytek.basehw.R.string.opened_unboxed), openedCount, MaterialTheme.colorScheme.secondary)
-                ).filter { it.count > 0 }
+                val slices = boxStatusStats.map { stat ->
+                    val conditionObj = com.taytek.basehw.domain.model.VehicleCondition.fromString(stat.condition)
+                    PieSliceData(
+                        label = stringResource(conditionObj.titleRes),
+                        count = stat.count,
+                        color = Color(conditionObj.hexColor)
+                    )
+                }.filter { it.count > 0 }
                 ReusablePieChart(slices = slices)
             } else {
-                ProgressBarWithLabel(label = stringResource(com.taytek.basehw.R.string.boxed_moc), count = boxedCount, percent = boxedPercent, color = MaterialTheme.colorScheme.primary)
-                Spacer(modifier = Modifier.height(12.dp))
-                ProgressBarWithLabel(label = stringResource(com.taytek.basehw.R.string.opened_unboxed), count = openedCount, percent = openedPercent, color = MaterialTheme.colorScheme.secondary)
+                boxStatusStats.forEachIndexed { index, stat ->
+                    val conditionObj = com.taytek.basehw.domain.model.VehicleCondition.fromString(stat.condition)
+                    val percent = if (total > 0) (stat.count.toFloat() / total) else 0f
+                    ProgressBarWithLabel(
+                        label = stringResource(conditionObj.titleRes),
+                        count = stat.count,
+                        percent = percent,
+                        color = Color(conditionObj.hexColor)
+                    )
+                    if (index < boxStatusStats.size - 1) {
+                        Spacer(modifier = Modifier.height(12.dp))
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-fun BrandDistributionCard(brandStats: List<com.taytek.basehw.domain.model.BrandStats>, total: Int, showPieChart: Boolean) {
+private fun BrandDistributionCard(brandStats: List<com.taytek.basehw.domain.model.BrandStats>, total: Int, showPieChart: Boolean) {
     if (brandStats.isEmpty()) return
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        border = BorderStroke(1.dp, AppTheme.tokens.cardBorderStandard),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
-        Column(modifier = Modifier.padding(20.dp)) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(brush = Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)))
+            .padding(20.dp)
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = if (showPieChart) Icons.Default.PieChart else Icons.Default.BarChart,
@@ -369,7 +308,7 @@ fun BrandDistributionCard(brandStats: List<com.taytek.basehw.domain.model.BrandS
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = stringResource(com.taytek.basehw.R.string.brand_distribution),
+                    text = stringResource(R.string.brand_distribution),
                     style = MaterialTheme.typography.titleMedium
                 )
             }
@@ -406,54 +345,22 @@ fun BrandDistributionCard(brandStats: List<com.taytek.basehw.domain.model.BrandS
 }
 
 @Composable
-fun ProgressBarWithLabel(label: String, count: Int, percent: Float, color: Color) {
-    val animatedProgress by animateFloatAsState(
-        targetValue = percent,
-        animationSpec = tween(durationMillis = 1000),
-        label = "progress"
-    )
-
-    Column {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(text = label, style = MaterialTheme.typography.bodyMedium)
-            Text(
-                text = "$count (${(percent * 100).roundToInt()}%)",
-                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold)
-            )
-        }
-        Spacer(modifier = Modifier.height(6.dp))
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(8.dp)
-                .clip(RoundedCornerShape(4.dp))
-                .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth(animatedProgress)
-                    .fillMaxHeight()
-                    .background(color)
-            )
-        }
-    }
-}
-
-@Composable
-fun HwTierCard(regularCount: Int, premiumCount: Int, showPieChart: Boolean) {
+private fun HwTierCard(regularCount: Int, premiumCount: Int, showPieChart: Boolean) {
     val total = regularCount + premiumCount
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        border = BorderStroke(1.dp, AppTheme.tokens.cardBorderStandard),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
-        Column(modifier = Modifier.padding(20.dp)) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(brush = Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)))
+            .padding(20.dp)
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    imageVector = Icons.Default.DirectionsCar,
+                    imageVector = if (showPieChart) Icons.Default.PieChart else Icons.Default.DirectionsCar,
                     contentDescription = null,
                     tint = Brand.HOT_WHEELS.toColor()
                 )
@@ -495,22 +402,27 @@ fun HwTierCard(regularCount: Int, premiumCount: Int, showPieChart: Boolean) {
 }
 
 @Composable
-fun CustomDistributionCard(originalCount: Int, customCount: Int, total: Int, showPieChart: Boolean) {
+private fun CustomDistributionCard(originalCount: Int, customCount: Int, total: Int, showPieChart: Boolean) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        border = BorderStroke(1.dp, AppTheme.tokens.cardBorderStandard),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
-        Column(modifier = Modifier.padding(20.dp)) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(brush = Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)))
+            .padding(20.dp)
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    imageVector = Icons.Default.DirectionsCar,
+                    imageVector = if (showPieChart) Icons.Default.PieChart else Icons.Default.DirectionsCar,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = stringResource(com.taytek.basehw.R.string.custom_distribution),
+                    text = stringResource(R.string.custom_distribution),
                     style = MaterialTheme.typography.titleMedium
                 )
             }
@@ -519,8 +431,8 @@ fun CustomDistributionCard(originalCount: Int, customCount: Int, total: Int, sho
 
             if (showPieChart) {
                 val slices = listOf(
-                    PieSliceData(stringResource(com.taytek.basehw.R.string.original_label), originalCount, MaterialTheme.colorScheme.primary),
-                    PieSliceData(stringResource(com.taytek.basehw.R.string.custom_label), customCount, Color(0xFF4CAF50))
+                    PieSliceData(stringResource(R.string.original_label), originalCount, MaterialTheme.colorScheme.primary),
+                    PieSliceData(stringResource(R.string.custom_label), customCount, Color(0xFF4CAF50))
                 ).filter { it.count > 0 }
                 ReusablePieChart(slices = slices)
             } else {
@@ -528,19 +440,231 @@ fun CustomDistributionCard(originalCount: Int, customCount: Int, total: Int, sho
                 val customPercent = if (total > 0) customCount.toFloat() / total else 0f
 
                 ProgressBarWithLabel(
-                    label = stringResource(com.taytek.basehw.R.string.original_label),
+                    label = stringResource(R.string.original_label),
                     count = originalCount,
                     percent = originalPercent,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 ProgressBarWithLabel(
-                    label = stringResource(com.taytek.basehw.R.string.custom_label),
+                    label = stringResource(R.string.custom_label),
                     count = customCount,
                     percent = customPercent,
                     color = Color(0xFF4CAF50)
                 )
             }
+        }
+    }
+}
+
+@Composable
+private fun ValueOverTimeCard(history: List<ValuePoint>, currencySymbol: String) {
+    val latestValue = history.lastOrNull()?.cumulativeValue ?: 0.0
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        border = BorderStroke(1.dp, AppTheme.tokens.cardBorderStandard),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+    ) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .background(brush = Brush.linearGradient(colors = listOf(MaterialTheme.colorScheme.surfaceContainerLow, MaterialTheme.colorScheme.surfaceContainerHigh)))
+            .padding(20.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Default.BarChart,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Koleksiyon Değer Gelişimi",
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                }
+                
+                Text(
+                    text = "${currencySymbol}${"%.2f".format(latestValue)}",
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            BezierLineChart(
+                points = history,
+                currencySymbol = currencySymbol,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+            )
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = history.firstOrNull()?.label ?: "",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Text(
+                    text = history.lastOrNull()?.label ?: "",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun BezierLineChart(
+    points: List<ValuePoint>,
+    currencySymbol: String,
+    modifier: Modifier = Modifier
+) {
+    val primaryColor = MaterialTheme.colorScheme.primary
+    
+    val animationProgress by animateFloatAsState(
+        targetValue = 1f,
+        animationSpec = tween(durationMillis = 1500),
+        label = "chart_reveal"
+    )
+
+    Canvas(modifier = modifier) {
+        if (points.isEmpty()) return@Canvas
+
+        val width = size.width
+        val height = size.height
+
+        val maxVal = points.maxOf { it.cumulativeValue }.coerceAtLeast(1.0).toFloat()
+        val xSpacing = if (points.size > 1) width / (points.size - 1) else width
+        
+        fun getX(index: Int) = index * xSpacing
+        fun getY(value: Double) = height - ((value.toFloat() / maxVal) * (height - 40f)) - 20f
+
+        val strokePath = Path()
+        val fillPath = Path()
+
+        points.forEachIndexed { i, point ->
+            val x = getX(i)
+            val y = getY(point.cumulativeValue)
+
+            if (i == 0) {
+                strokePath.moveTo(x, y)
+                fillPath.moveTo(x, height)
+                fillPath.lineTo(x, y)
+            } else {
+                val prevX = getX(i - 1)
+                val prevY = getY(points[i - 1].cumulativeValue)
+                
+                val controlX1 = prevX + (x - prevX) / 2f
+                val controlY1 = prevY
+                val controlX2 = prevX + (x - prevX) / 2f
+                val controlY2 = y
+                
+                strokePath.cubicTo(controlX1, controlY1, controlX2, controlY2, x, y)
+                fillPath.cubicTo(controlX1, controlY1, controlX2, controlY2, x, y)
+            }
+            
+            if (i == points.size - 1) {
+                fillPath.lineTo(x, height)
+                fillPath.close()
+            }
+        }
+
+        clipRect(right = width * animationProgress) {
+            drawPath(
+                path = fillPath,
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        primaryColor.copy(alpha = 0.3f),
+                        primaryColor.copy(alpha = 0.0f)
+                    )
+                )
+            )
+
+            drawPath(
+                path = strokePath,
+                color = primaryColor,
+                style = Stroke(width = 4.dp.toPx())
+            )
+
+            val lastX = getX(points.size - 1)
+            val lastY = getY(points.last().cumulativeValue)
+            
+            drawCircle(
+                color = primaryColor,
+                radius = 6.dp.toPx(),
+                center = Offset(lastX, lastY)
+            )
+            drawCircle(
+                color = Color.White,
+                radius = 3.dp.toPx(),
+                center = Offset(lastX, lastY)
+            )
+            
+            val paint = android.graphics.Paint().apply {
+                color = primaryColor.toArgb()
+                textSize = 34f
+                textAlign = android.graphics.Paint.Align.RIGHT
+                isFakeBoldText = true
+            }
+            
+            val latestValueText = "${currencySymbol}${"%.2f".format(points.last().cumulativeValue)}"
+            drawContext.canvas.nativeCanvas.drawText(
+                latestValueText,
+                lastX,
+                lastY - 25f,
+                paint
+            )
+        }
+    }
+}
+
+@Composable
+fun ProgressBarWithLabel(label: String, count: Int, percent: Float, color: Color) {
+    val animatedProgress by animateFloatAsState(
+        targetValue = percent,
+        animationSpec = tween(durationMillis = 1000),
+        label = "progress"
+    )
+
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(text = label, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                text = "$count (${(percent * 100).roundToInt()}%)",
+                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold)
+            )
+        }
+        Spacer(modifier = Modifier.height(6.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(animatedProgress)
+                    .fillMaxHeight()
+                    .background(color)
+            )
         }
     }
 }
@@ -553,7 +677,6 @@ fun ReusablePieChart(slices: List<PieSliceData>) {
     val total = slices.sumOf { it.count }.toFloat()
     
     Column {
-        // Canvas pie chart
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
@@ -574,13 +697,11 @@ fun ReusablePieChart(slices: List<PieSliceData>) {
                 textSize = 36f
                 textAlign = android.graphics.Paint.Align.CENTER
                 isFakeBoldText = true
-                setShadowLayer(4f, 0f, 2f, android.graphics.Color.BLACK)
             }
 
             slices.forEach { slice ->
                 val sweep = (slice.count / total) * 360f
                 
-                // Draw arc
                 drawArc(
                     color = slice.color,
                     startAngle = startAngle,
@@ -589,7 +710,7 @@ fun ReusablePieChart(slices: List<PieSliceData>) {
                     topLeft = topLeft,
                     size = arcSize
                 )
-                // Draw divider
+                
                 drawArc(
                     color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.5f),
                     startAngle = startAngle,
@@ -600,10 +721,8 @@ fun ReusablePieChart(slices: List<PieSliceData>) {
                     style = Stroke(width = 2f)
                 )
 
-                // Draw text label inside slice if slice is large enough
                 if (sweep > 15f) {
                     val midAngle = Math.toRadians((startAngle + sweep / 2.0))
-                    // position text at 65% of radius
                     val textRadius = radius * 0.65f 
                     val textX = centerNode.x + (textRadius * Math.cos(midAngle)).toFloat()
                     val textY = centerNode.y + (textRadius * Math.sin(midAngle)).toFloat()
@@ -618,7 +737,6 @@ fun ReusablePieChart(slices: List<PieSliceData>) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Legend
         slices.forEach { slice ->
             val pct = if (total > 0) (slice.count / total * 100).roundToInt() else 0
             Row(

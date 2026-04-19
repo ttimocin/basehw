@@ -2,6 +2,7 @@ package com.taytek.basehw.ui.screens.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.taytek.basehw.domain.model.HwCardType
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.domain.usecase.DeleteCarFromCollectionUseCase
 import com.taytek.basehw.domain.usecase.GetCarByIdUseCase
@@ -196,6 +197,17 @@ class CarDetailViewModel @Inject constructor(
         }
     }
 
+    fun updateHwCardType(type: HwCardType) {
+        val car = _uiState.value.car ?: return
+        viewModelScope.launch {
+            try {
+                userCarRepository.updateCar(car.copy(hwCardType = type))
+            } catch (e: Exception) {
+                _uiState.update { it.copy(error = e.message) }
+            }
+        }
+    }
+
     fun togglePhotoOptionMenu(visible: Boolean) {
         _uiState.update { it.copy(isPhotoOptionMenuVisible = visible) }
     }
@@ -271,7 +283,7 @@ class CarDetailViewModel @Inject constructor(
             return
         }
         val car = _uiState.value.car ?: return
-        val imageUrl = car.backupPhotoUrl ?: car.userPhotoUrl ?: return
+        val imageUrl = (car.backupPhotoUrl ?: car.userPhotoUrl)?.takeIf { it != car.masterData?.imageUrl } ?: return
         val modelName = car.masterData?.modelName ?: car.manualModelName ?: "Unknown"
         val brand: String = car.masterData?.brand?.displayName ?: car.manualBrand?.displayName ?: "Unknown"
         val year: Int? = car.masterData?.year ?: car.manualYear

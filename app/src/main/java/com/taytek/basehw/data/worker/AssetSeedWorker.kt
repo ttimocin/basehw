@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.google.gson.Gson
 import com.taytek.basehw.data.local.dao.MasterDataDao
 import com.taytek.basehw.data.local.entity.MasterDataEntity
 import com.taytek.basehw.data.remote.dto.BrandCarDto
@@ -14,6 +13,9 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromStream
+import java.io.InputStream
 
 /**
  * One-shot WorkManager worker that reads all yearly JSON files from
@@ -24,7 +26,7 @@ class AssetSeedWorker @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted workerParams: WorkerParameters,
     private val masterDataDao: MasterDataDao,
-    private val gson: Gson,
+    private val json: Json,
     private val appSettingsManager: com.taytek.basehw.data.local.AppSettingsManager
 ) : CoroutineWorker(context, workerParams) {
 
@@ -67,7 +69,7 @@ class AssetSeedWorker @AssistedInject constructor(
     }
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
-        Log.d(TAG, "▶ Starting optimized asset seed import ($WORK_NAME)")
+
 
         return@withContext try {
             val assets = context.assets
@@ -81,7 +83,7 @@ class AssetSeedWorker @AssistedInject constructor(
 
             // --- ONE-TIME CLEANUP FOR V5 ---
             if (!appSettingsManager.hasCompleted2026Cleanup()) {
-                Log.d(TAG, "🧹 Cleaning up 2026 Hot Wheels records to fix STH merge issues (ONE-TIME)...")
+
                 masterDataDao.deleteByBrandAndYear(Brand.HOT_WHEELS.name, 2026)
                 appSettingsManager.setCatalogSyncCursor("") // Force full re-sync from remote
                 appSettingsManager.setCompleted2026Cleanup(true)
@@ -124,13 +126,16 @@ class AssetSeedWorker @AssistedInject constructor(
                         val updateBatch = mutableListOf<MasterDataEntity>()
                         val batchSize = 500
 
-                        Log.d(TAG, "Processing asset file: ${config.folder}/$filename")
+
                         assets.open("${config.folder}/$filename").use { inputStream ->
-                            val reader = com.google.gson.stream.JsonReader(inputStream.bufferedReader())
-                            reader.beginArray()
-                            while (reader.hasNext()) {
-                                val carDto: BrandCarDto = gson.fromJson(reader, BrandCarDto::class.java)
-                                
+                            val carDtos = try {
+                                json.decodeFromStream<List<BrandCarDto>>(inputStream)
+                            } catch (e: Exception) {
+                                Log.e(TAG, "Error parsing $filename", e)
+                                emptyList()
+                            }
+                            
+                            for (carDto in carDtos) {
                                 val safeStr = { s: String? -> s ?: "" }
                                 
                                 val dtoModelName = safeStr(carDto.modelName)
@@ -278,7 +283,6 @@ class AssetSeedWorker @AssistedInject constructor(
                                     updateBatch.clear()
                                 }
                             }
-                            reader.endArray()
                             // Flush remaining
                             if (insertBatch.isNotEmpty()) {
                                 masterDataDao.insertAll(insertBatch)
@@ -293,14 +297,14 @@ class AssetSeedWorker @AssistedInject constructor(
 
                 // Apply deferred case updates in batch
                 if (deferredCaseUpdates.isNotEmpty()) {
-                    Log.d(TAG, "Applying ${deferredCaseUpdates.size} deferred case updates for ${brand.name}")
+
                     deferredCaseUpdates.forEach { (toyNum, pair) ->
                         masterDataDao.updateCaseNum(toyNum, pair.first, pair.second)
                     }
                 }
             }
 
-            Log.d(TAG, "✅ Asset seed complete — Processed: $totalProcessedCount, New: $totalInsertedCount, Chase: $totalChaseCount, STH: $totalSthCount, TH: $totalThCount")
+
             Result.success()
         } catch (e: Exception) {
             Log.e(TAG, "❌ Asset seed failed: ${e.message}", e)

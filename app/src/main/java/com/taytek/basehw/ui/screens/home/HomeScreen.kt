@@ -5,9 +5,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -18,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.taytek.basehw.R
+import com.taytek.basehw.ui.theme.isNeonShellTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,9 +32,12 @@ fun HomeScreen(
     onViewAllClick: () -> Unit = {},
     onMasterCarClick: (Long) -> Unit = {},
     onCommunityClick: () -> Unit = {},
+    onNewsClick: (String) -> Unit = {},
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val newsItems by viewModel.newsItems.collectAsState()
     val recentlyAddedCars = viewModel.recentlyAddedCars.collectAsLazyPagingItems()
     val masterSearchResults = viewModel.masterSearchResults.collectAsLazyPagingItems()
     val searchQuery by viewModel.searchQuery.collectAsState()
@@ -42,14 +48,24 @@ fun HomeScreen(
         onDispose { viewModel.clearSearchQuery() }
     }
 
-    Scaffold(
-        containerColor = MaterialTheme.colorScheme.background
-    ) { paddingValues ->
+    LaunchedEffect(Unit) {
+        viewModel.refreshUserData()
+    }
+
+    // Neon shell themes: gradient is drawn by [MainScreen]; keep this layer transparent.
+    val bgModifier =
+        if (isNeonShellTheme()) Modifier
+        else Modifier.background(MaterialTheme.colorScheme.background)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .then(bgModifier)
+    ) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
-            contentPadding = PaddingValues(bottom = 100.dp)
+                .padding(contentPadding),
+            contentPadding = PaddingValues(bottom = 32.dp)
         ) {
             // 1. Greeting
             item {
@@ -87,7 +103,7 @@ fun HomeScreen(
                                 text = if (searchQuery.isNotBlank()) {
                                     stringResource(R.string.no_results_for, searchQuery)
                                 } else {
-                                    "${selectedBrand?.displayName ?: ""} için sonuç bulunamadı"
+                                    stringResource(R.string.search_brand_not_found_format, selectedBrand?.displayName ?: "")
                                 },
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 textAlign = androidx.compose.ui.text.style.TextAlign.Center,
@@ -108,6 +124,17 @@ fun HomeScreen(
                     }
                 }
             } else {
+                if (uiState.isCloudCheckInProgress) {
+                    item {
+                        LinearProgressIndicator(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 20.dp, vertical = 4.dp),
+                            color = MaterialTheme.colorScheme.primary,
+                            trackColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)
+                        )
+                    }
+                }
                 // 3. Stats Section
                 item {
                     FigmaStatsSection(
@@ -117,16 +144,58 @@ fun HomeScreen(
                         sthCount = uiState.sthCount,
                         totalValue = uiState.totalValue,
                         monthlyValueIncrease = uiState.monthlyValueIncrease,
-                        currencySymbol = uiState.currencySymbol
+                        currencySymbol = uiState.currencySymbol,
+                        initialPagerPage = viewModel.getHomeStatsPagerInitialPage(),
+                        onPagerPageChanged = viewModel::onHomeStatsPagerPageChanged
                     )
                 }
 
-                // 4. Recently Added Header
+                // 4. Diecast news (header + horizontal scroll)
+                if (newsItems.isNotEmpty()) {
+                    item {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 24.dp, end = 24.dp, top = 8.dp, bottom = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = stringResource(R.string.home_news_section),
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
+                        }
+                    }
+                    item {
+                        LazyRow(
+                            contentPadding = PaddingValues(
+                                start = 20.dp,
+                                end = 20.dp,
+                                top = 0.dp,
+                                bottom = 2.dp
+                            ),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            items(newsItems, key = { it.id }) { news ->
+                                FigmaDiecastNewsCard(
+                                    news = news,
+                                    onClick = { onNewsClick(news.id) }
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // 5. Recently Added header (equal vertical padding around title)
                 item {
+                    val recentlyHeaderV = if (newsItems.isNotEmpty()) 12.dp else 20.dp
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 24.dp, vertical = 20.dp),
+                            .padding(start = 24.dp, end = 24.dp, top = recentlyHeaderV, bottom = recentlyHeaderV),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
                     ) {
@@ -140,10 +209,10 @@ fun HomeScreen(
                     }
                 }
 
-                // 5. Recently Added Cards (horizontal scroll)
+                // 6. Recently Added cards (horizontal scroll)
                 item {
                     LazyRow(
-                        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 6.dp),
+                        contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 0.dp, bottom = 4.dp),
                         horizontalArrangement = Arrangement.spacedBy(16.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -159,29 +228,14 @@ fun HomeScreen(
                     }
                 }
 
-                // Empty state or Cloud Check state
-                item {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(160.dp),
-                        contentAlignment = androidx.compose.ui.Alignment.Center
-                    ) {
-                        if (uiState.isCloudCheckInProgress) {
-                            Column(horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally) {
-                                CircularProgressIndicator(
-                                    modifier = Modifier.size(32.dp),
-                                    strokeWidth = 3.dp,
-                                    color = MaterialTheme.colorScheme.primary
-                                )
-                                Spacer(Modifier.height(12.dp))
-                                Text(
-                                    text = stringResource(R.string.restoring_data),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        } else if (recentlyAddedCars.itemCount == 0) {
+                if (!uiState.isCloudCheckInProgress && recentlyAddedCars.itemCount == 0) {
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(160.dp),
+                            contentAlignment = androidx.compose.ui.Alignment.Center
+                        ) {
                             Text(
                                 text = stringResource(R.string.empty_collection_desc),
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,

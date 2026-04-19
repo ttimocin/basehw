@@ -6,6 +6,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.UserCar
+import com.taytek.basehw.domain.model.VariantHuntGroupSummary
+import com.taytek.basehw.domain.model.VariantHuntMasterRow
 import com.taytek.basehw.domain.repository.UserCarRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,10 +17,17 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+enum class WishlistSubTab {
+    Models,
+    Series,
+    VariantHunt
+}
 
 @HiltViewModel
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -33,17 +42,22 @@ class WishlistViewModel @Inject constructor(
         _searchQuery.value = query
     }
 
-    private val _isSeriesView = MutableStateFlow(false)
-    val isSeriesView: StateFlow<Boolean> = _isSeriesView.asStateFlow()
+    private val _subTab = MutableStateFlow(WishlistSubTab.Models)
+    val subTab: StateFlow<WishlistSubTab> = _subTab.asStateFlow()
 
-    fun toggleView() {
-        _isSeriesView.value = !_isSeriesView.value
-        clearSelection()
+    fun selectSubTab(tab: WishlistSubTab) {
+        if (_subTab.value != tab) {
+            clearSelection()
+        }
+        _subTab.value = tab
     }
 
-    fun setSeriesView(isSeries: Boolean) {
-        _isSeriesView.value = isSeries
-        clearSelection()
+    fun applyInitialWishlistTab(tabIndex: Int) {
+        when (tabIndex) {
+            1 -> selectSubTab(WishlistSubTab.Series)
+            2 -> selectSubTab(WishlistSubTab.VariantHunt)
+            else -> selectSubTab(WishlistSubTab.Models)
+        }
     }
 
     val wishlistPaged: Flow<PagingData<UserCar>> = _searchQuery
@@ -55,15 +69,64 @@ class WishlistViewModel @Inject constructor(
     val seriesTracking: StateFlow<List<com.taytek.basehw.domain.model.SeriesTracking>> = repository.getWishlistSeriesTracking()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
+    val variantHuntGroups: StateFlow<List<VariantHuntGroupSummary>> =
+        repository.observeActiveVariantHuntGroups()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    private val _expandedVariantHuntGroupId = MutableStateFlow<Long?>(null)
+    val expandedVariantHuntGroupId: StateFlow<Long?> = _expandedVariantHuntGroupId.asStateFlow()
+
+    fun setVariantHuntExpandedGroup(id: Long?) {
+        _expandedVariantHuntGroupId.value = id
+    }
+
+    val expandedVariantHuntRows: StateFlow<List<VariantHuntMasterRow>> = _expandedVariantHuntGroupId
+        .flatMapLatest { gid ->
+            if (gid == null) flowOf(emptyList())
+            else repository.observeVariantHuntGroupRows(gid)
+        }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    fun refreshVariantHuntCompletion() {
+        viewModelScope.launch {
+            repository.refreshVariantHuntCompletion()
+        }
+    }
+
+    suspend fun proposeVariantHuntKeywords(masterId: Long): List<String> =
+        repository.proposeVariantHuntKeywords(masterId)
+
+    suspend fun countVariantHuntMatches(brand: String, keywords: List<String>): Int =
+        repository.countVariantHuntMatches(brand, keywords)
+
+    fun createVariantHunt(
+        seedMasterDataId: Long,
+        seedUserCarId: Long?,
+        keywords: List<String>,
+        onResult: (Result<Long>) -> Unit
+    ) {
+        viewModelScope.launch {
+            val r = repository.createVariantHuntFromKeywords(seedMasterDataId, seedUserCarId, keywords)
+            onResult(r)
+        }
+    }
+
+    fun deleteVariantHuntGroup(groupId: Long) {
+        viewModelScope.launch {
+            repository.deleteVariantHuntGroup(groupId)
+            if (_expandedVariantHuntGroupId.value == groupId) {
+                _expandedVariantHuntGroupId.value = null
+            }
+        }
+    }
+
     // ── Selection State ──
     private val _isSelectionMode = MutableStateFlow(false)
     val isSelectionMode: StateFlow<Boolean> = _isSelectionMode.asStateFlow()
 
-    // For individual car selection (car.id)
     private val _selectedCarIds = MutableStateFlow<Set<Long>>(emptySet())
     val selectedCarIds: StateFlow<Set<Long>> = _selectedCarIds.asStateFlow()
 
-    // For series selection (brand.name to seriesName)
     private val _selectedSeriesKeys = MutableStateFlow<Set<Pair<String, String>>>(emptySet())
     val selectedSeriesKeys: StateFlow<Set<Pair<String, String>>> = _selectedSeriesKeys.asStateFlow()
 

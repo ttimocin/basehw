@@ -1,7 +1,7 @@
 package com.taytek.basehw.domain.model
 
 data class BoxStatusStats(
-    val isOpened: Boolean,
+    val condition: String,
     val count: Int
 )
 

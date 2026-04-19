@@ -14,5 +14,5 @@ data class UserCarWithMaster(
 
 data class GroupedUserCarWithMaster(
     @Embedded val data: UserCarWithMaster,
-    val rowCount: Int = 1
+    val totalQuantity: Int = 1
 )

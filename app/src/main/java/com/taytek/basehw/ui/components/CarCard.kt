@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,7 @@ import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.ui.theme.*
 import com.taytek.basehw.ui.theme.MajoretteYellow
 import com.taytek.basehw.ui.theme.JadaPurple
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun CarCard(
@@ -33,9 +35,9 @@ fun CarCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB) // Ultra Light Cream
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED) // Lightest Orange (Orange 50)
+    val isDark = MaterialTheme.colorScheme.background.luminance() < 0.5f
+    val baseColor = MaterialTheme.colorScheme.surfaceContainerLow
+    val darkerColor = MaterialTheme.colorScheme.surfaceContainerHigh
 
     Card(
         modifier = modifier
@@ -72,7 +74,8 @@ fun CarCard(
                         .background(MaterialTheme.colorScheme.surfaceVariant),
                     contentAlignment = Alignment.Center
                 ) {
-                    val imageUrl = car.userPhotoUrl ?: car.masterData?.imageUrl
+                    // Priority: backupPhotoUrl (Supabase) > userPhotoUrl (local)
+                    val imageUrl = (car.backupPhotoUrl ?: car.userPhotoUrl)?.let { if (it == car.masterData?.imageUrl) null else it }
                     if (!imageUrl.isNullOrBlank()) {
                         AsyncImage(
                             model = imageUrl,
@@ -120,7 +123,8 @@ fun CarCard(
 
                     Spacer(modifier = Modifier.height(4.dp))
 
-                    val boxStatus = if (car.isOpened) "Açık" else "Kutulu"
+                    val conditionObj = car.condition
+                    val boxStatus = stringResource(conditionObj.titleRes)
                     val brandStr = car.masterData?.brand?.shortCode ?: ""
                     val brandPrefix = if (brandStr.isNotEmpty()) "$brandStr • " else ""
                     val countLabel = "$brandPrefix${car.masterData?.year ?: "Belirsiz"} • $boxStatus"

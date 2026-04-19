@@ -1,7 +1,7 @@
 [versions]
 agp = "8.13.2"
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.27"
+kotlin = "2.3.10"
+ksp = "2.3.6"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -12,13 +12,13 @@ composeBom = "2024.12.01"
 navigationCompose = "2.8.5"
 
 # Room
-room = "2.6.1"
+room = "2.8.2"
 
 # Paging
 paging = "3.3.5"
 
 # Hilt
-hilt = "2.51.1"
+hilt = "2.57.2"
 hiltNavigationCompose = "1.2.0"
 
 # Firebase & Auth
@@ -45,7 +45,18 @@ coroutines = "1.8.1"
 
 # Gson
 gson = "2.11.0"
-kotlinxSerializationJson = "1.7.3"
+kotlinxSerializationJson = "1.10.0"
+
+# Android UI extras
+coreSplashscreen = "1.0.1"
+appcompat = "1.7.0"
+
+# ML Kit
+mlkitTextRecognition = "16.0.1"
+
+# Supabase / Ktor
+supabase = "3.4.1"
+ktor = "3.4.0"
 
 # uCrop
 ucrop = "2.2.8"
@@ -125,6 +136,19 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 ucrop = { group = "com.github.yalantis", name = "ucrop", version.ref = "ucrop" }
 google-genai = { group = "com.google.genai", name = "google-genai", version.ref = "googleGenai" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+mlkit-text-recognition = { group = "com.google.mlkit", name = "text-recognition", version.ref = "mlkitTextRecognition" }
+
+# Supabase
+supabase-bom = { group = "io.github.jan-tennert.supabase", name = "bom", version.ref = "supabase" }
+supabase-postgrest = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt" }
+supabase-storage = { group = "io.github.jan-tennert.supabase", name = "storage-kt" }
+supabase-realtime = { group = "io.github.jan-tennert.supabase", name = "realtime-kt" }
+supabase-auth = { group = "io.github.jan-tennert.supabase", name = "auth-kt" }
+
+# Ktor client engine required by supabase-kt
+ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

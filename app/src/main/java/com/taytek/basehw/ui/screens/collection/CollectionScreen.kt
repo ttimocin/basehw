@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -48,7 +49,20 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.ui.components.*
-import com.taytek.basehw.ui.theme.*
+import com.taytek.basehw.ui.theme.AppTheme
+import com.taytek.basehw.ui.theme.CyberKnockoutIconTint
+import com.taytek.basehw.ui.theme.CyberNeonPink
+import com.taytek.basehw.ui.theme.CyberSunsetOrange
+import com.taytek.basehw.ui.theme.LocalThemeVariant
+import com.taytek.basehw.ui.theme.NeonCyanDeep
+import com.taytek.basehw.ui.theme.NeonCyanKnockoutIconTint
+import com.taytek.basehw.ui.theme.NeonElectricCyan
+import com.taytek.basehw.ui.theme.ThemeVariant
+import com.taytek.basehw.ui.theme.cyberActionGradientBrush
+import com.taytek.basehw.ui.theme.cyberRootBackgroundColor
+import com.taytek.basehw.ui.theme.isNeonShellTheme
+import com.taytek.basehw.ui.theme.neonCyanActionGradientBrush
+import com.taytek.basehw.ui.theme.isDarkThemeUi
 import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.toColor
 import com.taytek.basehw.R
@@ -59,6 +73,8 @@ fun CollectionScreen(
     onAddCarClick: () -> Unit,
     onCarClick: (Long) -> Unit,
     onStatisticsClick: () -> Unit = {},
+    showHeader: Boolean = true,
+    contentPadding: androidx.compose.foundation.layout.PaddingValues? = null,
     viewModel: CollectionViewModel = hiltViewModel()
 ) {
     val cars = viewModel.carsPaged.collectAsLazyPagingItems()
@@ -66,7 +82,7 @@ fun CollectionScreen(
     val selectedBrand by viewModel.selectedBrand.collectAsState()
     val selectedYear by viewModel.selectedYear.collectAsState()
     val selectedSeries by viewModel.selectedSeries.collectAsState()
-    val selectedIsOpened by viewModel.selectedIsOpened.collectAsState()
+    val selectedCondition by viewModel.selectedCondition.collectAsState()
     val selectedSortOrder by viewModel.sortOrder.collectAsState()
 
     val isSelectionMode by viewModel.isSelectionMode.collectAsState()
@@ -76,40 +92,60 @@ fun CollectionScreen(
     var isGridView by remember { mutableStateOf(false) }
 
     val columns = if (isGridView) 3 else 1
+    val systemNavBottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+    
+    val gridPadding = contentPadding?.let { cp ->
+        val bottomPx = cp.calculateBottomPadding()
+        val topPadding = if (showHeader) cp.calculateTopPadding() else 0.dp
+        if (isGridView)
+            PaddingValues(
+                start = 12.dp,
+                end = 12.dp,
+                top = 4.dp,
+                bottom = bottomPx + 8.dp
+            )
+        else
+            PaddingValues(
+                start = cp.calculateStartPadding(androidx.compose.ui.unit.LayoutDirection.Ltr),
+                end = cp.calculateEndPadding(androidx.compose.ui.unit.LayoutDirection.Ltr),
+                top = topPadding,
+                bottom = bottomPx + 8.dp
+            )
+    } ?: run {
+        if (isGridView)
+            PaddingValues(start = 12.dp, end = 12.dp, top = 4.dp, bottom = 32.dp)
+        else
+            PaddingValues(bottom = 32.dp)
+    }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize()
-    ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .background(MaterialTheme.colorScheme.background)
-        ) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = systemNavBottom)
+            .background(cyberRootBackgroundColor())
+    ) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(columns),
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = if (isGridView)
-                    PaddingValues(start = 12.dp, end = 12.dp, top = 4.dp, bottom = 100.dp)
-                else
-                    PaddingValues(bottom = 100.dp),
+                contentPadding = gridPadding,
                 horizontalArrangement = if (isGridView) Arrangement.spacedBy(6.dp) else Arrangement.Start,
                 verticalArrangement = if (isGridView) Arrangement.spacedBy(6.dp) else Arrangement.Top
             ) {
             item(span = { GridItemSpan(maxLineSpan) }) {
+                val topPadding = if (showHeader) 8.dp else 0.dp
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 8.dp)
+                        .padding(start = 20.dp, end = 20.dp, top = topPadding, bottom = 8.dp)
                 ) {
-                    Text(
-                        text = stringResource(com.taytek.basehw.R.string.nav_home),
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
-
-                    Spacer(Modifier.height(16.dp))
+                    if (showHeader) {
+                        Text(
+                            text = stringResource(com.taytek.basehw.R.string.nav_home),
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Black,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
 
                     SearchBarWithFilter(
                         query = searchQuery ?: "",
@@ -135,7 +171,7 @@ fun CollectionScreen(
                                 brand = brand,
                                 year = viewModel.selectedYear.value,
                                 series = viewModel.selectedSeries.value,
-                                isOpened = viewModel.selectedIsOpened.value,
+                                condition = viewModel.selectedCondition.value,
                                 sortOrder = viewModel.sortOrder.value
                             )
                         }
@@ -205,7 +241,7 @@ fun CollectionScreen(
                         Modifier.fillMaxWidth().padding(16.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        CircularProgressIndicator(modifier = Modifier.size(24.dp), color = AppPrimary)
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp), color = AppTheme.tokens.primaryAccent)
                     }
                 }
             }
@@ -217,7 +253,7 @@ fun CollectionScreen(
                 currentBrand = selectedBrand,
                 currentYear = selectedYear,
                 currentSeries = selectedSeries,
-                currentIsOpened = selectedIsOpened,
+                currentCondition = selectedCondition,
                 currentSortOrder = selectedSortOrder,
                 onApply = { b, y, s, o, sort ->
                     viewModel.updateFilters(b, y, s, o, sort)
@@ -246,7 +282,6 @@ fun CollectionScreen(
                 )
             }
         }
-    }
     }
 }
 
@@ -344,24 +379,67 @@ fun BrandFilterRow(
     ) {
         item {
             val isSelected = selectedBrand == null
+            val shell = LocalThemeVariant.current
+            val neonShell = isNeonShellTheme()
+            val chipShape = RoundedCornerShape(12.dp)
             Box(
                 modifier = Modifier
                     .height(48.dp) // Match height or keep it compact
                     .widthIn(min = 64.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(if (isSelected) AppPrimary else Color.Transparent)
+                    .then(
+                        if (neonShell && isSelected) {
+                            when (shell) {
+                                ThemeVariant.Cyber -> Modifier
+                                    .shadow(
+                                        elevation = 8.dp,
+                                        shape = chipShape,
+                                        spotColor = CyberNeonPink.copy(alpha = 0.42f),
+                                        ambientColor = CyberSunsetOrange.copy(alpha = 0.22f)
+                                    )
+                                    .clip(chipShape)
+                                    .background(cyberActionGradientBrush(), chipShape)
+                                ThemeVariant.NeonCyan -> Modifier
+                                    .shadow(
+                                        elevation = 8.dp,
+                                        shape = chipShape,
+                                        spotColor = NeonElectricCyan.copy(alpha = 0.45f),
+                                        ambientColor = NeonCyanDeep.copy(alpha = 0.25f)
+                                    )
+                                    .clip(chipShape)
+                                    .background(neonCyanActionGradientBrush(), chipShape)
+                                else -> Modifier
+                                    .clip(chipShape)
+                                    .background(
+                                        if (isSelected) AppTheme.tokens.primaryAccent else Color.Transparent,
+                                        chipShape
+                                    )
+                            }
+                        } else {
+                            Modifier
+                                .clip(chipShape)
+                                .background(
+                                    if (isSelected) AppTheme.tokens.primaryAccent else Color.Transparent,
+                                    chipShape
+                                )
+                        }
+                    )
                     .border(
                         width = if (isSelected) 0.dp else 1.dp,
                         color = if (isSelected) Color.Transparent else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
-                        shape = RoundedCornerShape(12.dp)
+                        shape = chipShape
                     )
                     .clickable { onBrandSelected(null) }
                     .padding(horizontal = 16.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Tümü",
-                    color = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
+                    text = stringResource(R.string.all),
+                    color = when {
+                        shell == ThemeVariant.Cyber && isSelected -> CyberKnockoutIconTint
+                        shell == ThemeVariant.NeonCyan && isSelected -> NeonCyanKnockoutIconTint
+                        isSelected -> MaterialTheme.colorScheme.onPrimary
+                        else -> MaterialTheme.colorScheme.onSurfaceVariant
+                    },
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold
                 )
@@ -384,7 +462,7 @@ fun BrandLogoChip(
     selected: Boolean,
     onClick: () -> Unit
 ) {
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val isDark = isDarkThemeUi()
     val isSmaller = brand == Brand.SIKU || brand == Brand.JADA
     
     Box(
@@ -392,11 +470,11 @@ fun BrandLogoChip(
             .size(64.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(
-                if (selected) AppPrimary.copy(alpha = 0.15f) else Color.Transparent
+                if (selected) AppTheme.tokens.primaryAccent.copy(alpha = 0.15f) else Color.Transparent
             )
             .border(
                 width = if (selected) 2.dp else 0.dp,
-                color = if (selected) AppPrimary else Color.Transparent,
+                color = if (selected) AppTheme.tokens.primaryAccent else Color.Transparent,
                 shape = RoundedCornerShape(12.dp)
             )
             .clickable { onClick() }

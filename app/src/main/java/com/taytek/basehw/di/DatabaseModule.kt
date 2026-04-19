@@ -6,6 +6,7 @@ import com.taytek.basehw.data.local.AppDatabase
 import com.taytek.basehw.data.local.dao.MasterDataDao
 import com.taytek.basehw.data.local.dao.UserCarDao
 import com.taytek.basehw.data.local.dao.CustomCollectionDao
+import com.taytek.basehw.data.local.dao.VariantHuntDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,6 +44,8 @@ object DatabaseModule {
                 .addMigrations(AppDatabase.MIGRATION_20_21)
                 .addMigrations(AppDatabase.MIGRATION_21_22)
                 .addMigrations(AppDatabase.MIGRATION_22_23)
+                .addMigrations(AppDatabase.MIGRATION_23_24)
+                .addMigrations(AppDatabase.MIGRATION_24_25)
             .fallbackToDestructiveMigration()
             .build()
     }
@@ -55,4 +58,7 @@ object DatabaseModule {
 
     @Provides
     fun provideCustomCollectionDao(db: AppDatabase): CustomCollectionDao = db.customCollectionDao()
+
+    @Provides
+    fun provideVariantHuntDao(db: AppDatabase): VariantHuntDao = db.variantHuntDao()
 }

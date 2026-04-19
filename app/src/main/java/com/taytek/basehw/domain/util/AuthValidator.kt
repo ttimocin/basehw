@@ -21,8 +21,8 @@ object AuthValidator {
     }
 
     fun isUsernameFormatValid(username: String): Boolean {
-        // Alphanumeric, underscores, 3-20 chars
-        val regex = "^[a-zA-Z0-9_]{3,20}$".toRegex()
+        // Alphanumeric, underscores, 3-8 chars
+        val regex = "^[a-zA-Z0-9_]{3,8}$".toRegex()
         return regex.matches(username)
     }
 }

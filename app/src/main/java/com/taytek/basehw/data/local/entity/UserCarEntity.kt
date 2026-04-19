@@ -15,7 +15,13 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["masterDataId"])]
+    indices = [
+        Index(value = ["masterDataId"]),
+        Index(value = ["isWishlist"]),
+        Index(value = ["isFavorite"]),
+        Index(value = ["isSeriesOnly"]),
+        Index(value = ["manualBrand"])
+    ]
 )
 data class UserCarEntity(
     @PrimaryKey(autoGenerate = true)
@@ -28,7 +34,7 @@ data class UserCarEntity(
     val manualYear: Int? = null,
     val manualScale: String? = null,
     val manualIsPremium: Boolean? = null,
-    val isOpened: Boolean = false,
+    val condition: String = "MINT",
     val purchaseDateMillis: Long? = null,
     val personalNote: String = "",
     val storageLocation: String = "",
@@ -43,5 +49,6 @@ data class UserCarEntity(
     val isCustom: Boolean = false,
     val quantity: Int = 1,
     val additionalPhotos: List<String> = emptyList(),
-    val additionalPhotosBackup: List<String> = emptyList()
+    val additionalPhotosBackup: List<String> = emptyList(),
+    val hwCardType: String? = null
 )

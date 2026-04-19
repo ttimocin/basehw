@@ -2,6 +2,7 @@ package com.taytek.basehw.data.local.dao
 
 import androidx.paging.PagingSource
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.taytek.basehw.data.local.entity.MasterDataEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -202,4 +203,7 @@ interface MasterDataDao {
 
     @Delete
     suspend fun delete(item: MasterDataEntity)
+
+    @RawQuery(observedEntities = [MasterDataEntity::class])
+    suspend fun rawSelectMasters(query: SupportSQLiteQuery): List<MasterDataEntity>
 }

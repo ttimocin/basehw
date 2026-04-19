@@ -34,19 +34,16 @@ import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.taytek.basehw.R
 import com.taytek.basehw.domain.model.MasterData
-import com.taytek.basehw.ui.theme.AppPrimary
-import com.taytek.basehw.ui.theme.DarkNavy
-
-private val SthGold = Color(0xFFE0B94C)
-private val SthGoldDeep = Color(0xFFB68A2E)
-private val SthCardBlue = Color(0xFF162947)
-private val SthCardBlueAlt = Color(0xFF0F1F38)
+import com.taytek.basehw.ui.theme.AppTheme
+import com.taytek.basehw.ui.theme.cyberRootBackgroundColor
+import com.taytek.basehw.ui.theme.isDarkThemeUi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SthScreen(
     onAddCarClick: () -> Unit,
     onCarClick: (Long) -> Unit,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     viewModel: SthViewModel = hiltViewModel()
 ) {
     val currentTab by viewModel.currentTab.collectAsState()
@@ -63,7 +60,11 @@ fun SthScreen(
     val searchQuery by viewModel.searchQuery.collectAsState()
     var hasShownContent by rememberSaveable { mutableStateOf(false) }
 
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val isDark = isDarkThemeUi()
+    val brand = AppTheme.brand
+    val tokens = AppTheme.tokens
+    val systemNavBottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+    val scaffoldBottom = contentPadding.calculateBottomPadding()
     
     LaunchedEffect(cars.itemCount) {
         if (cars.itemCount > 0) hasShownContent = true
@@ -72,11 +73,12 @@ fun SthScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .padding(bottom = systemNavBottom)
+            .background(cyberRootBackgroundColor())
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(bottom = 100.dp)
+            contentPadding = PaddingValues(bottom = 100.dp + scaffoldBottom)
         ) {
             // ── Header ──
             item {
@@ -93,7 +95,7 @@ fun SthScreen(
                             SthViewModel.SthTab.TH -> stringResource(R.string.th_title)
                         },
                         style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.ExtraBold,
+                        fontWeight = FontWeight.Black,
                         color = MaterialTheme.colorScheme.onBackground
                     )
 
@@ -103,9 +105,9 @@ fun SthScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .shadow(if (MaterialTheme.colorScheme.background == DarkNavy) 0.dp else 4.dp, RoundedCornerShape(12.dp))
+                            .shadow(if (isDarkThemeUi()) 0.dp else 4.dp, RoundedCornerShape(12.dp))
                             .clip(RoundedCornerShape(12.dp))
-                            .background(if (MaterialTheme.colorScheme.background == DarkNavy) SthCardBlue else MaterialTheme.colorScheme.primaryContainer)
+                            .background(if (isDarkThemeUi()) brand.sthBlueSurface else MaterialTheme.colorScheme.primaryContainer)
                             .padding(4.dp),
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
@@ -114,43 +116,43 @@ fun SthScreen(
                             isSelected = currentTab == SthViewModel.SthTab.STH,
                             onClick = { viewModel.updateTab(SthViewModel.SthTab.STH) },
                             modifier = Modifier.weight(1f),
-                            selectedColor = SthGold
+                            selectedColor = brand.sthGold
                         )
                         SthTabButton(
                             text = "CHASE",
                             isSelected = currentTab == SthViewModel.SthTab.CHASE,
                             onClick = { viewModel.updateTab(SthViewModel.SthTab.CHASE) },
                             modifier = Modifier.weight(1f),
-                            selectedColor = if (MaterialTheme.colorScheme.background == DarkNavy) Color.White else Color.Black
+                            selectedColor = if (isDarkThemeUi()) Color.White else Color.Black
                         )
                         SthTabButton(
                             text = "TH",
                             isSelected = currentTab == SthViewModel.SthTab.TH,
                             onClick = { viewModel.updateTab(SthViewModel.SthTab.TH) },
                             modifier = Modifier.weight(1f),
-                            selectedColor = if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFFE5E4E2) else Color(0xFF666666) // Darker gray
+                            selectedColor = if (isDarkThemeUi()) Color(0xFFE5E4E2) else Color(0xFF666666) // Darker gray
                         )
                     }
 
                     Spacer(Modifier.height(16.dp))
 
                     val searchBorderColor = when (currentTab) {
-                        SthViewModel.SthTab.STH -> SthGold
-                        SthViewModel.SthTab.CHASE -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.Black else Color.Black
-                        else -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.Gray else Color(0xFF666666) // Dark Gray for TH
+                        SthViewModel.SthTab.STH -> brand.sthGold
+                        SthViewModel.SthTab.CHASE -> if (isDarkThemeUi()) Color.Black else Color.Black
+                        else -> if (isDarkThemeUi()) Color.Gray else Color(0xFF666666) // Dark Gray for TH
                     }
                     val placeholderColor = when (currentTab) {
-                        SthViewModel.SthTab.STH -> SthGold.copy(alpha = 0.7f)
-                        SthViewModel.SthTab.TH -> if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFFE5E4E2).copy(alpha = 0.7f) else Color(0xFF666666).copy(alpha = 0.8f)
-                        else -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.White.copy(alpha = 0.6f) else Color.Black.copy(alpha = 0.6f)
+                        SthViewModel.SthTab.STH -> brand.sthGold.copy(alpha = 0.7f)
+                        SthViewModel.SthTab.TH -> if (isDarkThemeUi()) Color(0xFFE5E4E2).copy(alpha = 0.7f) else Color(0xFF666666).copy(alpha = 0.8f)
+                        else -> if (isDarkThemeUi()) Color.White.copy(alpha = 0.6f) else Color.Black.copy(alpha = 0.6f)
                     }
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .shadow(if (MaterialTheme.colorScheme.background == DarkNavy) 8.dp else 4.dp, RoundedCornerShape(14.dp))
-                            .border(if (MaterialTheme.colorScheme.background == DarkNavy) 2.dp else 1.dp, searchBorderColor, RoundedCornerShape(14.dp))
+                            .shadow(if (isDarkThemeUi()) 8.dp else 4.dp, RoundedCornerShape(14.dp))
+                            .border(if (isDarkThemeUi()) 2.dp else 1.dp, searchBorderColor, RoundedCornerShape(14.dp))
                             .clip(RoundedCornerShape(14.dp))
-                            .background(if (MaterialTheme.colorScheme.background == DarkNavy) SthCardBlueAlt else MaterialTheme.colorScheme.primaryContainer)
+                            .background(if (isDarkThemeUi()) brand.sthBlueSurfaceAlt else MaterialTheme.colorScheme.primaryContainer)
                     ) {
                         OutlinedTextField(
                             value = searchQuery,
@@ -171,9 +173,9 @@ fun SthScreen(
                                     Icons.Default.Search, 
                                     null, 
                                     tint = when (currentTab) {
-                                        SthViewModel.SthTab.STH -> SthGold
-                                        SthViewModel.SthTab.TH -> if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFFE5E4E2) else Color(0xFF666666)
-                                        else -> if (MaterialTheme.colorScheme.background == DarkNavy) Color.White else Color.Black
+                                        SthViewModel.SthTab.STH -> brand.sthGold
+                                        SthViewModel.SthTab.TH -> if (isDarkThemeUi()) Color(0xFFE5E4E2) else Color(0xFF666666)
+                                        else -> if (isDarkThemeUi()) Color.White else Color.Black
                                     }
                                 )
                             },
@@ -239,7 +241,7 @@ fun SthScreen(
             if (initialLoading) {
                 item {
                     Box(Modifier.fillMaxWidth().height(200.dp), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(color = AppPrimary)
+                        CircularProgressIndicator(color = tokens.primaryAccent)
                     }
                 }
             } else if (cars.itemCount == 0 && cars.loadState.refresh is LoadState.NotLoading) {
@@ -273,7 +275,7 @@ fun SthScreen(
             if (cars.loadState.append is LoadState.Loading) {
                 item {
                     Box(Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(modifier = Modifier.size(24.dp), color = AppPrimary)
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp), color = tokens.primaryAccent)
                     }
                 }
             }
@@ -305,7 +307,7 @@ private fun SthTabButton(
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                 color = if (isSelected) selectedColor else {
-                    if (MaterialTheme.colorScheme.background == DarkNavy) Color.White.copy(alpha = 0.6f) else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                    if (isDarkThemeUi()) Color.White.copy(alpha = 0.6f) else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                 }
             )
         }
@@ -320,21 +322,22 @@ private fun SthCarItem(
     isTh: Boolean = false
 ) {
     val borderColor = when {
-        isChase -> Color.Black
-        isTh -> if (MaterialTheme.colorScheme.background == DarkNavy) Color(0xFF71797E) else Color(0xFF666666)
-        else -> SthGold
+        isChase -> AppTheme.brand.chaseBlack
+        isTh -> if (isDarkThemeUi()) Color(0xFF71797E) else Color(0xFF666666)
+        else -> AppTheme.brand.sthGold
     }
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
-    val baseColor = if (isDark) MaterialTheme.colorScheme.surface else Color(0xFFFFFDFB)
-    val darkerColor = if (isDark) Color(0xFF121416) else Color(0xFFFFF7ED)
-    
-    val bgColor = Brush.linearGradient(listOf(baseColor, darkerColor))
+    val bgColor = Brush.linearGradient(
+        listOf(
+            MaterialTheme.colorScheme.surfaceContainerLow,
+            MaterialTheme.colorScheme.surfaceContainerHigh
+        )
+    )
     
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp, vertical = 6.dp)
-            .shadow(if (isDark) 8.dp else 4.dp, RoundedCornerShape(16.dp))
+            .shadow(if (MaterialTheme.colorScheme.background.luminance() < 0.5f) 8.dp else 4.dp, RoundedCornerShape(16.dp))
             .border(2.dp, borderColor, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
             .background(bgColor)
@@ -377,7 +380,7 @@ private fun SthCarItem(
                     Text(
                         text = it.toString(),
                         style = MaterialTheme.typography.labelMedium,
-                        color = AppPrimary,
+                        color = AppTheme.tokens.primaryAccent,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -409,13 +412,13 @@ private fun SthCarItem(
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(4.dp))
-                                .background(Color.Black)
+                                .background(AppTheme.brand.chaseBlack)
                                 .padding(horizontal = 6.dp, vertical = 2.dp)
                         ) {
                             Text(
                                 text = "CHASE",
                                 style = MaterialTheme.typography.labelSmall,
-                                color = Color.White,
+                                color = AppTheme.brand.chaseText,
                                 fontWeight = FontWeight.ExtraBold
                             )
                         }
@@ -424,13 +427,13 @@ private fun SthCarItem(
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(4.dp))
-                                .background(Color(0xFFE5E4E2))
+                                .background(AppTheme.brand.thGray)
                                 .padding(horizontal = 6.dp, vertical = 2.dp)
                         ) {
                             Text(
                                 text = "TH",
                                 style = MaterialTheme.typography.labelSmall,
-                                color = Color.DarkGray,
+                                color = AppTheme.brand.thText,
                                 fontWeight = FontWeight.ExtraBold
                             )
                         }
@@ -439,7 +442,7 @@ private fun SthCarItem(
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(4.dp))
-                                .background(AppPrimary)
+                                .background(AppTheme.tokens.primaryAccent)
                                 .padding(horizontal = 6.dp, vertical = 2.dp)
                         ) {
                             Text(
@@ -481,26 +484,26 @@ private fun YearChip(
     isChase: Boolean = false,
     isTh: Boolean = false
 ) {
-    val isDark = MaterialTheme.colorScheme.background == DarkNavy
+    val isDark = isDarkThemeUi()
     
     val borderColor = when {
-        isChase -> Color.Black
+        isChase -> AppTheme.brand.chaseBlack
         isTh -> Color.Gray
-        else -> SthGold
+        else -> AppTheme.brand.sthGold
     }
     val selectedBgColor = when {
         isChase -> if (!isDark) Color.Black else Color.White
-        isTh -> Color(0xFFE5E4E2)
-        else -> SthGoldDeep
+        isTh -> AppTheme.brand.thGray
+        else -> AppTheme.brand.sthGoldDeep
     }
-    val unselectedBgColor = if (isDark) SthCardBlue else MaterialTheme.colorScheme.surface
+    val unselectedBgColor = if (isDark) AppTheme.brand.sthBlueSurface else MaterialTheme.colorScheme.surface
     val textColor = if (isSelected) {
         if (isChase && !isDark) Color.White else Color.Black
     } else {
         when {
             isChase -> if (isDark) Color.White else Color.Black
             isTh -> if (isDark) Color(0xFFE5E4E2) else Color(0xFF666666)
-            else -> SthGold
+            else -> AppTheme.brand.sthGold
         }
     }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Wrap the main logo with an inset to prevent cropping by Android 12+ Splash API -->
+    <item>
+        <inset
+            android:drawable="@drawable/app_logo"
+            android:insetLeft="36dp"
+            android:insetTop="36dp"
+            android:insetRight="36dp"
+            android:insetBottom="36dp" />
+    </item>
+</layer-list>

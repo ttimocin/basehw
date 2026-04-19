@@ -36,14 +36,8 @@ interface CustomCollectionDao {
     @Query("SELECT * FROM custom_collections ORDER BY createdAtMillis DESC")
     fun getAllCollections(): Flow<List<CustomCollectionEntity>>
 
-    @Query("UPDATE custom_collections SET firestoreId = :firestoreId WHERE id = :id")
-    suspend fun updateFirestoreId(id: Long, firestoreId: String)
-
     @Query("SELECT * FROM custom_collections")
     suspend fun getAllCollectionsList(): List<CustomCollectionEntity>
-
-    @Query("SELECT firestoreId FROM custom_collections WHERE firestoreId != ''")
-    suspend fun getAllFirestoreIds(): List<String>
 
     @Query("SELECT * FROM collection_car_cross_ref")
     suspend fun getAllCrossRefs(): List<CollectionCarCrossRef>

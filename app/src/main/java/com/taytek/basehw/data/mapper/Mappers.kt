@@ -8,6 +8,7 @@ import com.taytek.basehw.data.local.entity.CustomCollectionEntity
 import com.taytek.basehw.data.local.entity.CollectionWithCars
 import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.MasterData
+import com.taytek.basehw.domain.model.HwCardType
 import com.taytek.basehw.domain.model.UserCar
 import java.util.Date
 
@@ -62,7 +63,7 @@ fun UserCarEntity.toDomain(masterData: MasterData?): UserCar = UserCar(
     manualSeriesNum = manualSeriesNum,
     manualScale = manualScale,
     manualIsPremium = manualIsPremium,
-    isOpened = isOpened,
+    condition = com.taytek.basehw.domain.model.VehicleCondition.fromString(condition),
     purchaseDate = purchaseDateMillis?.let { Date(it) },
     personalNote = personalNote,
     storageLocation = storageLocation,
@@ -77,7 +78,8 @@ fun UserCarEntity.toDomain(masterData: MasterData?): UserCar = UserCar(
     isCustom = isCustom,
     quantity = quantity,
     additionalPhotos = additionalPhotos,
-    additionalPhotosBackup = additionalPhotosBackup
+    additionalPhotosBackup = additionalPhotosBackup,
+    hwCardType = HwCardType.fromStorage(hwCardType)
 )
 
 fun UserCarWithMaster.toDomain(): UserCar = UserCar(
@@ -91,7 +93,7 @@ fun UserCarWithMaster.toDomain(): UserCar = UserCar(
     manualSeriesNum = car.manualSeriesNum,
     manualScale = car.manualScale,
     manualIsPremium = car.manualIsPremium,
-    isOpened = car.isOpened,
+    condition = com.taytek.basehw.domain.model.VehicleCondition.fromString(car.condition),
     purchaseDate = car.purchaseDateMillis?.let { Date(it) },
     personalNote = car.personalNote,
     storageLocation = car.storageLocation,
@@ -106,11 +108,12 @@ fun UserCarWithMaster.toDomain(): UserCar = UserCar(
     isCustom = car.isCustom,
     quantity = car.quantity,
     additionalPhotos = car.additionalPhotos,
-    additionalPhotosBackup = car.additionalPhotosBackup
+    additionalPhotosBackup = car.additionalPhotosBackup,
+    hwCardType = HwCardType.fromStorage(car.hwCardType)
 )
 
 fun GroupedUserCarWithMaster.toDomain(): UserCar = data.toDomain().copy(
-    quantity = rowCount
+    quantity = totalQuantity
 )
 
 fun UserCar.toEntity(): UserCarEntity = UserCarEntity(
@@ -123,7 +126,7 @@ fun UserCar.toEntity(): UserCarEntity = UserCarEntity(
     manualYear = manualYear,
     manualScale = manualScale,
     manualIsPremium = manualIsPremium,
-    isOpened = isOpened,
+    condition = condition.name,
     purchaseDateMillis = purchaseDate?.time,
     personalNote = personalNote,
     storageLocation = storageLocation,
@@ -138,7 +141,8 @@ fun UserCar.toEntity(): UserCarEntity = UserCarEntity(
     isCustom = isCustom,
     quantity = quantity,
     additionalPhotos = additionalPhotos,
-    additionalPhotosBackup = additionalPhotosBackup
+    additionalPhotosBackup = additionalPhotosBackup,
+    hwCardType = hwCardType?.toStorageCode()
 )
 
 // Custom Collection mappers

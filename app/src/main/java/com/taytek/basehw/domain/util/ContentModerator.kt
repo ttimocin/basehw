@@ -1,7 +1,6 @@
 package com.taytek.basehw.domain.util
 
-import com.taytek.basehw.BuildConfig
-
+import com.taytek.basehw.data.remote.firebase.RemoteConfigDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
@@ -10,7 +9,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONArray
 import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,73 +21,59 @@ data class ModerationResult(
 )
 
 @Singleton
-class ContentModerator @Inject constructor() {
+class ContentModerator @Inject constructor(
+    private val remoteConfig: RemoteConfigDataSource
+) {
 
     private val client = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(15, TimeUnit.SECONDS)
         .build()
-        
+
     private val json = Json { ignoreUnknownKeys = true }
 
     suspend fun validateContent(text: String): Result<ModerationResult> = withContext(Dispatchers.IO) {
         if (text.isBlank()) return@withContext Result.success(ModerationResult(true))
 
-        val apiKey = BuildConfig.GROQ_API_KEY
-        val url = "https://api.groq.com/openai/v1/chat/completions"
-        
-        try {
-            // JSON'u manuel String olarak değil, JSONObject ile güvenli oluşturuyoruz
-            val root = JSONObject()
-            root.put("model", "llama-3.3-70b-versatile")
-            
-            val messages = JSONArray()
-            
-            // Sistem mesajı (Talimatlar)
-            val systemMsg = JSONObject()
-            systemMsg.put("role", "system")
-            systemMsg.put("content", "Sen bir içerik moderatörüsün. Metni küfür ve nefret söylemi açısından incele. Yanıtı SADECE şu formatta bir JSON objesi olarak ver: {\"is_safe\": true} veya {\"is_safe\": false, \"reason\": \"...\"}")
-            messages.put(systemMsg)
-            
-            // Kullanıcı mesajı (İncelenecek metin)
-            val userMsg = JSONObject()
-            userMsg.put("role", "user")
-            userMsg.put("content", text)
-            messages.put(userMsg)
-            
-            root.put("messages", messages)
-            
-            // JSON Modunu zorunlu kılıyoruz
-            val responseFormat = JSONObject()
-            responseFormat.put("type", "json_object")
-            root.put("response_format", responseFormat)
-            root.put("temperature", 0)
+        // Use Supabase Edge Function instead of direct Groq API call
+        // API key is stored securely in Supabase secrets, not in the APK
+        val supabaseUrl = remoteConfig.getPhotoBackupSupabaseUrl().trim().trimEnd('/')
+        val supabaseAnonKey = remoteConfig.getPhotoBackupApiKey().trim()
 
-            val requestBody = root.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
-            
+        if (supabaseUrl.isBlank() || supabaseAnonKey.isBlank()) {
+            return@withContext Result.failure(Exception("Supabase yapılandırması eksik."))
+        }
+
+        val edgeFunctionUrl = "$supabaseUrl/functions/v1/moderate-content"
+
+        try {
+            val requestBody = JSONObject().apply {
+                put("text", text)
+                put("lang", java.util.Locale.getDefault().language)
+            }
+
             val request = Request.Builder()
-                .url(url)
-                .addHeader("Authorization", "Bearer $apiKey")
-                .post(requestBody)
+                .url(edgeFunctionUrl)
+                .addHeader("Authorization", "Bearer $supabaseAnonKey")
+                .addHeader("apikey", supabaseAnonKey)
+                .addHeader("Content-Type", "application/json")
+                .post(requestBody.toString().toRequestBody("application/json; charset=utf-8".toMediaType()))
                 .build()
 
             val response = client.newCall(request).execute()
             val responseBody = response.body?.string() ?: ""
 
             if (!response.isSuccessful) {
-                return@withContext Result.failure(Exception("Groq Hatası: ${response.code} - $responseBody"))
+                return@withContext Result.failure(Exception("Moderasyon hizmeti hatası: ${response.code}"))
             }
 
-            // Gelen yanıtın içindeki mesajı çekiyoruz
-            val responseJson = JSONObject(responseBody)
-            val choices = responseJson.getJSONArray("choices")
-            val aiContent = choices.getJSONObject(0).getJSONObject("message").getString("content")
-            
-            val result = json.decodeFromString<ModerationResult>(aiContent)
+            val result = json.decodeFromString<ModerationResult>(responseBody)
             Result.success(result)
 
         } catch (e: Exception) {
-            Result.failure(Exception("Hata: ${e.localizedMessage}"))
+            // Fallback: Moderation service unavailable, allow content
+            android.util.Log.w("ContentModerator", "Moderation service error, allowing content: ${e.localizedMessage}")
+            Result.success(ModerationResult(is_safe = true, reason = "Moderation unavailable"))
         }
     }
 }

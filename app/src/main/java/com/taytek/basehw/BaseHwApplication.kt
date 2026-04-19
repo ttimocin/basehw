@@ -5,18 +5,23 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
 import com.taytek.basehw.data.worker.AssetSeedWorker
 import com.taytek.basehw.data.worker.RemoteYearSyncWorker
+import coil.ImageLoader
+import coil.ImageLoaderFactory
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltAndroidApp
-class BaseHwApplication : Application(), Configuration.Provider {
+class BaseHwApplication : Application(), Configuration.Provider, ImageLoaderFactory {
 
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     @Inject
     lateinit var remoteConfig: com.taytek.basehw.data.remote.firebase.RemoteConfigDataSource
@@ -26,9 +31,14 @@ class BaseHwApplication : Application(), Configuration.Provider {
             .setWorkerFactory(workerFactory)
             .build()
 
+    override fun newImageLoader(): ImageLoader = imageLoader
+
     override fun onCreate() {
         super.onCreate()
         
+        // Create notification channel for sync workers
+        createSyncNotificationChannel()
+
         // Fetch latest configuration at startup
         applicationScope.launch {
             remoteConfig.fetchAndActivate()
@@ -79,5 +89,22 @@ class BaseHwApplication : Application(), Configuration.Provider {
             ExistingPeriodicWorkPolicy.KEEP,
             request
         )
+    }
+
+    private fun createSyncNotificationChannel() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val name = "Sistem Senkronizasyonu"
+            val descriptionText = "Yedekleme ve katalog guncelleme islemleri"
+            val importance = android.app.NotificationManager.IMPORTANCE_LOW
+            val channel = android.app.NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager = getSystemService(android.content.Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    companion object {
+        const val CHANNEL_ID = "sync_channel"
     }
 }

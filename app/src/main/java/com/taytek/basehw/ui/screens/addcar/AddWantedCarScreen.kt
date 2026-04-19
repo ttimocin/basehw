@@ -1,7 +1,10 @@
 package com.taytek.basehw.ui.screens.addcar
 
+import com.taytek.basehw.R
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -358,11 +361,9 @@ fun AddWantedCarScreen(
                             if (uiState.isSaving) {
                                 CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color(0xFFFF8C00))
                             } else {
-                                Icon(Icons.Default.Layers, contentDescription = null, modifier = Modifier.size(20.dp))
-                                Spacer(Modifier.width(8.dp))
                                 Text(
                                     text = stringResource(com.taytek.basehw.R.string.add_series_to_wanted),
-                                    style = MaterialTheme.typography.titleMedium,
+                                    style = MaterialTheme.typography.labelLarge,
                                     fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
                                 )
                             }
@@ -422,7 +423,7 @@ private fun SuggestionItem(masterData: MasterData, onClick: () -> Unit) {
                     model = masterData.imageUrl,
                     contentDescription = masterData.modelName,
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Fit
                 )
             }
         }
@@ -445,14 +446,63 @@ private fun SuggestionItem(masterData: MasterData, onClick: () -> Unit) {
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.secondary
                 )
-                if (masterData.series.isNotBlank()) {
+                if (masterData.series.isNotBlank() || masterData.seriesNum.isNotBlank()) {
+                    val seriesText = listOfNotNull(
+                        masterData.series.takeIf { it.isNotBlank() },
+                        masterData.seriesNum.takeIf { it.isNotBlank() }
+                    ).joinToString(" ")
                     Text(
-                        masterData.series,
+                        seriesText,
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
+                }
+
+                val feature = masterData.feature?.lowercase()
+                if (feature == "sth") {
+                    Box(
+                        modifier = Modifier
+                            .background(Color(0xFFE0B94C), RoundedCornerShape(4.dp))
+                            .padding(horizontal = 4.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.sth_label),
+                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                }
+                if (feature == "chase") {
+                    Box(
+                        modifier = Modifier
+                            .background(Color.Black, RoundedCornerShape(4.dp))
+                            .border(1.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(4.dp))
+                            .padding(horizontal = 4.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.chase_label),
+                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                            color = Color.White,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                }
+                if (feature == "th") {
+                    Box(
+                        modifier = Modifier
+                            .background(Color(0xFF71797E), RoundedCornerShape(4.dp))
+                            .padding(horizontal = 4.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.th_label),
+                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                            color = Color.White,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
                 }
             }
         }
@@ -473,14 +523,18 @@ private fun SelectedCarPreview(masterData: MasterData) {
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (masterData.imageUrl.isNotBlank()) {
-                AsyncImage(
-                    model = masterData.imageUrl,
-                    contentDescription = masterData.modelName,
-                    modifier = Modifier
-                        .size(64.dp)
-                        .clip(RoundedCornerShape(8.dp)),
-                    contentScale = ContentScale.Crop
+            Box(
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.DirectionsCar,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                    modifier = Modifier.size(32.dp)
                 )
             }
             Column {

@@ -1,10 +1,13 @@
 package com.taytek.basehw.ui.screens.addcar
 
+import com.taytek.basehw.R
+
 import com.taytek.basehw.domain.model.Brand
 import com.taytek.basehw.domain.model.toColor
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,7 +20,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.text.font.FontWeight
 import androidx.core.content.FileProvider
 import com.taytek.basehw.BuildConfig
@@ -49,8 +54,11 @@ import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.taytek.basehw.ui.util.UCropContract
 import com.taytek.basehw.ui.util.CameraModelOcrHelper
+import com.taytek.basehw.domain.model.HwCardType
+import com.taytek.basehw.domain.model.HwCardTypeRules
 import com.taytek.basehw.domain.model.MasterData
 import com.taytek.basehw.ui.theme.AppBackground
+import com.taytek.basehw.ui.theme.AppTheme
 import com.taytek.basehw.ui.theme.AppTextSecondary
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,6 +95,7 @@ fun AddCarScreen(
         if (croppedUri != null) {
             viewModel.onUserPhotoUrlChanged(croppedUri.toString())
             if (openCameraOnLaunch) {
+                // 1. Instantly trigger Local OCR
                 coroutineScope.launch {
                     val detection = runCatching {
                         CameraModelOcrHelper.detectFromImage(context, croppedUri)
@@ -96,6 +105,13 @@ fun AddCarScreen(
                             query = detection.query,
                             detectedBrand = detection.detectedBrand
                         )
+                    }
+                }
+                // 2. Concurrently fire Vision AI in background
+                coroutineScope.launch {
+                    val base64 = com.taytek.basehw.domain.util.OpenAiVisionHelper.convertUriToBase64(context, croppedUri)
+                    if (!base64.isNullOrBlank()) {
+                        viewModel.onAnalyzeImage(base64, isBackground = true)
                     }
                 }
             }
@@ -446,9 +462,20 @@ fun AddCarScreen(
                     // — CONDITION | CURRENCY —
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_condition))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_condition))
+                            if (uiState.isAiBackgroundAnalysing) {
+                                Spacer(modifier = Modifier.width(8.dp))
+                                CircularProgressIndicator(
+                                    modifier = Modifier.size(16.dp),
+                                    strokeWidth = 2.dp,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
                         FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_currency))
                     }
 
@@ -458,60 +485,60 @@ fun AddCarScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         // Mint / Loose pill toggle
-                        Box(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clip(RoundedCornerShape(10.dp))
-                                .background(MaterialTheme.colorScheme.surfaceVariant)
-                                .padding(3.dp)
-                        ) {
-                            Row(modifier = Modifier.fillMaxWidth()) {
-                                val mintSelected = !uiState.isOpened
-                                Box(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                        .clip(RoundedCornerShape(8.dp))
-                                        .background(
-                                            if (mintSelected) com.taytek.basehw.ui.theme.AppPrimary
-                                            else androidx.compose.ui.graphics.Color.Transparent
-                                        )
-                                        .clickable { viewModel.onIsOpenedChanged(false) }
-                                        .padding(vertical = 9.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = stringResource(com.taytek.basehw.R.string.condition_boxed),
-                                        style = MaterialTheme.typography.labelMedium,
-                                        color = if (mintSelected) androidx.compose.ui.graphics.Color.White
-                                                else MaterialTheme.colorScheme.onSurfaceVariant,
-                                        fontWeight = if (mintSelected) androidx.compose.ui.text.font.FontWeight.Bold
-                                                     else androidx.compose.ui.text.font.FontWeight.Normal
-                                    )
-                                }
-                                val looseSelected = uiState.isOpened
-                                Box(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                        .clip(RoundedCornerShape(8.dp))
-                                        .background(
-                                            if (looseSelected) com.taytek.basehw.ui.theme.AppPrimary
-                                            else androidx.compose.ui.graphics.Color.Transparent
-                                        )
-                                        .clickable { viewModel.onIsOpenedChanged(true) }
-                                        .padding(vertical = 9.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = stringResource(com.taytek.basehw.R.string.condition_opened),
-                                        style = MaterialTheme.typography.labelMedium,
-                                        color = if (looseSelected) androidx.compose.ui.graphics.Color.White
-                                                else MaterialTheme.colorScheme.onSurfaceVariant,
-                                        fontWeight = if (looseSelected) androidx.compose.ui.text.font.FontWeight.Bold
-                                                     else androidx.compose.ui.text.font.FontWeight.Normal
-                                    )
+                    // — CONDITION SELECTION 2x2 GRID —
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        val conditions = com.taytek.basehw.domain.model.VehicleCondition.entries
+                        val rows = conditions.chunked(2)
+
+                        rows.forEach { rowItems ->
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                rowItems.forEach { condition ->
+                                    val isSelected = uiState.condition == condition
+                                    val color = Color(condition.hexColor)
+                                    
+                                    Surface(
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .clip(RoundedCornerShape(12.dp))
+                                            .clickable { viewModel.onConditionChanged(condition) },
+                                        shape = RoundedCornerShape(12.dp),
+                                        color = if (isSelected) color else color.copy(alpha = 0.08f),
+                                        border = if (isSelected) null else BorderStroke(1.dp, color.copy(alpha = 0.2f))
+                                    ) {
+                                        Row(
+                                            modifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp),
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            horizontalArrangement = Arrangement.Center
+                                        ) {
+                                            if (isSelected) {
+                                                Icon(
+                                                    imageVector = Icons.Default.CheckCircle,
+                                                    contentDescription = null,
+                                                    tint = Color.White,
+                                                    modifier = Modifier.size(16.dp)
+                                                )
+                                                Spacer(Modifier.width(6.dp))
+                                            }
+                                            Text(
+                                                text = stringResource(condition.titleRes),
+                                                style = MaterialTheme.typography.labelMedium,
+                                                color = if (isSelected) Color.White else color,
+                                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                                                maxLines = 1,
+                                                overflow = TextOverflow.Ellipsis
+                                            )
+                                        }
+                                    }
                                 }
                             }
                         }
+                    }
 
                         // Currency dropdown / chip
                         val currentCurrency = uiState.selectedCurrency
@@ -546,6 +573,49 @@ fun AddCarScreen(
                                             showCurrencyMenu = false
                                         }
                                     )
+                                }
+                            }
+                        }
+                    }
+
+                    val showHwCard = HwCardTypeRules.showForManual(uiState.isManualMode, uiState.manualBrand) ||
+                        (!uiState.isManualMode && HwCardTypeRules.showForMaster(uiState.selectedMasterData))
+                    if (showHwCard) {
+                        FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.hw_card_type_label))
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            HwCardType.entries.forEach { type ->
+                                val isSelected = uiState.hwCardType == type
+                                val accent = MaterialTheme.colorScheme.primary
+                                Surface(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .clip(RoundedCornerShape(12.dp))
+                                        .clickable { viewModel.onHwCardTypeChanged(type) },
+                                    shape = RoundedCornerShape(12.dp),
+                                    color = if (isSelected) accent else accent.copy(alpha = 0.08f),
+                                    border = if (isSelected) null else BorderStroke(1.dp, accent.copy(alpha = 0.25f))
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(vertical = 12.dp, horizontal = 8.dp),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            text = when (type) {
+                                                HwCardType.SHORT -> stringResource(com.taytek.basehw.R.string.hw_card_short)
+                                                HwCardType.LONG -> stringResource(com.taytek.basehw.R.string.hw_card_long)
+                                            },
+                                            style = MaterialTheme.typography.labelMedium,
+                                            color = if (isSelected) MaterialTheme.colorScheme.onPrimary else accent,
+                                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                                            maxLines = 1,
+                                            overflow = TextOverflow.Ellipsis
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -661,6 +731,37 @@ fun AddCarScreen(
                         }
                     }
 
+                    // --- AI ANALYSIS RESULTS ---
+                    if (!uiState.userPhotoUrl.isNullOrEmpty()) {
+                        // Show AI Grade if available
+                        uiState.aiAnalysisResult?.let { result ->
+                            Surface(
+                                modifier = Modifier.fillMaxWidth(),
+                                shape = RoundedCornerShape(12.dp),
+                                color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.5f)
+                            ) {
+                                Column(modifier = Modifier.padding(12.dp)) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(Icons.Default.Grade, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(16.dp))
+                                        Spacer(Modifier.width(8.dp))
+                                        Text(
+                                            text = "AI Kondisyon Puanı: ${result.condition ?: "?"}",
+                                            style = MaterialTheme.typography.labelLarge,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    }
+                                    if (!result.conditionNote.isNullOrBlank()) {
+                                        Text(
+                                            text = result.conditionNote,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     Spacer(Modifier.height(4.dp))
 
                     // — "+ Add to Collection" tam genişlik mavi buton —
@@ -672,7 +773,7 @@ fun AddCarScreen(
                         enabled = (uiState.selectedMasterData != null || uiState.isManualMode) && !uiState.isSaving,
                         shape = RoundedCornerShape(14.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = com.taytek.basehw.ui.theme.AppPrimary,
+                            containerColor = AppTheme.tokens.primaryAccent,
                             contentColor = androidx.compose.ui.graphics.Color.White,
                             disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
                             disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant
@@ -805,11 +906,19 @@ private fun FigmaSectionLabel(text: String) {
 
 @Composable
 private fun SuggestionItem(masterData: MasterData, onClick: () -> Unit) {
+    val baseColor = MaterialTheme.colorScheme.surfaceContainerLow
+    val darkerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .background(Brush.linearGradient(colors = listOf(baseColor, darkerColor)))
+            .border(
+                1.dp,
+                if (MaterialTheme.colorScheme.background.luminance() < 0.5f) AppTheme.tokens.cardBorderMuted else AppTheme.tokens.cardBorderStandard,
+                RoundedCornerShape(10.dp)
+            )
             .clickable(onClick = onClick)
             .padding(horizontal = 10.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -828,7 +937,7 @@ private fun SuggestionItem(masterData: MasterData, onClick: () -> Unit) {
                     model = masterData.imageUrl,
                     contentDescription = masterData.modelName,
                     modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Fit
                 )
             }
         }
@@ -852,14 +961,63 @@ private fun SuggestionItem(masterData: MasterData, onClick: () -> Unit) {
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.secondary
                 )
-                if (masterData.series.isNotBlank()) {
+                if (masterData.series.isNotBlank() || masterData.seriesNum.isNotBlank()) {
+                    val seriesText = listOfNotNull(
+                        masterData.series.takeIf { it.isNotBlank() },
+                        masterData.seriesNum.takeIf { it.isNotBlank() }
+                    ).joinToString(" ")
                     Text(
-                        masterData.series,
+                        seriesText,
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
+                }
+
+                val feature = masterData.feature?.lowercase()
+                if (feature == "sth") {
+                    Box(
+                        modifier = Modifier
+                            .background(Color(0xFFE0B94C), RoundedCornerShape(4.dp))
+                            .padding(horizontal = 4.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.sth_label),
+                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                            color = Color.Black,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                }
+                if (feature == "chase") {
+                    Box(
+                        modifier = Modifier
+                            .background(Color.Black, RoundedCornerShape(4.dp))
+                            .border(1.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(4.dp))
+                            .padding(horizontal = 4.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.chase_label),
+                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                            color = Color.White,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+                }
+                if (feature == "th") {
+                    Box(
+                        modifier = Modifier
+                            .background(Color(0xFF71797E), RoundedCornerShape(4.dp))
+                            .padding(horizontal = 4.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.th_label),
+                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                            color = Color.White,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
                 }
             }
         }
@@ -868,26 +1026,42 @@ private fun SuggestionItem(masterData: MasterData, onClick: () -> Unit) {
 
 @Composable
 private fun SelectedCarPreview(masterData: MasterData) {
+    val baseColor = MaterialTheme.colorScheme.surfaceContainerLow
+    val darkerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(14.dp),
+        border = BorderStroke(
+            1.dp,
+            if (MaterialTheme.colorScheme.background.luminance() < 0.5f) AppTheme.tokens.cardBorderMuted else AppTheme.tokens.cardBorderStandard
+        ),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f)
+            containerColor = Color.Transparent
         )
     ) {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            horizontalArrangement = Arrangement.spacedBy(14.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Brush.linearGradient(colors = listOf(baseColor, darkerColor)))
         ) {
-            if (masterData.imageUrl.isNotBlank()) {
-                AsyncImage(
-                    model = masterData.imageUrl,
-                    contentDescription = masterData.modelName,
-                    modifier = Modifier
-                        .size(64.dp)
-                        .clip(RoundedCornerShape(8.dp)),
-                    contentScale = ContentScale.Crop
+            Row(
+                modifier = Modifier.padding(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(14.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+            Box(
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.DirectionsCar,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                    modifier = Modifier.size(32.dp)
                 )
             }
             Column {
@@ -909,4 +1083,5 @@ private fun SelectedCarPreview(masterData: MasterData) {
             }
         }
     }
+}
 }
