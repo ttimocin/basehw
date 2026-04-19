@@ -7,6 +7,7 @@ import com.taytek.basehw.domain.repository.NewsRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -43,11 +44,51 @@ class NewsRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun SupabaseDiecastNewsRow.toDomain() = DiecastNews(
-        id = id,
-        title = title,
-        body = body,
-        imageUrl = imageUrl,
-        publishedAt = publishedAt.orEmpty()
-    )
+    private fun SupabaseDiecastNewsRow.toDomain(): DiecastNews {
+        val lang = Locale.getDefault().language.lowercase(Locale.US)
+        return DiecastNews(
+            id = id,
+            title = localizedTitle(lang),
+            body = localizedBody(lang),
+            imageUrl = imageUrl,
+            publishedAt = publishedAt.orEmpty()
+        )
+    }
+
+    private fun SupabaseDiecastNewsRow.localizedTitle(lang: String): String {
+        val preferred = when (lang) {
+            "tr" -> titleTr
+            "en" -> titleEn
+            "de" -> titleDe
+            "es" -> titleEs
+            "fr" -> titleFr
+            "pt" -> titlePt
+            "ru" -> titleRu
+            "uk" -> titleUk
+            "ar" -> titleAr
+            else -> null
+        }
+        return preferred.orIfBlank(titleEn).orIfBlank(title).orIfBlank(titleTr).orEmpty()
+    }
+
+    private fun SupabaseDiecastNewsRow.localizedBody(lang: String): String {
+        val preferred = when (lang) {
+            "tr" -> bodyTr
+            "en" -> bodyEn
+            "de" -> bodyDe
+            "es" -> bodyEs
+            "fr" -> bodyFr
+            "pt" -> bodyPt
+            "ru" -> bodyRu
+            "uk" -> bodyUk
+            "ar" -> bodyAr
+            else -> null
+        }
+        return preferred.orIfBlank(bodyEn).orIfBlank(body).orIfBlank(bodyTr).orEmpty()
+    }
+
+    private fun String?.orIfBlank(fallback: String?): String? {
+        val v = this?.trim()
+        return if (v.isNullOrEmpty()) fallback?.trim() else v
+    }
 }

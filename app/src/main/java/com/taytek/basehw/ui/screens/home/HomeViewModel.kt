@@ -114,7 +114,7 @@ class HomeViewModel @Inject constructor(
 
     private fun loadDiecastNews() {
         viewModelScope.launch {
-            newsRepository.getLatest(5).onSuccess { list ->
+            newsRepository.getLatest(NewsRepository.HOME_SCREEN_NEWS_LIMIT).onSuccess { list ->
                 _newsItems.value = list
             }
         }
@@ -141,11 +141,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshUserData() {
+        loadDiecastNews()
         val firebaseUser = authRepository.currentUser ?: return
         viewModelScope.launch {
             loadUserPresentation(firebaseUser)
         }
-        loadDiecastNews()
     }
 
     private suspend fun loadUserPresentation(firebaseUser: FirebaseUser) {
