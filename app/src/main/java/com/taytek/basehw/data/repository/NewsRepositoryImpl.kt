@@ -1,19 +1,20 @@
 package com.taytek.basehw.data.repository
 
 import android.util.Log
+import com.taytek.basehw.data.local.AppSettingsManager
 import com.taytek.basehw.data.remote.supabase.model.SupabaseDiecastNewsRow
 import com.taytek.basehw.domain.model.DiecastNews
 import com.taytek.basehw.domain.repository.NewsRepository
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NewsRepositoryImpl @Inject constructor(
-    private val supabaseClient: SupabaseClient
+    private val supabaseClient: SupabaseClient,
+    private val appSettingsManager: AppSettingsManager
 ) : NewsRepository {
 
     override suspend fun getLatest(limit: Int): Result<List<DiecastNews>> {
@@ -45,7 +46,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     private fun SupabaseDiecastNewsRow.toDomain(): DiecastNews {
-        val lang = Locale.getDefault().language.lowercase(Locale.US)
+        val lang = appSettingsManager.languageFlow.value.ifBlank { "en" }.lowercase()
         return DiecastNews(
             id = id,
             title = localizedTitle(lang),
