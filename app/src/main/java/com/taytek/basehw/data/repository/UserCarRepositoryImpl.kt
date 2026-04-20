@@ -437,6 +437,10 @@ class UserCarRepositoryImpl @Inject constructor(
         return dao.getWishlistCount()
     }
 
+    override fun getActiveVariantHuntWantedCount(): Flow<Int> {
+        return variantHuntDao.observeActiveOutstandingWantedCount()
+    }
+
     override fun getWantedNotInCollectionCount(): Flow<Int> {
         return dao.getWantedNotInCollectionCount()
     }

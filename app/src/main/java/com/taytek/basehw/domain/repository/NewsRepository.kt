@@ -8,6 +8,6 @@ interface NewsRepository {
 
     companion object {
         /** Ana sayfa: Supabase `diecast_news` tablosunda `published_at` azalan sırayla en yeni N kayıt. */
-        const val HOME_SCREEN_NEWS_LIMIT = 5
+        const val HOME_SCREEN_NEWS_LIMIT = 10
     }
 }

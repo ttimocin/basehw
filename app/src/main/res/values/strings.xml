@@ -17,6 +17,8 @@
     <!-- Bottom Navigation -->
     <string name="nav_home">Koleksiyon</string>
     <string name="nav_anasayfa">Anasayfa</string>
+    <string name="nav_open_menu">Menüyü aç</string>
+    <string name="drawer_menu_subtitle">Hızlı gezinme</string>
     <string name="hello_name_template">Merhaba, %s</string>
     <string name="sth_label">STH</string>
     <string name="premium_label_upper">PREMIUM</string>
@@ -48,6 +50,7 @@
     <string name="like">Beğen</string>
     <string name="comment">Yorum</string>
     <string name="follow">Takip Et</string>
+    <string name="post_card_following_status">Takip Ediliyor</string>
     <string name="unfollow">Takipten Çık</string>
     <string name="followers">Takipçi</string>
     <string name="following_label">Takip Edilen</string>
@@ -379,6 +382,18 @@
     <string name="select_brand_first">Lütfen önce bir marka seçin</string>
     <string name="collection_statistics_desc">Grafikler, değerler, rozetler</string>
     <string name="collection_statistics_desc_detailed">Grafikler, değerler ve rozet istatistikleri</string>
+    <string name="stats_collection_value_development">Koleksiyon Değer Gelişimi</string>
+    <string name="stats_cd_switch_to_bar_chart">Çubuk grafik göster</string>
+    <string name="stats_cd_switch_to_pie_chart">Pasta grafik göster</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">Güncelleme Gerekli</string>
+    <string name="app_update_required_body">Uygulamanın yeni bir sürümü mevcut. Devam edebilmek için lütfen koleksiyonunuzu en son sürüme güncelleyin.</string>
+    <string name="app_update_now">Şimdi Güncelle</string>
+    <string name="app_update_dialog_title">Yeni Güncelleme (v%1$s)</string>
+    <string name="app_update_dialog_body">Daha iyi bir deneyim ve yeni modeller için uygulamanızı güncellemenizi öneririz.</string>
+    <string name="app_update_confirm">Güncelle</string>
+    <string name="app_update_later">Sonra</string>
 
 
 
@@ -646,6 +661,8 @@
     <!-- Car Fallback -->
     <string name="car_model_fallback">Model</string>
     <string name="car_brand_fallback">Bilinmeyen</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">Regular</string>
 
     <!-- STH/STS -->
     <string name="sth_label_short">STH</string>
@@ -665,9 +682,16 @@
 
     <!-- Cooldown Format -->
     <string name="cooldown_format">%1$d:%2$02d</string>
+    <string name="dm_blocked_error">Bu kullanıcıyla mesajlaşamazsınız.</string>
+    <string name="dm_encrypt_error">Mesaj şifrelenemedi</string>
+    <string name="dm_rate_limit_error">Arka arkaya en fazla 10 mesaj gönderebilirsin. Yeni mesaj için %1$s bekle</string>
+    <string name="dm_inbox_load_error">Mesaj kutusu yüklenemedi</string>
 
     <!-- Export -->
     <string name="export_current_currency">Seçili: %1$s (%2$s)</string>
+    <string name="pdf_report_title">HotWheels Koleksiyon Raporu</string>
+    <string name="pdf_date_prefix">Tarih: %1$s</string>
+    <string name="pdf_page_number">Sayfa %1$d</string>
 
     <!-- Rank Formatting -->
     <string name="rank_prefix">0%d</string>
@@ -798,6 +822,8 @@
     <string name="admin_posts_count_label">%1$d paylaşım</string>
     <string name="admin_badge_banned_label">ENGELLİ</string>
     <string name="dialog_info_title">Bilgi</string>
+    <string name="content_desc_favorite">Favori</string>
+    <string name="content_desc_selected">Seçili</string>
     <string name="settings_subtitle_help_support">Sorun bildir, geri bildirim gönder ve yardım al</string>
     <string name="settings_subtitle_privacy_policy">Verilerinizin nasıl işlendiğini ve korunduğunu öğrenin</string>
     <string name="settings_subtitle_terms_of_use">Uygulama kullanım şartlarını görüntüleyin</string>

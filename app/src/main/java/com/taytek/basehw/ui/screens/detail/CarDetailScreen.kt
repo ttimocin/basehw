@@ -455,7 +455,7 @@ fun CarDetailScreen(
                             } else stringResource(com.taytek.basehw.R.string.not_specified),
                             onEdit = { 
                                 val converted = car.purchasePrice?.let { it * conversionRate }
-                                editValueText = converted?.toString() ?: ""
+                                editValueText = converted?.let { "%.2f".format(it) } ?: ""
                                 showEditPriceDialog = true 
                             }
                         )
@@ -468,7 +468,7 @@ fun CarDetailScreen(
                             } else stringResource(com.taytek.basehw.R.string.not_specified),
                             onEdit = { 
                                 val converted = car.estimatedValue?.let { it * conversionRate }
-                                editValueText = converted?.toString() ?: ""
+                                editValueText = converted?.let { "%.2f".format(it) } ?: ""
                                 showEditValueDialog = true 
                             }
                         )

@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.res.stringResource
+import com.taytek.basehw.R
 
 @Composable
 fun ForceUpdateScreen(updateUrl: String) {
@@ -48,7 +50,7 @@ fun ForceUpdateScreen(updateUrl: String) {
             Spacer(modifier = Modifier.size(24.dp))
             
             Text(
-                text = "Güncelleme Gerekli",
+                text = stringResource(R.string.app_update_required_title),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground
@@ -57,7 +59,7 @@ fun ForceUpdateScreen(updateUrl: String) {
             Spacer(modifier = Modifier.size(16.dp))
             
             Text(
-                text = "Uygulamanın yeni bir sürümü mevcut. Devam edebilmek için lütfen koleksiyonunuzu en son sürüme güncelleyin.",
+                text = stringResource(R.string.app_update_required_body),
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -73,7 +75,7 @@ fun ForceUpdateScreen(updateUrl: String) {
                 modifier = Modifier.fillMaxWidth().height(56.dp),
                 shape = RoundedCornerShape(16.dp)
             ) {
-                Text("Şimdi Güncelle", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.app_update_now), fontSize = 18.sp, fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -90,10 +92,10 @@ fun UpdateDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = "Yeni Güncelleme (v$versionName)", fontWeight = FontWeight.Bold)
+            Text(text = stringResource(R.string.app_update_dialog_title, versionName), fontWeight = FontWeight.Bold)
         },
         text = {
-            Text(text = "Daha iyi bir deneyim ve yeni modeller için uygulamanızı güncellemenizi öneririz.")
+            Text(text = stringResource(R.string.app_update_dialog_body))
         },
         confirmButton = {
             Button(
@@ -103,12 +105,12 @@ fun UpdateDialog(
                     onDismiss()
                 }
             ) {
-                Text("Güncelle")
+                Text(stringResource(R.string.app_update_confirm))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Sonra")
+                Text(stringResource(R.string.app_update_later))
             }
         },
         shape = RoundedCornerShape(16.dp)

@@ -101,7 +101,7 @@ fun CarCard(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = car.masterData?.modelName ?: "Unknown Model",
+                        text = car.masterData?.modelName ?: stringResource(com.taytek.basehw.R.string.fallback_model),
                         style = MaterialTheme.typography.titleMedium,
                         color = if (isDark) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onPrimaryContainer,
                         maxLines = 1,
@@ -112,7 +112,7 @@ fun CarCard(
                     val subtitle = car.masterData?.series?.takeIf { it.isNotBlank() }
                         ?: car.manualSeries?.takeIf { it.isNotBlank() }
                         ?: car.masterData?.brand?.displayName
-                        ?: "Mainline"
+                        ?: stringResource(com.taytek.basehw.R.string.fallback_mainline)
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
@@ -127,7 +127,7 @@ fun CarCard(
                     val boxStatus = stringResource(conditionObj.titleRes)
                     val brandStr = car.masterData?.brand?.shortCode ?: ""
                     val brandPrefix = if (brandStr.isNotEmpty()) "$brandStr • " else ""
-                    val countLabel = "$brandPrefix${car.masterData?.year ?: "Belirsiz"} • $boxStatus"
+                    val countLabel = "$brandPrefix${car.masterData?.year ?: stringResource(com.taytek.basehw.R.string.detail_unknown)} • $boxStatus"
 
                     Text(
                         text = countLabel,
@@ -148,7 +148,7 @@ fun CarCard(
                     shape = RoundedCornerShape(6.dp)
                 ) {
                     Text(
-                        text = if (isPremium) "🏁 Premium" else "Regular",
+                        text = if (isPremium) stringResource(com.taytek.basehw.R.string.premium_label_upper) else stringResource(com.taytek.basehw.R.string.regular_label),
                         style = MaterialTheme.typography.labelSmall,
                         color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.9f),
                         modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp)

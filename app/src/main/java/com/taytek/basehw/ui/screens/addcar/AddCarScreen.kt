@@ -54,6 +54,7 @@ import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.taytek.basehw.ui.util.UCropContract
 import com.taytek.basehw.ui.util.CameraModelOcrHelper
+import com.taytek.basehw.domain.model.AppCurrency
 import com.taytek.basehw.domain.model.HwCardType
 import com.taytek.basehw.domain.model.HwCardTypeRules
 import com.taytek.basehw.domain.model.MasterData
@@ -459,7 +460,7 @@ fun AddCarScreen(
                         }
                     }
 
-                    // — CONDITION | CURRENCY —
+                    // — CONDITION —
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -476,16 +477,8 @@ fun AddCarScreen(
                                 )
                             }
                         }
-                        FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_currency))
                     }
 
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        // Mint / Loose pill toggle
-                    // — CONDITION SELECTION 2x2 GRID —
                     Column(
                         modifier = Modifier.fillMaxWidth(),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -501,7 +494,7 @@ fun AddCarScreen(
                                 rowItems.forEach { condition ->
                                     val isSelected = uiState.condition == condition
                                     val color = Color(condition.hexColor)
-                                    
+
                                     Surface(
                                         modifier = Modifier
                                             .weight(1f)
@@ -535,44 +528,6 @@ fun AddCarScreen(
                                             )
                                         }
                                     }
-                                }
-                            }
-                        }
-                    }
-
-                        // Currency dropdown / chip
-                        val currentCurrency = uiState.selectedCurrency
-                        var showCurrencyMenu by remember { mutableStateOf(false) }
-                        Box {
-                            OutlinedButton(
-                                onClick = { showCurrencyMenu = true },
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.height(42.dp)
-                            ) {
-                                Text(
-                                    text = if (currentCurrency != null)
-                                        "${currentCurrency.name} (${currentCurrency.symbol})"
-                                    else "USD (\$)",
-                                    style = MaterialTheme.typography.labelMedium
-                                )
-                                Icon(
-                                    Icons.Default.Search,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                            }
-                            DropdownMenu(
-                                expanded = showCurrencyMenu,
-                                onDismissRequest = { showCurrencyMenu = false }
-                            ) {
-                                com.taytek.basehw.domain.model.AppCurrency.entries.forEach { currency ->
-                                    DropdownMenuItem(
-                                        text = { Text("${currency.name} (${currency.symbol})") },
-                                        onClick = {
-                                            viewModel.onCurrencySelected(currency)
-                                            showCurrencyMenu = false
-                                        }
-                                    )
                                 }
                             }
                         }
@@ -624,9 +579,12 @@ fun AddCarScreen(
                     // — PRICE DETAILS —
                     FigmaSectionLabel(stringResource(com.taytek.basehw.R.string.section_price_details))
                     val formCurrencySymbol = uiState.selectedCurrency?.symbol ?: "€"
+                    val currentCurrency = uiState.selectedCurrency
+                    var showCurrencyMenu by remember { mutableStateOf(false) }
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         OutlinedTextField(
                             value = uiState.purchasePrice,
@@ -650,6 +608,43 @@ fun AddCarScreen(
                             singleLine = true,
                             shape = RoundedCornerShape(12.dp)
                         )
+                        Box {
+                            OutlinedButton(
+                                onClick = { showCurrencyMenu = true },
+                                shape = RoundedCornerShape(10.dp),
+                                modifier = Modifier
+                                    .widthIn(min = 72.dp, max = 112.dp)
+                                    .height(56.dp),
+                                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)
+                            ) {
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Text(
+                                        text = currentCurrency?.code ?: "EUR",
+                                        style = MaterialTheme.typography.labelMedium,
+                                        maxLines = 1
+                                    )
+                                    Icon(
+                                        Icons.Default.ArrowDropDown,
+                                        contentDescription = stringResource(com.taytek.basehw.R.string.section_currency),
+                                        modifier = Modifier.size(18.dp)
+                                    )
+                                }
+                            }
+                            DropdownMenu(
+                                expanded = showCurrencyMenu,
+                                onDismissRequest = { showCurrencyMenu = false }
+                            ) {
+                                AppCurrency.entries.forEach { currency ->
+                                    DropdownMenuItem(
+                                        text = { Text("${currency.name} (${currency.symbol})") },
+                                        onClick = {
+                                            viewModel.onCurrencySelected(currency)
+                                            showCurrencyMenu = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
                     }
 
                     // — CUSTOM FLAG —
@@ -815,7 +810,7 @@ fun AddCarScreen(
             confirmButton = {
                 TextButton(onClick = viewModel::clearOcrHintMessage) { Text(stringResource(com.taytek.basehw.R.string.ok)) }
             },
-            title = { Text("Bilgi") },
+            title = { Text(stringResource(com.taytek.basehw.R.string.dialog_info_title)) },
             text = { Text(msg) }
         )
     }

@@ -777,7 +777,7 @@ fun CollectionListItem(
                     ) {
                         Icon(
                             imageVector = Icons.Default.CheckCircle,
-                            contentDescription = "Selected",
+                            contentDescription = stringResource(com.taytek.basehw.R.string.content_desc_selected),
                             tint = Color.White,
                             modifier = Modifier.size(28.dp)
                         )
@@ -877,7 +877,7 @@ fun CollectionListItem(
             if (car.isFavorite) {
                 Icon(
                     imageVector = androidx.compose.material.icons.Icons.Default.Favorite,
-                    contentDescription = "Favorite",
+                    contentDescription = stringResource(com.taytek.basehw.R.string.content_desc_favorite),
                     tint = androidx.compose.ui.graphics.Color(0xFFFF4D6D),
                     modifier = Modifier
                         .align(Alignment.TopStart)

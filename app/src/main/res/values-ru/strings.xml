@@ -41,6 +41,7 @@
     <string name="like">Нравится</string>
     <string name="comment">Комментировать</string>
     <string name="follow">Подписаться</string>
+    <string name="post_card_following_status">Подписан</string>
     <string name="unfollow">Отписаться</string>
     <string name="followers">Подписчики</string>
     <string name="following_label">Подписки</string>
@@ -304,6 +305,18 @@
     <string name="select_brand_first">Сначала выберите бренд</string>
     <string name="collection_statistics_desc">Графики, цены, значки</string>
     <string name="collection_statistics_desc_detailed">Детальная статистика: графики, цены, значки</string>
+    <string name="stats_collection_value_development">Изменение стоимости коллекции</string>
+    <string name="stats_cd_switch_to_bar_chart">Показать столбчатую диаграмму</string>
+    <string name="stats_cd_switch_to_pie_chart">Показать круговую диаграмму</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">Требуется обновление</string>
+    <string name="app_update_required_body">Доступна новая версия приложения. Обновитесь до последней версии, чтобы продолжить.</string>
+    <string name="app_update_now">Обновить сейчас</string>
+    <string name="app_update_dialog_title">Новое обновление (v%1$s)</string>
+    <string name="app_update_dialog_body">Рекомендуем обновить приложение для лучшего опыта и новых моделей.</string>
+    <string name="app_update_confirm">Обновить</string>
+    <string name="app_update_later">Позже</string>
 
 
 
@@ -511,4 +524,15 @@
     <string name="settings_subtitle_terms_of_use">Просмотрите условия использования приложения</string>
     <string name="settings_subtitle_community_rules">Прочитайте правила сообщества и принципы модерации</string>
     <string name="settings_subtitle_logout">Безопасно выйдите из своего аккаунта</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">Обычный</string>
+    <string name="dm_blocked_error">Вы не можете отправлять сообщения этому пользователю.</string>
+    <string name="dm_encrypt_error">Не удалось зашифровать сообщение</string>
+    <string name="dm_rate_limit_error">Можно отправить не более 10 сообщений подряд. Подождите %1$s перед новым сообщением</string>
+    <string name="dm_inbox_load_error">Не удалось загрузить входящие</string>
+    <string name="pdf_report_title">Отчет коллекции HotWheels</string>
+    <string name="pdf_date_prefix">Дата: %1$s</string>
+    <string name="pdf_page_number">Страница %1$d</string>
+    <string name="content_desc_favorite">Избранное</string>
+    <string name="content_desc_selected">Выбрано</string>
 </resources>

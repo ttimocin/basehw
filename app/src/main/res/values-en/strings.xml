@@ -17,6 +17,8 @@
     <!-- Bottom Navigation -->
     <string name="nav_home">Collection</string>
     <string name="nav_anasayfa">Home</string>
+    <string name="nav_open_menu">Open menu</string>
+    <string name="drawer_menu_subtitle">Quick navigation</string>
     <string name="hello_name_template">Hello, %s</string>
     <string name="sth_label">STH</string>
     <string name="premium_label_upper">PREMIUM</string>
@@ -46,6 +48,7 @@
     <string name="like">Like</string>
     <string name="comment">Comment</string>
     <string name="follow">Follow</string>
+    <string name="post_card_following_status">Following</string>
     <string name="unfollow">Unfollow</string>
     <string name="followers">Followers</string>
     <string name="following_label">Following</string>
@@ -346,6 +349,18 @@
     <string name="select_brand_first">Please select a brand first</string>
     <string name="collection_statistics_desc">Charts, values, badges</string>
     <string name="collection_statistics_desc_detailed">Charts, values and badge statistics</string>
+    <string name="stats_collection_value_development">Collection value over time</string>
+    <string name="stats_cd_switch_to_bar_chart">Show bar chart</string>
+    <string name="stats_cd_switch_to_pie_chart">Show pie chart</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">Update required</string>
+    <string name="app_update_required_body">A new version of the app is available. Please update to the latest version to continue.</string>
+    <string name="app_update_now">Update now</string>
+    <string name="app_update_dialog_title">New update (v%1$s)</string>
+    <string name="app_update_dialog_body">We recommend updating the app for a better experience and new models.</string>
+    <string name="app_update_confirm">Update</string>
+    <string name="app_update_later">Later</string>
 
 
 
@@ -772,4 +787,15 @@
     <string name="settings_subtitle_terms_of_use">Review the terms for using the app</string>
     <string name="settings_subtitle_community_rules">Read community rules and moderation guidelines</string>
     <string name="settings_subtitle_logout">Sign out of your account securely</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">Regular</string>
+    <string name="dm_blocked_error">You cannot message this user.</string>
+    <string name="dm_encrypt_error">Message could not be encrypted</string>
+    <string name="dm_rate_limit_error">You can send at most 10 messages in a row. Wait %1$s before sending a new message</string>
+    <string name="dm_inbox_load_error">Inbox could not be loaded</string>
+    <string name="pdf_report_title">HotWheels Collection Report</string>
+    <string name="pdf_date_prefix">Date: %1$s</string>
+    <string name="pdf_page_number">Page %1$d</string>
+    <string name="content_desc_favorite">Favorite</string>
+    <string name="content_desc_selected">Selected</string>
 </resources>

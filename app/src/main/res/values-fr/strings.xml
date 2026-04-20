@@ -45,6 +45,7 @@
     <string name="like">J\'aime</string>
     <string name="comment">Commentaire</string>
     <string name="follow">Suivre</string>
+    <string name="post_card_following_status">Abonné</string>
     <string name="unfollow">Ne plus suivre</string>
     <string name="followers">Abonnés</string>
     <string name="following_label">Abonnements</string>
@@ -338,6 +339,18 @@
     <string name="select_brand_first">Veuillez d\'abord sélectionner une marque</string>
     <string name="collection_statistics_desc">Graphiques, valeurs, badges</string>
     <string name="collection_statistics_desc_detailed">Statistiques automatiques, valeurs et badges</string>
+    <string name="stats_collection_value_development">Évolution de la valeur de la collection</string>
+    <string name="stats_cd_switch_to_bar_chart">Afficher le graphique en barres</string>
+    <string name="stats_cd_switch_to_pie_chart">Afficher le graphique circulaire</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">Mise à jour requise</string>
+    <string name="app_update_required_body">Une nouvelle version de l\'application est disponible. Veuillez mettre à jour vers la dernière version pour continuer.</string>
+    <string name="app_update_now">Mettre à jour maintenant</string>
+    <string name="app_update_dialog_title">Nouvelle mise à jour (v%1$s)</string>
+    <string name="app_update_dialog_body">Nous vous recommandons de mettre à jour l\'application pour une meilleure expérience et de nouveaux modèles.</string>
+    <string name="app_update_confirm">Mettre à jour</string>
+    <string name="app_update_later">Plus tard</string>
 
 
 
@@ -715,4 +728,15 @@
     <string name="settings_subtitle_terms_of_use">Consulter les conditions utilisation de application</string>
     <string name="settings_subtitle_community_rules">Lire les regles de la communaute et la moderation</string>
     <string name="settings_subtitle_logout">Se deconnecter de votre compte en toute securite</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">Régulier</string>
+    <string name="dm_blocked_error">Vous ne pouvez pas envoyer de message à cet utilisateur.</string>
+    <string name="dm_encrypt_error">Le message n\'a pas pu être chiffré</string>
+    <string name="dm_rate_limit_error">Vous pouvez envoyer au maximum 10 messages d\'affilée. Attendez %1$s avant d\'envoyer un nouveau message</string>
+    <string name="dm_inbox_load_error">Impossible de charger la boîte de réception</string>
+    <string name="pdf_report_title">Rapport de collection HotWheels</string>
+    <string name="pdf_date_prefix">Date : %1$s</string>
+    <string name="pdf_page_number">Page %1$d</string>
+    <string name="content_desc_favorite">Favori</string>
+    <string name="content_desc_selected">Sélectionné</string>
 </resources>

@@ -7,7 +7,10 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -45,8 +48,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 import com.taytek.basehw.ui.util.AvatarUtil
 
-// Desteklenen emoji reaksiyonlar
-private val REACTION_EMOJIS = listOf("👍", "❤️", "🔥", "😮", "😢", "😡")
+// Desteklenen emoji reaksiyonlar (arabalar / yarış / genel ifadeler — düz liste, kategori yok)
+private val REACTION_EMOJIS = listOf(
+    "👍", "❤️", "😂", "🤣", "😍", "👏", "🔥", "💯", "🤩", "😮", "😢", "😡",
+    "🚗", "🚙", "🚘", "🏎️", "🛻", "🚓", "🚕", "🚌", "🚐", "🚚", "🚛", "🚜",
+    "🏁", "⚡", "💨", "🔧", "⛽", "🛞", "🎯", "🏆", "✨", "🎉", "👀", "🙌",
+    "😎", "🥳", "🤔", "😱", "🥰", "💪", "🙏", "🤝"
+)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -60,6 +68,9 @@ fun PostCard(
     currentUser: com.taytek.basehw.domain.model.User? = null,
     authorAvatars: Map<String, Pair<Int, String?>> = emptyMap(),
     onReactionSelect: ((String) -> Unit)? = null,
+    isFollowingAuthor: Boolean = false,
+    isFollowActionBusy: Boolean = false,
+    onFollowAuthorClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     val dateText = getRelativeTimeText(post.createdAt)
@@ -109,107 +120,145 @@ fun PostCard(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onUserClick(post.authorUid) }
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                val (avatarId, avatarUrl) = authorAvatars[post.authorUid]
-                    ?: Pair(post.authorSelectedAvatarId, post.authorCustomAvatarUrl)
-
-                Box(
+                Row(
                     modifier = Modifier
-                        .size(40.dp)
-                        .clip(CircleShape)
-                        .background(AppTheme.tokens.primaryAccent.copy(alpha = 0.15f)),
-                    contentAlignment = Alignment.Center
+                        .weight(1f)
+                        .clickable { onUserClick(post.authorUid) },
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (avatarId == 0 && !avatarUrl.isNullOrBlank()) {
-                        AsyncImage(
-                            model = avatarUrl,
-                            contentDescription = "Avatar",
-                            modifier = Modifier.fillMaxSize().clip(CircleShape),
-                            contentScale = ContentScale.Crop
-                        )
-                    } else if (avatarId > 0) {
-                        val avatarResId = AvatarUtil.getAvatarResource(avatarId)
-                        Image(
-                            painter = painterResource(id = avatarResId),
-                            contentDescription = "Avatar",
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Fit
-                        )
-                    } else {
-                        Text(
-                            text = post.authorUsername.take(1).uppercase(),
-                            color = AppTheme.tokens.primaryAccent,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp
-                        )
-                    }
-                }
-                Spacer(Modifier.width(12.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(
-                            text = post.authorUsername,
-                            style = MaterialTheme.typography.titleSmall,
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.weight(1f, fill = false)
-                        )
-                        if (post.authorIsAdmin) {
-                            Spacer(Modifier.width(4.dp))
-                            Surface(
-                                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
-                                shape = RoundedCornerShape(4.dp)
-                            ) {
-                                Text(
-                                    text = stringResource(id = R.string.admin_badge),
-                                    style = MaterialTheme.typography.labelSmall,
-                                    fontWeight = FontWeight.Black,
-                                    fontSize = 8.sp,
-                                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer
-                                )
-                            }
-                        } else if (post.authorIsMod) {
-                            Spacer(Modifier.width(4.dp))
-                            Surface(
-                                color = Color(0xFF4CAF50).copy(alpha = 0.7f),
-                                shape = RoundedCornerShape(4.dp)
-                            ) {
-                                Text(
-                                    text = stringResource(id = R.string.mod_badge),
-                                    style = MaterialTheme.typography.labelSmall,
-                                    fontWeight = FontWeight.Black,
-                                    fontSize = 8.sp,
-                                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
-                                    color = Color.White
-                                )
-                            }
+                    val (avatarId, avatarUrl) = authorAvatars[post.authorUid]
+                        ?: Pair(post.authorSelectedAvatarId, post.authorCustomAvatarUrl)
+
+                    Box(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .background(AppTheme.tokens.primaryAccent.copy(alpha = 0.15f)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        if (avatarId == 0 && !avatarUrl.isNullOrBlank()) {
+                            AsyncImage(
+                                model = avatarUrl,
+                                contentDescription = stringResource(R.string.avatar_content_desc),
+                                modifier = Modifier.fillMaxSize().clip(CircleShape),
+                                contentScale = ContentScale.Crop
+                            )
+                        } else if (avatarId > 0) {
+                            val avatarResId = AvatarUtil.getAvatarResource(avatarId)
+                            Image(
+                                painter = painterResource(id = avatarResId),
+                                contentDescription = stringResource(R.string.avatar_content_desc),
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Fit
+                            )
+                        } else {
+                            Text(
+                                text = post.authorUsername.take(1).uppercase(),
+                                color = AppTheme.tokens.primaryAccent,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp
+                            )
                         }
                     }
-                    RankBadgeChip(badge = post.authorBadge, compact = true)
-                    Text(
-                        text = dateText,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                    Spacer(Modifier.width(12.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                text = post.authorUsername,
+                                style = MaterialTheme.typography.titleSmall,
+                                fontWeight = FontWeight.Bold,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.weight(1f, fill = false)
+                            )
+                            if (post.authorIsAdmin) {
+                                Spacer(Modifier.width(4.dp))
+                                Surface(
+                                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
+                                    shape = RoundedCornerShape(4.dp)
+                                ) {
+                                    Text(
+                                        text = stringResource(id = R.string.admin_badge),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 8.sp,
+                                        modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
+                                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                }
+                            } else if (post.authorIsMod) {
+                                Spacer(Modifier.width(4.dp))
+                                Surface(
+                                    color = Color(0xFF4CAF50).copy(alpha = 0.7f),
+                                    shape = RoundedCornerShape(4.dp)
+                                ) {
+                                    Text(
+                                        text = stringResource(id = R.string.mod_badge),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 8.sp,
+                                        modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
+                                        color = Color.White
+                                    )
+                                }
+                            }
+                        }
+                        RankBadgeChip(badge = post.authorBadge, compact = true)
+                        Text(
+                            text = dateText,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
 
-                // Brand chip
-                AssistChip(
-                    onClick = {},
-                    label = {
-                        Text(
-                            post.carBrand,
-                            style = MaterialTheme.typography.labelSmall,
-                            fontWeight = FontWeight.Bold
+                if (onFollowAuthorClick != null) {
+                    Spacer(Modifier.width(6.dp))
+                    if (isFollowActionBusy) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(22.dp),
+                            strokeWidth = 2.dp,
+                            color = AppTheme.tokens.primaryAccent
                         )
-                    },
-                    shape = RoundedCornerShape(8.dp)
-                )
+                    } else {
+                        val followBorderColor = if (isFollowingAuthor) {
+                            MaterialTheme.colorScheme.outline
+                        } else {
+                            AppTheme.tokens.primaryAccent
+                        }
+                        val followContentColor = if (isFollowingAuthor) {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        } else {
+                            AppTheme.tokens.primaryAccent
+                        }
+                        OutlinedButton(
+                            onClick = onFollowAuthorClick,
+                            modifier = Modifier.heightIn(min = 32.dp),
+                            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp),
+                            shape = RoundedCornerShape(8.dp),
+                            border = BorderStroke(1.dp, followBorderColor),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = followContentColor,
+                                containerColor = Color.Transparent
+                            )
+                        ) {
+                            Text(
+                                text = if (isFollowingAuthor) {
+                                    stringResource(R.string.post_card_following_status)
+                                } else {
+                                    stringResource(R.string.follow)
+                                },
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.SemiBold,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+                }
 
                 // Delete button
                 if (canDelete && onDeleteClick != null) {
@@ -291,7 +340,12 @@ fun PostCard(
                             modifier = Modifier.weight(1f)
                         )
                         if (post.carFeature?.lowercase() == "sth") {
-                            Text("STH", color = stsColor, fontWeight = FontWeight.ExtraBold, style = MaterialTheme.typography.labelLarge)
+                            Text(
+                                stringResource(R.string.sth_label_short),
+                                color = stsColor,
+                                fontWeight = FontWeight.ExtraBold,
+                                style = MaterialTheme.typography.labelLarge
+                            )
                         } else if (!post.carFeature.isNullOrBlank()) {
                             Text(post.carFeature.uppercase(), color = AppTheme.tokens.primaryAccent, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.labelSmall)
                         }
@@ -361,7 +415,7 @@ fun PostCard(
                                     }
                                 }
                             )
-                            .padding(horizontal = 8.dp, vertical = 6.dp),
+                            .padding(horizontal = 4.dp, vertical = 4.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         val reactionColor = if (post.myReaction != null) AppTheme.tokens.primaryAccent else MaterialTheme.colorScheme.onSurfaceVariant
@@ -371,16 +425,17 @@ fun PostCard(
                             Icon(
                                 imageVector = Icons.Outlined.FavoriteBorder,
                                 contentDescription = null,
-                                modifier = Modifier.size(20.dp),
+                                modifier = Modifier.size(18.dp),
                                 tint = reactionColor
                             )
                         }
-                        Spacer(Modifier.width(6.dp))
+                        Spacer(Modifier.width(4.dp))
                         Text(
                             text = if (post.totalReactionCount > 0) "${post.totalReactionCount}" else stringResource(R.string.like),
-                            style = MaterialTheme.typography.labelMedium,
+                            style = MaterialTheme.typography.labelSmall,
                             fontWeight = FontWeight.Bold,
-                            color = reactionColor
+                            color = reactionColor,
+                            maxLines = 1
                         )
                     }
                 }
@@ -392,6 +447,7 @@ fun PostCard(
                 ) {
                     TextButton(
                         onClick = onCommentClick,
+                        contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp),
                         colors = ButtonDefaults.textButtonColors(
                             contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -399,13 +455,14 @@ fun PostCard(
                         Icon(
                             imageVector = Icons.Outlined.ChatBubbleOutline,
                             contentDescription = null,
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(18.dp)
                         )
-                        Spacer(Modifier.width(6.dp))
+                        Spacer(Modifier.width(4.dp))
                         Text(
                             text = if (post.commentCount > 0) "${post.commentCount}" else stringResource(R.string.comment),
-                            style = MaterialTheme.typography.labelMedium,
-                            fontWeight = FontWeight.Bold
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1
                         )
                     }
                 }
@@ -417,6 +474,7 @@ fun PostCard(
                     ) {
                         TextButton(
                             onClick = onReportClick,
+                            contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp),
                             colors = ButtonDefaults.textButtonColors(
                                 contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -424,15 +482,14 @@ fun PostCard(
                             Icon(
                                 imageVector = Icons.Outlined.Flag,
                                 contentDescription = stringResource(R.string.report_post_content_desc),
-                                modifier = Modifier.size(20.dp)
+                                modifier = Modifier.size(18.dp)
                             )
                             Spacer(Modifier.width(4.dp))
                             Text(
                                 text = stringResource(R.string.report_post),
-                                style = MaterialTheme.typography.labelMedium,
+                                style = MaterialTheme.typography.labelSmall,
                                 fontWeight = FontWeight.Bold,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                maxLines = 1
                             )
                         }
                     }
@@ -462,11 +519,14 @@ private fun EmojiPickerBar(
         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f),
         tonalElevation = 1.dp
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            REACTION_EMOJIS.forEach { emoji ->
+            items(REACTION_EMOJIS, key = { it }) { emoji ->
                 val isSelected = emoji == selectedEmoji
                 Box(
                     modifier = Modifier

@@ -302,7 +302,11 @@ fun SelectionHeader(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onClearSelection) {
-                Icon(Icons.Default.AddCircle, contentDescription = "Cancel", modifier = Modifier.size(28.dp).rotate(45f)) // Using AddCircle rotated as X
+                Icon(
+                    Icons.Default.AddCircle,
+                    contentDescription = stringResource(com.taytek.basehw.R.string.collection_cancel),
+                    modifier = Modifier.size(28.dp).rotate(45f)
+                ) // Using AddCircle rotated as X
             }
             Spacer(Modifier.width(8.dp))
             Text(
@@ -316,7 +320,7 @@ fun SelectionHeader(
         IconButton(onClick = onDeleteSelected) {
             Icon(
                 imageVector = Icons.Default.Delete,
-                contentDescription = "Delete",
+                contentDescription = stringResource(com.taytek.basehw.R.string.collection_delete),
                 tint = MaterialTheme.colorScheme.error,
                 modifier = Modifier.size(28.dp)
             )

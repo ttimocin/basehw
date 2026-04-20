@@ -907,9 +907,9 @@ class ProfileViewModel @Inject constructor(
                 var page = pdfDocument.startPage(pageInfo)
                 var canvas = page.canvas
                 
-                canvas.drawText("HotWheels Koleksiyon Raporu", margin, 60f, titlePaint)
+                canvas.drawText(context.getString(R.string.pdf_report_title), margin, 60f, titlePaint)
                 val dateStr = java.text.SimpleDateFormat("dd.MM.yyyy", java.util.Locale.getDefault()).format(java.util.Date())
-                canvas.drawText("Tarih: $dateStr", margin, 80f, dataPaint)
+                canvas.drawText(context.getString(R.string.pdf_date_prefix, dateStr), margin, 80f, dataPaint)
                 
                 var currentY = 110f
                 canvas.drawRect(margin, currentY, pageWidth - margin, currentY + 25f, headerBgPaint)
@@ -922,7 +922,7 @@ class ProfileViewModel @Inject constructor(
 
                 cars.forEachIndexed { carIndex, car ->
                     if (currentY + rowHeight > pageHeight - margin - 30f) {
-                        canvas.drawText("Sayfa $pageNumber", pageWidth / 2f - 20f, pageHeight - 20f, footerPaint)
+                        canvas.drawText(context.getString(R.string.pdf_page_number, pageNumber), pageWidth / 2f - 20f, pageHeight - 20f, footerPaint)
                         pdfDocument.finishPage(page)
                         pageNumber++
                         pageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNumber).create()
@@ -972,7 +972,7 @@ class ProfileViewModel @Inject constructor(
                     currentY += rowHeight
                 }
                 
-                canvas.drawText("Sayfa $pageNumber", pageWidth / 2f - 20f, pageHeight - 20f, footerPaint)
+                canvas.drawText(context.getString(R.string.pdf_page_number, pageNumber), pageWidth / 2f - 20f, pageHeight - 20f, footerPaint)
                 pdfDocument.finishPage(page)
                 pdfDocument.writeTo(outputStream)
                 pdfDocument.close()

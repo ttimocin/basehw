@@ -67,14 +67,28 @@ import com.taytek.basehw.ui.theme.isDarkThemeUi
 fun FigmaHomeHeader(
     userName: String,
     onProfileClick: () -> Unit = {},
+    onMenuClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 0.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
+        if (onMenuClick != null) {
+            IconButton(
+                onClick = onMenuClick,
+                modifier = Modifier.size(36.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Menu,
+                    contentDescription = stringResource(R.string.nav_open_menu),
+                    tint = MaterialTheme.colorScheme.onBackground
+                )
+            }
+        }
         Text(
             text = stringResource(R.string.hello_name_template, userName),
             style = MaterialTheme.typography.headlineMedium,
@@ -506,7 +520,9 @@ fun FigmaSmallStatCard(
                                             )
                                         }
                                     )
-                                    .padding(horizontal = 5.dp, vertical = 1.dp)
+                                    .height(16.dp)
+                                    .padding(horizontal = 6.dp),
+                                contentAlignment = Alignment.Center
                             ) {
                                 Text(
                                     text = badgeValue,
@@ -516,7 +532,9 @@ fun FigmaSmallStatCard(
                                         else -> Color.White
                                     },
                                     fontSize = 9.sp,
-                                    fontWeight = FontWeight.Black
+                                    lineHeight = 9.sp,
+                                    fontWeight = FontWeight.Black,
+                                    maxLines = 1
                                 )
                             }
                             Text(

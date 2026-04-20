@@ -27,6 +27,7 @@ import com.taytek.basehw.ui.theme.isNeonShellTheme
 fun HomeScreen(
     onCarClick: (Long) -> Unit,
     onProfileClick: () -> Unit,
+    onMenuClick: (() -> Unit)? = null,
     onCameraClick: () -> Unit,
     onAddClick: () -> Unit = {},
     onViewAllClick: () -> Unit = {},
@@ -71,7 +72,8 @@ fun HomeScreen(
             item {
                 FigmaHomeHeader(
                     userName = uiState.userName,
-                    onProfileClick = onProfileClick
+                    onProfileClick = onProfileClick,
+                    onMenuClick = onMenuClick
                 )
             }
 

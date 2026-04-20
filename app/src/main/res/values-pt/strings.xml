@@ -45,6 +45,7 @@
     <string name="like">Curtir</string>
     <string name="comment">Comentar</string>
     <string name="follow">Seguir</string>
+    <string name="post_card_following_status">Seguindo</string>
     <string name="unfollow">Deixar de seguir</string>
     <string name="followers">Seguidores</string>
     <string name="following_label">Seguindo</string>
@@ -343,6 +344,18 @@
     <string name="select_brand_first">Por favor, selecione primeiro uma marca</string>
     <string name="collection_statistics_desc">Gráficos, valores, medalhas</string>
     <string name="collection_statistics_desc_detailed">Gráficos, valores e estatísticas de medalhas</string>
+    <string name="stats_collection_value_development">Valor da coleção ao longo do tempo</string>
+    <string name="stats_cd_switch_to_bar_chart">Mostrar gráfico de barras</string>
+    <string name="stats_cd_switch_to_pie_chart">Mostrar gráfico de pizza</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">Atualização necessária</string>
+    <string name="app_update_required_body">Há uma nova versão do aplicativo. Atualize para a versão mais recente para continuar.</string>
+    <string name="app_update_now">Atualizar agora</string>
+    <string name="app_update_dialog_title">Nova atualização (v%1$s)</string>
+    <string name="app_update_dialog_body">Recomendamos atualizar o aplicativo para uma experiência melhor e novos modelos.</string>
+    <string name="app_update_confirm">Atualizar</string>
+    <string name="app_update_later">Depois</string>
 
 
 
@@ -717,4 +730,15 @@
     <string name="settings_subtitle_terms_of_use">Revise os termos de uso do aplicativo</string>
     <string name="settings_subtitle_community_rules">Leia as regras da comunidade e as diretrizes de moderacao</string>
     <string name="settings_subtitle_logout">Saia da sua conta com seguranca</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">Regular</string>
+    <string name="dm_blocked_error">Você não pode enviar mensagens para este usuário.</string>
+    <string name="dm_encrypt_error">Não foi possível criptografar a mensagem</string>
+    <string name="dm_rate_limit_error">Você pode enviar no máximo 10 mensagens seguidas. Aguarde %1$s para enviar uma nova mensagem</string>
+    <string name="dm_inbox_load_error">Não foi possível carregar a caixa de entrada</string>
+    <string name="pdf_report_title">Relatório da coleção HotWheels</string>
+    <string name="pdf_date_prefix">Data: %1$s</string>
+    <string name="pdf_page_number">Página %1$d</string>
+    <string name="content_desc_favorite">Favorito</string>
+    <string name="content_desc_selected">Selecionado</string>
 </resources>

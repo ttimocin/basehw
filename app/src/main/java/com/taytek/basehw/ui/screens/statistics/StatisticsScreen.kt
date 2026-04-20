@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.ui.res.stringResource
@@ -96,7 +97,7 @@ fun StatisticsScreen(
                         IconButton(onClick = onBack) {
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
-                                contentDescription = "Geri"
+                                contentDescription = stringResource(R.string.back)
                             )
                         }
                     },
@@ -104,7 +105,11 @@ fun StatisticsScreen(
                         IconButton(onClick = { showPieChart = !showPieChart }) {
                             Icon(
                                 imageVector = if (showPieChart) Icons.Default.BarChart else Icons.Default.PieChart,
-                                contentDescription = if (showPieChart) "Bar grafik" else "Pasta grafik",
+                                contentDescription = if (showPieChart) {
+                                    stringResource(R.string.stats_cd_switch_to_bar_chart)
+                                } else {
+                                    stringResource(R.string.stats_cd_switch_to_pie_chart)
+                                },
                                 tint = neonShellChromeIconTint()
                             )
                         }
@@ -473,10 +478,12 @@ private fun ValueOverTimeCard(history: List<ValuePoint>, currencySymbol: String)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier.weight(1f),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Icon(
                         imageVector = Icons.Default.BarChart,
                         contentDescription = null,
@@ -484,11 +491,14 @@ private fun ValueOverTimeCard(history: List<ValuePoint>, currencySymbol: String)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Koleksiyon Değer Gelişimi",
-                        style = MaterialTheme.typography.titleMedium
+                        text = stringResource(R.string.stats_collection_value_development),
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
                 
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "${currencySymbol}${"%.2f".format(latestValue)}",
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),

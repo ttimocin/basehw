@@ -113,7 +113,12 @@ data class CommunityUiState(
     val isAdminOrMod: Boolean = false,
 
     /** Incremented when a community post report is sent to feedback_messages (for UI snackbar). */
-    val reportPostSuccessNonce: Int = 0
+    val reportPostSuccessNonce: Int = 0,
+
+    /** Current user's follow list (for feed / following-tab post cards). */
+    val feedFollowingUids: Set<String> = emptySet(),
+    /** Author UID while follow/unfollow request is in flight for that post card. */
+    val feedFollowBusyAuthorUid: String? = null
 )
 
 @HiltViewModel
@@ -178,7 +183,11 @@ class CommunityViewModel @Inject constructor(
                 if (!signedIn) {
                     stopInboxPolling()
                     clearFollowStatusObserver()
-                    _uiState.value = _uiState.value.copy(hasUnreadInboxMessages = false)
+                    _uiState.value = _uiState.value.copy(
+                        hasUnreadInboxMessages = false,
+                        feedFollowingUids = emptySet(),
+                        feedFollowBusyAuthorUid = null
+                    )
                 }
                 if (signedIn && verified) {
                     loadCurrentUser(user.uid)
@@ -325,13 +334,16 @@ class CommunityViewModel @Inject constructor(
                             existingAvatars[uid] = Pair(user.selectedAvatarId, user.customAvatarUrl)
                         }
                     }
+
+                    val followingSet = repository.getFollowingUids().getOrElse { emptyList() }.toSet()
                     
                     _uiState.value = _uiState.value.copy(
                         feedPosts = updatedPosts,
                         isLoadingFeed = false,
                         isLoadingNextPage = false,
                         isFeedEndReached = posts.size < limit,
-                        authorAvatars = existingAvatars
+                        authorAvatars = existingAvatars,
+                        feedFollowingUids = followingSet
                     )
                 },
                 onFailure = { e ->
@@ -375,9 +387,11 @@ class CommunityViewModel @Inject constructor(
         viewModelScope.launch {
             repository.getFollowingPosts().fold(
                 onSuccess = { posts ->
+                    val followingSet = repository.getFollowingUids().getOrElse { emptyList() }.toSet()
                     _uiState.value = _uiState.value.copy(
                         followingPosts = hydratePostBadges(posts),
-                        isLoadingFollowing = false
+                        isLoadingFollowing = false,
+                        feedFollowingUids = followingSet
                     )
                 },
                 onFailure = { e ->
@@ -1178,6 +1192,39 @@ class CommunityViewModel @Inject constructor(
         return titleParts.joinToString(" ").takeIf { it.isNotBlank() }
     }
 
+    /**
+     * Feed / following tab: toggle follow for post author (replaces brand chip on [PostCard]).
+     */
+    fun toggleFeedPostFollow(authorUid: String) {
+        val myUid = _uiState.value.currentUserUid ?: return
+        if (authorUid.isBlank() || authorUid == myUid) return
+        if (_uiState.value.feedFollowBusyAuthorUid != null) return
+
+        viewModelScope.launch {
+            val wasFollowing = authorUid in _uiState.value.feedFollowingUids
+            _uiState.value = _uiState.value.copy(feedFollowBusyAuthorUid = authorUid, error = null)
+            val actionResult = if (wasFollowing) {
+                repository.unfollowUser(authorUid)
+            } else {
+                repository.followUser(authorUid)
+            }
+            actionResult.onSuccess {
+                val newSet = _uiState.value.feedFollowingUids.toMutableSet()
+                if (wasFollowing) newSet.remove(authorUid) else newSet.add(authorUid)
+                _uiState.value = _uiState.value.copy(
+                    feedFollowingUids = newSet,
+                    feedFollowBusyAuthorUid = null
+                )
+                loadFollowing()
+            }.onFailure { e ->
+                _uiState.value = _uiState.value.copy(
+                    feedFollowBusyAuthorUid = null,
+                    error = mapGeneralError(e)
+                )
+            }
+        }
+    }
+
     fun toggleFollow(targetUid: String) {
         if (_uiState.value.isFollowActionLoading) return
 
@@ -1193,10 +1240,14 @@ class CommunityViewModel @Inject constructor(
 
             actionResult.onSuccess {
                 val refreshedProfile = repository.getUserProfile(targetUid).getOrNull()
+                val uid = targetUid
+                val feedSet = _uiState.value.feedFollowingUids.toMutableSet()
+                if (wasFollowing) feedSet.remove(uid) else feedSet.add(uid)
                 _uiState.value = _uiState.value.copy(
                     isFollowingProfile = !wasFollowing,
                     profileUser = refreshedProfile ?: _uiState.value.profileUser,
-                    isFollowActionLoading = false
+                    isFollowActionLoading = false,
+                    feedFollowingUids = feedSet
                 )
                 loadFollowing()
             }.onFailure { e ->
@@ -1227,7 +1278,8 @@ class CommunityViewModel @Inject constructor(
         viewModelScope.launch {
             if (isCurrentlyFollowing) {
                 repository.unfollowUser(targetUid).onSuccess {
-                    // Refresh profile to update following count
+                    val feedSet = _uiState.value.feedFollowingUids.toMutableSet().apply { remove(targetUid) }
+                    _uiState.value = _uiState.value.copy(feedFollowingUids = feedSet)
                     val myUid = authRepository.currentUser?.uid ?: return@onSuccess
                     repository.getUserProfile(myUid).onSuccess { user ->
                         _uiState.value = _uiState.value.copy(profileUser = user)
@@ -1239,6 +1291,8 @@ class CommunityViewModel @Inject constructor(
                 }
             } else {
                 repository.followUser(targetUid).onSuccess {
+                    val feedSet = _uiState.value.feedFollowingUids.toMutableSet().apply { add(targetUid) }
+                    _uiState.value = _uiState.value.copy(feedFollowingUids = feedSet)
                     val myUid = authRepository.currentUser?.uid ?: return@onSuccess
                     repository.getUserProfile(myUid).onSuccess { user ->
                         _uiState.value = _uiState.value.copy(profileUser = user)

@@ -41,6 +41,7 @@
     <string name="like">Подобається</string>
     <string name="comment">Коментувати</string>
     <string name="follow">Підписатися</string>
+    <string name="post_card_following_status">Підписано</string>
     <string name="unfollow">Відписатися</string>
     <string name="followers">Підписники</string>
     <string name="following_label">Підписки</string>
@@ -307,6 +308,18 @@
     <string name="select_brand_first">Спочатку оберіть бренд</string>
     <string name="collection_statistics_desc">Графіки, ціни, значки</string>
     <string name="collection_statistics_desc_detailed">Детальна статистика: графіки, ціни, значки</string>
+    <string name="stats_collection_value_development">Динаміка вартості колекції</string>
+    <string name="stats_cd_switch_to_bar_chart">Показати стовпчикову діаграму</string>
+    <string name="stats_cd_switch_to_pie_chart">Показати кругову діаграму</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">Потрібне оновлення</string>
+    <string name="app_update_required_body">Доступна нова версія застосунку. Оновіться до останньої версії, щоб продовжити.</string>
+    <string name="app_update_now">Оновити зараз</string>
+    <string name="app_update_dialog_title">Нове оновлення (v%1$s)</string>
+    <string name="app_update_dialog_body">Рекомендуємо оновити застосунок для кращого досвіду та нових моделей.</string>
+    <string name="app_update_confirm">Оновити</string>
+    <string name="app_update_later">Пізніше</string>
 
 
 
@@ -514,4 +527,15 @@
     <string name="settings_subtitle_terms_of_use">Перегляньте умови використання застосунку</string>
     <string name="settings_subtitle_community_rules">Прочитайте правила спільноти та принципи модерації</string>
     <string name="settings_subtitle_logout">Безпечно вийдіть зі свого акаунта</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">Звичайний</string>
+    <string name="dm_blocked_error">Ви не можете писати цьому користувачу.</string>
+    <string name="dm_encrypt_error">Не вдалося зашифрувати повідомлення</string>
+    <string name="dm_rate_limit_error">Можна надіслати не більше 10 повідомлень поспіль. Зачекайте %1$s перед новим повідомленням</string>
+    <string name="dm_inbox_load_error">Не вдалося завантажити вхідні</string>
+    <string name="pdf_report_title">Звіт колекції HotWheels</string>
+    <string name="pdf_date_prefix">Дата: %1$s</string>
+    <string name="pdf_page_number">Сторінка %1$d</string>
+    <string name="content_desc_favorite">Улюблене</string>
+    <string name="content_desc_selected">Вибрано</string>
 </resources>

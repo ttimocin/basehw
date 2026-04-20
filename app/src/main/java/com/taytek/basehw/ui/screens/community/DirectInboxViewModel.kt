@@ -2,9 +2,12 @@ package com.taytek.basehw.ui.screens.community
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
+import com.taytek.basehw.R
 import com.taytek.basehw.domain.model.DirectConversation
 import com.taytek.basehw.domain.repository.SupabaseSyncRepository
+import dagger.hilt.android.qualifiers.ApplicationContext
 import com.taytek.basehw.util.MessageCrypto
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +24,7 @@ data class DirectInboxUiState(
 
 @HiltViewModel
 class DirectInboxViewModel @Inject constructor(
+    @param:ApplicationContext private val context: Context,
     private val auth: FirebaseAuth,
     private val supabaseSyncRepository: SupabaseSyncRepository
 ) : ViewModel() {
@@ -55,7 +59,7 @@ class DirectInboxViewModel @Inject constructor(
             }.onFailure { e ->
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
-                    error = e.message ?: "Mesaj kutusu yuklenemedi"
+                    error = e.message ?: context.getString(R.string.dm_inbox_load_error)
                 )
             }
         }

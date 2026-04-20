@@ -64,6 +64,22 @@ interface VariantHuntDao {
     )
     suspend fun findGroupIdsReadyToComplete(): List<Long>
 
+    @Query(
+        """
+        SELECT COUNT(DISTINCT i.masterDataId)
+        FROM variant_hunt_group_items i
+        INNER JOIN variant_hunt_groups g ON g.id = i.groupId
+        WHERE g.isActive = 1
+          AND g.completedAtMillis IS NULL
+          AND NOT EXISTS (
+              SELECT 1 FROM user_cars uc
+              WHERE uc.masterDataId = i.masterDataId
+                AND uc.isWishlist = 0
+          )
+        """
+    )
+    fun observeActiveOutstandingWantedCount(): Flow<Int>
+
     @Query("DELETE FROM variant_hunt_groups WHERE id = :id")
     suspend fun deleteGroup(id: Long)
 

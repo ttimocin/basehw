@@ -222,11 +222,18 @@ class HomeViewModel @Inject constructor(
         val startOfMonth = calendar.timeInMillis
 
         viewModelScope.launch {
+            val wantedCountFlow = combine(
+                userCarRepository.getWishlistCount(),
+                userCarRepository.getActiveVariantHuntWantedCount()
+            ) { wishlistWanted, variantHuntWanted ->
+                wishlistWanted + variantHuntWanted
+            }
+
             combine(
                 combine(
                     userCarRepository.getTotalCarsCount(),
                     userCarRepository.getCarsAddedSinceCount(startOfMonth),
-                    userCarRepository.getWantedNotInCollectionCount(),
+                    wantedCountFlow,
                     userCarRepository.getSthCarsCount(),
                     userCarRepository.getTotalEstimatedValue()
                 ) { total, monthly, wanted, sth, rawValue ->

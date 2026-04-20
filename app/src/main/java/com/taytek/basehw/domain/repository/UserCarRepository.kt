@@ -41,6 +41,7 @@ interface UserCarRepository {
 
     fun getTotalCarsCount(): Flow<Int>
     fun getWishlistCount(): Flow<Int>
+    fun getActiveVariantHuntWantedCount(): Flow<Int>
     fun getWantedNotInCollectionCount(): Flow<Int>
     fun getSthCarsCount(): Flow<Int>
     fun getBoxStatusCounts(): Flow<List<BoxStatusStats>>

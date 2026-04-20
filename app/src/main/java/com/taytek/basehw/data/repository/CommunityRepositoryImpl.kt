@@ -1,6 +1,7 @@
 package com.taytek.basehw.data.repository
 
 import android.util.Log
+import android.util.Base64
 
 import com.google.firebase.auth.FirebaseAuth
 import com.taytek.basehw.data.remote.supabase.model.SupabaseBannedUserRow
@@ -30,8 +31,10 @@ import io.github.jan.supabase.realtime.channel
 import io.github.jan.supabase.realtime.postgresChangeFlow
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.time.Instant
@@ -454,49 +457,88 @@ class CommunityRepositoryImpl @Inject constructor(
 
         emitCurrentStatus()
 
-        // Use separate channels for insert and delete to avoid "cannot call postgresChangeFlow after joining the channel" error
-        val insertTopic = "follow-insert-$currentUid-$targetUid-${UUID.randomUUID()}"
-        val deleteTopic = "follow-delete-$currentUid-$targetUid-${UUID.randomUUID()}"
-        
-        val insertChannel = supabaseClient.channel(insertTopic)
-        val deleteChannel = supabaseClient.channel(deleteTopic)
-
-        val insertJob = launch(start = CoroutineStart.UNDISPATCHED) {
-            insertChannel
-                .postgresChangeFlow<PostgresAction.Insert>("public") {
-                    table = "follows"
-                    filter("follower_uid", FilterOperator.EQ, currentUid)
-                    filter("followed_uid", FilterOperator.EQ, targetUid)
-                }
-                .collect {
-                    emitCurrentStatus()
-                }
-        }
-
-        val deleteJob = launch(start = CoroutineStart.UNDISPATCHED) {
-            deleteChannel
-                .postgresChangeFlow<PostgresAction.Delete>("public") {
-                    table = "follows"
-                    filter("follower_uid", FilterOperator.EQ, currentUid)
-                    filter("followed_uid", FilterOperator.EQ, targetUid)
-                }
-                .collect {
-                    emitCurrentStatus()
-                }
-        }
-
-        // Register change flows before joining channels to satisfy Supabase realtime lifecycle.
-        insertChannel.subscribe()
-        deleteChannel.subscribe()
-
-        awaitClose {
-            insertJob.cancel()
-            deleteJob.cancel()
-            launch { 
-                insertChannel.unsubscribe()
-                deleteChannel.unsubscribe()
+        // Realtime token can be invalid for websocket (missing role/exp).
+        // Keep follow status stable by polling regardless of realtime state.
+        val pollingJob = launch {
+            while (isActive) {
+                delay(2500)
+                emitCurrentStatus()
             }
         }
+
+        val canUseRealtime = hasRealtimeJwtClaims()
+
+        // Use separate channels for insert and delete to avoid lifecycle issues.
+        val insertTopic = "follow-insert-$currentUid-$targetUid-${UUID.randomUUID()}"
+        val deleteTopic = "follow-delete-$currentUid-$targetUid-${UUID.randomUUID()}"
+        val insertChannel = if (canUseRealtime) supabaseClient.channel(insertTopic) else null
+        val deleteChannel = if (canUseRealtime) supabaseClient.channel(deleteTopic) else null
+
+        val insertJob = if (insertChannel != null) {
+            launch(start = CoroutineStart.UNDISPATCHED) {
+                insertChannel
+                    .postgresChangeFlow<PostgresAction.Insert>("public") {
+                        table = "follows"
+                        filter("follower_uid", FilterOperator.EQ, currentUid)
+                        filter("followed_uid", FilterOperator.EQ, targetUid)
+                    }
+                    .collect {
+                        emitCurrentStatus()
+                    }
+            }
+        } else null
+
+        val deleteJob = if (deleteChannel != null) {
+            launch(start = CoroutineStart.UNDISPATCHED) {
+                deleteChannel
+                    .postgresChangeFlow<PostgresAction.Delete>("public") {
+                        table = "follows"
+                        filter("follower_uid", FilterOperator.EQ, currentUid)
+                        filter("followed_uid", FilterOperator.EQ, targetUid)
+                    }
+                    .collect {
+                        emitCurrentStatus()
+                    }
+            }
+        } else null
+
+        if (insertChannel != null && deleteChannel != null) {
+            runCatching {
+                insertChannel.subscribe()
+                deleteChannel.subscribe()
+            }.onFailure {
+                Log.w("CommunityRepo", "Realtime follow subscription failed, polling fallback active.", it)
+            }
+        } else {
+            Log.i("CommunityRepo", "Realtime follow disabled for current token claims; polling fallback active.")
+        }
+
+        awaitClose {
+            pollingJob.cancel()
+            insertJob?.cancel()
+            deleteJob?.cancel()
+            launch { 
+                runCatching { insertChannel?.unsubscribe() }
+                runCatching { deleteChannel?.unsubscribe() }
+            }
+        }
+    }
+
+    private suspend fun hasRealtimeJwtClaims(): Boolean {
+        val token = runCatching {
+            auth.currentUser?.getIdToken(false)?.await()?.token
+        }.getOrNull() ?: return false
+
+        val payloadPart = token.split('.').getOrNull(1) ?: return false
+        val payloadJson = runCatching {
+            val decoded = Base64.decode(
+                payloadPart,
+                Base64.URL_SAFE or Base64.NO_WRAP or Base64.NO_PADDING
+            )
+            String(decoded, Charsets.UTF_8)
+        }.getOrNull() ?: return false
+
+        return payloadJson.contains("\"role\"") && payloadJson.contains("\"exp\"")
     }
 
     override suspend fun getFollowingUids(): Result<List<String>> {

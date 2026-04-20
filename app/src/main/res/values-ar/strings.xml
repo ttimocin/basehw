@@ -45,6 +45,7 @@
     <string name="like">إعجاب</string>
     <string name="comment">تعليق</string>
     <string name="follow">متابعة</string>
+    <string name="post_card_following_status">متابَع</string>
     <string name="unfollow">إلغاء المتابعة</string>
     <string name="followers">متابعين</string>
     <string name="following_label">متابَعون</string>
@@ -338,6 +339,18 @@
     <string name="select_brand_first">يرجى اختيار علامة تجارية أولاً</string>
     <string name="collection_statistics_desc">رسوم بيانية، قيم، أوسمة</string>
     <string name="collection_statistics_desc_detailed">رسوم بيانية وقيم وإحصائيات الأوسمة</string>
+    <string name="stats_collection_value_development">تطور قيمة المجموعة</string>
+    <string name="stats_cd_switch_to_bar_chart">عرض مخطط أعمدة</string>
+    <string name="stats_cd_switch_to_pie_chart">عرض مخطط دائري</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">يلزم التحديث</string>
+    <string name="app_update_required_body">يتوفر إصدار جديد من التطبيق. يُرجى التحديث إلى أحدث إصدار للمتابعة.</string>
+    <string name="app_update_now">حدّث الآن</string>
+    <string name="app_update_dialog_title">تحديث جديد (v%1$s)</string>
+    <string name="app_update_dialog_body">نوصي بتحديث التطبيق لتجربة أفضل ونماذج جديدة.</string>
+    <string name="app_update_confirm">تحديث</string>
+    <string name="app_update_later">لاحقًا</string>
 
 
 
@@ -717,4 +730,15 @@
     <string name="settings_subtitle_terms_of_use">راجع شروط استخدام التطبيق</string>
     <string name="settings_subtitle_community_rules">اقرأ قواعد المجتمع وارشادات الاشراف</string>
     <string name="settings_subtitle_logout">سجل الخروج من حسابك بشكل امن</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">عادي</string>
+    <string name="dm_blocked_error">لا يمكنك مراسلة هذا المستخدم.</string>
+    <string name="dm_encrypt_error">تعذر تشفير الرسالة</string>
+    <string name="dm_rate_limit_error">يمكنك إرسال 10 رسائل متتالية كحد أقصى. انتظر %1$s قبل إرسال رسالة جديدة</string>
+    <string name="dm_inbox_load_error">تعذر تحميل صندوق الوارد</string>
+    <string name="pdf_report_title">تقرير مجموعة HotWheels</string>
+    <string name="pdf_date_prefix">التاريخ: %1$s</string>
+    <string name="pdf_page_number">الصفحة %1$d</string>
+    <string name="content_desc_favorite">مفضلة</string>
+    <string name="content_desc_selected">محدد</string>
 </resources>

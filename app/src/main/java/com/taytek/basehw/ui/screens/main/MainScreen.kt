@@ -3,19 +3,34 @@ package com.taytek.basehw.ui.screens.main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.DirectionsCar
+import androidx.compose.material.icons.filled.Groups
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.StarOutline
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -48,6 +63,20 @@ import com.taytek.basehw.ui.theme.ThemeVariant
 import com.taytek.basehw.ui.theme.cyberRootBackgroundColor
 import com.taytek.basehw.ui.theme.isNeonShellTheme
 import androidx.navigation.NavHostController
+import kotlinx.coroutines.launch
+
+private data class MainDrawerItem(
+    val tab: Int?,
+    val label: Int,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector,
+    val action: DrawerAction = DrawerAction.SwitchTab
+)
+
+private enum class DrawerAction {
+    SwitchTab,
+    OpenSettings,
+    SignOut
+}
 
 @Composable
 fun MainScreen(
@@ -84,6 +113,10 @@ fun MainScreen(
     val communityViewModel: CommunityViewModel = hiltViewModel()
     val currentUser by profileViewModel.currentUser.collectAsStateWithLifecycle()
     val profileUiState by profileViewModel.uiState.collectAsStateWithLifecycle()
+    val drawerState = androidx.compose.material3.rememberDrawerState(
+        initialValue = androidx.compose.material3.DrawerValue.Closed
+    )
+    val drawerScope = rememberCoroutineScope()
 
     LaunchedEffect(navigateToTab) {
         if (navigateToTab >= 0) {
@@ -108,32 +141,124 @@ fun MainScreen(
         else -> null
     }
 
-    Scaffold(
-        containerColor = cyberRootBackgroundColor(),
-        bottomBar = {
-            CustomBottomNavigation(
-                selectedTab = selectedTab,
-                onTabSelected = {
-                    previousTab = selectedTab
-                    if (it == 8) selectedCollectionContentTab = 0
-                    selectedTab = it
-                },
-                onAddClick = onAddCarClick
-            )
-        },
-        floatingActionButtonPosition = FabPosition.End
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .then(
-                    if (isNeonShellTheme() && neonBackgroundBrush != null) {
-                        Modifier.background(neonBackgroundBrush)
-                    } else {
-                        Modifier.background(MaterialTheme.colorScheme.background)
+    val drawerItems = listOf(
+        MainDrawerItem(tab = 0, label = R.string.nav_anasayfa, icon = Icons.Filled.Home),
+        MainDrawerItem(tab = 8, label = R.string.nav_home, icon = Icons.Filled.DirectionsCar),
+        MainDrawerItem(tab = 7, label = R.string.sth_label, icon = Icons.Filled.Star),
+        MainDrawerItem(tab = 2, label = R.string.nav_community, icon = Icons.Filled.Groups),
+        MainDrawerItem(tab = 3, label = R.string.nav_profile, icon = Icons.Filled.AccountCircle),
+        MainDrawerItem(tab = 3, label = R.string.settings_title, icon = Icons.Filled.Settings, action = DrawerAction.OpenSettings),
+        MainDrawerItem(tab = null, label = R.string.logout, icon = Icons.Filled.Logout, action = DrawerAction.SignOut)
+    )
+
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            ModalDrawerSheet(
+                modifier = Modifier.fillMaxWidth(0.82f)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp, vertical = 18.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.app_name),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                    Text(
+                        text = stringResource(R.string.drawer_menu_subtitle),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+                Spacer(modifier = Modifier.size(8.dp))
+                drawerItems.forEach { item ->
+                    val isSelected = item.tab != null && selectedTab == item.tab && item.action == DrawerAction.SwitchTab
+                    val itemColors = NavigationDrawerItemDefaults.colors(
+                        selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        selectedTextColor = MaterialTheme.colorScheme.primary,
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        unselectedTextColor = MaterialTheme.colorScheme.onSurface
+                    )
+                    NavigationDrawerItem(
+                        label = {
+                            Text(
+                                text = stringResource(item.label),
+                                style = MaterialTheme.typography.titleSmall
+                            )
+                        },
+                        selected = isSelected,
+                        colors = itemColors,
+                        onClick = {
+                            when (item.action) {
+                                DrawerAction.SwitchTab -> {
+                                    item.tab?.let { tab ->
+                                        previousTab = selectedTab
+                                        if (tab == 8) selectedCollectionContentTab = 0
+                                        selectedTab = tab
+                                    }
+                                }
+                                DrawerAction.OpenSettings -> {
+                                    previousTab = selectedTab
+                                    reopenProfileSettingsOnReturn = true
+                                    selectedTab = 3
+                                }
+                                DrawerAction.SignOut -> {
+                                    profileViewModel.signOut()
+                                    previousTab = selectedTab
+                                    selectedTab = 0
+                                }
+                            }
+                            drawerScope.launch { drawerState.close() }
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = item.icon,
+                                contentDescription = null,
+                                modifier = Modifier.size(22.dp)
+                            )
+                        },
+                        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                    )
+                    if (item.action == DrawerAction.OpenSettings) {
+                        HorizontalDivider(
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                            color = MaterialTheme.colorScheme.outline.copy(alpha = 0.15f)
+                        )
                     }
+                }
+            }
+        }
+    ) {
+        Scaffold(
+            containerColor = cyberRootBackgroundColor(),
+            bottomBar = {
+                CustomBottomNavigation(
+                    selectedTab = selectedTab,
+                    onTabSelected = {
+                        previousTab = selectedTab
+                        if (it == 8) selectedCollectionContentTab = 0
+                        selectedTab = it
+                    },
+                    onAddClick = onAddCarClick
                 )
-        ) {
+            },
+            floatingActionButtonPosition = FabPosition.End
+        ) { paddingValues ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .then(
+                        if (isNeonShellTheme() && neonBackgroundBrush != null) {
+                            Modifier.background(neonBackgroundBrush)
+                        } else {
+                            Modifier.background(MaterialTheme.colorScheme.background)
+                        }
+                    )
+            ) {
             // Profile tab (3) - NonUserProfileScreen tam ekran, kendi BottomNav'ı var
             if (selectedTab == 3) {
                 val shouldRenderAuthFlow =
@@ -169,7 +294,8 @@ fun MainScreen(
                         onTermsOfUseClick = onTermsOfUseClick,
                         onForumRulesClick = onForumRulesClick,
                         onSettingsClick = {
-                            reopenProfileSettingsOnReturn = true
+                            // Profile içinden açılan ayarlarda geri, profilde kalmalı.
+                            // External (drawer/support) açılışlarda bu flag zaten ayrı set ediliyor.
                         },
                         onEditProfileClick = onEditProfileClick,
                         onStatsClick = {
@@ -187,6 +313,9 @@ fun MainScreen(
                     HomeScreen(
                         onCarClick = { id -> onCarClick(id, false) },
                         onProfileClick = { selectedTab = 3 },
+                        onMenuClick = {
+                            drawerScope.launch { drawerState.open() }
+                        },
                         onCameraClick = onAddCarCameraClick,
                         onAddClick = onAddCarClick,
                         onViewAllClick = {
@@ -269,6 +398,7 @@ fun MainScreen(
                 }
             }
         }
+    }
     }
 }
 

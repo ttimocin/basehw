@@ -2,7 +2,9 @@ package com.taytek.basehw.ui.screens.community
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
+import com.taytek.basehw.R
 import com.taytek.basehw.data.local.AppSettingsManager
 import com.taytek.basehw.domain.model.DirectMessage
 import com.taytek.basehw.domain.repository.SupabaseSyncRepository
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 data class DirectMessageUiState(
@@ -28,6 +31,7 @@ data class DirectMessageUiState(
 
 @HiltViewModel
 class DirectMessageViewModel @Inject constructor(
+    @param:ApplicationContext private val context: Context,
     private val auth: FirebaseAuth,
     private val supabaseSyncRepository: SupabaseSyncRepository,
     private val appSettingsManager: AppSettingsManager,
@@ -68,7 +72,7 @@ class DirectMessageViewModel @Inject constructor(
             }.onFailure { e ->
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
-                    error = e.message ?: "Mesajlar yuklenemedi"
+                    error = e.message ?: context.getString(R.string.dm_load_error)
                 )
             }
         }
@@ -139,7 +143,7 @@ class DirectMessageViewModel @Inject constructor(
             
             if (isBlocked || hasBlockedMe) {
                 _uiState.value = _uiState.value.copy(
-                    error = "Bu kullanıcıyla mesajlaşamazsınız.",
+                    error = context.getString(R.string.dm_blocked_error),
                     isSending = false
                 )
                 return@launch
@@ -157,7 +161,7 @@ class DirectMessageViewModel @Inject constructor(
         } catch (e: Exception) {
             _uiState.value = _uiState.value.copy(
                 isSending = false,
-                error = "Mesaj şifrelenemedi"
+                error = context.getString(R.string.dm_encrypt_error)
             )
             return
         }
@@ -170,7 +174,10 @@ class DirectMessageViewModel @Inject constructor(
         if (recentMessages.size >= DM_LIMIT_COUNT) {
             val remainingMillis = (recentMessages.minOrNull() ?: now) + DM_LIMIT_WINDOW_MILLIS - now
             _uiState.value = _uiState.value.copy(
-                error = "Arka arkaya en fazla 10 mesaj gönderebilirsin. Yeni mesaj için ${formatCooldown(remainingMillis)} bekle",
+                error = context.getString(
+                    R.string.dm_rate_limit_error,
+                    formatCooldown(remainingMillis)
+                ),
                 dmCooldownRemaining = formatCooldown(remainingMillis)
             )
             return
@@ -206,7 +213,7 @@ class DirectMessageViewModel @Inject constructor(
             }.onFailure { e ->
                 _uiState.value = _uiState.value.copy(
                     isSending = false,
-                    error = e.message ?: "Mesaj gonderilemedi"
+                    error = e.message ?: context.getString(R.string.dm_send_error)
                 )
             }
         }

@@ -19,9 +19,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
+import kotlin.math.abs
 
 data class AddCarUiState(
     val selectedBrand: Brand = Brand.HOT_WHEELS,
@@ -88,12 +91,11 @@ class AddCarViewModel @Inject constructor(
         viewModelScope.launch {
             currencyRepository.refreshRates()
         }
-        
-        // Initialize selected currency from app language setting (TR -> TRY, else -> USD)
+
         viewModelScope.launch {
-            appSettingsManager.languageFlow.take(1).collect { code ->
-                val defaultCurrency = if (code == "tr") "TRY" else "USD"
-                _uiState.update { it.copy(selectedCurrency = com.taytek.basehw.domain.model.AppCurrency.fromCode(defaultCurrency)) }
+            val code = appSettingsManager.currencyFlow.first()
+            _uiState.update {
+                it.copy(selectedCurrency = com.taytek.basehw.domain.model.AppCurrency.fromCode(code))
             }
         }
     }
@@ -116,7 +118,45 @@ class AddCarViewModel @Inject constructor(
     }
 
     fun onCurrencySelected(currency: com.taytek.basehw.domain.model.AppCurrency) {
-        _uiState.update { it.copy(selectedCurrency = currency) }
+        viewModelScope.launch {
+            val state = _uiState.value
+            val oldCurrency = state.selectedCurrency
+                ?: com.taytek.basehw.domain.model.AppCurrency.fromCode(appSettingsManager.currencyFlow.value)
+            if (oldCurrency == currency) return@launch
+
+            val rates = currencyRepository.getRates().filterNotNull().first()
+            fun rateToEur(code: String): Double =
+                if (code == "EUR") 1.0 else rates.rates[code] ?: 1.0
+
+            fun convertAmount(amountStr: String, from: com.taytek.basehw.domain.model.AppCurrency, to: com.taytek.basehw.domain.model.AppCurrency): String {
+                val amount = parsePrice(amountStr) ?: return amountStr
+                val amountEur = amount / rateToEur(from.code)
+                val converted = amountEur * rateToEur(to.code)
+                return formatPriceForInput(converted)
+            }
+
+            val newPurchase =
+                if (state.purchasePrice.isBlank()) "" else convertAmount(state.purchasePrice, oldCurrency, currency)
+            val newEstimated =
+                if (state.estimatedValue.isBlank()) "" else convertAmount(state.estimatedValue, oldCurrency, currency)
+
+            _uiState.update {
+                it.copy(
+                    selectedCurrency = currency,
+                    purchasePrice = newPurchase,
+                    estimatedValue = newEstimated
+                )
+            }
+        }
+    }
+
+    private fun formatPriceForInput(value: Double): String {
+        val rounded = kotlin.math.round(value * 100.0) / 100.0
+        return if (abs(rounded - rounded.toLong()) < 1e-9) {
+            rounded.toLong().toString()
+        } else {
+            String.format(Locale.US, "%.2f", rounded).trimEnd('0').trimEnd('.')
+        }
     }
 
     fun onSearchQueryChanged(query: String) {

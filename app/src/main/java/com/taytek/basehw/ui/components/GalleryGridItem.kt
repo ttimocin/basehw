@@ -17,7 +17,9 @@ import androidx.compose.ui.layout.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
+import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
+import com.taytek.basehw.R
 import com.taytek.basehw.domain.model.UserCar
 import com.taytek.basehw.ui.theme.*
 import android.util.Log
@@ -200,7 +202,7 @@ fun GalleryGridItem(
         if (car.isFavorite) {
             Icon(
                 imageVector = Icons.Default.Favorite,
-                contentDescription = "Favorite",
+                contentDescription = stringResource(R.string.content_desc_favorite),
                 tint = Color(0xFFFF4D6D),
                 modifier = Modifier
                     .align(Alignment.TopEnd)
@@ -228,7 +230,7 @@ fun GalleryGridItem(
                         shape = RoundedCornerShape(6.dp)
                     ) {
                         Text(
-                            text = "STH",
+                            text = stringResource(R.string.sth_label_short),
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.ExtraBold,
@@ -251,7 +253,7 @@ fun GalleryGridItem(
                         border = BorderStroke(0.5.dp, brand.chaseBorder)
                     ) {
                         Text(
-                            text = "CHASE",
+                            text = stringResource(R.string.chase_label),
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontSize = 8.sp,
                                 fontWeight = FontWeight.ExtraBold,
@@ -269,7 +271,7 @@ fun GalleryGridItem(
                         border = BorderStroke(0.5.dp, Color.Black.copy(alpha = 0.2f))
                     ) {
                         Text(
-                            text = "TH",
+                            text = stringResource(R.string.th_label),
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.ExtraBold,
@@ -309,7 +311,7 @@ fun GalleryGridItem(
                         shape = RoundedCornerShape(6.dp)
                     ) {
                         Text(
-                            text = "CUSTOM",
+                            text = stringResource(R.string.custom_label).uppercase(),
                             style = MaterialTheme.typography.labelSmall.copy(
                                 fontWeight = FontWeight.ExtraBold,
                                 fontSize = 9.sp
@@ -359,7 +361,7 @@ fun GalleryGridItem(
                 ) {
                     Icon(
                         imageVector = Icons.Default.CheckCircle,
-                        contentDescription = "Selected",
+                        contentDescription = stringResource(R.string.content_desc_selected),
                         tint = tokens.selectionIconTint,
                         modifier = Modifier.size(36.dp)
                     )

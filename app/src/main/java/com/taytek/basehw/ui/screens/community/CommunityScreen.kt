@@ -263,7 +263,10 @@ fun CommunityScreen(
                         onUserClick = onUserProfileClick,
                         onLoadMore = viewModel::loadNextPage,
                         onRefresh = { viewModel.loadFeed() },
-                        authorAvatars = uiState.authorAvatars
+                        authorAvatars = uiState.authorAvatars,
+                        feedFollowingUids = uiState.feedFollowingUids,
+                        feedFollowBusyAuthorUid = uiState.feedFollowBusyAuthorUid,
+                        onToggleFeedFollow = viewModel::toggleFeedPostFollow
                     )
                     1 -> FollowingTab(
                         posts = uiState.followingPosts,
@@ -276,7 +279,10 @@ fun CommunityScreen(
                         onReportPost = { reportPostForDialog = it },
                         onUserClick = onUserProfileClick,
                         onReactionSelect = { postId, emoji -> viewModel.toggleReaction(postId, emoji) },
-                        authorAvatars = uiState.authorAvatars
+                        authorAvatars = uiState.authorAvatars,
+                        feedFollowingUids = uiState.feedFollowingUids,
+                        feedFollowBusyAuthorUid = uiState.feedFollowBusyAuthorUid,
+                        onToggleFeedFollow = viewModel::toggleFeedPostFollow
                     )
                     2 -> RankingTab(
                         topUsers = uiState.topUsers,
@@ -501,7 +507,10 @@ private fun FeedTab(
     onReactionSelect: ((String, String) -> Unit)? = null,
     onLoadMore: () -> Unit = {},
     onRefresh: () -> Unit = {},
-    authorAvatars: Map<String, Pair<Int, String?>> = emptyMap()
+    authorAvatars: Map<String, Pair<Int, String?>> = emptyMap(),
+    feedFollowingUids: Set<String> = emptySet(),
+    feedFollowBusyAuthorUid: String? = null,
+    onToggleFeedFollow: (String) -> Unit = {}
 ) {
     if (!isSignedIn) {
         EmptyState(stringResource(R.string.login_required_feed))
@@ -575,7 +584,12 @@ private fun FeedTab(
                         onReportClick = { onReportPost(post) },
                         currentUser = currentUser,
                         authorAvatars = authorAvatars,
-                        onReactionSelect = onReactionSelect?.let { cb -> { emoji -> cb(post.id, emoji) } }
+                        onReactionSelect = onReactionSelect?.let { cb -> { emoji -> cb(post.id, emoji) } },
+                        isFollowingAuthor = post.authorUid in feedFollowingUids,
+                        isFollowActionBusy = feedFollowBusyAuthorUid == post.authorUid,
+                        onFollowAuthorClick = if (post.authorUid != currentUser?.uid) {
+                            { onToggleFeedFollow(post.authorUid) }
+                        } else null
                     )
                 }
 
@@ -640,7 +654,10 @@ private fun FollowingTab(
     onReportPost: (CommunityPost) -> Unit,
     onUserClick: (String) -> Unit,
     onReactionSelect: ((String, String) -> Unit)? = null,
-    authorAvatars: Map<String, Pair<Int, String?>> = emptyMap()
+    authorAvatars: Map<String, Pair<Int, String?>> = emptyMap(),
+    feedFollowingUids: Set<String> = emptySet(),
+    feedFollowBusyAuthorUid: String? = null,
+    onToggleFeedFollow: (String) -> Unit = {}
 ) {
     if (!isSignedIn) {
         EmptyState(stringResource(R.string.login_required_feed))
@@ -671,7 +688,12 @@ private fun FollowingTab(
                 onReportClick = { onReportPost(post) },
                 currentUser = currentUser,
                 authorAvatars = authorAvatars,
-                onReactionSelect = onReactionSelect?.let { cb -> { emoji -> cb(post.id, emoji) } }
+                onReactionSelect = onReactionSelect?.let { cb -> { emoji -> cb(post.id, emoji) } },
+                isFollowingAuthor = post.authorUid in feedFollowingUids,
+                isFollowActionBusy = feedFollowBusyAuthorUid == post.authorUid,
+                onFollowAuthorClick = if (post.authorUid != currentUser?.uid) {
+                    { onToggleFeedFollow(post.authorUid) }
+                } else null
             )
         }
     }

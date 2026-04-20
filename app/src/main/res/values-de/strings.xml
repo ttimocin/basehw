@@ -46,6 +46,7 @@
     <string name="like">Gefällt mir</string>
     <string name="comment">Kommentar</string>
     <string name="follow">Folgen</string>
+    <string name="post_card_following_status">Gefolgt</string>
     <string name="unfollow">Entfolgen</string>
     <string name="followers">Follower</string>
     <string name="following_label">Abonniert</string>
@@ -340,6 +341,18 @@
     <string name="select_currency">Währung auswählen</string>
     <string name="currency_selection_desc">Legen Sie die globale Währung für Ihre Sammlung fest. Diese Auswahl kann später nicht mehr geändert werden.</string>
     <string name="select_brand_first">Bitte wählen Sie zuerst eine Marke aus</string>
+    <string name="stats_collection_value_development">Sammlungswert im Zeitverlauf</string>
+    <string name="stats_cd_switch_to_bar_chart">Balkendiagramm anzeigen</string>
+    <string name="stats_cd_switch_to_pie_chart">Kreisdiagramm anzeigen</string>
+
+    <!-- App updates (Play / in-app) -->
+    <string name="app_update_required_title">Update erforderlich</string>
+    <string name="app_update_required_body">Eine neue Version der App ist verfügbar. Bitte aktualisieren Sie auf die neueste Version, um fortzufahren.</string>
+    <string name="app_update_now">Jetzt aktualisieren</string>
+    <string name="app_update_dialog_title">Neues Update (v%1$s)</string>
+    <string name="app_update_dialog_body">Wir empfehlen ein Update für ein besseres Erlebnis und neue Modelle.</string>
+    <string name="app_update_confirm">Aktualisieren</string>
+    <string name="app_update_later">Später</string>
 
 
     <!-- Collections / Folders -->
@@ -716,4 +729,15 @@
     <string name="settings_subtitle_terms_of_use">Nutzungsbedingungen der App anzeigen</string>
     <string name="settings_subtitle_community_rules">Community-Regeln und Moderationsrichtlinien lesen</string>
     <string name="settings_subtitle_logout">Sicher von Ihrem Konto abmelden</string>
+    <string name="fallback_mainline">Mainline</string>
+    <string name="regular_label">Regular</string>
+    <string name="dm_blocked_error">Du kannst diesem Benutzer keine Nachrichten senden.</string>
+    <string name="dm_encrypt_error">Nachricht konnte nicht verschlüsselt werden</string>
+    <string name="dm_rate_limit_error">Du kannst höchstens 10 Nachrichten hintereinander senden. Warte %1$s für eine neue Nachricht</string>
+    <string name="dm_inbox_load_error">Posteingang konnte nicht geladen werden</string>
+    <string name="pdf_report_title">HotWheels Sammlungsbericht</string>
+    <string name="pdf_date_prefix">Datum: %1$s</string>
+    <string name="pdf_page_number">Seite %1$d</string>
+    <string name="content_desc_favorite">Favorit</string>
+    <string name="content_desc_selected">Ausgewählt</string>
 </resources>

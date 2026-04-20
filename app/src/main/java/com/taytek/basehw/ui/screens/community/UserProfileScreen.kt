@@ -102,6 +102,7 @@ fun UserProfileScreen(
     val languageState by profileViewModel.languageFlow.collectAsState(initial = "")
 
     var showSettingsPage by rememberSaveable { mutableStateOf(openSettingsOnEnter) }
+    var openedSettingsFromExternalEntry by rememberSaveable { mutableStateOf(false) }
     
     // Fade-in animation for first profile screen entry to mask loading flicker
     var hasLoadedOnce by rememberSaveable { mutableStateOf(false) }
@@ -166,6 +167,7 @@ fun UserProfileScreen(
     LaunchedEffect(openSettingsOnEnter, isMe) {
         if (openSettingsOnEnter && isMe) {
             showSettingsPage = true
+            openedSettingsFromExternalEntry = true
             onConsumeOpenSettings()
         }
     }
@@ -192,7 +194,13 @@ fun UserProfileScreen(
             fontFamilyState = fontFamilyState,
             languageState = languageState,
             currencyCode = currencyCode,
-            onBack = { showSettingsPage = false },
+            onBack = {
+                showSettingsPage = false
+                if (openedSettingsFromExternalEntry) {
+                    openedSettingsFromExternalEntry = false
+                    onNavigateBack()
+                }
+            },
             onUpdateCollectionVisibility = profileViewModel::updateCollectionVisibility,
             onUpdateWishlistVisibility = profileViewModel::updateWishlistVisibility,
             onBackup = profileViewModel::backupToCloud,
@@ -217,10 +225,12 @@ fun UserProfileScreen(
             onLogout = {
                 profileViewModel.signOut()
                 showSettingsPage = false
+                openedSettingsFromExternalEntry = false
             },
             onDeleteAccount = {
                 profileViewModel.deleteAccount()
                 showSettingsPage = false
+                openedSettingsFromExternalEntry = false
             },
             onAdminPanelClick = onAdminPanelClick,
             isAuthenticated = firebaseCurrentUser != null && !firebaseCurrentUser.isAnonymous
